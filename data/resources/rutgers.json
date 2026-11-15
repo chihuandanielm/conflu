@@ -33,7 +33,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -66,7 +67,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://success.rutgers.edu/resources?keys=Rutgers%20Handshake"
       },
       "tags": []
     },
@@ -101,7 +104,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://careers.rutgers.edu/students-alumni/courses-signature-programs/4ward-career-pathways-program"
       },
       "tags": []
     },
@@ -133,7 +138,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -163,7 +169,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -198,7 +205,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://aresty.rutgers.edu/programs-funding/research-assistant-program"
       },
       "tags": []
     },
@@ -238,7 +247,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://aresty.rutgers.edu/programs-funding"
       },
       "tags": []
     },
@@ -273,7 +284,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -306,9 +318,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "broken",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 404,
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": []
     },
@@ -354,7 +367,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://success.rutgers.edu/kickstart-your-future/research-resources"
       },
       "tags": []
     },
@@ -399,7 +414,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://aresty.rutgers.edu/programs-funding/the-research-intensive-summer-experience"
       },
       "tags": []
     },
@@ -438,9 +455,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -481,7 +498,8 @@
       "statusNote": "TRIO funding survived the FY2026 budget, but the Education Department cut some McNair grants nationally and removed race-based criteria. Confirm the Rutgers program is enrolling.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -518,7 +536,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -554,7 +573,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -590,7 +610,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -627,7 +648,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -663,7 +685,8 @@
       "statusNote": "Eligibility changed for students entering after Spring 2026; earlier entrants may qualify for exceptions.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -702,7 +725,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -735,8 +759,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -770,8 +796,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -803,7 +831,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -836,7 +865,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://bme.rutgers.edu/co-operative-education-program"
       },
       "tags": []
     },
@@ -871,7 +902,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -906,7 +938,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://myrbs.business.rutgers.edu/case-competitions/business-plan"
       },
       "tags": []
     },
@@ -951,7 +985,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -992,7 +1027,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1030,7 +1066,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1063,7 +1100,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1098,7 +1136,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1133,7 +1172,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1166,7 +1206,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1201,7 +1242,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1235,9 +1277,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://success.rutgers.edu/the-arc"
       },
       "tags": []
     },
@@ -1275,7 +1318,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://www.rutgers.edu/social-mobility"
       },
       "tags": []
     },
@@ -1308,7 +1353,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1343,7 +1389,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1380,7 +1427,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1415,7 +1463,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1450,7 +1499,9 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403,
+        "finalUrl": "https://sebs.rutgers.edu/gh-cook-scholars"
       },
       "tags": []
     },
@@ -1485,9 +1536,9 @@
       "status": "changed",
       "statusNote": "The Rutgers Energy Institute became part of the Rutgers Climate and Energy Institute in 2023. Check RCEI for current student positions.",
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1524,7 +1575,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1562,7 +1614,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -1599,7 +1652,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1638,7 +1692,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -1676,7 +1731,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1715,7 +1771,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -1753,7 +1810,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1791,7 +1849,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1829,7 +1888,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://smlr.rutgers.edu/center-for-women-and-work"
       },
       "tags": []
     },
@@ -1869,7 +1930,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -1908,7 +1970,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1946,7 +2009,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1983,9 +2047,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "broken",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 405,
+        "note": "Link failed (HTTP 405); needs a new URL."
       },
       "tags": []
     },
@@ -2022,7 +2087,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2059,7 +2125,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2095,9 +2162,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2129,7 +2196,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2167,7 +2235,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     }

@@ -30,7 +30,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -67,7 +68,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -101,7 +103,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -134,7 +137,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://learn.microsoft.com/en-us/"
       },
       "tags": []
     },
@@ -168,7 +173,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 999,
+        "note": "Site refused the automated check (HTTP 999); open it by hand."
       },
       "tags": []
     },
@@ -205,7 +211,9 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "finalUrl": "https://www.idealist.org/en"
       },
       "tags": []
     },
@@ -238,7 +246,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -271,7 +280,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -305,7 +315,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -339,7 +350,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -374,7 +386,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -406,8 +419,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     }

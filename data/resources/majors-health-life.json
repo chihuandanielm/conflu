@@ -31,7 +31,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -64,7 +65,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -97,7 +99,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -133,7 +136,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -170,7 +174,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -207,7 +212,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -247,7 +253,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -285,7 +292,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -318,7 +326,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -354,7 +363,8 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refuses automated checks; URL confirmed by web search."
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -383,8 +393,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -417,7 +429,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -450,7 +463,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -483,7 +497,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -515,7 +530,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -549,7 +565,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -581,8 +598,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -616,7 +635,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -651,7 +671,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -686,7 +707,9 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403,
+        "finalUrl": "https://www.americorps.gov/about/what-we-do/healthy-futures"
       },
       "tags": []
     },
@@ -717,7 +740,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -751,7 +775,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -785,7 +810,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -818,7 +844,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -852,7 +879,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -889,7 +917,8 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     }
