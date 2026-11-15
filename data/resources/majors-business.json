@@ -1,0 +1,727 @@
+{
+  "_about": "Resources for Finance, Accounting, Marketing, Supply Chain, Economics, and Human Resource Management.",
+  "resources": [
+    {
+      "id": "cfa-institute",
+      "name": "CFA Institute (student resources and Research Challenge)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "economics",
+        "accounting"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "investing"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Investment Foundations certificate, scholarships, and the CFA Institute Research Challenge for students.",
+      "url": "https://www.cfainstitute.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "bloomberg-bmc",
+      "name": "Bloomberg Market Concepts (BMC)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "economics",
+        "accounting"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "markets"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Self-paced Bloomberg terminal course; Rutgers Business School has terminals students can use.",
+      "url": "https://www.bloomberg.com/professional/expertise/education/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ny-fed-internships",
+      "name": "Federal Reserve Bank of New York internships",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "economics",
+        "computer-science",
+        "accounting"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid internships in research, markets, technology, and supervision near New Brunswick.",
+      "url": "https://www.newyorkfed.org/careers",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "fed-board-ra",
+      "name": "Federal Reserve Board research assistant roles",
+      "type": "job",
+      "scope": "national",
+      "majors": [
+        "economics",
+        "finance"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "grad-school",
+        "research"
+      ],
+      "pay": "salary",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Two-year post-graduate research assistant jobs, a classic path to economics PhDs.",
+      "url": "https://www.federalreserve.gov/careers.htm",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "big4-early",
+      "name": "Big 4 early-identification programs (Deloitte, EY, KPMG, PwC)",
+      "type": "employer_program",
+      "scope": "national",
+      "majors": [
+        "accounting",
+        "finance",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "First- and second-year exploration programs that feed accounting and advisory internships. Names change yearly.",
+      "url": "https://www.deloitte.com/us/en/careers/students.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check each firm's student careers page each fall: deloitte.com, ey.com, kpmg.com, pwc.com."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "beta-alpha-psi",
+      "name": "Beta Alpha Psi",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "accounting",
+        "finance",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Honor society for accounting, finance, and information systems with recruiting events.",
+      "url": "https://www.bap.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aicpa",
+      "name": "AICPA & CIMA student resources",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "accounting"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "CPA exam info, student affiliate membership, and scholarships including the Legacy Scholarship.",
+      "url": "https://www.aicpa-cima.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cpa-150",
+      "name": "CPA 150-credit-hour planning",
+      "type": "requirement",
+      "scope": "new_jersey",
+      "majors": [
+        "accounting"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "NJ CPA licensure requires 150 credit hours; plan for a fifth year, a master's, or extra credits early.",
+      "url": "https://www.njcpa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": [
+        "requirement"
+      ]
+    },
+    {
+      "id": "ama",
+      "name": "American Marketing Association (AMA) collegiate chapters",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Chapters, case competitions, and the international collegiate conference.",
+      "url": "https://www.ama.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "google-ads-cert",
+      "name": "Google Ads and Analytics certifications",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free certifications in digital ads and analytics through Google Skillshop.",
+      "url": "https://skillshop.withgoogle.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "hubspot-academy",
+      "name": "HubSpot Academy certifications",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free inbound marketing, content, and CRM certifications.",
+      "url": "https://academy.hubspot.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ascm",
+      "name": "ASCM (Association for Supply Chain Management)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student chapters, case competitions, and certifications (CPIM, CSCP).",
+      "url": "https://www.ascm.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cscmp",
+      "name": "CSCMP",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Council of Supply Chain Management Professionals: student membership and events.",
+      "url": "https://cscmp.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ism",
+      "name": "Institute for Supply Management (ISM)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Procurement-focused society with student resources.",
+      "url": "https://www.ismworld.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-scm-center",
+      "name": "Rutgers Center for Supply Chain Management",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Industry partnerships, case competitions, and recruiting events for RBS supply chain students.",
+      "url": "https://www.business.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aea",
+      "name": "American Economic Association (AEA) student resources",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Guides on economics careers and PhD preparation.",
+      "url": "https://www.aeaweb.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the site directly."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "econ-ra-jobs",
+      "name": "Pre-doctoral research assistant positions (econ)",
+      "type": "job",
+      "scope": "national",
+      "majors": [
+        "economics",
+        "finance",
+        "public-health"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "salary",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid 1–2 year RA jobs at universities and research groups after graduation; strong preparation for PhD programs.",
+      "url": "https://predoc.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "shrm",
+      "name": "SHRM (Society for Human Resource Management)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "human-resource-management",
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership and chapters; students can sit for the SHRM-CP in their final year if working in HR.",
+      "url": "https://www.shrm.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aphr",
+      "name": "aPHR (Associate Professional in Human Resources)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "human-resource-management",
+        "psychology"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Entry-level HR certification with no experience requirement.",
+      "url": "https://www.hrci.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "lera",
+      "name": "LERA (Labor and Employment Relations Association)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "human-resource-management",
+        "economics",
+        "political-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Labor relations society with student chapters.",
+      "url": "https://www.leraweb.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "excel-mos",
+      "name": "Microsoft Office Specialist: Excel",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "supply-chain",
+        "economics",
+        "marketing",
+        "human-resource-management",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Excel certification; spreadsheet skill is tested in many business interviews.",
+      "url": "https://learn.microsoft.com/credentials/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    }
+  ]
+}

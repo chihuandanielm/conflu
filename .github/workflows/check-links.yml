@@ -1,0 +1,29 @@
+name: Validate data and check links
+
+on:
+  push:
+    paths: ["data/**"]
+  schedule:
+    - cron: "17 9 * * 1"   # Mondays
+  workflow_dispatch:
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/validate.mjs
+      - run: node scripts/check-links.mjs
+        continue-on-error: true
+      - name: Commit updated verification dates
+        run: |
+          git config user.name "link-check-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/resources
+          git diff --cached --quiet || git commit -m "Update link check results"
+          git push

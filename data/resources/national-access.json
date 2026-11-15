@@ -1,0 +1,1779 @@
+{
+  "_about": "National programs by identity, income, first-generation status, disability, immigration status, and transfer status. Several identity-based programs changed criteria in 2025–26, so check status fields.",
+  "resources": [
+    {
+      "id": "seo-career",
+      "name": "SEO Career",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management",
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "finance",
+        "consulting"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": "Fall to early winter for the next summer",
+      "summary": "Paid summer internships in finance, consulting, and tech with months of training beforehand, for students from underrepresented backgrounds.",
+      "url": "https://www.seo-usa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "mlt-career-prep",
+      "name": "MLT Career Prep",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "underrepresented",
+        "first-generation"
+      ],
+      "interests": [
+        "corporate",
+        "leadership"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": "Winter of sophomore year",
+      "summary": "Management Leadership for Tomorrow: a 15-month coaching program that helps students land corporate internships and full-time offers.",
+      "url": "https://www.ml4t.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "inroads",
+      "name": "INROADS",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [
+        "underrepresented",
+        "first-generation"
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Places underrepresented and first-generation students in multi-summer internships with corporate partners, plus training.",
+      "url": "https://inroads.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "hsf",
+      "name": "Hispanic Scholarship Fund (HSF)",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": "Usually February",
+      "summary": "Scholarships and career services for students of Hispanic heritage.",
+      "url": "https://www.hsf.net",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "uncf",
+      "name": "UNCF scholarships and internships",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships and corporate internships for Black students; many awards are open beyond HBCUs.",
+      "url": "https://uncf.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "tmcf",
+      "name": "Thurgood Marshall College Fund",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships, leadership institutes, and corporate recruiting; some programs are open to non-HBCU students.",
+      "url": "https://www.tmcf.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "apia-scholars",
+      "name": "APIA Scholars",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "asian-american",
+        "pacific-islander",
+        "low-income"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships for Asian American, Native Hawaiian, and Pacific Islander students with financial need.",
+      "url": "https://apiascholars.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "american-indian-college-fund",
+      "name": "American Indian College Fund",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "native-american"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships for Native American and Alaska Native students.",
+      "url": "https://collegefund.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aises",
+      "name": "AISES (American Indian Science and Engineering Society)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "public-health",
+        "pharmacy",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "native-american"
+      ],
+      "interests": [
+        "stem"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Community, scholarships, internships, and a national conference for Indigenous students in STEM.",
+      "url": "https://www.aises.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "nsbe",
+      "name": "National Society of Black Engineers (NSBE)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [
+        "engineering"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Chapters, scholarships, and a national convention with a large career fair. Rutgers has a chapter.",
+      "url": "https://www.nsbe.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "shpe",
+      "name": "SHPE (Society of Hispanic Professional Engineers)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [
+        "engineering"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Chapters, scholarships, and a national convention with a major career fair. Rutgers has a chapter.",
+      "url": "https://shpe.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "swe",
+      "name": "Society of Women Engineers (SWE)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "engineering"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships, chapters, and WE, one of the largest engineering career fairs. Rutgers has a chapter.",
+      "url": "https://swe.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ostem",
+      "name": "oSTEM (Out in STEM)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "public-health",
+        "pharmacy",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "lgbtq"
+      ],
+      "interests": [
+        "stem"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Chapters and a national conference for LGBTQ+ students in STEM.",
+      "url": "https://ostem.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "sacnas",
+      "name": "SACNAS",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "public-health",
+        "pharmacy",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino",
+        "native-american"
+      ],
+      "interests": [
+        "research",
+        "stem"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Society for Chicanos/Hispanics and Native Americans in Science: chapters, mentoring, and a national conference with travel scholarships.",
+      "url": "https://www.sacnas.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "point-foundation",
+      "name": "Point Foundation",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "lgbtq"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships and mentoring for LGBTQ+ students.",
+      "url": "https://pointfoundation.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "out-for-undergrad",
+      "name": "Out for Undergrad (O4U)",
+      "type": "conference",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "lgbtq"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free career conferences for LGBTQ+ undergrads in business, tech, engineering, and marketing; sponsors cover travel.",
+      "url": "https://www.outforundergrad.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "forte-rising-star",
+      "name": "Forté Foundation (Forté Rising Star)",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "business"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Career programs and events for women interested in business careers.",
+      "url": "https://www.fortefoundation.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "girls-who-invest",
+      "name": "Girls Who Invest",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "economics",
+        "accounting"
+      ],
+      "years": [
+        1,
+        2
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "investing"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Training plus paid summer internships in investment management for women and gender-diverse students.",
+      "url": "https://www.girlswhoinvest.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "lime-connect",
+      "name": "Lime Connect",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "disability"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Internships, fellowships, and recruiting for students with disabilities.",
+      "url": "https://www.limeconnect.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "wrp",
+      "name": "Workforce Recruitment Program (WRP)",
+      "type": "federal_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "disability"
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": "Early October registration close",
+      "summary": "U.S. Department of Labor talent database that federal managers use to hire students with disabilities for internships and permanent jobs. Registration opens in late August.",
+      "url": "https://www.dol.gov/agencies/odep/wrp/students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "thedream-us",
+      "name": "TheDream.US",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "undocumented"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships for undocumented and DACA students at partner colleges.",
+      "url": "https://www.thedream.us",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "jack-kent-cooke-transfer",
+      "name": "Jack Kent Cooke Undergraduate Transfer Scholarship",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2
+      ],
+      "identity": [
+        "transfer",
+        "low-income"
+      ],
+      "interests": [],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Large scholarship for high-achieving community college students with financial need transferring to four-year schools.",
+      "url": "https://www.jkcf.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "gilman",
+      "name": "Benjamin A. Gilman International Scholarship",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "pell-eligible",
+        "us-citizen"
+      ],
+      "interests": [
+        "study-abroad"
+      ],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": "Around Oct 1 and early March",
+      "summary": "Up to $5,000 for Pell Grant recipients to study or intern abroad. Two cycles a year (around Oct 1 and early March). Recipients also get one year of noncompetitive federal hiring eligibility.",
+      "url": "https://www.gilmanscholarship.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "hacu-nip",
+      "name": "HACU National Internship Program",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid federal and corporate internships through the Hispanic Association of Colleges and Universities; open to all students, with a Hispanic-serving focus.",
+      "url": "https://www.hacu.net",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "usda-hep-camp",
+      "name": "USDA HEP/CAMP Internship Program",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "public-health",
+        "economics",
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "migrant-farmworker"
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Paid 10-week USDA internship for students from migrant and farmworker backgrounds.",
+      "url": "https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/youth-agriculture/internships-and-career-opportunities",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rangel-sep",
+      "name": "Rangel Summer Enrichment Program",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "foreign-service"
+      ],
+      "pay": "stipend",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Summer program in international affairs (tuition, travel, housing, $3,300 stipend) for undergrads who are at least sophomores.",
+      "url": "https://apply.rangelprogram.org",
+      "applyUrl": null,
+      "contact": {
+        "email": "rangelprogram@howard.edu",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "paused",
+      "statusNote": "The 2026 cycle was postponed pending State Department updates.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "aea-summer",
+      "name": "AEA Summer Training Program",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "economics"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "grad-school",
+        "economics"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "American Economic Association program preparing students from underrepresented backgrounds for economics PhDs.",
+      "url": "https://www.aeaweb.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "colorstack",
+      "name": "ColorStack",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black",
+        "latino",
+        "native-american"
+      ],
+      "interests": [
+        "software"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Community, fellowships, and recruiting for Black, Latinx, and Native American computer science students. Many campus chapters.",
+      "url": "https://www.colorstack.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rewriting-the-code",
+      "name": "Rewriting the Code",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "software"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Community and internship access for women in tech.",
+      "url": "https://rewritingthecode.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "anitab-ghc",
+      "name": "Grace Hopper Celebration (AnitaB.org)",
+      "type": "conference",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "software"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Large conference and career fair for women and nonbinary technologists; student scholarships available.",
+      "url": "https://ghc.anitab.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "tapia",
+      "name": "CMD-IT Tapia Conference",
+      "type": "conference",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "software",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Diversity in computing conference with student scholarships and a career fair.",
+      "url": "https://tapiaconference.cmd-it.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nbna",
+      "name": "National Black Nurses Association",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "nursing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships and community for Black nursing students.",
+      "url": "https://www.nbna.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nahn",
+      "name": "National Association of Hispanic Nurses",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "nursing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Scholarships and community for Hispanic nursing students.",
+      "url": "https://www.nahnnet.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "naba",
+      "name": "National Association of Black Accountants (NABA)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "accounting",
+        "finance"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Chapters, scholarships, and national conventions with heavy Big 4 recruiting.",
+      "url": "https://www.nabainc.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "alpfa",
+      "name": "ALPFA",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Association of Latino Professionals for America: chapters, convention, and recruiting.",
+      "url": "https://www.alpfa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ascend",
+      "name": "Ascend",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "asian-american"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Pan-Asian business professional organization with student chapters.",
+      "url": "https://www.ascendleadership.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "maip",
+      "name": "MAIP (4A's Multicultural Advertising Intern Program)",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "advertising"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Paid summer internships at advertising and media agencies for multicultural students.",
+      "url": "https://maip.aaaa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aaf-mpms",
+      "name": "AAF Most Promising Multicultural Students",
+      "type": "program",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "advertising"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Recognition and recruiting program connecting multicultural seniors with ad industry employers.",
+      "url": "https://www.aaf.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "t-howard",
+      "name": "T. Howard Foundation",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "communication",
+        "marketing"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "media"
+      ],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid internships in media and entertainment for diverse students.",
+      "url": "https://www.t-howard.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "emma-bowen",
+      "name": "Emma Bowen Foundation",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "communication",
+        "marketing",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2
+      ],
+      "identity": [
+        "underrepresented"
+      ],
+      "interests": [
+        "media"
+      ],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Multi-year paid media and tech internships for students of color.",
+      "url": "https://www.emmabowenfoundation.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nabj",
+      "name": "National Association of Black Journalists (NABJ)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black"
+      ],
+      "interests": [
+        "journalism"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student chapters, internships, and convention.",
+      "url": "https://nabjonline.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nahj",
+      "name": "National Association of Hispanic Journalists (NAHJ)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "latino"
+      ],
+      "interests": [
+        "journalism"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student programs, fellowships, and convention.",
+      "url": "https://nahj.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aaja",
+      "name": "Asian American Journalists Association (AAJA)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "asian-american"
+      ],
+      "interests": [
+        "journalism"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student programs, fellowships, and convention.",
+      "url": "https://www.aaja.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "lsac-plus",
+      "name": "LSAC PLUS Programs",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [
+        "underrepresented",
+        "first-generation"
+      ],
+      "interests": [
+        "law"
+      ],
+      "pay": "free",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Free Prelaw Undergraduate Scholars programs at law schools for students from underrepresented or disadvantaged backgrounds.",
+      "url": "https://www.lsac.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cdc-lewis-scholars",
+      "name": "CDC John R. Lewis Undergraduate Public Health Scholars",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "public-health",
+        "biological-sciences",
+        "psychology",
+        "social-work",
+        "nursing"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "health-equity"
+      ],
+      "pay": "stipend",
+      "season": "summer",
+      "typicalDeadline": "Around Jan 31 at most sites",
+      "summary": "Paid summer public health internships at seven partner schools (Columbia, Pitt, UCLA, and others) focused on minority health and health equity. Formerly CUPS.",
+      "url": "https://cdc.gov/minority-health/student-programs/internships-fellowships.html",
+      "applyUrl": null,
+      "contact": {
+        "email": "OMH@cdc.gov",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "shpep",
+      "name": "Summer Health Professions Education Program (SHPEP)",
+      "type": "pipeline_program",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "nursing",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "biomedical-engineering",
+        "social-work"
+      ],
+      "years": [
+        1,
+        2
+      ],
+      "identity": [],
+      "interests": [
+        "pre-health"
+      ],
+      "pay": "free",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Free six-week health careers program for first- and second-year students.",
+      "url": "https://www.shpep.org",
+      "applyUrl": null,
+      "contact": {
+        "email": "shpep@aamc.org",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "ended",
+      "statusNote": "Ran its final cohort in summer 2026 after its funder (RWJF) ended support. Kept here so the site can suggest alternatives.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "mcnair-national",
+      "name": "McNair Scholars Program (national directory)",
+      "type": "federal_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "first-generation",
+        "low-income"
+      ],
+      "interests": [
+        "grad-school",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federal TRIO program at ~150+ colleges preparing first-generation, low-income students for doctoral study. Rutgers has one (see rutgers-mcnair).",
+      "url": "https://mcnairscholars.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,708 @@
+{
+  "_about": "Resources for Computer Science, IT and Informatics, Mechanical Engineering, and Biomedical Engineering.",
+  "resources": [
+    {
+      "id": "acm",
+      "name": "ACM (Association for Computing Machinery)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership with learning resources, conferences, and special interest groups.",
+      "url": "https://www.acm.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ieee",
+      "name": "IEEE",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Engineering and computing society with student branches, competitions, and scholarships.",
+      "url": "https://www.ieee.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "codepath",
+      "name": "CodePath",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented",
+        "low-income"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free technical interview prep and software courses aimed at students from underrepresented and low-income backgrounds.",
+      "url": "https://www.codepath.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "mlh-fellowship",
+      "name": "MLH Fellowship",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Remote, stipended open-source and software fellowships from Major League Hacking; MLH also lists hackathons.",
+      "url": "https://fellowship.mlh.io",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "mlh-hackathons",
+      "name": "Major League Hacking events",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "hackathon"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Season calendar of student hackathons across the US.",
+      "url": "https://mlh.io",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ncwit-aic",
+      "name": "NCWIT Collegiate Award",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [],
+      "pay": "prize",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Recognizes technical work by women and nonbinary undergrads in computing.",
+      "url": "https://www.ncwit.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "google-early-careers",
+      "name": "Google student programs",
+      "type": "employer_program",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Internships for students; Google renames its first- and second-year programs often, so check the students page each fall.",
+      "url": "https://www.google.com/about/careers/applications/students/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "microsoft-students",
+      "name": "Microsoft university programs",
+      "type": "employer_program",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Internships and early-career programs; check the students page each fall.",
+      "url": "https://careers.microsoft.com/v2/global/en/students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "comptia",
+      "name": "CompTIA certifications (A+, Network+, Security+)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "it",
+        "cybersecurity"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Entry-level IT and security certifications widely used in hiring. Look for student discounts.",
+      "url": "https://www.comptia.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "isc2-cc",
+      "name": "ISC2 Certified in Cybersecurity (CC)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cybersecurity"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Entry-level cybersecurity certification; ISC2 has offered free training and exams through its 1 Million Certified program.",
+      "url": "https://www.isc2.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nccdc",
+      "name": "Collegiate Cyber Defense Competition (CCDC)",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cybersecurity"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Team cyber-defense competition with regional and national rounds.",
+      "url": "https://www.nationalccdc.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "uxpa",
+      "name": "UXPA and IxDA student resources",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "psychology",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "ux"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "UX professional communities with student events and portfolio reviews.",
+      "url": "https://uxpa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "asme",
+      "name": "ASME (American Society of Mechanical Engineers)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student sections, design competitions, and scholarships.",
+      "url": "https://www.asme.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "formula-sae",
+      "name": "Formula SAE / Rutgers Formula Racing",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "automotive",
+        "design"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Students design and race a formula-style car; heavily valued by automotive and manufacturing employers.",
+      "url": "https://www.sae.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Find Rutgers Formula Racing on getINVOLVED."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "aiaa",
+      "name": "AIAA (American Institute of Aeronautics and Astronautics)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Aerospace society with student branches and design competitions.",
+      "url": "https://www.aiaa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "fe-exam",
+      "name": "FE Exam (Fundamentals of Engineering)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "First step toward a PE license; easiest to pass senior year while coursework is fresh.",
+      "url": "https://ncees.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "lean-six-sigma",
+      "name": "Lean Six Sigma Green Belt (ASQ)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "supply-chain",
+        "biomedical-engineering"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Process improvement certification valued in manufacturing and operations.",
+      "url": "https://asq.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "bmes",
+      "name": "BMES (Biomedical Engineering Society)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student chapters, annual meeting, and design competitions.",
+      "url": "https://www.bmes.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-biomaterials",
+      "name": "New Jersey Center for Biomaterials",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "biomedical-engineering",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research",
+        "medical-devices"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Biomaterials research center with undergraduate research roles.",
+      "url": "https://biomaterials.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "fda-orise",
+      "name": "FDA / ORISE research fellowships",
+      "type": "research_program",
+      "scope": "national",
+      "majors": [
+        "biomedical-engineering",
+        "biological-sciences",
+        "pharmacy",
+        "public-health"
+      ],
+      "years": [
+        3,
+        4,
+        "alumni"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid research participation at the FDA and other federal agencies through ORISE.",
+      "url": "https://orise.orau.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    }
+  ]
+}

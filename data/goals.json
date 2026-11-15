@@ -1,0 +1,4160 @@
+{
+  "_about": "Career goals (milestones). The engine scores and schedules these. Term codes: 1F = year 1 fall, 1S = spring, 1U = summer after year 1, … 4S, then G1/G2 = first two terms after graduation. window = earliest term it makes sense, the ideal range, and the latest useful term.",
+  "terms": [
+    "1F",
+    "1S",
+    "1U",
+    "2F",
+    "2S",
+    "2U",
+    "3F",
+    "3S",
+    "3U",
+    "4F",
+    "4S",
+    "G1",
+    "G2"
+  ],
+  "competencies": {
+    "csd": "Career and self-development",
+    "comm": "Communication",
+    "crit": "Critical thinking",
+    "equity": "Equity and inclusion",
+    "lead": "Leadership",
+    "prof": "Professionalism",
+    "team": "Teamwork",
+    "tech": "Technology"
+  },
+  "goals": [
+    {
+      "id": "f-ces-advisor",
+      "title": "Meet a CES career advisor and sketch a 4-year plan",
+      "category": "foundation",
+      "competencies": {
+        "csd": 0.6,
+        "prof": 0.2
+      },
+      "baseWeight": 0.8,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-ces"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Gets a human in your corner early and surfaces Rutgers programs you'd miss."
+    },
+    {
+      "id": "f-handshake-profile",
+      "title": "Complete your Handshake profile",
+      "category": "foundation",
+      "competencies": {
+        "csd": 0.3,
+        "prof": 0.3
+      },
+      "baseWeight": 0.75,
+      "hours": 1,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Rutgers employers and career fairs run through Handshake."
+    },
+    {
+      "id": "f-resume-v1",
+      "title": "Write your first college resume",
+      "category": "foundation",
+      "competencies": {
+        "comm": 0.4,
+        "prof": 0.4,
+        "csd": 0.2
+      },
+      "baseWeight": 0.9,
+      "hours": 4,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-ces",
+        "rutgers-writing-centers"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Nearly every application below needs one."
+    },
+    {
+      "id": "f-resume-refresh",
+      "title": "Update and get your resume reviewed",
+      "category": "foundation",
+      "competencies": {
+        "comm": 0.3,
+        "prof": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": "yearly",
+      "majors": null,
+      "resources": [
+        "rutgers-ces"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A resume goes stale every semester you gain experience."
+    },
+    {
+      "id": "f-explore-careers",
+      "title": "Research 3 careers on O*NET and BLS",
+      "category": "foundation",
+      "competencies": {
+        "csd": 0.7,
+        "crit": 0.2
+      },
+      "baseWeight": 0.7,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2F"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "onet",
+        "bls-ooh",
+        "college-scorecard"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Know what the jobs involve and pay before you optimize for them."
+    },
+    {
+      "id": "f-fafsa",
+      "title": "File the FAFSA (every year)",
+      "category": "foundation",
+      "competencies": {
+        "prof": 0.2,
+        "csd": 0.2
+      },
+      "baseWeight": 0.95,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": "Before NJ state deadlines in spring; file as early as October",
+      "repeat": "yearly",
+      "majors": null,
+      "resources": [
+        "fafsa",
+        "nj-tag"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [
+        "us-citizen-or-pr"
+      ],
+      "why": "Missing it can cost thousands in grants."
+    },
+    {
+      "id": "f-aid-check",
+      "title": "Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility",
+      "category": "foundation",
+      "competencies": {
+        "csd": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 1,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-tuition-assistance",
+        "nj-gsg",
+        "nj-eof"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [
+        "not-international"
+      ],
+      "why": "Money pressure is the most common reason students skip unpaid or low-paid experience."
+    },
+    {
+      "id": "f-elevator-pitch",
+      "title": "Write and practice a 30-second introduction",
+      "category": "foundation",
+      "competencies": {
+        "comm": 0.6,
+        "prof": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 1,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "You'll use it at every fair, info session, and coffee chat."
+    },
+    {
+      "id": "f-cover-letter",
+      "title": "Write a reusable cover letter template",
+      "category": "foundation",
+      "competencies": {
+        "comm": 0.6,
+        "prof": 0.2
+      },
+      "baseWeight": 0.55,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-writing-centers"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Many internship and fellowship applications still ask for one."
+    },
+    {
+      "id": "f-mock-interview",
+      "title": "Do a mock interview with CES",
+      "category": "foundation",
+      "competencies": {
+        "comm": 0.6,
+        "prof": 0.4
+      },
+      "baseWeight": 0.7,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "f-elevator-pitch"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-ces",
+        "glassdoor"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Interview skill is trainable; most students only practice live."
+    },
+    {
+      "id": "f-gpa-floor",
+      "title": "Keep your GPA at or above 3.0",
+      "category": "academics",
+      "competencies": {
+        "crit": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 0,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Many programs (McNair, co-ops, fellowships, federal internships) screen at 2.5–3.0."
+    },
+    {
+      "id": "p-linkedin-setup",
+      "title": "Build a complete LinkedIn profile",
+      "category": "presence",
+      "competencies": {
+        "prof": 0.4,
+        "comm": 0.4,
+        "csd": 0.2
+      },
+      "baseWeight": 0.85,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "linkedin-profile"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Recruiters search LinkedIn first; it's also how alumni will check you out after a chat."
+    },
+    {
+      "id": "p-linkedin-network",
+      "title": "Connect with 50 relevant people (classmates, alumni, speakers)",
+      "category": "presence",
+      "competencies": {
+        "csd": 0.4,
+        "comm": 0.3
+      },
+      "baseWeight": 0.65,
+      "hours": 5,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "1S",
+          "3F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "p-linkedin-setup"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "linkedin-alumni-tool"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Warm connections turn into referrals, which beat cold applications."
+    },
+    {
+      "id": "p-linkedin-active",
+      "title": "Post or engage on LinkedIn monthly (projects, events, wins)",
+      "category": "presence",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.2
+      },
+      "baseWeight": 0.45,
+      "hours": 6,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "p-linkedin-setup"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Visible work keeps you in recruiters' feeds before you apply."
+    },
+    {
+      "id": "p-professional-photo-email",
+      "title": "Get a professional headshot and email signature",
+      "category": "presence",
+      "competencies": {
+        "prof": 0.5
+      },
+      "baseWeight": 0.4,
+      "hours": 1,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Small polish that makes every profile and email look intentional."
+    },
+    {
+      "id": "p-github-setup",
+      "title": "Set up GitHub with a profile README",
+      "category": "presence",
+      "competencies": {
+        "tech": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.8,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics"
+      ],
+      "resources": [
+        "github-profile-readme",
+        "github-student-pack"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Tech hiring managers often check GitHub before the resume."
+    },
+    {
+      "id": "p-github-consistent",
+      "title": "Commit code consistently for a semester (3+ days a week)",
+      "category": "presence",
+      "competencies": {
+        "tech": 0.6,
+        "prof": 0.3
+      },
+      "baseWeight": 0.65,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "p-github-setup"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "github-profile-readme",
+        "leetcode"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A steady contribution graph signals real, ongoing practice."
+    },
+    {
+      "id": "p-open-source-pr",
+      "title": "Get your first pull request merged into an open-source project",
+      "category": "presence",
+      "competencies": {
+        "tech": 0.6,
+        "team": 0.4,
+        "comm": 0.2
+      },
+      "baseWeight": 0.6,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "p-github-consistent"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "good-first-issue",
+        "first-contributions",
+        "hacktoberfest"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Proves you can read someone else's code and work through review."
+    },
+    {
+      "id": "p-portfolio-site",
+      "title": "Publish a portfolio site with 3 projects",
+      "category": "presence",
+      "competencies": {
+        "comm": 0.4,
+        "tech": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 12,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "marketing",
+        "communication"
+      ],
+      "resources": [
+        "github-pages",
+        "behance"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A link that shows your work does more than a bullet that describes it."
+    },
+    {
+      "id": "p-writing-portfolio",
+      "title": "Build a portfolio of 3–5 published writing samples",
+      "category": "presence",
+      "competencies": {
+        "comm": 0.8,
+        "crit": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "communication",
+        "political-science",
+        "criminal-justice",
+        "social-work",
+        "public-health",
+        "economics",
+        "psychology",
+        "marketing"
+      ],
+      "resources": [
+        "muck-rack",
+        "daily-targum"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Communication, policy, and PR employers ask for clips or writing samples."
+    },
+    {
+      "id": "p-kaggle",
+      "title": "Publish a Kaggle notebook or finish a competition",
+      "category": "presence",
+      "competencies": {
+        "tech": 0.6,
+        "crit": 0.5
+      },
+      "baseWeight": 0.5,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "accounting",
+        "human-resource-management"
+      ],
+      "resources": [
+        "kaggle"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A public analysis is concrete proof of data skills."
+    },
+    {
+      "id": "p-research-profile",
+      "title": "Create an ORCID iD and list your posters and papers",
+      "category": "presence",
+      "competencies": {
+        "prof": 0.3
+      },
+      "baseWeight": 0.35,
+      "hours": 1,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2S",
+        "ideal": [
+          "3F",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "e-research-assistant"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "orcid"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Grad programs and journals expect a research identity."
+    },
+    {
+      "id": "s-excel-core",
+      "title": "Learn core Excel (lookups, pivots, charts)",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "crit": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 12,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "exceljet",
+        "microsoft-learn"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Shows up in most business, health, and policy roles."
+    },
+    {
+      "id": "s-excel-modeling",
+      "title": "Build a three-statement financial model",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "crit": 0.6
+      },
+      "baseWeight": 0.5,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [
+        "s-excel-core"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "finance",
+        "accounting",
+        "economics"
+      ],
+      "resources": [
+        "cfi-free"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Standard technical screen for finance internships."
+    },
+    {
+      "id": "s-python",
+      "title": "Learn Python basics",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.7,
+        "crit": 0.4
+      },
+      "baseWeight": 0.6,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "accounting",
+        "human-resource-management",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "cs50",
+        "freecodecamp"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The most transferable programming language across fields."
+    },
+    {
+      "id": "s-sql",
+      "title": "Learn SQL",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.6,
+        "crit": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 12,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "accounting",
+        "human-resource-management"
+      ],
+      "resources": [
+        "sqlbolt"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Most analyst postings list SQL."
+    },
+    {
+      "id": "s-data-viz",
+      "title": "Build a dashboard in Tableau or Power BI",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "comm": 0.4
+      },
+      "baseWeight": 0.5,
+      "hours": 12,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "s-excel-core"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "accounting",
+        "human-resource-management"
+      ],
+      "resources": [
+        "tableau-students",
+        "microsoft-learn"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Turning data into a clear picture is what gets analysts noticed."
+    },
+    {
+      "id": "s-r-stats",
+      "title": "Learn R or SPSS for statistics",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "crit": 0.5
+      },
+      "baseWeight": 0.45,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "psychology",
+        "public-health",
+        "economics",
+        "biological-sciences",
+        "social-work"
+      ],
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Research labs and public health jobs run on statistical software."
+    },
+    {
+      "id": "s-dsa",
+      "title": "Solve 100 data structures and algorithms problems",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.7,
+        "crit": 0.6
+      },
+      "baseWeight": 0.55,
+      "hours": 60,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "s-python"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "leetcode",
+        "tech-interview-handbook"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Coding interviews for software roles still test this."
+    },
+    {
+      "id": "s-git",
+      "title": "Use Git and GitHub for every project",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "team": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 5,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "github-student-pack"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Version control is assumed on day one of any tech job."
+    },
+    {
+      "id": "s-cad",
+      "title": "Get proficient in CAD (SOLIDWORKS or Onshape)",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.7,
+        "crit": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "onshape-education",
+        "solidworks-student"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Mechanical and device design postings list CAD first."
+    },
+    {
+      "id": "s-matlab",
+      "title": "Learn MATLAB",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.6,
+        "crit": 0.4
+      },
+      "baseWeight": 0.45,
+      "hours": 10,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics"
+      ],
+      "resources": [
+        "matlab-onramp"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Common in engineering coursework and R&D roles."
+    },
+    {
+      "id": "s-figma-ux",
+      "title": "Learn Figma and design one app flow",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "comm": 0.4,
+        "crit": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "information-technology",
+        "psychology",
+        "marketing",
+        "communication",
+        "computer-science"
+      ],
+      "resources": [
+        "figma-education"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The standard tool for UX and product design portfolios."
+    },
+    {
+      "id": "s-digital-marketing",
+      "title": "Earn Google Ads/Analytics and HubSpot certifications",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.5,
+        "comm": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "marketing",
+        "communication"
+      ],
+      "resources": [
+        "google-ads-cert",
+        "hubspot-academy"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Free, fast, and listed in entry-level digital marketing postings."
+    },
+    {
+      "id": "s-public-speaking",
+      "title": "Give 3 presentations outside class (club, Toastmasters, symposium)",
+      "category": "skills",
+      "competencies": {
+        "comm": 0.8,
+        "lead": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 8,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "toastmasters"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Presentation skill is one of the top things employers ask for."
+    },
+    {
+      "id": "s-professional-writing",
+      "title": "Write a memo or policy brief and get feedback",
+      "category": "skills",
+      "competencies": {
+        "comm": 0.7,
+        "crit": 0.5
+      },
+      "baseWeight": 0.45,
+      "hours": 8,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "communication",
+        "political-science",
+        "criminal-justice",
+        "social-work",
+        "public-health",
+        "economics",
+        "psychology",
+        "marketing",
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management"
+      ],
+      "resources": [
+        "rutgers-writing-centers"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Clear short writing is a daily skill in policy, business, and health jobs."
+    },
+    {
+      "id": "s-language",
+      "title": "Reach conversational level in a second language",
+      "category": "skills",
+      "competencies": {
+        "comm": 0.5,
+        "equity": 0.5
+      },
+      "baseWeight": 0.3,
+      "hours": 60,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "3S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "boren"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Valued in public service, healthcare, and international business."
+    },
+    {
+      "id": "s-lab-techniques",
+      "title": "Learn core lab techniques in a research lab",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.6,
+        "crit": 0.4
+      },
+      "baseWeight": 0.55,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "e-research-assistant"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "biological-sciences",
+        "biomedical-engineering",
+        "pharmacy"
+      ],
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Lab skills on a resume are what get industry and research offers."
+    },
+    {
+      "id": "s-security-practice",
+      "title": "Complete 20 hands-on security labs or a CTF",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.8,
+        "crit": 0.5
+      },
+      "baseWeight": 0.45,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "tryhackme",
+        "picoctf"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Security hiring rewards hands-on proof over coursework."
+    },
+    {
+      "id": "s-financial-markets",
+      "title": "Complete Bloomberg Market Concepts",
+      "category": "skills",
+      "competencies": {
+        "tech": 0.3,
+        "crit": 0.4
+      },
+      "baseWeight": 0.4,
+      "hours": 8,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "finance",
+        "economics",
+        "accounting"
+      ],
+      "resources": [
+        "bloomberg-bmc"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Common talking point and resume line in finance interviews."
+    },
+    {
+      "id": "e-join-orgs",
+      "title": "Join 1–2 organizations tied to your field",
+      "category": "experience",
+      "competencies": {
+        "team": 0.5,
+        "csd": 0.3
+      },
+      "baseWeight": 0.8,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-getinvolved"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The easiest source of peers, mentors, and leadership roles."
+    },
+    {
+      "id": "e-org-leadership",
+      "title": "Take an officer or project-lead role",
+      "category": "experience",
+      "competencies": {
+        "lead": 0.8,
+        "team": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "e-join-orgs"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Leadership is one of the strongest signals on an early-career resume."
+    },
+    {
+      "id": "e-part-time-job",
+      "title": "Hold a part-time or campus job",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "team": 0.4,
+        "comm": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 60,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Any job builds reliability, and many students need the income."
+    },
+    {
+      "id": "e-volunteer",
+      "title": "Volunteer with a community organization",
+      "category": "experience",
+      "competencies": {
+        "equity": 0.6,
+        "team": 0.3,
+        "comm": 0.3
+      },
+      "baseWeight": 0.45,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "3S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Builds perspective and stories for interviews; required for some health paths."
+    },
+    {
+      "id": "e-research-assistant",
+      "title": "Work as a research assistant with a professor",
+      "category": "experience",
+      "competencies": {
+        "crit": 0.7,
+        "tech": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 90,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "aresty-ra",
+        "google-scholar"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Opens recommendation letters and research summers."
+    },
+    {
+      "id": "e-summer-research",
+      "title": "Do a paid summer research program",
+      "category": "experience",
+      "competencies": {
+        "crit": 0.7,
+        "tech": 0.5,
+        "comm": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 300,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1U",
+        "ideal": [
+          "2U",
+          "3U"
+        ],
+        "latest": "3U"
+      },
+      "prereqs": [
+        "ap-research-apps"
+      ],
+      "season": "summer",
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "nsf-reu",
+        "rise-rutgers",
+        "dimacs-reu",
+        "amgen-scholars",
+        "nih-sip",
+        "leadership-alliance",
+        "cabm-sure",
+        "aresty-summer-science"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The core experience for PhD and research-industry paths."
+    },
+    {
+      "id": "e-thesis",
+      "title": "Complete an honors thesis or independent research project",
+      "category": "experience",
+      "competencies": {
+        "crit": 0.8,
+        "comm": 0.5
+      },
+      "baseWeight": 0.3,
+      "hours": 120,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "3F",
+        "ideal": [
+          "3F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "e-research-assistant"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "aresty-funding"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Top signal for grad school and research careers."
+    },
+    {
+      "id": "e-personal-project",
+      "title": "Build and ship a personal project",
+      "category": "experience",
+      "competencies": {
+        "tech": 0.7,
+        "crit": 0.4,
+        "csd": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics",
+        "marketing"
+      ],
+      "resources": [
+        "github-pages",
+        "cs50",
+        "freecodecamp"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Something you built is the best answer to 'tell me about a project.'"
+    },
+    {
+      "id": "e-hackathon",
+      "title": "Compete in a hackathon",
+      "category": "experience",
+      "competencies": {
+        "tech": 0.5,
+        "team": 0.6
+      },
+      "baseWeight": 0.5,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "marketing"
+      ],
+      "resources": [
+        "hackru",
+        "mlh-hackathons"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Fast team experience and recruiter exposure in a weekend."
+    },
+    {
+      "id": "e-design-team",
+      "title": "Join an engineering design team (Formula SAE, robotics, etc.)",
+      "category": "experience",
+      "competencies": {
+        "tech": 0.6,
+        "team": 0.6,
+        "lead": 0.3
+      },
+      "baseWeight": 0.65,
+      "hours": 80,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "formula-sae"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Hands-on build experience that engineering recruiters ask about first."
+    },
+    {
+      "id": "e-case-competition",
+      "title": "Compete in a case competition",
+      "category": "experience",
+      "competencies": {
+        "crit": 0.6,
+        "team": 0.5,
+        "comm": 0.5
+      },
+      "baseWeight": 0.55,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management",
+        "communication"
+      ],
+      "resources": [
+        "cfa-institute",
+        "ama"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Shows business problem-solving under pressure; firms recruit at them."
+    },
+    {
+      "id": "e-virtual-sim",
+      "title": "Complete 2 virtual job simulations",
+      "category": "experience",
+      "competencies": {
+        "csd": 0.5,
+        "tech": 0.3
+      },
+      "baseWeight": 0.45,
+      "hours": 8,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2S"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "forage"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A quick way to test a field and get interview stories before your first internship."
+    },
+    {
+      "id": "e-internship-explore",
+      "title": "Do a first internship or career-related summer job",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "team": 0.4,
+        "csd": 0.4,
+        "comm": 0.3
+      },
+      "baseWeight": 0.8,
+      "hours": 300,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1U",
+        "ideal": [
+          "2U",
+          "2U"
+        ],
+        "latest": "3U"
+      },
+      "prereqs": [
+        "ap-internship-early"
+      ],
+      "season": "summer",
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake",
+        "vsfs",
+        "federal-pathways"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Any relevant summer experience makes the junior-year internship far easier to land."
+    },
+    {
+      "id": "e-internship-target",
+      "title": "Do an internship in your target field",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "tech": 0.5,
+        "team": 0.4,
+        "crit": 0.4
+      },
+      "baseWeight": 0.95,
+      "hours": 400,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2U",
+        "ideal": [
+          "3U",
+          "3U"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "ap-internship-target"
+      ],
+      "season": "summer",
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Junior-summer internships are the main pipeline to full-time offers."
+    },
+    {
+      "id": "e-coop",
+      "title": "Complete a 6-month co-op",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.7,
+        "tech": 0.6,
+        "team": 0.4
+      },
+      "baseWeight": 0.55,
+      "hours": 900,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "3F",
+        "ideal": [
+          "3S",
+          "3U"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "pharmacy",
+        "supply-chain"
+      ],
+      "resources": [
+        "soe-coop",
+        "bme-coop",
+        "employer-jnj",
+        "employer-merck"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [
+        "e-internship-target"
+      ],
+      "requires": [],
+      "why": "Deeper than an internship and often converts to a job offer."
+    },
+    {
+      "id": "e-shadowing",
+      "title": "Shadow professionals for 40+ hours",
+      "category": "experience",
+      "competencies": {
+        "csd": 0.6,
+        "prof": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "nursing",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "biomedical-engineering",
+        "social-work"
+      ],
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Health programs want proof you know what the job is."
+    },
+    {
+      "id": "e-clinical-hours",
+      "title": "Log 150+ hours of patient-care experience",
+      "category": "experience",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.5,
+        "equity": 0.4
+      },
+      "baseWeight": 0.55,
+      "hours": 150,
+      "spanTerms": 3,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "nursing",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "scribe-jobs",
+        "emt",
+        "employer-rwjbarnabas"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Medical, PA, and PT schools screen on hands-on patient care."
+    },
+    {
+      "id": "e-nursing-externship",
+      "title": "Complete a nursing externship",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "comm": 0.5,
+        "team": 0.5
+      },
+      "baseWeight": 0.85,
+      "hours": 300,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2U",
+        "ideal": [
+          "3U",
+          "3U"
+        ],
+        "latest": "3U"
+      },
+      "prereqs": [],
+      "season": "summer",
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "nursing"
+      ],
+      "resources": [
+        "employer-rwjbarnabas",
+        "employer-hackensack-meridian"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Hospitals often hire new grads from their own extern pools."
+    },
+    {
+      "id": "e-pharmacy-intern",
+      "title": "Work as a licensed pharmacy intern",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "tech": 0.4,
+        "comm": 0.4
+      },
+      "baseWeight": 0.85,
+      "hours": 200,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2U",
+          "3U"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "pharmacy"
+      ],
+      "resources": [
+        "pharmacy-tech",
+        "apha-asp"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Paid experience that also builds residency and job references."
+    },
+    {
+      "id": "e-field-placement",
+      "title": "Complete your BSW field placement",
+      "category": "experience",
+      "competencies": {
+        "prof": 0.6,
+        "equity": 0.6,
+        "comm": 0.5
+      },
+      "baseWeight": 0.95,
+      "hours": 400,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "social-work"
+      ],
+      "resources": [
+        "nasw"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": true,
+      "satisfies": [],
+      "requires": [],
+      "why": "Required for the degree and for advanced-standing MSW programs."
+    },
+    {
+      "id": "e-student-media",
+      "title": "Produce work for student media (Targum, WRSU, RU-tv)",
+      "category": "experience",
+      "competencies": {
+        "comm": 0.7,
+        "team": 0.4
+      },
+      "baseWeight": 0.55,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "communication",
+        "political-science",
+        "marketing"
+      ],
+      "resources": [
+        "daily-targum",
+        "wrsu"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Published work is the entry ticket for media and PR roles."
+    },
+    {
+      "id": "e-government-internship",
+      "title": "Intern in a government or campaign office",
+      "category": "experience",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.5,
+        "equity": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 150,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1U",
+        "ideal": [
+          "2U",
+          "3U"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "public-health",
+        "economics",
+        "communication"
+      ],
+      "resources": [
+        "nj-legislature",
+        "congress-internships",
+        "eagleton-washington-award",
+        "twc"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Public-sector jobs hire from people they already know."
+    },
+    {
+      "id": "e-justice-exposure",
+      "title": "Observe court, do a ride-along, or volunteer in reentry",
+      "category": "experience",
+      "competencies": {
+        "csd": 0.5,
+        "equity": 0.5
+      },
+      "baseWeight": 0.5,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "criminal-justice",
+        "social-work",
+        "political-science"
+      ],
+      "resources": [
+        "nj-step"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Shows you understand the system you want to work in."
+    },
+    {
+      "id": "e-study-abroad",
+      "title": "Study or intern abroad",
+      "category": "experience",
+      "competencies": {
+        "equity": 0.6,
+        "csd": 0.4,
+        "comm": 0.4
+      },
+      "baseWeight": 0.35,
+      "hours": 200,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2U",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-study-abroad",
+        "gilman",
+        "boren"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Builds independence and global perspective; Gilman covers costs for Pell recipients."
+    },
+    {
+      "id": "e-entrepreneurship",
+      "title": "Pitch a venture or join a startup",
+      "category": "experience",
+      "competencies": {
+        "lead": 0.5,
+        "crit": 0.5,
+        "comm": 0.5
+      },
+      "baseWeight": 0.3,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "scarletpitch",
+        "rbs-business-plan"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Teaches selling an idea and moving fast."
+    },
+    {
+      "id": "e-tutor-ta",
+      "title": "Tutor or work as a teaching assistant",
+      "category": "experience",
+      "competencies": {
+        "comm": 0.6,
+        "lead": 0.4
+      },
+      "baseWeight": 0.4,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Teaching proves mastery and builds faculty relationships."
+    },
+    {
+      "id": "n-career-fair-first",
+      "title": "Attend your first career fair (to look, not to land)",
+      "category": "network",
+      "competencies": {
+        "csd": 0.4,
+        "comm": 0.4
+      },
+      "baseWeight": 0.65,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-ces"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Low-pressure practice before the fairs that count."
+    },
+    {
+      "id": "n-career-fair-target",
+      "title": "Work a career fair with a target list of employers",
+      "category": "network",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.4
+      },
+      "baseWeight": 0.8,
+      "hours": 5,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "3F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "f-resume-v1",
+        "f-elevator-pitch"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-ces"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Fall junior-year fairs feed most junior-summer internships."
+    },
+    {
+      "id": "n-info-interviews",
+      "title": "Do 5 informational interviews with alumni",
+      "category": "network",
+      "competencies": {
+        "comm": 0.6,
+        "csd": 0.5
+      },
+      "baseWeight": 0.75,
+      "hours": 8,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "p-linkedin-setup"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "linkedin-alumni-tool"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The fastest way to learn what a job is really like and get referred."
+    },
+    {
+      "id": "n-faculty-relationships",
+      "title": "Build relationships with 2 professors (office hours, research)",
+      "category": "network",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.4
+      },
+      "baseWeight": 0.7,
+      "hours": 10,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "You'll need recommendation letters for research, fellowships, and grad school."
+    },
+    {
+      "id": "n-mentor",
+      "title": "Find a mentor in your target field",
+      "category": "network",
+      "competencies": {
+        "csd": 0.6,
+        "comm": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 6,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "mlt-career-prep",
+        "seo-career",
+        "inroads"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A mentor shortens every decision on this map."
+    },
+    {
+      "id": "n-professional-society",
+      "title": "Join a professional society as a student member",
+      "category": "network",
+      "competencies": {
+        "csd": 0.4,
+        "prof": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Student rates are cheap and give access to scholarships, job boards, and conferences."
+    },
+    {
+      "id": "n-conference",
+      "title": "Attend a national conference or diversity career conference",
+      "category": "network",
+      "competencies": {
+        "csd": 0.5,
+        "comm": 0.4,
+        "equity": 0.3
+      },
+      "baseWeight": 0.45,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "nsbe",
+        "shpe",
+        "swe",
+        "out-for-undergrad",
+        "anitab-ghc",
+        "tapia",
+        "sacnas"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Conference career fairs often interview on the spot."
+    },
+    {
+      "id": "n-info-sessions",
+      "title": "Attend 3 employer info sessions",
+      "category": "network",
+      "competencies": {
+        "csd": 0.4,
+        "comm": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 5,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Recruiters remember the people who showed up."
+    },
+    {
+      "id": "c-bls",
+      "title": "Get CPR/BLS certified",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 4,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "nursing",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "bls"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Required for nearly every clinical job and volunteer role."
+    },
+    {
+      "id": "c-emt",
+      "title": "Earn EMT certification",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.5,
+        "comm": 0.4
+      },
+      "baseWeight": 0.35,
+      "hours": 150,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "1U",
+          "2U"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "biological-sciences",
+        "exercise-science",
+        "public-health",
+        "psychology",
+        "nursing"
+      ],
+      "resources": [
+        "emt"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Fastest route to paid patient-care hours."
+    },
+    {
+      "id": "c-rbt",
+      "title": "Earn the RBT credential",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.5,
+        "equity": 0.3
+      },
+      "baseWeight": 0.35,
+      "hours": 50,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "psychology",
+        "social-work"
+      ],
+      "resources": [
+        "rbt"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Common paid clinical job for psychology students."
+    },
+    {
+      "id": "c-pharm-tech",
+      "title": "Become a certified pharmacy technician",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.4,
+        "tech": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2F"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "pharmacy",
+        "biological-sciences"
+      ],
+      "resources": [
+        "pharmacy-tech"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Paid pharmacy experience while in school."
+    },
+    {
+      "id": "c-aphr",
+      "title": "Earn the aPHR",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.5,
+        "csd": 0.3
+      },
+      "baseWeight": 0.35,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3F",
+        "ideal": [
+          "3S",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "human-resource-management",
+        "psychology"
+      ],
+      "resources": [
+        "aphr",
+        "shrm"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Entry-level HR certification with no experience requirement."
+    },
+    {
+      "id": "c-ches",
+      "title": "Sit for the CHES exam",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.5
+      },
+      "baseWeight": 0.35,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4S",
+          "4S"
+        ],
+        "latest": "G1"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "public-health",
+        "exercise-science"
+      ],
+      "resources": [
+        "ches"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Recognized credential for health education roles."
+    },
+    {
+      "id": "c-fitness",
+      "title": "Earn ACSM or NSCA certification",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.5,
+        "tech": 0.3
+      },
+      "baseWeight": 0.5,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "3F",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "exercise-science"
+      ],
+      "resources": [
+        "acsm",
+        "nsca"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Required for many fitness and strength roles."
+    },
+    {
+      "id": "c-security-plus",
+      "title": "Earn CompTIA Security+ or ISC2 CC",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.6,
+        "prof": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 50,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "comptia",
+        "isc2-cc"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Baseline credential for security and many government IT jobs."
+    },
+    {
+      "id": "c-cloud",
+      "title": "Earn an entry cloud certification (AWS Cloud Practitioner)",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.6
+      },
+      "baseWeight": 0.4,
+      "hours": 25,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "resources": [
+        "aws-educate"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Cloud shows up in most modern software and IT roles."
+    },
+    {
+      "id": "c-google-cert",
+      "title": "Complete a Google Career Certificate",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.5
+      },
+      "baseWeight": 0.35,
+      "hours": 60,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "information-technology",
+        "supply-chain",
+        "marketing",
+        "economics"
+      ],
+      "resources": [
+        "google-career-certs"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Structured, recognized skill credential in data, IT, UX, or project management."
+    },
+    {
+      "id": "c-cswa",
+      "title": "Earn the SOLIDWORKS CSWA",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.6
+      },
+      "baseWeight": 0.4,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "s-cad"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "solidworks-student"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Proves CAD skill on paper."
+    },
+    {
+      "id": "c-fe",
+      "title": "Take the FE exam",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.5,
+        "prof": 0.4
+      },
+      "baseWeight": 0.35,
+      "hours": 60,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4F",
+          "4S"
+        ],
+        "latest": "G1"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "fe-exam"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "First step to a PE license; easiest while coursework is fresh."
+    },
+    {
+      "id": "c-lean",
+      "title": "Earn a Lean Six Sigma Green Belt",
+      "category": "credentials",
+      "competencies": {
+        "crit": 0.5,
+        "tech": 0.3
+      },
+      "baseWeight": 0.35,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3F",
+        "ideal": [
+          "3S",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "supply-chain",
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "lean-six-sigma"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Valued in manufacturing and operations roles."
+    },
+    {
+      "id": "c-excel-mos",
+      "title": "Earn Microsoft Office Specialist: Excel",
+      "category": "credentials",
+      "competencies": {
+        "tech": 0.5
+      },
+      "baseWeight": 0.35,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "s-excel-core"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain",
+        "economics",
+        "human-resource-management",
+        "public-health"
+      ],
+      "resources": [
+        "excel-mos"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Turns 'proficient in Excel' into something verifiable."
+    },
+    {
+      "id": "c-citi",
+      "title": "Complete CITI human-subjects training",
+      "category": "credentials",
+      "competencies": {
+        "prof": 0.4
+      },
+      "baseWeight": 0.4,
+      "hours": 4,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "psychology",
+        "public-health",
+        "biological-sciences",
+        "nursing",
+        "social-work"
+      ],
+      "resources": [
+        "citi-training"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Required before joining most human-subjects labs."
+    },
+    {
+      "id": "a-cpa-plan",
+      "title": "Plan your path to 150 credit hours for the CPA",
+      "category": "academics",
+      "competencies": {
+        "csd": 0.6
+      },
+      "baseWeight": 0.9,
+      "hours": 3,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1S",
+          "2F"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "accounting"
+      ],
+      "resources": [
+        "cpa-150",
+        "njcpa"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "NJ requires 150 credits; deciding early saves a year or a lot of money."
+    },
+    {
+      "id": "a-certificate-minor",
+      "title": "Add a minor or certificate that fills a gap (data, writing, a language)",
+      "category": "academics",
+      "competencies": {
+        "csd": 0.4,
+        "tech": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 0,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "2S"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A targeted minor can cover what your major doesn't."
+    },
+    {
+      "id": "a-eagleton",
+      "title": "Apply to the Eagleton Undergraduate Associates program",
+      "category": "academics",
+      "competencies": {
+        "lead": 0.4,
+        "comm": 0.4
+      },
+      "baseWeight": 0.6,
+      "hours": 6,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3F",
+        "ideal": [
+          "3F",
+          "3F"
+        ],
+        "latest": "3F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": "September–October of junior year",
+      "repeat": null,
+      "majors": [
+        "political-science",
+        "economics",
+        "communication",
+        "criminal-justice",
+        "public-health"
+      ],
+      "resources": [
+        "eagleton-ua"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Selective politics program with a stipend and placement network."
+    },
+    {
+      "id": "a-fellowship-advising",
+      "title": "Meet the Office of Distinguished Fellowships",
+      "category": "academics",
+      "competencies": {
+        "csd": 0.5
+      },
+      "baseWeight": 0.45,
+      "hours": 2,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "3F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-distinguished-fellowships"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Many awards need a campus nomination a year ahead."
+    },
+    {
+      "id": "a-fellowship-apps",
+      "title": "Apply for a national fellowship (Goldwater, Truman, Fulbright, Gilman)",
+      "category": "applications",
+      "competencies": {
+        "comm": 0.6,
+        "crit": 0.5
+      },
+      "baseWeight": 0.35,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2F",
+          "4F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "a-fellowship-advising"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "goldwater",
+        "truman",
+        "fulbright",
+        "gilman",
+        "boren",
+        "udall"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Even unsuccessful applications sharpen your story for everything else."
+    },
+    {
+      "id": "a-test-prep",
+      "title": "Prep for your entrance exam (MCAT, LSAT, GRE, PCAT)",
+      "category": "academics",
+      "competencies": {
+        "crit": 0.7
+      },
+      "baseWeight": 0.25,
+      "hours": 200,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "2S",
+        "ideal": [
+          "3S",
+          "3U"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "lawhub",
+        "aamc-premed"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Gate for professional and graduate school."
+    },
+    {
+      "id": "a-letters",
+      "title": "Line up 3 recommendation letters",
+      "category": "academics",
+      "competencies": {
+        "prof": 0.4
+      },
+      "baseWeight": 0.35,
+      "hours": 4,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3S",
+        "ideal": [
+          "3S",
+          "4F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [
+        "n-faculty-relationships"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Letter writers need months of notice and real knowledge of your work."
+    },
+    {
+      "id": "a-grad-list",
+      "title": "Build a balanced list of grad or professional programs",
+      "category": "academics",
+      "competencies": {
+        "csd": 0.6
+      },
+      "baseWeight": 0.3,
+      "hours": 10,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3S",
+        "ideal": [
+          "3S",
+          "4F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A balanced list beats applying only to reach schools."
+    },
+    {
+      "id": "a-personal-statement",
+      "title": "Draft and revise your personal statement",
+      "category": "academics",
+      "competencies": {
+        "comm": 0.8,
+        "csd": 0.4
+      },
+      "baseWeight": 0.3,
+      "hours": 25,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "3S",
+        "ideal": [
+          "3U",
+          "4F"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-writing-centers",
+        "rutgers-health-professions-office"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Takes several drafts; start before senior fall."
+    },
+    {
+      "id": "a-nclex-prep",
+      "title": "Prepare for the NCLEX-RN",
+      "category": "academics",
+      "competencies": {
+        "crit": 0.6,
+        "tech": 0.4
+      },
+      "baseWeight": 0.9,
+      "hours": 120,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4S",
+          "4S"
+        ],
+        "latest": "G1"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "nursing"
+      ],
+      "resources": [
+        "nclex"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Licensure gate after graduation."
+    },
+    {
+      "id": "a-residency-plan",
+      "title": "Decide on residency vs. industry vs. community practice",
+      "category": "academics",
+      "competencies": {
+        "csd": 0.7
+      },
+      "baseWeight": 0.8,
+      "hours": 6,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "3F",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "pharmacy"
+      ],
+      "resources": [
+        "ashp-residency",
+        "rpif"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Each route has different deadlines and experiences to build."
+    },
+    {
+      "id": "ap-scholarships",
+      "title": "Apply to 5 outside scholarships",
+      "category": "applications",
+      "competencies": {
+        "comm": 0.4,
+        "csd": 0.3
+      },
+      "baseWeight": 0.55,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "1S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": "yearly",
+      "majors": null,
+      "resources": [
+        "hsf",
+        "uncf",
+        "tmcf",
+        "apia-scholars",
+        "point-foundation",
+        "american-indian-college-fund",
+        "thedream-us"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Free money; many awards get few applicants."
+    },
+    {
+      "id": "ap-early-programs",
+      "title": "Apply to first- and second-year programs (SEO, MLT, INROADS, early-ID)",
+      "category": "applications",
+      "competencies": {
+        "csd": 0.5,
+        "prof": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "1F",
+          "2F"
+        ],
+        "latest": "2S"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "seo-career",
+        "mlt-career-prep",
+        "inroads",
+        "big4-early",
+        "google-early-careers",
+        "microsoft-students",
+        "girls-who-invest"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "These programs feed directly into the competitive junior internships."
+    },
+    {
+      "id": "ap-research-apps",
+      "title": "Apply to summer research programs (REUs, RISE, SURE)",
+      "category": "applications",
+      "competencies": {
+        "comm": 0.4,
+        "crit": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 15,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": "December–February for the following summer",
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "nsf-reu",
+        "rise-rutgers",
+        "dimacs-reu",
+        "amgen-scholars",
+        "leadership-alliance",
+        "nih-sip",
+        "doe-suli"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Deadlines come months before summer."
+    },
+    {
+      "id": "ap-internship-early",
+      "title": "Apply to 15+ summer opportunities for after sophomore year",
+      "category": "applications",
+      "competencies": {
+        "prof": 0.4,
+        "csd": 0.3
+      },
+      "baseWeight": 0.7,
+      "hours": 20,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1S",
+        "ideal": [
+          "2F",
+          "2S"
+        ],
+        "latest": "2S"
+      },
+      "prereqs": [
+        "f-resume-v1"
+      ],
+      "season": null,
+      "deadline": "Most summer roles fill by March",
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake",
+        "federal-pathways",
+        "usajobs",
+        "vsfs"
+      ],
+      "splittable": true,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Sophomore summer experience is what makes junior internships winnable."
+    },
+    {
+      "id": "ap-internship-target",
+      "title": "Apply to 30+ target internships for junior summer",
+      "category": "applications",
+      "competencies": {
+        "prof": 0.5,
+        "csd": 0.4
+      },
+      "baseWeight": 0.95,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2U",
+        "ideal": [
+          "3F",
+          "3F"
+        ],
+        "latest": "3S"
+      },
+      "prereqs": [
+        "f-resume-v1",
+        "f-mock-interview"
+      ],
+      "season": null,
+      "deadline": "Many large employers recruit August–October of junior year",
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake",
+        "linkedin-profile",
+        "glassdoor"
+      ],
+      "splittable": true,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "The main recruiting window for full-time offers."
+    },
+    {
+      "id": "ap-federal",
+      "title": "Apply to federal internships on USAJOBS",
+      "category": "applications",
+      "competencies": {
+        "prof": 0.4
+      },
+      "baseWeight": 0.45,
+      "hours": 10,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "1F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4F"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "usajobs",
+        "usajobs-resume-help",
+        "federal-pathways",
+        "wrp",
+        "fbi-honors"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Federal hiring uses its own resume rules and timelines."
+    },
+    {
+      "id": "ap-fulltime",
+      "title": "Run your full-time job search (or convert a return offer)",
+      "category": "applications",
+      "competencies": {
+        "prof": 0.5,
+        "csd": 0.5,
+        "comm": 0.3
+      },
+      "baseWeight": 0.9,
+      "hours": 60,
+      "spanTerms": 2,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4F",
+          "4S"
+        ],
+        "latest": "G1"
+      },
+      "prereqs": [
+        "f-resume-v1",
+        "f-mock-interview"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "rutgers-handshake",
+        "levels-fyi",
+        "glassdoor"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Start in senior fall; many offers go out before spring."
+    },
+    {
+      "id": "ap-grad-apps",
+      "title": "Submit graduate or professional school applications",
+      "category": "applications",
+      "competencies": {
+        "comm": 0.5
+      },
+      "baseWeight": 0.3,
+      "hours": 40,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4F",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [
+        "a-grad-list",
+        "a-personal-statement",
+        "a-letters"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Most deadlines fall between September and January of senior year."
+    },
+    {
+      "id": "ap-negotiate",
+      "title": "Compare and negotiate your offer",
+      "category": "applications",
+      "competencies": {
+        "comm": 0.5,
+        "prof": 0.4
+      },
+      "baseWeight": 0.5,
+      "hours": 4,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "4F",
+        "ideal": [
+          "4S",
+          "4S"
+        ],
+        "latest": "G1"
+      },
+      "prereqs": [
+        "ap-fulltime"
+      ],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "levels-fyi",
+        "glassdoor",
+        "rutgers-ces"
+      ],
+      "splittable": false,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "Many entry-level offers have room to negotiate; few graduates ask."
+    }
+  ]
+}

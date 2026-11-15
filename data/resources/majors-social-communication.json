@@ -1,0 +1,629 @@
+{
+  "_about": "Resources for Communication, Political Science, Criminal Justice, and Social Work.",
+  "resources": [
+    {
+      "id": "prssa",
+      "name": "PRSSA (Public Relations Student Society of America)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "communication",
+        "marketing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "PR student chapters, competitions, and national conference.",
+      "url": "https://prssa.prsa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "irts",
+      "name": "IRTS Summer Fellowship",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "communication",
+        "marketing"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "media"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Paid summer fellowship placing students at media companies in New York.",
+      "url": "https://irts.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "natcom",
+      "name": "National Communication Association (NCA) / Lambda Pi Eta",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Communication discipline association and its undergraduate honor society.",
+      "url": "https://www.natcom.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "dow-jones-news-fund",
+      "name": "Dow Jones News Fund internships",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "communication"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "journalism"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Paid data journalism, digital, and editing internships with training.",
+      "url": "https://dowjonesnewsfund.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-legislature",
+      "name": "New Jersey Legislature",
+      "type": "internship",
+      "scope": "new_jersey",
+      "majors": [
+        "political-science",
+        "communication",
+        "criminal-justice",
+        "economics",
+        "public-health"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "politics"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Legislative offices and partisan staffs hire interns; Eagleton programs often place students here.",
+      "url": "https://www.njleg.state.nj.us",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "model-un",
+      "name": "Rutgers Model United Nations",
+      "type": "club",
+      "scope": "rutgers",
+      "majors": [
+        "political-science",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "international-affairs"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Competitive Model UN team and conferences.",
+      "url": "https://rutgers.campuslabs.com/engage/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "pickering",
+      "name": "Pickering Foreign Affairs Fellowship",
+      "type": "fellowship",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [
+        "us-citizen"
+      ],
+      "interests": [
+        "foreign-service"
+      ],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Graduate funding and internships leading to the U.S. Foreign Service.",
+      "url": "https://pickeringfellowship.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "paused",
+      "statusNote": "The 2026 application cycle was postponed pending State Department updates.",
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rangel-graduate",
+      "name": "Rangel Graduate Fellowship",
+      "type": "fellowship",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [
+        "us-citizen"
+      ],
+      "interests": [
+        "foreign-service"
+      ],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Graduate funding and internships leading to the U.S. Foreign Service.",
+      "url": "https://rangelprogram.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "paused",
+      "statusNote": "The 2026 application cycle was postponed pending State Department updates.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "acjs",
+      "name": "Academy of Criminal Justice Sciences (ACJS) / Alpha Phi Sigma",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "criminal-justice"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Criminal justice academic society and its honor society.",
+      "url": "https://www.acjs.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "vera",
+      "name": "Vera Institute of Justice",
+      "type": "employer_program",
+      "scope": "national",
+      "majors": [
+        "criminal-justice",
+        "social-work",
+        "political-science",
+        "public-health"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "justice-reform"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Justice reform research and policy nonprofit in New York with internships.",
+      "url": "https://www.vera.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "us-marshals-dea",
+      "name": "Federal law enforcement student programs (DEA, U.S. Marshals, DHS)",
+      "type": "federal_program",
+      "scope": "national",
+      "majors": [
+        "criminal-justice",
+        "political-science",
+        "accounting",
+        "information-technology"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [
+        "us-citizen"
+      ],
+      "interests": [
+        "law-enforcement"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federal law enforcement internships posted on USAJOBS; expect long background checks.",
+      "url": "https://www.usajobs.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-attorney-general",
+      "name": "NJ Office of the Attorney General internships",
+      "type": "internship",
+      "scope": "new_jersey",
+      "majors": [
+        "criminal-justice",
+        "political-science"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "law"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Internships across NJ's Department of Law and Public Safety.",
+      "url": "https://www.njoag.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-criminal-justice-school",
+      "name": "Rutgers School of Criminal Justice (Newark)",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "criminal-justice"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research school with centers on policing and violence prevention; a path to MA and PhD study.",
+      "url": "https://rscj.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nasw",
+      "name": "National Association of Social Workers (NASW) / NASW-NJ",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership, licensing info, and NJ chapter events.",
+      "url": "https://www.socialworkers.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cswe",
+      "name": "CSWE (Council on Social Work Education)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "social-work"
+      ],
+      "years": [
+        4,
+        "grad"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Accredits BSW and MSW programs; lists MSW scholarships and its Minority Fellowship Program for graduate students.",
+      "url": "https://www.cswe.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "phi-alpha",
+      "name": "Phi Alpha Honor Society",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Social work honor society.",
+      "url": "https://www.phialphahonorsociety.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "advanced-standing-msw",
+      "name": "Advanced-standing MSW planning",
+      "type": "requirement",
+      "scope": "national",
+      "majors": [
+        "social-work"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "BSW graduates can often finish an MSW in one year; plan field placements and GPA with this in mind.",
+      "url": "https://socialwork.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": [
+        "requirement"
+      ]
+    },
+    {
+      "id": "rutgers-ssw-institutes",
+      "name": "Rutgers School of Social Work institutes",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "social-work",
+        "psychology",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research institutes (e.g., Institute for Families, Center for Gambling Studies) that hire students.",
+      "url": "https://socialwork.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    }
+  ]
+}

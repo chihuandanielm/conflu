@@ -1,0 +1,2160 @@
+{
+  "_about": "Rutgers–New Brunswick offices, programs, labs, centers, and student orgs.",
+  "resources": [
+    {
+      "id": "rutgers-ces",
+      "name": "Career Exploration and Success (CES)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "career-planning",
+        "job-search"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–New Brunswick's central career office: advising (including a 4-year Career Action Plan), career fairs, employer info sessions, and the Rutgers Handshake job board.",
+      "url": "https://careers.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Book an advising appointment through Rutgers Handshake; first-years can pick the 'How Do I Even Get Started?' topic."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-handshake",
+      "name": "Rutgers Handshake",
+      "type": "job_board",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Primary source of Rutgers internship and job postings, career fair registration, and advising appointments.",
+      "url": "https://success.rutgers.edu/resource/rutgers-handshake",
+      "applyUrl": null,
+      "contact": {
+        "how": "Log in with your NetID."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-4ward",
+      "name": "4WARD Career Pathways Program",
+      "type": "pipeline_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Multi-year career program for first-generation students and others arriving without an established career network.",
+      "url": "https://careers.rutgers.edu/4WARD",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-ricc",
+      "name": "Rutgers Internship and Co-op Course (RICC)",
+      "type": "credit_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Lets any New Brunswick undergraduate earn academic credit for an internship or co-op, regardless of major or school.",
+      "url": "https://careers.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Apply through CES before or during the internship term. Check first whether your own major offers a credit course."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-figs",
+      "name": "First-Year Interest Group Seminars (FIGS)",
+      "type": "course",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "One-credit seminars that introduce first-year students to Rutgers resources through a career field.",
+      "url": "https://careers.rutgers.edu/YearOne",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "aresty-ra",
+      "name": "Aresty Research Assistant Program",
+      "type": "research_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "credit",
+      "season": "academic-year",
+      "typicalDeadline": "Applications open in early March for the next year",
+      "summary": "Pairs students who are new to research with a faculty mentor for a year-long project, for 3 pass/no-credit credits. Competitive: about 1,200 applicants for about 300 spots.",
+      "url": "https://aresty.rutgers.edu/programs/research-assistant-program",
+      "applyUrl": null,
+      "contact": {
+        "email": "aresty@echo.rutgers.edu",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "aresty-summer-science",
+      "name": "Aresty Summer Science Program",
+      "type": "research_program",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "computer-science",
+        "biomedical-engineering",
+        "mechanical-engineering",
+        "exercise-science",
+        "public-health",
+        "pharmacy"
+      ],
+      "years": [
+        1
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Full-time, on-campus summer research for Rutgers–New Brunswick rising sophomores. About 450 applicants for 60 spots.",
+      "url": "https://aresty.rutgers.edu/programs",
+      "applyUrl": null,
+      "contact": {
+        "email": "aresty@echo.rutgers.edu",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "aresty-funding",
+      "name": "Aresty Research Funding and Symposium",
+      "type": "grant",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Grants for students doing independent research, plus the spring Undergraduate Research Symposium and the Rutgers Undergraduate Research Journal.",
+      "url": "https://aresty.rutgers.edu/programs-funding",
+      "applyUrl": null,
+      "contact": {
+        "email": "aresty@echo.rutgers.edu",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-summer-research-list",
+      "name": "Summer Research at Rutgers (program list)",
+      "type": "directory",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Aresty's list of on-campus summer programs: GET UP (green energy), Physics REU, Project L/EARN (health services research), RIOS (ocean sciences), Perceptual Science REU, and more. Some do not accept Rutgers students.",
+      "url": "https://aresty.rutgers.edu/node/33",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "lsamp-nb",
+      "name": "Rutgers LSAMP (Louis Stokes Alliance for Minority Participation)",
+      "type": "pipeline_program",
+      "scope": "rutgers",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "biological-sciences",
+        "psychology",
+        "economics",
+        "exercise-science",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented-stem"
+      ],
+      "interests": [
+        "research",
+        "stem"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "STEM support and a directory of research programs across Rutgers–New Brunswick departments and centers.",
+      "url": "https://lsamp-nb.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rise-rutgers",
+      "name": "RISE at Rutgers (Research Intensive Summer Experience)",
+      "type": "research_program",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "biomedical-engineering",
+        "mechanical-engineering",
+        "computer-science",
+        "pharmacy",
+        "exercise-science"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "underrepresented-stem",
+        "us-citizen-or-pr"
+      ],
+      "interests": [
+        "research",
+        "grad-school"
+      ],
+      "pay": "stipend",
+      "season": "summer",
+      "typicalDeadline": "Rolling from January; around Jan 31",
+      "summary": "Selective 10-week paid summer research program for students from diverse backgrounds headed to grad school. Applying also puts you in the pool for partner NSF REUs at Rutgers. Mainly recruits from other colleges.",
+      "url": "https://rise.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "email": "rise@grad.rutgers.edu",
+        "phone": "848-932-6584",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "dimacs-reu",
+      "name": "DIMACS REU",
+      "type": "research_program",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "biological-sciences"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "research",
+        "algorithms",
+        "math"
+      ],
+      "pay": "stipend",
+      "season": "summer",
+      "typicalDeadline": "Early February (Feb 5 in 2026)",
+      "summary": "NSF-funded 9-week summer research program in algorithms, CS theory, math, and bioinformatics, run at Rutgers since 1993.",
+      "url": "https://nreu.dimacs.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "email": "reu@dimacs.rutgers.edu",
+        "phone": "848-445-0075",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-mcnair",
+      "name": "Rutgers–New Brunswick McNair Scholars Program",
+      "type": "pipeline_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "first-generation",
+        "low-income",
+        "us-citizen-or-pr"
+      ],
+      "interests": [
+        "research",
+        "grad-school"
+      ],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federal TRIO program preparing low-income, first-generation, and underrepresented students for PhD programs: mentored summer research, GRE and application help, and a stipend.",
+      "url": "https://nbaccess.rutgers.edu/student-access/mcnair-program/become-scholar",
+      "applyUrl": null,
+      "contact": {
+        "email": "mcnair@echo.rutgers.edu",
+        "phone": "848-445-3100",
+        "location": "Lucy Stone Hall, A-Wing, 3rd floor, Livingston campus",
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": "TRIO funding survived the FY2026 budget, but the Education Department cut some McNair grants nationally and removed race-based criteria. Confirm the Rutgers program is enrolling.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-sss",
+      "name": "THRIVE Student Support Services (TRIO SSS)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income",
+        "disability"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federally funded academic support for first-generation, low-income, and disabled students on the New Brunswick campus.",
+      "url": "https://nbaccess.rutgers.edu/student-access",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-access-week",
+      "name": "Access Week",
+      "type": "event",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": "spring",
+      "typicalDeadline": null,
+      "summary": "Annual week of events for first-generation, low-income, and historically underserved students, including the McNair research symposium.",
+      "url": "https://nbaccess.rutgers.edu/student-access",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-posse",
+      "name": "Rutgers Posse Program",
+      "type": "scholarship",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income"
+      ],
+      "interests": [],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Full-tuition leadership scholarship for cohorts recruited with Posse Boston; first Rutgers cohort arrived in 2022. Applied to before enrollment, but scholars get support all four years.",
+      "url": "https://nbaccess.rutgers.edu/student-access",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-eof",
+      "name": "Rutgers Educational Opportunity Fund (EOF)",
+      "type": "state_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "low-income",
+        "nj-resident",
+        "first-generation"
+      ],
+      "interests": [],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "State grant plus counseling, tutoring, and a summer institute for New Jersey residents from educationally and economically disadvantaged backgrounds. Usually applied for at admission.",
+      "url": "https://admissions.rutgers.edu/eof-eligibility-requirements-and-candidate-selection-process",
+      "applyUrl": null,
+      "contact": {
+        "how": "Indicate EOF interest on the admissions application; each Rutgers school has its own EOF office (SAS EOF: saseof.rutgers.edu)."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-tuition-assistance",
+      "name": "Rutgers Tuition Assistance Programs",
+      "type": "aid_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "low-income",
+        "nj-resident"
+      ],
+      "interests": [],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Covers remaining tuition and fees for eligible lower-income New Jersey students. Students under 60 credits use campus programs; 60+ credits are evaluated for the Garden State Guarantee.",
+      "url": "https://scarlethub.rutgers.edu/financial-services/types-of-aid/rutgers-tuition-assistance-programs/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": "Eligibility changed for students entering after Spring 2026; earlier entrants may qualify for exceptions.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-distinguished-fellowships",
+      "name": "Office of Distinguished Fellowships",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "fellowships",
+        "grad-school",
+        "study-abroad"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free advising and the required university endorsement for national awards like Fulbright, Goldwater, Truman, Marshall, Rhodes, and Schwarzman. Has a fellowship selector tool on its site.",
+      "url": "https://newbrunswick.rutgers.edu/fellowships",
+      "applyUrl": null,
+      "contact": {
+        "email": "fellowships@rutgers.edu",
+        "how": "Email or book through Handshake. Start a year before the deadline; many awards need a campus nomination."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "eagleton-ua",
+      "name": "Eagleton Undergraduate Associates Program",
+      "type": "certificate_program",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "politics",
+        "policy",
+        "public-service"
+      ],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": "September–October of junior year",
+      "summary": "Selective three-semester politics and government certificate for juniors from any major: 9 credits, a public-service internship, and a $3,000 stipend. About 25 students a year.",
+      "url": "https://eagleton.rutgers.edu/undergrad-associates/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "eagleton-washington-award",
+      "name": "Rutgers-Eagleton Washington Internship Award",
+      "type": "grant",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "politics",
+        "policy",
+        "public-service"
+      ],
+      "pay": "grant",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "One-time grants of up to $6,000 for summer internships in government or nonprofits.",
+      "url": "https://eagleton.rutgers.edu/students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "soe-coop",
+      "name": "School of Engineering Co-op and Internship Credit",
+      "type": "co_op",
+      "scope": "rutgers",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Engineering students can earn up to 6 technical-elective credits: 3 for an internship or 6 for a 6-month full-time co-op. Co-op needs junior standing and a 2.5 GPA.",
+      "url": "https://soe.rutgers.edu/student-experience/career-development",
+      "applyUrl": null,
+      "contact": {
+        "how": "Get approval from your department's undergraduate director before the job starts."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "bme-coop",
+      "name": "Biomedical Engineering Co-op Program",
+      "type": "co_op",
+      "scope": "rutgers",
+      "majors": [
+        "biomedical-engineering"
+      ],
+      "years": [
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "medical-devices",
+        "pharma"
+      ],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "6-month paid junior-year co-op with pharma, biotech, and medical device partners, while still graduating in four years.",
+      "url": "https://bme.rutgers.edu/co-op",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "scarletpitch",
+      "name": "ScarletPitch",
+      "type": "competition",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "entrepreneurship"
+      ],
+      "pay": "prize",
+      "season": null,
+      "typicalDeadline": "Applications open November 1",
+      "summary": "Rutgers–New Brunswick's campus-wide startup pitch competition, run by IDEA. Cash prizes; winners can advance to UPitchNJ and the Hult Prize.",
+      "url": "https://idea.rutgers.edu/programs/scarletpitch",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rbs-business-plan",
+      "name": "Rutgers Business Plan Competition",
+      "type": "competition",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "entrepreneurship"
+      ],
+      "pay": "prize",
+      "season": "spring",
+      "typicalDeadline": null,
+      "summary": "Annual Rutgers Business School competition with $50,000 in prizes for student ventures.",
+      "url": "https://myrbs.business.rutgers.edu/node/931",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "odasis",
+      "name": "Office for Diversity and Academic Success in the Sciences (ODASIS)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "biomedical-engineering",
+        "nursing",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "psychology",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "underrepresented-stem"
+      ],
+      "interests": [
+        "pre-health",
+        "stem"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Academic support and summer program referrals for underrepresented students in STEM and pre-health tracks.",
+      "url": "https://www.odasis.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-health-professions-office",
+      "name": "Health Professions Office",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "public-health",
+        "biomedical-engineering",
+        "pharmacy",
+        "nursing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-health"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Advising for students headed to medical, dental, PA, PT, and other health professional schools, including committee letters.",
+      "url": "https://hpo.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "douglass",
+      "name": "Douglass Residential College",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "leadership",
+        "stem"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Women's college within Rutgers with leadership, career, and STEM programs, including Project SUPER for women in science.",
+      "url": "https://douglass.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-honors-college",
+      "name": "Honors College",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Honors students get extra fellowship and professional development support.",
+      "url": "https://honorscollege.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-13"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-ods",
+      "name": "Office of Disability Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "disability"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Academic accommodations. Register early: accommodation letters also help with internship applications and testing.",
+      "url": "https://ods.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-global-isss",
+      "name": "Rutgers Global: International Student and Scholar Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "international"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "International students must get CPT or OPT work authorization before any internship or co-op. Talk to ISSS before accepting an offer.",
+      "url": "https://global.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-study-abroad",
+      "name": "Rutgers Global: Study Abroad",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "study-abroad"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Study abroad programs. Pair with the Gilman Scholarship if you receive a Pell Grant.",
+      "url": "https://global.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-veterans",
+      "name": "Office of Veteran and Military Programs and Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "veteran"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Benefits help and community for veterans, service members, and military families.",
+      "url": "https://veterans.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-getinvolved",
+      "name": "getINVOLVED (student organizations directory)",
+      "type": "directory",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Directory of 700+ Rutgers student organizations. Search here for the Rutgers chapter of any professional society listed in this database.",
+      "url": "https://rutgers.campuslabs.com/engage/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-cultural-centers",
+      "name": "Rutgers cultural centers",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "black",
+        "latino",
+        "asian-american",
+        "lgbtq"
+      ],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paul Robeson Cultural Center, Center for Latino Arts and Culture, Asian American Cultural Center, and the Center for Social Justice Education and LGBT Communities: community, mentoring, and programming.",
+      "url": "https://diversity.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-caps",
+      "name": "Counseling, ADAP and Psychiatric Services (CAPS)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free counseling for students. Burnout during recruiting season is common.",
+      "url": "https://health.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-food-pantry",
+      "name": "Rutgers Student Food Pantry",
+      "type": "basic_needs",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "low-income"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free food for students. Basic needs come before career planning.",
+      "url": "https://ruoffcampus.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search 'Rutgers Student Food Pantry' on rutgers.edu for current hours and location."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "waksman",
+      "name": "Waksman Institute of Microbiology",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "biomedical-engineering",
+        "pharmacy"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research institute in molecular biology and genetics; hosts undergraduates in faculty labs.",
+      "url": "https://www.waksman.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cabm-sure",
+      "name": "CABM Summer Undergraduate Research Experience (SURE)",
+      "type": "research_program",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "biomedical-engineering",
+        "pharmacy"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Nine-week summer program for undergraduates doing research in Center for Advanced Biotechnology and Medicine labs.",
+      "url": "https://cabm.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cook-scholars",
+      "name": "Cook Scholars Program (SEBS)",
+      "type": "research_program",
+      "scope": "rutgers",
+      "majors": [
+        "biological-sciences",
+        "public-health"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Independent research and senior honors thesis program for School of Environmental and Biological Sciences students.",
+      "url": "https://sebs.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-energy-institute",
+      "name": "Rutgers Energy Institute Summer Internships",
+      "type": "research_program",
+      "scope": "rutgers",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "energy",
+        "research"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Summer internships for a select group of undergraduates in energy research.",
+      "url": "https://rei.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "winlab",
+      "name": "WINLAB (Wireless Information Network Laboratory)",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "networking",
+        "research"
+      ],
+      "pay": null,
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Wireless networking and systems research center with a well-known undergraduate summer internship.",
+      "url": "https://www.winlab.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cait",
+      "name": "Center for Advanced Infrastructure and Transportation (CAIT)",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "mechanical-engineering",
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "infrastructure",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Transportation and infrastructure research center that hires undergraduate assistants.",
+      "url": "https://cait.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ruccs",
+      "name": "Rutgers Center for Cognitive Science (RuCCS)",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "psychology",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research",
+        "cognitive-science"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Interdisciplinary cognitive science center; undergraduates join labs and attend talks.",
+      "url": "https://ruccs.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "brain-health-institute",
+      "name": "Brain Health Institute",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "psychology",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "neuroscience",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Neuroscience research across Rutgers; a route into lab work for psychology and biology students.",
+      "url": "https://brainhealthinstitute.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "alcohol-studies",
+      "name": "Center of Alcohol and Substance Use Studies",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "psychology",
+        "public-health",
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "addiction",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Long-running addiction research center with undergraduate research roles.",
+      "url": "https://alcoholstudies.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cshp",
+      "name": "Center for State Health Policy",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "public-health",
+        "economics",
+        "political-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "health-policy",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Health policy research center at the Institute for Health.",
+      "url": "https://cshp.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "ifnh",
+      "name": "Institute for Food, Nutrition and Health",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "exercise-science",
+        "public-health",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "nutrition",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Nutrition and health research institute.",
+      "url": "https://ifnh.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "heldrich",
+      "name": "Heldrich Center for Workforce Development",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "human-resource-management",
+        "economics",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "workforce",
+        "research"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Workforce and labor market research center in SMLR.",
+      "url": "https://heldrich.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cww",
+      "name": "Center for Women and Work",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "human-resource-management",
+        "economics",
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "workforce",
+        "equity"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research on women's employment and workplace equity.",
+      "url": "https://cww.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "cawp",
+      "name": "Center for American Women and Politics (CAWP)",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "political-science",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "women"
+      ],
+      "interests": [
+        "politics",
+        "leadership"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research center on women in politics; runs NEW Leadership, a training program for college women interested in public leadership.",
+      "url": "https://cawp.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "eagleton-poll",
+      "name": "Eagleton Center for Public Interest Polling",
+      "type": "lab_or_center",
+      "scope": "rutgers",
+      "majors": [
+        "political-science",
+        "communication",
+        "economics",
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "polling",
+        "data"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Runs the Rutgers-Eagleton Poll; hires students for survey and data work.",
+      "url": "https://eagletonpoll.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-pre-law",
+      "name": "Pre-Law Advising",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "law"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Advising on law school applications and the LSAT.",
+      "url": "https://sasundergrad.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "daily-targum",
+      "name": "The Daily Targum",
+      "type": "club",
+      "scope": "rutgers",
+      "majors": [
+        "communication",
+        "political-science",
+        "marketing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "journalism",
+        "media"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers' student newspaper; clips and editing experience for media careers.",
+      "url": "https://dailytargum.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "wrsu",
+      "name": "WRSU 88.7 FM",
+      "type": "club",
+      "scope": "rutgers",
+      "majors": [
+        "communication",
+        "marketing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "broadcast",
+        "media"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers student radio; broadcasting, production, and promotions experience.",
+      "url": "https://wrsu.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "hackru",
+      "name": "HackRU",
+      "type": "competition",
+      "scope": "rutgers",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "hackathon",
+        "software"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers' student-run hackathon, held each semester.",
+      "url": "https://hackru.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "usacs",
+      "name": "USACS (Undergraduate Student Alliance of Computer Scientists)",
+      "type": "club",
+      "scope": "rutgers",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "software",
+        "community"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers' main CS student organization: workshops, interview prep, and events.",
+      "url": "https://usacs.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "rpif",
+      "name": "Rutgers Pharmaceutical Industry Fellowship (RPIF)",
+      "type": "fellowship",
+      "scope": "rutgers",
+      "majors": [
+        "pharmacy"
+      ],
+      "years": [
+        "grad"
+      ],
+      "identity": [],
+      "interests": [
+        "pharma-industry"
+      ],
+      "pay": "salary",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Post-PharmD industry fellowships with pharma partners. Plan for it from P1/P2 year: networking and grades matter.",
+      "url": "https://pharmafellows.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-step",
+      "name": "NJ-STEP (Scholarship and Transformative Education in Prisons)",
+      "type": "program",
+      "scope": "rutgers",
+      "majors": [
+        "criminal-justice",
+        "social-work",
+        "political-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "reentry",
+        "justice-reform"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers-based consortium offering college courses in NJ prisons; a place to volunteer, tutor, and learn reentry work.",
+      "url": "https://njstep.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified",
+        "checkedOn": null
+      },
+      "tags": []
+    }
+  ]
+}
