@@ -542,9 +542,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Cited in search results after /students returned 404; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "employer"

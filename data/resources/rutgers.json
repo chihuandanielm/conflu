@@ -1311,8 +1311,7 @@
         "state": "link-checked",
         "checkedOn": "2026-11-15",
         "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers",
-        "note": "The resource page now redirects to a Rutgers search for 'Cultural Centers', which still lists them. Replace with a direct page if one exists."
+        "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers"
       },
       "tags": []
     },
