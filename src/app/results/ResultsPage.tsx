@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
+import { List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
 import { majorName, trackName, type Answers } from "../intake/model.ts";
@@ -12,6 +12,11 @@ import { GoalDrawer } from "./GoalDrawer.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
 import { Timeline } from "./Timeline.tsx";
+import { useMediaQuery } from "./useMediaQuery.ts";
+import { load, save } from "../state/storage.ts";
+
+const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
+const MODE_KEY = "cpm.roadmap-view"; // per-viewer convenience: chart or list on desktop
 
 export function planSummary(a: Answers): string {
   const horizon = intake.horizons.find((h) => h.id === (a.horizon ?? "graduation"))?.label.toLowerCase();
@@ -52,6 +57,11 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
     replan(markDone(saved, goalId, todayISO()), (n) => `Marked “${goalTitle(goalId)}” done. Plan updated${n ? `; ${n} ${n === 1 ? "goal" : "goals"} moved` : ""}.`);
   }, [saved, replan]);
 
+  const desktop = useMediaQuery("(min-width: 768px)");
+  const [mode, setMode] = useState<"chart" | "list">(() => (load<string>(MODE_KEY) === "list" ? "list" : "chart"));
+  useEffect(() => { save(MODE_KEY, mode); }, [mode]);
+  const openItem = useCallback((item: PlanItem, term: PlanTerm) => setOpen({ item, term }), []);
+
   const outdated = isOutdated(saved);
   const ongoing = plan.ongoing;
 
@@ -83,15 +93,37 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </div>
         )}
 
-        <NextMoves term={plan.terms[0]} onOpen={(item, term) => setOpen({ item, term })} />
+        <NextMoves term={plan.terms[0]} onOpen={openItem} />
 
         <Notices warnings={plan.warnings} dismissed={saved.dismissed}
           onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
 
         <section aria-labelledby="roadmap-h">
-          <h2 id="roadmap-h" className="text-xl font-semibold">Semester by semester</h2>
-          <p className="mt-1 mb-6 text-sm text-muted">Select any goal for the reasons behind it, where to start, and to check it off.</p>
-          <Timeline plan={plan} changed={changed} onOpen={(item, term) => setOpen({ item, term })} />
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 id="roadmap-h" className="text-xl font-semibold">Semester by semester</h2>
+              <p className="mt-1 text-sm text-muted">Select any goal for the reasons behind it, where to start, and to check it off.</p>
+            </div>
+            {desktop && (
+              <div role="group" aria-label="Roadmap view" className="inline-flex overflow-hidden rounded-md border border-border-strong">
+                {([["chart", "Chart", Network], ["list", "View as list", List]] as const).map(([m, label, Icon]) => (
+                  <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold ${mode === m ? "bg-blue-tint text-ink" : "bg-bg text-muted hover:bg-surface"}`}>
+                    <Icon size={14} aria-hidden="true" />{label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="mt-6">
+            {desktop && mode === "chart" ? (
+              <Suspense fallback={<div className="flex h-[68vh] min-h-[520px] items-center justify-center rounded-md border border-border bg-surface text-sm text-muted">Loading the chart</div>}>
+                <RoadmapChart plan={plan} changed={changed} selectedGoal={open?.item.goalId ?? null} onOpen={openItem} />
+              </Suspense>
+            ) : (
+              <Timeline plan={plan} changed={changed} onOpen={openItem} />
+            )}
+          </div>
         </section>
 
         {saved.completedGoals.length > 0 && (
