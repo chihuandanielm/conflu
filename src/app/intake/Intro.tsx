@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import { Clock, Lock, Route } from "lucide-react";
 import { Button } from "../ui/Button.tsx";
 
-export function Intro({ onStart, hasProgress, onResume, onStartOver }: {
-  onStart: () => void; hasProgress: boolean; onResume: () => void; onStartOver: () => void;
+export function Intro({ onStart, hasProgress, onResume, onStartOver, onContinuePlan }: {
+  onStart: () => void; hasProgress: boolean; onResume: () => void; onStartOver: () => void; onContinuePlan?: () => void;
 }) {
   const h1 = useRef<HTMLHeadingElement>(null);
   useEffect(() => { h1.current?.focus({ preventScroll: true }); }, []);
@@ -22,7 +22,12 @@ export function Intro({ onStart, hasProgress, onResume, onStartOver }: {
           <span>Nothing is stored outside your browser. Your answers never leave this device.</span></li>
       </ul>
       <div className="mt-10 flex flex-wrap gap-3">
-        {hasProgress ? (
+        {onContinuePlan ? (
+          <>
+            <Button onClick={onContinuePlan}>Continue your plan</Button>
+            <Button variant="secondary" onClick={onStartOver}>Start over</Button>
+          </>
+        ) : hasProgress ? (
           <>
             <Button onClick={onResume}>Continue where you left off</Button>
             <Button variant="secondary" onClick={onStartOver}>Start over</Button>

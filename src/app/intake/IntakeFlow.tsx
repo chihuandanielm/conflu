@@ -66,7 +66,9 @@ function resumeStep(): StepId {
   return saved.step === "intro" ? "status" : (firstIncomplete(a) && saved.step === "review" ? firstIncomplete(a)! : saved.step);
 }
 
-export function IntakeFlow({ onBuild, startAt }: { onBuild: (a: Answers) => void; startAt?: StepId }) {
+export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver }: {
+  onBuild: (a: Answers) => void; startAt?: StepId; onContinuePlan?: () => void; onStartOver?: () => void;
+}) {
   const [state, dispatch] = useReducer(reducer, undefined, () => {
     const s = initialIntake();
     return startAt ? { ...s, step: startAt } : s;
@@ -110,7 +112,8 @@ export function IntakeFlow({ onBuild, startAt }: { onBuild: (a: Answers) => void
   let screen: ReactNode;
   if (step === "intro") {
     screen = <Intro hasProgress={hasProgress} onStart={() => dispatch({ type: "go", step: "status" })}
-      onResume={() => dispatch({ type: "go", step: resumeStep() })} onStartOver={() => dispatch({ type: "reset" })} />;
+      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
+      onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} canBuild={!firstIncomplete(answers)} onBack={back}
       onEdit={(s) => dispatch({ type: "go", step: s, returnToReview: true })} onBuild={() => onBuild(answers)} />;
