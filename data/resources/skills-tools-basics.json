@@ -29,8 +29,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -66,8 +66,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -100,8 +100,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -133,8 +133,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -166,8 +166,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -203,8 +203,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -236,8 +236,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -269,8 +269,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -302,8 +302,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -335,8 +335,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -370,8 +370,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -403,8 +403,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     }

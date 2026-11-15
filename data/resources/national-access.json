@@ -40,8 +40,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -77,8 +77,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -112,8 +112,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -147,8 +147,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -182,8 +182,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -217,8 +217,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -254,8 +254,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -289,8 +289,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -335,8 +335,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -375,8 +375,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -415,8 +415,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -455,8 +455,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -501,8 +501,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -549,8 +549,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -584,8 +584,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -617,8 +617,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -659,8 +659,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -696,8 +696,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -731,8 +731,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -766,8 +766,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -801,8 +801,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -834,8 +834,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -872,8 +872,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -906,8 +906,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -944,8 +944,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -980,8 +980,8 @@
       "status": "paused",
       "statusNote": "The 2026 cycle was postponed pending State Department updates.",
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1016,8 +1016,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1056,8 +1056,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1094,8 +1094,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1132,8 +1132,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1171,8 +1171,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1206,8 +1206,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1241,8 +1241,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1277,8 +1277,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1317,8 +1317,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1357,8 +1357,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1393,8 +1393,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1428,8 +1428,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1465,8 +1465,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1502,8 +1502,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1539,8 +1539,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1576,8 +1576,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1613,8 +1613,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1653,8 +1653,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1692,8 +1692,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1733,8 +1733,8 @@
       "status": "ended",
       "statusNote": "Ran its final cohort in summer 2026 after its funder (RWJF) ended support. Kept here so the site can suggest alternatives.",
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1770,8 +1770,8 @@
       "status": "active",
       "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     }

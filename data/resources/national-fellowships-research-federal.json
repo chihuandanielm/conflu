@@ -34,8 +34,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -66,8 +66,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -103,8 +103,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -139,8 +139,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -173,8 +173,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -205,8 +205,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -241,8 +241,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -284,8 +284,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -328,8 +328,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -375,8 +375,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -412,8 +412,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -456,8 +456,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -492,8 +492,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -531,8 +531,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -567,8 +567,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -607,8 +607,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -646,8 +646,8 @@
       "status": "changed",
       "statusNote": "Renamed in 2026. In April 2026 CISA canceled its CyberCorps summer internships during a DHS funding lapse. Check whether your school participates.",
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -681,8 +681,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -721,8 +721,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -760,8 +760,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-13"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -795,8 +795,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -835,8 +835,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -866,8 +866,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -897,8 +897,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "broken",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -927,8 +927,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -966,8 +966,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1003,8 +1003,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1042,8 +1042,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
-        "checkedOn": null
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     }
