@@ -38,7 +38,13 @@ export interface Resource {
   contact: { email?: string; phone?: string; location?: string; how: string };
   status: Status;
   statusNote: string | null;
-  verification: { state: "search-confirmed" | "link-checked" | "unverified" | "broken"; checkedOn: string | null };
+  verification: {
+    state: "search-confirmed" | "link-checked" | "blocked" | "unverified" | "broken";
+    checkedOn: string | null;
+    httpStatus?: number | null;   // last HTTP status the link checker saw
+    finalUrl?: string;            // where the url redirected, when that differs
+    note?: string;                // why a check failed or what to do
+  };
   tags: string[];
 }
 

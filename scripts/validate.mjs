@@ -27,6 +27,8 @@ for (const file of readdirSync(resDir).filter((f) => f.endsWith(".json"))) {
     if (!vocab.statuses.includes(r.status)) errors.push(`${at}: unknown status "${r.status}"`);
     if (r.status !== "active" && !r.statusNote) errors.push(`${at}: non-active status needs a statusNote`);
     if (!/^https:\/\//.test(r.url)) errors.push(`${at}: url must start with https://`);
+    if (r.applyUrl && !/^https:\/\//.test(r.applyUrl)) errors.push(`${at}: applyUrl must start with https://`);
+    if (!vocab.verificationStates.includes(r.verification?.state)) errors.push(`${at}: unknown verification state "${r.verification?.state}"`);
     if (!Array.isArray(r.majors) || r.majors.length === 0) errors.push(`${at}: majors must be a non-empty array`);
     for (const m of r.majors || []) if (m !== "all" && !majorIds.has(m)) errors.push(`${at}: unknown major "${m}"`);
     for (const t of r.identity || []) if (!vocab.identity.includes(t)) errors.push(`${at}: unknown identity tag "${t}"`);

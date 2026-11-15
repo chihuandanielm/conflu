@@ -306,8 +306,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -427,7 +428,7 @@
       "season": "summer",
       "typicalDeadline": "Early February (Feb 5 in 2026)",
       "summary": "NSF-funded 9-week summer research program in algorithms, CS theory, math, and bioinformatics, run at Rutgers since 1993.",
-      "url": "https://nreu.dimacs.rutgers.edu",
+      "url": "https://dimacs.rutgers.edu/reu-main",
       "applyUrl": null,
       "contact": {
         "email": "reu@dimacs.rutgers.edu",
@@ -437,8 +438,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -698,8 +700,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1222,16 +1225,19 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Directory of 700+ Rutgers student organizations. Search here for the Rutgers chapter of any professional society listed in this database.",
-      "url": "https://rutgers.campuslabs.com/engage/",
+      "url": "https://getinvolved.rutgers.edu/",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Sign in with your NetID to browse and join organizations.",
+        "email": "osi@echo.rutgers.edu",
+        "phone": "848-932-6978"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1434,22 +1440,23 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Independent research and senior honors thesis program for School of Environmental and Biological Sciences students.",
-      "url": "https://sebs.rutgers.edu",
+      "url": "https://sebshonors.rutgers.edu/gh-cook-scholars/",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Apply in the spring of junior year; the thesis is defended in senior spring."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
     {
       "id": "rutgers-energy-institute",
-      "name": "Rutgers Energy Institute Summer Internships",
+      "name": "Rutgers Climate and Energy Institute (formerly the Rutgers Energy Institute)",
       "type": "research_program",
       "scope": "rutgers",
       "majors": [
@@ -1469,17 +1476,18 @@
       "pay": null,
       "season": "summer",
       "typicalDeadline": null,
-      "summary": "Summer internships for a select group of undergraduates in energy research.",
-      "url": "https://rei.rutgers.edu",
+      "summary": "Paid student positions in climate and energy research; RCEI absorbed the Rutgers Energy Institute's student programs.",
+      "url": "https://rcei.rutgers.edu/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "The Rutgers Energy Institute became part of the Rutgers Climate and Energy Institute in 2023. Check RCEI for current student positions.",
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1552,8 +1560,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1618,16 +1627,18 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Neuroscience research across Rutgers; a route into lab work for psychology and biology students.",
-      "url": "https://brainhealthinstitute.rutgers.edu",
+      "url": "https://brainhealthinstitute.rutgers.edu/resources-for-trainees/",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "The trainee page lists lab openings and research programs for undergraduates.",
+        "email": "bhi@bhi.rutgers.edu"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1694,7 +1705,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Health policy research center at the Institute for Health.",
-      "url": "https://cshp.rutgers.edu",
+      "url": "https://www.cshp.rutgers.edu/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1702,8 +1713,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1846,8 +1858,8 @@
       "pay": null,
       "season": null,
       "typicalDeadline": null,
-      "summary": "Research center on women in politics; runs NEW Leadership, a training program for college women interested in public leadership.",
-      "url": "https://cawp.rutgers.edu",
+      "summary": "Research center on women in politics; runs NEW Leadership NJ, a free five-day summer institute on public leadership for New Jersey undergraduates.",
+      "url": "https://cawp.rutgers.edu/programs/new-leadership",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1855,8 +1867,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1962,7 +1975,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers' student newspaper; clips and editing experience for media careers.",
-      "url": "https://dailytargum.com",
+      "url": "https://dailytargum.com/page/get-involved",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1970,8 +1983,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -2073,7 +2087,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers' main CS student organization: workshops, interview prep, and events.",
-      "url": "https://usacs.rutgers.edu",
+      "url": "https://usacs.cs.rutgers.edu/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -2081,8 +2095,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },

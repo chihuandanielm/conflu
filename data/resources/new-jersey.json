@@ -325,8 +325,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Loaded on the first check and failed on the second minutes later; likely bot protection. Open it by hand."
       },
       "tags": [
         "employer"
@@ -438,7 +439,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://careers.kenvue.com",
+      "url": "https://jobs.kenvue.com/students-and-graduates",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -446,8 +447,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": [
         "employer"
@@ -607,8 +609,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Loaded on the first check and failed on the second minutes later; likely bot protection. Open it by hand."
       },
       "tags": [
         "employer"
@@ -679,16 +682,18 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://www.rwjbh.org",
+      "url": "https://www.rwjbh.org/NursingExtern",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "The summer nurse externship is open to students who have finished at least two clinical nursing courses.",
+        "email": "nursingextern@rwjbh.org"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": [
         "employer"

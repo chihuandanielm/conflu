@@ -66,8 +66,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -355,8 +356,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -553,8 +555,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -772,16 +775,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "SOLIDWORKS is listed in many mechanical design postings; the CSWA certification proves baseline skill.",
-      "url": "https://www.solidworks.com",
-      "applyUrl": null,
+      "url": "https://www.solidworks.com/product/students",
+      "applyUrl": "https://www.solidworks.com/sw/education/cad-certification-student-program.htm",
       "contact": {
         "how": "Use the contact or apply page on the home site."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -962,8 +966,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1080,8 +1085,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1193,8 +1199,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1289,7 +1296,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Federal resumes follow different rules than private ones (now capped at two pages).",
-      "url": "https://help.usajobs.gov",
+      "url": "https://help.usajobs.gov/how-to/account/documents/resume/build",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1297,8 +1304,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     }

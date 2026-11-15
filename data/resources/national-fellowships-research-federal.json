@@ -197,16 +197,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Graduate study in the UK.",
-      "url": "https://www.marshallscholarship.org",
+      "url": "https://www.marshallscholarship.org/apply",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "You can't apply directly; start with the Rutgers Office of Distinguished Fellowships for campus endorsement."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -492,8 +493,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "URL is specific to the 2026 cycle; replace it when the next cycle is posted."
       },
       "tags": []
     },
@@ -567,8 +569,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -787,16 +790,18 @@
       "season": "academic-year",
       "typicalDeadline": null,
       "summary": "Unpaid, remote, part-time internships with federal agencies during the school year. Good first resume line.",
-      "url": "https://vsfs.state.gov",
+      "url": "https://careers.state.gov/interns-fellows/virtual-student-federal-service/",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Projects are posted on USAJOBS each summer.",
+        "email": "VSFS@state.gov"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -835,8 +840,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Loaded on the first check and failed on the second minutes later; likely bot protection. Open it by hand."
       },
       "tags": []
     },
@@ -866,8 +872,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; the site itself was confirmed by web search."
       },
       "tags": []
     },
@@ -889,7 +896,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Two-year international service after graduation.",
-      "url": "https://www.peacecorps.gov",
+      "url": "https://www.peacecorps.gov/volunteer/volunteer-openings/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -897,8 +904,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },

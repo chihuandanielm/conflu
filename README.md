@@ -8,7 +8,7 @@
 
 ```
 npm run validate   # data integrity (Node 22.6+)
-npm test           # engine invariants
+npm test           # engine invariants and link-checker tests
 npm run samples    # regenerate docs/sample-plans.md
 ```
 
@@ -68,17 +68,27 @@ scripts/check-links.mjs     visits every url and records the result
 
 ## Verification status: read this
 
-- **51 entries are `search-confirmed`**: the program and its home URL appeared in web searches on 2026-11-13.
-- **The rest (234) are `unverified`**: well-known programs whose URLs came from general knowledge. Most will be right; some will have moved.
-- The drafting environment could not load websites directly, so links have not been visited yet. **Push the repo to GitHub and run the "Validate data and check links" workflow** (Actions tab → Run workflow). It visits every URL, marks each one `link-checked` or `broken`, and commits the result.
-- Some sites block automated requests, so a `broken` result can be a false alarm. Open those by hand.
+Every resource has a `verification.state` (allowed values in `data/vocab.json`):
+
+| State | Meaning |
+|---|---|
+| `link-checked` | The page loaded for the automated checker on `checkedOn`. |
+| `search-confirmed` | The program and this exact URL were confirmed by web search on `checkedOn`. A later refused check keeps this state. |
+| `blocked` | The site refused the automated checker (bot protection: LinkedIn, Glassdoor, LeetCode, many .gov sites). Usually fine in a browser; open it by hand. |
+| `broken` | The page is gone (404/410) or the host doesn't resolve. Needs a new URL. |
+| `unverified` | Not yet checked. |
+
+The checker also records `httpStatus`, `finalUrl` (when a redirect moved the page), and a `note`.
+
+- **How links are checked:** the "Validate data and check links" workflow runs `scripts/check-links.mjs` on every data change and every Monday, writes the results back, and posts a report (loaded / blocked / broken / redirected) to the run summary. It sends a normal browser user agent and reads the page body, so bot walls are labeled `blocked`, not `broken`.
+- **2026-11-15 review:** the first run marked 56 links broken. Web research found correct landing pages for 41 (wrong domains such as Emma Bowen's `.org`, Kenvue's `jobs.kenvue.com`, the Rutgers Energy Institute's merger into RCEI, and homepages replaced with the specific program page) and confirmed that 12 others are real sites that block bots. Two still need a person: `phi-alpha` and `nj-biomaterials`. (`bloomberg-bmc` loaded on a later run.)
 
 ## Known limits
 
 - **Clubs:** most club entries point to the national organization; `contact.how` says to find the Rutgers chapter on getINVOLVED. Chapter pages change every year.
 - **Employer programs:** company program names change yearly. The entries link to careers pages and say so.
 - **2025–26 changes:** several federal and identity-based programs were paused, renamed, defunded, or changed eligibility (SHPEP ended, Pickering/Rangel paused, CyberCorps renamed, McNair criteria changed). Those are marked in `status`. Re-check every identity-based program each semester.
-- **Guessed Rutgers URLs to check first:** `hpo.rutgers.edu`, `pharmafellows.rutgers.edu`, `usacs.rutgers.edu`, `ruoffcampus.rutgers.edu` (food pantry), `rutgers.campuslabs.com/engage`, `rscj.newark.rutgers.edu`, `njstep.newark.rutgers.edu`.
+- **Guessed Rutgers URLs:** `hpo.rutgers.edu`, `pharmafellows.rutgers.edu`, `ruoffcampus.rutgers.edu`, `rscj.newark.rutgers.edu`, and `njstep.newark.rutgers.edu` all loaded in the 2026-11-15 check. The next run records `finalUrl`, which shows whether any of them now redirect to a generic page.
 - **Goal weights are informed defaults**, not measured. Calibrate them with tester feedback and advisor review (see ALGORITHM.md §10).
 
 ## Adding a resource

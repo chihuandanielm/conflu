@@ -22,7 +22,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Student membership with learning resources, conferences, and special interest groups.",
-      "url": "https://www.acm.org",
+      "url": "https://www.acm.org/membership/membership-options",
       "applyUrl": null,
       "contact": {
         "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
@@ -30,8 +30,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -586,16 +587,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Process improvement certification valued in manufacturing and operations.",
-      "url": "https://asq.org",
+      "url": "https://asq.org/cert/six-sigma-green-belt",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "ASQ's exam asks for three years of related work experience; check eligibility before paying."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -665,7 +667,8 @@
       "statusNote": null,
       "verification": {
         "state": "broken",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "note": "Could not confirm this URL; needs a manual check."
       },
       "tags": []
     },

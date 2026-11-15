@@ -493,7 +493,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Chapters and a national conference for LGBTQ+ students in STEM.",
-      "url": "https://ostem.org",
+      "url": "https://ostem.org/page/about-ostem",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -501,8 +501,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -759,15 +760,16 @@
       "typicalDeadline": "Early October registration close",
       "summary": "U.S. Department of Labor talent database that federal managers use to hire students with disabilities for internships and permanent jobs. Registration opens in late August.",
       "url": "https://www.dol.gov/agencies/odep/wrp/students",
-      "applyUrl": null,
+      "applyUrl": "https://www.wrp.gov/",
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Register on WRP.gov during the fall window; you need a resume, transcript, and Schedule A letter."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -939,13 +941,15 @@
       "url": "https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/youth-agriculture/internships-and-career-opportunities",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Open to CAMP students and alumni and HEP graduates enrolled in college.",
+        "email": "partnerships@usda.gov"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -1385,7 +1389,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "Paid summer internships at advertising and media agencies for multicultural students.",
-      "url": "https://maip.aaaa.org",
+      "url": "https://foundation.aaaa.org/interested-students.html",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1393,8 +1397,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1494,16 +1499,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Multi-year paid media and tech internships for students of color.",
-      "url": "https://www.emmabowenfoundation.com",
-      "applyUrl": null,
+      "url": "https://www.emmabowenfoundation.org/",
+      "applyUrl": "https://www.emmabowenfoundation.org/apply",
       "contact": {
         "how": "Use the contact or apply page on the home site."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1683,7 +1689,7 @@
       "season": "summer",
       "typicalDeadline": "Around Jan 31 at most sites",
       "summary": "Paid summer public health internships at seven partner schools (Columbia, Pitt, UCLA, and others) focused on minority health and health equity. Formerly CUPS.",
-      "url": "https://cdc.gov/minority-health/student-programs/internships-fellowships.html",
+      "url": "https://www.cdc.gov/minority-health/student-programs/internships-fellowships.html",
       "applyUrl": null,
       "contact": {
         "email": "OMH@cdc.gov",
@@ -1692,8 +1698,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1770,8 +1777,9 @@
       "status": "active",
       "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; the site itself was confirmed by web search."
       },
       "tags": []
     }

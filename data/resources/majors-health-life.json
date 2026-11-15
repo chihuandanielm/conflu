@@ -21,16 +21,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "International psychology honor society with research grants and conventions.",
-      "url": "https://www.psichi.org",
+      "url": "https://www.psichi.org/page/JoinToday",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Apply through the Rutgers chapter; membership is processed on the national site."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -274,16 +275,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Required for nearly all clinical jobs and volunteering.",
-      "url": "https://cpr.heart.org",
-      "applyUrl": null,
+      "url": "https://cpr.heart.org/en/cpr-courses-and-kits/healthcare-professional/basic-life-support-bls-training",
+      "applyUrl": "https://cpr.heart.org/en/course-catalog-search",
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Find an in-person or blended class near you with the AHA course search."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -350,8 +352,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "note": "Site refuses automated checks; URL confirmed by web search."
       },
       "tags": []
     },
@@ -502,7 +505,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Residency search and the Midyear Clinical Meeting where students interview for residencies.",
-      "url": "https://www.ashp.org",
+      "url": "https://www.ashp.org/professional-development/residency-information/student-residency-guide",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -510,8 +513,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -602,7 +606,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Explains public health careers and MPH programs; lists fellowships.",
-      "url": "https://www.aspph.org",
+      "url": "https://aspph.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -610,8 +614,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -635,16 +640,18 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Two-year paid post-graduate CDC field placement in a health department.",
-      "url": "https://www.cdc.gov/phap",
-      "applyUrl": null,
+      "url": "https://www.cdc.gov/phap/php/about/index.html",
+      "applyUrl": "https://www.cdc.gov/phap/php/participants/index.html",
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Applications open once a year (the 2027 cycle opens in early 2027).",
+        "email": "PHAP@cdc.gov"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -668,16 +675,18 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Paid AmeriCorps roles in public health organizations.",
-      "url": "https://americorps.gov",
+      "url": "https://americorps.gov/publichealth",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Search open Public Health AmeriCorps roles on the home site.",
+        "email": "publichealth@americorps.gov"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -732,16 +741,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Student membership and certifications (e.g., ACSM-CPT, Exercise Physiologist).",
-      "url": "https://www.acsm.org",
+      "url": "https://acsm.org/certification/get-certified/",
       "applyUrl": null,
       "contact": {
         "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "From 2027, ACSM-EP and ACSM-CEP candidates must graduate from an accredited exercise science or exercise physiology program.",
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -765,16 +775,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Student membership; the CSCS certification is valued in strength and conditioning jobs.",
-      "url": "https://www.nsca.com",
+      "url": "https://www.nsca.com/membership/",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Full-time students can buy a student membership on the home site, then search getINVOLVED for a Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },

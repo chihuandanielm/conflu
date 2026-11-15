@@ -8,6 +8,7 @@
   ],
   "scopes": ["rutgers", "new_jersey", "national", "international"],
   "statuses": ["active", "paused", "changed", "ended"],
+  "verificationStates": ["search-confirmed", "link-checked", "blocked", "unverified", "broken"],
   "years": [1, 2, 3, 4, "grad", "alumni"],
   "pay": ["paid", "stipend", "salary", "grant", "scholarship", "tuition", "prize", "credit", "free", "fee", "unpaid"],
   "seasons": ["summer", "academic-year", "fall", "spring", "year-round"],
@@ -16,6 +17,13 @@
     "women", "lgbtq", "first-generation", "low-income", "pell-eligible", "disability", "veteran", "international",
     "undocumented", "transfer", "migrant-farmworker", "nj-resident", "us-citizen", "us-citizen-or-pr"
   ],
+  "_verificationNotes": {
+    "search-confirmed": "The program and this URL appeared in web searches on checkedOn.",
+    "link-checked": "The page loaded for the automated checker on checkedOn.",
+    "blocked": "The site refused the automated checker (bot protection). Usually fine in a browser; open it by hand.",
+    "unverified": "Not yet checked.",
+    "broken": "The page is gone or the host does not resolve. Needs a new URL."
+  },
   "_identityNotes": {
     "underrepresented": "Programs that define their own underrepresented groups. Several changed or dropped race-based criteria in 2025–26; read the statusNote and the program's current eligibility page.",
     "us-citizen": "Most federal programs require U.S. citizenship.",

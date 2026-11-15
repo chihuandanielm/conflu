@@ -22,7 +22,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "PR student chapters, competitions, and national conference.",
-      "url": "https://prssa.prsa.org",
+      "url": "https://prssa.prsa.org/join-prssa/",
       "applyUrl": null,
       "contact": {
         "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
@@ -30,8 +30,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -197,16 +198,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Competitive Model UN team and conferences.",
-      "url": "https://rutgers.campuslabs.com/engage/",
+      "url": "https://getinvolved.rutgers.edu/",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Search getINVOLVED for \"Model United Nations\" (sign in with your NetID)."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -410,16 +412,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Internships across NJ's Department of Law and Public Safety.",
-      "url": "https://www.njoag.gov",
+      "url": "https://www.nj.gov/oag/diversity-inclusion/employment_internship.html",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Most summer slots are for law students; divisions such as Civil Rights also post undergraduate internships each term."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -551,7 +554,8 @@
       "statusNote": null,
       "verification": {
         "state": "broken",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "note": "Could not confirm this URL; needs a manual check."
       },
       "tags": []
     },
