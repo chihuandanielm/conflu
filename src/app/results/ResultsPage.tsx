@@ -1,6 +1,6 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
+import { Download, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
 import { majorName, trackName, type Answers } from "../intake/model.ts";
@@ -13,6 +13,8 @@ import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
 import { Timeline } from "./Timeline.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
+import { ResourcesTab } from "../resources/ResourcesTab.tsx";
+import { toPlanInput } from "../intake/model.ts";
 import { load, save } from "../state/storage.ts";
 
 const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
@@ -62,6 +64,21 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   useEffect(() => { save(MODE_KEY, mode); }, [mode]);
   const openItem = useCallback((item: PlanItem, term: PlanTerm) => setOpen({ item, term }), []);
 
+  const [tab, setTab] = useState<"plan" | "resources">("plan");
+  const [pdfState, setPdfState] = useState<"idle" | "working" | "error">("idle");
+  const input = useMemo(() => toPlanInput(answers, plan.meta.generatedFor, { completedGoals: saved.completedGoals }), [answers, plan, saved.completedGoals]);
+  const downloadPdf = async () => {
+    setPdfState("working");
+    try {
+      const { downloadRoadmapPdf } = await import("../pdf/download.ts");
+      await downloadRoadmapPdf(saved);
+      setPdfState("idle"); setAnnouncement("Your PDF is downloading.");
+    } catch (e) {
+      console.error("PDF generation failed", e);
+      setPdfState("error");
+    }
+  };
+
   const outdated = isOutdated(saved);
   const ongoing = plan.ongoing;
 
@@ -77,13 +94,34 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
             <p className="mt-1 text-sm text-muted">A general trajectory, not a blueprint. Adjust it as you learn what fits.</p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" ? "pdf-error" : undefined}>
+              <Download size={16} aria-hidden="true" /> {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
+            </Button>
             <Button variant="secondary" onClick={onEdit}><Pencil size={16} aria-hidden="true" /> Edit answers</Button>
             <Button variant="ghost" onClick={onStartOver}><RotateCcw size={16} aria-hidden="true" /> Start over</Button>
           </div>
         </div>
+        {pdfState === "error" && (
+          <p id="pdf-error" role="alert" className="mx-auto max-w-5xl px-4 pb-4 text-sm text-amber sm:px-8">The PDF couldn't be created. Try again, or use your browser's print option.</p>
+        )}
+        <div role="tablist" aria-label="Results" className="mx-auto flex max-w-5xl gap-1 px-4 sm:px-8">
+          {([["plan", "Your plan"], ["resources", "Your resources"]] as const).map(([id, label]) => (
+            <button key={id} type="button" role="tab" id={`tab-${id}`} aria-selected={tab === id} aria-controls={`panel-${id}`}
+              tabIndex={tab === id ? 0 : -1} onClick={() => setTab(id)}
+              onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const n = tab === "plan" ? "resources" : "plan"; setTab(n); document.getElementById(`tab-${n}`)?.focus(); } }}
+              className={`-mb-px border-b-2 px-3 py-2 text-sm font-semibold transition-colors duration-150 ${tab === id ? "border-blue text-ink" : "border-transparent text-muted hover:text-ink"}`}>
+              {label}
+            </button>
+          ))}
+        </div>
       </header>
 
-      <main className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:px-8">
+      {tab === "resources" ? (
+        <main id="panel-resources" role="tabpanel" aria-labelledby="tab-resources" className="mx-auto max-w-5xl px-4 py-10 sm:px-8">
+          <ResourcesTab plan={plan} input={input} />
+        </main>
+      ) : (
+      <main id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:px-8">
         {outdated && (
           <div className="flex flex-wrap items-center gap-3 rounded-md border border-blue/20 bg-blue-tint px-4 py-3 text-sm">
             <p className="flex-1">Your plan was built on older data. Refresh it.</p>
@@ -183,6 +221,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           planning engine <span className="font-mono">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
         </footer>
       </main>
+      )}
 
       <AnimatePresence>
         {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done} />}

@@ -82,6 +82,14 @@ for (const o of intake.experience) {
 for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
 for (const t of intake.optionalIdentity.tags) if (!ui.identityLabels?.[t]) errors.push(`ui/intake › identity tag ${t} has no label`);
 for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);
+const uiRes = JSON.parse(readFileSync(join(root, "data/ui/resources.json"), "utf8"));
+const grouped2 = uiRes.groups.flatMap((g) => g.types);
+for (const t of vocab.types) if (grouped2.filter((x) => x === t).length !== 1) errors.push(`ui/resources › type ${t} must be in exactly one group`);
+const payAll = Object.values(uiRes.pay).flat();
+for (const v of vocab.pay) { if (!payAll.includes(v)) errors.push(`ui/resources › pay ${v} is not in a filter bucket`); if (!uiRes.payLabels[v]) errors.push(`ui/resources › pay ${v} has no label`); }
+for (const v of vocab.scopes) if (!uiRes.scopeLabels[v]) errors.push(`ui/resources › scope ${v} has no label`);
+for (const v of vocab.seasons) if (!uiRes.seasonLabels[v]) errors.push(`ui/resources › season ${v} has no label`);
+for (const t of vocab.identity) if (!ui.identityLabels[t]) errors.push(`ui/intake › identity ${t} has no label`);
 const uncovered = [...majorIds].filter((m) => !tracks.some((t) => t.suggestedMajors.includes(m)));
 if (uncovered.length) errors.push(`tracks: majors with no suggested track: ${uncovered.join(", ")}`);
 

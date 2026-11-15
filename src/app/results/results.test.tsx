@@ -64,6 +64,16 @@ describe("results page", () => {
     expect(w).toBeDefined();
   });
 
+  it("switches to the resources tab", async () => {
+    setup();
+    fireEvent.click(screen.getByRole("tab", { name: "Your resources" }));
+    await act(async () => {});
+    expect(screen.getByRole("tab", { name: "Your resources" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("heading", { name: "Your resources" })).toBeInTheDocument();
+    expect(screen.getByText(/^Showing \d+ of \d+ resources\.$/)).toBeInTheDocument();
+    expect(screen.getByLabelText("For students like me")).toBeDisabled();
+  });
+
   it("uses amber only for real problems", () => {
     expect(noticeTone("About 120 hours of goals didn't fit. Around 9 hours a week would cover them.")).toBe("warn");
     expect(noticeTone("Recruiting timeline: Big tech opens junior-summer internships July–September.")).toBe("info");

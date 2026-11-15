@@ -125,6 +125,14 @@
     "lgbtq": "LGBTQ+",
     "disability": "Living with a disability",
     "veteran": "Veteran or service member",
-    "transfer": "Transfer student"
+    "transfer": "Transfer student",
+    "underrepresented": "Students from groups underrepresented in the field",
+    "underrepresented-stem": "Students underrepresented in STEM",
+    "international": "International students",
+    "undocumented": "Undocumented or DACA students",
+    "migrant-farmworker": "Students from migrant or farmworker families",
+    "nj-resident": "New Jersey residents",
+    "us-citizen": "U.S. citizens",
+    "us-citizen-or-pr": "U.S. citizens and permanent residents"
   }
 }
