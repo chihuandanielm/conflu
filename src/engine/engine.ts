@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.2.0";
+export const ENGINE_VERSION = "0.3.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -426,7 +426,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       .filter((r) => r.years.includes(year) || yearOfIdx(t) > 4)
       .filter((r) => eligibleFor(r, identity, input))
       .map((r) => ({ r, s: (r.scope === "rutgers" && (input.school ?? "rutgers-nb") === "rutgers-nb" ? 3 : 0) + (r.scope === "new_jersey" && input.location === "nj" ? 2 : 0)
-        + (r.scope === "national" ? 1 : 0) + (r.status === "active" ? 1 : 0) + (r.verification.state !== "unverified" ? 0.5 : 0)
+        + (r.scope === "national" ? 1 : 0) + (r.status === "active" ? 1 : 0) + (VERIFIED.has(r.verification.state) ? 0.5 : 0)
         + (r.identity.some((x) => identity.has(x)) ? 2 : 0) }))
       .sort((a, b) => b.s - a.s || a.r.id.localeCompare(b.r.id)).slice(0, 4)
       .map(({ r }) => ({ id: r.id, name: r.name, url: r.url, ...(r.status !== "active" ? { note: r.statusNote ?? r.status } : {}) }));
@@ -443,6 +443,8 @@ export function identitySet(input: PlanInput): Set<string> {
 export function citizenshipTags(c: PlanInput["citizenship"]): string[] {
   return c === "us-citizen" ? ["us-citizen", "us-citizen-or-pr"] : c === "us-pr" ? ["us-citizen-or-pr"] : c === "international" ? ["international"] : c === "undocumented" ? ["undocumented"] : [];
 }
+/** Link states that count as verified for ranking. Blocked and broken links get no bonus. */
+export const VERIFIED = new Set(["link-checked", "search-confirmed"]);
 export const LEGAL = new Set(["us-citizen", "us-citizen-or-pr", "nj-resident"]);
 
 /** Identity tags only ever add programs. Legal requirements (citizenship, residency) can hide them. */

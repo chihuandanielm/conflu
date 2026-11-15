@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.2 design (engine 0.2.0: calendar-based current term), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.3 design (engine 0.3.0: calendar-based current term; only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -279,7 +279,7 @@ From the goal's `resources`:
    - +2 NJ (when located in NJ)
    - +1 national
    - +1 active
-   - +0.5 verified link
+   - +0.5 verified link (`link-checked` or `search-confirmed`; `blocked`, `broken`, and `unverified` get nothing)
    - +2 identity match
 
 ---
@@ -365,6 +365,7 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 7. Re-planning with no input change moves at most 2 goals.
 8. The current term follows the academic calendar on break days and uses the rising year in summer.
 9. Every year plans without errors on any day of the year (engine 0.1.0 crashed for a year-4 student in summer).
+10. Blocked and broken links get no verified-link ranking bonus (engine 0.2.0 gave them one).
 
 Add a test for every bug found in review.
 

@@ -21,7 +21,7 @@ Biggest gaps: crit 0.66, tech 0.655, team 0.309
     resources: —
 - (foundation) Research 3 careers on O*NET and BLS · 3h · score 0.9
     why: Builds career self-development, one of your biggest gaps right now. Know what the jobs involve and pay before you optimize for them.
-    resources: college-scorecard, onet, bls-ooh
+    resources: onet, bls-ooh, college-scorecard
 - (foundation) Update and get your resume reviewed · 2h · score 0.697
     why: A resume goes stale every semester you gain experience.
     resources: rutgers-ces
@@ -122,7 +122,7 @@ Biggest gaps: crit 0.66, tech 0.655, team 0.309
 ### Year 3 · Spring  [90/90 flex hrs]
 - (presence) Get your first pull request merged into an open-source project · 15h · score 0.946
     why: Builds technology, one of your biggest gaps right now. Proves you can read someone else's code and work through review.
-    resources: first-contributions, good-first-issue, hacktoberfest
+    resources: good-first-issue, hacktoberfest, first-contributions
 - (skills) Learn SQL · 12h · score 0.988
     why: Builds technology, one of your biggest gaps right now. Most analyst postings list SQL.
     resources: sqlbolt
@@ -213,7 +213,7 @@ Biggest gaps: comm 0.502, lead 0.5, team 0.495
     resources: rutgers-ces
 - (foundation) Research 3 careers on O*NET and BLS · 3h · score 1.446
     why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
-    resources: college-scorecard, onet, bls-ooh
+    resources: onet, bls-ooh, college-scorecard
 - (foundation) Complete your Handshake profile · 1h · score 1.405
     why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
     resources: rutgers-handshake
@@ -351,7 +351,7 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
     resources: rutgers-tuition-assistance, nj-eof
 - (foundation) Research 3 careers on O*NET and BLS · 3h · score 0.929
     why: Builds career self-development, one of your biggest gaps right now. Know what the jobs involve and pay before you optimize for them.
-    resources: college-scorecard, onet, bls-ooh
+    resources: onet, bls-ooh, college-scorecard
 - (presence) Build a complete LinkedIn profile · 3h · score 1.19
     why: High priority for Public accounting (audit and tax). Builds professionalism, one of your biggest gaps right now.
     resources: linkedin-profile

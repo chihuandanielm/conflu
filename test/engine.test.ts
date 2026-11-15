@@ -97,3 +97,24 @@ test("every year plans without errors on any day of the year", () => {
     assert.ok(data.terms.includes(plan.terms[0].code), `year ${year} on ${today}: unknown term ${plan.terms[0].code}`);
   }
 });
+
+// ---- Resource ranking (ENGINE 0.3.0): only links that loaded or were confirmed count as verified. ----
+test("blocked and broken links get no verified-link bonus", () => {
+  const plan = buildPlan(base, data);
+  const item = plan.terms[0].items[0];
+  const template = data.resources.find((r) => r.scope === "national" && r.status === "active" && r.identity.length === 0
+    && r.majors.includes("all") && [1, 2, 3, 4].every((y) => r.years.includes(y)))!;
+  const variant = (id: string, state: string) => ({ ...template, id, verification: { state } });
+  const rankWith = (a: ReturnType<typeof variant>, b: ReturnType<typeof variant>) => {
+    const ds = { ...data,
+      resources: [...data.resources, a, b],
+      goals: data.goals.map((g) => (g.id === item.goalId.split("@")[0] ? { ...g, resources: [a.id, b.id] } : g)) };
+    const it = buildPlan(base, ds).terms[0].items.find((x) => x.goalId === item.goalId)!;
+    return it.resources.map((r) => r.id);
+  };
+  // Equal scores fall back to id order, so "aa-" wins unless the other link earns the bonus.
+  assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-broken", "broken")), ["aa-unverified", "zz-broken"]);
+  assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-blocked", "blocked")), ["aa-unverified", "zz-blocked"]);
+  assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-checked", "link-checked")), ["zz-checked", "aa-unverified"]);
+  assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-found", "search-confirmed")), ["zz-found", "aa-unverified"]);
+});
