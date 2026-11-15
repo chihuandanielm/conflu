@@ -284,7 +284,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Funds STEM and social-science PhD students; seniors can apply in the fall.",
-      "url": "https://www.nsfgrfp.org",
+      "url": "https://www.nsf.gov/funding/initiatives/grfp",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -294,8 +294,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.nsf.gov/funding/initiatives/grfp"
+        "httpStatus": 200
       },
       "tags": []
     },

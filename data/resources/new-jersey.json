@@ -533,7 +533,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://jobs.prudential.com/students",
+      "url": "https://jobs.prudential.com/us-en/early-talent/programs/internships",
       "applyUrl": null,
       "contact": {
         "how": "Undergraduate internship applications usually open in July and close in late October.",
@@ -542,10 +542,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "httpStatus": 404,
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "note": "Cited in search results after /students returned 404; awaiting the next live link check."
       },
       "tags": [
         "employer"

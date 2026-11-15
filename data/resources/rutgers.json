@@ -234,7 +234,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "Full-time, on-campus summer research for Rutgers–New Brunswick rising sophomores. About 450 applicants for 60 spots.",
-      "url": "https://aresty.rutgers.edu/programs/summer-science-program",
+      "url": "https://aresty.rutgers.edu/programs-funding/summer-science-program",
       "applyUrl": null,
       "contact": {
         "email": "aresty@echo.rutgers.edu",
@@ -245,8 +245,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://aresty.rutgers.edu/programs-funding/summer-science-program"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1312,7 +1311,8 @@
         "state": "link-checked",
         "checkedOn": "2026-11-15",
         "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers"
+        "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers",
+        "note": "The resource page now redirects to a Rutgers search for 'Cultural Centers', which still lists them. Replace with a direct page if one exists."
       },
       "tags": []
     },
