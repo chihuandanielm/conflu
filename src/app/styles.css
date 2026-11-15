@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Self-hosted IBM Plex (latin subset, weights 400 and 600). */
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f8fa;
+  --border: #e2e8ee;
+  --border-strong: #c9d3dd;
+  --ink: #13293d;
+  --muted: #5b6b7b;
+  --blue: #1f5f99;
+  --blue-hover: #184c7b;
+  --blue-tint: #eaf2fa;
+  --green: #1f7a63;
+  --green-tint: #e8f4f0;
+  --amber: #9a6a12;
+  --amber-tint: #fbf4e6;
+
+  /* Chart lanes: quiet tints in the blue–green range. Ink on each passes AA (>= 12:1). */
+  --lane-foundation: #eaf2fa;
+  --lane-presence: #e6eff8;
+  --lane-skills: #e4f1f5;
+  --lane-experience: #e3f2ef;
+  --lane-network: #e8f4f0;
+  --lane-credentials: #edf3f7;
+  --lane-academics: #e7eef4;
+  --lane-applications: #e2eef3;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-blue: var(--blue);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-tint: var(--blue-tint);
+  --color-green: var(--green);
+  --color-green-tint: var(--green-tint);
+  --color-amber: var(--amber);
+  --color-amber-tint: var(--amber-tint);
+
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Type scale (1.2 ratio from 16px). */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 2.25rem;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+}
+
+html { color-scheme: light; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
