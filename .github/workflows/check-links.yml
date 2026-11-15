@@ -24,7 +24,10 @@ jobs:
         continue-on-error: true
       - name: Publish link report
         if: always()
-        run: { echo '```'; cat link-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat link-report.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Commit updated verification dates
         run: |
           git config user.name "link-check-bot"
