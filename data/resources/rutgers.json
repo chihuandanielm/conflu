@@ -58,18 +58,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Primary source of Rutgers internship and job postings, career fair registration, and advising appointments.",
-      "url": "https://success.rutgers.edu/resource/rutgers-handshake",
+      "url": "https://careers.rutgers.edu/students-and-alumni/onlinetools",
       "applyUrl": null,
       "contact": {
-        "how": "Log in with your NetID."
+        "how": "Sign in to Handshake with your NetID from Career Exploration and Success's online tools page."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/resources?keys=Rutgers%20Handshake"
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -95,7 +94,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Multi-year career program for first-generation students and others arriving without an established career network.",
-      "url": "https://careers.rutgers.edu/4WARD",
+      "url": "https://careers.rutgers.edu/students-alumni/courses-signature-programs/4ward-career-pathways-program",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -105,8 +104,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://careers.rutgers.edu/students-alumni/courses-signature-programs/4ward-career-pathways-program"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -195,7 +193,7 @@
       "season": "academic-year",
       "typicalDeadline": "Applications open in early March for the next year",
       "summary": "Pairs students who are new to research with a faculty mentor for a year-long project, for 3 pass/no-credit credits. Competitive: about 1,200 applicants for about 300 spots.",
-      "url": "https://aresty.rutgers.edu/programs/research-assistant-program",
+      "url": "https://aresty.rutgers.edu/programs-funding/research-assistant-program",
       "applyUrl": null,
       "contact": {
         "email": "aresty@echo.rutgers.edu",
@@ -206,8 +204,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://aresty.rutgers.edu/programs-funding/research-assistant-program"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -237,7 +234,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "Full-time, on-campus summer research for Rutgers–New Brunswick rising sophomores. About 450 applicants for 60 spots.",
-      "url": "https://aresty.rutgers.edu/programs",
+      "url": "https://aresty.rutgers.edu/programs/summer-science-program",
       "applyUrl": null,
       "contact": {
         "email": "aresty@echo.rutgers.edu",
@@ -246,10 +243,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://aresty.rutgers.edu/programs-funding"
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -310,18 +306,16 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "Aresty's list of on-campus summer programs: GET UP (green energy), Physics REU, Project L/EARN (health services research), RIOS (ocean sciences), Perceptual Science REU, and more. Some do not accept Rutgers students.",
-      "url": "https://aresty.rutgers.edu/node/33",
+      "url": "https://aresty.rutgers.edu/programs-funding",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "Aresty's separate summer program list page was removed in 2026; its programs and funding page lists current options.",
       "verification": {
-        "state": "broken",
-        "checkedOn": "2026-11-15",
-        "httpStatus": 404,
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -358,18 +352,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "STEM support and a directory of research programs across Rutgers–New Brunswick departments and centers.",
-      "url": "https://lsamp-nb.rutgers.edu",
+      "url": "https://success.rutgers.edu/kickstart-your-future/research-resources",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Use the contact or apply page on the home site.",
+        "email": "lsamp@echo.rutgers.edu"
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "lsamp-nb.rutgers.edu now redirects to Rutgers' general research resources page; the program's current status is unclear.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/kickstart-your-future/research-resources"
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -403,7 +396,7 @@
       "season": "summer",
       "typicalDeadline": "Rolling from January; around Jan 31",
       "summary": "Selective 10-week paid summer research program for students from diverse backgrounds headed to grad school. Applying also puts you in the pool for partner NSF REUs at Rutgers. Mainly recruits from other colleges.",
-      "url": "https://rise.rutgers.edu",
+      "url": "https://aresty.rutgers.edu/programs-funding/the-research-intensive-summer-experience",
       "applyUrl": null,
       "contact": {
         "email": "rise@grad.rutgers.edu",
@@ -415,8 +408,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://aresty.rutgers.edu/programs-funding/the-research-intensive-summer-experience"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -856,7 +848,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "6-month paid junior-year co-op with pharma, biotech, and medical device partners, while still graduating in four years.",
-      "url": "https://bme.rutgers.edu/co-op",
+      "url": "https://bme.rutgers.edu/co-operative-education-program",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -866,8 +858,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://bme.rutgers.edu/co-operative-education-program"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -929,7 +920,7 @@
       "season": "spring",
       "typicalDeadline": null,
       "summary": "Annual Rutgers Business School competition with $50,000 in prizes for student ventures.",
-      "url": "https://myrbs.business.rutgers.edu/node/931",
+      "url": "https://myrbs.business.rutgers.edu/case-competitions/business-plan",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -939,8 +930,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://myrbs.business.rutgers.edu/case-competitions/business-plan"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1249,7 +1239,7 @@
     },
     {
       "id": "rutgers-getinvolved",
-      "name": "getINVOLVED (student organizations directory)",
+      "name": "The Arc (formerly getINVOLVED)",
       "type": "directory",
       "scope": "rutgers",
       "majors": [
@@ -1267,20 +1257,18 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Directory of 700+ Rutgers student organizations. Search here for the Rutgers chapter of any professional society listed in this database.",
-      "url": "https://getinvolved.rutgers.edu/",
+      "url": "https://success.rutgers.edu/the-arc",
       "applyUrl": null,
       "contact": {
-        "how": "Sign in with your NetID to browse and join organizations.",
+        "how": "Open The Arc in the Suitable app and sign in with your NetID to find and join organizations.",
         "email": "osi@echo.rutgers.edu",
         "phone": "848-932-6978"
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "getINVOLVED.rutgers.edu now redirects to The Arc, Rutgers' involvement platform in the Suitable app. Sign in with your NetID.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/the-arc"
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -1309,7 +1297,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Paul Robeson Cultural Center, Center for Latino Arts and Culture, Asian American Cultural Center, and the Center for Social Justice Education and LGBT Communities: community, mentoring, and programming.",
-      "url": "https://diversity.rutgers.edu",
+      "url": "https://success.rutgers.edu/resource/cultural-centers",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1317,10 +1305,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.rutgers.edu/social-mobility"
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": []
     },
@@ -1489,7 +1476,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Independent research and senior honors thesis program for School of Environmental and Biological Sciences students.",
-      "url": "https://sebshonors.rutgers.edu/gh-cook-scholars/",
+      "url": "https://sebs.rutgers.edu/gh-cook-scholars",
       "applyUrl": null,
       "contact": {
         "how": "Apply in the spring of junior year; the thesis is defended in senior spring."
@@ -1497,11 +1484,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Confirmed by search; automated check was refused (HTTP 403).",
-        "httpStatus": 403,
-        "finalUrl": "https://sebs.rutgers.edu/gh-cook-scholars"
+        "httpStatus": 403
       },
       "tags": []
     },
@@ -1879,7 +1864,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Research on women's employment and workplace equity.",
-      "url": "https://cww.rutgers.edu",
+      "url": "https://smlr.rutgers.edu/center-for-women-and-work",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1889,8 +1874,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://smlr.rutgers.edu/center-for-women-and-work"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2047,10 +2031,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "blocked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 405,
-        "note": "Link failed (HTTP 405); needs a new URL."
+        "note": "Site refused the automated check (HTTP 405); open it by hand."
       },
       "tags": []
     },

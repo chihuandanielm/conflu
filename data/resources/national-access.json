@@ -70,7 +70,7 @@
       "season": null,
       "typicalDeadline": "Winter of sophomore year",
       "summary": "Management Leadership for Tomorrow: a 15-month coaching program that helps students land corporate internships and full-time offers.",
-      "url": "https://www.ml4t.org",
+      "url": "https://mlt.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -80,8 +80,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://mlt.org/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1826,10 +1825,9 @@
       "status": "active",
       "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
       "verification": {
-        "state": "broken",
+        "state": "blocked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 503,
-        "note": "Link failed (HTTP 503); needs a new URL."
+        "note": "Site refused the automated check (HTTP 503); open it by hand."
       },
       "tags": []
     }

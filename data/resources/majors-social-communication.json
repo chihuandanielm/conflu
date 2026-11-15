@@ -25,7 +25,7 @@
       "url": "https://prssa.prsa.org/join-prssa/",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -58,7 +58,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "Paid summer fellowship placing students at media companies in New York.",
-      "url": "https://irts.org",
+      "url": "https://irtsfoundation.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -68,8 +68,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://irtsfoundation.org/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -96,7 +95,7 @@
       "url": "https://www.natcom.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -205,18 +204,16 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Competitive Model UN team and conferences.",
-      "url": "https://getinvolved.rutgers.edu/",
+      "url": "https://success.rutgers.edu/the-arc",
       "applyUrl": null,
       "contact": {
-        "how": "Search getINVOLVED for \"Model United Nations\" (sign in with your NetID)."
+        "how": "Search The Arc (formerly getINVOLVED) for \"Model United Nations\"; sign in with your NetID."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/the-arc"
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -318,7 +315,7 @@
       "url": "https://www.acjs.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -499,7 +496,7 @@
       "url": "https://www.socialworkers.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,

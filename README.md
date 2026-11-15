@@ -82,10 +82,11 @@ The checker also records `httpStatus`, `finalUrl` (when a redirect moved the pag
 
 - **How links are checked:** the "Validate data and check links" workflow runs `scripts/check-links.mjs` on every data change and every Monday, writes the results back, and posts a report (loaded / blocked / broken / redirected) to the run summary. It sends a normal browser user agent and reads the page body, so bot walls are labeled `blocked`, not `broken`.
 - **2026-11-15 review:** the first run marked 56 links broken. Web research found correct landing pages for 41 (wrong domains such as Emma Bowen's `.org`, Kenvue's `jobs.kenvue.com`, the Rutgers Energy Institute's merger into RCEI, and homepages replaced with the specific program page) and confirmed that 12 others are real sites that block bots. Two still need a person: `phi-alpha` and `nj-biomaterials`. (`bloomberg-bmc` loaded on a later run.)
+- **First run of the new checker (2026-11-15):** 212 loaded, 42 blocked, 6 broken, about 40 redirected. Clean redirects were adopted as the new URLs. Real changes were recorded as `status: changed`: getINVOLVED became The Arc, the LSAMP site redirects to a general page, Public Health AmeriCorps moved under Healthy Futures, and Aresty's summer research list page was removed. Prudential's careers page moved to `jobs.prudential.com/students`.
 
 ## Known limits
 
-- **Clubs:** most club entries point to the national organization; `contact.how` says to find the Rutgers chapter on getINVOLVED. Chapter pages change every year.
+- **Clubs:** most club entries point to the national organization; `contact.how` says to find the Rutgers chapter on The Arc (getINVOLVED moved there in 2026). Chapter pages change every year.
 - **Employer programs:** company program names change yearly. The entries link to careers pages and say so.
 - **2025–26 changes:** several federal and identity-based programs were paused, renamed, defunded, or changed eligibility (SHPEP ended, Pickering/Rangel paused, CyberCorps renamed, McNair criteria changed). Those are marked in `status`. Re-check every identity-based program each semester.
 - **Guessed Rutgers URLs:** `hpo.rutgers.edu`, `pharmafellows.rutgers.edu`, `ruoffcampus.rutgers.edu`, `rscj.newark.rutgers.edu`, and `njstep.newark.rutgers.edu` all loaded in the 2026-11-15 check. The next run records `finalUrl`, which shows whether any of them now redirect to a generic page.

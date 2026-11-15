@@ -128,7 +128,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Free training paths for Azure, Power BI, and Office certifications.",
-      "url": "https://learn.microsoft.com",
+      "url": "https://learn.microsoft.com/en-us/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -138,8 +138,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://learn.microsoft.com/en-us/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -202,7 +201,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Nonprofit and mission-driven internships and jobs.",
-      "url": "https://www.idealist.org",
+      "url": "https://www.idealist.org/en",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -212,8 +211,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.idealist.org/en"
+        "httpStatus": 200
       },
       "tags": []
     },

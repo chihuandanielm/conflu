@@ -25,7 +25,7 @@
       "url": "https://www.acm.org/membership/membership-options",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -63,7 +63,7 @@
       "url": "https://www.ieee.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -133,7 +133,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Remote, stipended open-source and software fellowships from Major League Hacking; MLH also lists hackathons.",
-      "url": "https://fellowship.mlh.io",
+      "url": "https://fellowship.mlh.com/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -143,8 +143,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://fellowship.mlh.com/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -171,7 +170,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Season calendar of student hackathons across the US.",
-      "url": "https://mlh.io",
+      "url": "https://www.mlh.com/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -181,8 +180,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.mlh.com/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -321,7 +319,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Entry-level IT and security certifications widely used in hiring. Look for student discounts.",
-      "url": "https://www.comptia.org",
+      "url": "https://www.comptia.org/en-us/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -331,8 +329,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.comptia.org/en-us/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -471,7 +468,7 @@
       "url": "https://www.asme.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -509,7 +506,7 @@
       "url": "https://www.sae.org",
       "applyUrl": null,
       "contact": {
-        "how": "Find Rutgers Formula Racing on getINVOLVED."
+        "how": "Find Rutgers Formula Racing on The Arc (formerly getINVOLVED)."
       },
       "status": "active",
       "statusNote": null,
@@ -544,7 +541,7 @@
       "url": "https://www.aiaa.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -645,7 +642,7 @@
       "url": "https://www.bmes.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,

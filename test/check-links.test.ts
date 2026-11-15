@@ -16,6 +16,8 @@ before(async () => {
       "/wall": [200, "<title>Just a moment...</title>"],
       "/moved": [301, "", { location: "/ok" }],
       "/flaky": [500, "oops"],
+      "/method": [405, ""],
+      "/busy": [503, "maintenance"],
     };
     const [code, body, headers] = routes[req.url ?? ""] ?? [404, "no"];
     res.writeHead(code, { "content-type": "text/html", ...headers }); res.end(req.method === "HEAD" ? undefined : body);
@@ -30,6 +32,8 @@ test("classifies responses", async () => {
   assert.equal((await check(`${base}/forbidden`)).state, "blocked");
   assert.equal((await check(`${base}/linkedin`)).state, "blocked");
   assert.equal((await check(`${base}/wall`)).state, "blocked");
+  assert.equal((await check(`${base}/method`)).state, "blocked");
+  assert.equal((await check(`${base}/busy`)).state, "blocked");
   assert.equal((await check(`${base}/gone`)).state, "broken");
   assert.equal((await check(`${base}/flaky`)).state, "broken");
   assert.equal((await check("https://does-not-exist.invalid/")).state, "broken");

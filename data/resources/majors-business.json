@@ -169,7 +169,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "First- and second-year exploration programs that feed accounting and advisory internships. Names change yearly.",
-      "url": "https://www.deloitte.com/us/en/careers/students.html",
+      "url": "https://www.deloitte.com/us/en/careers/student-careers.html",
       "applyUrl": null,
       "contact": {
         "how": "Check each firm's student careers page each fall: deloitte.com, ey.com, kpmg.com, pwc.com."
@@ -179,8 +179,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.deloitte.com/us/en/careers/student-careers.html"
+        "httpStatus": 200
       },
       "tags": [
         "employer"
@@ -211,7 +210,7 @@
       "url": "https://www.bap.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -316,7 +315,7 @@
       "url": "https://www.ama.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -421,7 +420,7 @@
       "url": "https://www.ascm.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -456,7 +455,7 @@
       "url": "https://cscmp.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -490,16 +489,14 @@
       "url": "https://www.ismworld.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10&vt=7406723e6ba89c58f4acaca51905119e20c4513f2510a338b16a26357da821ccb29225a326305b1e5086e24ad6fe05a4",
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "note": "Site refused the automated check (redirected to a sign-in page); open it by hand."
       },
       "tags": []
     },
@@ -630,7 +627,7 @@
       "url": "https://www.shrm.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -699,7 +696,7 @@
       "url": "https://www.leraweb.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -736,7 +733,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Excel certification; spreadsheet skill is tested in many business interviews.",
-      "url": "https://learn.microsoft.com/credentials/",
+      "url": "https://learn.microsoft.com/en-us/credentials/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -746,8 +743,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://learn.microsoft.com/en-us/credentials/"
+        "httpStatus": 200
       },
       "tags": []
     }

@@ -617,7 +617,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Full tuition, stipend, and summer internships in exchange for civilian Defense Department employment after graduation.",
-      "url": "https://www.smartscholarship.org",
+      "url": "https://www.smartscholarship.org/smart",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -627,8 +627,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.smartscholarship.org/smart"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -735,7 +734,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Paid NASA internships; Pathways is the multi-semester track that can lead to full-time hiring. Pathways openings in 2026 ran Feb 23–27.",
-      "url": "https://intern.nasa.gov",
+      "url": "https://www.nasa.gov/learning-resources/internship-programs/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -745,8 +744,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.nasa.gov/learning-resources/internship-programs/"
+        "httpStatus": 200
       },
       "tags": []
     },

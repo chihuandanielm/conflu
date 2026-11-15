@@ -22,7 +22,7 @@ const HEADERS = {
   accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
   "accept-language": "en-US,en;q=0.9",
 };
-const BLOCK_CODES = new Set([401, 403, 406, 429, 999]);
+const BLOCK_CODES = new Set([401, 403, 405, 406, 429, 503, 999]); // refusals and "try later", not "gone"
 const GONE_CODES = new Set([404, 410]);
 
 /** @returns {Promise<{ state: "link-checked" | "blocked" | "broken", httpStatus: number | null, finalUrl: string, why?: string }>} */

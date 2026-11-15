@@ -62,7 +62,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "NJ's main need-based grant, run by HESAA. File the FAFSA or NJ Alternative Financial Aid Application on time every year.",
-      "url": "https://www.hesaa.org",
+      "url": "https://www.hesaa.org/Pages/Default.aspx",
       "applyUrl": null,
       "contact": {
         "how": "File the FAFSA or NJAFAA; HESAA handles the rest."
@@ -72,8 +72,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.hesaa.org/Pages/Default.aspx"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -98,7 +97,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Covers remaining tuition and fees for eligible NJ students in their 3rd and 4th years (up to 4 semesters or 128 credits). From 2026-27, EOF awards no longer count against eligibility.",
-      "url": "https://scarlethub.rutgers.edu/gsg",
+      "url": "https://scarlethub.rutgers.edu/financial-services/types-of-aid/garden-state-guarantee/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -108,8 +107,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://scarlethub.rutgers.edu/financial-services/types-of-aid/garden-state-guarantee/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -134,7 +132,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Tuition help for top NJ community college graduates who transfer to a NJ four-year school.",
-      "url": "https://www.hesaa.org",
+      "url": "https://www.hesaa.org/Pages/Default.aspx",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -144,8 +142,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.hesaa.org/Pages/Default.aspx"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -371,7 +368,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://jobs.merck.com",
+      "url": "https://jobs.merck.com/us/en",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -381,8 +378,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://jobs.merck.com/us/en"
+        "httpStatus": 200
       },
       "tags": [
         "employer"
@@ -495,7 +491,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://www.novonordisk-us.com/careers.html",
+      "url": "https://www.novonordisk-us.com/careers/find-a-job.html",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -505,8 +501,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.novonordisk-us.com/careers/find-a-job.html"
+        "httpStatus": 200
       },
       "tags": [
         "employer"
@@ -538,18 +533,18 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://www.prudential.com/links/about/careers",
+      "url": "https://jobs.prudential.com/students",
       "applyUrl": null,
       "contact": {
-        "how": "Use the contact or apply page on the home site."
+        "how": "Undergraduate internship applications usually open in July and close in late October.",
+        "email": "campus.recruiting@prudential.com"
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-15",
-        "httpStatus": 404,
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "note": "Landing page confirmed by web search; awaiting the next live link check."
       },
       "tags": [
         "employer"
@@ -747,7 +742,7 @@
       "season": "summer",
       "typicalDeadline": null,
       "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
-      "url": "https://www.hackensackmeridianhealth.org",
+      "url": "https://www.hackensackmeridianhealth.org/en",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -757,8 +752,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.hackensackmeridianhealth.org/en"
+        "httpStatus": 200
       },
       "tags": [
         "employer"

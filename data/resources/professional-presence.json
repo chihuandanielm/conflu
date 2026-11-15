@@ -136,7 +136,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "A profile README pins your best projects and explains them. Hiring managers for tech roles often check GitHub before the resume.",
-      "url": "https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme",
+      "url": "https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -146,8 +146,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -440,7 +439,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Free introductory computer science course; strong first step for non-CS majors who want to code.",
-      "url": "https://cs50.harvard.edu",
+      "url": "https://www.edx.org/cs50",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -450,8 +449,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://www.edx.org/cs50"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1153,7 +1151,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Official LSAT practice tests from the test maker; the free tier includes full tests.",
-      "url": "https://lawhub.lsac.org",
+      "url": "https://app.lawhub.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1163,8 +1161,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://app.lawhub.org/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1340,7 +1337,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Federal resumes follow different rules than private ones (now capped at two pages).",
-      "url": "https://help.usajobs.gov/how-to/account/documents/resume/build",
+      "url": "https://usajobshelp.opm.gov/hc/en-us",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -1348,11 +1345,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Confirmed by search; automated check was refused (HTTP 403).",
-        "httpStatus": 403,
-        "finalUrl": "https://usajobshelp.opm.gov/hc/en-us"
+        "httpStatus": 403
       },
       "tags": []
     }

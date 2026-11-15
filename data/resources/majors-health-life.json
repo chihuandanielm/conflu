@@ -59,7 +59,7 @@
       "url": "https://www.apa.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -93,7 +93,7 @@
       "url": "https://www.psychologicalscience.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -320,7 +320,7 @@
       "url": "https://www.nsna.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -423,7 +423,7 @@
       "url": "https://www.pharmacist.com",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -491,7 +491,7 @@
       "url": "https://ncpa.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -593,7 +593,7 @@
       "url": "https://www.apha.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -696,20 +696,17 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Paid AmeriCorps roles in public health organizations.",
-      "url": "https://americorps.gov/publichealth",
+      "url": "https://www.americorps.gov/about/what-we-do/healthy-futures",
       "applyUrl": null,
       "contact": {
         "how": "Search open Public Health AmeriCorps roles on the home site.",
         "email": "publichealth@americorps.gov"
       },
-      "status": "active",
-      "statusNote": null,
+      "status": "changed",
+      "statusNote": "AmeriCorps now sends its Public Health AmeriCorps page to its Healthy Futures focus area; search current listings there.",
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-15",
-        "note": "Confirmed by search; automated check was refused (HTTP 403).",
-        "httpStatus": 403,
-        "finalUrl": "https://www.americorps.gov/about/what-we-do/healthy-futures"
+        "state": "link-checked",
+        "checkedOn": "2026-11-15"
       },
       "tags": []
     },
@@ -768,7 +765,7 @@
       "url": "https://acsm.org/certification/get-certified/",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "changed",
       "statusNote": "From 2027, ACSM-EP and ACSM-CEP candidates must graduate from an accredited exercise science or exercise physiology program.",
@@ -803,7 +800,7 @@
       "url": "https://www.nsca.com/membership/",
       "applyUrl": null,
       "contact": {
-        "how": "Full-time students can buy a student membership on the home site, then search getINVOLVED for a Rutgers chapter."
+        "how": "Full-time students can buy a student membership on the home site, then search The Arc (formerly getINVOLVED) for a Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
@@ -838,7 +835,7 @@
       "url": "https://www.nata.org",
       "applyUrl": null,
       "contact": {
-        "how": "Join nationally on the home site, then search getINVOLVED for the Rutgers chapter."
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
       },
       "status": "active",
       "statusNote": null,
