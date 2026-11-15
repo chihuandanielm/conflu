@@ -780,7 +780,7 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "link-checked",
         "checkedOn": "2026-11-15"
       },
       "tags": []

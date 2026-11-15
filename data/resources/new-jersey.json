@@ -325,7 +325,7 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "broken",
         "checkedOn": "2026-11-15"
       },
       "tags": [
@@ -607,7 +607,7 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "broken",
         "checkedOn": "2026-11-15"
       },
       "tags": [
