@@ -496,7 +496,9 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
-        "note": "Site refused the automated check (redirected to a sign-in page); open it by hand."
+        "httpStatus": 200,
+        "finalUrl": "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10&vt=d203b2836bec243abfa87d0bca5a6dc0bdb6484d4bf78c07838793c5861a1b8b989dc75fd8fb308a5f0902a895ad6bf0",
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },

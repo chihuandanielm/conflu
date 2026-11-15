@@ -66,9 +66,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -243,9 +243,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://aresty.rutgers.edu/programs-funding/summer-science-program"
       },
       "tags": []
     },
@@ -315,7 +316,8 @@
       "statusNote": "Aresty's separate summer program list page was removed in 2026; its programs and funding page lists current options.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -362,7 +364,8 @@
       "statusNote": "lsamp-nb.rutgers.edu now redirects to Rutgers' general research resources page; the program's current status is unclear.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1268,7 +1271,8 @@
       "statusNote": "getINVOLVED.rutgers.edu now redirects to The Arc, Rutgers' involvement platform in the Suitable app. Sign in with your NetID.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15"
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1305,9 +1309,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers"
       },
       "tags": []
     },
@@ -1484,9 +1489,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 403
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -2033,6 +2039,7 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-15",
+        "httpStatus": 405,
         "note": "Site refused the automated check (HTTP 405); open it by hand."
       },
       "tags": []

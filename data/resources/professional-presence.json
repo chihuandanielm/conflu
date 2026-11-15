@@ -808,10 +808,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "note": "Confirmed by search; automated check was refused (timed out).",
-        "httpStatus": null
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1119,10 +1118,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 403,
-        "note": "Site refused the automated check (HTTP 403); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1345,9 +1343,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-15",
-        "httpStatus": 403
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     }

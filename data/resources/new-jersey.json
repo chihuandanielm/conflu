@@ -542,9 +542,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "broken",
         "checkedOn": "2026-11-15",
-        "note": "Landing page confirmed by web search; awaiting the next live link check."
+        "httpStatus": 404,
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": [
         "employer"
