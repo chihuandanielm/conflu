@@ -80,6 +80,7 @@ for (const o of intake.experience) {
   if (n !== 1) errors.push(`ui/intake › experience option ${o.id} is in ${n} groups (needs exactly 1)`);
 }
 for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
+for (const t of intake.optionalIdentity.tags) if (!ui.identityLabels?.[t]) errors.push(`ui/intake › identity tag ${t} has no label`);
 for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);
 const uncovered = [...majorIds].filter((m) => !tracks.some((t) => t.suggestedMajors.includes(m)));
 if (uncovered.length) errors.push(`tracks: majors with no suggested track: ${uncovered.join(", ")}`);

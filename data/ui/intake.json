@@ -1,36 +1,130 @@
 {
-  "_about": "UI-only intake content: question copy, the school and co-op questions, and how the experience checklist is grouped. The engine never reads this file. scripts/validate.mjs checks that every experience option belongs to exactly one group.",
+  "_about": "UI-only intake content: question copy, the school and co-op questions, and how the experience checklist is grouped. The engine never reads this file. scripts/validate.mjs checks that every experience option belongs to exactly one group. identityLabels gives plain-language labels for intake.json optionalIdentity tags.",
   "school": {
     "question": "Which school do you go to?",
     "help": "Optional. It only changes which programs we list first.",
     "options": [
-      { "id": "rutgers-nb", "label": "Rutgers–New Brunswick" },
-      { "id": "other", "label": "Another school" }
+      {
+        "id": "rutgers-nb",
+        "label": "Rutgers–New Brunswick"
+      },
+      {
+        "id": "other",
+        "label": "Another school"
+      }
     ]
   },
   "coop": {
     "question": "Are you open to a co-op?",
     "help": "A co-op is a paid, full-time work term, usually one semester plus a summer. It counts as your target internship.",
-    "majors": ["mechanical-engineering", "biomedical-engineering", "pharmacy", "supply-chain"],
+    "majors": [
+      "mechanical-engineering",
+      "biomedical-engineering",
+      "pharmacy",
+      "supply-chain"
+    ],
     "options": [
-      { "id": "yes", "label": "Yes, I'd consider one" },
-      { "id": "no", "label": "No, I'll stick to summers" }
+      {
+        "id": "yes",
+        "label": "Yes, I'd consider one"
+      },
+      {
+        "id": "no",
+        "label": "No, I'll stick to summers"
+      }
     ]
   },
   "year": {
     "summerHint": "Over the summer, pick the year you're starting in the fall."
   },
   "experienceGroups": [
-    { "id": "getting-started", "label": "Getting started",
-      "options": ["resume", "ces-visit", "handshake", "mock-interview", "scholarship-apps", "test-taken"] },
-    { "id": "online-presence", "label": "Online presence",
-      "options": ["linkedin", "linkedin-strong", "github", "github-active", "open-source", "portfolio", "writing-clips"] },
-    { "id": "experience", "label": "Experience",
-      "options": ["job", "club", "leader", "volunteer", "project", "hackathon", "design-team", "case-comp", "virtual-sim",
-        "internship-any", "internship-target", "coop", "government", "abroad", "startup", "tutor"] },
-    { "id": "research-clinical", "label": "Research and clinical",
-      "options": ["research", "summer-research", "thesis", "shadowing", "clinical", "externship", "pharm-intern", "justice"] },
-    { "id": "networking", "label": "Networking",
-      "options": ["career-fair", "info-interviews", "mentor", "society", "conference", "recommenders"] }
-  ]
+    {
+      "id": "getting-started",
+      "label": "Getting started",
+      "options": [
+        "resume",
+        "ces-visit",
+        "handshake",
+        "mock-interview",
+        "scholarship-apps",
+        "test-taken"
+      ]
+    },
+    {
+      "id": "online-presence",
+      "label": "Online presence",
+      "options": [
+        "linkedin",
+        "linkedin-strong",
+        "github",
+        "github-active",
+        "open-source",
+        "portfolio",
+        "writing-clips"
+      ]
+    },
+    {
+      "id": "experience",
+      "label": "Experience",
+      "options": [
+        "job",
+        "club",
+        "leader",
+        "volunteer",
+        "project",
+        "hackathon",
+        "design-team",
+        "case-comp",
+        "virtual-sim",
+        "internship-any",
+        "internship-target",
+        "coop",
+        "government",
+        "abroad",
+        "startup",
+        "tutor"
+      ]
+    },
+    {
+      "id": "research-clinical",
+      "label": "Research and clinical",
+      "options": [
+        "research",
+        "summer-research",
+        "thesis",
+        "shadowing",
+        "clinical",
+        "externship",
+        "pharm-intern",
+        "justice"
+      ]
+    },
+    {
+      "id": "networking",
+      "label": "Networking",
+      "options": [
+        "career-fair",
+        "info-interviews",
+        "mentor",
+        "society",
+        "conference",
+        "recommenders"
+      ]
+    }
+  ],
+  "identityLabels": {
+    "first-generation": "First-generation college student",
+    "low-income": "From a low-income household",
+    "pell-eligible": "Pell Grant eligible",
+    "black": "Black or African American",
+    "latino": "Hispanic or Latino",
+    "asian-american": "Asian American",
+    "pacific-islander": "Native Hawaiian or Pacific Islander",
+    "native-american": "American Indian or Alaska Native",
+    "women": "Woman",
+    "lgbtq": "LGBTQ+",
+    "disability": "Living with a disability",
+    "veteran": "Veteran or service member",
+    "transfer": "Transfer student"
+  }
 }
