@@ -1,6 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
-/** Collects CSP violations and any request that leaves the site. Both must stay empty. */
+/** Collects CSP violations and any request that leaves the site. Both must stay empty. The CSP comes from the page's meta tag. */
 function watch(page: Page) {
   const violations: string[] = [];
   const offsite: string[] = [];
@@ -13,9 +13,21 @@ const heading = (page: Page) => page.getByRole("heading", { level: 1 });
 
 test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
   const seen = watch(page);
-  await page.goto("/");
+  await page.goto("./");
   await expect(heading(page)).toContainText("semester-by-semester career plan");
   await expect(page.getByText(/general trajectory, not a blueprint/)).toBeVisible();
+
+  // The CSP (a meta tag, since GitHub Pages can't send headers) is active: an injected inline script must not run.
+  const ran = await page.evaluate(() => new Promise<boolean>((resolve) => {
+    const w = window as unknown as { __cspProbe?: boolean };
+    const el = document.createElement("script");
+    el.textContent = "window.__cspProbe = true";
+    document.head.append(el);
+    setTimeout(() => resolve(w.__cspProbe === true), 50);
+  }));
+  expect(ran).toBe(false);
+  seen.violations.length = 0; // that probe's own violation is expected
+
   await page.getByRole("button", { name: "Start" }).click();
 
   await expect(heading(page)).toHaveText("Where are you right now?");
@@ -96,7 +108,7 @@ test("phone: timeline instead of the chart, bottom-sheet drawer, no sideways scr
   // Start from a shared link to skip the intake (identity and citizenship are never in it).
   const share = { v: 1, m: "nursing", y: 3, t: "nursing-clinical", h: "graduation", s: "rutgers-nb", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
   const hash = Buffer.from(JSON.stringify(share)).toString("base64url");
-  await page.goto(`/#plan=${hash}`);
+  await page.goto(`./#plan=${hash}`);
   await expect(heading(page)).toHaveText("Check your answers");
   expect(new URL(page.url()).hash).toBe("");
   await page.getByRole("button", { name: "Build my plan" }).click();

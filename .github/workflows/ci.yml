@@ -32,7 +32,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      # Builds the site and serves it with the real _headers (strict CSP), then runs the end-to-end flow.
+      # Builds for /conflu/, serves it like GitHub Pages (CSP from the meta tag), then runs the end-to-end flow.
       - run: npm run e2e
       - uses: actions/upload-artifact@v6
         if: failure()

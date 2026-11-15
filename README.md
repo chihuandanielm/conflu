@@ -27,35 +27,33 @@ The dev server prints a local URL. Other commands:
 | Command | What it does |
 |---|---|
 | `npm run build` | Production build into `dist/` (also generates the PDF fonts and type-checks) |
-| `npm run serve` | Serves `dist/` with the real `_headers` applied (strict CSP), like Cloudflare Pages |
+| `npm run serve` | Serves `dist/` locally, compressed, the way GitHub Pages does |
 | `npm run validate` | Data integrity: references, vocabularies, UI groupings |
 | `npm test` | Engine invariants and link-checker tests (Node's built-in runner) |
 | `npm run test:ui` | Vitest and Testing Library: components, intake, results, chart layout, resources, PDF, contrast |
-| `npm run e2e` | Playwright: builds, serves with `_headers`, runs the full flow on desktop and phone |
+| `npm run e2e` | Playwright: builds for `/conflu/`, serves it like GitHub Pages, runs the full flow on desktop and phone |
 | `npm run samples` | Regenerates `docs/sample-plans.md` |
 | `npm run check-links` | Visits every resource URL (needs internet; CI runs it weekly) |
 
 The first `npm run e2e` on a new machine needs a browser: `npx playwright install chromium`.
 
-## Deploy to Cloudflare Pages
+## Deploy to GitHub Pages
 
-The site is fully static.
+The site is fully static and deploys from `main` with `.github/workflows/pages.yml`. It's published at `https://chihuandanielm.github.io/conflu/`.
 
-1. In the Cloudflare dashboard, open **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
-2. Set **Production branch** to `main`. Every other branch gets its own preview URL.
-3. Set **Build command** to `npm run build` and **Build output directory** to `dist`.
-4. Under **Environment variables**, set `NODE_VERSION` to `24`.
-5. Deploy.
+One-time setup:
+1. In the repository, open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**. If it's set to "Deploy from a branch", GitHub publishes the unbuilt source files instead.
 
-`public/_headers` is copied into `dist/` and applied by Cloudflare. It sets:
-- a strict Content-Security-Policy (`default-src 'self'`)
-- `Referrer-Policy: no-referrer`
-- a Permissions-Policy denying camera, microphone, and geolocation
-- long caching for hashed assets
+After that, every push to `main` validates the data, runs the engine tests, builds with `BASE_PATH=/conflu/` (the repository path), and publishes `dist/`. You can also run the workflow by hand from the Actions tab.
 
-The CSP's only allowances beyond `'self'` are for the PDF library's WebAssembly layout engine: `'wasm-unsafe-eval'` (compiling WebAssembly, not JavaScript eval) and `connect-src data:` (reading that module). The end-to-end test runs under these exact headers and fails on any CSP violation or any request that leaves the site.
+**Security on GitHub Pages:** GitHub Pages can't send custom response headers, so the Content-Security-Policy ships in `index.html` as a `<meta>` tag, added to production builds by `vite.config.ts`.
+- **What the policy allows:** `default-src 'self'`, so nothing loads from another site. The only extras are for the PDF library's WebAssembly layout engine: `'wasm-unsafe-eval'` (compiling WebAssembly, not JavaScript eval) and `connect-src data:` (reading that module).
+- **Referrer policy:** a `<meta name="referrer" content="no-referrer">` tag covers it.
+- **Not possible on GitHub Pages:** blocking other sites from framing the page, a Permissions-Policy, and custom caching. The site uses no camera, microphone, or location anyway.
+- **Tested:** the end-to-end test runs under the meta-tag policy and fails if it stops blocking an injected script, if anything violates it, or if any request leaves the site.
 
-If GitHub Pages is turned on for this repository, turn it off (Settings → Pages → Source: None). It would serve the unbuilt source, and it can't apply `_headers`.
+To use a custom domain, set it under **Settings → Pages** and change `BASE_PATH` in the workflow to `/`.
 
 ## Site layout
 
@@ -70,7 +68,7 @@ src/app/
   pdf/                 PDF document and download (lazy-loaded on click)
   state/               localStorage, saved plan and re-planning, share links
 data/ui/               UI-only data: question copy, experience groups, identity labels, resource groups
-scripts/               validate, check-links, woff-to-ttf (PDF fonts), serve (dist with _headers), sample plans
+scripts/               validate, check-links, woff-to-ttf (PDF fonts), serve (local GitHub Pages stand-in), sample plans
 test/                  engine and link-checker tests
 e2e/                   Playwright end-to-end tests
 ```
