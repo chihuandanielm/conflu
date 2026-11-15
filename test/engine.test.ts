@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPlan } from "../src/engine/engine.ts";
+import { buildPlan, currentTerm } from "../src/engine/engine.ts";
 import { loadDataset } from "../src/engine/load.ts";
 import type { Plan, PlanInput } from "../src/engine/types.ts";
 
@@ -71,4 +71,29 @@ test("plan stability: previous placements are kept when nothing changed", () => 
   const p2 = buildPlan({ ...base, previousPlan: prev }, data);
   const moved = placed(p2).filter((x) => prev[x.goalId] && prev[x.goalId] !== x.term && !x.partial);
   assert.ok(moved.length <= 2, `${moved.length} goals moved terms without any input change`);
+});
+
+// ---- Calendar edge cases (ENGINE 0.2.0). Term dates follow the Rutgers–New Brunswick calendar. ----
+test("current term follows the academic calendar, using the rising year in summer", () => {
+  const cases: [1 | 2 | 3 | 4, string, string][] = [
+    [2, "2026-11-15", "2F"],   // mid-fall
+    [2, "2026-12-28", "2S"],   // fall exams are over: winter break plans the coming spring
+    [2, "2027-01-05", "2S"],
+    [2, "2027-05-14", "1U"],   // spring exams are over: summer before the year they're entering
+    [3, "2026-06-15", "2U"],   // a rising junior in June is in the summer after year 2
+    [4, "2026-06-15", "3U"],   // a rising senior: there is no "summer after year 4" term
+    [1, "2026-07-10", "1F"],   // an incoming first-year starts planning at their first fall
+    [2, "2026-08-20", "2F"],
+  ];
+  for (const [year, today, code] of cases) assert.equal(currentTerm(year, today).code, code, `year ${year} on ${today}`);
+  assert.equal(currentTerm(2, "2026-12-28").remaining, 1, "a term that hasn't started has all its time ahead");
+});
+
+test("every year plans without errors on any day of the year", () => {
+  for (const year of [1, 2, 3, 4] as const) for (let m = 0; m < 12; m++) for (const day of [1, 15, 28]) {
+    const today = new Date(Date.UTC(2026, m, day)).toISOString().slice(0, 10);
+    const plan = buildPlan({ ...base, year, today }, data);
+    assert.ok(plan.terms.length > 0, `year ${year} on ${today}: empty plan`);
+    assert.ok(data.terms.includes(plan.terms[0].code), `year ${year} on ${today}: unknown term ${plan.terms[0].code}`);
+  }
 });

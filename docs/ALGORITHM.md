@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.1 design, with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.2 design (engine 0.2.0: calendar-based current term), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -114,7 +114,12 @@ Each experience, skill, or credential answer lists `completes: [{goal, strength}
 
 ### Step 1 — Time frame and capacity
 
-- **Current term** from `year` + `today`: Aug–Dec → fall, Jan–mid-May → spring, otherwise summer. The share of the current term still ahead (`remaining`, clamped to 0.2–1) scales its capacity.
+- **Current term** from `year` + `today`, using the Rutgers–New Brunswick calendar (`CALENDAR` in `engine.ts`; 2026–27: fall Sep 1–Dec 22 including exams, spring Jan 19–May 12 including exams):
+  - Sep 1–Dec 22 → `{year}F`. Dec 23–May 12 → `{year}S` (winter break plans the coming spring with all of it ahead).
+  - May 13–Aug 14 → summer. Over the summer, `year` means the year the student is **entering** in the fall (a rising junior answers 3), so summer maps to `{year−1}U`. There is no "summer after year 4" term, so a rising senior lands in `3U`.
+  - An incoming first-year in summer, and anyone from Aug 15 to Aug 31, starts at `{year}F` with the whole term ahead.
+  - The share of the current term still ahead (`remaining`, clamped to 0.2–1) scales its capacity.
+  - The intake shows a summer-only hint so students answer with their rising year.
 - **End term** from horizon: a term count from now (6mo = 2, 1yr = 3, 2yr = 6), or `4S` for graduation, or `4S + 2` for after-graduation.
 - **Flexible hours per term** = `weeklyHours × weeks(term) × realism × remaining`. Weeks: fall/spring 14, summer 10. `realism` is **0.8**. If the student is unavailable in summer, summer flex = 0.
 - **Block slot per term** (for full-time commitments):
@@ -358,6 +363,8 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 5. International students never see citizen-only goals or programs, and get the CPT/OPT warning.
 6. A co-op and the target internship are never both scheduled.
 7. Re-planning with no input change moves at most 2 goals.
+8. The current term follows the academic calendar on break days and uses the rising year in summer.
+9. Every year plans without errors on any day of the year (engine 0.1.0 crashed for a year-4 student in summer).
 
 Add a test for every bug found in review.
 

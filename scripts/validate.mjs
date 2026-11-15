@@ -71,6 +71,14 @@ for (const t of tracks) {
 }
 const intake = JSON.parse(readFileSync(join(root, "data/intake.json"), "utf8"));
 for (const o of [...intake.experience, ...intake.skills, ...intake.credentials]) for (const c of o.completes) if (!goalIds.has(c.goal)) errors.push(`intake › ${o.id}: unknown goal ${c.goal}`);
+const ui = JSON.parse(readFileSync(join(root, "data/ui/intake.json"), "utf8"));
+const grouped = ui.experienceGroups.flatMap((g) => g.options);
+for (const o of intake.experience) {
+  const n = grouped.filter((x) => x === o.id).length;
+  if (n !== 1) errors.push(`ui/intake › experience option ${o.id} is in ${n} groups (needs exactly 1)`);
+}
+for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
+for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);
 const uncovered = [...majorIds].filter((m) => !tracks.some((t) => t.suggestedMajors.includes(m)));
 if (uncovered.length) errors.push(`tracks: majors with no suggested track: ${uncovered.join(", ")}`);
 

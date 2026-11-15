@@ -13,10 +13,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # v5+ of both actions run on the node24 runtime; GitHub removed node20 from hosted runners in Sept 2026.
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24   # Node 20 reached end of life on 2026-04-30; 24 is the active LTS
       - run: node scripts/validate.mjs
       - run: node scripts/check-links.mjs
         continue-on-error: true

@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.1.0";
+export const ENGINE_VERSION = "0.2.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -50,14 +50,38 @@ export function termLabel(code: TermCode): string {
   return s === "U" ? `Summer after year ${y}` : `Year ${y} · ${s === "F" ? "Fall" : "Spring"}`;
 }
 
-/** Current term and the share of it still ahead, from the student's year and today's date. */
+/**
+ * Term boundaries, [month, day] (1-based months), from the Rutgers–New Brunswick academic calendar
+ * (2026–27: fall classes Sep 1, fall exams end Dec 22; spring classes Jan 19, spring exams end May 12).
+ * Summer runs from the end of spring exams to mid-August; August plans the coming fall.
+ */
+export const CALENDAR = {
+  fall: { start: [9, 1], end: [12, 22] },
+  spring: { start: [1, 19], end: [5, 12] },
+  summer: { start: [5, 13], end: [8, 15] },
+} as const;
+
+/**
+ * Current term and the share of it still ahead, from the student's year and today's date.
+ * `year` is the academic year the student is in. Over the summer it is the year they are entering in the fall
+ * (a rising junior answers 3), so summer maps to the summer after the previous year. An incoming first-year in
+ * summer, or anyone in August, starts at the coming fall. After fall exams, the plan starts at the coming spring.
+ */
 export function currentTerm(year: number, todayISO: string): { code: TermCode; remaining: number } {
   const d = new Date(todayISO + "T12:00:00Z");
-  const m = d.getUTCMonth() + 1, day = d.getUTCDate(), y = d.getUTCFullYear();
-  const frac = (start: Date, end: Date) => Math.min(1, Math.max(0.2, (end.getTime() - d.getTime()) / (end.getTime() - start.getTime())));
-  if (m >= 8) return { code: `${year}F`, remaining: m === 8 ? 1 : frac(new Date(Date.UTC(y, 8, 1)), new Date(Date.UTC(y, 11, 20))) };
-  if (m <= 5 && !(m === 5 && day > 15)) return { code: `${year}S`, remaining: frac(new Date(Date.UTC(y, 0, 20)), new Date(Date.UTC(y, 4, 10))) };
-  return { code: `${year}U`, remaining: frac(new Date(Date.UTC(y, 4, 20)), new Date(Date.UTC(y, 7, 25))) };
+  const y = d.getUTCFullYear(), md = (d.getUTCMonth() + 1) * 100 + d.getUTCDate();
+  const at = ([m, day]: readonly [number, number], yr = y) => Date.UTC(yr, m - 1, day, 12);
+  const key = ([m, day]: readonly [number, number]) => m * 100 + day;
+  const left = (s: readonly [number, number], e: readonly [number, number]) =>
+    Math.min(1, Math.max(0.2, (at(e) - d.getTime()) / (at(e) - at(s))));
+  const C = CALENDAR;
+  if (md > key(C.fall.end)) return { code: `${year}S`, remaining: 1 };                         // winter break
+  if (md <= key(C.spring.end)) return { code: `${year}S`, remaining: left(C.spring.start, C.spring.end) };
+  if (md < key(C.summer.end) && md >= key(C.summer.start) && year > 1) {
+    return { code: `${year - 1}U`, remaining: left(C.summer.start, C.summer.end) };
+  }
+  if (md < key(C.fall.start)) return { code: `${year}F`, remaining: 1 };                         // before classes
+  return { code: `${year}F`, remaining: left(C.fall.start, C.fall.end) };
 }
 
 // ---------- helpers ----------
@@ -79,7 +103,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   if (!track) throw new Error(`Unknown track ${input.trackId}`);
   const resources = byId(data.resources);
   const warnings: string[] = [];
-  const identity = new Set([...(input.identity ?? []), ...citizenshipTags(input.citizenship), ...(input.location === "nj" ? ["nj-resident"] : [])]);
+  const identity = identitySet(input);
 
   // 1. Time frame -------------------------------------------------------------
   const now = currentTerm(input.year, input.today);
@@ -411,13 +435,18 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
 
 function pushItem(map: Map<number, PlanItem[]>, t: number, it: PlanItem) { map.set(t, [...(map.get(t) ?? []), it]); }
 
-function citizenshipTags(c: PlanInput["citizenship"]): string[] {
+/** Every eligibility tag the student matches: identity answers, stated citizenship, NJ residency. */
+export function identitySet(input: PlanInput): Set<string> {
+  return new Set([...(input.identity ?? []), ...citizenshipTags(input.citizenship), ...(input.location === "nj" ? ["nj-resident"] : [])]);
+}
+
+export function citizenshipTags(c: PlanInput["citizenship"]): string[] {
   return c === "us-citizen" ? ["us-citizen", "us-citizen-or-pr"] : c === "us-pr" ? ["us-citizen-or-pr"] : c === "international" ? ["international"] : c === "undocumented" ? ["undocumented"] : [];
 }
-const LEGAL = new Set(["us-citizen", "us-citizen-or-pr", "nj-resident"]);
+export const LEGAL = new Set(["us-citizen", "us-citizen-or-pr", "nj-resident"]);
 
 /** Identity tags only ever add programs. Legal requirements (citizenship, residency) can hide them. */
-function eligibleFor(r: ResourceLite, identity: Set<string>, input: PlanInput): boolean {
+export function eligibleFor(r: ResourceLite, identity: Set<string>, input: PlanInput): boolean {
   const legal = r.identity.filter((x) => LEGAL.has(x));
   const knownCitizenship = input.citizenship && input.citizenship !== "skip";
   if (knownCitizenship && legal.some((x) => x !== "nj-resident") && !legal.some((x) => identity.has(x))) return false;
