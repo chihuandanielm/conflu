@@ -86,3 +86,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
+
+/* React Flow's attribution link: readable contrast and a 24px touch target (WCAG 2.2 target size). */
+.react-flow__attribution { background: var(--bg) !important; padding: 0 !important; }
+.react-flow__attribution a { color: var(--muted) !important; display: inline-block; min-height: 24px; min-width: 24px; padding: 4px 8px; font-size: 11px; line-height: 16px; box-sizing: border-box; }

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { Download, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
+import { Download, Link2, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
 import { majorName, trackName, type Answers } from "../intake/model.ts";
@@ -15,6 +15,7 @@ import { Timeline } from "./Timeline.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { toPlanInput } from "../intake/model.ts";
+import { shareHash } from "../state/share.ts";
 import { load, save } from "../state/storage.ts";
 
 const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
@@ -79,13 +80,20 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
     }
   };
 
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const share = async () => {
+    const url = `${window.location.origin}${window.location.pathname}${shareHash(answers)}`;
+    try { await navigator.clipboard.writeText(url); setAnnouncement("Link copied."); setShareUrl(url); }
+    catch { setShareUrl(url); }
+  };
+
   const outdated = isOutdated(saved);
   const ongoing = plan.ongoing;
 
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
-      <header className="border-b border-border bg-bg">
+      <header className="border-b border-border bg-bg" inert={!!open}>
         <div className="mx-auto flex max-w-5xl flex-wrap items-end gap-4 px-4 py-8 sm:px-8">
           <div className="w-full min-w-0 sm:w-auto sm:flex-1">
             <p className="font-mono text-xs text-muted">Career Pathway Mapper</p>
@@ -97,10 +105,20 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
             <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" ? "pdf-error" : undefined}>
               <Download size={16} aria-hidden="true" /> {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
+            <Button variant="secondary" onClick={() => void share()}><Link2 size={16} aria-hidden="true" /> Share link</Button>
             <Button variant="secondary" onClick={onEdit}><Pencil size={16} aria-hidden="true" /> Edit answers</Button>
             <Button variant="ghost" onClick={onStartOver}><RotateCcw size={16} aria-hidden="true" /> Start over</Button>
           </div>
         </div>
+        {shareUrl && (
+          <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8">
+            <label className="block text-sm text-muted" htmlFor="share-url">
+              Share link (copied). It opens your answers for review; it never includes your answers about identity or citizenship.
+            </label>
+            <input id="share-url" readOnly value={shareUrl} onFocus={(e) => e.currentTarget.select()}
+              className="mt-1 min-h-10 w-full rounded-md border border-border-strong bg-surface px-3 font-mono text-xs text-ink" />
+          </div>
+        )}
         {pdfState === "error" && (
           <p id="pdf-error" role="alert" className="mx-auto max-w-5xl px-4 pb-4 text-sm text-amber sm:px-8">The PDF couldn't be created. Try again, or use your browser's print option.</p>
         )}
@@ -117,11 +135,12 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
       </header>
 
       {tab === "resources" ? (
-        <main id="panel-resources" role="tabpanel" aria-labelledby="tab-resources" className="mx-auto max-w-5xl px-4 py-10 sm:px-8">
-          <ResourcesTab plan={plan} input={input} />
+        <main className="mx-auto max-w-5xl px-4 py-10 sm:px-8" inert={!!open}>
+          <div id="panel-resources" role="tabpanel" aria-labelledby="tab-resources"><ResourcesTab plan={plan} input={input} /></div>
         </main>
       ) : (
-      <main id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:px-8">
+      <main inert={!!open}>
+      <div id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:px-8">
         {outdated && (
           <div className="flex flex-wrap items-center gap-3 rounded-md border border-blue/20 bg-blue-tint px-4 py-3 text-sm">
             <p className="flex-1">Your plan was built on older data. Refresh it.</p>
@@ -220,6 +239,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           Built in your browser from the Career Pathway Mapper dataset <span className="font-mono">{plan.meta.dataVersion}</span> and
           planning engine <span className="font-mono">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
         </footer>
+      </div>
       </main>
       )}
 

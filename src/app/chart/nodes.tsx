@@ -20,7 +20,7 @@ function ItemCard({ id, data, block }: { id: string; data: ItemData; block?: boo
       <button type="button"
         onClick={() => onOpen(item, term)} onMouseEnter={() => onHover(item.goalId)} onMouseLeave={() => onHover(null)}
         onFocus={() => { onHover(item.goalId); onFocusCard(id); }} onBlur={() => onHover(null)}
-        aria-label={`${item.title}, ${item.hours} hours, ${term.label}${item.gate ? ", must-do" : ""}${item.partial ? ", continues next term" : ""}`}
+        data-goal={item.goalId}
         className={`nodrag nopan flex h-full w-full flex-col justify-between rounded-md border px-3 py-2 text-left transition-colors duration-150
           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue
           ${block ? "border-green bg-green-tint" : "border-border-strong bg-bg hover:border-blue"} ${changed ? "ring-2 ring-blue" : ""}`}>
@@ -30,6 +30,7 @@ function ItemCard({ id, data, block }: { id: string; data: ItemData; block?: boo
           {block && <span className="rounded-sm bg-bg px-1 text-[11px] font-semibold text-green">Full-time</span>}
           {item.gate && <span className="rounded-sm bg-blue-tint px-1 text-[11px] font-semibold text-blue">Must-do</span>}
           {item.partial && <span className="text-[11px] text-muted">continues →</span>}
+          <span className="sr-only">, {term.label}</span>
         </span>
       </button>
       <Handle type="source" position={Position.Right} isConnectable={false} style={hidden} />

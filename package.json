@@ -16,7 +16,8 @@
     "e2e": "playwright test",
     "fonts": "node scripts/woff-to-ttf.mjs",
     "predev": "node scripts/woff-to-ttf.mjs",
-    "pretest:ui": "node scripts/woff-to-ttf.mjs"
+    "pretest:ui": "node scripts/woff-to-ttf.mjs",
+    "serve": "node scripts/serve.mjs"
   },
   "engines": {
     "node": ">=22.6"

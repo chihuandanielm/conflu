@@ -1,16 +1,86 @@
-# Career Pathway Mapper: data and planning engine (draft core)
+# Career Pathway Mapper
 
-- **285 resources** for 20 Rutgers–New Brunswick majors: Rutgers offices, labs, and programs; NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools (LinkedIn, GitHub, open source, Kaggle, CAD, Figma, LSAT prep).
+A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It starts with Rutgers–New Brunswick undergraduates in 20 majors.
+
+- **One question at a time:** a 3-minute intake, by keyboard or touch, that saves as you go.
+- **A plan, not a list:** "Your next moves" for this term, a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
+- **Your resources:** every eligible program tied to the plan, plus everything for the student's major and year, with filters.
+- **A PDF** with real text, generated in the browser.
+- **Private by default:** no accounts, no names, no analytics, no cookies, no third-party requests, no AI. Everything runs in the browser from the JSON data in this repo, and answers stay in `localStorage`.
+
+It's a general trajectory, not a blueprint. **Start with `docs/ALGORITHM.md`** for how plans are built, and `docs/sample-plans.md` for example output.
+
+## Run it
+
+Needs Node 22.6 or newer (CI uses Node 24).
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+The dev server prints a local URL. Other commands:
+
+| Command | What it does |
+|---|---|
+| `npm run build` | Production build into `dist/` (also generates the PDF fonts and type-checks) |
+| `npm run serve` | Serves `dist/` with the real `_headers` applied (strict CSP), like Cloudflare Pages |
+| `npm run validate` | Data integrity: references, vocabularies, UI groupings |
+| `npm test` | Engine invariants and link-checker tests (Node's built-in runner) |
+| `npm run test:ui` | Vitest and Testing Library: components, intake, results, chart layout, resources, PDF, contrast |
+| `npm run e2e` | Playwright: builds, serves with `_headers`, runs the full flow on desktop and phone |
+| `npm run samples` | Regenerates `docs/sample-plans.md` |
+| `npm run check-links` | Visits every resource URL (needs internet; CI runs it weekly) |
+
+The first `npm run e2e` on a new machine needs a browser: `npx playwright install chromium`.
+
+## Deploy to Cloudflare Pages
+
+The site is fully static.
+
+1. In the Cloudflare dashboard, open **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
+2. Set **Production branch** to `main`. Every other branch gets its own preview URL.
+3. Set **Build command** to `npm run build` and **Build output directory** to `dist`.
+4. Under **Environment variables**, set `NODE_VERSION` to `24`.
+5. Deploy.
+
+`public/_headers` is copied into `dist/` and applied by Cloudflare. It sets:
+- a strict Content-Security-Policy (`default-src 'self'`)
+- `Referrer-Policy: no-referrer`
+- a Permissions-Policy denying camera, microphone, and geolocation
+- long caching for hashed assets
+
+The CSP's only allowances beyond `'self'` are for the PDF library's WebAssembly layout engine: `'wasm-unsafe-eval'` (compiling WebAssembly, not JavaScript eval) and `connect-src data:` (reading that module). The end-to-end test runs under these exact headers and fails on any CSP violation or any request that leaves the site.
+
+If GitHub Pages is turned on for this repository, turn it off (Settings → Pages → Source: None). It would serve the unbuilt source, and it can't apply `_headers`.
+
+## Site layout
+
+```
+src/engine/            planning engine: pure, deterministic, no DOM (see docs/ALGORITHM.md)
+src/app/
+  data/                builds the engine's Dataset from the JSON in the browser
+  intake/              one-question-at-a-time intake, review screen, model (steps, branching, relevance ranking)
+  results/             results page, next moves, notices, timeline, goal drawer, skills picture
+  chart/               desktop roadmap chart (React Flow, lazy-loaded) and its pure layout function
+  resources/           "Your resources" tab: tailoring (reuses the engine's eligibility), filters, cards
+  pdf/                 PDF document and download (lazy-loaded on click)
+  state/               localStorage, saved plan and re-planning, share links
+data/ui/               UI-only data: question copy, experience groups, identity labels, resource groups
+scripts/               validate, check-links, woff-to-ttf (PDF fonts), serve (dist with _headers), sample plans
+test/                  engine and link-checker tests
+e2e/                   Playwright end-to-end tests
+```
+
+Saved state lives only in the browser: `cpm.intake.v1` (answers in progress), `cpm.plan.v1` (answers, check-offs, last placements, engine and data versions), and `cpm.roadmap-view` (chart or list). A share link puts the answers in the URL hash, which browsers never send to a server. It never includes identity or citizenship answers.
+
+## The data
+
+- **285 resources** for 20 Rutgers–New Brunswick majors: Rutgers offices, labs, and programs; NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools.
 - **109 career goals** and **27 career tracks** that the engine turns into a semester-by-semester roadmap.
-- A **reference planning engine** (`src/engine/`) with passing invariant tests.
-
-**Start with `docs/ALGORITHM.md`.** It is the full systems design and the handoff document for Claude Code. `docs/sample-plans.md` shows the engine's output for four example students.
-
-```
-npm run validate   # data integrity (Node 22.6+)
-npm test           # engine invariants and link-checker tests
-npm run samples    # regenerate docs/sample-plans.md
-```
 
 ## Why JSON files
 
@@ -21,7 +91,7 @@ The site is a static TypeScript app with no server, so the data ships as JSON ne
 - `scripts/validate.mjs` rejects bad entries (unknown majors, typos in tags, missing fields) before they reach the site.
 - The fields map one-to-one to database tables if you later move to SQLite or Supabase.
 
-## Layout
+## Data files
 
 ```
 data/
@@ -64,7 +134,7 @@ scripts/check-links.mjs     visits every url and records the result
 | `url` | The program's home site |
 | `contact` | Email, phone, and location where known; `how` says how to reach them |
 | `status`, `statusNote` | `active`, `paused`, `changed`, or `ended`, with why |
-| `verification` | `search-confirmed`, `link-checked`, `unverified`, or `broken`, plus the date |
+| `verification` | `link-checked`, `search-confirmed`, `blocked`, `unverified`, or `broken`, plus the date (see below) |
 
 ## Verification status: read this
 
@@ -82,7 +152,7 @@ The checker also records `httpStatus`, `finalUrl` (when a redirect moved the pag
 
 - **How links are checked:** the "Validate data and check links" workflow runs `scripts/check-links.mjs` on every data change and every Monday, writes the results back, and posts a report (loaded / blocked / broken / redirected) to the run summary. It sends a normal browser user agent and reads the page body, so bot walls are labeled `blocked`, not `broken`.
 - **2026-11-15 review:** the first run marked 56 links broken. Web research found correct landing pages for 41 (wrong domains such as Emma Bowen's `.org`, Kenvue's `jobs.kenvue.com`, the Rutgers Energy Institute's merger into RCEI, and homepages replaced with the specific program page) and confirmed that 12 others are real sites that block bots. Two still need a person: `phi-alpha` and `nj-biomaterials`. (`bloomberg-bmc` loaded on a later run.)
-- **First run of the new checker (2026-11-15):** 212 loaded, 42 blocked, 6 broken, about 40 redirected. Clean redirects were adopted as the new URLs. Real changes were recorded as `status: changed`: getINVOLVED became The Arc, the LSAMP site redirects to a general page, Public Health AmeriCorps moved under Healthy Futures, and Aresty's summer research list page was removed. Prudential's careers page moved to `jobs.prudential.com/students`.
+- **First run of the new checker (2026-11-15):** 212 loaded, 42 blocked, 6 broken, about 40 redirected. Clean redirects were adopted as the new URLs. Real changes were recorded as `status: changed`: getINVOLVED became The Arc, the LSAMP site redirects to a general page, Public Health AmeriCorps moved under Healthy Futures, and Aresty's summer research list page was removed. Prudential's student page moved to `jobs.prudential.com/us-en/early-talent/programs/internships`.
 
 ## Known limits
 

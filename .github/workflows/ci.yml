@@ -20,3 +20,23 @@ jobs:
       - run: npm test
       - run: npm run test:ui
       - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # Builds the site and serves it with the real _headers (strict CSP), then runs the end-to-end flow.
+      - run: npm run e2e
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7

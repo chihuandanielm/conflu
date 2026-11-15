@@ -66,11 +66,12 @@ function resumeStep(): StepId {
   return saved.step === "intro" ? "status" : (firstIncomplete(a) && saved.step === "review" ? firstIncomplete(a)! : saved.step);
 }
 
-export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver }: {
-  onBuild: (a: Answers) => void; startAt?: StepId; onContinuePlan?: () => void; onStartOver?: () => void;
+export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers }: {
+  onBuild: (a: Answers) => void; startAt?: StepId; onContinuePlan?: () => void; onStartOver?: () => void; initialAnswers?: Answers;
 }) {
   const [state, dispatch] = useReducer(reducer, undefined, () => {
     const s = initialIntake();
+    if (initialAnswers) return { answers: initialAnswers, step: startAt ?? "review", returnToReview: false };
     return startAt ? { ...s, step: startAt } : s;
   });
   const { answers, step } = state;

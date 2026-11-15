@@ -1,0 +1,112 @@
+import { expect, test, type Page } from "@playwright/test";
+
+/** Collects CSP violations and any request that leaves the site. Both must stay empty. */
+function watch(page: Page) {
+  const violations: string[] = [];
+  const offsite: string[] = [];
+  page.on("console", (m) => { if (/Content Security Policy|Refused to/i.test(m.text())) violations.push(m.text()); });
+  page.on("request", (r) => { const u = new URL(r.url()); if (/^https?:$/.test(u.protocol) && u.host !== "localhost:4321") offsite.push(r.url()); });
+  return { violations, offsite };
+}
+
+const heading = (page: Page) => page.getByRole("heading", { level: 1 });
+
+test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
+  const seen = watch(page);
+  await page.goto("/");
+  await expect(heading(page)).toContainText("semester-by-semester career plan");
+  await expect(page.getByText(/general trajectory, not a blueprint/)).toBeVisible();
+  await page.getByRole("button", { name: "Start" }).click();
+
+  await expect(heading(page)).toHaveText("Where are you right now?");
+  await page.keyboard.press("1");                                         // college student (auto-advances)
+  await expect(heading(page)).toHaveText("What's your major?");
+  await page.getByRole("searchbox", { name: "Search majors" }).fill("Computer Science");
+  await page.keyboard.press("Enter");
+  await expect(heading(page)).toHaveText("What year are you in?");
+  await page.keyboard.press("2");
+  await expect(heading(page)).toHaveText("Which school do you go to?");
+  await page.getByRole("radio", { name: "Rutgers–New Brunswick" }).click();
+  await expect(heading(page)).toHaveText("Where do you want to end up?");
+  await page.getByRole("radio", { name: /Software engineering/ }).click();
+  await expect(heading(page)).toHaveText("How soon do you want to get there?");
+  await page.getByRole("radio", { name: "By graduation" }).click();
+
+  await expect(heading(page)).toHaveText("What have you already done?");
+  await page.getByRole("button", { name: "I have a resume" }).click();
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(heading(page)).toHaveText("Which skills are you comfortable with?");
+  await page.getByRole("button", { name: "Python" }).click();
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(heading(page)).toHaveText("Do you have any of these certifications?");
+  await page.getByRole("button", { name: "Skip" }).click();
+  await expect(heading(page)).toHaveText("How many hours a week can you put toward this?");
+  await page.getByRole("radio", { name: "10 hours a week" }).click();
+  await expect(heading(page)).toHaveText("What about summers?");
+  await page.keyboard.press("1");
+  await expect(heading(page)).toHaveText("Where are you based?");
+  await page.getByRole("radio", { name: "New Jersey" }).click();
+  await expect(heading(page)).toHaveText("What's your citizenship status?");
+  await page.getByRole("button", { name: "Skip" }).click();
+  await expect(heading(page)).toHaveText("Anything else we should know?");
+  await page.getByRole("button", { name: "Skip" }).click();
+
+  await expect(heading(page)).toHaveText("Check your answers");
+  await expect(page.getByText("Computer Science", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Build my plan" }).click();
+
+  await expect(heading(page)).toHaveText("Your career roadmap");
+  await expect(page.getByText("Software engineering · Computer Science, year 2 · by graduation · 10 hrs/week")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Your next moves" })).toBeVisible();
+
+  // Open a goal from the chart and mark it done.
+  const card = page.locator(".react-flow__node-item button").first();
+  await expect(card).toBeVisible();
+  const title = (await card.locator("span").first().textContent())!.trim();
+  const goal = (await card.getAttribute("data-goal"))!;
+  const sameTitle = page.locator(`.react-flow__node-item button[data-goal^="${goal.split("@")[0]}"]`);
+  const before = await sameTitle.count();
+  await card.click();
+  const drawer = page.getByRole("dialog");
+  await expect(drawer.getByRole("heading", { name: title })).toBeVisible();
+  await expect(drawer.getByText("Why it's in your plan")).toBeVisible();
+  await drawer.getByRole("button", { name: "Mark as done" }).click();
+  await expect(drawer).toBeHidden();
+
+  // The plan updates: the goal moves to "Checked off" and its card leaves the chart
+  // (a yearly goal like FAFSA keeps its later-year cards).
+  await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
+  await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
+  await expect(sameTitle).toHaveCount(before - 1);
+  await expect(page.getByText(/Plan updated/)).toBeAttached();
+
+  // Download the PDF.
+  const [download] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Download PDF" }).click()]);
+  expect(download.suggestedFilename()).toMatch(/^career-roadmap-software-engineering-\d{4}-\d{2}-\d{2}\.pdf$/);
+  const path = await download.path();
+  const { readFileSync } = await import("node:fs");
+  expect(readFileSync(path!).subarray(0, 5).toString()).toBe("%PDF-");
+
+  expect(seen.violations).toEqual([]);
+  expect(seen.offsite).toEqual([]);
+});
+
+test("phone: timeline instead of the chart, bottom-sheet drawer, no sideways scroll @phone", async ({ page }) => {
+  const seen = watch(page);
+  // Start from a shared link to skip the intake (identity and citizenship are never in it).
+  const share = { v: 1, m: "nursing", y: 3, t: "nursing-clinical", h: "graduation", s: "rutgers-nb", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
+  const hash = Buffer.from(JSON.stringify(share)).toString("base64url");
+  await page.goto(`/#plan=${hash}`);
+  await expect(heading(page)).toHaveText("Check your answers");
+  expect(new URL(page.url()).hash).toBe("");
+  await page.getByRole("button", { name: "Build my plan" }).click();
+  await expect(heading(page)).toHaveText("Your career roadmap");
+  await expect(page.locator(".react-flow")).toHaveCount(0);
+  await page.getByRole("heading", { name: "Semester by semester" }).scrollIntoViewIfNeeded();
+  await page.locator("section[aria-labelledby=roadmap-h] li button").first().click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.keyboard.press("Escape");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(seen.violations).toEqual([]);
+  expect(seen.offsite).toEqual([]);
+});
