@@ -471,7 +471,7 @@
     },
     {
       "id": "mit-negotiation",
-      "name": "MIT CAPD: Negotiation tips for first-gen and low-income students",
+      "name": "MIT CAPD: Demystifying salary negotiation (5 takeaways from alumni)",
       "type": "guide",
       "scope": "national",
       "majors": [
@@ -488,8 +488,8 @@
       "pay": "free",
       "season": null,
       "typicalDeadline": null,
-      "summary": "How to research pay, weigh an offer, and ask for more, written for students who haven't negotiated before.",
-      "url": "https://capd.mit.edu/blog/2025/10/22/negotiation-tips-for-first-gen-and-low-income-students/",
+      "summary": "How to research pay, judge an offer on more than base salary, and ask for more, from alumni who have done it.",
+      "url": "https://capd.mit.edu/resources/demystifying-the-salary-negotiation-process-5-key-takeaways-from-mit-alumni/",
       "applyUrl": null,
       "contact": {
         "how": "Read it before you reply to any offer."
@@ -497,10 +497,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "httpStatus": 410,
-        "note": "Link failed (HTTP 410); needs a new URL."
+        "note": "Replaced after the 2026-11-16 link check (old post returned 410); found by web search."
       },
       "tags": [
         "guide"
@@ -851,7 +850,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "The AAMC's guidance on finding physicians to shadow and getting the most from it.",
-      "url": "https://students-residents.aamc.org/applying-medical-school/shadowing-doctor",
+      "url": "https://students-residents.aamc.org/aspiring-docs-fact-sheets-get-experience/shadowing-doctor",
       "applyUrl": null,
       "contact": {
         "how": "Use it to plan whom to ask first."
@@ -861,8 +860,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://students-residents.aamc.org/aspiring-docs-fact-sheets-get-experience/shadowing-doctor"
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1015,7 +1013,7 @@
     },
     {
       "id": "mynextmove",
-      "name": "My Next Move: O*NET Interest Profiler",
+      "name": "O*NET Interest Profiler",
       "type": "guide",
       "scope": "national",
       "majors": [
@@ -1032,8 +1030,8 @@
       "pay": "free",
       "season": null,
       "typicalDeadline": null,
-      "summary": "The Department of Labor's free interest quiz that suggests careers matching what you like to do.",
-      "url": "https://www.mynextmove.org/explore/ip",
+      "summary": "The Department of Labor’s free interest quiz (formerly on My Next Move) that suggests careers matching what you like to do.",
+      "url": "https://onetinterestprofiler.org/",
       "applyUrl": null,
       "contact": {
         "how": "Take the quiz, then open the careers it suggests."
@@ -1043,8 +1041,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://onetinterestprofiler.org/"
+        "httpStatus": 200
       },
       "tags": [
         "guide"
