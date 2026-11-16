@@ -27,7 +27,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–New Brunswick's packaging program in the School of Engineering (B.S. in Applied Sciences in Engineering, Packaging Engineering concentration), described as the only packaging program housed in a U.S. engineering school.",
-      "url": "https://packaging.rutgers.edu/packaging-undergraduate-studies",
+      "url": "https://mae.rutgers.edu/admissions/undergraduate-program/packaging-engineering",
       "applyUrl": null,
       "contact": {
         "how": "Talk to the packaging undergraduate director about the curriculum and co-op timing."
@@ -37,8 +37,7 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Confirmed by search; automated check was refused (ERR_TLS_CERT_ALTNAME_INVALID).",
-        "httpStatus": null
+        "note": "Replaced after the 2026-11-16 link check; found by web search, awaiting the next live check."
       },
       "tags": []
     },
@@ -66,7 +65,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Credit-bearing packaging co-ops built into the Rutgers packaging schedule (alternative fall or spring plans in junior year); past students worked at Mondelēz, Johnson & Johnson, Estée Lauder, and Unilever, and some received job offers.",
-      "url": "https://packaging.rutgers.edu/node/229",
+      "url": "https://mae.rutgers.edu/admissions/undergraduate-program/packaging-engineering",
       "applyUrl": null,
       "contact": {
         "how": "Plan the co-op semester with the packaging program before junior year."
@@ -76,8 +75,7 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Confirmed by search; automated check was refused (ERR_TLS_CERT_ALTNAME_INVALID).",
-        "httpStatus": null
+        "note": "Replaced after the 2026-11-16 link check; found by web search, awaiting the next live check."
       },
       "tags": []
     },
@@ -107,7 +105,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "A packaging credential any Rutgers–New Brunswick student can add: Introduction to Packaging Engineering plus three more packaging courses.",
-      "url": "https://packaging.rutgers.edu/packaging-undergraduate-studies",
+      "url": "https://soe.rutgers.edu/oas/packaging",
       "applyUrl": null,
       "contact": {
         "how": "Start with Introduction to Packaging Engineering (14:440:301)."
@@ -117,8 +115,7 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Confirmed by search; automated check was refused (ERR_TLS_CERT_ALTNAME_INVALID).",
-        "httpStatus": null
+        "note": "Replaced after the 2026-11-16 link check; found by web search, awaiting the next live check."
       },
       "tags": []
     },

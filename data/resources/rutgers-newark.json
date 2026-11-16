@@ -186,7 +186,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–Newark's traditional honors college for School of Arts and Sciences–Newark students, with honors courses and advising.",
-      "url": "https://sasn.rutgers.edu/academics-admissions/honors/honors-college",
+      "url": "https://sasn.rutgers.edu/honors-college",
       "applyUrl": null,
       "contact": {
         "email": "honorsn@newark.rutgers.edu",
@@ -199,8 +199,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://sasn.rutgers.edu/honors-college"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -607,7 +606,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Advising for Rutgers–Newark students and recent alumni preparing for medical, dental, health professions, and law school, in the Office of Academic Services.",
-      "url": "https://careers.newark.rutgers.edu/?p=39078",
+      "url": "https://careers.newark.rutgers.edu/resources/rutgers-newark-pre-professional-services/",
       "applyUrl": null,
       "contact": {
         "location": "Engelhard Hall, Suite 101",
@@ -618,8 +617,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://careers.newark.rutgers.edu/resources/rutgers-newark-pre-professional-services/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -733,7 +731,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "First stop for military-affiliated Rutgers–Newark students: benefits, transition support, and community.",
-      "url": "https://veterans.newark.rutgers.edu",
+      "url": "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs",
       "applyUrl": null,
       "contact": {
         "email": "veteranaffairs@newark.rutgers.edu",
@@ -745,8 +743,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -822,7 +819,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Student organization with law school workshops, mock trials, and lawyer forums for Rutgers–Newark undergraduates.",
-      "url": "https://raiderlink.newark.rutgers.edu/PRELAW/",
+      "url": "https://raiderlink.newark.rutgers.edu/prelaw/home/",
       "applyUrl": null,
       "contact": {
         "how": "Join through RaiderLink."
@@ -832,8 +829,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://raiderlink.newark.rutgers.edu/prelaw/home/"
+        "httpStatus": 200
       },
       "tags": []
     },

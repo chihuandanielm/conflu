@@ -27,7 +27,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–Camden's career office: choosing a major, resume critiques, interview practice, internship and job search, and the Rutgers–Camden Handshake board.",
-      "url": "https://careercenter.camden.rutgers.edu",
+      "url": "https://camden.rutgers.edu/career-advancement-center",
       "applyUrl": null,
       "contact": {
         "email": "careercenter@camden.rutgers.edu",
@@ -40,8 +40,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://camden.rutgers.edu/career-advancement-center"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -71,7 +70,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–Camden's job and internship database and appointment booking. Students are preloaded; upload a resume (critiqued first) to apply.",
-      "url": "https://careercenter.camden.rutgers.edu/handshake",
+      "url": "https://camden.rutgers.edu/career-advancement-center/students-alumni/student-guide/online-tools/online-career-resources/handshake",
       "applyUrl": null,
       "contact": {
         "how": "Sign in at Rutgers-Camden.joinhandshake.com with your NetID."
@@ -79,11 +78,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "httpStatus": 404,
-        "finalUrl": "https://camden.rutgers.edu/career-advancement-centerhandshake",
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "note": "Replaced after the 2026-11-16 link check; found by web search, awaiting the next live check."
       },
       "tags": []
     },
@@ -357,7 +354,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Federally funded academic and personal support at Rutgers–Camden for first-generation and limited-income students and students with disabilities.",
-      "url": "https://trio.camden.rutgers.edu",
+      "url": "https://camden.rutgers.edu/sas/trio",
       "applyUrl": null,
       "contact": {
         "phone": "856-225-6229",
@@ -368,8 +365,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://camden.rutgers.edu/sas/trio"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -525,7 +521,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–Camden's tutoring, writing support, supplemental instruction, and study groups (formerly the Rutgers–Camden Learning Center).",
-      "url": "https://class.camden.rutgers.edu",
+      "url": "https://camden.rutgers.edu/sas/class",
       "applyUrl": null,
       "contact": {
         "how": "Book through NavigateStudent."
@@ -535,8 +531,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://camden.rutgers.edu/sas/class"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -689,20 +684,18 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Career Center advising for medical, dental, veterinary, PA, podiatry, and optometry applicants, including the medical and dental school committee letter.",
-      "url": "https://careercenter.camden.rutgers.edu/medical-school-committee-letter/",
+      "url": "https://camden.rutgers.edu/career-advancement-center",
       "applyUrl": null,
       "contact": {
         "email": "ruc_premed@camden.rutgers.edu",
-        "how": "Register in the pre-health database early; registering doesn't commit you to applying."
+        "how": "The committee letter page moved with the Career Advancement Center's site: email ruc_premed@camden.rutgers.edu or ask the center. Register in the pre-health database early; registering doesn't commit you to applying."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "httpStatus": 404,
-        "finalUrl": "https://camden.rutgers.edu/career-advancement-centermedical-school-committee-letter/",
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "note": "Replaced after the 2026-11-16 link check; found by web search, awaiting the next live check."
       },
       "tags": []
     },
@@ -731,7 +724,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Rutgers–Camden's pre-law adviser (Department of Political Science) and the Legal Studies minor; the Career Center also helps with law school personal statements.",
-      "url": "https://polisci.camden.rutgers.edu/?p=82993",
+      "url": "https://polisci.camden.rutgers.edu/pre-law-advising-and-resources/",
       "applyUrl": null,
       "contact": {
         "how": "Meet the pre-law adviser; consider the Legal Studies minor."
@@ -741,8 +734,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://polisci.camden.rutgers.edu/pre-law-advising-and-resources/"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -816,7 +808,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Support for military-affiliated students at Rutgers–Camden, a Purple Heart University.",
-      "url": "https://veterans.camden.rutgers.edu",
+      "url": "https://camden.rutgers.edu/veterans",
       "applyUrl": null,
       "contact": {
         "email": "ova@camden.rutgers.edu",
@@ -828,8 +820,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://camden.rutgers.edu/veterans"
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -861,7 +852,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Internship help and the business internship course (elective credit with a 2.75+ GPA) for Rutgers School of Business–Camden students.",
-      "url": "https://business.camden.rutgers.edu/internships/",
+      "url": "https://business.camden.rutgers.edu/seed/internships/",
       "applyUrl": null,
       "contact": {
         "phone": "856-225-6800",
@@ -873,8 +864,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://business.camden.rutgers.edu/seed/internships/"
+        "httpStatus": 200
       },
       "tags": []
     },
