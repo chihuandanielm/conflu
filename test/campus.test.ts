@@ -48,8 +48,11 @@ test("New Brunswick plans match the stored baseline (re-record with scripts/nb-b
   for (const b of plans) {
     const p = buildPlan(b.input, data);
     const label = `${b.input.trackId} y${b.input.year} ${b.input.citizenship ?? ""} ${(b.input.identity ?? []).join("+")}`;
-    assert.deepEqual(p.terms.map((t) => ({ code: t.code, items: t.items.map((i) => `${i.goalId}|${i.hours}|${i.partial}|${i.resources.map((r) => r.id).join(",")}`) })),
-      b.terms, `${label}: placements changed`);
+    // Resource order on a card depends on live link checks (verified links rank higher), so compare which resources
+    // a card shows, not their order; placements and hours must match exactly.
+    const norm = (s: string) => { const [g, h, part, rs] = s.split("|"); return `${g}|${h}|${part}|${rs.split(",").filter(Boolean).sort().join(",")}`; };
+    assert.deepEqual(p.terms.map((t) => ({ code: t.code, items: t.items.map((i) => norm(`${i.goalId}|${i.hours}|${i.partial}|${i.resources.map((r) => r.id).join(",")}`)) })),
+      b.terms.map((t) => ({ code: t.code, items: t.items.map(norm) })), `${label}: placements changed`);
     assert.deepEqual(p.backlog.map((x) => x.goalId), b.backlog, `${label}: backlog changed`);
     for (const r of shown(p)) assert.ok(usableAt(r, "nb"), `${label}: shows ${r.id}, which NB students can't use`);
   }
