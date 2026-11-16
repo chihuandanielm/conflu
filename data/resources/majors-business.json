@@ -34,7 +34,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -71,10 +71,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-15",
-        "httpStatus": 200,
-        "finalUrl": "https://professional.bloomberg.com/products/bloomberg-terminal/education/"
+        "state": "blocked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -109,7 +109,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -144,7 +144,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -178,7 +178,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": [
@@ -216,7 +216,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -250,7 +250,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -284,7 +284,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": [
@@ -321,7 +321,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -357,7 +357,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -392,7 +392,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -426,7 +426,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -461,7 +461,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -495,9 +495,9 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
-        "finalUrl": "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10&vt=2d7edf0d08bffe724debf1ab7f6e9dd2568a92f405aea4a98fd3664cf6b290b1daaf3445d13cdc58bf1aa40d85290fa8",
+        "finalUrl": "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10&vt=92a64be4023f37b7f620e8211de5ca35366837314979ea5a2d2c05f89d1e1f4edea0fc5d43861bc4c457bd140b570688",
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
@@ -533,7 +533,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -567,7 +567,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -600,7 +600,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -635,7 +635,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -668,7 +668,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -704,7 +704,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -744,7 +744,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []

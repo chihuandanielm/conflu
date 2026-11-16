@@ -33,7 +33,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -67,7 +67,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -103,7 +103,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -136,7 +136,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -167,7 +167,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -203,7 +203,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -244,7 +244,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -280,7 +280,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -315,7 +315,7 @@
       "statusNote": "Aresty's separate summer program list page was removed in 2026; its programs and funding page lists current options.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -363,7 +363,7 @@
       "statusNote": "lsamp-nb.rutgers.edu now redirects to Rutgers' general research resources page; the program's current status is unclear.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -409,7 +409,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -450,7 +450,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -492,7 +492,7 @@
       "statusNote": "TRIO funding survived the FY2026 budget, but the Education Department cut some McNair grants nationally and removed race-based criteria. Confirm the Rutgers program is enrolling.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -530,7 +530,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -567,7 +567,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -604,7 +604,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -642,7 +642,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -679,7 +679,7 @@
       "statusNote": "Eligibility changed for students entering after Spring 2026; earlier entrants may qualify for exceptions.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -718,7 +718,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -754,7 +754,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -791,7 +791,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -825,7 +825,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -859,7 +859,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -895,7 +895,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -931,7 +931,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -977,7 +977,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1019,7 +1019,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1058,7 +1058,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1092,7 +1092,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1128,7 +1128,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1164,7 +1164,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1198,7 +1198,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1234,7 +1234,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1270,7 +1270,7 @@
       "statusNote": "getINVOLVED.rutgers.edu now redirects to The Arc, Rutgers' involvement platform in the Suitable app. Sign in with your NetID.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1309,7 +1309,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200,
         "finalUrl": "https://success.rutgers.edu/resources?keys=Cultural%20Centers"
       },
@@ -1344,7 +1344,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1380,7 +1380,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1418,7 +1418,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1454,7 +1454,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1489,7 +1489,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -1527,7 +1527,7 @@
       "statusNote": "The Rutgers Energy Institute became part of the Rutgers Climate and Energy Institute in 2023. Check RCEI for current student positions.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1565,7 +1565,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1603,7 +1603,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -1642,7 +1642,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1681,7 +1681,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -1721,7 +1721,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1760,7 +1760,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -1800,7 +1800,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1839,7 +1839,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1878,7 +1878,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1918,7 +1918,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -1959,7 +1959,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -1998,7 +1998,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -2037,7 +2037,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 405,
         "note": "Site refused the automated check (HTTP 405); open it by hand."
       },
@@ -2076,7 +2076,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -2114,7 +2114,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -2152,7 +2152,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -2185,7 +2185,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
@@ -2224,7 +2224,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-15",
+        "checkedOn": "2026-11-16",
         "httpStatus": 200
       },
       "tags": []
