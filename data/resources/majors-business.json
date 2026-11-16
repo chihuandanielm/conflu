@@ -494,9 +494,11 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200
+        "httpStatus": 200,
+        "finalUrl": "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10",
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
