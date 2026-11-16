@@ -566,7 +566,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Social work honor society.",
-      "url": "https://www.phialphahonorsociety.org",
+      "url": "https://phialpha.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -574,10 +574,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": null,
-        "note": "Link failed (host not found); needs a new URL."
+        "httpStatus": 200
       },
       "tags": []
     },
