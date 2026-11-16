@@ -5,7 +5,7 @@ import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, experience
 import { reducer, type IntakeState } from "./IntakeFlow.tsx";
 import { answerText } from "./Review.tsx";
 
-const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
+const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, semester: 1, yearTerm: "2F", trackId: "software-engineering",
   horizon: "graduation", summer: "full", school: "rutgers-nb", enrollment: "full-time", location: "nj", experience: ["resume"], skills: ["python"] };
 
 describe("steps", () => {
@@ -14,8 +14,8 @@ describe("steps", () => {
     expect(stepsFor({ ...cs, majorId: "mechanical-engineering" })).toContain("coop");
     expect(stepsFor({ ...cs, majorId: "pharmacy" })).toContain("coop");
   });
-  it("counts 15 questions for a CS student and starts with intro, ends with review", () => {
-    expect(questionSteps(cs)).toHaveLength(15);
+  it("counts 16 questions for a CS student and starts with intro, ends with review", () => {
+    expect(questionSteps(cs)).toHaveLength(16);
     expect(stepsFor(cs).slice(4, 6)).toEqual(["year", "enrollment"]); // enrollment right after year, before the goal
     expect(stepsFor(cs)[0]).toBe("intro");
     expect(stepsFor(cs).at(-1)).toBe("review");
@@ -24,6 +24,7 @@ describe("steps", () => {
     expect(firstIncomplete(emptyAnswers())).toBe("status");
     expect(firstIncomplete({ ...cs, horizon: undefined })).toBe("horizon");
     expect(firstIncomplete({ ...cs, enrollment: undefined })).toBe("enrollment");
+    expect(firstIncomplete({ ...cs, semester: undefined })).toBe("year"); // year and semester are one answer
     expect(firstIncomplete(cs)).toBeNull();
   });
   it("detects summer break with the engine's calendar", () => {
@@ -40,6 +41,12 @@ describe("plan input", () => {
     expect(input).not.toHaveProperty("citizenship");
     expect(input).not.toHaveProperty("openToCoop");
     expect(buildPlan(input, dataset).terms[0].code).toBe("2F");
+  });
+  it("sends the semester, and gender only as identity tags", () => {
+    const input = toPlanInput({ ...cs, semester: 2, gender: "woman", identity: ["first-generation"] }, "2026-11-15");
+    expect(input.semester).toBe(2);
+    expect(input.identity).toEqual(["first-generation", "women"]);
+    expect(toPlanInput({ ...cs, gender: "skip" }, "2026-11-15").identity).toEqual([]);
   });
   it("sends the co-op answer only for co-op majors", () => {
     expect(toPlanInput({ ...cs, majorId: "pharmacy", openToCoop: false }, "2026-11-15").openToCoop).toBe(false);

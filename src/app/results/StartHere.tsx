@@ -18,7 +18,7 @@ export function StartHere({ term, progress, onOpen, edges = [] }: {
     <section aria-labelledby="start-h" className="rounded-md border border-blue/30 bg-blue-tint p-5">
       <h2 id="start-h" className="text-sm font-semibold text-blue">Start here</h2>
       <p className="mt-2 text-lg font-semibold text-ink">{step!.text}</p>
-      <p className="mt-1 text-sm text-muted">Step {step!.n} of {step!.total} for “{it.title}”. One step at a time is enough.</p>
+      <p className="mt-1 text-sm text-muted">Step {step!.n} of {step!.total} for “{it.title}”.</p>
       <div className="mt-4 flex flex-wrap items-center gap-4">
         <button type="button" onClick={() => onOpen(it, term)}
           className="inline-flex min-h-11 items-center gap-1.5 rounded-md bg-blue px-4 font-semibold text-white hover:bg-blue-hover">

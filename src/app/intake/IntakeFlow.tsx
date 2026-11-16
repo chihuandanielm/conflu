@@ -121,13 +121,13 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
       onEdit={(s) => dispatch({ type: "go", step: s, returnToReview: true })} onBuild={() => onBuild(answers)} />;
   } else {
     const body = renderStep(step, answers, headingId, choose, (field, id) => dispatch({ type: "toggle", field, id }));
-    const optional = step === "location" || step === "citizenship" || step === "identity" || step === "credentials";
+    const optional = step === "gender" || step === "location" || step === "citizenship" || step === "identity" || step === "credentials";
     screen = (
       <QuestionShell focusHeading={step !== "major"} copy={COPY[step]} headingId={headingId} step={qIndex + 1} total={qSteps.length}
         onBack={back} onContinue={next} canContinue={canContinue}
         continueLabel={state.returnToReview ? "Back to review" : step === "experience" && !answers.experience.length ? "None yet, continue" : "Continue"}
         onSkip={optional ? () => {
-          const clear: Partial<Answers> = step === "location" ? { location: undefined }
+          const clear: Partial<Answers> = step === "gender" ? { gender: undefined } : step === "location" ? { location: undefined }
             : step === "citizenship" ? { citizenship: undefined } : step === "identity" ? { identity: [] } : { credentials: [] };
           dispatch({ type: "set", patch: clear }); next();
         } : undefined}
@@ -170,7 +170,8 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
       return (
         <>
           {isSummerBreak(todayISO()) && <p className="mb-4 rounded-md bg-blue-tint px-4 py-3 text-sm text-ink">{uiIntake.year.summerHint}</p>}
-          {single(intake.years.map((y) => ({ value: y.id as 1 | 2 | 3 | 4, label: y.label })), a.year, (v) => ({ year: v }))}
+          {single(intake.yearTerms.map((y) => ({ value: y.id, label: y.label })), a.yearTerm ?? intake.yearTerms.find((y) => y.year === a.year && y.semester === a.semester)?.id,
+            (v) => { const y = intake.yearTerms.find((x) => x.id === v)!; return { yearTerm: y.id, year: y.year as 1 | 2 | 3 | 4, semester: y.semester as 1 | 2 }; })}
         </>
       );
     case "enrollment":
@@ -200,6 +201,8 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
       return single(noSkip(intake.location).map((o) => ({ value: o.id as NonNullable<Answers["location"]>, label: o.label })), a.location, (v) => ({ location: v }));
     case "citizenship":
       return single(noSkip(intake.citizenship).map((o) => ({ value: o.id as NonNullable<Answers["citizenship"]>, label: o.label })), a.citizenship, (v) => ({ citizenship: v }));
+    case "gender":
+      return single(intake.gender.options.map((o) => ({ value: o.id, label: o.label })), a.gender, (v) => ({ gender: v }));
     case "identity":
       return <ChipList label="About you" chips={intake.optionalIdentity.tags.map((t) => ({ id: t, label: identityLabel(t) }))}
         selected={a.identity} onToggle={(id) => toggle("identity", id)} />;

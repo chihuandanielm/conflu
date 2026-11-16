@@ -230,7 +230,6 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       if (n.strength >= 1) continue;
       if (inst.win.e > endIdx) { backlog.push({ goalId: n.key, title: g.title, reason: "Starts after your time frame.", kind: "not-now" }); continue; }
       if (inst.win.l < nowIdx && !g.lateOk) {
-        if (n.gate) warnings.push(`"${g.title}" is required for ${track.name}, but its window has passed. Talk to an advisor about alternatives.`);
         backlog.push({ goalId: n.key, title: g.title, reason: "Its usual time has passed for your year.", kind: "past" }); continue;
       }
       if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: titleNow(g, inst.win, n.key), reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); rank.set(n.key, weight); continue; }
@@ -460,7 +459,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     backlog.push({ goalId: n.key, title: titleNow(n.goal, n.win, n.key), reason: n.placedAt.length ? "Continues after this plan." : reason, kind });
     rank.set(n.key, n.staticScore + (n.placedAt.length ? 1 : 0)); // finishing what's started comes first
     if (n.gate && kind === "next") warnings.push(`"${n.goal.title}" is essential for ${track.name} and is next in line. To fit it sooner, add a few hours a week or free up a summer.`);
-    else if (n.gate && kind === "past") warnings.push(`"${n.goal.title}" is usually required for ${track.name}, but its usual time has passed. Talk to an advisor about alternatives.`);
+    // A must-do from an earlier stage that has passed gets no notice (engine 0.8.0): the plan looks forward, and the
+    // final year's must-do is the outcome itself (the job search or applications).
   }
   const order = { continues: 0, next: 1, optional: 2, "not-now": 3, past: 4 } as const;
   backlog.sort((a, b) => order[a.kind] - order[b.kind] || (rank.get(b.goalId) ?? 0) - (rank.get(a.goalId) ?? 0) || a.goalId.localeCompare(b.goalId));

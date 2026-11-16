@@ -5,7 +5,7 @@ import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { COPY } from "./copy.ts";
 import {
-  identityLabel, majorName, optionLabel, OPTIONAL, questionSteps, trackName, type Answers, type StepId,
+  identityLabel, yearTermLabel, majorName, optionLabel, OPTIONAL, questionSteps, trackName, type Answers, type StepId,
 } from "./model.ts";
 
 const list = (ids: string[], options: { id: string; label: string }[]) =>
@@ -17,7 +17,8 @@ export function answerText(s: StepId, a: Answers): string {
   switch (s) {
     case "status": return optionLabel(intake.status, a.status) ?? skipped;
     case "major": return majorName(a.majorId) ?? skipped;
-    case "year": return optionLabel(intake.years, a.year) ?? skipped;
+    case "year": return yearTermLabel(a) ?? skipped;
+    case "gender": return optionLabel(intake.gender.options, a.gender) ?? skipped;
     case "school": return optionLabel(uiIntake.school.options, a.school) ?? skipped;
     case "track": return trackName(a.trackId) ?? skipped;
     case "horizon": return optionLabel(intake.horizons, a.horizon) ?? skipped;
@@ -36,7 +37,7 @@ export function answerText(s: StepId, a: Answers): string {
 }
 
 const SHORT: Partial<Record<StepId, string>> = {
-  status: "Status", major: "Major", year: "Year", school: "Campus", track: "Goal", horizon: "Time frame", experience: "Experience",
+  status: "Status", major: "Major", year: "Year and semester", gender: "Gender", school: "Campus", track: "Goal", horizon: "Time frame", experience: "Experience",
   skills: "Skills", credentials: "Certifications", hours: "Free hours a week", enrollment: "Enrollment", summer: "Summers", coop: "Co-op",
   location: "Based in", citizenship: "Citizenship", identity: "About you",
 };

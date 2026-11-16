@@ -28,6 +28,11 @@ export interface Answers {
   status?: "college-student";
   majorId?: string;
   year?: 1 | 2 | 3 | 4;
+  /** 1 = fall, 2 = spring (engine 0.8.0). `yearTerm` keeps the exact answer, e.g. "3S" or "5+". */
+  semester?: 1 | 2;
+  yearTerm?: string;
+  /** Optional gender answer id (data/intake.json gender.options); its tags join identity only in the plan input. */
+  gender?: string;
   enrollment?: Enrollment;
   school?: School;
   trackId?: string;
@@ -51,7 +56,7 @@ export const emptyAnswers = (): Answers => ({
 
 export type StepId =
   | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "experience" | "skills" | "credentials"
-  | "hours" | "summer" | "coop" | "location" | "citizenship" | "identity" | "review";
+  | "hours" | "summer" | "coop" | "location" | "citizenship" | "gender" | "identity" | "review";
 
 export const coopMajors = new Set(uiIntake.coop.majors);
 
@@ -59,14 +64,14 @@ export const coopMajors = new Set(uiIntake.coop.majors);
 export function stepsFor(a: Answers): StepId[] {
   const s: StepId[] = ["intro", "status", "school", "major", "year", "enrollment", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
   if (a.majorId && coopMajors.has(a.majorId)) s.push("coop");
-  s.push("location", "citizenship", "identity", "review");
+  s.push("location", "citizenship", "gender", "identity", "review");
   return s;
 }
 
 /** Question steps only (no intro or review): what the "4 of 12" counter counts. */
 export const questionSteps = (a: Answers): StepId[] => stepsFor(a).filter((s) => s !== "intro" && s !== "review");
 
-export const OPTIONAL: ReadonlySet<StepId> = new Set(["credentials", "location", "citizenship", "identity"]);
+export const OPTIONAL: ReadonlySet<StepId> = new Set(["credentials", "location", "citizenship", "gender", "identity"]);
 const MULTI: ReadonlySet<StepId> = new Set(["experience", "skills", "credentials", "identity"]);
 export const isMulti = (s: StepId) => MULTI.has(s);
 
@@ -75,7 +80,8 @@ export function isAnswered(s: StepId, a: Answers): boolean {
   switch (s) {
     case "status": return a.status === "college-student";
     case "major": return majorOfferedAt(a.majorId, a.school);
-    case "year": return !!a.year;
+    case "year": return !!a.year && !!a.semester;
+    case "gender": return !!a.gender;
     case "enrollment": return !!a.enrollment;
     case "school": return !!a.school;
     case "track": return !!a.trackId;
@@ -108,6 +114,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     status: "college-student",
     majorId: a.majorId,
     year: a.year,
+    ...(a.semester ? { semester: a.semester } : {}),
     trackId: a.trackId,
     horizon: a.horizon ?? "graduation",
     today,
@@ -118,7 +125,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     enrollment: a.enrollment ?? "full-time",
     ...(a.location ? { location: a.location } : {}),
     ...(a.citizenship ? { citizenship: a.citizenship } : {}),
-    identity: [...a.identity],
+    identity: [...new Set([...a.identity, ...genderTags(a.gender)])],
     experience: [...a.experience],
     skills: [...a.skills],
     credentials: [...a.credentials],
@@ -233,4 +240,9 @@ export const majorName = (id?: string) => majors.find((m) => m.id === id)?.name;
 export const campusName = (school?: School) => uiIntake.school.options.find((o) => o.id === (school ?? "rutgers-nb"))?.label ?? "";
 export const trackName = (id?: string) => tracks.find((t) => t.id === id)?.name;
 export const optionLabel = (list: { id: string | number; label: string }[], id: unknown) => list.find((o) => o.id === id)?.label;
+/** Identity tags for a gender answer: "woman" adds women's programs, "man" men's (men in nursing), "nonbinary" non-binary-inclusive ones. */
+export const genderTags = (id?: string): string[] => intake.gender.options.find((o) => o.id === id)?.tags ?? [];
+/** "Third year, spring semester" (or "Fifth year or later"). */
+export const yearTermLabel = (a: Pick<Answers, "year" | "semester" | "yearTerm">) =>
+  intake.yearTerms.find((y) => y.id === a.yearTerm)?.label ?? intake.yearTerms.find((y) => y.year === a.year && y.semester === a.semester)?.label;
 export const identityLabel = (tag: string) => (uiIntake.identityLabels as Record<string, string>)[tag] ?? tag;

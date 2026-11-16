@@ -1,6 +1,6 @@
 # Results redesign and year-aware planning: plan
 
-Status: plan for engine 0.8.0 and data 2026.11.16-7. Written before any code changes, from 260 simulations and a read-through of plans as a student with no direction.
+Status: done in engine 0.8.0 and data 2026.11.16-7. The audit went from 1,582 issues to 0, across 8 seeds (2,080 simulated students). Written before the code changes, from 260 simulations and a read-through of plans as a student with no direction; results at the end.
 
 ## 1. How the issues were found
 
@@ -70,3 +70,20 @@ The specific senior case reported ("Apply to 30+ target internships for junior s
 | 6 | Docs (ALGORITHM.md, README), re-record the NB baseline, link check, PR | CI green, links checked |
 
 The simulation audit runs in CI from now on (`npm run simulate`), so any future data or engine change that reintroduces these issues fails the build.
+
+## 6. Results
+
+| Issue | Fix |
+|---|---|
+| 1. Too many goals a term | Goal cap: 2 + hours/4 (3–6), plus must-dos and the quick steps they need |
+| 2. Planned goals in "Up next" | `continues` queue kind; the plan item says it continues |
+| 3. Earlier-year goals shown | `past` queue kind, never shown; no backward-looking notices |
+| 4. Guides for another year | Guides tagged by year (`guidesFor`), plus junior/senior guides |
+| 5. Notice for a planned goal | Gate notices only for goals that really wait |
+| 6. Same title twice | Yearly rounds named "(year N)" |
+| 7. Recruiting notes for an earlier year | `recruitingNoteUntil` per track; limited-summers note stops after junior summer |
+| 8. No semester | "Where are you in school?" asks year and semester; the engine uses it |
+| 9. No gender question | Optional gender question (adds `women`, `men`, `nonbinary`) and 8 programs across fields |
+| 10–14. Page flow and wording | Goal → have/need → one step → this semester → coming up; map and resources as their own views; shorter wording |
+
+Found while fixing (also fixed): seniors' job search crowded out by quick wins; prerequisites starving under the cap; job-search and grad-application steps blocked after graduation; a crash on the last term; medicine's grad-application window; grad-school seniors getting a job search as their must-do (new track `outcome`).

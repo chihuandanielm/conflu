@@ -120,6 +120,8 @@ function check(input: PlanInput, p: Plan, label: string) {
   if (yearOf(T[nowIdx]) === 4 && gradTrack && reachesGrad && !p.terms.some((t) => t.items.some((i) => i.goalId === "ap-grad-apps")) && !p.backlog.some((b) => b.goalId === "ap-grad-apps" && (b.kind === "continues" || (b.kind === "next" && /^Comes after/.test(b.reason))))) add("R19 grad-school senior without applications", input.trackId);
   // R20: notices that contradict the plan ("window has passed" for a scheduled goal).
   for (const w of p.warnings) { const m = w.match(/^"(.+?)" is usually required .* has passed/); if (m && p.terms.some((t) => t.items.some((i) => i.title === m[1]))) add("R20 notice contradicts the plan", m[1]); }
+  // R21: backward-looking notices ("you missed this").
+  for (const w of p.warnings) if (/has passed|too late|missed/i.test(w)) add("R21 backward-looking notice", w.slice(0, 110));
   // R12: Rutgers-only offices shown to a student at another school.
   if (!campus) for (const t of p.terms) for (const it of t.items) for (const r of it.resources) if (res.get(r.id)!.scope === "rutgers") add("R12 Rutgers office for another school", r.id);
 }

@@ -41,7 +41,7 @@ describe("IntakeFlow", () => {
     fireEvent.change(box, { target: { value: "nurs" } });
     expect(screen.getAllByRole("radio")).toHaveLength(1);
     fireEvent.keyDown(box, { key: "Enter" }); advance(); await act(async () => {});
-    expect(heading()).toBe("What year are you in?");
+    expect(heading()).toBe("Where are you in school?");
     expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers.majorId).toBe("nursing");
   });
 
@@ -70,8 +70,10 @@ describe("IntakeFlow", () => {
 
   it("asks full-time or part-time right after the year, and asks for hours outside class", async () => {
     render(<IntakeFlow onBuild={() => {}} startAt="year" />);
-    expect(screen.getByText(/Pick the year that matches your credits/)).toBeInTheDocument();
-    fireEvent.keyDown(window, { key: "3" }); advance(); await act(async () => {});
+    expect(screen.getByText(/matches your credits so far/)).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /Third year, spring semester/ })).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: "6" }); advance(); await act(async () => {}); // third year, spring
+    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers).toMatchObject({ year: 3, semester: 2, yearTerm: "3S" });
     expect(heading()).toBe("Are you a full-time or part-time student?");
     expect(screen.queryByRole("button", { name: "Skip" })).toBeNull();
     fireEvent.click(screen.getByRole("radio", { name: /Part-time/ })); advance(); await act(async () => {});
@@ -83,6 +85,9 @@ describe("IntakeFlow", () => {
     render(<IntakeFlow onBuild={() => {}} startAt="citizenship" />);
     expect(screen.getByText(/Only used to hide programs you legally can't apply to/)).toBeInTheDocument();
     expect(screen.queryByRole("radio", { name: "Prefer not to say" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Skip" })); await act(async () => {});
+    expect(heading()).toBe("What's your gender?");
+    expect(screen.getByText(/never part of a share link/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Skip" })); await act(async () => {});
     expect(heading()).toBe("Anything else we should know?");
     expect(screen.getByText(/never remove anything, and they never leave your browser/)).toBeInTheDocument();

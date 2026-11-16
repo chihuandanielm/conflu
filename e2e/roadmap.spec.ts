@@ -37,8 +37,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(heading(page)).toHaveText("What's your major?");
   await page.getByRole("searchbox", { name: "Search majors" }).fill("Computer Science");
   await page.keyboard.press("Enter");
-  await expect(heading(page)).toHaveText("What year are you in?");
-  await page.keyboard.press("2");
+  await expect(heading(page)).toHaveText("Where are you in school?");
+  await page.getByRole("radio", { name: "Second year, fall semester" }).click();
   await expect(heading(page)).toHaveText("Are you a full-time or part-time student?");
   await page.getByRole("radio", { name: /Full-time/ }).click();
   await expect(heading(page)).toHaveText("Where do you want to end up?");
@@ -67,6 +67,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("radio", { name: "New Jersey" }).click();
   await expect(heading(page)).toHaveText("What's your citizenship status?");
   await page.getByRole("button", { name: "Skip" }).click();
+  await expect(heading(page)).toHaveText("What's your gender?");
+  await page.getByRole("button", { name: "Skip" }).click();
   await expect(heading(page)).toHaveText("Anything else we should know?");
   await page.getByRole("button", { name: "Skip" }).click();
 
@@ -74,11 +76,15 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByText("Computer Science", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Build my plan" }).click();
 
-  await expect(heading(page)).toHaveText("Your career roadmap");
-  await expect(page.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 10 free hrs/week")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "This term" })).toBeVisible();
+  await expect(heading(page)).toHaveText("Your plan");
+  await expect(page.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 10 free hours a week")).toBeVisible();
+  for (const name of ["Where you're headed", "What you have", "What you need", "Start here", "This semester", "Coming up"]) {
+    await expect(page.getByRole("heading", { name })).toBeVisible();
+  }
 
-  // Open a goal from the chart and mark it done.
+  // Open a goal from the full map's chart and mark it done.
+  await page.getByRole("button", { name: "See the full map" }).click();
+  await expect(page.getByRole("heading", { name: "Your full map" })).toBeVisible();
   const card = page.locator(".react-flow__node-item button").first();
   await expect(card).toBeVisible();
   const title = (await card.locator("span").first().textContent())!.trim();
@@ -95,12 +101,13 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await drawer.getByRole("button", { name: "Mark as done" }).click();
   await expect(drawer).toBeHidden();
 
-  // The plan updates: the goal moves to "Checked off" and its card leaves the chart
-  // (a yearly goal like FAFSA keeps its later-year cards).
-  await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
-  await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
+  // The plan updates: the card leaves the chart (a yearly goal like FAFSA keeps its later-year cards),
+  // and back on the plan the goal is under "Checked off".
   await expect(sameTitle).toHaveCount(before - 1);
   await expect(page.getByText(/Plan updated/)).toBeAttached();
+  await page.getByRole("button", { name: "Back to your plan" }).click();
+  await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
+  await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
 
   // Download the PDF.
   const [download] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Download PDF" }).click()]);
@@ -116,22 +123,22 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 test("phone: a Newark student gets a timeline, a bottom-sheet drawer, and Newark offices @phone", async ({ page }) => {
   const seen = watch(page);
   // Start from a shared link to skip the intake (identity and citizenship are never in it).
-  const share = { v: 1, m: "nursing", y: 3, t: "nursing-clinical", h: "graduation", s: "rutgers-newark", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
+  const share = { v: 1, m: "nursing", y: 3, q: "3F", t: "nursing-clinical", h: "graduation", s: "rutgers-newark", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
   const hash = Buffer.from(JSON.stringify(share)).toString("base64url");
   await page.goto(`./#plan=${hash}`);
   await expect(heading(page)).toHaveText("Check your answers");
   expect(new URL(page.url()).hash).toBe("");
   await page.getByRole("button", { name: "Build my plan" }).click();
-  await expect(heading(page)).toHaveText("Your career roadmap");
-  await expect(page.getByText(/Nursing, year 3 · Rutgers–Newark ·/)).toBeVisible();
+  await expect(heading(page)).toHaveText("Your plan");
+  await expect(page.getByText(/Nursing · Third year, fall semester · Rutgers–Newark ·/)).toBeVisible();
   await expect(page.locator(".react-flow")).toHaveCount(0);
-  await page.getByRole("heading", { name: "Semester by semester" }).scrollIntoViewIfNeeded();
-  await page.locator("section[aria-labelledby=roadmap-h] li button").first().click();
+  await page.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
+  await page.locator("section[aria-labelledby=next-h] li button").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   // Resources name Newark's offices, and never New Brunswick's.
-  await page.getByRole("tab", { name: "Your resources" }).click();
+  await page.getByRole("button", { name: "All resources" }).click();
   await expect(page.getByText("Rutgers–Newark", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Rutgers–New Brunswick", { exact: true })).toHaveCount(0);
   expect(seen.violations).toEqual([]);

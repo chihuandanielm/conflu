@@ -1,9 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { Download, Link2, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
+import { ArrowLeft, BookOpen, Download, Link2, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
-import { campusName, majorName, trackName, type Answers } from "../intake/model.ts";
+import { campusName, majorName, trackName, yearTermLabel, type Answers } from "../intake/model.ts";
 import { diff, isOutdated, markDone, refresh, undoDone, type SavedPlan } from "../state/plan.ts";
 import { todayISO } from "../today.ts";
 import { Button } from "../ui/Button.tsx";
@@ -11,7 +11,9 @@ import { Competencies } from "./Competencies.tsx";
 import { GoalDrawer } from "./GoalDrawer.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { StartHere } from "./StartHere.tsx";
-import { UpNext } from "./UpNext.tsx";
+import { ComingUp } from "./ComingUp.tsx";
+import { GoalPath } from "./GoalPath.tsx";
+import { HaveNeed } from "./HaveNeed.tsx";
 import { Notices } from "./Notices.tsx";
 import { Timeline } from "./Timeline.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
@@ -26,8 +28,8 @@ const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
 const MODE_KEY = "cpm.roadmap-view"; // per-viewer convenience: chart or list on desktop
 
 export function planSummary(a: Answers): string {
-  const horizon = intake.horizons.find((h) => h.id === (a.horizon ?? "graduation"))?.label.toLowerCase();
-  return `${trackName(a.trackId)} · ${majorName(a.majorId)}, year ${a.year}${a.enrollment === "part-time" ? " (part-time)" : ""} · ${campusName(a.school)} · ${horizon} · ${a.weeklyHours} free hrs/week`;
+  const when = yearTermLabel(a) ?? `Year ${a.year}`;
+  return `${trackName(a.trackId)} · ${majorName(a.majorId)} · ${when}${a.enrollment === "part-time" ? " (part-time)" : ""} · ${campusName(a.school)} · ${a.weeklyHours} free hours a week`;
 }
 
 const goalTitle = (key: string) => {
@@ -71,7 +73,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   useEffect(() => { save(MODE_KEY, mode); }, [mode]);
   const openItem = useCallback((item: PlanItem, term: PlanTerm) => setOpen({ item, term }), []);
 
-  const [tab, setTab] = useState<"plan" | "resources">("plan");
+  const [view, setView] = useState<"plan" | "map" | "resources">("plan");
   const [pdfState, setPdfState] = useState<"idle" | "working" | "error" | "stale">("idle");
   const input = useMemo(() => toPlanInput(answers, plan.meta.generatedFor, { completedGoals: saved.completedGoals }), [answers, plan, saved.completedGoals]);
   const downloadPdf = async () => {
@@ -96,16 +98,22 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   const outdated = isOutdated(saved);
   const ongoing = plan.ongoing;
 
+  const backToPlan = () => { setView("plan"); window.scrollTo({ top: 0 }); };
+  const viewHeader = (title: string) => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button variant="secondary" onClick={backToPlan}><ArrowLeft size={16} aria-hidden="true" /> Back to your plan</Button>
+      <h2 className="text-xl font-semibold">{title}</h2>
+    </div>
+  );
+
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
       <header className="border-b border-border bg-bg" inert={!!open}>
-        <div className="mx-auto flex max-w-5xl flex-wrap items-end gap-4 px-4 py-8 sm:px-8">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-end gap-4 px-4 py-6 sm:px-8">
           <div className="w-full min-w-0 sm:w-auto sm:flex-1">
-            <p className="font-mono text-xs text-muted">Career Pathway Mapper</p>
-            <h1 ref={h1} tabIndex={-1} className="mt-2 text-2xl font-semibold outline-none">Your career roadmap</h1>
-            <p className="mt-2 text-base text-ink">{planSummary(answers)}</p>
-            <p className="mt-1 text-sm text-muted">A general trajectory, not a blueprint. Adjust it as you learn what fits.</p>
+            <h1 ref={h1} tabIndex={-1} className="text-2xl font-semibold outline-none">Your plan</h1>
+            <p className="mt-1 text-sm text-muted">{planSummary(answers)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
@@ -119,7 +127,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
         {shareUrl && (
           <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8">
             <label className="block text-sm text-muted" htmlFor="share-url">
-              Share link (copied). It opens your answers for review; it never includes your answers about identity or citizenship.
+              Share link (copied). It opens your answers for review; it never includes your answers about identity, gender, or citizenship.
             </label>
             <input id="share-url" readOnly value={shareUrl} onFocus={(e) => e.currentTarget.select()}
               className="mt-1 min-h-10 w-full rounded-md border border-border-strong bg-surface px-3 font-mono text-xs text-ink" />
@@ -131,50 +139,22 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
         {pdfState === "stale" && (
           <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8"><ReloadNotice id="pdf-error" /></div>
         )}
-        <div role="tablist" aria-label="Results" className="mx-auto flex max-w-5xl gap-1 px-4 sm:px-8">
-          {([["plan", "Your plan"], ["resources", "Your resources"]] as const).map(([id, label]) => (
-            <button key={id} type="button" role="tab" id={`tab-${id}`} aria-selected={tab === id} aria-controls={`panel-${id}`}
-              tabIndex={tab === id ? 0 : -1} onClick={() => setTab(id)}
-              onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const n = tab === "plan" ? "resources" : "plan"; setTab(n); document.getElementById(`tab-${n}`)?.focus(); } }}
-              className={`-mb-px border-b-2 px-3 py-2 text-sm font-semibold transition-colors duration-150 ${tab === id ? "border-blue text-ink" : "border-transparent text-muted hover:text-ink"}`}>
-              {label}
-            </button>
-          ))}
-        </div>
       </header>
 
-      {tab === "resources" ? (
-        <main className="mx-auto max-w-5xl px-4 py-10 sm:px-8" inert={!!open}>
-          <div id="panel-resources" role="tabpanel" aria-labelledby="tab-resources"><ResourcesTab plan={plan} input={input} /></div>
-        </main>
-      ) : (
-      <main inert={!!open}>
-      <div id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:px-8">
-        {outdated && (
-          <div className="flex flex-wrap items-center gap-3 rounded-md border border-blue/20 bg-blue-tint px-4 py-3 text-sm">
-            <p className="flex-1">Your plan was built on older data. Refresh it.</p>
-            <Button variant="secondary" onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>
-              <RefreshCw size={16} aria-hidden="true" /> Refresh plan
-            </Button>
-          </div>
+      <main inert={!!open} className="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-8 sm:px-8">
+        {view === "resources" && (
+          <>
+            {viewHeader("All resources for your plan")}
+            <ResourcesTab plan={plan} input={input} />
+          </>
         )}
 
-        <StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
-
-        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
-
-        <Notices warnings={plan.warnings} dismissed={saved.dismissed}
-          onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
-
-        <section aria-labelledby="roadmap-h">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 id="roadmap-h" className="text-xl font-semibold">Semester by semester</h2>
-              <p className="mt-1 text-sm text-muted">Select any goal for the reasons behind it, where to start, and to check it off.</p>
-            </div>
+        {view === "map" && (
+          <>
+            {viewHeader("Your full map")}
             {desktop && (
-              <div role="group" aria-label="Roadmap view" className="inline-flex overflow-hidden rounded-md border border-border-strong">
-                {([["chart", "Chart", Network], ["list", "View as list", List]] as const).map(([m, label, Icon]) => (
+              <div role="group" aria-label="Map view" className="inline-flex self-start overflow-hidden rounded-md border border-border-strong">
+                {([["chart", "Chart", Network], ["list", "List", List]] as const).map(([m, label, Icon]) => (
                   <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold ${mode === m ? "bg-blue-tint text-ink" : "bg-bg text-muted hover:bg-surface"}`}>
                     <Icon size={14} aria-hidden="true" />{label}
@@ -182,8 +162,6 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                 ))}
               </div>
             )}
-          </div>
-          <div className="mt-6">
             {desktop && mode === "chart" ? (
               <ChunkBoundary fallback={<p className="rounded-md border border-border bg-surface p-6 text-sm text-muted">The chart couldn't load. Switch to the list view to see your plan.</p>}>
               <Suspense fallback={<div className="flex h-[68vh] min-h-[520px] items-center justify-center rounded-md border border-border bg-surface text-sm text-muted">Loading the chart</div>}>
@@ -193,51 +171,71 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
             ) : (
               <Timeline plan={plan} changed={changed} onOpen={openItem} />
             )}
-          </div>
-        </section>
-
-        {saved.completedGoals.length > 0 && (
-          <section aria-labelledby="done-h">
-            <h2 id="done-h" className="text-xl font-semibold">Checked off</h2>
-            <ul className="mt-4 flex flex-col gap-2">
-              {saved.completedGoals.map((g) => (
-                <li key={g} className="flex items-center gap-3 rounded-md bg-green-tint px-4 py-2 text-sm">
-                  <span className="flex-1">{goalTitle(g)}</span>
-                  <button type="button" className="inline-flex items-center gap-1 font-semibold text-blue hover:underline"
-                    onClick={() => replan(undoDone(saved, g, todayISO()), () => `“${goalTitle(g)}” is back in your plan.`)}>
-                    <Undo2 size={14} aria-hidden="true" /> Undo<span className="sr-only"> {goalTitle(g)}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </section>
+            <Competencies c={plan.competencies} />
+          </>
         )}
 
-        <Competencies c={plan.competencies} />
+        {view === "plan" && (
+          <>
+            {outdated && (
+              <div className="flex flex-wrap items-center gap-3 rounded-md border border-blue/20 bg-blue-tint px-4 py-3 text-sm">
+                <p className="flex-1">Your plan was built on older data. Refresh it.</p>
+                <Button variant="secondary" onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>
+                  <RefreshCw size={16} aria-hidden="true" /> Refresh plan
+                </Button>
+              </div>
+            )}
 
-        {ongoing.length > 0 && (
-          <section aria-labelledby="ongoing-h">
-            <h2 id="ongoing-h" className="text-xl font-semibold">Ongoing habits</h2>
-            <ul className="mt-4 flex flex-col gap-3">
-              {ongoing.map((o) => (
-                <li key={o.goalId} className="rounded-md border border-border px-4 py-3">
-                  <p className="font-semibold">{o.title}</p>
-                  <p className="mt-1 text-sm text-muted">{o.why}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
+            <GoalPath plan={plan} trackId={answers.trackId} onOpen={openItem} />
+            <HaveNeed plan={plan} answers={answers} onOpen={openItem} />
+
+            <div className="flex flex-col gap-4">
+              <StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
+              <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
+              <Notices warnings={plan.warnings} dismissed={saved.dismissed}
+                onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
+            </div>
+
+            <ComingUp plan={plan} onOpen={openItem} />
+
+            {saved.completedGoals.length > 0 && (
+              <section aria-labelledby="done-h">
+                <h2 id="done-h" className="text-xl font-semibold">Checked off</h2>
+                <ul className="mt-4 flex flex-col gap-2">
+                  {saved.completedGoals.map((g) => (
+                    <li key={g} className="flex items-center gap-3 rounded-md bg-green-tint px-4 py-2 text-sm">
+                      <span className="flex-1">{goalTitle(g)}</span>
+                      <button type="button" className="inline-flex items-center gap-1 font-semibold text-blue hover:underline"
+                        onClick={() => replan(undoDone(saved, g, todayISO()), () => `“${goalTitle(g)}” is back in your plan.`)}>
+                        <Undo2 size={14} aria-hidden="true" /> Undo<span className="sr-only"> {goalTitle(g)}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {ongoing.length > 0 && (
+              <section aria-labelledby="ongoing-h">
+                <h2 id="ongoing-h" className="text-lg font-semibold">Habits to keep</h2>
+                <ul className="mt-3 flex flex-col gap-2">
+                  {ongoing.map((o) => <li key={o.goalId} className="text-sm"><span className="font-semibold">{o.title}.</span> <span className="text-muted">{o.why}</span></li>)}
+                </ul>
+              </section>
+            )}
+
+            <nav aria-label="More views" className="flex flex-wrap gap-3 border-t border-border pt-6">
+              <Button variant="secondary" onClick={() => { setView("map"); window.scrollTo({ top: 0 }); }}><Network size={16} aria-hidden="true" /> See the full map</Button>
+              <Button variant="secondary" onClick={() => { setView("resources"); window.scrollTo({ top: 0 }); }}><BookOpen size={16} aria-hidden="true" /> All resources</Button>
+            </nav>
+          </>
         )}
-
-        <UpNext backlog={plan.backlog} />
 
         <footer className="border-t border-border pt-6 text-xs text-muted">
-          Built in your browser from the Career Pathway Mapper dataset <span className="font-mono">{plan.meta.dataVersion}</span> and
-          planning engine <span className="font-mono">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
+          A starting point, not a rulebook: adjust it as you learn what fits. Built in your browser from dataset
+          <span className="font-mono"> {plan.meta.dataVersion}</span> and planning engine <span className="font-mono">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
         </footer>
-      </div>
       </main>
-      )}
 
       <AnimatePresence>
         {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done}
