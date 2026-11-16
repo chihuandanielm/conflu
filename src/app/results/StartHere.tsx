@@ -1,15 +1,19 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
+import type { Plan } from "../../engine/types.ts";
 import { howTo, nextStep, type StepProgress } from "../state/steps.ts";
+import { inWorkOrder } from "./order.ts";
 
 /** The one thing to do next: the first unchecked step of this term's top goal. Everything else can wait. */
-export function StartHere({ term, progress, onOpen }: { term: PlanTerm | undefined; progress: StepProgress; onOpen: (it: PlanItem, t: PlanTerm) => void }) {
+export function StartHere({ term, progress, onOpen, edges = [] }: {
+  term: PlanTerm | undefined; progress: StepProgress; onOpen: (it: PlanItem, t: PlanTerm) => void; edges?: Plan["edges"];
+}) {
   if (!term) return null;
-  const items = [...term.items].sort((a, b) => b.score.total - a.score.total);
-  const pick = items.map((it) => ({ it, step: nextStep(it.goalId, progress) })).find((x) => x.step);
+  const items = inWorkOrder(term.items, edges);
+  const pick = items.map((it) => ({ it, step: nextStep(it, progress) })).find((x) => x.step);
   if (!pick) return null;
   const { it, step } = pick;
-  const link = howTo(it.goalId).guides[0] ?? it.resources[0];
+  const link = howTo(it).guides[0] ?? it.resources[0];
   return (
     <section aria-labelledby="start-h" className="rounded-md border border-blue/30 bg-blue-tint p-5">
       <h2 id="start-h" className="text-sm font-semibold text-blue">Start here</h2>

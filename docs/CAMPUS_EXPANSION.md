@@ -83,7 +83,7 @@ Additions and changes, each covered by a test written first:
 
 The academic calendar (`CALENDAR`) is university-wide, so `currentTerm` doesn't change.
 
-Invariant for NB students: plans are identical except where the campus-neutral goal wording changed. A test pins this down by comparing 324 NB plans before and after on goal ids, terms, hours, and backlog.
+Invariant for NB students: plans are identical except where the campus-neutral goal wording changed. A test pinned this down by comparing 324 NB plans before and after on goal ids, terms, hours, and backlog; it is now the general NB baseline (`test/fixtures/nb-plans-baseline.json`), re-recorded only for intended planning changes.
 
 ## 3.1 Known gaps (left empty rather than guessed)
 

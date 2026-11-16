@@ -132,3 +132,56 @@ test("engine 0.6.0: leftover goals become an ordered 'up next' queue, never an h
   // Must-do goals that wait get a concrete, kind note.
   for (const w of tight.warnings.filter((x) => /essential/.test(x))) assert.match(w, /next in line/);
 });
+
+// Engine 0.7.0: plans for upper-year students put their own year's goals first.
+const senior = (over: Partial<PlanInput> = {}) => buildPlan({ status: "college-student", majorId: "packaging-engineering", year: 4, trackId: "packaging-cpg",
+  horizon: "graduation", today: "2026-11-16", weeklyHours: 5, summer: "full", location: "nj", openToCoop: true, ...over } as PlanInput, data);
+const allKeys = (p: Plan) => [...p.terms.flatMap((t) => t.items.map((i) => i.goalId)), ...p.backlog.map((b) => b.goalId)];
+
+test("engine 0.7.0: no FAFSA or outside-scholarship round for the year after graduation", () => {
+  for (const year of [1, 2, 3, 4] as const) {
+    const keys = allKeys(senior({ year, majorId: "computer-science", trackId: "software-engineering" }));
+    assert.ok(!keys.includes("f-fafsa@Y4") && !keys.includes("ap-scholarships@Y4"), `year ${year} has a final-year aid round`);
+  }
+});
+
+test("engine 0.7.0: a senior's plan includes the full-time job search, after the resume it needs", () => {
+  const p = senior();
+  const termOf = (id: string) => p.terms.findIndex((t) => t.items.some((i) => i.goalId === id));
+  assert.ok(termOf("ap-fulltime") >= 0, "job search is in the plan");
+  const resume = termOf("f-resume-v1");
+  assert.ok(resume === -1 || resume <= termOf("ap-fulltime"), "resume comes first");
+});
+
+test("engine 0.7.0: early-college goals done late get wording for where the student is", () => {
+  for (const year of [2, 3, 4] as const) {
+    const p = senior({ year, today: "2026-09-20" });
+    for (const it of p.terms.flatMap((t) => t.items)) {
+      assert.doesNotMatch(it.title, /4-year plan|first college resume/, `y${year}: "${it.title}"`);
+      for (const w of it.why) assert.doesNotMatch(w, /usually do this by year \d · \w+\.$/, `y${year} ${it.goalId}: stale timing "${w}"`);
+    }
+  }
+  const advisor = senior().terms.flatMap((t) => t.items).find((i) => i.goalId === "f-ces-advisor");
+  if (advisor) { assert.match(advisor.title, /remaining semesters/); assert.equal(advisor.late, true); }
+});
+
+test("engine 0.7.0: nothing impossible before graduation is 'next in line'", () => {
+  const p = senior();
+  for (const b of p.backlog.filter((x) => x.kind === "next")) {
+    const g = data.goals.find((x) => x.id === b.goalId.split("@")[0])!;
+    assert.notEqual(g.season, "summer", `${b.goalId} needs a summer the senior doesn't have`);
+    assert.ok(!["e-internship-target", "ap-internship-target", "e-coop"].includes(g.id), `${b.goalId} queued for a senior`);
+  }
+});
+
+test("engine 0.7.0: first-year-only goals stay out of upper-year plans", () => {
+  for (const year of [3, 4] as const) for (const today of ["2026-09-20", "2027-02-10"]) {
+    const placed = senior({ year, today }).terms.flatMap((t) => t.items.map((i) => i.goalId));
+    assert.ok(!placed.includes("n-career-fair-first"), `y${year} ${today}: first career fair "to look"`);
+    if (year === 4) assert.ok(!placed.includes("e-join-orgs") && !placed.includes("e-design-team"), `y4 ${today}: joining orgs in senior year`);
+  }
+});
+
+test("engine 0.7.0: the up-next queue uses late wording too", () => {
+  for (const year of [3, 4] as const) for (const b of senior({ year, weeklyHours: 2 }).backlog) assert.doesNotMatch(b.title, /4-year plan|first college resume/, `y${year}: ${b.title}`);
+});

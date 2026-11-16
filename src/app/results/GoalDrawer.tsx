@@ -46,7 +46,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, progress = {
   const hidden = desktop ? { x: "100%" } : { y: "100%" };
   const t = { duration: reduce ? 0.01 : 0.22, ease: "easeOut" as const };
   const resources = item.resources.map((r) => ({ ...r, full: resourceById.get(r.id) }));
-  const how = howTo(item.goalId);
+  const how = howTo(item);
   const checked = progress[item.goalId] ?? [];
   const doneCount = how.steps.filter((_, i) => checked.includes(i)).length;
   const allChecked = how.steps.length > 0 && doneCount === how.steps.length;

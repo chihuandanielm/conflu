@@ -3,12 +3,14 @@ import { ArrowUpRight, ChevronRight } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { nextStep, type StepProgress } from "../state/steps.ts";
 import { Tag } from "./Tag.tsx";
+import { inWorkOrder } from "./order.ts";
+import type { Plan } from "../../engine/types.ts";
 
 /** The current term's items, up to five: what to do now and why. */
 const FIRST = 3;
 
-export function NextMoves({ term, onOpen, progress = {}, weeklyHours }: {
-  term: PlanTerm | undefined; onOpen: (it: PlanItem, t: PlanTerm) => void; progress?: StepProgress; weeklyHours?: number;
+export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = [] }: {
+  term: PlanTerm | undefined; onOpen: (it: PlanItem, t: PlanTerm) => void; progress?: StepProgress; weeklyHours?: number; edges?: Plan["edges"];
 }) {
   const [all, setAll] = useState(false);
   if (!term || term.items.length === 0) {
@@ -19,7 +21,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours }: {
       </section>
     );
   }
-  const sorted = [...term.items].sort((a, b) => b.score.total - a.score.total);
+  const sorted = inWorkOrder(term.items, edges);
   const items = all ? sorted : sorted.slice(0, FIRST);
   return (
     <section aria-labelledby="next-h">
@@ -33,7 +35,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours }: {
       <ol className="mt-4 divide-y divide-border rounded-md border border-border">
         {items.map((it) => {
           const top = it.resources[0];
-          const step = nextStep(it.goalId, progress);
+          const step = nextStep(it, progress);
           const total = (progress[it.goalId] ?? []).length;
           return (
             <li key={it.goalId} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:gap-6">

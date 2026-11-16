@@ -4,6 +4,7 @@ import { Document, Font, Link, Page, StyleSheet, Text, View } from "@react-pdf/r
 import type { Plan, PlanInput } from "../../engine/types.ts";
 import { contactParts } from "../resources/format.ts";
 import { howTo } from "../state/steps.ts";
+import { inWorkOrder } from "../results/order.ts";
 import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
 
 export interface FontFiles { regular: string; semibold: string; mono: string }
@@ -60,8 +61,8 @@ export interface PdfProps { plan: Plan; input: PlanInput; summary: { track: stri
 export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) {
   const now = plan.terms[0];
   // This term's goals in priority order; the first step of the first one is the "Start here".
-  const nextMoves = now ? [...now.items].sort((a, b) => b.score.total - a.score.total) : [];
-  const start = nextMoves.find((it) => howTo(it.goalId).steps.length);
+  const nextMoves = now ? inWorkOrder(now.items, plan.edges) : [];
+  const start = nextMoves.find((it) => howTo(it).steps.length);
   const upNext = plan.backlog.filter((b) => b.kind === "next");
   const notNow = plan.backlog.filter((b) => b.kind !== "next");
   const footer = (
@@ -100,8 +101,8 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
         {start && (
           <View style={{ borderWidth: 1, borderColor: C.blue, borderRadius: 4, padding: 10, marginBottom: 12 }} wrap={false}>
             <Text style={[s.h3, { marginTop: 0, color: C.blue }]}>Start here</Text>
-            <Text style={s.itemTitle}>{howTo(start.goalId).steps[0]}</Text>
-            <Text style={s.small}>Step 1 of {howTo(start.goalId).steps.length} for “{start.title}”. One step at a time is enough.</Text>
+            <Text style={s.itemTitle}>{howTo(start).steps[0]}</Text>
+            <Text style={s.small}>Step 1 of {howTo(start).steps.length} for “{start.title}”. One step at a time is enough.</Text>
           </View>
         )}
         <Text style={s.h2}>This term{now ? ` · ${now.label}` : ""}</Text>
@@ -111,8 +112,8 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
           <View key={it.goalId} style={s.item} wrap={false}>
             <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h this term{it.gate ? " · Must-do" : ""}</Text></Text>
             <Text style={s.why}>{it.why[0]}</Text>
-            {howTo(it.goalId).steps.map((st, i) => <Text key={st} style={{ fontSize: 9, marginTop: 1 }}>{i + 1}. {st}</Text>)}
-            {howTo(it.goalId).doneWhen && <Text style={[s.small, { marginTop: 2 }]}>Done when: {howTo(it.goalId).doneWhen}</Text>}
+            {howTo(it).steps.map((st, i) => <Text key={st} style={{ fontSize: 9, marginTop: 1 }}>{i + 1}. {st}</Text>)}
+            {howTo(it).doneWhen && <Text style={[s.small, { marginTop: 2 }]}>Done when: {howTo(it).doneWhen}</Text>}
             {it.resources[0] && <Text style={{ marginTop: 2 }}>Start with: {it.resources[0].name} <Link src={it.resources[0].url} style={s.link}>{it.resources[0].url}</Link></Text>}
           </View>
         ))}
@@ -126,7 +127,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
               <View key={it.goalId} style={s.item} wrap={false}>
                 <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h{it.gate ? " · Must-do" : ""}{it.partial ? " · continues next term" : ""}</Text></Text>
                 <Text style={s.why}>{it.why.join(" ")}</Text>
-                {howTo(it.goalId).steps[0] && <Text style={{ fontSize: 9 }}>First step: {howTo(it.goalId).steps[0]}</Text>}
+                {howTo(it).steps[0] && <Text style={{ fontSize: 9 }}>First step: {howTo(it).steps[0]}</Text>}
                 {it.resources.map((r) => (
                   <Text key={r.id} style={{ fontSize: 8.5 }}>{r.name}{r.note ? ` (${r.note})` : ""}: <Link src={r.url} style={s.link}>{r.url}</Link></Text>
                 ))}

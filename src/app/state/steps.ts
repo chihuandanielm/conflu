@@ -12,11 +12,15 @@ export type StepProgress = Record<string, number[]>;
 const goalById = new Map(goals.map((g) => [g.id, g]));
 
 export interface HowTo { steps: string[]; doneWhen: string | null; guides: Resource[] }
-export function howTo(itemKey: string): HowTo {
-  const g = goalById.get(itemKey.split("@")[0]);
+/** A plan item's steps. Items scheduled after their ideal window (`late`) use the goal's late wording when it has one. */
+export type ItemRef = string | { goalId: string; late?: boolean };
+const keyOf = (item: ItemRef) => (typeof item === "string" ? item : item.goalId);
+export function howTo(item: ItemRef): HowTo {
+  const g = goalById.get(keyOf(item).split("@")[0]);
+  const late = typeof item !== "string" && item.late ? g?.late : undefined;
   return {
-    steps: g?.steps ?? [],
-    doneWhen: g?.doneWhen ?? null,
+    steps: late?.steps ?? g?.steps ?? [],
+    doneWhen: late?.doneWhen ?? g?.doneWhen ?? null,
     guides: (g?.guides ?? []).map((id) => resourceById.get(id)).filter((r): r is Resource => !!r),
   };
 }
@@ -34,8 +38,9 @@ export function toggleStep(p: StepProgress, itemKey: string, i: number): StepPro
   return out;
 }
 /** The first step not checked yet, with its number, or null when every step is checked. */
-export function nextStep(itemKey: string, p: StepProgress): { n: number; text: string; done: number; total: number } | null {
-  const { steps } = howTo(itemKey);
+export function nextStep(item: ItemRef, p: StepProgress): { n: number; text: string; done: number; total: number } | null {
+  const itemKey = keyOf(item);
+  const { steps } = howTo(item);
   const done = (p[itemKey] ?? []).filter((i) => i < steps.length);
   const i = steps.findIndex((_, k) => !done.includes(k));
   return i < 0 ? null : { n: i + 1, text: steps[i], done: done.length, total: steps.length };

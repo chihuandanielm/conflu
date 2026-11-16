@@ -1,9 +1,10 @@
-// Captures New Brunswick plans so the campus expansion can be checked against them (test/campus.test.ts).
-// Run once before a change that must not alter NB plans: node --experimental-strip-types scripts/nb-baseline.ts
+// Snapshot of 336 New Brunswick plans (every track and year; plain, international, and first-gen + low-income) that
+// test/campus.test.ts compares against, so planning only changes on purpose. Re-run after an intended planning change
+// and say why in the commit: node --experimental-strip-types scripts/nb-baseline.ts
 import { writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPlan } from "../src/engine/engine.ts";
+import { buildPlan, ENGINE_VERSION } from "../src/engine/engine.ts";
 import { loadDataset } from "../src/engine/load.ts";
 import type { PlanInput } from "../src/engine/types.ts";
 
@@ -27,5 +28,5 @@ const snapshot = nbCases(data.tracks).map((input) => {
     warnings: p.warnings.length,
   };
 });
-writeFileSync(join(root, "test/fixtures/nb-plans-engine-0.3.0.json"), JSON.stringify(snapshot) + "\n");
+writeFileSync(join(root, "test/fixtures/nb-plans-baseline.json"), JSON.stringify({ engineVersion: ENGINE_VERSION, plans: snapshot }) + "\n");
 console.log(`Saved ${snapshot.length} New Brunswick plans`);
