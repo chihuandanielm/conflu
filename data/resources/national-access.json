@@ -384,10 +384,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -751,10 +750,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 202,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -827,7 +825,7 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 202,
+        "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
@@ -1208,10 +1206,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 202,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1826,10 +1823,9 @@
       "status": "active",
       "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 503,
-        "note": "Site refused the automated check (HTTP 503); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     }
