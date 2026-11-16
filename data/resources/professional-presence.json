@@ -1,0 +1,1355 @@
+{
+  "_about": "Profiles, portfolios, practice platforms, and tools that employers look for: LinkedIn, GitHub, open source, Kaggle, CAD, Figma, LSAT prep, and more.",
+  "resources": [
+    {
+      "id": "linkedin-profile",
+      "name": "LinkedIn: build a complete profile",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "professional-presence"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Photo, headline that says what you study and want, an About section, experience with results, and skills. Recruiters search LinkedIn first; an empty profile reads as no profile.",
+      "url": "https://www.linkedin.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with headline, photo, About, and Experience; ask CES to review it."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "linkedin-alumni-tool",
+      "name": "LinkedIn Rutgers alumni tool",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "networking"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Filter Rutgers alumni by employer, city, and field to find people for informational interviews.",
+      "url": "https://www.linkedin.com/school/rutgers-university/people/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 999,
+        "note": "Site refused the automated check (HTTP 999); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "linkedin-learning",
+      "name": "LinkedIn Learning",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Short video courses on Excel, Python, design, and soft skills; completions can display on your profile. Check whether Rutgers provides free access before paying.",
+      "url": "https://www.linkedin.com/learning/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "github-profile-readme",
+      "name": "GitHub profile README",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "professional-presence"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A profile README pins your best projects and explains them. Hiring managers for tech roles often check GitHub before the resume.",
+      "url": "https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "github-pages",
+      "name": "GitHub Pages (free portfolio hosting)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "marketing",
+        "communication",
+        "mechanical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Host a personal portfolio site for free from a GitHub repository.",
+      "url": "https://pages.github.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "good-first-issue",
+      "name": "Good First Issue",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "open-source"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Curated beginner-friendly issues in open-source projects; a path to your first merged pull request.",
+      "url": "https://goodfirstissue.dev",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "first-contributions",
+      "name": "First Contributions",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "open-source"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Step-by-step practice repo for making a first open-source pull request.",
+      "url": "https://github.com/firstcontributions/first-contributions",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "hacktoberfest",
+      "name": "Hacktoberfest",
+      "type": "event",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "open-source"
+      ],
+      "pay": "free",
+      "season": "fall",
+      "typicalDeadline": null,
+      "summary": "Month-long October event that rewards open-source contributions.",
+      "url": "https://hacktoberfest.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "gsoc",
+      "name": "Google Summer of Code",
+      "type": "internship",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "open-source"
+      ],
+      "pay": "stipend",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "Paid summer open-source work with mentoring organizations; open to students and new contributors.",
+      "url": "https://summerofcode.withgoogle.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "leetcode",
+      "name": "LeetCode",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "interviews"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Coding interview practice. Most software interviews still include data structures and algorithms problems.",
+      "url": "https://leetcode.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "tech-interview-handbook",
+      "name": "Tech Interview Handbook",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "interviews"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free guide to resumes, coding interview study plans, and behavioral questions.",
+      "url": "https://www.techinterviewhandbook.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "cs50",
+      "name": "CS50 (Harvard, free online)",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "biological-sciences",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free introductory computer science course; strong first step for non-CS majors who want to code.",
+      "url": "https://www.edx.org/cs50",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "freecodecamp",
+      "name": "freeCodeCamp",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free curriculum in web development, Python, and data with certifications.",
+      "url": "https://www.freecodecamp.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "kaggle",
+      "name": "Kaggle",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "data"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Public datasets, notebooks, and competitions; a visible way to show data skills.",
+      "url": "https://www.kaggle.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "tableau-students",
+      "name": "Tableau for Students",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "human-resource-management"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "data"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free Tableau license for students; dashboards make strong portfolio pieces for analyst roles.",
+      "url": "https://www.tableau.com/academic/students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "sqlbolt",
+      "name": "SQLBolt",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "economics",
+        "finance",
+        "public-health",
+        "psychology",
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "accounting",
+        "human-resource-management"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "data"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free interactive SQL lessons. SQL appears in most analyst job postings.",
+      "url": "https://sqlbolt.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "tryhackme",
+      "name": "TryHackMe",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cybersecurity"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Hands-on cybersecurity labs from beginner to advanced; profiles show progress to employers.",
+      "url": "https://tryhackme.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "picoctf",
+      "name": "picoCTF",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cybersecurity"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free capture-the-flag security competition and practice platform from Carnegie Mellon.",
+      "url": "https://picoctf.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "figma-education",
+      "name": "Figma for Education",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "psychology",
+        "marketing",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "ux"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free Figma for students; the standard tool for UX and UI portfolios.",
+      "url": "https://www.figma.com/education/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "onshape-education",
+      "name": "Onshape Education (free CAD)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cad"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free browser-based CAD for students; pair with a portfolio of design projects.",
+      "url": "https://www.onshape.com/en/education/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "solidworks-student",
+      "name": "SOLIDWORKS student access and CSWA certification",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cad"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "SOLIDWORKS is listed in many mechanical design postings; the CSWA certification proves baseline skill.",
+      "url": "https://www.solidworks.com/product/students",
+      "applyUrl": "https://www.solidworks.com/sw/education/cad-certification-student-program.htm",
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": null,
+        "note": "Site refused the automated check (timed out); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "matlab-onramp",
+      "name": "MATLAB Onramp",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free two-hour MATLAB intro with a certificate.",
+      "url": "https://matlabacademy.mathworks.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "forage",
+      "name": "Forage virtual job simulations",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3
+      ],
+      "identity": [],
+      "interests": [
+        "exploration"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free, short job simulations built with real employers (banking, consulting, law, tech, marketing). Good resume lines and interview stories for first- and second-years.",
+      "url": "https://www.theforage.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "cfi-free",
+      "name": "Corporate Finance Institute free courses",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "financial-modeling"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free intro courses in Excel, accounting, and financial modeling.",
+      "url": "https://corporatefinanceinstitute.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "exceljet",
+      "name": "Exceljet",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "finance",
+        "accounting",
+        "supply-chain",
+        "economics",
+        "marketing",
+        "human-resource-management",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free reference for Excel formulas and shortcuts.",
+      "url": "https://exceljet.net",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "behance",
+      "name": "Behance",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "marketing",
+        "communication",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "portfolio"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Portfolio platform for design, branding, and campaign work.",
+      "url": "https://www.behance.net",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "muck-rack",
+      "name": "Muck Rack",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "communication",
+        "political-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "portfolio",
+        "journalism"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free portfolio of published articles for journalists and PR professionals.",
+      "url": "https://muckrack.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "orcid",
+      "name": "ORCID iD",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "biomedical-engineering",
+        "public-health",
+        "economics",
+        "computer-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free researcher ID that links your posters and publications; many grad programs and journals expect it.",
+      "url": "https://orcid.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "google-scholar",
+      "name": "Google Scholar",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "biomedical-engineering",
+        "public-health",
+        "economics",
+        "computer-science",
+        "pharmacy"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Find faculty publications before emailing professors about research positions.",
+      "url": "https://scholar.google.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "lawhub",
+      "name": "LSAC LawHub (official LSAT prep)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics",
+        "communication"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "law"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Official LSAT practice tests from the test maker; the free tier includes full tests.",
+      "url": "https://app.lawhub.org/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "scribe-jobs",
+      "name": "Medical scribe jobs",
+      "type": "job",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "public-health",
+        "biomedical-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-health",
+        "clinical"
+      ],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid clinical exposure documenting visits for physicians; counts as patient-care hours for many programs.",
+      "url": "https://www.scribeamerica.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "glassdoor",
+      "name": "Glassdoor",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "interviews",
+        "salary"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Company reviews, salaries, and interview questions reported by candidates.",
+      "url": "https://www.glassdoor.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "levels-fyi",
+      "name": "Levels.fyi",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "finance",
+        "marketing"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "salary"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Self-reported compensation data; use it before negotiating an offer.",
+      "url": "https://www.levels.fyi",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-writing-centers",
+      "name": "Rutgers Writing Centers",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free help on cover letters, personal statements, and writing samples.",
+      "url": "https://wp.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "usajobs-resume-help",
+      "name": "USAJOBS help: building a federal resume",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "us-citizen"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federal resumes follow different rules than private ones (now capped at two pages).",
+      "url": "https://usajobshelp.opm.gov/hc/en-us",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    }
+  ]
+}

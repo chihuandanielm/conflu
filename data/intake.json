@@ -1,0 +1,988 @@
+{
+  "_about": "The intake form. Every answer maps to engine inputs; experience, skill, and credential answers mark goals as done (strength 1) or partly done (strength < 1).",
+  "status": [
+    {
+      "id": "college-student",
+      "label": "College student",
+      "enabled": true
+    },
+    {
+      "id": "recent-grad",
+      "label": "Recent graduate",
+      "enabled": false
+    },
+    {
+      "id": "professional",
+      "label": "Working professional",
+      "enabled": false
+    },
+    {
+      "id": "not-working",
+      "label": "Not currently working or in school",
+      "enabled": false
+    }
+  ],
+  "years": [
+    {
+      "id": 1,
+      "label": "First year"
+    },
+    {
+      "id": 2,
+      "label": "Second year"
+    },
+    {
+      "id": 3,
+      "label": "Third year"
+    },
+    {
+      "id": 4,
+      "label": "Fourth year or later"
+    }
+  ],
+  "horizons": [
+    {
+      "id": "6mo",
+      "label": "Within 6 months",
+      "terms": 2
+    },
+    {
+      "id": "1yr",
+      "label": "Within a year",
+      "terms": 3
+    },
+    {
+      "id": "2yr",
+      "label": "Within 2 years",
+      "terms": 6
+    },
+    {
+      "id": "graduation",
+      "label": "By graduation",
+      "terms": null
+    },
+    {
+      "id": "after-graduation",
+      "label": "Within a year after graduating",
+      "terms": null,
+      "extraTerms": 2
+    }
+  ],
+  "weeklyHours": [
+    2,
+    5,
+    10,
+    15,
+    20
+  ],
+  "defaultWeeklyHours": 5,
+  "summerAvailability": [
+    {
+      "id": "full",
+      "label": "Free for a full-time summer role",
+      "multiplier": 4.0
+    },
+    {
+      "id": "part",
+      "label": "Part of the summer",
+      "multiplier": 2.0
+    },
+    {
+      "id": "none",
+      "label": "Not available in summer",
+      "multiplier": 0.0
+    }
+  ],
+  "location": [
+    {
+      "id": "nj",
+      "label": "New Jersey"
+    },
+    {
+      "id": "us-other",
+      "label": "Elsewhere in the US"
+    },
+    {
+      "id": "outside-us",
+      "label": "Outside the US"
+    },
+    {
+      "id": "skip",
+      "label": "Prefer not to say"
+    }
+  ],
+  "citizenship": [
+    {
+      "id": "us-citizen",
+      "label": "U.S. citizen"
+    },
+    {
+      "id": "us-pr",
+      "label": "Permanent resident"
+    },
+    {
+      "id": "international",
+      "label": "International student (visa)"
+    },
+    {
+      "id": "undocumented",
+      "label": "Undocumented or DACA"
+    },
+    {
+      "id": "skip",
+      "label": "Prefer not to say"
+    }
+  ],
+  "optionalIdentity": {
+    "note": "Optional. Used only to surface programs a student is eligible for; never lowers anything in the plan; stays in the browser.",
+    "tags": [
+      "first-generation",
+      "low-income",
+      "pell-eligible",
+      "black",
+      "latino",
+      "asian-american",
+      "pacific-islander",
+      "native-american",
+      "women",
+      "lgbtq",
+      "disability",
+      "veteran",
+      "transfer"
+    ]
+  },
+  "experience": [
+    {
+      "id": "resume",
+      "label": "I have a resume",
+      "completes": [
+        {
+          "goal": "f-resume-v1",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "ces-visit",
+      "label": "I've met with a career advisor",
+      "completes": [
+        {
+          "goal": "f-ces-advisor",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "handshake",
+      "label": "My Handshake profile is filled out",
+      "completes": [
+        {
+          "goal": "f-handshake-profile",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "linkedin",
+      "label": "I have a LinkedIn profile",
+      "completes": [
+        {
+          "goal": "p-linkedin-setup",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "linkedin-strong",
+      "label": "My LinkedIn is complete and I have 50+ relevant connections",
+      "completes": [
+        {
+          "goal": "p-linkedin-setup",
+          "strength": 1.0
+        },
+        {
+          "goal": "p-linkedin-network",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "label": "I have a GitHub with projects on it",
+      "completes": [
+        {
+          "goal": "p-github-setup",
+          "strength": 1.0
+        },
+        {
+          "goal": "s-git",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "github-active",
+      "label": "I commit code regularly",
+      "completes": [
+        {
+          "goal": "p-github-setup",
+          "strength": 1.0
+        },
+        {
+          "goal": "p-github-consistent",
+          "strength": 1.0
+        },
+        {
+          "goal": "s-git",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "open-source",
+      "label": "I've contributed to open source",
+      "completes": [
+        {
+          "goal": "p-open-source-pr",
+          "strength": 1.0
+        },
+        {
+          "goal": "p-github-setup",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "label": "I have a portfolio site",
+      "completes": [
+        {
+          "goal": "p-portfolio-site",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "writing-clips",
+      "label": "I have published writing or media work",
+      "completes": [
+        {
+          "goal": "p-writing-portfolio",
+          "strength": 0.6
+        },
+        {
+          "goal": "e-student-media",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "label": "Part-time or campus job",
+      "completes": [
+        {
+          "goal": "e-part-time-job",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "club",
+      "label": "Member of a club or organization",
+      "completes": [
+        {
+          "goal": "e-join-orgs",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "leader",
+      "label": "Officer or leadership role in a club",
+      "completes": [
+        {
+          "goal": "e-org-leadership",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-join-orgs",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "volunteer",
+      "label": "Volunteer work",
+      "completes": [
+        {
+          "goal": "e-volunteer",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "label": "Research with a professor",
+      "completes": [
+        {
+          "goal": "e-research-assistant",
+          "strength": 1.0
+        },
+        {
+          "goal": "n-faculty-relationships",
+          "strength": 0.5
+        }
+      ]
+    },
+    {
+      "id": "summer-research",
+      "label": "A summer research program",
+      "completes": [
+        {
+          "goal": "e-summer-research",
+          "strength": 1.0
+        },
+        {
+          "goal": "ap-research-apps",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-research-assistant",
+          "strength": 0.5
+        }
+      ]
+    },
+    {
+      "id": "thesis",
+      "label": "Honors thesis or independent research",
+      "completes": [
+        {
+          "goal": "e-thesis",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-research-assistant",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "project",
+      "label": "A personal project I built",
+      "completes": [
+        {
+          "goal": "e-personal-project",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "hackathon",
+      "label": "A hackathon",
+      "completes": [
+        {
+          "goal": "e-hackathon",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "design-team",
+      "label": "An engineering design team",
+      "completes": [
+        {
+          "goal": "e-design-team",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "case-comp",
+      "label": "A case competition",
+      "completes": [
+        {
+          "goal": "e-case-competition",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "virtual-sim",
+      "label": "A virtual job simulation",
+      "completes": [
+        {
+          "goal": "e-virtual-sim",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "internship-any",
+      "label": "An internship or career-related summer job (any field)",
+      "completes": [
+        {
+          "goal": "e-internship-explore",
+          "strength": 1.0
+        },
+        {
+          "goal": "ap-internship-early",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "internship-target",
+      "label": "An internship in the field I want",
+      "completes": [
+        {
+          "goal": "e-internship-target",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-internship-explore",
+          "strength": 1.0
+        },
+        {
+          "goal": "ap-internship-target",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "coop",
+      "label": "A co-op",
+      "completes": [
+        {
+          "goal": "e-coop",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-internship-explore",
+          "strength": 1.0
+        },
+        {
+          "goal": "e-internship-target",
+          "strength": 0.8
+        }
+      ]
+    },
+    {
+      "id": "shadowing",
+      "label": "Shadowed a professional",
+      "completes": [
+        {
+          "goal": "e-shadowing",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "clinical",
+      "label": "Patient-care hours (EMT, CNA, scribe, etc.)",
+      "completes": [
+        {
+          "goal": "e-clinical-hours",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "externship",
+      "label": "A nursing externship",
+      "completes": [
+        {
+          "goal": "e-nursing-externship",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "pharm-intern",
+      "label": "Pharmacy intern work",
+      "completes": [
+        {
+          "goal": "e-pharmacy-intern",
+          "strength": 0.7
+        }
+      ]
+    },
+    {
+      "id": "government",
+      "label": "A government or campaign internship",
+      "completes": [
+        {
+          "goal": "e-government-internship",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "justice",
+      "label": "Court observation, ride-along, or reentry volunteering",
+      "completes": [
+        {
+          "goal": "e-justice-exposure",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "abroad",
+      "label": "Studied abroad",
+      "completes": [
+        {
+          "goal": "e-study-abroad",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "startup",
+      "label": "Started or worked at a startup",
+      "completes": [
+        {
+          "goal": "e-entrepreneurship",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "tutor",
+      "label": "Tutor or teaching assistant",
+      "completes": [
+        {
+          "goal": "e-tutor-ta",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "career-fair",
+      "label": "I've been to a career fair",
+      "completes": [
+        {
+          "goal": "n-career-fair-first",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "info-interviews",
+      "label": "I've done informational interviews",
+      "completes": [
+        {
+          "goal": "n-info-interviews",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "mentor",
+      "label": "I have a mentor in my field",
+      "completes": [
+        {
+          "goal": "n-mentor",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "society",
+      "label": "Member of a professional society",
+      "completes": [
+        {
+          "goal": "n-professional-society",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "conference",
+      "label": "Attended a professional conference",
+      "completes": [
+        {
+          "goal": "n-conference",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "recommenders",
+      "label": "Two professors know my work well",
+      "completes": [
+        {
+          "goal": "n-faculty-relationships",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "mock-interview",
+      "label": "I've done a mock interview",
+      "completes": [
+        {
+          "goal": "f-mock-interview",
+          "strength": 1.0
+        },
+        {
+          "goal": "f-elevator-pitch",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "scholarship-apps",
+      "label": "I've applied for outside scholarships",
+      "completes": [
+        {
+          "goal": "ap-scholarships",
+          "strength": 0.5
+        }
+      ]
+    },
+    {
+      "id": "test-taken",
+      "label": "I've taken or am prepping for the MCAT, LSAT, GRE, or PCAT",
+      "completes": [
+        {
+          "goal": "a-test-prep",
+          "strength": 0.5
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "excel",
+      "label": "Excel (lookups, pivots)",
+      "completes": [
+        {
+          "goal": "s-excel-core",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "modeling",
+      "label": "Financial modeling",
+      "completes": [
+        {
+          "goal": "s-excel-modeling",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "label": "Python",
+      "completes": [
+        {
+          "goal": "s-python",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "sql",
+      "label": "SQL",
+      "completes": [
+        {
+          "goal": "s-sql",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "viz",
+      "label": "Tableau or Power BI",
+      "completes": [
+        {
+          "goal": "s-data-viz",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "r",
+      "label": "R or SPSS",
+      "completes": [
+        {
+          "goal": "s-r-stats",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "dsa",
+      "label": "Data structures and algorithms practice",
+      "completes": [
+        {
+          "goal": "s-dsa",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "git",
+      "label": "Git",
+      "completes": [
+        {
+          "goal": "s-git",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "cad",
+      "label": "CAD (SOLIDWORKS, Onshape)",
+      "completes": [
+        {
+          "goal": "s-cad",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "matlab",
+      "label": "MATLAB",
+      "completes": [
+        {
+          "goal": "s-matlab",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "figma",
+      "label": "Figma",
+      "completes": [
+        {
+          "goal": "s-figma-ux",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "digital-mktg",
+      "label": "Google Ads/Analytics, HubSpot",
+      "completes": [
+        {
+          "goal": "s-digital-marketing",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "speaking",
+      "label": "Public speaking",
+      "completes": [
+        {
+          "goal": "s-public-speaking",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "writing",
+      "label": "Professional writing",
+      "completes": [
+        {
+          "goal": "s-professional-writing",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "label": "A second language",
+      "completes": [
+        {
+          "goal": "s-language",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "label": "Lab techniques",
+      "completes": [
+        {
+          "goal": "s-lab-techniques",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "label": "Security labs or CTFs",
+      "completes": [
+        {
+          "goal": "s-security-practice",
+          "strength": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bloomberg",
+      "label": "Bloomberg Market Concepts",
+      "completes": [
+        {
+          "goal": "s-financial-markets",
+          "strength": 1.0
+        }
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "id": "bls",
+      "label": "CPR/BLS",
+      "completes": [
+        {
+          "goal": "c-bls",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "emt",
+      "label": "EMT",
+      "completes": [
+        {
+          "goal": "c-emt",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "rbt",
+      "label": "RBT",
+      "completes": [
+        {
+          "goal": "c-rbt",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "pharm-tech",
+      "label": "Pharmacy technician",
+      "completes": [
+        {
+          "goal": "c-pharm-tech",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "aphr",
+      "label": "aPHR",
+      "completes": [
+        {
+          "goal": "c-aphr",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "ches",
+      "label": "CHES",
+      "completes": [
+        {
+          "goal": "c-ches",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "fitness",
+      "label": "ACSM or NSCA",
+      "completes": [
+        {
+          "goal": "c-fitness",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "security-plus",
+      "label": "Security+ or ISC2 CC",
+      "completes": [
+        {
+          "goal": "c-security-plus",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "label": "AWS Cloud Practitioner",
+      "completes": [
+        {
+          "goal": "c-cloud",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "google-cert",
+      "label": "Google Career Certificate",
+      "completes": [
+        {
+          "goal": "c-google-cert",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "cswa",
+      "label": "SOLIDWORKS CSWA",
+      "completes": [
+        {
+          "goal": "c-cswa",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "fe",
+      "label": "FE exam",
+      "completes": [
+        {
+          "goal": "c-fe",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "lean",
+      "label": "Lean Six Sigma Green Belt",
+      "completes": [
+        {
+          "goal": "c-lean",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "mos",
+      "label": "Microsoft Office Specialist: Excel",
+      "completes": [
+        {
+          "goal": "c-excel-mos",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "id": "citi",
+      "label": "CITI training",
+      "completes": [
+        {
+          "goal": "c-citi",
+          "strength": 1.0
+        }
+      ]
+    }
+  ]
+}

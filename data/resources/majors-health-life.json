@@ -1,0 +1,925 @@
+{
+  "_about": "Resources for Biological Sciences, Psychology, Nursing, Pharmacy, Public Health, and Exercise Science.",
+  "resources": [
+    {
+      "id": "psi-chi",
+      "name": "Psi Chi",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "International psychology honor society with research grants and conventions.",
+      "url": "https://www.psichi.org/page/JoinToday",
+      "applyUrl": null,
+      "contact": {
+        "how": "Apply through the Rutgers chapter; membership is processed on the national site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "apa-students",
+      "name": "American Psychological Association (APA) students",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student affiliate membership, grad school guides, and convention.",
+      "url": "https://www.apa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "aps",
+      "name": "Association for Psychological Science (APS)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research-focused society with student awards and convention.",
+      "url": "https://www.psychologicalscience.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rbt",
+      "name": "Registered Behavior Technician (RBT) credential",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "psychology",
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "clinical"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Entry-level ABA therapy credential; a common paid job that builds clinical hours.",
+      "url": "https://www.bacb.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "crisis-text-line",
+      "name": "Crisis Text Line volunteer training",
+      "type": "volunteer",
+      "scope": "national",
+      "majors": [
+        "psychology",
+        "social-work",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "clinical"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free remote training to volunteer as a crisis counselor; strong clinical experience.",
+      "url": "https://www.crisistextline.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "aamc-premed",
+      "name": "AAMC Aspiring Docs and Premed Navigator",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "exercise-science",
+        "biomedical-engineering",
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Official pre-med guidance and the MCAT and AMCAS systems.",
+      "url": "https://students-residents.aamc.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the site directly."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "emt",
+      "name": "EMT certification and Rutgers EMS",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "exercise-science",
+        "nursing",
+        "public-health",
+        "psychology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "clinical",
+        "pre-health"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "EMT certification gives paid patient-care hours; Rutgers has a student-run EMS.",
+      "url": "https://www.nremt.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "bls",
+      "name": "Basic Life Support (BLS) certification",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "nursing",
+        "pharmacy",
+        "exercise-science",
+        "public-health",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Required for nearly all clinical jobs and volunteering.",
+      "url": "https://cpr.heart.org/en/cpr-courses-and-kits/healthcare-professional/basic-life-support-bls-training",
+      "applyUrl": "https://cpr.heart.org/en/course-catalog-search",
+      "contact": {
+        "how": "Find an in-person or blended class near you with the AHA course search."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "nsna",
+      "name": "National Student Nurses' Association (NSNA)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "nursing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student nursing association with scholarships, leadership roles, and convention.",
+      "url": "https://www.nsna.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nurse-corps",
+      "name": "HRSA Nurse Corps Scholarship",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "nursing"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "us-citizen"
+      ],
+      "interests": [],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Tuition and stipend in exchange for working at a facility with a critical shortage of nurses after graduation.",
+      "url": "https://bhw.hrsa.gov/funding/apply-scholarship/nurse-corps",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "nclex",
+      "name": "NCLEX-RN",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "nursing"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Licensure exam taken after graduation; plan prep in senior year.",
+      "url": "https://www.ncsbn.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "apha-asp",
+      "name": "APhA-ASP (American Pharmacists Association Academy of Student Pharmacists)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "pharmacy"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Main student pharmacy organization: patient care projects, competitions, and leadership.",
+      "url": "https://www.pharmacist.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "aacp",
+      "name": "AACP student resources",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "pharmacy"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Pharmacy education association; career pathway and residency information.",
+      "url": "https://www.aacp.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the site directly."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "ncpa",
+      "name": "NCPA (National Community Pharmacists Association)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "pharmacy"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student chapters for independent and community pharmacy careers.",
+      "url": "https://ncpa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "ashp-residency",
+      "name": "ASHP residency directory and Midyear meeting",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "pharmacy"
+      ],
+      "years": [
+        4,
+        "grad"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Residency search and the Midyear Clinical Meeting where students interview for residencies.",
+      "url": "https://www.ashp.org/professional-development/residency-information/student-residency-guide",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "pharmacy-tech",
+      "name": "Pharmacy technician certification (PTCB)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "pharmacy",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid pharmacy work while in school; required or preferred by many employers.",
+      "url": "https://www.ptcb.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "apha",
+      "name": "American Public Health Association (APHA)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership, annual meeting, and job board.",
+      "url": "https://www.apha.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "this-is-public-health",
+      "name": "ASPPH / This Is Public Health",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "public-health"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Explains public health careers and MPH programs; lists fellowships.",
+      "url": "https://aspph.org/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "cdc-phap",
+      "name": "CDC Public Health Associate Program (PHAP)",
+      "type": "federal_program",
+      "scope": "national",
+      "majors": [
+        "public-health",
+        "social-work",
+        "biological-sciences"
+      ],
+      "years": [
+        4,
+        "alumni"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "salary",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Two-year paid post-graduate CDC field placement in a health department.",
+      "url": "https://www.cdc.gov/phap/php/about/index.html",
+      "applyUrl": "https://www.cdc.gov/phap/php/participants/index.html",
+      "contact": {
+        "how": "Applications open once a year (the 2027 cycle opens in early 2027).",
+        "email": "PHAP@cdc.gov"
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "public-health-americorps",
+      "name": "Public Health AmeriCorps",
+      "type": "service_program",
+      "scope": "national",
+      "majors": [
+        "public-health",
+        "social-work",
+        "nursing"
+      ],
+      "years": [
+        4,
+        "alumni"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Paid AmeriCorps roles in public health organizations.",
+      "url": "https://www.americorps.gov/about/what-we-do/healthy-futures",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search open Public Health AmeriCorps roles on the home site.",
+        "email": "publichealth@americorps.gov"
+      },
+      "status": "changed",
+      "statusNote": "AmeriCorps now sends its Public Health AmeriCorps page to its Healthy Futures focus area; search current listings there.",
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "ches",
+      "name": "CHES (Certified Health Education Specialist)",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "public-health",
+        "exercise-science"
+      ],
+      "years": [
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Health education credential seniors can sit for.",
+      "url": "https://www.nchec.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "acsm",
+      "name": "American College of Sports Medicine (ACSM)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "exercise-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership and certifications (e.g., ACSM-CPT, Exercise Physiologist).",
+      "url": "https://acsm.org/certification/get-certified/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "changed",
+      "statusNote": "From 2027, ACSM-EP and ACSM-CEP candidates must graduate from an accredited exercise science or exercise physiology program.",
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "nsca",
+      "name": "NSCA (National Strength and Conditioning Association)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "exercise-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student membership; the CSCS certification is valued in strength and conditioning jobs.",
+      "url": "https://www.nsca.com/membership/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Full-time students can buy a student membership on the home site, then search The Arc (formerly getINVOLVED) for a Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": []
+    },
+    {
+      "id": "nata",
+      "name": "National Athletic Trainers' Association (NATA)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "exercise-science"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Resources for students headed to athletic training master's programs.",
+      "url": "https://www.nata.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join nationally on the home site, then search The Arc (formerly getINVOLVED) for the Rutgers chapter."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "aptra",
+      "name": "APTA and PTCAS (physical therapy)",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "exercise-science",
+        "biological-sciences",
+        "psychology"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Professional association and application service for DPT programs; track observation hours early.",
+      "url": "https://www.apta.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "citi-training",
+      "name": "CITI human subjects research training",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "psychology",
+        "public-health",
+        "biological-sciences",
+        "nursing",
+        "social-work"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Required before working with human subjects in most labs; Rutgers provides it free.",
+      "url": "https://about.citiprogram.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    }
+  ]
+}

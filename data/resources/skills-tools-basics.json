@@ -1,0 +1,428 @@
+{
+  "_about": "Cross-major tools, free certifications, career data, and basics students often forget.",
+  "resources": [
+    {
+      "id": "github-student-pack",
+      "name": "GitHub Student Developer Pack",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free developer tools and credits for verified students.",
+      "url": "https://education.github.com/pack",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "google-career-certs",
+      "name": "Google Career Certificates",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "information-technology",
+        "marketing",
+        "supply-chain",
+        "computer-science",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Online certificates in IT support, data analytics, UX, project management, and more.",
+      "url": "https://grow.google/certificates/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "aws-educate",
+      "name": "AWS Educate and AWS Cloud Practitioner",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free cloud learning; Cloud Practitioner is a common first certification.",
+      "url": "https://aws.amazon.com/education/awseducate/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "microsoft-learn",
+      "name": "Microsoft Learn",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free training paths for Azure, Power BI, and Office certifications.",
+      "url": "https://learn.microsoft.com/en-us/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn profile and alumni search",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Use the Rutgers alumni page to find graduates in your target field and ask for informational interviews.",
+      "url": "https://www.linkedin.com/school/rutgers-university/people/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 999,
+        "note": "Site refused the automated check (HTTP 999); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "idealist",
+      "name": "Idealist",
+      "type": "job_board",
+      "scope": "national",
+      "majors": [
+        "social-work",
+        "public-health",
+        "political-science",
+        "communication",
+        "criminal-justice"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Nonprofit and mission-driven internships and jobs.",
+      "url": "https://www.idealist.org/en",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "usajobs",
+      "name": "USAJOBS",
+      "type": "job_board",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "All federal internships and jobs; filter by the Students hiring path.",
+      "url": "https://www.usajobs.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "onet",
+      "name": "O*NET OnLine",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free Department of Labor database of what each occupation does, its skills, and outlook.",
+      "url": "https://www.onetonline.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "bls-ooh",
+      "name": "BLS Occupational Outlook Handbook",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Pay, growth, and education requirements by occupation.",
+      "url": "https://www.bls.gov/ooh/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "college-scorecard",
+      "name": "College Scorecard: earnings by field of study",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Earnings and debt for graduates by major and school.",
+      "url": "https://collegescorecard.ed.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": []
+    },
+    {
+      "id": "fafsa",
+      "name": "FAFSA",
+      "type": "aid_program",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "us-citizen-or-pr"
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Required every year for federal, NJ, and most Rutgers aid; missing it can cost thousands. Undocumented NJ students file the NJ Alternative Financial Aid Application (NJAFAA) instead.",
+      "url": "https://studentaid.gov",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "toastmasters",
+      "name": "Public speaking practice (Toastmasters)",
+      "type": "club",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Low-cost clubs for presentation and interview confidence.",
+      "url": "https://www.toastmasters.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
+      },
+      "tags": []
+    }
+  ]
+}

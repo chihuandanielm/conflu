@@ -1,0 +1,117 @@
+{
+  "_about": "UI-only: how resource types (data/vocab.json) are grouped on the Your resources tab and in the PDF, and how pay values are filtered. scripts/validate.mjs checks that every type and pay value is mapped.",
+  "groups": [
+    {
+      "id": "programs",
+      "label": "Programs and internships",
+      "types": [
+        "internship",
+        "co_op",
+        "employer_program",
+        "job",
+        "pipeline_program",
+        "program",
+        "federal_program",
+        "service_program",
+        "credit_program",
+        "competition",
+        "conference",
+        "event",
+        "volunteer"
+      ]
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "types": [
+        "research_program",
+        "lab_or_center"
+      ]
+    },
+    {
+      "id": "aid",
+      "label": "Scholarships and aid",
+      "types": [
+        "scholarship",
+        "fellowship",
+        "grant",
+        "aid_program",
+        "state_program",
+        "basic_needs"
+      ]
+    },
+    {
+      "id": "orgs",
+      "label": "Organizations and clubs",
+      "types": [
+        "club",
+        "professional_org"
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools and skills",
+      "types": [
+        "tool",
+        "course",
+        "certification",
+        "certificate_program",
+        "job_board",
+        "directory"
+      ]
+    },
+    {
+      "id": "offices",
+      "label": "Campus offices",
+      "types": [
+        "campus_office",
+        "requirement"
+      ]
+    }
+  ],
+  "pay": {
+    "paid": [
+      "paid",
+      "stipend",
+      "salary",
+      "grant",
+      "scholarship",
+      "tuition",
+      "prize"
+    ],
+    "free": [
+      "free"
+    ],
+    "other": [
+      "credit",
+      "fee",
+      "unpaid"
+    ]
+  },
+  "payLabels": {
+    "paid": "Paid",
+    "stipend": "Stipend",
+    "salary": "Salary",
+    "grant": "Grant funding",
+    "scholarship": "Scholarship",
+    "tuition": "Covers tuition",
+    "prize": "Prize money",
+    "credit": "Academic credit",
+    "free": "Free",
+    "fee": "Has a fee",
+    "unpaid": "Unpaid"
+  },
+  "scopeLabels": {
+    "rutgers": "Rutgers",
+    "new_jersey": "New Jersey",
+    "national": "National",
+    "international": "International"
+  },
+  "seasonLabels": {
+    "summer": "Summer",
+    "academic-year": "During the school year",
+    "fall": "Fall",
+    "spring": "Spring",
+    "year-round": "Year-round"
+  }
+}

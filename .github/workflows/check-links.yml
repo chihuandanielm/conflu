@@ -1,0 +1,37 @@
+name: Validate data and check links
+
+on:
+  push:
+    paths: ["data/**", "scripts/check-links.mjs"]
+  schedule:
+    - cron: "17 9 * * 1"   # Mondays
+  workflow_dispatch:
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # v5+ of both actions run on the node24 runtime; GitHub removed node20 from hosted runners in Sept 2026.
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24   # Node 20 reached end of life on 2026-04-30; 24 is the active LTS
+      - run: node scripts/validate.mjs
+      - name: Check links
+        run: node scripts/check-links.mjs | tee link-report.txt
+        continue-on-error: true
+      - name: Publish link report
+        if: always()
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat link-report.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit updated verification dates
+        run: |
+          git config user.name "link-check-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/resources
+          git diff --cached --quiet || git commit -m "Update link check results"
+          git pull --rebase && git push

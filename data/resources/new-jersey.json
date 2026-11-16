@@ -1,0 +1,762 @@
+{
+  "_about": "New Jersey state programs, statewide orgs, and NJ-based employers with student programs.",
+  "resources": [
+    {
+      "id": "nj-eof",
+      "name": "New Jersey Educational Opportunity Fund (state program)",
+      "type": "state_program",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "low-income",
+        "nj-resident",
+        "first-generation"
+      ],
+      "interests": [],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Statewide EOF grants and support at NJ colleges for residents from disadvantaged backgrounds.",
+      "url": "https://www.nj.gov/highereducation/EOF/index.shtml",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-tag",
+      "name": "New Jersey Tuition Aid Grant (TAG)",
+      "type": "state_program",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "low-income",
+        "nj-resident"
+      ],
+      "interests": [],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "NJ's main need-based grant, run by HESAA. File the FAFSA or NJ Alternative Financial Aid Application on time every year.",
+      "url": "https://www.hesaa.org/Pages/Default.aspx",
+      "applyUrl": null,
+      "contact": {
+        "how": "File the FAFSA or NJAFAA; HESAA handles the rest."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-gsg",
+      "name": "Garden State Guarantee (GSG)",
+      "type": "state_program",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [
+        "low-income",
+        "nj-resident"
+      ],
+      "interests": [],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Covers remaining tuition and fees for eligible NJ students in their 3rd and 4th years (up to 4 semesters or 128 credits). From 2026-27, EOF awards no longer count against eligibility.",
+      "url": "https://scarlethub.rutgers.edu/financial-services/types-of-aid/garden-state-guarantee/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-stars",
+      "name": "NJ STARS",
+      "type": "state_program",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [
+        "transfer",
+        "nj-resident"
+      ],
+      "interests": [],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Tuition help for top NJ community college graduates who transfer to a NJ four-year school.",
+      "url": "https://www.hesaa.org/Pages/Default.aspx",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-space-grant",
+      "name": "New Jersey Space Grant Consortium",
+      "type": "grant",
+      "scope": "new_jersey",
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "computer-science",
+        "biological-sciences"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "aerospace",
+        "research"
+      ],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "NASA-funded consortium that supports student research and NASA-related internships in NJ, including support for RISE at Rutgers.",
+      "url": "https://spacegrant.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "njcpa",
+      "name": "New Jersey Society of CPAs (NJCPA)",
+      "type": "professional_org",
+      "scope": "new_jersey",
+      "majors": [
+        "accounting",
+        "finance"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "cpa",
+        "accounting"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free student membership, scholarships, and NJ accounting career events.",
+      "url": "https://www.njcpa.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "nj-labor-apprenticeship",
+      "name": "NJ Department of Labor: apprenticeship and training",
+      "type": "state_program",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "apprenticeship",
+        "workforce"
+      ],
+      "pay": null,
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "State listings for registered apprenticeships and training grants; useful for students weighing hands-on paths.",
+      "url": "https://www.nj.gov/labor",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "upitchnj",
+      "name": "UPitchNJ",
+      "type": "competition",
+      "scope": "new_jersey",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "entrepreneurship"
+      ],
+      "pay": "prize",
+      "season": "spring",
+      "typicalDeadline": null,
+      "summary": "Statewide collegiate startup pitch competition; the ScarletPitch winner represents Rutgers.",
+      "url": "https://idea.rutgers.edu/programs/scarletpitch",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "employer-jnj",
+      "name": "Johnson & Johnson co-ops and internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "biomedical-engineering",
+        "mechanical-engineering",
+        "supply-chain",
+        "finance",
+        "biological-sciences",
+        "pharmacy",
+        "information-technology",
+        "marketing"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://www.careers.jnj.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-merck",
+      "name": "Merck internships and co-ops",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "biological-sciences",
+        "pharmacy",
+        "biomedical-engineering",
+        "supply-chain",
+        "finance",
+        "computer-science"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://jobs.merck.com/us/en",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-bms",
+      "name": "Bristol Myers Squibb internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "biological-sciences",
+        "pharmacy",
+        "biomedical-engineering",
+        "supply-chain",
+        "finance"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://careers.bms.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-kenvue",
+      "name": "Kenvue internships and co-ops",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "biological-sciences",
+        "supply-chain",
+        "marketing",
+        "biomedical-engineering",
+        "finance"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://jobs.kenvue.com/students-and-graduates",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-novo-nordisk",
+      "name": "Novo Nordisk US internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "pharmacy",
+        "biological-sciences",
+        "marketing",
+        "finance",
+        "public-health"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://www.novonordisk-us.com/careers/find-a-job.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-prudential",
+      "name": "Prudential Financial internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "finance",
+        "accounting",
+        "computer-science",
+        "information-technology",
+        "economics",
+        "human-resource-management"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://jobs.prudential.com/us-en/early-talent/programs/internships",
+      "applyUrl": null,
+      "contact": {
+        "how": "Undergraduate internship applications usually open in July and close in late October.",
+        "email": "campus.recruiting@prudential.com"
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-verizon",
+      "name": "Verizon internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "marketing",
+        "finance",
+        "supply-chain"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://mycareer.verizon.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-adp",
+      "name": "ADP internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "human-resource-management",
+        "finance",
+        "accounting"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://jobs.adp.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-colgate",
+      "name": "Colgate-Palmolive internships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "marketing",
+        "supply-chain",
+        "finance",
+        "biological-sciences",
+        "mechanical-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://jobs.colgate.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-rwjbarnabas",
+      "name": "RWJBarnabas Health student roles and nurse externships",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "nursing",
+        "public-health",
+        "exercise-science",
+        "biological-sciences",
+        "social-work"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://www.rwjbh.org/NursingExtern",
+      "applyUrl": null,
+      "contact": {
+        "how": "The summer nurse externship is open to students who have finished at least two clinical nursing courses.",
+        "email": "nursingextern@rwjbh.org"
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-15",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": [
+        "employer"
+      ]
+    },
+    {
+      "id": "employer-hackensack-meridian",
+      "name": "Hackensack Meridian Health student programs",
+      "type": "employer_program",
+      "scope": "new_jersey",
+      "majors": [
+        "nursing",
+        "public-health",
+        "exercise-science",
+        "social-work"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "industry"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": null,
+      "summary": "NJ-based or NJ-heavy employer that recruits Rutgers students for internships, co-ops, or entry-level roles. Programs and names change yearly; check the student or early-career section.",
+      "url": "https://www.hackensackmeridianhealth.org/en",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the contact or apply page on the home site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-15",
+        "httpStatus": 200
+      },
+      "tags": [
+        "employer"
+      ]
+    }
+  ]
+}
