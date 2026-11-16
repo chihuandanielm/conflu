@@ -238,3 +238,28 @@ test("engine 0.8.0: gender answers only add programs for that gender", () => {
   const ghc = data.resources.find((r) => r.id === "anitab-ghc")!;
   assert.equal(eligibleFor(ghc, identitySet(asInput(["nonbinary"])), asInput(["nonbinary"])), true);
 });
+
+// ---------- engine 0.8.1 ----------
+const FINAL_TERM_NEVER = ["f-ces-advisor", "f-explore-careers", "a-certificate-minor", "a-packaging-certificate", "e-org-leadership", "f-aid-check", "e-research-assistant", "e-study-abroad", "a-fellowship-advising"];
+
+test("engine 0.8.1: nothing that needs semesters left starts in a student's final semester", () => {
+  for (const [majorId, trackId] of [["packaging-engineering", "packaging-cpg"], ["psychology", "clinical-mental-health"], ["finance", "investment-banking"], ["mechanical-engineering", "mechanical-design"]] as const) {
+    for (const weeklyHours of [2, 10]) for (const semester of [1, 2] as const) {
+      const p = senior({ majorId, trackId, weeklyHours, semester, today: semester === 1 ? "2026-09-15" : "2027-02-01" });
+      const spring = p.terms.find((t) => t.code === "4S");
+      for (const it of spring?.items ?? []) {
+        const startedEarlier = p.terms.some((t) => t.code === "4F" && t.items.some((i) => i.goalId === it.goalId));
+        assert.ok(!FINAL_TERM_NEVER.includes(it.goalId) || startedEarlier, `${majorId} ${weeklyHours}h s${semester}: "${it.title}" in the final semester`);
+      }
+    }
+  }
+});
+
+test("engine 0.8.1: a goal done late never explains itself as 'early'", () => {
+  for (const year of [3, 4] as const) for (const semester of [1, 2] as const) {
+    const p = senior({ year, semester, today: semester === 1 ? "2026-09-15" : "2027-02-01", weeklyHours: 10 });
+    for (const it of p.terms.flatMap((t) => t.items)) if (it.why.some((w) => /Most students do this earlier/.test(w))) {
+      for (const w of it.why) assert.doesNotMatch(w, /\bearly\b(?!-career|-ID)|start before|before senior fall/i, `${it.goalId}: "${w}"`);
+    }
+  }
+});

@@ -94,7 +94,7 @@ for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) error
 for (const g of goals) {
   if (!Array.isArray(g.steps) || g.steps.length < 3 || g.steps.length > 6) errors.push(`goals › ${g.id}: needs 3–6 steps`);
   if (typeof g.doneWhen !== "string" || g.doneWhen.length < 15) errors.push(`goals › ${g.id}: needs a doneWhen line`);
-  if (g.late && (!g.late.title || (g.late.steps && (g.late.steps.length < 3 || g.late.steps.length > 6)))) errors.push(`goals › ${g.id}: late needs a title and 3–6 steps if it has steps`);
+  if (g.late && ((!g.late.title && !g.late.why) || (g.late.steps && (g.late.steps.length < 3 || g.late.steps.length > 6)))) errors.push(`goals › ${g.id}: late needs a title or a why, and 3–6 steps if it has steps`);
   if (g.forNextYear && g.repeat !== "yearly") errors.push(`goals › ${g.id}: forNextYear only applies to yearly goals`);
   for (const id of g.guides ?? []) {
     const r = resById.get(id);

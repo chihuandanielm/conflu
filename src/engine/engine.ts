@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.8.0";
+export const ENGINE_VERSION = "0.8.1";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -191,7 +191,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   };
   // A goal already past its ideal window is named with its late wording everywhere (plan, queue), not only when placed.
   const titleNow = (g: Goal, win: Node["win"], key = g.id) => {
-    const t = g.late && nowIdx > win.b ? g.late.title : g.title;
+    const t = g.late?.title && nowIdx > win.b ? g.late.title : g.title;
     const y = key.split("@Y")[1];
     return y ? `${t} (year ${y})` : t; // yearly rounds stay distinct in the queue
   };
@@ -501,7 +501,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   function item(n: Node, t: number, hours: number, partial: boolean, sc: { u: number; stab: number; total: number }): PlanItem {
     const score: ScoreBreakdown = { weight: round(n.weight), coverage: round(n.coverage), urgency: round(sc.u), eligibility: round(n.eligibility), stability: round(sc.stab), total: round(sc.total) };
     const late = t > n.win.b && !!n.goal.late; // early-college goal done later: wording for where the student is now
-    return { goalId: n.key, title: late ? n.goal.late!.title : n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate,
+    return { goalId: n.key, title: late && n.goal.late!.title ? n.goal.late!.title : n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate,
       score, why: explain(n, t, sc.u), resources: rankResources(n.goal, t), ...(late ? { late: true } : {}) };
   }
 
@@ -519,7 +519,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);
     if (n.eligibility > 1) why.push("Some programs here are specifically for students like you.");
     if (n.strength > 0) why.push("You've already started this.");
-    why.push(n.goal.why);
+    // A goal done after its ideal window explains itself for now, not for early in college (engine 0.8.1).
+    why.push(t > n.win.b && n.goal.late?.why ? n.goal.late.why : n.goal.why);
     return why;
   }
 
