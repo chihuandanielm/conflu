@@ -49,7 +49,7 @@ export function SingleChoice<V extends string | number>({ choices, value, onSele
                 <span className={`block font-semibold ${c.disabled ? "text-muted" : "text-ink"}`}>{c.label}</span>
                 {c.description && <span className="mt-1 block text-sm text-muted">{c.description}</span>}
               </span>
-              {c.note && <span className="mt-0.5 shrink-0 rounded-sm bg-border px-2 py-0.5 text-xs text-muted">{c.note}</span>}
+              {c.note && <span className="mt-0.5 shrink-0 rounded-sm bg-surface px-2 py-0.5 text-xs text-ink">{c.note}</span>}
             </button>
           </div>
         );

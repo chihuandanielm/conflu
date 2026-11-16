@@ -6,7 +6,7 @@ import { reducer, type IntakeState } from "./IntakeFlow.tsx";
 import { answerText } from "./Review.tsx";
 
 const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
-  horizon: "graduation", summer: "full", school: "rutgers-nb", location: "nj", experience: ["resume"], skills: ["python"] };
+  horizon: "graduation", summer: "full", school: "rutgers-nb", enrollment: "full-time", location: "nj", experience: ["resume"], skills: ["python"] };
 
 describe("steps", () => {
   it("asks about co-ops only for majors that have them", () => {
@@ -14,14 +14,16 @@ describe("steps", () => {
     expect(stepsFor({ ...cs, majorId: "mechanical-engineering" })).toContain("coop");
     expect(stepsFor({ ...cs, majorId: "pharmacy" })).toContain("coop");
   });
-  it("counts 14 questions for a CS student and starts with intro, ends with review", () => {
-    expect(questionSteps(cs)).toHaveLength(14);
+  it("counts 15 questions for a CS student and starts with intro, ends with review", () => {
+    expect(questionSteps(cs)).toHaveLength(15);
+    expect(stepsFor(cs).slice(4, 6)).toEqual(["year", "enrollment"]); // enrollment right after year, before the goal
     expect(stepsFor(cs)[0]).toBe("intro");
     expect(stepsFor(cs).at(-1)).toBe("review");
   });
   it("knows which required answers are missing", () => {
     expect(firstIncomplete(emptyAnswers())).toBe("status");
     expect(firstIncomplete({ ...cs, horizon: undefined })).toBe("horizon");
+    expect(firstIncomplete({ ...cs, enrollment: undefined })).toBe("enrollment");
     expect(firstIncomplete(cs)).toBeNull();
   });
   it("detects summer break with the engine's calendar", () => {
@@ -121,7 +123,8 @@ describe("reducer", () => {
 describe("review text", () => {
   it("describes answers in plain words", () => {
     expect(answerText("major", cs)).toBe("Computer Science");
-    expect(answerText("hours", cs)).toBe("5 hours a week");
+    expect(answerText("hours", cs)).toBe("5 hours a week outside class");
+    expect(answerText("enrollment", { ...cs, enrollment: "part-time" })).toBe("Part-time");
     expect(answerText("citizenship", cs)).toBe("Skipped");
     expect(answerText("experience", { ...cs, experience: [] })).toBe("None yet");
   });

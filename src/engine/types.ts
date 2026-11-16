@@ -77,6 +77,8 @@ export interface PlanInput {
   weeklyHours?: number;
   summer?: "full" | "part" | "none";
   openToCoop?: boolean;
+  /** Missing means full-time, as before engine 0.5.0. Part-time only adds a plan note; scheduling is the same. */
+  enrollment?: "full-time" | "part-time";
   school?: "rutgers-nb" | "rutgers-newark" | "rutgers-camden" | "other"; // missing = New Brunswick (pre-0.4 default)
   location?: "nj" | "us-other" | "outside-us" | "skip";
   citizenship?: "us-citizen" | "us-pr" | "international" | "undocumented" | "skip";

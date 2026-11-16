@@ -24,7 +24,8 @@ export function answerText(s: StepId, a: Answers): string {
     case "experience": return a.experience.length ? list(a.experience, intake.experience) : "None yet";
     case "skills": return a.skills.length ? list(a.skills, intake.skills) : "None picked";
     case "credentials": return a.credentials.length ? list(a.credentials, intake.credentials) : a.seen.includes("credentials") ? "None" : skipped;
-    case "hours": return `${a.weeklyHours} hours a week`;
+    case "hours": return `${a.weeklyHours} hours a week outside class`;
+    case "enrollment": return optionLabel(intake.enrollment, a.enrollment) ?? skipped;
     case "summer": return optionLabel(intake.summerAvailability, a.summer) ?? skipped;
     case "coop": return a.openToCoop === undefined ? skipped : a.openToCoop ? "Yes" : "No";
     case "location": return optionLabel(intake.location, a.location) ?? skipped;
@@ -36,7 +37,7 @@ export function answerText(s: StepId, a: Answers): string {
 
 const SHORT: Partial<Record<StepId, string>> = {
   status: "Status", major: "Major", year: "Year", school: "Campus", track: "Goal", horizon: "Time frame", experience: "Experience",
-  skills: "Skills", credentials: "Certifications", hours: "Weekly hours", summer: "Summers", coop: "Co-op",
+  skills: "Skills", credentials: "Certifications", hours: "Free hours a week", enrollment: "Enrollment", summer: "Summers", coop: "Co-op",
   location: "Based in", citizenship: "Citizenship", identity: "About you",
 };
 

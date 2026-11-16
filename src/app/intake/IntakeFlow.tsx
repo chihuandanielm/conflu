@@ -15,7 +15,7 @@ import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isSummerBreak, majorOfferedAt, questionSteps, stepsFor,
-  type Answers, type School, type StepId,
+  type Answers, type Enrollment, type School, type StepId,
 } from "./model.ts";
 
 export const INTAKE_KEY = "cpm.intake.v1";
@@ -173,6 +173,8 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
           {single(intake.years.map((y) => ({ value: y.id as 1 | 2 | 3 | 4, label: y.label })), a.year, (v) => ({ year: v }))}
         </>
       );
+    case "enrollment":
+      return single(intake.enrollment.map((o) => ({ value: o.id as Enrollment, label: o.label, note: o.note })), a.enrollment, (v) => ({ enrollment: v }));
     case "school":
       // A campus that doesn't offer the chosen major clears it (and the co-op answer that depended on it).
       return single(uiIntake.school.options.map((o) => ({ value: o.id as School, label: o.label })), a.school,
@@ -188,7 +190,7 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
     case "credentials":
       return <RankedChips label="Certifications" options={intake.credentials} majorId={a.majorId} trackId={a.trackId} selected={a.credentials} onToggle={(id) => toggle("credentials", id)} />;
     case "hours":
-      return single(intake.weeklyHours.map((h) => ({ value: h, label: `${h} hours a week` })), a.weeklyHours, (v) => ({ weeklyHours: v }));
+      return single(intake.weeklyHours.map((h) => ({ value: h, label: `${h} hours a week outside class` })), a.weeklyHours, (v) => ({ weeklyHours: v }));
     case "summer":
       return single(intake.summerAvailability.map((s) => ({ value: s.id as NonNullable<Answers["summer"]>, label: s.label })), a.summer, (v) => ({ summer: v }));
     case "coop":

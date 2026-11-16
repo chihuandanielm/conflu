@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.4 design (engine 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.5 design (engine 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -106,7 +106,8 @@ Each experience, skill, or credential answer lists `completes: [{goal, strength}
 | `trackId` | "Where do you want to end up?" (track list filtered by `suggestedMajors`, with "show all" and "Still exploring") | required |
 | `horizon` | 6mo, 1yr, 2yr, graduation, after-graduation | graduation |
 | `today` | Browser clock | — |
-| `weeklyHours` | Optional dropdown (2/5/10/15/20) | 5 |
+| `enrollment` | "Are you a full-time or part-time student?" (full-time = 12+ credits a term). Part-time adds a Step 9 note; scheduling is unchanged | full-time |
+| `weeklyHours` | Free hours a week outside class (after classes, studying, work, and family), 2/5/10/15/20 | 5 |
 | `summer` | full / part / none | full |
 | `openToCoop` | Engineering, pharmacy, supply chain only | true |
 | `location`, `citizenship` | Optional | unknown |
@@ -237,7 +238,8 @@ A gate that ends up here also produces a warning.
 
 - **Hours shortfall:** "About N hours didn't fit. Around H hours a week would cover them." H = current weekly hours + unfit hours ÷ (flex weeks × realism).
 - **Limited summers** on a track that runs through a junior-summer internship.
-- **International students:** CPT/OPT authorization note.
+- **International students:** CPT/OPT authorization note naming the student's campus office (Rutgers Global ISSS, the Rutgers–Newark Office of International Student & Scholar Services, the Rutgers–Camden Office of International Students & Global Programs, or "your school's international student office").
+- **Part-time students:** the plan spaces goals at a full-time pace for their year; plan by credits with an advisor and check whether wanted internships or scholarships require full-time enrollment.
 - **Track recruiting note.**
 - **Gate** that can't fit or whose window has closed.
 
@@ -391,6 +393,8 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 16. The core invariants hold for every campus × offered major × track × year.
 17. Identity answers never remove goals at Newark or Camden.
 18. A Packaging Engineering student gets the packaging goals, co-op, resources, and recruiting note.
+19. The international note names each campus's office (engine 0.5.0).
+20. Part-time students get the pace note and identical goals and terms; full-time and missing enrollment get no note.
 
 Add a test for every bug found in review.
 

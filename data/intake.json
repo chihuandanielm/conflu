@@ -40,6 +40,18 @@
       "label": "Fourth year or later"
     }
   ],
+  "enrollment": [
+    {
+      "id": "full-time",
+      "label": "Full-time",
+      "note": "12 or more credits a term"
+    },
+    {
+      "id": "part-time",
+      "label": "Part-time",
+      "note": "Fewer than 12 credits a term"
+    }
+  ],
   "horizons": [
     {
       "id": "6mo",

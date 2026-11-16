@@ -10,6 +10,7 @@ export type Summer = NonNullable<PlanInput["summer"]>;
 export type Location = NonNullable<PlanInput["location"]>;
 export type Citizenship = NonNullable<PlanInput["citizenship"]>;
 export type School = NonNullable<PlanInput["school"]>;
+export type Enrollment = NonNullable<PlanInput["enrollment"]>;
 export const SCHOOLS: readonly School[] = ["rutgers-nb", "rutgers-newark", "rutgers-camden", "other"];
 
 /**
@@ -27,6 +28,7 @@ export interface Answers {
   status?: "college-student";
   majorId?: string;
   year?: 1 | 2 | 3 | 4;
+  enrollment?: Enrollment;
   school?: School;
   trackId?: string;
   horizon?: Horizon;
@@ -48,14 +50,14 @@ export const emptyAnswers = (): Answers => ({
 });
 
 export type StepId =
-  | "intro" | "status" | "school" | "major" | "year" | "track" | "horizon" | "experience" | "skills" | "credentials"
+  | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "experience" | "skills" | "credentials"
   | "hours" | "summer" | "coop" | "location" | "citizenship" | "identity" | "review";
 
 export const coopMajors = new Set(uiIntake.coop.majors);
 
 /** The steps this student sees, in order. The co-op question only appears for majors that offer co-ops. */
 export function stepsFor(a: Answers): StepId[] {
-  const s: StepId[] = ["intro", "status", "school", "major", "year", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
+  const s: StepId[] = ["intro", "status", "school", "major", "year", "enrollment", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
   if (a.majorId && coopMajors.has(a.majorId)) s.push("coop");
   s.push("location", "citizenship", "identity", "review");
   return s;
@@ -74,6 +76,7 @@ export function isAnswered(s: StepId, a: Answers): boolean {
     case "status": return a.status === "college-student";
     case "major": return majorOfferedAt(a.majorId, a.school);
     case "year": return !!a.year;
+    case "enrollment": return !!a.enrollment;
     case "school": return !!a.school;
     case "track": return !!a.trackId;
     case "horizon": return !!a.horizon;
@@ -112,6 +115,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     summer: a.summer ?? "full",
     ...(coopMajors.has(a.majorId) && a.openToCoop !== undefined ? { openToCoop: a.openToCoop } : {}),
     school: a.school ?? "rutgers-nb",
+    enrollment: a.enrollment ?? "full-time",
     ...(a.location ? { location: a.location } : {}),
     ...(a.citizenship ? { citizenship: a.citizenship } : {}),
     identity: [...a.identity],
