@@ -5,14 +5,14 @@ import { coopMajors, emptyAnswers, majorOfferedAt, SCHOOLS, type Answers } from 
 
 const KEY = "plan";
 
-interface Shared { v: 1; m: string; y: number; t: string; h?: string; s?: string; w?: number; u?: string; c?: 0 | 1; l?: string; e?: string[]; k?: string[]; r?: string[] }
+interface Shared { v: 1; m: string; y: number; t: string; h?: string; s?: string; n?: string; w?: number; u?: string; c?: 0 | 1; l?: string; e?: string[]; k?: string[]; r?: string[] }
 
 const b64url = (s: string) => btoa(String.fromCharCode(...new TextEncoder().encode(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64url = (s: string) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)));
 
 export function shareHash(a: Answers): string {
   if (!a.majorId || !a.year || !a.trackId) throw new Error("Intake is incomplete");
-  const s: Shared = { v: 1, m: a.majorId, y: a.year, t: a.trackId, h: a.horizon, s: a.school, w: a.weeklyHours, u: a.summer,
+  const s: Shared = { v: 1, m: a.majorId, y: a.year, t: a.trackId, h: a.horizon, s: a.school, n: a.enrollment, w: a.weeklyHours, u: a.summer,
     c: a.openToCoop === undefined ? undefined : a.openToCoop ? 1 : 0, l: a.location, e: a.experience, k: a.skills, r: a.credentials };
   return `#${KEY}=${b64url(JSON.stringify(s))}`;
 }
@@ -37,6 +37,8 @@ export function parseShareHash(hash: string): Answers | null {
     trackId: s.t,
     horizon: pick(s.h, intake.horizons.map((h) => h.id as NonNullable<Answers["horizon"]>)),
     school,
+    // Links made before the enrollment question were planned at a full-time pace.
+    enrollment: pick(s.n, intake.enrollment.map((x) => x.id as NonNullable<Answers["enrollment"]>)) ?? "full-time",
     weeklyHours: intake.weeklyHours.includes(s.w as number) ? (s.w as number) : intake.defaultWeeklyHours,
     summer: pick(s.u, intake.summerAvailability.map((x) => x.id as NonNullable<Answers["summer"]>)),
     openToCoop: coopMajors.has(s.m!) && (s.c === 0 || s.c === 1) ? s.c === 1 : undefined,
@@ -45,6 +47,6 @@ export function parseShareHash(hash: string): Answers | null {
     skills: list(s.k, intake.skills),
     credentials: list(s.r, intake.credentials),
   };
-  a.seen = ["status", "school", "major", "year", "track", "horizon", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
+  a.seen = ["status", "school", "major", "year", "enrollment", "track", "horizon", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
   return a;
 }

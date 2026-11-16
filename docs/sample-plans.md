@@ -91,7 +91,7 @@ Biggest gaps: crit 0.66, tech 0.655, team 0.309
     resources: federal-pathways, rutgers-handshake, vsfs
 - (applications) Apply to 30+ target internships for junior summer (in progress) · 10h · score 0.925
     why: High priority for Software engineering. Timing: Many large employers recruit August–October of junior year.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 
 ### Year 3 · Fall  [88/90 flex hrs]
 - (foundation) File the FAFSA (every year) · 2h · score 1.421
@@ -117,7 +117,7 @@ Biggest gaps: crit 0.66, tech 0.655, team 0.309
     resources: rutgers-ces
 - (applications) Apply to 30+ target internships for junior summer · 30h · score 1.492
     why: High priority for Software engineering. Timing: Many large employers recruit August–October of junior year.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 
 ### Year 3 · Spring  [90/90 flex hrs]
 - (presence) Get your first pull request merged into an open-source project · 15h · score 0.946
@@ -478,7 +478,7 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
     resources: aresty-ra
 - (applications) Apply to 30+ target internships for junior summer (in progress) · 20h · score 1.092
     why: High priority for Public accounting (audit and tax). Builds professionalism, one of your biggest gaps right now.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 
 ### Year 3 · Fall  [52/56 flex hrs]
 - (foundation) File the FAFSA (every year) · 2h · score 1.908
@@ -498,7 +498,7 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
     resources: —
 - (applications) Apply to 30+ target internships for junior summer · 20h · score 1.761
     why: High priority for Public accounting (audit and tax). Builds professionalism, one of your biggest gaps right now.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 - (applications) Apply to 5 outside scholarships (in progress) · 8h · score 0.84
     why: Builds communication, one of your biggest gaps right now. Some programs here are specifically for students like you.
     resources: apia-scholars, hsf
@@ -846,7 +846,7 @@ Biggest gaps: crit 0.62, comm 0.6, prof 0.6
     resources: —
 - (applications) Apply to 30+ target internships for junior summer · 40h · score 2.751
     why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
-    resources: glassdoor, linkedin-profile, rutgers-camden-handshake
+    resources: linkedin-profile, glassdoor, rutgers-camden-handshake
 
 ### Summer after year 3  [64/64 flex hrs, summer block used]
 - (presence) Publish a Kaggle notebook or finish a competition · 15h · score 1.366
@@ -1003,7 +1003,7 @@ Biggest gaps: crit 0.8, tech 0.8, team 0.75
     resources: —
 - (applications) Apply to 30+ target internships for junior summer (in progress) · 20h · score 0.955
     why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 
 ### Year 3 · Fall  [90/90 flex hrs]
 - (foundation) File the FAFSA (every year) · 2h · score 1.536
@@ -1032,7 +1032,7 @@ Biggest gaps: crit 0.8, tech 0.8, team 0.75
     resources: —
 - (applications) Apply to 30+ target internships for junior summer · 20h · score 1.54
     why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
-    resources: rutgers-handshake, glassdoor, linkedin-profile
+    resources: rutgers-handshake, linkedin-profile, glassdoor
 
 ### Year 3 · Spring  [27/27 flex hrs, summer block used]
 - (experience) Complete a 6-month co-op · 450h · score 1.276

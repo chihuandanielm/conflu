@@ -125,3 +125,22 @@ test("a packaging engineering student gets packaging goals, the co-op, and packa
   assert.ok(items.some((i) => i.resources.some((r) => r.id === "iopp-student-ameristar" || r.id === "rutgers-packaging-coop" || r.id === "iopp")), "packaging resources shown");
   assert.ok(p.warnings.some((w) => w.includes("Packaging co-ops")), "packaging recruiting note");
 });
+
+test("the international-student note names the right office for each campus (engine 0.5.0)", () => {
+  const note = (school: PlanInput["school"]) => buildPlan({ ...base, school, citizenship: "international" }, data).warnings.find((w) => w.includes("CPT or OPT"))!;
+  assert.match(note("rutgers-nb"), /Rutgers Global/);
+  assert.match(note("rutgers-newark"), /Rutgers–Newark/);
+  assert.doesNotMatch(note("rutgers-newark"), /Rutgers Global/);
+  assert.match(note("rutgers-camden"), /Rutgers–Camden/);
+  assert.match(note("other"), /international student office/);
+});
+
+test("part-time students are told the plan assumes a full-time pace; full-time students are not (engine 0.5.0)", () => {
+  const partTime = buildPlan({ ...base, enrollment: "part-time" }, data);
+  assert.ok(partTime.warnings.some((w) => /part-time/i.test(w) && /advisor/.test(w)));
+  assert.ok(!buildPlan({ ...base, enrollment: "full-time" }, data).warnings.some((w) => /part-time/i.test(w)));
+  assert.ok(!buildPlan(base, data).warnings.some((w) => /part-time/i.test(w)), "missing enrollment means full-time, as before");
+  // Enrollment only adds a note: the same goals and terms either way.
+  const key = (p: Plan) => p.terms.map((t) => t.items.map((i) => i.goalId).join(",")).join("|");
+  assert.equal(key(partTime), key(buildPlan(base, data)));
+});

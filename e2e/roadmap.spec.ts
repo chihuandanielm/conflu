@@ -39,6 +39,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.keyboard.press("Enter");
   await expect(heading(page)).toHaveText("What year are you in?");
   await page.keyboard.press("2");
+  await expect(heading(page)).toHaveText("Are you a full-time or part-time student?");
+  await page.getByRole("radio", { name: /Full-time/ }).click();
   await expect(heading(page)).toHaveText("Where do you want to end up?");
   await page.getByRole("radio", { name: /Software engineering/ }).click();
   await expect(heading(page)).toHaveText("How soon do you want to get there?");
@@ -57,8 +59,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("button", { name: "Continue" }).click();
   await expect(heading(page)).toHaveText("Do you have any of these certifications?");
   await page.getByRole("button", { name: "Skip" }).click();
-  await expect(heading(page)).toHaveText("How many hours a week can you put toward this?");
-  await page.getByRole("radio", { name: "10 hours a week" }).click();
+  await expect(heading(page)).toHaveText("Outside of class, how many hours a week can you give your career goals?");
+  await page.getByRole("radio", { name: "10 hours a week outside class" }).click();
   await expect(heading(page)).toHaveText("What about summers?");
   await page.keyboard.press("1");
   await expect(heading(page)).toHaveText("Where are you based?");
@@ -73,7 +75,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("button", { name: "Build my plan" }).click();
 
   await expect(heading(page)).toHaveText("Your career roadmap");
-  await expect(page.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 10 hrs/week")).toBeVisible();
+  await expect(page.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 10 free hrs/week")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Your next moves" })).toBeVisible();
 
   // Open a goal from the chart and mark it done.

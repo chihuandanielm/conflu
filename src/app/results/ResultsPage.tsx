@@ -25,7 +25,7 @@ const MODE_KEY = "cpm.roadmap-view"; // per-viewer convenience: chart or list on
 
 export function planSummary(a: Answers): string {
   const horizon = intake.horizons.find((h) => h.id === (a.horizon ?? "graduation"))?.label.toLowerCase();
-  return `${trackName(a.trackId)} · ${majorName(a.majorId)}, year ${a.year} · ${campusName(a.school)} · ${horizon} · ${a.weeklyHours} hrs/week`;
+  return `${trackName(a.trackId)} · ${majorName(a.majorId)}, year ${a.year}${a.enrollment === "part-time" ? " (part-time)" : ""} · ${campusName(a.school)} · ${horizon} · ${a.weeklyHours} free hrs/week`;
 }
 
 const goalTitle = (key: string) => {

@@ -68,6 +68,17 @@ describe("IntakeFlow", () => {
     expect(saved.openToCoop).toBeUndefined();
   });
 
+  it("asks full-time or part-time right after the year, and asks for hours outside class", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="year" />);
+    expect(screen.getByText(/Pick the year that matches your credits/)).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: "3" }); advance(); await act(async () => {});
+    expect(heading()).toBe("Are you a full-time or part-time student?");
+    expect(screen.queryByRole("button", { name: "Skip" })).toBeNull();
+    fireEvent.click(screen.getByRole("radio", { name: /Part-time/ })); advance(); await act(async () => {});
+    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers.enrollment).toBe("part-time");
+    expect(heading()).toBe("Where do you want to end up?");
+  });
+
   it("explains optional questions and lets students skip them", async () => {
     render(<IntakeFlow onBuild={() => {}} startAt="citizenship" />);
     expect(screen.getByText(/Only used to hide programs you legally can't apply to/)).toBeInTheDocument();

@@ -74,7 +74,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
         <Text style={s.h1}>Your career roadmap</Text>
         <View style={{ marginTop: 18 }}>
           {[["Goal", summary.track], ["Campus", summary.campus], ["Major", summary.major], ["Year", `Year ${summary.year}`], ["Time frame", summary.horizon],
-            ["Time per week", `${summary.hours} hours`], ["Generated", date], ["Data version", plan.meta.dataVersion], ["Planning engine", plan.meta.engineVersion]]
+            ["Free time per week", `${summary.hours} hours outside class`], ["Generated", date], ["Data version", plan.meta.dataVersion], ["Planning engine", plan.meta.engineVersion]]
             .map(([k, v]) => <View key={k} style={s.row}><Text style={s.label}>{k}</Text><Text style={{ flex: 1 }}>{v}</Text></View>)}
         </View>
         <View style={s.note}>

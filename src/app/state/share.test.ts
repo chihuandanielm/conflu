@@ -3,13 +3,13 @@ import { emptyAnswers, type Answers } from "../intake/model.ts";
 import { parseShareHash, shareHash } from "./share.ts";
 
 const a: Answers = { ...emptyAnswers(), status: "college-student", majorId: "pharmacy", year: 3, trackId: "pharmacist", horizon: "1yr",
-  school: "rutgers-nb", weeklyHours: 10, summer: "part", openToCoop: false, location: "nj", experience: ["resume", "pharm-intern"],
+  school: "rutgers-nb", enrollment: "full-time", weeklyHours: 10, summer: "part", openToCoop: false, location: "nj", experience: ["resume", "pharm-intern"],
   skills: ["excel"], credentials: ["pharm-tech"], citizenship: "international", identity: ["first-generation", "latino"] };
 
 describe("share link", () => {
   it("round-trips the plan answers", () => {
     const b = parseShareHash(shareHash(a))!;
-    for (const k of ["majorId", "year", "trackId", "horizon", "school", "weeklyHours", "summer", "openToCoop", "location", "experience", "skills", "credentials"] as const) {
+    for (const k of ["majorId", "year", "trackId", "horizon", "school", "enrollment", "weeklyHours", "summer", "openToCoop", "location", "experience", "skills", "credentials"] as const) {
       expect(b[k], k).toEqual(a[k]);
     }
   });
@@ -29,6 +29,12 @@ describe("share link", () => {
     expect(parseShareHash(enc({ v: 1, m: "computer-science", y: 2, t: "software-engineering", s: "rutgers-mars" }))).toBeNull();
     // Links made before the campus question default to New Brunswick, as plans did then.
     expect(parseShareHash(enc({ v: 1, m: "pharmacy", y: 2, t: "pharma-industry" }))!.school).toBe("rutgers-nb");
+  });
+
+  it("carries part-time enrollment, and old links default to full-time", () => {
+    expect(parseShareHash(shareHash({ ...a, enrollment: "part-time" }))!.enrollment).toBe("part-time");
+    const old = "#plan=" + btoa(JSON.stringify({ v: 1, m: "computer-science", y: 2, t: "software-engineering" })).replace(/=+$/, "");
+    expect(parseShareHash(old)!.enrollment).toBe("full-time");
   });
 
   it("rejects malformed or unknown values", () => {

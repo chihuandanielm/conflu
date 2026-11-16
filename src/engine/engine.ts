@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.4.0";
+export const ENGINE_VERSION = "0.5.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -373,7 +373,13 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   if (summer !== "full" && ("e-internship-target" in track.boosts || track.boosts["ap-internship-target"])) {
     warnings.push(`${track.name} usually runs through a full-time junior-summer internship; limited summers make that harder.`);
   }
-  if (input.citizenship === "international") warnings.push("International students need CPT or OPT authorization before any internship. Check with Rutgers Global ISSS before accepting an offer.");
+  if (input.citizenship === "international") {
+    const offices: Record<string, string> = { nb: "Rutgers Global ISSS", newark: "the Rutgers–Newark Office of International Student & Scholar Services", camden: "the Rutgers–Camden Office of International Students & Global Programs" };
+    const campus = campusOf(input.school);
+    const office = campus ? offices[campus] : "your school's international student office";
+    warnings.push(`International students need CPT or OPT authorization before any internship. Check with ${office} before accepting an offer.`);
+  }
+  if (input.enrollment === "part-time") warnings.push("You're part-time, so this plan spaces goals at a full-time pace for your year. If you'll graduate later, plan by credits with an advisor, and check whether internships or scholarships you want require full-time enrollment.");
   if (track.recruitingNote) warnings.push(`Recruiting timeline: ${track.recruitingNote}`);
 
   // 10. Assemble ---------------------------------------------------------------
