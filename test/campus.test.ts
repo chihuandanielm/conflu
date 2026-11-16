@@ -51,7 +51,8 @@ test("New Brunswick plans are unchanged: same goals, terms, hours, and backlog a
       b.terms.map((t) => ({ code: t.code, items: t.items.map((s) => s.split("|").slice(0, 3).join("|")) })), `${label}: placements changed`);
     // The only goals allowed to appear: the two added in this change (as optional backlog items for engineers).
     const NEW_GOALS = new Set(["e-pack-competition", "a-packaging-certificate"]);
-    assert.deepEqual(p.backlog.map((x) => x.goalId).filter((g) => !NEW_GOALS.has(g)), b.backlog, `${label}: backlog changed`);
+    // Same backlog goals; engine 0.6.0 orders them as a priority queue, so compare as sets.
+    assert.deepEqual(p.backlog.map((x) => x.goalId).filter((g) => !NEW_GOALS.has(g)).sort(), [...b.backlog].sort(), `${label}: backlog changed`);
     // Resource cards may only gain resources added in this change that NB students can use.
     for (const t of p.terms) for (const it of t.items) {
       const before = b.terms.find((x) => x.code === t.code)!.items.find((s) => s.startsWith(`${it.goalId}|`))!.split("|")[3].split(",").filter(Boolean);

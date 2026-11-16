@@ -118,3 +118,17 @@ test("blocked and broken links get no verified-link bonus", () => {
   assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-checked", "link-checked")), ["zz-checked", "aa-unverified"]);
   assert.deepEqual(rankWith(variant("aa-unverified", "unverified"), variant("zz-found", "search-confirmed")), ["zz-found", "aa-unverified"]);
 });
+
+test("engine 0.6.0: leftover goals become an ordered 'up next' queue, never an hours shortfall", () => {
+  const tight = buildPlan({ status: "college-student", majorId: "biological-sciences", year: 2, trackId: "medicine", horizon: "graduation",
+    today: "2026-11-16", weeklyHours: 2, summer: "full", location: "nj" }, data);
+  for (const w of tight.warnings) assert.doesNotMatch(w, /hours a week would|hours of goals|didn't fit/i, `taxing warning: ${w}`);
+  const kinds = tight.backlog.map((b) => b.kind);
+  assert.ok(kinds.every((k) => k === "next" || k === "optional" || k === "not-now"), "every leftover has a kind");
+  assert.ok(kinds.includes("next"), "with 2 hours a week some goals are next in line");
+  const rank = { next: 0, optional: 1, "not-now": 2 } as const;
+  for (let i = 1; i < kinds.length; i++) assert.ok(rank[kinds[i - 1]!] <= rank[kinds[i]!], "next, then optional, then not now");
+  for (const b of tight.backlog) assert.doesNotMatch(b.reason, /didn't fit|more hours than/i, `${b.goalId}: ${b.reason}`);
+  // Must-do goals that wait get a concrete, kind note.
+  for (const w of tight.warnings.filter((x) => /essential/.test(x))) assert.match(w, /next in line/);
+});

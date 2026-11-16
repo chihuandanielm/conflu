@@ -17,20 +17,22 @@ function setup(s = createSaved(cs, "2026-11-15")) {
 }
 
 describe("results page", () => {
-  it("shows the summary, the trajectory note once, and up to five next moves", () => {
+  it("shows the summary, the trajectory note once, one first step, and three goals for this term", () => {
     setup();
     expect(screen.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 5 free hrs/week")).toBeInTheDocument();
     expect(screen.getAllByText(/general trajectory, not a blueprint/)).toHaveLength(1);
-    const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
+    const next = screen.getByRole("heading", { name: "This term" }).closest("section")!;
     const rows = within(next).getAllByRole("listitem");
     expect(rows.length).toBeGreaterThan(0);
-    expect(rows.length).toBeLessThanOrEqual(5);
+    expect(rows.length).toBeLessThanOrEqual(3);
+    expect(screen.getByRole("heading", { name: "Start here" })).toBeInTheDocument();
+    expect(screen.queryByText(/hours a week would|hours of goals/)).toBeNull();
   });
 
   it("opens a goal, shows every reason, and marks it done", async () => {
     const { get } = setup();
     const first = get().plan.terms[0].items[0];
-    const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
+    const next = screen.getByRole("heading", { name: "This term" }).closest("section")!;
     fireEvent.click(within(next).getByRole("button", { name: new RegExp(first.title.replace(/[()]/g, ".")) }));
     const dialog = screen.getByRole("dialog");
     for (const w of first.why) expect(within(dialog).getByText(w)).toBeInTheDocument();
@@ -44,7 +46,7 @@ describe("results page", () => {
   it("says what to do: next moves show the next step, and steps check off and are remembered", async () => {
     localStorage.clear();
     const { get } = setup();
-    const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
+    const next = screen.getByRole("heading", { name: "This term" }).closest("section")!;
     const first = within(next).getAllByRole("listitem")[0];
     const item = get().plan.terms[0].items.find((i) => first.textContent!.startsWith(i.title))!;
     const goal = dataset.goals.find((g) => g.id === item.goalId.split("@")[0])!;
@@ -79,9 +81,18 @@ describe("results page", () => {
     vi.doUnmock("../pdf/download.ts");
   });
 
+  it("lists leftover goals as an ordered up-next queue with a calm intro", () => {
+    setup(createSaved({ ...cs, weeklyHours: 2 }, "2026-11-15"));
+    const up = screen.getByRole("heading", { name: "Up next" }).closest("section")!;
+    expect(within(up).getByText(/Nothing here is overdue/)).toBeInTheDocument();
+    const rows = within(within(up).getAllByRole("list")[0]).getAllByRole("listitem");
+    expect(rows.length).toBeGreaterThan(0);
+    expect(rows.length).toBeLessThanOrEqual(5); // the first five, with "Show all" for the rest
+  });
+
   it("closes the drawer with Escape", async () => {
     setup();
-    const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
+    const next = screen.getByRole("heading", { name: "This term" }).closest("section")!;
     fireEvent.click(within(next).getAllByRole("button")[0]);
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     fireEvent.keyDown(document, { key: "Escape" });
@@ -114,7 +125,8 @@ describe("results page", () => {
   });
 
   it("uses amber only for real problems", () => {
-    expect(noticeTone("About 120 hours of goals didn't fit. Around 9 hours a week would cover them.")).toBe("warn");
+    expect(noticeTone('"Take the MCAT" is required for Medicine, but its window has passed. Talk to an advisor about alternatives.')).toBe("warn");
+    expect(noticeTone('"Log 150+ hours of patient-care experience" is essential for Medicine and is next in line.')).toBe("info");
     expect(noticeTone("Recruiting timeline: Big tech opens junior-summer internships July–September.")).toBe("info");
     expect(noticeTone("International students need CPT or OPT authorization before any internship.")).toBe("info");
   });

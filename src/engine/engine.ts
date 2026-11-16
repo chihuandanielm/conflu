@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.5.0";
+export const ENGINE_VERSION = "0.6.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -149,6 +149,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
 
   // 4. Candidate goals -------------------------------------------------------
   const backlog: Plan["backlog"] = [];
+  const rank = new Map<string, number>(); // priority used to order the "next" and "optional" parts of the queue
   const ongoing: Plan["ongoing"] = [];
   const nodes = new Map<string, Node>();
   const suppressed = new Set(track.suppress);
@@ -175,8 +176,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const weight = gates.has(g.id) ? Math.max(K.gateWeight, track.boosts[g.id] ?? g.baseWeight) : (track.boosts[g.id] ?? g.baseWeight);
     if (suppressed.has(g.id)) continue;
     if (g.majors && !g.majors.includes(input.majorId) && !boosted && !gates.has(g.id)) continue;
-    if (!meetsRequirements(g, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "Not available with the citizenship status you entered." }); continue; }
-    if (citizenshipBlocked(g, resources, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "The programs here require U.S. citizenship." }); continue; }
+    if (!meetsRequirements(g, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "Not available with the citizenship status you entered.", kind: "not-now" }); continue; }
+    if (citizenshipBlocked(g, resources, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "The programs here require U.S. citizenship.", kind: "not-now" }); continue; }
 
     const instances: { key: string; win: Node["win"] }[] = [];
     const w = winOf(g);
@@ -196,12 +197,12 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     for (const inst of instances) {
       const n = makeNode(g, inst.key, inst.win, weight);
       if (n.strength >= 1) continue;
-      if (inst.win.e > endIdx) { backlog.push({ goalId: n.key, title: g.title, reason: "Starts after your time frame." }); continue; }
+      if (inst.win.e > endIdx) { backlog.push({ goalId: n.key, title: g.title, reason: "Starts after your time frame.", kind: "not-now" }); continue; }
       if (inst.win.l < nowIdx && !g.lateOk) {
         if (n.gate) warnings.push(`"${g.title}" is required for ${track.name}, but its window has passed. Talk to an advisor about alternatives.`);
-        backlog.push({ goalId: n.key, title: g.title, reason: "Its useful window has passed." }); continue;
+        backlog.push({ goalId: n.key, title: g.title, reason: "Its useful window has passed.", kind: "not-now" }); continue;
       }
-      if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: g.title, reason: "Lower priority for your time frame; add it if you have time." }); continue; }
+      if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: g.title, reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); rank.set(n.key, weight); continue; }
       nodes.set(n.key, n);
     }
   }
@@ -350,26 +351,27 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     }
   }
 
-  // 8. Leftovers become backlog with a reason --------------------------------
+  // 8. Leftovers join the queue: what comes next when the student finishes a goal or has more time ----------
   for (const n of nodes.values()) {
     if (n.completeAt !== null) continue;
     const blocked = n.goal.prereqs.find((pid) => (strength.get(pid) ?? 0) < 0.5 && nodes.get(pid)?.completeAt == null);
-    const reason = n.placedAt.length ? `Started but needs about ${Math.ceil(n.remaining)} more hours than your plan has room for.`
-      : blocked ? `Waiting on "${goals.get(blocked)?.title}".`
-      : n.mode === "block" && summer !== "full" ? "Needs a full-time summer; you said summers are limited."
-      : n.win.e > endIdx ? "Starts after your time frame."
-      : "Didn't fit your weekly hours.";
-    backlog.push({ goalId: n.key, title: n.goal.title, reason });
-    if (n.gate) warnings.push(`"${n.goal.title}" is a must-do for ${track.name} but didn't fit. ${reason}`);
+    const summerOnly = n.mode === "block" && summer !== "full";
+    const late = n.win.e > endIdx;
+    const reason = n.placedAt.length ? "Started in your plan; keep going when you have time."
+      : blocked ? `Comes after "${goals.get(blocked)?.title}".`
+      : summerOnly ? "Needs a full-time summer; you said summers are limited."
+      : late ? "Starts after your time frame."
+      : "Next in line: it moves into your plan as you finish goals or add hours.";
+    const kind = summerOnly || late ? "not-now" : "next";
+    backlog.push({ goalId: n.key, title: n.goal.title, reason, kind });
+    rank.set(n.key, n.staticScore + (n.placedAt.length ? 1 : 0)); // finishing what's started comes first
+    if (n.gate) warnings.push(`"${n.goal.title}" is essential for ${track.name} and is next in line. To fit it sooner, add a few hours a week or free up a summer.`);
   }
+  const order = { next: 0, optional: 1, "not-now": 2 } as const;
+  backlog.sort((a, b) => order[a.kind] - order[b.kind] || (rank.get(b.goalId) ?? 0) - (rank.get(a.goalId) ?? 0) || a.goalId.localeCompare(b.goalId));
 
   // 9. Warnings ------------------------------------------------------------------
-  const unfitHours = sum([...nodes.values()].filter((n) => n.completeAt === null && n.mode === "flex").map((n) => n.remaining));
-  if (unfitHours > 20) {
-    const flexWeeks = sum(termCap.slice(nowIdx, endIdx + 1).map((c, i) => (c.flex > 0 ? K.weeks[seasonOf(T[nowIdx + i])] : 0)));
-    const needed = weekly + unfitHours / Math.max(1, flexWeeks * K.realism);
-    warnings.push(`About ${Math.round(unfitHours)} hours of goals didn't fit. Around ${Math.ceil(needed)} hours a week would cover them.`);
-  }
+  // No hours-shortfall warning (removed in 0.6.0): the plan is sized to the student's time, and the rest is the "next" queue.
   if (summer !== "full" && ("e-internship-target" in track.boosts || track.boosts["ap-internship-target"])) {
     warnings.push(`${track.name} usually runs through a full-time junior-summer internship; limited summers make that harder.`);
   }
@@ -395,7 +397,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   return {
     meta: { engineVersion: ENGINE_VERSION, dataVersion: data.version, generatedFor: input.today, track: track.id },
     competencies: { current, target, gap },
-    terms, ongoing, edges, backlog: backlog.sort((a, b) => a.goalId.localeCompare(b.goalId)),
+    terms, ongoing, edges, backlog,
     done: [...strength].filter(([, s]) => s >= 1).map(([g]) => g).sort(),
     warnings,
   };
@@ -416,7 +418,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       if (top) why.push(`Builds ${COMP_NAMES[top]}, one of your biggest gaps right now.`);
     }
     if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
-    else if (u > 1.2) why.push(`Getting late: ideally done by ${termLabel(T[n.win.b]).toLowerCase()}.`);
+    else if (u > 1.2) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b]).toLowerCase()}.`);
     if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);
     if (n.eligibility > 1) why.push("Some programs here are specifically for students like you.");
     if (n.strength > 0) why.push("You've already started this.");

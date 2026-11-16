@@ -10,6 +10,8 @@ import { Button } from "../ui/Button.tsx";
 import { Competencies } from "./Competencies.tsx";
 import { GoalDrawer } from "./GoalDrawer.tsx";
 import { NextMoves } from "./NextMoves.tsx";
+import { StartHere } from "./StartHere.tsx";
+import { UpNext } from "./UpNext.tsx";
 import { Notices } from "./Notices.tsx";
 import { Timeline } from "./Timeline.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
@@ -157,7 +159,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </div>
         )}
 
-        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} />
+        <StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} />
+
+        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} />
 
         <Notices warnings={plan.warnings} dismissed={saved.dismissed}
           onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
@@ -225,24 +229,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </section>
         )}
 
-        {plan.backlog.length > 0 && (
-          <section aria-labelledby="backlog-h">
-            <details className="group rounded-md border border-border">
-              <summary className="cursor-pointer list-none px-4 py-3">
-                <h2 id="backlog-h" className="inline text-xl font-semibold">If you have more time</h2>
-                <span className="ml-2 text-sm text-muted">{plan.backlog.length} goals</span>
-              </summary>
-              <ul className="divide-y divide-border border-t border-border">
-                {plan.backlog.map((b) => (
-                  <li key={b.goalId} className="px-4 py-3">
-                    <p className="font-semibold">{b.title}</p>
-                    <p className="mt-1 text-sm text-muted">{b.reason}</p>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          </section>
-        )}
+        <UpNext backlog={plan.backlog} />
 
         <footer className="border-t border-border pt-6 text-xs text-muted">
           Built in your browser from the Career Pathway Mapper dataset <span className="font-mono">{plan.meta.dataVersion}</span> and

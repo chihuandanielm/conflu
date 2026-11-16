@@ -76,7 +76,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   await expect(heading(page)).toHaveText("Your career roadmap");
   await expect(page.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 10 free hrs/week")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Your next moves" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "This term" })).toBeVisible();
 
   // Open a goal from the chart and mark it done.
   const card = page.locator(".react-flow__node-item button").first();
