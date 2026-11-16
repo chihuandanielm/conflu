@@ -7,6 +7,7 @@
 //                 Most of these work fine in a browser. A previous search-confirmed state is kept.
 //   broken        the page is gone (404/410), the host doesn't resolve, or it fails with a server error twice
 // It also records httpStatus and finalUrl (when a redirect changed the address), so moved pages are easy to spot.
+// finalUrl drops one-time tokens (stableUrl) so repeated runs don't commit changes when nothing moved.
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -52,7 +53,8 @@ export async function check(url) {
 
 /** Merge a check result into the stored verification. A blocked check never erases a search confirmation. */
 export function merge(prev, result, day) {
-  const moved = result.finalUrl && normalize(result.finalUrl) !== normalize(prev.url) ? { finalUrl: result.finalUrl } : {};
+  const final = result.finalUrl ? stableUrl(result.finalUrl) : null;
+  const moved = final && normalize(final) !== normalize(stableUrl(prev.url)) ? { finalUrl: final } : {};
   const base = { checkedOn: day, httpStatus: result.httpStatus, ...moved };
   if (result.state === "blocked" && prev.verification?.state === "search-confirmed") {
     return { ...prev.verification, ...base, state: "search-confirmed", note: `Confirmed by search; automated check was refused (${result.why}).` };
@@ -63,6 +65,27 @@ export function merge(prev, result, day) {
   return { state: result.state, ...base, ...(note ? { note } : {}) };
 }
 const normalize = (u) => u.replace(/\/+$/, "").replace(/^https?:\/\/www\./, "https://").toLowerCase();
+
+// Query parameters that change on every visit (sign-in tokens, sessions, tracking). Recording them would make every
+// run commit a meaningless change, e.g. ISM's sign-in redirect carries a fresh 96-character "vt" token each time.
+const VOLATILE_KEYS = /^(utm_.*|fbclid|gclid|mc_eid|sid|sessionid|session|jsessionid|phpsessid|token|state|nonce|code|ts|timestamp|_)$/i;
+const OPAQUE_VALUE = /^[A-Za-z0-9_\-+/=.%]{24,}$/; // long random-looking values, like hex or base64 tokens
+
+/** The redirect target without one-time tokens, so the recorded address only changes when the page really moved. */
+export function stableUrl(u) {
+  const [noHash] = u.split("#");
+  const q = noHash.indexOf("?");
+  if (q < 0) return noHash;
+  const decode = (x) => { try { return decodeURIComponent(x.replace(/\+/g, " ")); } catch { return x; } };
+  // Filter the original pairs as written, so kept parameters keep their exact encoding.
+  const kept = noHash.slice(q + 1).split("&").filter((pair) => {
+    if (!pair) return false;
+    const [k, v = ""] = pair.split("=");
+    return !VOLATILE_KEYS.test(decode(k)) && !OPAQUE_VALUE.test(v);
+  });
+  return kept.length ? `${noHash.slice(0, q)}?${kept.join("&")}` : noHash.slice(0, q);
+}
+
 
 async function pool(items, n, fn) {
   const out = new Array(items.length); let i = 0;

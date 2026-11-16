@@ -51,3 +51,23 @@ test("a refused check keeps an earlier search confirmation", () => {
   const ok = merge(prev, { state: "link-checked", httpStatus: 200, finalUrl: "https://www.x.org/" }, "2026-11-20");
   assert.equal(ok.state, "link-checked"); assert.equal(ok.finalUrl, undefined); assert.equal(ok.note, undefined);
 });
+
+test("redirect addresses drop one-time tokens so repeated runs record the same thing", () => {
+  const prev = { url: "https://www.ismworld.org", verification: { state: "link-checked", checkedOn: "2026-11-15" } };
+  const run = (token: string) => merge(prev, { state: "blocked", httpStatus: 200, why: "bot wall",
+    finalUrl: `https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10&vt=${token}` }, "2026-11-16");
+  const a = run("92a64be4023f37b7f620e8211de5ca35366837314979ea5a2d2c05f89d1e1f4edea0fc5d43861bc4c457bd140b570688");
+  const b = run("8e85f0fcfb4e4a63356093bc30e839ea23b7eea62196d3f9820137a7e6bc9b2b8f8ce03c7d07f2c8fd8ed2ba47710078");
+  assert.deepEqual(a, b);
+  assert.equal(a.finalUrl, "https://ecommerce.ismworld.org/SSO/Login.aspx?DPLF=Y&vi=10");
+
+  // Meaningful parameters stay: a redirect to a search page keeps its search term.
+  const search = merge({ url: "https://success.rutgers.edu/resource/cultural-centers", verification: { state: "link-checked", checkedOn: "x" } },
+    { state: "link-checked", httpStatus: 200, finalUrl: "https://success.rutgers.edu/resources?keys=Cultural%20Centers" }, "2026-11-16");
+  assert.equal(search.finalUrl, "https://success.rutgers.edu/resources?keys=Cultural%20Centers");
+
+  // Common session and tracking parameters are dropped too, and a URL that only differs by them isn't "moved".
+  const same = merge({ url: "https://example.org/apply", verification: { state: "link-checked", checkedOn: "x" } },
+    { state: "link-checked", httpStatus: 200, finalUrl: "https://example.org/apply?utm_source=x&sessionid=abc123&state=zz" }, "2026-11-16");
+  assert.equal(same.finalUrl, undefined);
+});

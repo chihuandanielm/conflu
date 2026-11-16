@@ -146,7 +146,7 @@ Every resource has a `verification.state` (allowed values in `data/vocab.json`):
 | `broken` | The page is gone (404/410) or the host doesn't resolve. Needs a new URL. |
 | `unverified` | Not yet checked. |
 
-The checker also records `httpStatus`, `finalUrl` (when a redirect moved the page), and a `note`.
+The checker also records `httpStatus`, `finalUrl` (when a redirect moved the page), and a `note`. `finalUrl` leaves out one-time tokens (session IDs, sign-in tokens, tracking parameters), so the bot only commits when a page really moves.
 
 - **How links are checked:** the "Validate data and check links" workflow runs `scripts/check-links.mjs` on every data change and every Monday, writes the results back, and posts a report (loaded / blocked / broken / redirected) to the run summary. It sends a normal browser user agent and reads the page body, so bot walls are labeled `blocked`, not `broken`.
 - **2026-11-15 review:** the first run marked 56 links broken. Web research found correct landing pages for 41 (wrong domains such as Emma Bowen's `.org`, Kenvue's `jobs.kenvue.com`, the Rutgers Energy Institute's merger into RCEI, and homepages replaced with the specific program page) and confirmed that 12 others are real sites that block bots. Two still need a person: `phi-alpha` and `nj-biomaterials`. (`bloomberg-bmc` loaded on a later run.)
