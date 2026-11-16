@@ -17,6 +17,7 @@ import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { toPlanInput } from "../intake/model.ts";
 import { shareHash } from "../state/share.ts";
 import { loadSteps, toggleStep } from "../state/steps.ts";
+import { ChunkBoundary, isStaleBuildError, ReloadNotice } from "../staleBuild.tsx";
 import { load, save } from "../state/storage.ts";
 
 const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
@@ -69,7 +70,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   const openItem = useCallback((item: PlanItem, term: PlanTerm) => setOpen({ item, term }), []);
 
   const [tab, setTab] = useState<"plan" | "resources">("plan");
-  const [pdfState, setPdfState] = useState<"idle" | "working" | "error">("idle");
+  const [pdfState, setPdfState] = useState<"idle" | "working" | "error" | "stale">("idle");
   const input = useMemo(() => toPlanInput(answers, plan.meta.generatedFor, { completedGoals: saved.completedGoals }), [answers, plan, saved.completedGoals]);
   const downloadPdf = async () => {
     setPdfState("working");
@@ -79,7 +80,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
       setPdfState("idle"); setAnnouncement("Your PDF is downloading.");
     } catch (e) {
       console.error("PDF generation failed", e);
-      setPdfState("error");
+      setPdfState(isStaleBuildError(e) ? "stale" : "error");
     }
   };
 
@@ -105,7 +106,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
             <p className="mt-1 text-sm text-muted">A general trajectory, not a blueprint. Adjust it as you learn what fits.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" ? "pdf-error" : undefined}>
+            <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               <Download size={16} aria-hidden="true" /> {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
             <Button variant="secondary" onClick={() => void share()}><Link2 size={16} aria-hidden="true" /> Share link</Button>
@@ -124,6 +125,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
         )}
         {pdfState === "error" && (
           <p id="pdf-error" role="alert" className="mx-auto max-w-5xl px-4 pb-4 text-sm text-amber sm:px-8">The PDF couldn't be created. Try again, or use your browser's print option.</p>
+        )}
+        {pdfState === "stale" && (
+          <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8"><ReloadNotice id="pdf-error" /></div>
         )}
         <div role="tablist" aria-label="Results" className="mx-auto flex max-w-5xl gap-1 px-4 sm:px-8">
           {([["plan", "Your plan"], ["resources", "Your resources"]] as const).map(([id, label]) => (
@@ -177,9 +181,11 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </div>
           <div className="mt-6">
             {desktop && mode === "chart" ? (
+              <ChunkBoundary fallback={<p className="rounded-md border border-border bg-surface p-6 text-sm text-muted">The chart couldn't load. Switch to the list view to see your plan.</p>}>
               <Suspense fallback={<div className="flex h-[68vh] min-h-[520px] items-center justify-center rounded-md border border-border bg-surface text-sm text-muted">Loading the chart</div>}>
                 <RoadmapChart plan={plan} changed={changed} selectedGoal={open?.item.goalId ?? null} onOpen={openItem} />
               </Suspense>
+              </ChunkBoundary>
             ) : (
               <Timeline plan={plan} changed={changed} onOpen={openItem} />
             )}
