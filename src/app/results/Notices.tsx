@@ -2,7 +2,8 @@ import { AlertTriangle, Info, X } from "lucide-react";
 
 /** Real problems get amber; timeline information gets blue. */
 export function noticeTone(w: string): "warn" | "info" {
-  return /didn't fit|must-do|required for|window has passed|harder|hours a week would/i.test(w) ? "warn" : "info";
+  // Only problems the student should act on soon are amber. Queue notes ("next in line") stay calm blue.
+  return /required for|window has passed|harder/i.test(w) ? "warn" : "info";
 }
 
 export function Notices({ warnings, dismissed, onDismiss }: { warnings: string[]; dismissed: string[]; onDismiss: (w: string) => void }) {

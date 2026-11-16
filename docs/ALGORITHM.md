@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.5 design (engine 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.6 design (engine 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -78,7 +78,7 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
 
-`steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "Your next moves", and the steps in the PDF), so a plan says what to do, not only why.
+`steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "This term" and the "Start here" card, and the steps in the PDF), so a plan says what to do, not only why.
 
 ### 2.3 Track (career target)
 
@@ -223,20 +223,21 @@ For each term from now to the horizon:
 
   If it doesn't fit, a splittable goal takes what's left (at least 4 hours); otherwise it waits for a later term. Remainders under 1 hour are rounded to done.
 
-### Step 8 — Backlog
+### Step 8 — Backlog (the "up next" queue)
 
-Selected goals that never completed go to the backlog. Each gets one specific reason:
-- started but short N hours
-- waiting on a named prerequisite
-- needs a full-time summer
-- starts after the time frame
-- didn't fit weekly hours
+The plan is sized to the student's free time. Everything else is a queue, not a shortfall. Each entry has a `kind` and one calm reason:
 
-A gate that ends up here also produces a warning.
+| kind | When | Reason text |
+|---|---|---|
+| `next` | Selected but not placed: started, waiting on a prerequisite, or no room yet | "Started in your plan; keep going when you have time." / "Comes after \"X\"." / "Next in line: it moves into your plan as you finish goals or add hours." |
+| `optional` | Below the horizon threshold (Step 4) | "Lower priority for your time frame; add it if you have time." |
+| `not-now` | Outside the time frame, past its window, needs a full-time summer the student doesn't have, or legally unavailable | The specific reason |
+
+Order: `next` first (started goals first, then by static score), then `optional` (by weight), then `not-now`; ties by id. A gate that ends up in `next` adds a note: "\"X\" is essential for T and is next in line. To fit it sooner, add a few hours a week or free up a summer." No goal is ever described as "didn't fit", and no hours-needed number is shown.
 
 ### Step 9 — Warnings
 
-- **Hours shortfall:** "About N hours didn't fit. Around H hours a week would cover them." H = current weekly hours + unfit hours ÷ (flex weeks × realism).
+- **No hours shortfall** (removed in 0.6.0): telling a student they need 38 hours a week was discouraging and not actionable. The `next` queue says what comes next instead.
 - **Limited summers** on a track that runs through a junior-summer internship.
 - **International students:** CPT/OPT authorization note naming the student's campus office (Rutgers Global ISSS, the Rutgers–Newark Office of International Student & Scholar Services, the Rutgers–Camden Office of International Students & Global Programs, or "your school's international student office").
 - **Part-time students:** the plan spaces goals at a full-time pace for their year; plan by credits with an advisor and check whether wanted internships or scholarships require full-time enrollment.
@@ -252,7 +253,7 @@ Plan {
   terms: [{ code, label, capacityHours, usedHours, summerBlock, items: PlanItem[] }]
   ongoing: [{ goalId, title, why }]               // standing habits (keep GPA ≥ 3.0)
   edges: [{ from, to }]                            // prerequisite arrows between placed goals
-  backlog: [{ goalId, title, reason }]            // "If you have more time"
+  backlog: [{ goalId, title, reason, kind }]      // "Up next" (kind next) and "Not in this plan" (optional, not-now)
   done: string[]
   warnings: string[]
 }
@@ -272,7 +273,7 @@ PlanItem {
 
 1. "Must-do for {track}." (gate) or "High priority for {track}." (weight ≥ 0.85)
 2. "Builds {competency}, one of your biggest gaps right now." (coverage ≥ 0.5; names the competency where gap × contribution is largest)
-3. "Timing: {deadline}." or "Getting late: ideally done by {term}." (U > 1.2)
+3. "Timing: {deadline}." or "Good to do soon: students usually do this by {term}." (U > 1.2; reworded from "Getting late" in 0.6.0)
 4. "Needed before: {up to 2 dependent goals}."
 5. "Some programs here are specifically for students like you." (eligibility > 1)
 6. "You've already started this." (strength > 0)
@@ -322,6 +323,16 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 
 ## 7. How the site uses the plan
 
+### Results page order (one baby step, then wider)
+
+1. **Start here:** the first unchecked step of this term's highest-scoring goal, with its first guide. One action, nothing else.
+2. **This term:** the term's goals by score, three shown (more on request), each with its next step. "Sized to your N free hours a week."
+3. **Notices:** amber only for things to act on soon (a required goal whose window passed, a track that limited summers make harder). Queue notes stay blue.
+4. **Semester by semester:** the roadmap.
+5. **Up next:** `backlog` entries of kind `next`, numbered, first five shown: "When you finish a goal or have more time, these join your plan in this order. Nothing here is overdue." `optional` and `not-now` sit in a closed "Not in this plan" list.
+
+The PDF follows the same order: a Start here box, This term with every step, the semester list (first step each), then Up next as a numbered list.
+
 ### Flow map layout
 
 - **Columns** = `plan.terms` (left to right).
@@ -354,7 +365,7 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 | Case | Behavior |
 |---|---|
 | Senior with a 6-month horizon | Overdue quick wins first, then job search; long-build goals go to backlog |
-| Pre-med junior with too few hours | Plan shows the honest shortfall (about 18 h/wk needed) and keeps gates visible |
+| Pre-med junior with too few hours | Plan fills the hours they have with the highest-priority goals; the rest is an ordered "up next" queue, and must-dos that wait get a note on how to fit them sooner |
 | International student | No FAFSA or aid-eligibility goal, no citizen-only programs, CPT/OPT warning |
 | Student skipped identity questions | Group-specific programs still show, labeled to check eligibility |
 | Co-op | Waits for its ideal window, uses two consecutive terms, cuts that term's free time, and replaces the target internship |
@@ -395,6 +406,7 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 18. A Packaging Engineering student gets the packaging goals, co-op, resources, and recruiting note.
 19. The international note names each campus's office (engine 0.5.0).
 20. Part-time students get the pace note and identical goals and terms; full-time and missing enrollment get no note.
+21. Leftover goals are an ordered queue (`next`, `optional`, `not-now`) with no "didn't fit" wording and no hours-shortfall warning (engine 0.6.0, `test/engine.test.ts`).
 
 Add a test for every bug found in review.
 

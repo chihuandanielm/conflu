@@ -26,7 +26,7 @@ export function Timeline({ plan, onOpen, changed }: {
               </span>
             </header>
             {t.items.length === 0 ? (
-              <p className="py-3 text-sm text-muted">{t.capacityHours === 0 ? "No free time planned this term." : "Nothing scheduled. Room for something from “If you have more time”."}</p>
+              <p className="py-3 text-sm text-muted">{t.capacityHours === 0 ? "No free time planned this term." : "Nothing scheduled. Room for something from “Up next”."}</p>
             ) : (
               <ul className="divide-y divide-border">
                 <AnimatePresence initial={false}>

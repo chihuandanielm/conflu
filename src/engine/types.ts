@@ -105,7 +105,11 @@ export interface Plan {
   terms: PlanTerm[];
   ongoing: { goalId: string; title: string; why: string }[]; // standing habits shown beside the timeline
   edges: { from: string; to: string }[];
-  backlog: { goalId: string; title: string; reason: string }[];
+  /**
+   * Goals not in this plan, as a queue (engine 0.6.0): "next" would join the plan with more time, highest priority first;
+   * "optional" is lower priority for this time frame; "not-now" is outside the time frame, past its window, or unavailable.
+   */
+  backlog: { goalId: string; title: string; reason: string; kind: "next" | "optional" | "not-now" }[];
   done: string[];
   warnings: string[];
 }
