@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.3 design (engine 0.3.0: calendar-based current term; only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.4 design (engine 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -32,13 +32,16 @@ All files live in `data/`. `scripts/validate.mjs` enforces every cross-reference
 
 | File | What it holds | Count |
 |---|---|---|
-| `majors.json` | Launch majors with CIP codes | 20 |
-| `goals.json` | Milestones the engine schedules | 109 |
-| `tracks.json` | Career targets ("end goals") that reweight goals | 27 |
-| `intake.json` | Intake questions and how each answer maps to goals | 43 experience, 18 skills, 15 credentials |
-| `resources/*.json` | Programs, orgs, tools, and offices attached to goals | 285 |
+| `campuses.json` | Rutgers campuses (New Brunswick, Newark, Camden) and the `PlanInput.school` value for each | 3 |
+| `majors.json` | Majors with CIP codes; `offeredAt` maps each campus that offers it to the school and program URL | 21 |
+| `goals.json` | Milestones the engine schedules | 111 |
+| `tracks.json` | Career targets ("end goals") that reweight goals | 28 |
+| `intake.json` | Intake questions and how each answer maps to goals | 44 experience, 18 skills, 15 credentials |
+| `resources/*.json` | Programs, orgs, tools, and offices attached to goals. Every `scope: "rutgers"` resource lists the `campuses` whose students can use it (`nb`, `newark`, `camden`, or `all`) | 339 |
 | `vocab.json` | Allowed values for resource fields | — |
 | `version.json` | Data version stamped into every plan | — |
+
+**Campuses.** Goals, tracks, and NJ and national resources are shared by all three campuses. A goal that points at a campus office lists every campus's version (for example, `f-ces-advisor` lists `rutgers-ces`, `rutgers-newark-career`, and `rutgers-camden-career`), and the campus filter in Step 4 and §5 picks the right one. Campus-specific wording stays out of goal titles. See `docs/CAMPUS_EXPANSION.md` for the research and classification rules.
 
 ### 2.1 Terms (the time axis)
 
@@ -93,6 +96,7 @@ Each experience, skill, or credential answer lists `completes: [{goal, strength}
 
 | Input | Source | Default |
 |---|---|---|
+| `school` | "Which Rutgers campus are you at?": `rutgers-nb`, `rutgers-newark`, `rutgers-camden`, or `other`. The major list is filtered to majors offered at that campus | `rutgers-nb` (missing means New Brunswick, as before 0.4.0) |
 | `majorId`, `year` | Dropdowns | required |
 | `trackId` | "Where do you want to end up?" (track list filtered by `suggestedMajors`, with "show all" and "Still exploring") | required |
 | `horizon` | 6mo, 1yr, 2yr, graduation, after-graduation | graduation |
@@ -148,7 +152,9 @@ The product form gives diminishing returns: the fifth tech project helps less th
 For every goal:
 
 1. `weight = track.boosts[g] ?? g.baseWeight`; gates get `max(0.95, weight)`.
-2. Skip if suppressed by the track, if restricted to other majors (unless the track boosts or gates it), if `requires` fails for a stated citizenship, or if every attached resource is citizen-only and the student is international or undocumented.
+2. Skip if suppressed by the track, if restricted to other majors (unless the track boosts or gates it), if `requires` fails for a stated citizenship, or if every attached resource the student can use is citizen-only and the student is international or undocumented.
+
+   "Can use" is `availableAt(resource, input)`: every NJ and national resource; a Rutgers resource only when its `campuses` include the student's campus or `all`. `campusOf(school)` maps `rutgers-newark` to `newark`, `rutgers-camden` to `camden`, `other` to none, and anything else (including missing) to `nb`. A student at another school can use no Rutgers resource.
 3. Yearly goals become one instance per remaining year (`f-fafsa@Y2`, `f-fafsa@Y3`, …), each with a one-term ideal window.
 4. Skip instances already at strength 1.
 5. Send to the **backlog**, with the reason, if: the window opens after the horizon; the window has closed and the goal isn't `lateOk`; or `weight < threshold` (and not a gate).
@@ -163,7 +169,7 @@ Any selected goal pulls in its unfinished prerequisites (strength under 0.5) eve
 
 ```
 coverage(g)    = Σ_c comp_g[c] × gap[c]  /  (Σ_c comp_g[c] × max_c gap[c])      ∈ [0, 1]
-eligibility(g) = 1.15 if any attached resource targets one of the student's identity tags, else 1
+eligibility(g) = 1.15 if any attached resource the student can use targets one of their identity tags, else 1
 focus(g)       = 1.3 for applications/network goals when runway ≤ 0.5, else 1
 static(g)      = weight × (1 + 0.5 × coverage) × eligibility × focus
 ```
@@ -268,14 +274,14 @@ PlanItem {
 ### Resources on each card
 
 From the goal's `resources`:
-1. Drop ended programs.
+1. Drop ended programs, and drop Rutgers resources from other campuses (`availableAt`, Step 4).
 2. Keep only matching major (or "all") and matching year for that term.
 3. Apply eligibility:
    - Citizenship rules apply only when stated.
    - Group-specific programs show when the student matches, or when they skipped the identity questions (labeled "check eligibility").
    - Broad "underrepresented" programs always show.
 4. Rank and keep the top 4:
-   - +3 Rutgers (when school is Rutgers)
+   - +3 Rutgers (always the student's own campus, since other campuses were dropped in step 1)
    - +2 NJ (when located in NJ)
    - +1 national
    - +1 active
@@ -349,6 +355,9 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 | Track goal outside the major | A track boost overrides a goal's major restriction (econ student on the software track gets coding goals) |
 | Missed hard deadline (e.g., junior-summer recruiting for a senior) | Not scheduled; listed in backlog as "window has passed" |
 | Student-only goals near graduation | Never spill into after-graduation terms |
+| Newark or Camden student | Same goals and scheduling as New Brunswick; resource cards show their own campus's offices (career center, Handshake, research, EOF, fellowships) and never another campus's |
+| Student at another school | No Rutgers-only resources; NJ and national resources still show |
+| Goal whose only resources are another campus's | Still scheduled; the card shows no resources rather than the wrong office |
 
 ---
 
@@ -366,6 +375,17 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 8. The current term follows the academic calendar on break days and uses the rising year in summer.
 9. Every year plans without errors on any day of the year (engine 0.1.0 crashed for a year-4 student in summer).
 10. Blocked and broken links get no verified-link ranking bonus (engine 0.2.0 gave them one).
+
+`test/campus.test.ts` (engine 0.4.0) checks:
+
+11. `campusOf` and `availableAt` behave as described in Step 4.
+12. New Brunswick plans are unchanged from engine 0.3.0: 324 stored plans (every track × year, plain, international, and first-generation + low-income) keep the same goals, terms, hours, and backlog (`test/fixtures/nb-plans-engine-0.3.0.json`, made by `scripts/nb-baseline.ts` before the data change). Cards may only gain new resources NB students can use, and the backlog may only gain the two new packaging goals.
+13. Newark and Camden students never see another campus's Rutgers resources, for every offered major and year.
+14. Each campus gets its own career office and Handshake on the same goals.
+15. Students at another school see no Rutgers-only resources.
+16. The core invariants hold for every campus × offered major × track × year.
+17. Identity answers never remove goals at Newark or Camden.
+18. A Packaging Engineering student gets the packaging goals, co-op, resources, and recruiting note.
 
 Add a test for every bug found in review.
 

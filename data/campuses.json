@@ -1,0 +1,26 @@
+{
+  "_about": "Rutgers campuses the site supports. 'school' is the PlanInput.school value. Majors list where they're offered (majors.json offeredAt); Rutgers resources list who can use them (resources campuses).",
+  "campuses": [
+    {
+      "id": "nb",
+      "name": "Rutgers–New Brunswick",
+      "short": "New Brunswick",
+      "school": "rutgers-nb",
+      "url": "https://newbrunswick.rutgers.edu"
+    },
+    {
+      "id": "newark",
+      "name": "Rutgers–Newark",
+      "short": "Newark",
+      "school": "rutgers-newark",
+      "url": "https://www.newark.rutgers.edu"
+    },
+    {
+      "id": "camden",
+      "name": "Rutgers–Camden",
+      "short": "Camden",
+      "school": "rutgers-camden",
+      "url": "https://camden.rutgers.edu"
+    }
+  ]
+}

@@ -1,23 +1,23 @@
 # Sample plans (engine output)
 
-## cs-sophomore-swe  (computer-science, year 2, software-engineering, horizon graduation, 8h/wk)
+## cs-sophomore-swe  (rutgers-nb, computer-science, year 2, software-engineering, horizon graduation, 8h/wk)
 Biggest gaps: crit 0.66, tech 0.655, team 0.309
 
 ### Year 2 · Fall  [31/31 flex hrs]
 - (foundation) File the FAFSA (every year) · 2h · score 1.421
     why: High priority for Software engineering. Timing: Before NJ state deadlines in spring; file as early as October.
     resources: fafsa
-- (foundation) Meet a CES career advisor and sketch a 4-year plan · 2h · score 1.098
-    why: Gets a human in your corner early and surfaces Rutgers programs you'd miss.
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.098
+    why: Gets a human in your corner early and surfaces campus programs you'd miss.
     resources: rutgers-ces
 - (foundation) Complete your Handshake profile · 1h · score 1.017
-    why: Rutgers employers and career fairs run through Handshake.
+    why: Your campus's employers and career fairs run through Handshake.
     resources: rutgers-handshake
 - (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 0.986
     why: Some programs here are specifically for students like you. Money pressure is the most common reason students skip unpaid or low-paid experience.
     resources: nj-eof
 - (foundation) Write and practice a 30-second introduction · 1h · score 0.939
-    why: Needed before: Do a mock interview with CES; Work a career fair with a target list of employers. You'll use it at every fair, info session, and coffee chat.
+    why: Needed before: Do a mock interview with your career center; Work a career fair with a target list of employers. You'll use it at every fair, info session, and coffee chat.
     resources: —
 - (foundation) Research 3 careers on O*NET and BLS · 3h · score 0.9
     why: Builds career self-development, one of your biggest gaps right now. Know what the jobs involve and pay before you optimize for them.
@@ -43,12 +43,12 @@ Biggest gaps: crit 0.66, tech 0.655, team 0.309
 - (network) Join a professional society as a student member · 3h · score 0.66
     why: Student rates are cheap and give access to scholarships, job boards, and conferences.
     resources: —
-- (academics) Meet the Office of Distinguished Fellowships · 2h · score 0.551
+- (academics) Meet your campus fellowships office · 2h · score 0.551
     why: Many awards need a campus nomination a year ahead.
     resources: rutgers-distinguished-fellowships
 
 ### Year 2 · Spring  [88/90 flex hrs]
-- (foundation) Do a mock interview with CES · 2h · score 1.044
+- (foundation) Do a mock interview with your career center · 2h · score 1.044
     why: High priority for Software engineering. Needed before: Apply to 30+ target internships for junior summer; Run your full-time job search (or convert a return offer).
     resources: rutgers-ces, glassdoor
 - (presence) Commit code consistently for a semester (3+ days a week) (in progress) · 10h · score 1.179
@@ -201,14 +201,14 @@ Warnings:
 - Recruiting timeline: Big tech opens junior-summer internships July–September; first/second-year programs open in early fall.
 Backlog (27): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-federal (Didn't fit your weekly hours.); ap-fulltime (Started but needs about 30 more hours than your plan has room for.); ap-grad-apps (Lower priority for your time frame; add it if you have time.) …
 
-## psych-junior-premed  (psychology, year 3, medicine, horizon after-graduation, 10h/wk)
+## psych-junior-premed  (rutgers-nb, psychology, year 3, medicine, horizon after-graduation, 10h/wk)
 Biggest gaps: comm 0.502, lead 0.5, team 0.495
 
 ### Year 3 · Fall  [39/39 flex hrs]
 - (foundation) File the FAFSA (every year) · 2h · score 1.668
     why: High priority for Medicine (pre-med). Builds career self-development, one of your biggest gaps right now.
     resources: nj-tag, fafsa
-- (foundation) Meet a CES career advisor and sketch a 4-year plan · 2h · score 1.502
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.502
     why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
     resources: rutgers-ces
 - (foundation) Research 3 careers on O*NET and BLS · 3h · score 1.446
@@ -223,7 +223,7 @@ Biggest gaps: comm 0.502, lead 0.5, team 0.495
 - (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 1.225
     why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · spring.
     resources: rutgers-tuition-assistance, nj-eof, nj-gsg
-- (foundation) Do a mock interview with CES · 2h · score 1.182
+- (foundation) Do a mock interview with your career center · 2h · score 1.182
     why: Builds communication, one of your biggest gaps right now. Needed before: Run your full-time job search (or convert a return offer).
     resources: rutgers-ces, glassdoor
 - (foundation) Update and get your resume reviewed · 2h · score 0.87
@@ -244,7 +244,7 @@ Biggest gaps: comm 0.502, lead 0.5, team 0.495
 - (network) Join a professional society as a student member · 3h · score 0.773
     why: Builds career self-development, one of your biggest gaps right now. Student rates are cheap and give access to scholarships, job boards, and conferences.
     resources: —
-- (academics) Meet the Office of Distinguished Fellowships · 2h · score 0.635
+- (academics) Meet your campus fellowships office · 2h · score 0.635
     why: Builds career self-development, one of your biggest gaps right now. Many awards need a campus nomination a year ahead.
     resources: rutgers-distinguished-fellowships
 
@@ -330,7 +330,7 @@ Warnings:
 - Recruiting timeline: AMCAS opens in May; apply the summer after junior year if you plan no gap year.
 Backlog (37): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-test-prep (Started but needs about 51 more hours than your plan has room for.); ap-early-programs (Its useful window has passed.); ap-federal (Didn't fit your weekly hours.); ap-grad-apps (Didn't fit your weekly hours.); ap-internship-early (Didn't fit your weekly hours.); ap-research-apps (Lower priority for your time frame; add it if you have time.); ap-scholarships@Y3 (Didn't fit your weekly hours.) …
 
-## accounting-freshman  (accounting, year 1, public-accounting, horizon graduation, 5h/wk)
+## accounting-freshman  (rutgers-nb, accounting, year 1, public-accounting, horizon graduation, 5h/wk)
 Biggest gaps: prof 0.85, crit 0.75, team 0.7
 
 ### Year 1 · Fall  [19/20 flex hrs]
@@ -340,11 +340,11 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
 - (foundation) Write your first college resume · 4h · score 1.26
     why: High priority for Public accounting (audit and tax). Builds professionalism, one of your biggest gaps right now.
     resources: rutgers-ces, rutgers-writing-centers
-- (foundation) Meet a CES career advisor and sketch a 4-year plan · 2h · score 1.076
-    why: Builds career self-development, one of your biggest gaps right now. Gets a human in your corner early and surfaces Rutgers programs you'd miss.
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.076
+    why: Builds career self-development, one of your biggest gaps right now. Gets a human in your corner early and surfaces campus programs you'd miss.
     resources: rutgers-ces
 - (foundation) Complete your Handshake profile · 1h · score 1.048
-    why: Builds professionalism, one of your biggest gaps right now. Rutgers employers and career fairs run through Handshake.
+    why: Builds professionalism, one of your biggest gaps right now. Your campus's employers and career fairs run through Handshake.
     resources: rutgers-handshake
 - (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 1.042
     why: Builds career self-development, one of your biggest gaps right now. Some programs here are specifically for students like you.
@@ -361,9 +361,9 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
 
 ### Year 1 · Spring  [56/56 flex hrs]
 - (foundation) Write and practice a 30-second introduction · 1h · score 1.136
-    why: Builds communication, one of your biggest gaps right now. Needed before: Do a mock interview with CES; Work a career fair with a target list of employers.
+    why: Builds communication, one of your biggest gaps right now. Needed before: Do a mock interview with your career center; Work a career fair with a target list of employers.
     resources: —
-- (foundation) Do a mock interview with CES · 2h · score 0.842
+- (foundation) Do a mock interview with your career center · 2h · score 0.842
     why: High priority for Public accounting (audit and tax). Builds communication, one of your biggest gaps right now.
     resources: rutgers-ces, glassdoor
 - (presence) Connect with 50 relevant people (classmates, alumni, speakers) (in progress) · 4h · score 0.858
@@ -436,7 +436,7 @@ Biggest gaps: prof 0.85, crit 0.75, team 0.7
 - (network) Find a mentor in your target field · 6h · score 0.788
     why: Builds career self-development, one of your biggest gaps right now. A mentor shortens every decision on this map.
     resources: inroads, mlt-career-prep, seo-career
-- (academics) Meet the Office of Distinguished Fellowships · 2h · score 0.582
+- (academics) Meet your campus fellowships office · 2h · score 0.582
     why: Builds career self-development, one of your biggest gaps right now. Many awards need a campus nomination a year ahead.
     resources: rutgers-distinguished-fellowships
 - (applications) Apply to 15+ summer opportunities for after sophomore year (in progress) · 7h · score 1.271
@@ -556,17 +556,17 @@ Warnings:
 - Recruiting timeline: Firms recruit for junior-year internships in sophomore spring and junior fall.
 Backlog (31): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-federal (Didn't fit your weekly hours.); ap-fulltime (Started but needs about 4 more hours than your plan has room for.); ap-grad-apps (Lower priority for your time frame; add it if you have time.) …
 
-## polisci-senior-short  (political-science, year 4, government-policy, horizon 6mo, 6h/wk)
+## polisci-senior-short  (rutgers-nb, political-science, year 4, government-policy, horizon 6mo, 6h/wk)
 Biggest gaps: crit 0.737, equity 0.7, prof 0.56
 
 ### Year 4 · Fall  [23/23 flex hrs]
-- (foundation) Do a mock interview with CES · 2h · score 1.832
+- (foundation) Do a mock interview with your career center · 2h · score 1.832
     why: High priority for Government and public policy. Builds communication, one of your biggest gaps right now.
     resources: rutgers-ces, glassdoor
 - (foundation) Write and practice a 30-second introduction · 1h · score 1.643
     why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
     resources: —
-- (foundation) Meet a CES career advisor and sketch a 4-year plan · 2h · score 1.55
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.55
     why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
     resources: rutgers-ces
 - (foundation) Complete your Handshake profile · 1h · score 1.498
@@ -587,7 +587,7 @@ Biggest gaps: crit 0.737, equity 0.7, prof 0.56
 - (network) Join a professional society as a student member · 3h · score 1.137
     why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
     resources: —
-- (academics) Meet the Office of Distinguished Fellowships · 2h · score 0.882
+- (academics) Meet your campus fellowships office · 2h · score 0.882
     why: Getting late: ideally done by year 3 · fall. Needed before: Apply for a national fellowship (Goldwater, Truman, Fulbright, Gilman).
     resources: rutgers-distinguished-fellowships
 
@@ -612,3 +612,506 @@ Warnings:
 - About 606 hours of goals didn't fit. Around 34 hours a week would cover them.
 - International students need CPT or OPT authorization before any internship. Check with Rutgers Global ISSS before accepting an offer.
 Backlog (47): a-eagleton (Its useful window has passed.); a-fellowship-apps (Didn't fit your weekly hours.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-early-programs (Its useful window has passed.); ap-federal (Didn't fit your weekly hours.) …
+
+## newark-nursing-sophomore  (rutgers-newark, nursing, year 2, nursing-clinical, horizon graduation, 6h/wk)
+Biggest gaps: crit 0.7, equity 0.7, team 0.66
+
+### Year 2 · Fall  [23/23 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.615
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: fafsa
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.209
+    why: Builds career self-development, one of your biggest gaps right now. Gets a human in your corner early and surfaces campus programs you'd miss.
+    resources: rutgers-newark-career
+- (foundation) Complete your Handshake profile · 1h · score 1.156
+    why: Builds professionalism, one of your biggest gaps right now. Your campus's employers and career fairs run through Handshake.
+    resources: rutgers-newark-handshake
+- (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 1.052
+    why: Builds career self-development, one of your biggest gaps right now. Some programs here are specifically for students like you.
+    resources: nj-eof
+- (foundation) Write and practice a 30-second introduction · 1h · score 1.027
+    why: Builds communication, one of your biggest gaps right now. Needed before: Do a mock interview with your career center; Work a career fair with a target list of employers.
+    resources: —
+- (foundation) Research 3 careers on O*NET and BLS · 3h · score 0.945
+    why: Builds career self-development, one of your biggest gaps right now. Know what the jobs involve and pay before you optimize for them.
+    resources: onet, bls-ooh, college-scorecard
+- (foundation) Update and get your resume reviewed · 2h · score 0.846
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-newark-career
+- (presence) Build a complete LinkedIn profile · 3h · score 1.358
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: linkedin-profile
+- (network) Attend your first career fair (to look, not to land) · 3h · score 1.094
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-newark-career
+- (network) Join a professional society as a student member · 3h · score 0.812
+    why: Builds professionalism, one of your biggest gaps right now. Student rates are cheap and give access to scholarships, job boards, and conferences.
+    resources: —
+- (academics) Meet your campus fellowships office · 2h · score 0.588
+    why: Builds career self-development, one of your biggest gaps right now. Many awards need a campus nomination a year ahead.
+    resources: rutgers-newark-fellowships
+
+### Year 2 · Spring  [67/67 flex hrs]
+- (foundation) Do a mock interview with your career center · 2h · score 1.142
+    why: Builds communication, one of your biggest gaps right now. Needed before: Run your full-time job search (or convert a return offer).
+    resources: glassdoor, rutgers-newark-career
+- (foundation) Write a reusable cover letter template · 3h · score 0.775
+    why: Builds communication, one of your biggest gaps right now. Many internship and fellowship applications still ask for one.
+    resources: rutgers-newark-writing-center
+- (experience) Join 1–2 organizations tied to your field · 15h · score 1.534
+    why: Builds teamwork, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-newark-raiderlink
+- (network) Do 5 informational interviews with alumni (in progress) · 4h · score 1.021
+    why: Builds communication, one of your biggest gaps right now. The fastest way to learn what a job is really like and get referred.
+    resources: linkedin-alumni-tool
+- (network) Build relationships with 2 professors (office hours, research) (in progress) · 4h · score 0.987
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+- (credentials) Get CPR/BLS certified · 4h · score 1.399
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: bls
+- (applications) Apply to first- and second-year programs (SEO, MLT, INROADS, early-ID) · 15h · score 1.487
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
+    resources: inroads, mlt-career-prep
+- (applications) Apply to 15+ summer opportunities for after sophomore year · 20h · score 1.231
+    why: Builds professionalism, one of your biggest gaps right now. Timing: Most summer roles fill by March.
+    resources: federal-pathways, usajobs, vsfs, rutgers-newark-handshake
+
+### Summer after year 2  [45/48 flex hrs, summer block used]
+- (presence) Connect with 50 relevant people (classmates, alumni, speakers) (in progress) · 4h · score 0.878
+    why: Builds career self-development, one of your biggest gaps right now. Warm connections turn into referrals, which beat cold applications.
+    resources: linkedin-alumni-tool
+- (skills) Learn core Excel (lookups, pivots, charts) · 12h · score 1.071
+    why: Builds critical thinking, one of your biggest gaps right now. Shows up in most business, health, and policy roles.
+    resources: microsoft-learn
+- (experience) Do a first internship or career-related summer job · 300h · score 1.121
+    why: Builds professionalism, one of your biggest gaps right now. Any relevant summer experience makes the junior-year internship far easier to land.
+    resources: federal-pathways, vsfs, rutgers-newark-handshake
+- (experience) Take an officer or project-lead role (in progress) · 10h · score 0.953
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+- (network) Do 5 informational interviews with alumni · 4h · score 1.021
+    why: Builds communication, one of your biggest gaps right now. The fastest way to learn what a job is really like and get referred.
+    resources: linkedin-alumni-tool
+- (network) Work a career fair with a target list of employers · 5h · score 1.001
+    why: Builds communication, one of your biggest gaps right now. Fall junior-year fairs feed most junior-summer internships.
+    resources: rutgers-newark-career
+- (network) Build relationships with 2 professors (office hours, research) (in progress) · 4h · score 0.987
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+- (network) Find a mentor in your target field · 6h · score 0.925
+    why: Builds career self-development, one of your biggest gaps right now. Some programs here are specifically for students like you.
+    resources: inroads, mlt-career-prep
+
+### Year 3 · Fall  [67/67 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.615
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: fafsa
+- (foundation) Update and get your resume reviewed · 2h · score 0.846
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-newark-career
+- (presence) Connect with 50 relevant people (classmates, alumni, speakers) · 1h · score 0.878
+    why: Builds career self-development, one of your biggest gaps right now. Warm connections turn into referrals, which beat cold applications.
+    resources: linkedin-alumni-tool
+- (experience) Take an officer or project-lead role (in progress) · 10h · score 0.953
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+- (experience) Complete 2 virtual job simulations · 8h · score 0.935
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · spring.
+    resources: forage
+- (experience) Log 150+ hours of patient-care experience (in progress) · 34h · score 0.79
+    why: Builds professionalism, one of your biggest gaps right now. Medical, PA, and PT schools screen on hands-on patient care.
+    resources: employer-rwjbarnabas, emt
+- (experience) Work as a research assistant with a professor (in progress) · 9h · score 0.781
+    why: Builds critical thinking, one of your biggest gaps right now. Opens recommendation letters and research summers.
+    resources: rutgers-newark-research
+- (network) Build relationships with 2 professors (office hours, research) · 2h · score 0.987
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+
+### Year 3 · Spring  [67/67 flex hrs]
+- (experience) Shadow professionals for 40+ hours (in progress) · 34h · score 1.074
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+- (experience) Take an officer or project-lead role · 10h · score 0.953
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+- (experience) Work as a research assistant with a professor (in progress) · 24h · score 0.937
+    why: Builds critical thinking, one of your biggest gaps right now. Opens recommendation letters and research summers.
+    resources: rutgers-newark-research
+
+### Summer after year 3  [48/48 flex hrs, summer block used]
+- (experience) Complete a nursing externship · 300h · score 1.751 · MUST
+    why: Must-do for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: employer-hackensack-meridian, employer-rwjbarnabas
+- (experience) Work as a research assistant with a professor (in progress) · 24h · score 1.094
+    why: Builds critical thinking, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: rutgers-newark-research
+- (experience) Log 150+ hours of patient-care experience (in progress) · 24h · score 1.027
+    why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: employer-rwjbarnabas, emt
+
+### Year 4 · Fall  [67/67 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.615
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: fafsa
+- (foundation) Update and get your resume reviewed · 2h · score 0.846
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-newark-career
+- (experience) Log 150+ hours of patient-care experience (in progress) · 30h · score 1.264
+    why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: employer-rwjbarnabas, emt
+- (academics) Prepare for the NCLEX-RN (in progress) · 34h · score 1.343 · MUST
+    why: Must-do for Clinical nursing. Builds critical thinking, one of your biggest gaps right now.
+    resources: nclex
+
+### Year 4 · Spring  [64/67 flex hrs]
+- (academics) Prepare for the NCLEX-RN (in progress) · 34h · score 1.733 · MUST
+    why: Must-do for Clinical nursing. Builds critical thinking, one of your biggest gaps right now.
+    resources: nclex
+- (applications) Run your full-time job search (or convert a return offer) (in progress) · 30h · score 1.234
+    why: High priority for Clinical nursing. Builds professionalism, one of your biggest gaps right now.
+    resources: glassdoor, rutgers-newark-handshake
+
+Warnings:
+- "Prepare for the NCLEX-RN" is a must-do for Clinical nursing but didn't fit. Started but needs about 53 more hours than your plan has room for.
+- About 304 hours of goals didn't fit. Around 10 hours a week would cover them.
+Backlog (32): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-nclex-prep (Started but needs about 53 more hours than your plan has room for.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-federal (Didn't fit your weekly hours.); ap-fulltime (Started but needs about 30 more hours than your plan has room for.) …
+
+## camden-cs-junior  (rutgers-camden, computer-science, year 3, data-analytics, horizon graduation, 8h/wk)
+Biggest gaps: crit 0.62, comm 0.6, prof 0.6
+
+### Year 3 · Fall  [29/31 flex hrs]
+- (foundation) Write your first college resume · 4h · score 1.816
+    why: High priority for Data analytics and data science. Builds communication, one of your biggest gaps right now.
+    resources: rutgers-camden-career, rutgers-camden-class
+- (foundation) File the FAFSA (every year) · 2h · score 1.714
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: nj-tag, fafsa
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.518
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-camden-career
+- (foundation) Write and practice a 30-second introduction · 1h · score 1.484
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
+    resources: —
+- (foundation) Research 3 careers on O*NET and BLS · 3h · score 1.446
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
+    resources: onet, bls-ooh, college-scorecard
+- (foundation) Complete your Handshake profile · 1h · score 1.444
+    why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-camden-handshake
+- (foundation) Do a mock interview with your career center · 2h · score 1.269
+    why: High priority for Data analytics and data science. Builds communication, one of your biggest gaps right now.
+    resources: glassdoor, rutgers-camden-career
+- (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 1.218
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · spring.
+    resources: nj-eof, nj-gsg, bridging-the-gap, rutgers-camden-eof
+- (presence) Build a complete LinkedIn profile · 3h · score 1.715
+    why: High priority for Data analytics and data science. Builds communication, one of your biggest gaps right now.
+    resources: linkedin-profile
+- (presence) Set up GitHub with a profile README · 2h · score 1.147
+    why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: github-profile-readme, github-student-pack
+- (network) Attend your first career fair (to look, not to land) · 3h · score 1.501
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-camden-career
+- (network) Join a professional society as a student member · 3h · score 0.791
+    why: Builds career self-development, one of your biggest gaps right now. Student rates are cheap and give access to scholarships, job boards, and conferences.
+    resources: —
+- (academics) Meet your campus fellowships office · 2h · score 0.631
+    why: Builds career self-development, one of your biggest gaps right now. Many awards need a campus nomination a year ahead.
+    resources: rutgers-camden-osdfa
+
+### Year 3 · Spring  [90/90 flex hrs]
+- (foundation) Write a reusable cover letter template · 3h · score 0.979
+    why: Builds communication, one of your biggest gaps right now. Many internship and fellowship applications still ask for one.
+    resources: rutgers-camden-class, rutgers-camden-writing-design-lab
+- (foundation) Update and get your resume reviewed · 2h · score 0.89
+    why: Builds communication, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-camden-career
+- (skills) Learn core Excel (lookups, pivots, charts) · 12h · score 1.603
+    why: High priority for Data analytics and data science. Builds technology, one of your biggest gaps right now.
+    resources: microsoft-learn
+- (experience) Join 1–2 organizations tied to your field · 15h · score 1.347
+    why: Builds teamwork, one of your biggest gaps right now. Needed before: Take an officer or project-lead role.
+    resources: rutgers-camden-involvement
+- (network) Work a career fair with a target list of employers · 5h · score 1.425
+    why: Builds communication, one of your biggest gaps right now. Fall junior-year fairs feed most junior-summer internships.
+    resources: rutgers-camden-career
+- (network) Do 5 informational interviews with alumni · 8h · score 1.302
+    why: Builds communication, one of your biggest gaps right now. The fastest way to learn what a job is really like and get referred.
+    resources: linkedin-alumni-tool
+- (network) Build relationships with 2 professors (office hours, research) (in progress) · 5h · score 1.246
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+- (applications) Apply to 30+ target internships for junior summer · 40h · score 2.751
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: glassdoor, linkedin-profile, rutgers-camden-handshake
+
+### Summer after year 3  [64/64 flex hrs, summer block used]
+- (presence) Publish a Kaggle notebook or finish a competition · 15h · score 1.366
+    why: Builds critical thinking, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: kaggle
+- (skills) Build a dashboard in Tableau or Power BI · 12h · score 1.629
+    why: High priority for Data analytics and data science. Builds communication, one of your biggest gaps right now.
+    resources: microsoft-learn, tableau-students
+- (experience) Build and ship a personal project (in progress) · 32h · score 1.361
+    why: Builds technology, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: cs50, freecodecamp, github-pages
+- (experience) Do an internship in your target field · 400h · score 1.356
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: —
+- (network) Build relationships with 2 professors (office hours, research) · 5h · score 1.454
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+
+### Year 4 · Fall  [90/90 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.714
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: nj-tag, fafsa
+- (foundation) Update and get your resume reviewed · 2h · score 0.89
+    why: Builds communication, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-camden-career
+- (presence) Commit code consistently for a semester (3+ days a week) · 30h · score 1.429
+    why: Builds technology, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: github-profile-readme, leetcode
+- (presence) Connect with 50 relevant people (classmates, alumni, speakers) · 5h · score 1.355
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: linkedin-alumni-tool
+- (experience) Build and ship a personal project · 8h · score 1.556
+    why: Builds technology, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: cs50, freecodecamp, github-pages
+- (experience) Take an officer or project-lead role · 30h · score 1.493
+    why: Builds leadership, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: —
+- (network) Find a mentor in your target field · 6h · score 1.373
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+- (applications) Run your full-time job search (or convert a return offer) (in progress) · 6h · score 1.308
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: glassdoor, levels-fyi, rutgers-camden-handshake
+
+### Year 4 · Spring  [90/90 flex hrs]
+- (skills) Give 3 presentations outside class (club, Toastmasters, symposium) · 8h · score 1.134
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: toastmasters
+- (experience) Volunteer with a community organization · 20h · score 0.967
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: rutgers-camden-community-engagement
+- (experience) Hold a part-time or campus job (in progress) · 32h · score 0.802
+    why: Builds professionalism, one of your biggest gaps right now. Any job builds reliability, and many students need the income.
+    resources: —
+- (applications) Run your full-time job search (or convert a return offer) (in progress) · 30h · score 1.308
+    why: High priority for Data analytics and data science. Builds professionalism, one of your biggest gaps right now.
+    resources: glassdoor, levels-fyi, rutgers-camden-handshake
+
+Warnings:
+- About 492 hours of goals didn't fit. Around 18 hours a week would cover them.
+Backlog (40): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-early-programs (Its useful window has passed.); ap-federal (Didn't fit your weekly hours.); ap-fulltime (Started but needs about 24 more hours than your plan has room for.) …
+
+## packaging-sophomore  (rutgers-nb, packaging-engineering, year 2, packaging-cpg, horizon graduation, 8h/wk)
+Biggest gaps: crit 0.8, tech 0.8, team 0.75
+
+### Year 2 · Fall  [31/31 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.536
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: nj-tag, fafsa
+- (foundation) Meet a career advisor and sketch a 4-year plan · 2h · score 1.162
+    why: Builds career self-development, one of your biggest gaps right now. Gets a human in your corner early and surfaces campus programs you'd miss.
+    resources: rutgers-ces
+- (foundation) Complete your Handshake profile · 1h · score 1.1
+    why: Builds professionalism, one of your biggest gaps right now. Your campus's employers and career fairs run through Handshake.
+    resources: rutgers-handshake
+- (foundation) Write and practice a 30-second introduction · 1h · score 0.999
+    why: Builds communication, one of your biggest gaps right now. Needed before: Do a mock interview with your career center; Work a career fair with a target list of employers.
+    resources: —
+- (foundation) Research 3 careers on O*NET and BLS · 3h · score 0.924
+    why: Builds career self-development, one of your biggest gaps right now. Know what the jobs involve and pay before you optimize for them.
+    resources: onet, bls-ooh, college-scorecard
+- (foundation) Check EOF, TAG, Garden State Guarantee, and tuition assistance eligibility · 1h · score 0.888
+    why: Builds career self-development, one of your biggest gaps right now. Money pressure is the most common reason students skip unpaid or low-paid experience.
+    resources: rutgers-tuition-assistance, nj-eof
+- (foundation) Update and get your resume reviewed · 2h · score 0.782
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-ces
+- (foundation) Write a reusable cover letter template · 3h · score 0.712
+    why: Builds communication, one of your biggest gaps right now. Many internship and fellowship applications still ask for one.
+    resources: rutgers-writing-centers
+- (presence) Build a complete LinkedIn profile · 3h · score 1.267
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: linkedin-profile
+- (experience) Join 1–2 organizations tied to your field (in progress) · 5h · score 1.383
+    why: Builds teamwork, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-getinvolved
+- (network) Join a professional society as a student member · 3h · score 1.032
+    why: Builds career self-development, one of your biggest gaps right now. Student rates are cheap and give access to scholarships, job boards, and conferences.
+    resources: iopp
+- (network) Attend your first career fair (to look, not to land) · 3h · score 1.03
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-ces
+- (academics) Add the Rutgers packaging certificate · 0h · score 0.872
+    why: Builds technology, one of your biggest gaps right now. Four packaging courses open packaging and consumer-products roles to engineers in other majors.
+    resources: —
+- (academics) Meet your campus fellowships office · 2h · score 0.571
+    why: Builds career self-development, one of your biggest gaps right now. Many awards need a campus nomination a year ahead.
+    resources: rutgers-distinguished-fellowships
+
+### Year 2 · Spring  [88/90 flex hrs]
+- (foundation) Do a mock interview with your career center · 2h · score 1.112
+    why: High priority for Packaging engineering and consumer products. Builds communication, one of your biggest gaps right now.
+    resources: rutgers-ces, glassdoor
+- (skills) Get proficient in CAD (SOLIDWORKS or Onshape) · 30h · score 1.275
+    why: High priority for Packaging engineering and consumer products. Builds technology, one of your biggest gaps right now.
+    resources: —
+- (experience) Join 1–2 organizations tied to your field · 10h · score 1.516
+    why: Builds teamwork, one of your biggest gaps right now. Getting late: ideally done by year 1 · spring.
+    resources: rutgers-getinvolved
+- (experience) Enter a student packaging design competition (in progress) · 8h · score 1.238
+    why: High priority for Packaging engineering and consumer products. Builds critical thinking, one of your biggest gaps right now.
+    resources: fpa-student-design-challenge, iopp-student-ameristar, ppa-student-design-challenge
+- (network) Do 5 informational interviews with alumni (in progress) · 4h · score 0.959
+    why: Builds communication, one of your biggest gaps right now. The fastest way to learn what a job is really like and get referred.
+    resources: linkedin-alumni-tool
+- (applications) Apply to first- and second-year programs (SEO, MLT, INROADS, early-ID) · 15h · score 1.236
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 2 · fall.
+    resources: inroads, mlt-career-prep
+- (applications) Apply to 15+ summer opportunities for after sophomore year · 20h · score 1.168
+    why: Builds professionalism, one of your biggest gaps right now. Timing: Most summer roles fill by March.
+    resources: rutgers-handshake, federal-pathways, usajobs, vsfs
+
+### Summer after year 2  [64/64 flex hrs, summer block used]
+- (skills) Learn core Excel (lookups, pivots, charts) · 12h · score 1.176
+    why: Builds technology, one of your biggest gaps right now. Shows up in most business, health, and policy roles.
+    resources: microsoft-learn
+- (experience) Enter a student packaging design competition (in progress) · 8h · score 1.238
+    why: High priority for Packaging engineering and consumer products. Builds critical thinking, one of your biggest gaps right now.
+    resources: fpa-student-design-challenge, iopp-student-ameristar, ppa-student-design-challenge
+- (experience) Do a first internship or career-related summer job · 300h · score 1.069
+    why: Builds professionalism, one of your biggest gaps right now. Any relevant summer experience makes the junior-year internship far easier to land.
+    resources: rutgers-handshake, federal-pathways, vsfs
+- (experience) Take an officer or project-lead role (in progress) · 10h · score 0.937
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+- (network) Do 5 informational interviews with alumni · 4h · score 0.959
+    why: Builds communication, one of your biggest gaps right now. The fastest way to learn what a job is really like and get referred.
+    resources: linkedin-alumni-tool
+- (network) Work a career fair with a target list of employers · 5h · score 0.924
+    why: Builds communication, one of your biggest gaps right now. Fall junior-year fairs feed most junior-summer internships.
+    resources: rutgers-ces
+- (network) Build relationships with 2 professors (office hours, research) (in progress) · 5h · score 0.911
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+- (applications) Apply to 30+ target internships for junior summer (in progress) · 20h · score 0.955
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: rutgers-handshake, glassdoor, linkedin-profile
+
+### Year 3 · Fall  [90/90 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.536
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: nj-tag, fafsa
+- (foundation) Update and get your resume reviewed · 2h · score 0.782
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-ces
+- (presence) Connect with 50 relevant people (classmates, alumni, speakers) · 5h · score 0.83
+    why: Builds career self-development, one of your biggest gaps right now. Warm connections turn into referrals, which beat cold applications.
+    resources: linkedin-alumni-tool
+- (experience) Enter a student packaging design competition (in progress) · 8h · score 1.238
+    why: High priority for Packaging engineering and consumer products. Builds critical thinking, one of your biggest gaps right now.
+    resources: fpa-student-design-challenge, iopp-student-ameristar, ppa-student-design-challenge
+- (experience) Complete 2 virtual job simulations · 8h · score 0.976
+    why: Builds technology, one of your biggest gaps right now. Getting late: ideally done by year 2 · spring.
+    resources: forage
+- (experience) Take an officer or project-lead role (in progress) · 10h · score 0.937
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+- (experience) Work as a research assistant with a professor (in progress) · 30h · score 0.804
+    why: Builds critical thinking, one of your biggest gaps right now. Opens recommendation letters and research summers.
+    resources: aresty-ra
+- (network) Build relationships with 2 professors (office hours, research) · 5h · score 0.911
+    why: Builds communication, one of your biggest gaps right now. You'll need recommendation letters for research, fellowships, and grad school.
+    resources: —
+- (applications) Apply to 30+ target internships for junior summer · 20h · score 1.54
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: rutgers-handshake, glassdoor, linkedin-profile
+
+### Year 3 · Spring  [27/27 flex hrs, summer block used]
+- (experience) Complete a 6-month co-op · 450h · score 1.276
+    why: High priority for Packaging engineering and consumer products. Builds technology, one of your biggest gaps right now.
+    resources: rutgers-packaging-coop, employer-colgate
+- (experience) Enter a student packaging design competition · 8h · score 1.238
+    why: High priority for Packaging engineering and consumer products. Builds critical thinking, one of your biggest gaps right now.
+    resources: fpa-student-design-challenge, iopp-student-ameristar, ppa-student-design-challenge
+- (experience) Work as a research assistant with a professor (in progress) · 13h · score 0.964
+    why: Builds critical thinking, one of your biggest gaps right now. Opens recommendation letters and research summers.
+    resources: aresty-ra
+- (experience) Take an officer or project-lead role (in progress) · 6h · score 0.937
+    why: Builds leadership, one of your biggest gaps right now. Leadership is one of the strongest signals on an early-career resume.
+    resources: —
+
+### Summer after year 3  [64/64 flex hrs, summer block used]
+- (presence) Publish a portfolio site with 3 projects · 12h · score 1.057
+    why: Builds technology, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+- (skills) Give 3 presentations outside class (club, Toastmasters, symposium) (in progress) · 5h · score 0.771
+    why: Builds communication, one of your biggest gaps right now. Presentation skill is one of the top things employers ask for.
+    resources: toastmasters
+- (experience) Complete a 6-month co-op · 450h · score 1.276
+    why: High priority for Packaging engineering and consumer products. Builds technology, one of your biggest gaps right now.
+    resources: rutgers-packaging-coop, employer-colgate
+- (experience) Take an officer or project-lead role · 4h · score 1.218
+    why: Builds leadership, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: —
+- (experience) Work as a research assistant with a professor (in progress) · 32h · score 1.125
+    why: Builds critical thinking, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: aresty-ra
+- (network) Find a mentor in your target field · 6h · score 1.071
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: inroads, mlt-career-prep
+- (network) Attend 3 employer info sessions · 5h · score 0.894
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: rutgers-handshake
+
+### Year 4 · Fall  [90/90 flex hrs]
+- (foundation) File the FAFSA (every year) · 2h · score 1.536
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: nj-tag, fafsa
+- (foundation) Update and get your resume reviewed · 2h · score 0.782
+    why: Builds professionalism, one of your biggest gaps right now. A resume goes stale every semester you gain experience.
+    resources: rutgers-ces
+- (skills) Give 3 presentations outside class (club, Toastmasters, symposium) · 3h · score 0.9
+    why: Builds communication, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: toastmasters
+- (experience) Work as a research assistant with a professor · 14h · score 1.286
+    why: Builds critical thinking, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+- (experience) Volunteer with a community organization (in progress) · 8h · score 0.808
+    why: Builds teamwork, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: —
+- (network) Attend a national conference or diversity career conference · 20h · score 0.903
+    why: Builds career self-development, one of your biggest gaps right now. Getting late: ideally done by year 3 · fall.
+    resources: —
+- (applications) Run your full-time job search (or convert a return offer) (in progress) · 30h · score 1.163
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: rutgers-handshake, glassdoor
+- (applications) Apply to federal internships on USAJOBS · 10h · score 0.95
+    why: Builds professionalism, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: federal-pathways, usajobs, usajobs-resume-help, wrp
+
+### Year 4 · Spring  [90/90 flex hrs]
+- (experience) Volunteer with a community organization · 12h · score 0.924
+    why: Builds teamwork, one of your biggest gaps right now. Getting late: ideally done by year 3 · spring.
+    resources: —
+- (experience) Hold a part-time or campus job (in progress) · 8h · score 0.747
+    why: Builds professionalism, one of your biggest gaps right now. Any job builds reliability, and many students need the income.
+    resources: —
+- (credentials) Earn a Lean Six Sigma Green Belt · 40h · score 1.08
+    why: Builds critical thinking, one of your biggest gaps right now. Getting late: ideally done by year 4 · fall.
+    resources: —
+- (applications) Run your full-time job search (or convert a return offer) · 30h · score 1.163
+    why: High priority for Packaging engineering and consumer products. Builds professionalism, one of your biggest gaps right now.
+    resources: rutgers-handshake, glassdoor
+
+Warnings:
+- About 107 hours of goals didn't fit. Around 10 hours a week would cover them.
+- Recruiting timeline: Packaging co-ops and summer internships at consumer products, food, and pharma companies are posted in early fall; Rutgers packaging students usually plan a co-op semester in junior year.
+Backlog (21): a-fellowship-apps (Lower priority for your time frame; add it if you have time.); a-grad-list (Lower priority for your time frame; add it if you have time.); a-letters (Lower priority for your time frame; add it if you have time.); a-personal-statement (Lower priority for your time frame; add it if you have time.); a-test-prep (Lower priority for your time frame; add it if you have time.); ap-grad-apps (Lower priority for your time frame; add it if you have time.); ap-negotiate (Didn't fit your weekly hours.); ap-research-apps (Lower priority for your time frame; add it if you have time.) …

@@ -1,26 +1,484 @@
 {
-  "_about": "The 20 launch majors. Chosen from Rutgers–New Brunswick's most-awarded bachelor's degrees (IPEDS data via Data USA and College Factual), then trimmed so no two are near-duplicates. cip is the federal Classification of Instructional Programs code, used to join majors to occupations (CIP-SOC crosswalk) and O*NET skills.",
+  "_about": "Launch majors with CIP codes. offeredAt lists each campus that offers the major, with its school and program page; a major only appears in the intake for campuses listed here.",
   "majors": [
-    { "id": "computer-science", "name": "Computer Science", "cip": "11.0701", "school": "School of Arts and Sciences", "cluster": "tech-engineering", "industries": ["software", "data", "fintech", "research"], "url": "https://www.cs.rutgers.edu" },
-    { "id": "information-technology", "name": "Information Technology and Informatics", "cip": "11.0401", "school": "School of Communication and Information", "cluster": "tech-engineering", "industries": ["it", "cybersecurity", "ux", "data"], "url": "https://comminfo.rutgers.edu" },
-    { "id": "mechanical-engineering", "name": "Mechanical Engineering", "cip": "14.1901", "school": "School of Engineering", "cluster": "tech-engineering", "industries": ["manufacturing", "aerospace", "energy", "automotive"], "url": "https://mae.rutgers.edu" },
-    { "id": "biomedical-engineering", "name": "Biomedical Engineering", "cip": "14.0501", "school": "School of Engineering", "cluster": "tech-engineering", "industries": ["medical-devices", "pharma", "biotech", "research"], "url": "https://bme.rutgers.edu" },
-    { "id": "biological-sciences", "name": "Biological Sciences", "cip": "26.0101", "school": "School of Arts and Sciences", "cluster": "health-life", "industries": ["research", "pharma", "healthcare", "environment"], "url": "https://lifesci.rutgers.edu" },
-    { "id": "psychology", "name": "Psychology", "cip": "42.0101", "school": "School of Arts and Sciences", "cluster": "health-life", "industries": ["mental-health", "research", "hr", "ux", "education"], "url": "https://psych.rutgers.edu" },
-    { "id": "nursing", "name": "Nursing", "cip": "51.3801", "school": "Rutgers School of Nursing", "cluster": "health-life", "industries": ["healthcare", "public-health"], "url": "https://nursing.rutgers.edu" },
-    { "id": "pharmacy", "name": "Pharmacy (PharmD)", "cip": "51.2001", "school": "Ernest Mario School of Pharmacy", "cluster": "health-life", "industries": ["pharma", "healthcare", "retail-pharmacy", "regulatory"], "url": "https://pharmacy.rutgers.edu" },
-    { "id": "public-health", "name": "Public Health", "cip": "51.2201", "school": "Edward J. Bloustein School of Planning and Public Policy", "cluster": "health-life", "industries": ["public-health", "government", "nonprofit", "healthcare"], "url": "https://bloustein.rutgers.edu" },
-    { "id": "exercise-science", "name": "Exercise Science", "cip": "31.0505", "school": "School of Arts and Sciences", "cluster": "health-life", "industries": ["healthcare", "fitness", "sports", "rehab"], "url": "https://kines.rutgers.edu" },
-    { "id": "finance", "name": "Finance", "cip": "52.0801", "school": "Rutgers Business School", "cluster": "business", "industries": ["banking", "investment", "corporate-finance", "insurance"], "url": "https://www.business.rutgers.edu" },
-    { "id": "accounting", "name": "Accounting", "cip": "52.0301", "school": "Rutgers Business School", "cluster": "business", "industries": ["public-accounting", "audit", "tax", "corporate-finance"], "url": "https://www.business.rutgers.edu" },
-    { "id": "marketing", "name": "Marketing", "cip": "52.1401", "school": "Rutgers Business School", "cluster": "business", "industries": ["advertising", "brand", "digital", "consumer-goods"], "url": "https://www.business.rutgers.edu" },
-    { "id": "supply-chain", "name": "Supply Chain Management", "cip": "52.0203", "school": "Rutgers Business School", "cluster": "business", "industries": ["logistics", "manufacturing", "pharma", "retail"], "url": "https://www.business.rutgers.edu" },
-    { "id": "economics", "name": "Economics", "cip": "45.0601", "school": "School of Arts and Sciences", "cluster": "business", "industries": ["consulting", "policy", "banking", "research"], "url": "https://economics.rutgers.edu" },
-    { "id": "human-resource-management", "name": "Human Resource Management", "cip": "52.1001", "school": "School of Management and Labor Relations", "cluster": "business", "industries": ["hr", "consulting", "labor-relations"], "url": "https://smlr.rutgers.edu" },
-    { "id": "communication", "name": "Communication", "cip": "09.0101", "school": "School of Communication and Information", "cluster": "social-communication", "industries": ["pr", "media", "marketing", "nonprofit"], "url": "https://comminfo.rutgers.edu" },
-    { "id": "political-science", "name": "Political Science", "cip": "45.1001", "school": "School of Arts and Sciences", "cluster": "social-communication", "industries": ["government", "law", "policy", "nonprofit"], "url": "https://polisci.rutgers.edu" },
-    { "id": "criminal-justice", "name": "Criminal Justice", "cip": "43.0104", "school": "School of Arts and Sciences", "cluster": "social-communication", "industries": ["law-enforcement", "law", "corrections", "policy"], "url": "https://sas.rutgers.edu" },
-    { "id": "social-work", "name": "Social Work", "cip": "44.0701", "school": "School of Social Work", "cluster": "social-communication", "industries": ["social-services", "healthcare", "child-welfare", "nonprofit"], "url": "https://socialwork.rutgers.edu" }
+    {
+      "id": "computer-science",
+      "name": "Computer Science",
+      "cip": "11.0701",
+      "cluster": "tech-engineering",
+      "industries": [
+        "software",
+        "data",
+        "fintech",
+        "research"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://www.cs.rutgers.edu"
+        },
+        "newark": {
+          "school": "School of Arts and Sciences–Newark (Mathematics and Computer Science)",
+          "url": "https://www.newark.rutgers.edu/academics/undergraduate-study/explore-undergraduate-areas-study"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences",
+          "url": "https://camden.rutgers.edu/academics/undergraduate/programs/bachelor-science-computer-science"
+        }
+      }
+    },
+    {
+      "id": "information-technology",
+      "name": "Information Technology and Informatics",
+      "cip": "11.0401",
+      "cluster": "tech-engineering",
+      "industries": [
+        "it",
+        "cybersecurity",
+        "ux",
+        "data"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Communication and Information",
+          "url": "https://comminfo.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "mechanical-engineering",
+      "name": "Mechanical Engineering",
+      "cip": "14.1901",
+      "cluster": "tech-engineering",
+      "industries": [
+        "manufacturing",
+        "aerospace",
+        "energy",
+        "automotive"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Engineering",
+          "url": "https://mae.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "biomedical-engineering",
+      "name": "Biomedical Engineering",
+      "cip": "14.0501",
+      "cluster": "tech-engineering",
+      "industries": [
+        "medical-devices",
+        "pharma",
+        "biotech",
+        "research"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Engineering",
+          "url": "https://bme.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "biological-sciences",
+      "name": "Biological Sciences",
+      "cip": "26.0101",
+      "cluster": "health-life",
+      "industries": [
+        "research",
+        "pharma",
+        "healthcare",
+        "environment"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://lifesci.rutgers.edu"
+        },
+        "newark": {
+          "school": "School of Arts and Sciences–Newark (Federated Department of Biological Sciences)",
+          "url": "https://www.newark.rutgers.edu/academics/undergraduate-study/explore-undergraduate-areas-study"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences",
+          "url": "https://sas.camden.rutgers.edu/academics/majors-minors/"
+        }
+      }
+    },
+    {
+      "id": "psychology",
+      "name": "Psychology",
+      "cip": "42.0101",
+      "cluster": "health-life",
+      "industries": [
+        "mental-health",
+        "research",
+        "hr",
+        "ux",
+        "education"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://psych.rutgers.edu"
+        },
+        "newark": {
+          "school": "School of Arts and Sciences–Newark",
+          "url": "https://www.newark.rutgers.edu/academics/undergraduate-study/explore-undergraduate-areas-study"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences",
+          "url": "https://psychology.camden.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "nursing",
+      "name": "Nursing",
+      "cip": "51.3801",
+      "cluster": "health-life",
+      "industries": [
+        "healthcare",
+        "public-health"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Rutgers School of Nursing",
+          "url": "https://nursing.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers School of Nursing (Newark)",
+          "url": "https://nursing.rutgers.edu/academics-admissions/bachelors/"
+        },
+        "camden": {
+          "school": "Rutgers School of Nursing–Camden",
+          "url": "https://nursing.camden.rutgers.edu/BSN"
+        }
+      }
+    },
+    {
+      "id": "pharmacy",
+      "name": "Pharmacy (PharmD)",
+      "cip": "51.2001",
+      "cluster": "health-life",
+      "industries": [
+        "pharma",
+        "healthcare",
+        "retail-pharmacy",
+        "regulatory"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Ernest Mario School of Pharmacy",
+          "url": "https://pharmacy.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "public-health",
+      "name": "Public Health",
+      "cip": "51.2201",
+      "cluster": "health-life",
+      "industries": [
+        "public-health",
+        "government",
+        "nonprofit",
+        "healthcare"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Edward J. Bloustein School of Planning and Public Policy",
+          "url": "https://bloustein.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "exercise-science",
+      "name": "Exercise Science",
+      "cip": "31.0505",
+      "cluster": "health-life",
+      "industries": [
+        "healthcare",
+        "fitness",
+        "sports",
+        "rehab"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://kines.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "cip": "52.0801",
+      "cluster": "business",
+      "industries": [
+        "banking",
+        "investment",
+        "corporate-finance",
+        "insurance"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Rutgers Business School",
+          "url": "https://www.business.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers Business School–Newark",
+          "url": "https://business.rutgers.edu/undergraduate-newark/academics"
+        },
+        "camden": {
+          "school": "Rutgers School of Business–Camden",
+          "url": "https://business.camden.rutgers.edu/undergraduate/bachelor-of-science-programs/"
+        }
+      }
+    },
+    {
+      "id": "accounting",
+      "name": "Accounting",
+      "cip": "52.0301",
+      "cluster": "business",
+      "industries": [
+        "public-accounting",
+        "audit",
+        "tax",
+        "corporate-finance"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Rutgers Business School",
+          "url": "https://www.business.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers Business School–Newark",
+          "url": "https://business.rutgers.edu/undergraduate-newark/academics"
+        },
+        "camden": {
+          "school": "Rutgers School of Business–Camden",
+          "url": "https://business.camden.rutgers.edu/undergraduate/bachelor-of-science-programs/"
+        }
+      }
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "cip": "52.1401",
+      "cluster": "business",
+      "industries": [
+        "advertising",
+        "brand",
+        "digital",
+        "consumer-goods"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Rutgers Business School",
+          "url": "https://www.business.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers Business School–Newark",
+          "url": "https://business.rutgers.edu/undergraduate-newark/academics"
+        },
+        "camden": {
+          "school": "Rutgers School of Business–Camden",
+          "url": "https://business.camden.rutgers.edu/undergraduate/bachelor-of-science-programs/"
+        }
+      }
+    },
+    {
+      "id": "supply-chain",
+      "name": "Supply Chain Management",
+      "cip": "52.0203",
+      "cluster": "business",
+      "industries": [
+        "logistics",
+        "manufacturing",
+        "pharma",
+        "retail"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "Rutgers Business School",
+          "url": "https://www.business.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers Business School–Newark",
+          "url": "https://business.rutgers.edu/undergraduate-newark/academics"
+        }
+      }
+    },
+    {
+      "id": "economics",
+      "name": "Economics",
+      "cip": "45.0601",
+      "cluster": "business",
+      "industries": [
+        "consulting",
+        "policy",
+        "banking",
+        "research"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://economics.rutgers.edu"
+        },
+        "newark": {
+          "school": "School of Arts and Sciences–Newark",
+          "url": "https://www.newark.rutgers.edu/academics/undergraduate-study/explore-undergraduate-areas-study"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences",
+          "url": "https://sas.camden.rutgers.edu/academics/majors-minors/"
+        }
+      }
+    },
+    {
+      "id": "human-resource-management",
+      "name": "Human Resource Management",
+      "cip": "52.1001",
+      "cluster": "business",
+      "industries": [
+        "hr",
+        "consulting",
+        "labor-relations"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Management and Labor Relations",
+          "url": "https://smlr.rutgers.edu"
+        },
+        "camden": {
+          "school": "Rutgers School of Business–Camden",
+          "url": "https://camden.rutgers.edu/academics/undergraduate/programs/human-resource-management-bs"
+        }
+      }
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "cip": "09.0101",
+      "cluster": "social-communication",
+      "industries": [
+        "pr",
+        "media",
+        "marketing",
+        "nonprofit"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Communication and Information",
+          "url": "https://comminfo.rutgers.edu"
+        }
+      }
+    },
+    {
+      "id": "political-science",
+      "name": "Political Science",
+      "cip": "45.1001",
+      "cluster": "social-communication",
+      "industries": [
+        "government",
+        "law",
+        "policy",
+        "nonprofit"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://polisci.rutgers.edu"
+        },
+        "newark": {
+          "school": "School of Arts and Sciences–Newark",
+          "url": "https://www.newark.rutgers.edu/academics/undergraduate-study/explore-undergraduate-areas-study"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences",
+          "url": "https://sas.camden.rutgers.edu/academics/majors-minors/"
+        }
+      }
+    },
+    {
+      "id": "criminal-justice",
+      "name": "Criminal Justice",
+      "cip": "43.0104",
+      "cluster": "social-communication",
+      "industries": [
+        "law-enforcement",
+        "law",
+        "corrections",
+        "policy"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Arts and Sciences",
+          "url": "https://sas.rutgers.edu"
+        },
+        "newark": {
+          "school": "Rutgers School of Criminal Justice",
+          "url": "https://rscj.newark.rutgers.edu"
+        },
+        "camden": {
+          "school": "Camden College of Arts and Sciences (Sociology and Criminal Justice)",
+          "url": "https://sas.camden.rutgers.edu/academics/majors-minors/"
+        }
+      }
+    },
+    {
+      "id": "social-work",
+      "name": "Social Work",
+      "cip": "44.0701",
+      "cluster": "social-communication",
+      "industries": [
+        "social-services",
+        "healthcare",
+        "child-welfare",
+        "nonprofit"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Social Work",
+          "url": "https://socialwork.rutgers.edu"
+        },
+        "camden": {
+          "school": "Rutgers School of Social Work (Camden)",
+          "url": "https://camden.rutgers.edu/academics/undergraduate/programs/social-work-basw"
+        }
+      }
+    },
+    {
+      "id": "packaging-engineering",
+      "name": "Packaging Engineering",
+      "cip": "15.1503",
+      "cluster": "tech-engineering",
+      "industries": [
+        "consumer-products",
+        "food-and-beverage",
+        "pharmaceuticals",
+        "medical-devices",
+        "manufacturing"
+      ],
+      "offeredAt": {
+        "nb": {
+          "school": "School of Engineering",
+          "url": "https://packaging.rutgers.edu/packaging-undergraduate-studies"
+        }
+      }
+    }
   ],
-  "alternates": ["Electrical and Computer Engineering", "Neuroscience", "Mathematics", "English", "Journalism and Media Studies", "Environmental Sciences", "Animal Science", "Planning and Public Policy"]
+  "alternates": [
+    "Electrical and Computer Engineering",
+    "Neuroscience",
+    "Mathematics",
+    "English",
+    "Journalism and Media Studies",
+    "Environmental Sciences",
+    "Animal Science",
+    "Planning and Public Policy"
+  ]
 }

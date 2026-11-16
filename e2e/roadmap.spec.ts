@@ -32,13 +32,13 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   await expect(heading(page)).toHaveText("Where are you right now?");
   await page.keyboard.press("1");                                         // college student (auto-advances)
+  await expect(heading(page)).toHaveText("Which Rutgers campus are you at?");
+  await page.getByRole("radio", { name: "Rutgers–New Brunswick" }).click();
   await expect(heading(page)).toHaveText("What's your major?");
   await page.getByRole("searchbox", { name: "Search majors" }).fill("Computer Science");
   await page.keyboard.press("Enter");
   await expect(heading(page)).toHaveText("What year are you in?");
   await page.keyboard.press("2");
-  await expect(heading(page)).toHaveText("Which school do you go to?");
-  await page.getByRole("radio", { name: "Rutgers–New Brunswick" }).click();
   await expect(heading(page)).toHaveText("Where do you want to end up?");
   await page.getByRole("radio", { name: /Software engineering/ }).click();
   await expect(heading(page)).toHaveText("How soon do you want to get there?");
@@ -68,7 +68,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("button", { name: "Build my plan" }).click();
 
   await expect(heading(page)).toHaveText("Your career roadmap");
-  await expect(page.getByText("Software engineering · Computer Science, year 2 · by graduation · 10 hrs/week")).toBeVisible();
+  await expect(page.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 10 hrs/week")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Your next moves" })).toBeVisible();
 
   // Open a goal from the chart and mark it done.
@@ -103,22 +103,27 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(seen.offsite).toEqual([]);
 });
 
-test("phone: timeline instead of the chart, bottom-sheet drawer, no sideways scroll @phone", async ({ page }) => {
+test("phone: a Newark student gets a timeline, a bottom-sheet drawer, and Newark offices @phone", async ({ page }) => {
   const seen = watch(page);
   // Start from a shared link to skip the intake (identity and citizenship are never in it).
-  const share = { v: 1, m: "nursing", y: 3, t: "nursing-clinical", h: "graduation", s: "rutgers-nb", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
+  const share = { v: 1, m: "nursing", y: 3, t: "nursing-clinical", h: "graduation", s: "rutgers-newark", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
   const hash = Buffer.from(JSON.stringify(share)).toString("base64url");
   await page.goto(`./#plan=${hash}`);
   await expect(heading(page)).toHaveText("Check your answers");
   expect(new URL(page.url()).hash).toBe("");
   await page.getByRole("button", { name: "Build my plan" }).click();
   await expect(heading(page)).toHaveText("Your career roadmap");
+  await expect(page.getByText(/Nursing, year 3 · Rutgers–Newark ·/)).toBeVisible();
   await expect(page.locator(".react-flow")).toHaveCount(0);
   await page.getByRole("heading", { name: "Semester by semester" }).scrollIntoViewIfNeeded();
   await page.locator("section[aria-labelledby=roadmap-h] li button").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  // Resources name Newark's offices, and never New Brunswick's.
+  await page.getByRole("tab", { name: "Your resources" }).click();
+  await expect(page.getByText("Rutgers–Newark", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Rutgers–New Brunswick", { exact: true })).toHaveCount(0);
   expect(seen.violations).toEqual([]);
   expect(seen.offsite).toEqual([]);
 });

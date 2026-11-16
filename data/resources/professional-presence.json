@@ -1285,6 +1285,9 @@
       "name": "Rutgers Writing Centers",
       "type": "campus_office",
       "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
       "majors": [
         "all"
       ],

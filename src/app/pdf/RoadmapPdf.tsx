@@ -3,7 +3,7 @@
 import { Document, Font, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { Plan, PlanInput } from "../../engine/types.ts";
 import { contactParts } from "../resources/format.ts";
-import { byGroup, payLabel, scopeLabel, seasonLabel, type Tailored } from "../resources/tailor.ts";
+import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
 
 export interface FontFiles { regular: string; semibold: string; mono: string }
 
@@ -54,7 +54,7 @@ const Bullet = ({ children }: { children: string }) => (
   <View style={s.bullet}><Text style={{ width: 10, color: C.muted }}>•</Text><Text style={{ flex: 1 }}>{children}</Text></View>
 );
 
-export interface PdfProps { plan: Plan; input: PlanInput; summary: { track: string; major: string; year: number; horizon: string; hours: number }; resources: Tailored[]; date: string }
+export interface PdfProps { plan: Plan; input: PlanInput; summary: { track: string; campus: string; major: string; year: number; horizon: string; hours: number }; resources: Tailored[]; date: string }
 
 export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) {
   const now = plan.terms[0];
@@ -72,7 +72,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
         <Text style={s.eyebrow}>Career Pathway Mapper</Text>
         <Text style={s.h1}>Your career roadmap</Text>
         <View style={{ marginTop: 18 }}>
-          {[["Goal", summary.track], ["Major", summary.major], ["Year", `Year ${summary.year}`], ["Time frame", summary.horizon],
+          {[["Goal", summary.track], ["Campus", summary.campus], ["Major", summary.major], ["Year", `Year ${summary.year}`], ["Time frame", summary.horizon],
             ["Time per week", `${summary.hours} hours`], ["Generated", date], ["Data version", plan.meta.dataVersion], ["Planning engine", plan.meta.engineVersion]]
             .map(([k, v]) => <View key={k} style={s.row}><Text style={s.label}>{k}</Text><Text style={{ flex: 1 }}>{v}</Text></View>)}
         </View>
@@ -159,7 +159,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
             <Text style={s.h3} minPresenceAhead={60}>{g.label}</Text>
             <View style={s.cols}>
             {g.items.map(({ resource: r }) => {
-              const facts = [scopeLabel(r.scope), payLabel(r.pay), seasonLabel(r.season), r.typicalDeadline ? `Deadline: ${r.typicalDeadline}` : null].filter(Boolean).join(" · ");
+              const facts = [whereLabel(r), payLabel(r.pay), seasonLabel(r.season), r.typicalDeadline ? `Deadline: ${r.typicalDeadline}` : null].filter(Boolean).join(" · ");
               const contact = contactParts(r).map((c) => (c.label === "How" ? c.value : `${c.value}`)).join(" · ");
               return (
                 <View key={r.id} style={s.col} wrap={false}>

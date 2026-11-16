@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.3.0";
+export const ENGINE_VERSION = "0.4.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -176,7 +176,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     if (suppressed.has(g.id)) continue;
     if (g.majors && !g.majors.includes(input.majorId) && !boosted && !gates.has(g.id)) continue;
     if (!meetsRequirements(g, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "Not available with the citizenship status you entered." }); continue; }
-    if (citizenshipBlocked(g, resources, input.citizenship)) { backlog.push({ goalId: g.id, title: g.title, reason: "The programs here require U.S. citizenship." }); continue; }
+    if (citizenshipBlocked(g, resources, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "The programs here require U.S. citizenship." }); continue; }
 
     const instances: { key: string; win: Node["win"] }[] = [];
     const w = winOf(g);
@@ -236,7 +236,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const comp = n.goal.competencies;
     const mass = sum(COMPS.map((c) => comp[c] ?? 0));
     n.coverage = mass ? sum(COMPS.map((c) => (comp[c] ?? 0) * gap[c]!)) / (mass * maxGap) : 0;
-    n.eligibility = identityMatch(n.goal, resources, identity) ? 1 + K.eligibilityBoost : 1;
+    n.eligibility = identityMatch(n.goal, resources, identity, input) ? 1 + K.eligibilityBoost : 1;
     const focus = runway <= K.focusRunway && (n.goal.category === "applications" || n.goal.category === "network") ? K.focusBoost : 1;
     n.staticScore = n.weight * (1 + K.coverageAlpha * n.coverage) * n.eligibility * focus;
   }
@@ -424,6 +424,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       .filter((r) => r.status !== "ended")
       .filter((r) => r.majors.includes("all") || r.majors.includes(input.majorId))
       .filter((r) => r.years.includes(year) || yearOfIdx(t) > 4)
+      .filter((r) => availableAt(r, input))
       .filter((r) => eligibleFor(r, identity, input))
       .map((r) => ({ r, s: (r.scope === "rutgers" && (input.school ?? "rutgers-nb") === "rutgers-nb" ? 3 : 0) + (r.scope === "new_jersey" && input.location === "nj" ? 2 : 0)
         + (r.scope === "national" ? 1 : 0) + (r.status === "active" ? 1 : 0) + (VERIFIED.has(r.verification.state) ? 0.5 : 0)
@@ -457,8 +458,24 @@ export function eligibleFor(r: ResourceLite, identity: Set<string>, input: PlanI
   if (!(input.identity ?? []).length) return true; // student skipped identity questions: show, labeled on the card
   return groups.some((x) => identity.has(x)) || groups.includes("underrepresented") || groups.includes("underrepresented-stem");
 }
-function identityMatch(g: Goal, res: Map<string, ResourceLite>, identity: Set<string>): boolean {
-  return g.resources.some((rid) => (res.get(rid)?.identity ?? []).some((x) => !LEGAL.has(x) && identity.has(x)));
+/** Rutgers campus for a PlanInput.school value. Missing or unrecognized values keep the pre-0.4 default, New Brunswick. */
+export function campusOf(school: PlanInput["school"]): "nb" | "newark" | "camden" | null {
+  if (school === "other") return null;
+  if (school === "rutgers-newark") return "newark";
+  if (school === "rutgers-camden") return "camden";
+  return "nb";
+}
+/** Whether the student can use a resource at all: Rutgers resources only at their listed campuses; NJ and national everywhere. */
+export function availableAt(r: Pick<ResourceLite, "scope" | "campuses">, input: Pick<PlanInput, "school">): boolean {
+  if (r.scope !== "rutgers") return true;
+  const campus = campusOf(input.school);
+  return campus !== null && !!r.campuses && (r.campuses.includes("all") || r.campuses.includes(campus));
+}
+const usable = (g: Goal, res: Map<string, ResourceLite>, input: PlanInput) =>
+  g.resources.map((rid) => res.get(rid)).filter((r): r is ResourceLite => !!r && availableAt(r, input));
+/** Identity boost: only resources the student can actually use count. */
+function identityMatch(g: Goal, res: Map<string, ResourceLite>, identity: Set<string>, input: PlanInput): boolean {
+  return usable(g, res, input).some((r) => r.identity.some((x) => !LEGAL.has(x) && identity.has(x)));
 }
 /** Goal-level legal requirements. Unknown citizenship never hides anything. */
 function meetsRequirements(g: Goal, input: PlanInput): boolean {
@@ -467,8 +484,9 @@ function meetsRequirements(g: Goal, input: PlanInput): boolean {
   return (g.requires ?? []).every((req) => req === "us-citizen-or-pr" ? c === "us-citizen" || c === "us-pr"
     : req === "not-international" ? c !== "international" : true);
 }
-function citizenshipBlocked(g: Goal, res: Map<string, ResourceLite>, c: PlanInput["citizenship"]): boolean {
+function citizenshipBlocked(g: Goal, res: Map<string, ResourceLite>, input: PlanInput): boolean {
+  const c = input.citizenship;
   if (c !== "international" && c !== "undocumented") return false;
-  const rs = g.resources.map((r) => res.get(r)).filter(Boolean) as ResourceLite[];
+  const rs = usable(g, res, input); // only resources at the student's campus decide this
   return rs.length > 0 && rs.every((r) => r.identity.includes("us-citizen") || r.identity.includes("us-citizen-or-pr"));
 }

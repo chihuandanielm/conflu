@@ -31,7 +31,7 @@
         "e-personal-project": 0.9,
         "e-hackathon": 0.6,
         "p-portfolio-site": 0.6,
-        "ap-internship-target": 1.0,
+        "ap-internship-target": 1,
         "ap-early-programs": 0.8,
         "c-cloud": 0.45
       },
@@ -164,7 +164,8 @@
       "id": "mechanical-design",
       "name": "Mechanical design and manufacturing",
       "suggestedMajors": [
-        "mechanical-engineering"
+        "mechanical-engineering",
+        "packaging-engineering"
       ],
       "description": "Designing and building products in automotive, aerospace, energy, and manufacturing.",
       "competencyTarget": {
@@ -201,7 +202,8 @@
       "suggestedMajors": [
         "biomedical-engineering",
         "biological-sciences",
-        "mechanical-engineering"
+        "mechanical-engineering",
+        "packaging-engineering"
       ],
       "description": "R&D, quality, and manufacturing roles in devices and biotech, a major NJ industry.",
       "competencyTarget": {
@@ -221,7 +223,7 @@
         "e-research-assistant": 0.7,
         "c-lean": 0.45,
         "s-matlab": 0.55,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -235,7 +237,8 @@
         "pharmacy",
         "biological-sciences",
         "biomedical-engineering",
-        "supply-chain"
+        "supply-chain",
+        "packaging-engineering"
       ],
       "description": "Research, regulatory, medical affairs, and operations roles at drug companies.",
       "competencyTarget": {
@@ -254,7 +257,7 @@
         "s-lab-techniques": 0.65,
         "a-residency-plan": 0.6,
         "n-info-interviews": 0.8,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -564,7 +567,7 @@
         "tech": 0.3
       },
       "boosts": {
-        "e-field-placement": 1.0,
+        "e-field-placement": 1,
         "e-volunteer": 0.85,
         "c-rbt": 0.4,
         "n-professional-society": 0.6,
@@ -608,7 +611,7 @@
         "n-info-interviews": 0.95,
         "e-case-competition": 0.6,
         "e-org-leadership": 0.75,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [
         "s-excel-modeling",
@@ -642,7 +645,7 @@
         "s-excel-modeling": 0.75,
         "c-excel-mos": 0.5,
         "s-data-viz": 0.5,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -667,12 +670,12 @@
         "equity": 0.3
       },
       "boosts": {
-        "a-cpa-plan": 1.0,
+        "a-cpa-plan": 1,
         "ap-early-programs": 0.9,
         "n-professional-society": 0.75,
         "s-excel-core": 0.85,
         "n-career-fair-target": 0.9,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [
         "a-cpa-plan"
@@ -706,7 +709,7 @@
         "e-case-competition": 0.6,
         "s-data-viz": 0.45,
         "e-student-media": 0.5,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -719,7 +722,8 @@
       "suggestedMajors": [
         "supply-chain",
         "mechanical-engineering",
-        "economics"
+        "economics",
+        "packaging-engineering"
       ],
       "description": "Planning, procurement, logistics, and operations at manufacturers and retailers.",
       "competencyTarget": {
@@ -739,7 +743,7 @@
         "e-coop": 0.6,
         "e-case-competition": 0.55,
         "n-professional-society": 0.6,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -775,7 +779,7 @@
         "n-info-interviews": 0.9,
         "f-mock-interview": 0.9,
         "ap-early-programs": 0.85,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [
         "e-case-competition",
@@ -808,7 +812,7 @@
         "n-professional-society": 0.75,
         "s-excel-core": 0.75,
         "s-data-viz": 0.45,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [],
       "suppress": [],
@@ -840,7 +844,7 @@
         "p-linkedin-active": 0.6,
         "s-public-speaking": 0.6,
         "n-professional-society": 0.6,
-        "ap-internship-target": 1.0
+        "ap-internship-target": 1
       },
       "gates": [
         "p-writing-portfolio"
@@ -957,6 +961,41 @@
       "windowOverrides": {}
     },
     {
+      "id": "packaging-cpg",
+      "name": "Packaging engineering and consumer products",
+      "suggestedMajors": [
+        "packaging-engineering",
+        "mechanical-engineering",
+        "supply-chain"
+      ],
+      "description": "Designing, testing, and launching packages for food, consumer, and pharmaceutical products.",
+      "competencyTarget": {
+        "tech": 0.8,
+        "crit": 0.8,
+        "team": 0.75,
+        "prof": 0.65,
+        "comm": 0.6,
+        "lead": 0.45,
+        "csd": 0.5,
+        "equity": 0.3
+      },
+      "boosts": {
+        "e-coop": 0.9,
+        "e-pack-competition": 0.85,
+        "s-cad": 0.85,
+        "a-packaging-certificate": 0.75,
+        "n-professional-society": 0.8,
+        "c-lean": 0.45,
+        "p-portfolio-site": 0.55
+      },
+      "gates": [
+        "e-internship-target"
+      ],
+      "suppress": [],
+      "recruitingNote": "Packaging co-ops and summer internships at consumer products, food, and pharma companies are posted in early fall; Rutgers packaging students usually plan a co-op semester in junior year.",
+      "windowOverrides": {}
+    },
+    {
       "id": "exploring",
       "name": "Still exploring",
       "suggestedMajors": [],
@@ -972,10 +1011,10 @@
         "equity": 0.5
       },
       "boosts": {
-        "f-explore-careers": 1.0,
+        "f-explore-careers": 1,
         "n-info-interviews": 0.95,
         "e-virtual-sim": 0.9,
-        "f-ces-advisor": 1.0,
+        "f-ces-advisor": 1,
         "e-join-orgs": 0.9,
         "s-excel-core": 0.7
       },

@@ -18,7 +18,7 @@ function setup(s = createSaved(cs, "2026-11-15")) {
 describe("results page", () => {
   it("shows the summary, the trajectory note once, and up to five next moves", () => {
     setup();
-    expect(screen.getByText("Software engineering · Computer Science, year 2 · by graduation · 5 hrs/week")).toBeInTheDocument();
+    expect(screen.getByText("Software engineering · Computer Science, year 2 · Rutgers–New Brunswick · by graduation · 5 hrs/week")).toBeInTheDocument();
     expect(screen.getAllByText(/general trajectory, not a blueprint/)).toHaveLength(1);
     const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
     const rows = within(next).getAllByRole("listitem");

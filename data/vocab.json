@@ -1,21 +1,107 @@
 {
   "_about": "Controlled vocabulary. The validator rejects any value not listed here, so filters on the site stay consistent. Add new values here first.",
   "types": [
-    "aid_program", "basic_needs", "campus_office", "certificate_program", "certification", "club", "co_op", "competition", "conference",
-    "course", "credit_program", "directory", "employer_program", "event", "federal_program", "fellowship", "grant", "internship", "job",
-    "job_board", "lab_or_center", "pipeline_program", "professional_org", "program", "requirement", "research_program", "scholarship",
-    "service_program", "state_program", "tool", "volunteer"
+    "aid_program",
+    "basic_needs",
+    "campus_office",
+    "certificate_program",
+    "certification",
+    "club",
+    "co_op",
+    "competition",
+    "conference",
+    "course",
+    "credit_program",
+    "directory",
+    "employer_program",
+    "event",
+    "federal_program",
+    "fellowship",
+    "grant",
+    "internship",
+    "job",
+    "job_board",
+    "lab_or_center",
+    "pipeline_program",
+    "professional_org",
+    "program",
+    "requirement",
+    "research_program",
+    "scholarship",
+    "service_program",
+    "state_program",
+    "tool",
+    "volunteer"
   ],
-  "scopes": ["rutgers", "new_jersey", "national", "international"],
-  "statuses": ["active", "paused", "changed", "ended"],
-  "verificationStates": ["search-confirmed", "link-checked", "blocked", "unverified", "broken"],
-  "years": [1, 2, 3, 4, "grad", "alumni"],
-  "pay": ["paid", "stipend", "salary", "grant", "scholarship", "tuition", "prize", "credit", "free", "fee", "unpaid"],
-  "seasons": ["summer", "academic-year", "fall", "spring", "year-round"],
+  "scopes": [
+    "rutgers",
+    "new_jersey",
+    "national",
+    "international"
+  ],
+  "statuses": [
+    "active",
+    "paused",
+    "changed",
+    "ended"
+  ],
+  "verificationStates": [
+    "search-confirmed",
+    "link-checked",
+    "blocked",
+    "unverified",
+    "broken"
+  ],
+  "years": [
+    1,
+    2,
+    3,
+    4,
+    "grad",
+    "alumni"
+  ],
+  "pay": [
+    "paid",
+    "stipend",
+    "salary",
+    "grant",
+    "scholarship",
+    "tuition",
+    "prize",
+    "credit",
+    "free",
+    "fee",
+    "unpaid"
+  ],
+  "seasons": [
+    "summer",
+    "academic-year",
+    "fall",
+    "spring",
+    "year-round"
+  ],
   "identity": [
-    "black", "latino", "asian-american", "pacific-islander", "native-american", "underrepresented", "underrepresented-stem",
-    "women", "lgbtq", "first-generation", "low-income", "pell-eligible", "disability", "veteran", "international",
-    "undocumented", "transfer", "migrant-farmworker", "nj-resident", "us-citizen", "us-citizen-or-pr"
+    "black",
+    "latino",
+    "asian-american",
+    "pacific-islander",
+    "native-american",
+    "underrepresented",
+    "underrepresented-stem",
+    "women",
+    "lgbtq",
+    "first-generation",
+    "low-income",
+    "pell-eligible",
+    "disability",
+    "veteran",
+    "international",
+    "undocumented",
+    "transfer",
+    "migrant-farmworker",
+    "nj-resident",
+    "us-citizen",
+    "us-citizen-or-pr"
   ],
   "_verificationNotes": {
     "search-confirmed": "The program and this URL appeared in web searches on checkedOn.",
@@ -29,5 +115,11 @@
     "us-citizen": "Most federal programs require U.S. citizenship.",
     "us-citizen-or-pr": "Citizens and permanent residents.",
     "international": "Needs CPT or OPT work authorization for internships; see rutgers-global-isss."
-  }
+  },
+  "campuses": [
+    "nb",
+    "newark",
+    "camden",
+    "all"
+  ]
 }

@@ -28,7 +28,7 @@
   "goals": [
     {
       "id": "f-ces-advisor",
-      "title": "Meet a CES career advisor and sketch a 4-year plan",
+      "title": "Meet a career advisor and sketch a 4-year plan",
       "category": "foundation",
       "competencies": {
         "csd": 0.6,
@@ -51,14 +51,16 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-ces"
+        "rutgers-ces",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Gets a human in your corner early and surfaces Rutgers programs you'd miss."
+      "why": "Gets a human in your corner early and surfaces campus programs you'd miss."
     },
     {
       "id": "f-handshake-profile",
@@ -85,14 +87,16 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-handshake"
+        "rutgers-handshake",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake"
       ],
       "splittable": false,
       "lateOk": true,
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Rutgers employers and career fairs run through Handshake."
+      "why": "Your campus's employers and career fairs run through Handshake."
     },
     {
       "id": "f-resume-v1",
@@ -121,7 +125,11 @@
       "majors": null,
       "resources": [
         "rutgers-ces",
-        "rutgers-writing-centers"
+        "rutgers-writing-centers",
+        "rutgers-newark-writing-center",
+        "rutgers-newark-career",
+        "rutgers-camden-career",
+        "rutgers-camden-class"
       ],
       "splittable": false,
       "lateOk": true,
@@ -157,7 +165,9 @@
       "repeat": "yearly",
       "majors": null,
       "resources": [
-        "rutgers-ces"
+        "rutgers-ces",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -265,7 +275,11 @@
       "resources": [
         "rutgers-tuition-assistance",
         "nj-gsg",
-        "nj-eof"
+        "nj-eof",
+        "ru-n-to-the-top",
+        "bridging-the-gap",
+        "rutgers-newark-eof",
+        "rutgers-camden-eof"
       ],
       "splittable": false,
       "lateOk": true,
@@ -335,7 +349,10 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-writing-centers"
+        "rutgers-writing-centers",
+        "rutgers-newark-writing-center",
+        "rutgers-camden-writing-design-lab",
+        "rutgers-camden-class"
       ],
       "splittable": false,
       "lateOk": true,
@@ -346,7 +363,7 @@
     },
     {
       "id": "f-mock-interview",
-      "title": "Do a mock interview with CES",
+      "title": "Do a mock interview with your career center",
       "category": "foundation",
       "competencies": {
         "comm": 0.6,
@@ -372,7 +389,9 @@
       "majors": null,
       "resources": [
         "rutgers-ces",
-        "glassdoor"
+        "glassdoor",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -1201,7 +1220,8 @@
       "repeat": null,
       "majors": [
         "mechanical-engineering",
-        "biomedical-engineering"
+        "biomedical-engineering",
+        "packaging-engineering"
       ],
       "resources": [
         "onshape-education",
@@ -1399,13 +1419,14 @@
         "marketing",
         "finance",
         "accounting",
-        "marketing",
         "supply-chain",
-        "economics",
         "human-resource-management"
       ],
       "resources": [
-        "rutgers-writing-centers"
+        "rutgers-writing-centers",
+        "rutgers-newark-writing-center",
+        "rutgers-camden-writing-design-lab",
+        "rutgers-camden-class"
       ],
       "splittable": false,
       "lateOk": true,
@@ -1587,7 +1608,9 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-getinvolved"
+        "rutgers-getinvolved",
+        "rutgers-newark-raiderlink",
+        "rutgers-camden-involvement"
       ],
       "splittable": true,
       "lateOk": true,
@@ -1689,7 +1712,9 @@
       "deadline": null,
       "repeat": null,
       "majors": null,
-      "resources": [],
+      "resources": [
+        "rutgers-camden-community-engagement"
+      ],
       "splittable": true,
       "lateOk": true,
       "integrated": false,
@@ -1724,7 +1749,10 @@
       "majors": null,
       "resources": [
         "aresty-ra",
-        "google-scholar"
+        "google-scholar",
+        "rutgers-newark-research",
+        "rutgers-camden-research",
+        "rutgers-camden-cs-research-academy"
       ],
       "splittable": true,
       "lateOk": true,
@@ -1768,7 +1796,10 @@
         "nih-sip",
         "leadership-alliance",
         "cabm-sure",
-        "aresty-summer-science"
+        "aresty-summer-science",
+        "rutgers-camden-research-grants",
+        "rutgers-camden-u-rise",
+        "walter-rand-institute"
       ],
       "splittable": false,
       "lateOk": true,
@@ -1804,7 +1835,10 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "aresty-funding"
+        "aresty-funding",
+        "rutgers-camden-research-grants",
+        "rutgers-newark-honors-college",
+        "rutgers-camden-honors-college"
       ],
       "splittable": true,
       "lateOk": true,
@@ -2045,7 +2079,11 @@
       "resources": [
         "rutgers-handshake",
         "vsfs",
-        "federal-pathways"
+        "federal-pathways",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake",
+        "rbs-newark-career-management",
+        "rsbc-seed-internships"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2082,7 +2120,9 @@
       "deadline": null,
       "repeat": null,
       "majors": null,
-      "resources": [],
+      "resources": [
+        "employer-colgate"
+      ],
       "splittable": false,
       "lateOk": true,
       "integrated": false,
@@ -2120,13 +2160,16 @@
         "mechanical-engineering",
         "biomedical-engineering",
         "pharmacy",
-        "supply-chain"
+        "supply-chain",
+        "packaging-engineering"
       ],
       "resources": [
         "soe-coop",
         "bme-coop",
         "employer-jnj",
-        "employer-merck"
+        "employer-merck",
+        "rutgers-packaging-coop",
+        "employer-colgate"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2338,7 +2381,7 @@
     },
     {
       "id": "e-student-media",
-      "title": "Produce work for student media (Targum, WRSU, RU-tv)",
+      "title": "Produce work for student media (newspaper, radio, or TV)",
       "category": "experience",
       "competencies": {
         "comm": 0.7,
@@ -2366,7 +2409,8 @@
       ],
       "resources": [
         "daily-targum",
-        "wrsu"
+        "wrsu",
+        "rutgers-camden-gleaner"
       ],
       "splittable": true,
       "lateOk": true,
@@ -2410,7 +2454,8 @@
         "nj-legislature",
         "congress-internships",
         "eagleton-washington-award",
-        "twc"
+        "twc",
+        "walter-rand-institute"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2485,7 +2530,9 @@
       "resources": [
         "rutgers-study-abroad",
         "gilman",
-        "boren"
+        "boren",
+        "rutgers-newark-global-experiences",
+        "rutgers-camden-international"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2587,7 +2634,9 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-ces"
+        "rutgers-ces",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2624,7 +2673,9 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-ces"
+        "rutgers-ces",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -2761,7 +2812,9 @@
       "deadline": null,
       "repeat": null,
       "majors": null,
-      "resources": [],
+      "resources": [
+        "iopp"
+      ],
       "splittable": false,
       "lateOk": true,
       "integrated": false,
@@ -2835,7 +2888,9 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-handshake"
+        "rutgers-handshake",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake"
       ],
       "splittable": true,
       "lateOk": true,
@@ -3527,7 +3582,7 @@
     },
     {
       "id": "a-fellowship-advising",
-      "title": "Meet the Office of Distinguished Fellowships",
+      "title": "Meet your campus fellowships office",
       "category": "academics",
       "competencies": {
         "csd": 0.5
@@ -3549,7 +3604,9 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-distinguished-fellowships"
+        "rutgers-distinguished-fellowships",
+        "rutgers-newark-fellowships",
+        "rutgers-camden-osdfa"
       ],
       "splittable": false,
       "lateOk": true,
@@ -3723,7 +3780,12 @@
       "majors": null,
       "resources": [
         "rutgers-writing-centers",
-        "rutgers-health-professions-office"
+        "rutgers-newark-writing-center",
+        "rutgers-health-professions-office",
+        "rutgers-newark-preprofessional",
+        "rutgers-camden-prehealth",
+        "rutgers-camden-osdfa",
+        "rutgers-camden-writing-design-lab"
       ],
       "splittable": false,
       "lateOk": true,
@@ -3835,7 +3897,9 @@
         "apia-scholars",
         "point-foundation",
         "american-indian-college-fund",
-        "thedream-us"
+        "thedream-us",
+        "iopp-scholarships",
+        "pmmi-foundation-scholarships"
       ],
       "splittable": true,
       "lateOk": true,
@@ -3958,7 +4022,9 @@
         "rutgers-handshake",
         "federal-pathways",
         "usajobs",
-        "vsfs"
+        "vsfs",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake"
       ],
       "splittable": true,
       "lateOk": false,
@@ -3997,7 +4063,11 @@
       "resources": [
         "rutgers-handshake",
         "linkedin-profile",
-        "glassdoor"
+        "glassdoor",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake",
+        "rbs-newark-career-management",
+        "rsbc-seed-internships"
       ],
       "splittable": true,
       "lateOk": false,
@@ -4074,7 +4144,9 @@
       "resources": [
         "rutgers-handshake",
         "levels-fyi",
-        "glassdoor"
+        "glassdoor",
+        "rutgers-newark-handshake",
+        "rutgers-camden-handshake"
       ],
       "splittable": true,
       "lateOk": true,
@@ -4147,7 +4219,9 @@
       "resources": [
         "levels-fyi",
         "glassdoor",
-        "rutgers-ces"
+        "rutgers-ces",
+        "rutgers-newark-career",
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -4155,6 +4229,83 @@
       "satisfies": [],
       "requires": [],
       "why": "Many entry-level offers have room to negotiate; few graduates ask."
+    },
+    {
+      "id": "e-pack-competition",
+      "title": "Enter a student packaging design competition",
+      "category": "experience",
+      "competencies": {
+        "tech": 0.5,
+        "crit": 0.5,
+        "team": 0.5,
+        "comm": 0.3
+      },
+      "baseWeight": 0.6,
+      "hours": 30,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "3S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "packaging-engineering"
+      ],
+      "resources": [
+        "iopp-student-ameristar",
+        "ppa-student-design-challenge",
+        "fpa-student-design-challenge"
+      ],
+      "splittable": true,
+      "lateOk": true,
+      "integrated": false,
+      "satisfies": [],
+      "requires": [],
+      "why": "A finished package design is the portfolio piece packaging recruiters ask about."
+    },
+    {
+      "id": "a-packaging-certificate",
+      "title": "Add the Rutgers packaging certificate",
+      "category": "academics",
+      "competencies": {
+        "tech": 0.5,
+        "crit": 0.3
+      },
+      "baseWeight": 0.4,
+      "hours": 0,
+      "spanTerms": 3,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "2S",
+          "4F"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering"
+      ],
+      "resources": [
+        "rutgers-packaging-certificate"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": true,
+      "satisfies": [],
+      "requires": [],
+      "why": "Four packaging courses open packaging and consumer-products roles to engineers in other majors."
     }
   ]
 }

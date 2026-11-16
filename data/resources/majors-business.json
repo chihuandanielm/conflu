@@ -507,6 +507,10 @@
       "name": "Rutgers Center for Supply Chain Management",
       "type": "lab_or_center",
       "scope": "rutgers",
+      "campuses": [
+        "nb",
+        "newark"
+      ],
       "majors": [
         "supply-chain"
       ],

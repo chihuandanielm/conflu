@@ -21,6 +21,16 @@ describe("share link", () => {
     const decoded = atob(hash.split("=")[1].replace(/-/g, "+").replace(/_/g, "/"));
     for (const word of ["international", "first-generation", "latino", "citizenship", "identity"]) expect(decoded).not.toContain(word);
   });
+  it("carries the campus and rejects a major that campus doesn't offer", () => {
+    const camden = parseShareHash(shareHash({ ...a, school: "rutgers-camden", majorId: "human-resource-management" }))!;
+    expect(camden.school).toBe("rutgers-camden");
+    const enc = (o: object) => "#plan=" + btoa(JSON.stringify(o)).replace(/=+$/, "");
+    expect(parseShareHash(enc({ v: 1, m: "pharmacy", y: 2, t: "pharma-industry", s: "rutgers-newark" }))).toBeNull();
+    expect(parseShareHash(enc({ v: 1, m: "computer-science", y: 2, t: "software-engineering", s: "rutgers-mars" }))).toBeNull();
+    // Links made before the campus question default to New Brunswick, as plans did then.
+    expect(parseShareHash(enc({ v: 1, m: "pharmacy", y: 2, t: "pharma-industry" }))!.school).toBe("rutgers-nb");
+  });
+
   it("rejects malformed or unknown values", () => {
     expect(parseShareHash("#plan=not-json")).toBeNull();
     expect(parseShareHash("#other=1")).toBeNull();

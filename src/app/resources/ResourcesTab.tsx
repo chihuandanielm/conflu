@@ -1,6 +1,7 @@
 import { useId, useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { Plan, PlanInput } from "../../engine/types.ts";
+import { campuses } from "../data/dataset.ts";
 import { ResourceCard } from "./ResourceCard.tsx";
 import { applyFilters, byGroup, GROUPS, noFilters, scopeLabel, tailoredResources, type ResourceFilters } from "./tailor.ts";
 
@@ -23,7 +24,8 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
         <h2 id="res-h" className="text-xl font-semibold">Your resources</h2>
         <p className="mt-1 text-sm text-muted">
           Programs, organizations, and offices tied to your plan, plus everything for {input.year ? `year ${input.year} ` : ""}students in your major.
-          {input.school === "other" ? " National and New Jersey options are listed first." : " Rutgers options are listed first."}
+          {input.school === "other" ? " National and New Jersey options are listed first."
+            : ` ${campuses.find((c) => c.school === (input.school ?? "rutgers-nb"))?.name ?? "Rutgers"} options are listed first.`}
         </p>
       </div>
 

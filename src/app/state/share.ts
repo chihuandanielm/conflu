@@ -1,7 +1,7 @@
 // Shareable link: the answers go in the URL hash (never sent to a server; browsers don't transmit the hash).
 // Identity and citizenship are never included. Opening the link pre-fills the review screen.
 import { intake, majors, tracks } from "../data/dataset.ts";
-import { coopMajors, emptyAnswers, type Answers } from "../intake/model.ts";
+import { coopMajors, emptyAnswers, majorOfferedAt, SCHOOLS, type Answers } from "../intake/model.ts";
 
 const KEY = "plan";
 
@@ -25,6 +25,9 @@ export function parseShareHash(hash: string): Answers | null {
   try { s = JSON.parse(unb64url(m[1])); } catch { return null; }
   if (s.v !== 1 || !majors.some((x) => x.id === s.m) || !tracks.some((x) => x.id === s.t) || ![1, 2, 3, 4].includes(s.y as number)) return null;
   const pick = <T extends string>(v: unknown, allowed: readonly T[]) => (allowed.includes(v as T) ? (v as T) : undefined);
+  // Links made before the campus question (or that skipped it) were planned for New Brunswick.
+  const school = s.s === undefined ? "rutgers-nb" : pick(s.s, SCHOOLS);
+  if (!school || !majorOfferedAt(s.m, school)) return null;
   const list = (v: unknown, options: { id: string }[]) => (Array.isArray(v) ? v.filter((x): x is string => options.some((o) => o.id === x)) : []);
   const a: Answers = {
     ...emptyAnswers(),
@@ -33,7 +36,7 @@ export function parseShareHash(hash: string): Answers | null {
     year: s.y as Answers["year"],
     trackId: s.t,
     horizon: pick(s.h, intake.horizons.map((h) => h.id as NonNullable<Answers["horizon"]>)),
-    school: pick(s.s, ["rutgers-nb", "other"] as const),
+    school,
     weeklyHours: intake.weeklyHours.includes(s.w as number) ? (s.w as number) : intake.defaultWeeklyHours,
     summer: pick(s.u, intake.summerAvailability.map((x) => x.id as NonNullable<Answers["summer"]>)),
     openToCoop: coopMajors.has(s.m!) && (s.c === 0 || s.c === 1) ? s.c === 1 : undefined,
@@ -42,6 +45,6 @@ export function parseShareHash(hash: string): Answers | null {
     skills: list(s.k, intake.skills),
     credentials: list(s.r, intake.credentials),
   };
-  a.seen = ["status", "major", "year", "school", "track", "horizon", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
+  a.seen = ["status", "school", "major", "year", "track", "horizon", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
   return a;
 }

@@ -4,16 +4,21 @@ export type MajorId =
   | "computer-science" | "information-technology" | "mechanical-engineering" | "biomedical-engineering"
   | "biological-sciences" | "psychology" | "nursing" | "pharmacy" | "public-health" | "exercise-science"
   | "finance" | "accounting" | "marketing" | "supply-chain" | "economics" | "human-resource-management"
-  | "communication" | "political-science" | "criminal-justice" | "social-work";
+  | "communication" | "political-science" | "criminal-justice" | "social-work" | "packaging-engineering";
+
+export type CampusId = "nb" | "newark" | "camden";
+
+/** A Rutgers campus (data/campuses.json). `school` is the PlanInput.school value. */
+export interface Campus { id: CampusId; name: string; short: string; school: "rutgers-nb" | "rutgers-newark" | "rutgers-camden"; url: string }
 
 export interface Major {
   id: MajorId;
   name: string;
   cip: string;            // federal CIP code, joins to O*NET occupations
-  school: string;
   cluster: "tech-engineering" | "health-life" | "business" | "social-communication";
   industries: string[];
-  url: string;
+  /** Campuses that offer the major, with the school and program page at each. */
+  offeredAt: Partial<Record<CampusId, { school: string; url: string }>>;
 }
 
 export type Year = 1 | 2 | 3 | 4 | "grad" | "alumni";
@@ -25,6 +30,8 @@ export interface Resource {
   name: string;
   type: string;                 // see data/vocab.json → types
   scope: Scope;
+  /** Rutgers resources only: the campuses whose students can use it, or ["all"]. */
+  campuses?: (CampusId | "all")[];
   majors: (MajorId | "all")[];
   years: Year[];
   identity: string[];           // empty = open to everyone; see vocab.json → identity

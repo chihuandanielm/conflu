@@ -1,13 +1,17 @@
 import { useId, useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { majors } from "../../data/dataset.ts";
+import { campuses } from "../../data/dataset.ts";
+import { majorsFor, type School } from "../model.ts";
 import { SingleChoice } from "./SingleChoice.tsx";
 
-/** Searchable list of the launch majors. Enter in the search box picks the first match. */
-export function MajorPicker({ value, onSelect, labelledBy }: { value?: string; onSelect: (id: string) => void; labelledBy: string }) {
+/** Searchable list of the majors offered at the student's campus. Enter in the search box picks the first match. */
+export function MajorPicker({ value, onSelect, labelledBy, school }: {
+  value?: string; onSelect: (id: string) => void; labelledBy: string; school?: School;
+}) {
   const [q, setQ] = useState("");
   const inputId = useId();
-  const sorted = useMemo(() => [...majors].sort((a, b) => a.name.localeCompare(b.name)), []);
+  const sorted = useMemo(() => [...majorsFor(school)].sort((a, b) => a.name.localeCompare(b.name)), [school]);
+  const campus = campuses.find((c) => c.school === school);
   const matches = sorted.filter((m) => m.name.toLowerCase().includes(q.trim().toLowerCase()));
   return (
     <div className="flex flex-col gap-4">
@@ -25,7 +29,9 @@ export function MajorPicker({ value, onSelect, labelledBy }: { value?: string; o
           <SingleChoice labelledBy={labelledBy} numberKeys={false} value={value} onSelect={onSelect}
             choices={matches.map((m) => ({ value: m.id, label: m.name }))} />
         ) : (
-          <p className="text-muted">No majors match. This first version covers 20 Rutgers majors.</p>
+          <p className="text-muted">
+            No majors match. This version covers {sorted.length} majors{campus ? ` offered at ${campus.name}` : " offered at Rutgers"}.
+          </p>
         )}
       </div>
     </div>

@@ -1,11 +1,12 @@
 // Builds the engine's Dataset in the browser from static JSON imports.
 // Mirrors src/engine/load.ts without fs: everything is bundled, nothing is fetched at runtime.
 import type { Dataset, Goal, Track, ResourceLite } from "../../engine/types.ts";
-import type { Major, Resource } from "../../types.ts";
+import type { Campus, Major, Resource } from "../../types.ts";
 import goalsFile from "../../../data/goals.json";
 import tracksFile from "../../../data/tracks.json";
 import intakeFile from "../../../data/intake.json";
 import majorsFile from "../../../data/majors.json";
+import campusesFile from "../../../data/campuses.json";
 import versionFile from "../../../data/version.json";
 import uiIntakeFile from "../../../data/ui/intake.json";
 
@@ -13,7 +14,8 @@ const resourceFiles = import.meta.glob<{ resources: Resource[] }>("../../../data
 
 /** Full resource records (the engine only needs the ResourceLite subset). Sorted by file name for determinism. */
 export const resources: Resource[] = Object.keys(resourceFiles).sort().flatMap((k) => resourceFiles[k].resources);
-export const majors = majorsFile.majors as Major[];
+export const majors = majorsFile.majors as unknown as Major[];
+export const campuses = campusesFile.campuses as Campus[];
 export const goals = goalsFile.goals as unknown as Goal[];
 export const tracks = tracksFile.tracks as unknown as Track[];
 export const intake = intakeFile;

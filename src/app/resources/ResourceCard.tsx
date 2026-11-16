@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { lastChecked, needsEligibilityCheck } from "../data/resources.ts";
 import { audience, contactParts } from "./format.ts";
-import { payLabel, scopeLabel, seasonLabel, type Tailored } from "./tailor.ts";
+import { payLabel, seasonLabel, whereLabel, type Tailored } from "./tailor.ts";
 
 export function ResourceCard({ t, identity }: { t: Tailored; identity: string[] }) {
   const r = t.resource;
@@ -11,7 +11,7 @@ export function ResourceCard({ t, identity }: { t: Tailored; identity: string[] 
     <article className="flex flex-col gap-2 rounded-md border border-border bg-bg p-4">
       <header className="flex flex-wrap items-start gap-2">
         <h4 className="flex-1 font-semibold text-ink">{r.name}</h4>
-        <span className="rounded-sm bg-surface px-1.5 py-0.5 text-xs text-muted">{scopeLabel(r.scope)}</span>
+        <span className="rounded-sm bg-surface px-1.5 py-0.5 text-xs text-muted">{whereLabel(r)}</span>
         {t.forYou && <span className="rounded-sm bg-green-tint px-1.5 py-0.5 text-xs font-semibold text-green">For students like you</span>}
       </header>
       <p className="text-sm text-ink">{r.summary}</p>

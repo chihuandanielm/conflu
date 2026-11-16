@@ -1,19 +1,33 @@
 // Intake model: answers, the ordered step list (with branching), and the mapping to the engine's PlanInput.
 // Pure functions only, so they're easy to test.
 import type { Goal, PlanInput, Track } from "../../engine/types.ts";
-import { CALENDAR } from "../../engine/engine.ts";
+import { CALENDAR, campusOf } from "../../engine/engine.ts";
+import type { Major } from "../../types.ts";
 import { dataset, intake, majors, tracks, uiIntake } from "../data/dataset.ts";
 
 export type Horizon = PlanInput["horizon"];
 export type Summer = NonNullable<PlanInput["summer"]>;
 export type Location = NonNullable<PlanInput["location"]>;
 export type Citizenship = NonNullable<PlanInput["citizenship"]>;
+export type School = NonNullable<PlanInput["school"]>;
+export const SCHOOLS: readonly School[] = ["rutgers-nb", "rutgers-newark", "rutgers-camden", "other"];
+
+/**
+ * Majors a student at this school can pick: the ones their campus offers, or every major for another school
+ * (or before the campus is known).
+ */
+export function majorsFor(school: School | undefined): Major[] {
+  const campus = school ? campusOf(school) : null;
+  return campus ? majors.filter((m) => campus in m.offeredAt) : majors;
+}
+export const majorOfferedAt = (majorId: string | undefined, school: School | undefined) =>
+  !!majorId && majorsFor(school).some((m) => m.id === majorId);
 
 export interface Answers {
   status?: "college-student";
   majorId?: string;
   year?: 1 | 2 | 3 | 4;
-  school?: "rutgers-nb" | "other";
+  school?: School;
   trackId?: string;
   horizon?: Horizon;
   experience: string[];
@@ -34,14 +48,14 @@ export const emptyAnswers = (): Answers => ({
 });
 
 export type StepId =
-  | "intro" | "status" | "major" | "year" | "school" | "track" | "horizon" | "experience" | "skills" | "credentials"
+  | "intro" | "status" | "school" | "major" | "year" | "track" | "horizon" | "experience" | "skills" | "credentials"
   | "hours" | "summer" | "coop" | "location" | "citizenship" | "identity" | "review";
 
 export const coopMajors = new Set(uiIntake.coop.majors);
 
 /** The steps this student sees, in order. The co-op question only appears for majors that offer co-ops. */
 export function stepsFor(a: Answers): StepId[] {
-  const s: StepId[] = ["intro", "status", "major", "year", "school", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
+  const s: StepId[] = ["intro", "status", "school", "major", "year", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
   if (a.majorId && coopMajors.has(a.majorId)) s.push("coop");
   s.push("location", "citizenship", "identity", "review");
   return s;
@@ -50,7 +64,7 @@ export function stepsFor(a: Answers): StepId[] {
 /** Question steps only (no intro or review): what the "4 of 12" counter counts. */
 export const questionSteps = (a: Answers): StepId[] => stepsFor(a).filter((s) => s !== "intro" && s !== "review");
 
-export const OPTIONAL: ReadonlySet<StepId> = new Set(["school", "credentials", "location", "citizenship", "identity"]);
+export const OPTIONAL: ReadonlySet<StepId> = new Set(["credentials", "location", "citizenship", "identity"]);
 const MULTI: ReadonlySet<StepId> = new Set(["experience", "skills", "credentials", "identity"]);
 export const isMulti = (s: StepId) => MULTI.has(s);
 
@@ -58,7 +72,7 @@ export const isMulti = (s: StepId) => MULTI.has(s);
 export function isAnswered(s: StepId, a: Answers): boolean {
   switch (s) {
     case "status": return a.status === "college-student";
-    case "major": return !!a.majorId;
+    case "major": return majorOfferedAt(a.majorId, a.school);
     case "year": return !!a.year;
     case "school": return !!a.school;
     case "track": return !!a.trackId;
@@ -97,7 +111,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     weeklyHours: a.weeklyHours,
     summer: a.summer ?? "full",
     ...(coopMajors.has(a.majorId) && a.openToCoop !== undefined ? { openToCoop: a.openToCoop } : {}),
-    school: a.school === "other" ? "other" : "rutgers-nb",
+    school: a.school ?? "rutgers-nb",
     ...(a.location ? { location: a.location } : {}),
     ...(a.citizenship ? { citizenship: a.citizenship } : {}),
     identity: [...a.identity],
@@ -160,6 +174,8 @@ export function rankOptions(options: ChecklistOption[], majorId?: string, trackI
 
 // ---------- labels for the review screen ----------
 export const majorName = (id?: string) => majors.find((m) => m.id === id)?.name;
+/** "Rutgers–Newark", or "Another school". A plan saved before the campus question existed was planned for New Brunswick. */
+export const campusName = (school?: School) => uiIntake.school.options.find((o) => o.id === (school ?? "rutgers-nb"))?.label ?? "";
 export const trackName = (id?: string) => tracks.find((t) => t.id === id)?.name;
 export const optionLabel = (list: { id: string | number; label: string }[], id: unknown) => list.find((o) => o.id === id)?.label;
 export const identityLabel = (tag: string) => (uiIntake.identityLabels as Record<string, string>)[tag] ?? tag;
