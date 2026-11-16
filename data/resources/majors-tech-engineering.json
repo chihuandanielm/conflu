@@ -680,7 +680,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Biomaterials research center with undergraduate research roles.",
-      "url": "https://biomaterials.rutgers.edu",
+      "url": "https://www.njbiomaterials.org/",
       "applyUrl": null,
       "contact": {
         "how": "Use the contact or apply page on the home site."
@@ -688,10 +688,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "unverified",
         "checkedOn": "2026-11-16",
-        "httpStatus": null,
-        "note": "Link failed (host not found); needs a new URL."
+        "note": "URL supplied by the site owner; awaiting the next live link check."
       },
       "tags": []
     },
