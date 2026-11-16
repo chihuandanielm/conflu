@@ -151,21 +151,72 @@ export function relevance(o: ChecklistOption, majorId?: string, trackId?: string
   return best;
 }
 
-export interface RankedGroup { id: string; label: string; score: number; options: (ChecklistOption & { score: number })[] }
+// ---------- the experience step ----------
+// "What have you already done?" asks about likelihood, not value: it suggests what students in the major commonly
+// have done by now, so a psychology student sees research and volunteering rather than GitHub. Labels, groups,
+// search words, follow-ups, and overrides live in data/ui/intake.json.
+export interface ExperienceGroup { id: string; label: string; hint: string; options: string[] }
+export const experienceGroups = uiIntake.experienceGroups as ExperienceGroup[];
+const followUps = uiIntake.experienceFollowUps as Record<string, string[]>;
+const followerOf = new Map(Object.entries(followUps).flatMap(([k, fs]) => fs.map((f) => [f, k] as const)));
+const expById = new Map(intake.experience.map((o) => [o.id, o as ChecklistOption]));
+const keywords = uiIntake.experienceKeywords as Record<string, string>;
+const SUGGESTED_COUNT = 8;
+const MAJOR_OWN_MAX = 4;
 
-/** Experience groups and their options, most relevant first. Ties keep the data file's order. */
-export function rankExperienceGroups(majorId?: string, trackId?: string): RankedGroup[] {
-  const byId = new Map(intake.experience.map((o) => [o.id, o]));
-  return uiIntake.experienceGroups
-    .map((g, gi) => {
-      const options = g.options.map((id, i) => ({ ...byId.get(id)!, score: relevance(byId.get(id)!, majorId, trackId), i }))
-        .sort((x, y) => y.score - x.score || x.i - y.i).map(({ i: _i, ...o }) => o);
-      const top = options.slice(0, 3).reduce((s, o) => s + o.score, 0);
-      return { id: g.id, label: g.label, score: top, options, gi };
-    })
-    .sort((x, y) => y.score - x.score || x.gi - y.gi)
-    .map(({ gi: _gi, ...g }) => g);
+/**
+ * What a major's students commonly have done (`suggested`, 8 ids) and which options are tied only to other majors
+ * (`lessCommon`, shown behind a link). An option is the major's own when one of its goals is limited to the major,
+ * or when at least half of the major's suggested career tracks weight it 0.7+ or require it. Up to 4 of those come
+ * first, then the universal basics. A major in experienceSuggested uses that hand-picked list instead.
+ */
+export function experienceProfile(majorId: string | undefined): { suggested: string[]; lessCommon: Set<string> } {
+  const basics = uiIntake.experienceBasics as string[];
+  if (!majorId) return { suggested: basics.slice(0, SUGGESTED_COUNT), lessCommon: new Set() };
+  const majorTracks = tracks.filter((t) => t.suggestedMajors.includes(majorId));
+  const own = intake.experience.map((o, i) => {
+    let s = 0;
+    for (const { goal } of o.completes) {
+      const g = goalsById.get(goal);
+      if (g?.majors?.includes(majorId)) s = Math.max(s, 1 + g.baseWeight);
+    }
+    const share = majorTracks.filter((t) => o.completes.some(({ goal }) => (t.boosts[goal] ?? 0) >= 0.7 || t.gates.includes(goal))).length
+      / Math.max(1, majorTracks.length);
+    if (share >= 0.5) s += 1 + share;
+    return { id: o.id, s, i };
+  }).filter((x) => x.s > 0 && !followerOf.has(x.id) && !basics.includes(x.id) && x.id !== "internship-target")
+    .sort((a, b) => b.s - a.s || a.i - b.i).map((x) => x.id);
+  const override = (uiIntake.experienceSuggested as Record<string, string[]>)[majorId];
+  const suggested = override ? [...override] : own.slice(0, MAJOR_OWN_MAX);
+  for (const b of basics) if (suggested.length < SUGGESTED_COUNT && !suggested.includes(b)) suggested.push(b);
+  const lessCommon = new Set(intake.experience.filter((o) => o.completes.every(({ goal }) => {
+    const g = goalsById.get(goal);
+    return !!g?.majors && !g.majors.includes(majorId);
+  })).map((o) => o.id));
+  return { suggested, lessCommon };
 }
+
+/** Hides follow-ups until their starting option is picked, then lists them right after it. Picked ones always show. */
+export function withFollowUps(ids: string[], picked: string[]): string[] {
+  const out: string[] = [];
+  for (const id of ids) {
+    if (followerOf.has(id) && !picked.includes(id)) continue;
+    if (!out.includes(id)) out.push(id);
+    if (picked.includes(id)) for (const f of followUps[id] ?? []) if (!out.includes(f)) out.push(f);
+  }
+  return out;
+}
+
+/** Options whose label or everyday words contain every word typed, in data order. */
+export function searchExperience(q: string): ChecklistOption[] {
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  if (!words.length) return [];
+  return intake.experience.filter((o) => {
+    const hay = `${o.label} ${keywords[o.id] ?? ""}`.toLowerCase();
+    return words.every((w) => hay.includes(w));
+  });
+}
+export const experienceOption = (id: string) => expById.get(id);
 
 export function rankOptions(options: ChecklistOption[], majorId?: string, trackId?: string) {
   return options.map((o, i) => ({ ...o, score: relevance(o, majorId, trackId), i }))

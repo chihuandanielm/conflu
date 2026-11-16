@@ -9,10 +9,10 @@ import { QuestionShell } from "./QuestionShell.tsx";
 import { Review } from "./Review.tsx";
 import { ChipList } from "./controls/ChipChecklist.tsx";
 import { MajorPicker } from "./controls/MajorPicker.tsx";
-import { ExperienceChips, RankedChips } from "./controls/RankedChips.tsx";
+import { ExperiencePicker } from "./controls/ExperiencePicker.tsx";
+import { RankedChips } from "./controls/RankedChips.tsx";
 import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
-import { Button } from "../ui/Button.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isSummerBreak, majorOfferedAt, questionSteps, stepsFor,
   type Answers, type School, type StepId,
@@ -125,15 +125,13 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
     screen = (
       <QuestionShell focusHeading={step !== "major"} copy={COPY[step]} headingId={headingId} step={qIndex + 1} total={qSteps.length}
         onBack={back} onContinue={next} canContinue={canContinue}
-        continueLabel={state.returnToReview ? "Back to review" : "Continue"}
+        continueLabel={state.returnToReview ? "Back to review" : step === "experience" && !answers.experience.length ? "None yet, continue" : "Continue"}
         onSkip={optional ? () => {
           const clear: Partial<Answers> = step === "location" ? { location: undefined }
             : step === "citizenship" ? { citizenship: undefined } : step === "identity" ? { identity: [] } : { credentials: [] };
           dispatch({ type: "set", patch: clear }); next();
         } : undefined}
-        secondary={step === "experience" ? (
-          <Button variant="secondary" onClick={() => { dispatch({ type: "set", patch: { experience: [] } }); next(); }}>None yet</Button>
-        ) : undefined}>
+>
         {body}
       </QuestionShell>
     );
@@ -184,7 +182,7 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
     case "horizon":
       return single(intake.horizons.map((h) => ({ value: h.id as Answers["horizon"] & string, label: h.label })), a.horizon, (v) => ({ horizon: v }));
     case "experience":
-      return <ExperienceChips majorId={a.majorId} trackId={a.trackId} selected={a.experience} onToggle={(id) => toggle("experience", id)} />;
+      return <ExperiencePicker majorId={a.majorId} selected={a.experience} onToggle={(id) => toggle("experience", id)} />;
     case "skills":
       return <RankedChips label="Skills" options={intake.skills} majorId={a.majorId} trackId={a.trackId} selected={a.skills} onToggle={(id) => toggle("skills", id)} />;
     case "credentials":

@@ -88,6 +88,25 @@ for (const o of intake.experience) {
   if (n !== 1) errors.push(`ui/intake › experience option ${o.id} is in ${n} groups (needs exactly 1)`);
 }
 for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
+const expIds = new Set(intake.experience.map((o) => o.id));
+for (const g of ui.experienceGroups) if (!g.label || !g.hint) errors.push(`ui/intake › experience group ${g.id} needs a label and a hint`);
+for (const o of intake.experience) if (!ui.experienceKeywords?.[o.id]) errors.push(`ui/intake › experience option ${o.id} has no search keywords`);
+for (const id of Object.keys(ui.experienceKeywords ?? {})) if (!expIds.has(id)) errors.push(`ui/intake › keywords for unknown experience option ${id}`);
+const followers = new Set();
+for (const [k, fs] of Object.entries(ui.experienceFollowUps ?? {})) for (const id of [k, ...fs]) {
+  if (!expIds.has(id)) errors.push(`ui/intake › follow-up: unknown experience option ${id}`);
+  if (fs.includes(id)) { if (followers.has(id)) errors.push(`ui/intake › ${id} follows more than one option`); followers.add(id); }
+}
+for (const id of ui.experienceBasics ?? []) {
+  if (!expIds.has(id)) errors.push(`ui/intake › basics: unknown experience option ${id}`);
+  if (followers.has(id)) errors.push(`ui/intake › basics: ${id} is a follow-up`);
+}
+if ((ui.experienceBasics ?? []).length < 8) errors.push("ui/intake › experienceBasics needs at least 8 options to fill Suggested");
+for (const [m, ids] of Object.entries(ui.experienceSuggested ?? {})) {
+  if (!majorIds.has(m)) errors.push(`ui/intake › suggested: unknown major ${m}`);
+  if (ids.length !== 8) errors.push(`ui/intake › suggested for ${m} needs exactly 8 options`);
+  for (const id of ids) if (!expIds.has(id) || followers.has(id)) errors.push(`ui/intake › suggested for ${m}: ${id} is unknown or a follow-up`);
+}
 for (const t of intake.optionalIdentity.tags) if (!ui.identityLabels?.[t]) errors.push(`ui/intake › identity tag ${t} has no label`);
 for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);
 const uiRes = JSON.parse(readFileSync(join(root, "data/ui/resources.json"), "utf8"));

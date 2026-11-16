@@ -67,7 +67,7 @@ src/app/
   resources/           "Your resources" tab: tailoring (reuses the engine's eligibility), filters, cards
   pdf/                 PDF document and download (lazy-loaded on click)
   state/               localStorage, saved plan and re-planning, share links
-data/ui/               UI-only data: question copy, experience groups, identity labels, resource groups
+data/ui/               UI-only data: question copy, the experience step (groups, search words, follow-ups, per-major suggestions), identity labels, resource groups
 scripts/               validate, check-links, woff-to-ttf (PDF fonts), serve (local GitHub Pages stand-in), sample plans
 test/                  engine and link-checker tests
 e2e/                   Playwright end-to-end tests

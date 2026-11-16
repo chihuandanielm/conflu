@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildPlan } from "../../engine/engine.ts";
 import { dataset } from "../data/dataset.ts";
-import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, rankExperienceGroups, relevance, stepsFor, toPlanInput, tracksForMajor, type Answers } from "./model.ts";
+import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, experienceProfile, relevance, searchExperience, withFollowUps, stepsFor, toPlanInput, tracksForMajor, type Answers } from "./model.ts";
 import { reducer, type IntakeState } from "./IntakeFlow.tsx";
 import { answerText } from "./Review.tsx";
 
@@ -48,12 +48,51 @@ describe("relevance", () => {
   it("puts track-relevant tracks and experiences first", () => {
     expect(tracksForMajor("computer-science").suggested.map((t) => t.id)).toContain("software-engineering");
     expect(tracksForMajor("computer-science").others.map((t) => t.id)).not.toContain("exploring");
-    expect(rankExperienceGroups("computer-science", "software-engineering")[0].id).toBe("online-presence");
-    expect(rankExperienceGroups("nursing", "nursing-clinical")[0].options[0].id).toBe("externship");
   });
   it("scores options outside the major as zero", () => {
     const externship = dataset.intake.experience.find((o) => o.id === "externship")!;
     expect(relevance(externship, "computer-science", "software-engineering")).toBe(0);
+  });
+});
+
+describe("experience step", () => {
+  it("suggests what students in the major commonly have done, not what their track values most", () => {
+    const psych = experienceProfile("psychology").suggested;
+    expect(psych).toHaveLength(8);
+    expect(psych).toContain("research");
+    expect(psych).not.toContain("hackathon");
+    expect(psych).not.toContain("github");
+    expect(experienceProfile("nursing").suggested.slice(0, 2)).toEqual(["externship", "clinical"]);
+    expect(experienceProfile("computer-science").suggested).toEqual(expect.arrayContaining(["project", "github", "hackathon", "resume"]));
+    expect(experienceProfile("packaging-engineering").suggested).toEqual(expect.arrayContaining(["coop", "pack-competition"]));
+  });
+  it("marks options tied only to other majors as less common, and every major gets the basics", () => {
+    expect(experienceProfile("psychology").lessCommon.has("hackathon")).toBe(true);
+    expect(experienceProfile("computer-science").lessCommon.has("hackathon")).toBe(false);
+    expect(experienceProfile("nursing").lessCommon.has("resume")).toBe(false);
+    for (const m of ["finance", "communication", "criminal-justice"]) {
+      expect(experienceProfile(m).suggested).toContain("resume");
+    }
+  });
+  it("never suggests follow-ups; they appear right after the option they build on, once it's picked", () => {
+    for (const m of ["computer-science", "nursing", "finance"]) {
+      expect(experienceProfile(m).suggested.some((id) => ["github-active", "open-source", "linkedin-strong", "leader"].includes(id))).toBe(false);
+    }
+    expect(withFollowUps(["github", "club"], [])).toEqual(["github", "club"]);
+    expect(withFollowUps(["github", "club"], ["github"])).toEqual(["github", "github-active", "open-source", "club"]);
+    expect(withFollowUps(["leader", "club"], ["leader"])).toEqual(["leader", "club"]); // picked follow-ups never vanish
+    // In a group that lists the follow-ups itself, they still wait for their starting option.
+    const online = ["linkedin", "linkedin-strong", "github", "github-active", "open-source", "portfolio"];
+    expect(withFollowUps(online, [])).toEqual(["linkedin", "github", "portfolio"]);
+    expect(withFollowUps(online, ["github"])).toEqual(["linkedin", "github", "github-active", "open-source", "portfolio"]);
+  });
+  it("searches labels and everyday words", () => {
+    const ids = (q: string) => searchExperience(q).map((o) => o.id);
+    expect(ids("intern")).toEqual(expect.arrayContaining(["internship-any", "internship-target", "coop", "government", "externship", "pharm-intern"]));
+    expect(ids("EMT")).toEqual(["clinical"]);
+    expect(ids("coffee chat")).toEqual(["info-interviews"]);
+    expect(ids("  ")).toEqual([]);
+    expect(ids("zzzz")).toEqual([]);
   });
 });
 
