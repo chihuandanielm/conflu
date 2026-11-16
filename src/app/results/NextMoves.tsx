@@ -1,9 +1,12 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
+import { nextStep, type StepProgress } from "../state/steps.ts";
 import { Tag } from "./Tag.tsx";
 
 /** The current term's items, up to five: what to do now and why. */
-export function NextMoves({ term, onOpen }: { term: PlanTerm | undefined; onOpen: (it: PlanItem, t: PlanTerm) => void }) {
+export function NextMoves({ term, onOpen, progress = {} }: {
+  term: PlanTerm | undefined; onOpen: (it: PlanItem, t: PlanTerm) => void; progress?: StepProgress;
+}) {
   if (!term || term.items.length === 0) {
     return (
       <section aria-labelledby="next-h" className="rounded-md border border-border p-6">
@@ -22,6 +25,8 @@ export function NextMoves({ term, onOpen }: { term: PlanTerm | undefined; onOpen
       <ol className="mt-4 divide-y divide-border rounded-md border border-border">
         {items.map((it) => {
           const top = it.resources[0];
+          const step = nextStep(it.goalId, progress);
+          const total = (progress[it.goalId] ?? []).length;
           return (
             <li key={it.goalId} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:gap-6">
               <div className="flex-1">
@@ -30,7 +35,16 @@ export function NextMoves({ term, onOpen }: { term: PlanTerm | undefined; onOpen
                   <span>{it.title}</span>
                   <ChevronRight size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-muted group-hover:text-blue" />
                 </button>
-                <p className="mt-1 text-sm text-muted">{it.why[0]}</p>
+                {step ? (
+                  <p className="mt-1 text-sm text-ink">
+                    <span className="font-semibold">Step {step.n} of {step.total}: </span>{step.text}
+                    {step.done > 0 && <span className="text-muted"> ({step.done} done)</span>}
+                  </p>
+                ) : total > 0 ? (
+                  <p className="mt-1 text-sm text-green">Every step is checked. Open it to mark it as done.</p>
+                ) : (
+                  <p className="mt-1 text-sm text-muted">{it.why[0]}</p>
+                )}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {it.gate && <Tag tone="gate">Must-do</Tag>}
                   {it.partial && <Tag tone="partial">Continues next term</Tag>}

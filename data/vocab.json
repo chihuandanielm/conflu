@@ -31,7 +31,8 @@
     "service_program",
     "state_program",
     "tool",
-    "volunteer"
+    "volunteer",
+    "guide"
   ],
   "scopes": [
     "rutgers",

@@ -1,5 +1,5 @@
 {
-  "_about": "Career goals (milestones). The engine scores and schedules these. Term codes: 1F = year 1 fall, 1S = spring, 1U = summer after year 1, … 4S, then G1/G2 = first two terms after graduation. window = earliest term it makes sense, the ideal range, and the latest useful term.",
+  "_about": "Career goals (milestones). The engine scores and schedules these. Term codes: 1F = year 1 fall, 1S = spring, 1U = summer after year 1, … 4S, then G1/G2 = first two terms after graduation. window = earliest term it makes sense, the ideal range, and the latest useful term. steps: 3–6 concrete actions in order. doneWhen: how the student knows it's finished. guides: how-to pages (resources of type guide, or other non-Rutgers resources) shown with the steps; the engine never reads steps, doneWhen, or guides.",
   "terms": [
     "1F",
     "1S",
@@ -60,7 +60,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Gets a human in your corner early and surfaces campus programs you'd miss."
+      "why": "Gets a human in your corner early and surfaces campus programs you'd miss.",
+      "steps": [
+        "Book a 30-minute appointment with your campus career center through Handshake.",
+        "Bring your current resume (a rough draft is fine) and two or three fields you're curious about.",
+        "Ask which campus programs, clubs, and deadlines matter for those fields this year.",
+        "Leave with a written semester-by-semester plan and the date of your next check-in."
+      ],
+      "doneWhen": "You have a written 4-year plan you made with an advisor and a follow-up date on your calendar.",
+      "guides": [
+        "mit-job-search-tasks"
+      ]
     },
     {
       "id": "f-handshake-profile",
@@ -96,7 +106,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Your campus's employers and career fairs run through Handshake."
+      "why": "Your campus's employers and career fairs run through Handshake.",
+      "steps": [
+        "Sign in to your campus Handshake with your NetID and upload your resume so it fills in your education and experience.",
+        "Add a clear photo, your major and graduation date, at least 5 skills, and your clubs or jobs.",
+        "List your job interests (roles, industries, and locations) so Handshake recommends the right postings.",
+        "Make your profile visible to employers in your privacy settings.",
+        "Follow 10 employers you'd like to work for so their events and postings reach you."
+      ],
+      "doneWhen": "Handshake shows your profile as complete, employers can see it, and you follow at least 10 employers.",
+      "guides": [
+        "emory-handshake-profile"
+      ]
     },
     {
       "id": "f-resume-v1",
@@ -136,7 +157,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Nearly every application below needs one."
+      "why": "Nearly every application below needs one.",
+      "steps": [
+        "Read a first-year resume guide and look at two or three sample resumes from students in your field.",
+        "List everything from the last four years: classes, projects, jobs, clubs, volunteering, awards, and skills.",
+        "Write each entry as 2–3 bullets that start with an action verb and show a result or a number where you can.",
+        "Fit it on one page with your name, school email, phone, and LinkedIn URL at the top.",
+        "Get it reviewed at your career center or writing center, then save it as a PDF named Firstname-Lastname-Resume."
+      ],
+      "doneWhen": "You have a one-page PDF resume that someone at your career center or writing center has reviewed.",
+      "guides": [
+        "mit-resume-first-year",
+        "mit-sample-resumes"
+      ]
     },
     {
       "id": "f-resume-refresh",
@@ -174,7 +207,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A resume goes stale every semester you gain experience."
+      "why": "A resume goes stale every semester you gain experience.",
+      "steps": [
+        "Add everything new since your last version: jobs, projects, leadership roles, research, and new skills.",
+        "Shorten or cut older items, like high school, to keep it to one page.",
+        "Rewrite bullets to lead with results: what changed because of your work, with numbers where possible.",
+        "Make a version tailored to the roles you'll apply to next, using words from 2–3 real postings.",
+        "Have it reviewed at your career center before your next application or career fair."
+      ],
+      "doneWhen": "Your resume is current, one page, tailored to your next applications, and reviewed this year.",
+      "guides": [
+        "mit-sample-resumes"
+      ]
     },
     {
       "id": "f-explore-careers",
@@ -210,7 +254,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Know what the jobs involve and pay before you optimize for them."
+      "why": "Know what the jobs involve and pay before you optimize for them.",
+      "steps": [
+        "Take the free O*NET Interest Profiler on My Next Move to see careers that match your interests.",
+        "Pick 3 careers and read each one's O*NET page for daily tasks, skills, and education needed.",
+        "Look up each in the BLS Occupational Outlook Handbook for pay, job growth, and how people get in.",
+        "Write down, for each career, one thing that excites you and one question you still have.",
+        "Bring your questions to a career advisor or an informational interview."
+      ],
+      "doneWhen": "You've written a short comparison of 3 careers (tasks, pay, outlook, path in) and know which to explore next.",
+      "guides": [
+        "mynextmove"
+      ]
     },
     {
       "id": "f-fafsa",
@@ -247,7 +302,18 @@
       "requires": [
         "us-citizen-or-pr"
       ],
-      "why": "Missing it can cost thousands in grants."
+      "why": "Missing it can cost thousands in grants.",
+      "steps": [
+        "Create your StudentAid.gov account, and have a parent create one too if you're a dependent student.",
+        "Gather your Social Security number, tax information, and records of savings and income.",
+        "File the FAFSA as soon as it opens each fall and list your school; New Jersey state aid has its own deadlines.",
+        "Watch your email for your FAFSA Submission Summary and fix anything it flags.",
+        "Check your school's financial aid portal for missing documents, then accept your aid offer."
+      ],
+      "doneWhen": "Your FAFSA is submitted for next year, its summary shows no open issues, and your school lists no missing documents.",
+      "guides": [
+        "fafsa-student-steps"
+      ]
     },
     {
       "id": "f-aid-check",
@@ -288,7 +354,18 @@
       "requires": [
         "not-international"
       ],
-      "why": "Money pressure is the most common reason students skip unpaid or low-paid experience."
+      "why": "Money pressure is the most common reason students skip unpaid or low-paid experience.",
+      "steps": [
+        "Read the eligibility rules for the NJ Tuition Aid Grant, the Garden State Guarantee, and EOF on the linked pages.",
+        "File the FAFSA, or the NJ Alternative Financial Aid Application if you can't file the FAFSA, since New Jersey uses it for state aid.",
+        "If EOF fits you, contact your campus EOF office about how to apply.",
+        "Ask your financial aid office whether you qualify for tuition assistance or any grant you aren't getting yet.",
+        "Write down each program you qualify for and what keeps it renewed (credits, GPA, deadlines)."
+      ],
+      "doneWhen": "You know which state and campus aid programs you qualify for and what you must do each year to keep them.",
+      "guides": [
+        "studentaid-scams"
+      ]
     },
     {
       "id": "f-elevator-pitch",
@@ -320,7 +397,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "You'll use it at every fair, info session, and coffee chat."
+      "why": "You'll use it at every fair, info session, and coffee chat.",
+      "steps": [
+        "Write 3–4 sentences: your year and major, what you've done that's relevant, what you're looking for, and a question for the listener.",
+        "Make a career-fair version and a shorter one for networking events and info sessions.",
+        "Read it out loud and time it; keep it to about 30 seconds and cut anything that sounds memorized.",
+        "Practice it with a friend or career advisor and ask what they remember afterward.",
+        "Use it at your next career fair, info session, or club event."
+      ],
+      "doneWhen": "You can introduce yourself naturally in about 30 seconds and have used it with someone new.",
+      "guides": [
+        "mit-elevator-pitch"
+      ]
     },
     {
       "id": "f-cover-letter",
@@ -359,7 +447,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Many internship and fellowship applications still ask for one."
+      "why": "Many internship and fellowship applications still ask for one.",
+      "steps": [
+        "Read a cover letter guide and one or two sample letters.",
+        "Write a one-page template: an opening that names the role and why you want it, one or two paragraphs linking your experience to the job, and a short close.",
+        "Mark the sentences you'll change for each employer (company name, role, what drew you to them).",
+        "Get feedback from your writing center or career center.",
+        "Save it so a tailored letter takes about 20 minutes per application."
+      ],
+      "doneWhen": "You have a reviewed, one-page cover letter template with clear spots to tailor for each job.",
+      "guides": [
+        "mit-cover-letter",
+        "mit-sample-resumes"
+      ]
     },
     {
       "id": "f-mock-interview",
@@ -398,7 +498,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Interview skill is trainable; most students only practice live."
+      "why": "Interview skill is trainable; most students only practice live.",
+      "steps": [
+        "Learn the STAR method (Situation, Task, Action, Result) for 'Tell me about a time…' questions.",
+        "Write 3–5 short stories from classes, jobs, and clubs that show teamwork, leadership, problem-solving, and a mistake you learned from.",
+        "Book a mock interview with your career center through Handshake and send them a job posting to practice for.",
+        "Ask for honest feedback on your answers, body language, and the questions you ask at the end.",
+        "Rework your two weakest answers and practice them again."
+      ],
+      "doneWhen": "You've done a mock interview, have 3–5 STAR stories ready, and have practiced your weakest answers again.",
+      "guides": [
+        "mit-star-interview"
+      ]
     },
     {
       "id": "f-gpa-floor",
@@ -430,7 +541,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Many programs (McNair, co-ops, fellowships, federal internships) screen at 2.5–3.0."
+      "why": "Many programs (McNair, co-ops, fellowships, federal internships) screen at 2.5–3.0.",
+      "steps": [
+        "Check your current GPA and what grades this term keep you at 3.0 or above.",
+        "Go to office hours in your hardest class by week 3, before the first exam.",
+        "Use your campus tutoring or learning center for any class where you're below a B.",
+        "Talk to your academic advisor before the withdrawal deadline if a class is going badly.",
+        "Plan next term so your hardest classes are spread out rather than stacked."
+      ],
+      "doneWhen": "You finish the term with a GPA of 3.0 or higher.",
+      "guides": [
+        "uci-faculty-connections"
+      ]
     },
     {
       "id": "p-linkedin-setup",
@@ -465,7 +587,21 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Recruiters search LinkedIn first; it's also how alumni will check you out after a chat."
+      "why": "Recruiters search LinkedIn first; it's also how alumni will check you out after a chat.",
+      "steps": [
+        "Add a clear headshot and a headline that says what you study and what you want, such as 'Packaging Engineering student | Seeking a co-op'.",
+        "Write a 3–4 sentence About section: what you study, what you've done, and what you want to do next.",
+        "Add your education, jobs, projects, and clubs with 1–2 bullets each, matching your resume.",
+        "List at least 5 skills and add relevant courses and projects.",
+        "Set a custom profile URL with your name and put it on your resume and email signature.",
+        "Turn on job alerts for 2–3 roles you want, and follow 10 companies you'd like to work for."
+      ],
+      "doneWhen": "Your profile has a photo, headline, About section, experience, skills, and a custom URL, and job alerts are on.",
+      "guides": [
+        "uw-linkedin-checklist",
+        "mit-linkedin",
+        "linkedin-job-alerts"
+      ]
     },
     {
       "id": "p-linkedin-network",
@@ -501,7 +637,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Warm connections turn into referrals, which beat cold applications."
+      "why": "Warm connections turn into referrals, which beat cold applications.",
+      "steps": [
+        "Start with people you know: classmates, club members, coworkers, and professors.",
+        "Use your school's LinkedIn alumni page to find 15–20 alumni in your target field or companies.",
+        "Send each a connection request with a short personal note saying how you're connected and why you're reaching out.",
+        "Connect with speakers and recruiters you meet at events within 24 hours, mentioning where you met.",
+        "Ask 2–3 of your new alumni connections for a 15-minute informational chat."
+      ],
+      "doneWhen": "You have 50+ connections relevant to your field, including alumni and people you've met at events.",
+      "guides": [
+        "mit-how-to-network",
+        "tufts-info-interview"
+      ]
     },
     {
       "id": "p-linkedin-active",
@@ -535,7 +683,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Visible work keeps you in recruiters' feeds before you apply."
+      "why": "Visible work keeps you in recruiters' feeds before you apply.",
+      "steps": [
+        "Once a month, post about something you did: a project, an event, a certification, or something you learned.",
+        "Keep posts short: what you did, what you learned, and a thank-you to anyone who helped.",
+        "Comment thoughtfully on posts from people and companies in your field a few times a month.",
+        "Update your profile whenever you add a role, project, or skill."
+      ],
+      "doneWhen": "You've posted or shared something meaningful at least once a month for a semester.",
+      "guides": [
+        "mit-linkedin"
+      ]
     },
     {
       "id": "p-professional-photo-email",
@@ -566,7 +724,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Small polish that makes every profile and email look intentional."
+      "why": "Small polish that makes every profile and email look intentional.",
+      "steps": [
+        "Get a headshot: look for free headshot booths at campus career events, or have a friend take one against a plain wall in daylight.",
+        "Use the same photo on LinkedIn and Handshake.",
+        "Set up a signature in your school email: full name, school, major, graduation year, and LinkedIn URL.",
+        "Keep the signature to 3–4 lines with no images or quotes."
+      ],
+      "doneWhen": "You have a professional headshot on LinkedIn and Handshake and an email signature on your school email.",
+      "guides": [
+        "wofford-email-signature"
+      ]
     },
     {
       "id": "p-github-setup",
@@ -607,7 +775,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Tech hiring managers often check GitHub before the resume."
+      "why": "Tech hiring managers often check GitHub before the resume.",
+      "steps": [
+        "Create a GitHub account with a professional username and add your photo, name, and school.",
+        "Create a profile README with a short intro, what you're learning, and links to your best work.",
+        "Pin 3–6 repositories, each with a README that explains what it does and how to run it.",
+        "Apply for the GitHub Student Developer Pack with your school email.",
+        "Add your GitHub link to your resume and LinkedIn."
+      ],
+      "doneWhen": "Your GitHub has a profile README, pinned projects with READMEs, and is linked from your resume.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "p-github-consistent",
@@ -647,7 +826,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A steady contribution graph signals real, ongoing practice."
+      "why": "A steady contribution graph signals real, ongoing practice.",
+      "steps": [
+        "Pick one project or practice routine to work on all semester, such as a personal project or coding problems.",
+        "Schedule 3 or more short sessions a week and commit your work each time.",
+        "Write commit messages that say what changed.",
+        "Check your contribution graph monthly and adjust your schedule if you're slipping."
+      ],
+      "doneWhen": "Your contribution graph shows activity 3+ days a week for a full semester.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "p-open-source-pr",
@@ -689,7 +878,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Proves you can read someone else's code and work through review."
+      "why": "Proves you can read someone else's code and work through review.",
+      "steps": [
+        "Practice the fork-and-pull-request workflow on a beginner repository built for first contributions.",
+        "Find 2–3 projects you use or like with issues labeled 'good first issue', and read their contributing guidelines.",
+        "Comment on an issue to ask whether you can take it, then make the change in a new branch.",
+        "Open a pull request that explains what you changed and why, and respond to review comments."
+      ],
+      "doneWhen": "At least one of your pull requests has been merged into a project you don't own.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "p-portfolio-site",
@@ -732,7 +931,16 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A link that shows your work does more than a bullet that describes it."
+      "why": "A link that shows your work does more than a bullet that describes it.",
+      "steps": [
+        "Pick your 3 strongest projects and write a short case study for each: the problem, what you did, tools, and the result.",
+        "Build a simple site with GitHub Pages or a portfolio platform, with an About page and a contact link.",
+        "Add images, demos, or links for each project.",
+        "Ask a friend to look at it on a phone and fix anything confusing.",
+        "Put the link on your resume, LinkedIn, and GitHub."
+      ],
+      "doneWhen": "Your site is live with 3 project write-ups and linked from your resume.",
+      "guides": []
     },
     {
       "id": "p-writing-portfolio",
@@ -776,7 +984,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Communication, policy, and PR employers ask for clips or writing samples."
+      "why": "Communication, policy, and PR employers ask for clips or writing samples.",
+      "steps": [
+        "Pitch or submit work to student media, a campus publication, a club newsletter, or a blog in your field.",
+        "Aim for pieces that show range, such as news, features, analysis, or opinion.",
+        "Save each published piece's link and a PDF copy in case it goes offline.",
+        "Collect your best 3–5 on one page, like a portfolio site or Muck Rack profile, with a one-line description of each."
+      ],
+      "doneWhen": "You have 3–5 published pieces collected on one page you can link from your resume.",
+      "guides": []
     },
     {
       "id": "p-kaggle",
@@ -822,7 +1038,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A public analysis is concrete proof of data skills."
+      "why": "A public analysis is concrete proof of data skills.",
+      "steps": [
+        "Create a Kaggle account and finish one free Kaggle Learn course in Python, pandas, or machine learning.",
+        "Pick a beginner competition or a public dataset in a field you care about.",
+        "Write a notebook that explores the data, explains each step in plain language, and shows results.",
+        "Publish it publicly and link it from your resume or GitHub."
+      ],
+      "doneWhen": "You have a public notebook or a competition submission you can link to.",
+      "guides": []
     },
     {
       "id": "p-research-profile",
@@ -857,7 +1081,14 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Grad programs and journals expect a research identity."
+      "why": "Grad programs and journals expect a research identity.",
+      "steps": [
+        "Register for a free ORCID iD.",
+        "Add your school, research position, and any posters, presentations, or papers.",
+        "Link it from your LinkedIn or personal site and use it whenever you submit work."
+      ],
+      "doneWhen": "You have an ORCID iD listing your research work.",
+      "guides": []
     },
     {
       "id": "s-excel-core",
@@ -892,7 +1123,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Shows up in most business, health, and policy roles."
+      "why": "Shows up in most business, health, and policy roles.",
+      "steps": [
+        "Work through a free Excel course covering XLOOKUP or VLOOKUP, PivotTables, and charts.",
+        "Practice on a real dataset, such as a club budget or a public dataset.",
+        "Build one file that uses a lookup, a PivotTable, and a chart to answer a real question.",
+        "Add Excel to your resume with that project as proof."
+      ],
+      "doneWhen": "You can build a lookup, a PivotTable, and a chart from scratch without notes.",
+      "guides": []
     },
     {
       "id": "s-excel-modeling",
@@ -932,7 +1171,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Standard technical screen for finance internships."
+      "why": "Standard technical screen for finance internships.",
+      "steps": [
+        "Learn how the income statement, balance sheet, and cash flow statement connect.",
+        "Follow a free modeling course step by step to build a three-statement model.",
+        "Build your own model for a real public company from its annual report.",
+        "Check that the balance sheet balances, then add best, base, and worst cases."
+      ],
+      "doneWhen": "You've built a working three-statement model for a real company on your own.",
+      "guides": []
     },
     {
       "id": "s-python",
@@ -981,7 +1228,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The most transferable programming language across fields."
+      "why": "The most transferable programming language across fields.",
+      "steps": [
+        "Pick one free course, such as CS50's Python course or freeCodeCamp, and do a little every week.",
+        "Learn variables, loops, functions, lists and dictionaries, and reading files.",
+        "Write 3 small programs that solve real problems for you, like cleaning data or automating a task.",
+        "Put your code on GitHub with a short README for each."
+      ],
+      "doneWhen": "You can write a small Python program from scratch and have 3 on GitHub.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "s-sql",
@@ -1027,7 +1284,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Most analyst postings list SQL."
+      "why": "Most analyst postings list SQL.",
+      "steps": [
+        "Do an interactive SQL tutorial covering SELECT, WHERE, JOIN, GROUP BY, and aggregate functions.",
+        "Load a public dataset into a free database tool.",
+        "Write 10 queries that answer real questions about the data.",
+        "Save the queries and results in a GitHub repository with a short write-up."
+      ],
+      "doneWhen": "You can write queries with joins and group-bys on your own and have examples to show.",
+      "guides": []
     },
     {
       "id": "s-data-viz",
@@ -1076,7 +1341,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Turning data into a clear picture is what gets analysts noticed."
+      "why": "Turning data into a clear picture is what gets analysts noticed.",
+      "steps": [
+        "Get a free student license for Tableau or use Power BI's free desktop app.",
+        "Follow a beginner tutorial to connect data and build basic charts.",
+        "Choose a public dataset and three questions it can answer.",
+        "Build a one-page dashboard that answers them, and publish it or save it for your portfolio."
+      ],
+      "doneWhen": "You have a dashboard that answers clear questions with real data and that you can show.",
+      "guides": []
     },
     {
       "id": "s-r-stats",
@@ -1114,7 +1387,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Research labs and public health jobs run on statistical software."
+      "why": "Research labs and public health jobs run on statistical software.",
+      "steps": [
+        "Check which tool your major uses, R or SPSS, and whether your school provides it.",
+        "Take a free beginner course or your department's stats lab sessions.",
+        "Reproduce an analysis from a class or paper: descriptive statistics, a t-test or regression, and a chart.",
+        "Save your script and output as a short write-up you can show."
+      ],
+      "doneWhen": "You can run and explain a basic analysis in R or SPSS on your own.",
+      "guides": []
     },
     {
       "id": "s-dsa",
@@ -1154,7 +1435,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Coding interviews for software roles still test this."
+      "why": "Coding interviews for software roles still test this.",
+      "steps": [
+        "Learn the core topics in order: arrays and strings, hash maps, two pointers, stacks and queues, trees, graphs, and dynamic programming.",
+        "Solve 3–5 problems a week, starting with easy ones, and track them in a spreadsheet.",
+        "For each problem you miss, write down the pattern and redo it a week later.",
+        "Do a timed mock interview with a friend once a month, explaining your thinking out loud."
+      ],
+      "doneWhen": "You've solved 100 problems across all core topics and can explain your solutions out loud.",
+      "guides": []
     },
     {
       "id": "s-git",
@@ -1193,7 +1482,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Version control is assumed on day one of any tech job."
+      "why": "Version control is assumed on day one of any tech job.",
+      "steps": [
+        "Complete GitHub's free Introduction to GitHub course.",
+        "Keep every class or personal project in Git and commit often with clear messages.",
+        "Practice branches and pull requests, even on your own projects.",
+        "Learn to fix common problems, like merge conflicts and undoing a commit."
+      ],
+      "doneWhen": "Every project you work on lives in a Git repository with a clean commit history.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "s-cad",
@@ -1232,7 +1531,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Mechanical and device design postings list CAD first."
+      "why": "Mechanical and device design postings list CAD first.",
+      "steps": [
+        "Get free student access to SOLIDWORKS or Onshape.",
+        "Work through the official beginner tutorials: sketches, extrudes, assemblies, and drawings.",
+        "Model 3 real objects around you, including one assembly with moving parts.",
+        "Make a dimensioned drawing of one of them and add images to your portfolio."
+      ],
+      "doneWhen": "You can model parts and an assembly and produce a dimensioned drawing on your own.",
+      "guides": []
     },
     {
       "id": "s-matlab",
@@ -1270,7 +1577,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Common in engineering coursework and R&D roles."
+      "why": "Common in engineering coursework and R&D roles.",
+      "steps": [
+        "Complete MathWorks' free MATLAB Onramp.",
+        "Learn arrays, plotting, scripts, and functions.",
+        "Use MATLAB for a class assignment or lab analysis instead of a calculator or spreadsheet.",
+        "Save one well-commented script that shows your work."
+      ],
+      "doneWhen": "You've finished MATLAB Onramp and used MATLAB for a real assignment.",
+      "guides": []
     },
     {
       "id": "s-figma-ux",
@@ -1311,7 +1626,16 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The standard tool for UX and product design portfolios."
+      "why": "The standard tool for UX and product design portfolios.",
+      "steps": [
+        "Sign up for Figma's free education plan.",
+        "Follow Figma's beginner tutorials on frames, components, and prototyping.",
+        "Pick a real app task, like booking a study room, and sketch the steps.",
+        "Design and prototype a 4–6 screen flow, test it with 2 people, and revise it.",
+        "Add it to your portfolio with a short note on what you changed and why."
+      ],
+      "doneWhen": "You have a clickable prototype of one app flow, tested with real people, in your portfolio.",
+      "guides": []
     },
     {
       "id": "s-digital-marketing",
@@ -1349,7 +1673,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Free, fast, and listed in entry-level digital marketing postings."
+      "why": "Free, fast, and listed in entry-level digital marketing postings.",
+      "steps": [
+        "Complete Google's free Skillshop training and pass a Google Ads or Analytics certification.",
+        "Complete a free HubSpot Academy certification, such as Inbound or Content Marketing.",
+        "Apply what you learned to a real account: a club's social media, a campus event, or a small business.",
+        "Add the certifications and results to LinkedIn and your resume."
+      ],
+      "doneWhen": "You hold at least one Google and one HubSpot certification and have used them on a real project.",
+      "guides": []
     },
     {
       "id": "s-public-speaking",
@@ -1383,7 +1715,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Presentation skill is one of the top things employers ask for."
+      "why": "Presentation skill is one of the top things employers ask for.",
+      "steps": [
+        "Find 3 chances to present outside class: a club meeting, a research symposium, an info session, or a Toastmasters club.",
+        "Structure each talk around one main point, three supports, and a clear close.",
+        "Rehearse out loud at least twice, ideally recorded or in front of a friend.",
+        "Ask for feedback after each talk and pick one thing to improve next time."
+      ],
+      "doneWhen": "You've given 3 presentations outside class and improved something each time.",
+      "guides": []
     },
     {
       "id": "s-professional-writing",
@@ -1433,7 +1773,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Clear short writing is a daily skill in policy, business, and health jobs."
+      "why": "Clear short writing is a daily skill in policy, business, and health jobs.",
+      "steps": [
+        "Read a guide to memo format: heading, purpose, key points first, and a clear request.",
+        "Pick a real issue in your field or on campus and write a one-to-two page memo or policy brief.",
+        "Get feedback from your writing center or a professor.",
+        "Revise it and keep it as a writing sample for applications."
+      ],
+      "doneWhen": "You have a revised memo or brief, reviewed by someone else, ready to use as a writing sample.",
+      "guides": [
+        "owl-memos"
+      ]
     },
     {
       "id": "s-language",
@@ -1467,7 +1817,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Valued in public service, healthcare, and international business."
+      "why": "Valued in public service, healthcare, and international business.",
+      "steps": [
+        "Pick the language most useful for your field or community.",
+        "Take a course for credit or join a campus conversation group.",
+        "Practice a little every day and speak with native speakers at least once a week.",
+        "Check your level each semester with a placement test or your instructor."
+      ],
+      "doneWhen": "You can hold a 10-minute conversation on everyday and work topics.",
+      "guides": []
     },
     {
       "id": "s-lab-techniques",
@@ -1505,7 +1863,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Lab skills on a resume are what get industry and research offers."
+      "why": "Lab skills on a resume are what get industry and research offers.",
+      "steps": [
+        "Join a research lab, or take a lab course with hands-on methods.",
+        "Complete the lab's required safety training before you start.",
+        "Learn the lab's core methods one at a time with a graduate student or postdoc, keeping a detailed notebook.",
+        "Ask to run a technique on your own once you've done it under supervision."
+      ],
+      "doneWhen": "You can run the lab's core techniques on your own and record them properly.",
+      "guides": [
+        "illinois-emailing-professors"
+      ]
     },
     {
       "id": "s-security-practice",
@@ -1543,7 +1911,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Security hiring rewards hands-on proof over coursework."
+      "why": "Security hiring rewards hands-on proof over coursework.",
+      "steps": [
+        "Create free accounts on TryHackMe and picoCTF.",
+        "Start with beginner paths on networking, Linux, and web basics.",
+        "Complete 20 labs or a CTF, writing short notes on what you learned from each.",
+        "Publish a few write-ups on GitHub or a blog for challenges that have ended."
+      ],
+      "doneWhen": "You've completed 20 labs or a CTF and have write-ups you can show.",
+      "guides": []
     },
     {
       "id": "s-financial-markets",
@@ -1581,7 +1957,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Common talking point and resume line in finance interviews."
+      "why": "Common talking point and resume line in finance interviews.",
+      "steps": [
+        "Ask your library or business school whether Bloomberg Market Concepts is free through their terminals.",
+        "Complete the modules on economics, currencies, fixed income, and equities.",
+        "Add the certificate to LinkedIn and your resume.",
+        "Practice explaining one recent market event for interviews."
+      ],
+      "doneWhen": "You've finished Bloomberg Market Concepts and can talk about a current market story.",
+      "guides": []
     },
     {
       "id": "e-join-orgs",
@@ -1617,7 +2001,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The easiest source of peers, mentors, and leadership roles."
+      "why": "The easiest source of peers, mentors, and leadership roles.",
+      "steps": [
+        "Browse your campus student organization directory and the professional societies tied to your major.",
+        "Go to one meeting each for 3–4 groups early in the semester.",
+        "Join the 1–2 you'd keep showing up to and where you can help with projects or events.",
+        "Volunteer for one small task, like an event or a committee, in your first month."
+      ],
+      "doneWhen": "You're a regular member of 1–2 organizations and have helped with at least one event or project.",
+      "guides": []
     },
     {
       "id": "e-org-leadership",
@@ -1652,7 +2044,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Leadership is one of the strongest signals on an early-career resume."
+      "why": "Leadership is one of the strongest signals on an early-career resume.",
+      "steps": [
+        "Take on a committee or project role first, so members know your work.",
+        "Ask current officers what each role involves and when elections happen.",
+        "Run for a position, or volunteer to lead a project or event.",
+        "Set one measurable goal for your term, such as members, events, or funds raised, so you have a result to talk about."
+      ],
+      "doneWhen": "You hold an officer or project-lead role and have a concrete result from it.",
+      "guides": []
     },
     {
       "id": "e-part-time-job",
@@ -1685,7 +2085,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Any job builds reliability, and many students need the income."
+      "why": "Any job builds reliability, and many students need the income.",
+      "steps": [
+        "Search campus jobs in Handshake and your school's student employment site; check work-study listings if you have Federal Work-Study.",
+        "Prioritize jobs that build skills for your field, like labs, libraries, IT help desks, tutoring, or offices.",
+        "Apply with your resume and a short note on why you want the role.",
+        "Keep a running list of what you accomplish on the job to add to your resume."
+      ],
+      "doneWhen": "You hold a part-time or campus job.",
+      "guides": []
     },
     {
       "id": "e-volunteer",
@@ -1720,7 +2128,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Builds perspective and stories for interviews; required for some health paths."
+      "why": "Builds perspective and stories for interviews; required for some health paths.",
+      "steps": [
+        "Pick a cause tied to your interests or field, such as health, education, justice, or the environment.",
+        "Find opportunities through your campus community engagement office or local nonprofits.",
+        "Commit to a regular schedule, like 2–4 hours a week for a semester, rather than one-off events.",
+        "Track your hours and what you did so you can describe your impact later."
+      ],
+      "doneWhen": "You volunteer regularly with one organization and have logged your hours.",
+      "guides": []
     },
     {
       "id": "e-research-assistant",
@@ -1759,7 +2175,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Opens recommendation letters and research summers."
+      "why": "Opens recommendation letters and research summers.",
+      "steps": [
+        "Browse your department's faculty pages and your campus research office's listings, and pick 5–8 labs whose work interests you.",
+        "Read one recent paper or project summary from each lab.",
+        "Email each professor a short note: who you are, what interests you about their work, your availability, and your resume.",
+        "Follow up once after 1–2 weeks, and ask about volunteer, course-credit, or paid options.",
+        "Once you join, show up reliably and ask your mentor what success looks like after one semester."
+      ],
+      "doneWhen": "You have a research position with a professor or lab.",
+      "guides": [
+        "illinois-emailing-professors"
+      ]
     },
     {
       "id": "e-summer-research",
@@ -1806,7 +2233,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The core experience for PhD and research-industry paths."
+      "why": "The core experience for PhD and research-industry paths.",
+      "steps": [
+        "List 5–10 programs that fit your field and note their deadlines, which are usually December to February.",
+        "Ask 2 professors for recommendation letters at least 4 weeks before the first deadline.",
+        "Write a statement about your research interests and what you hope to learn.",
+        "Submit every application on time and track them in a spreadsheet."
+      ],
+      "doneWhen": "You've accepted a paid summer research position.",
+      "guides": [
+        "pitt-rec-letters"
+      ]
     },
     {
       "id": "e-thesis",
@@ -1845,7 +2282,16 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Top signal for grad school and research careers."
+      "why": "Top signal for grad school and research careers.",
+      "steps": [
+        "Ask your department about honors thesis requirements and deadlines during junior year.",
+        "Find a faculty advisor, usually someone whose lab or class you already know.",
+        "Write a one-page proposal with your question, methods, and timeline.",
+        "Apply for campus research funding if your project needs it.",
+        "Meet your advisor regularly and present your results at a campus symposium."
+      ],
+      "doneWhen": "You've completed and submitted or defended your thesis or independent project.",
+      "guides": []
     },
     {
       "id": "e-personal-project",
@@ -1889,7 +2335,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Something you built is the best answer to 'tell me about a project.'"
+      "why": "Something you built is the best answer to 'tell me about a project.'",
+      "steps": [
+        "Pick a problem you or your friends actually have, and keep the first version small.",
+        "Write down what 'done' means for version 1 in 3–5 features.",
+        "Build it in small steps, committing to GitHub as you go.",
+        "Ship it: publish, deploy, or share it with real users, and collect feedback.",
+        "Write a README with screenshots and add the project to your resume."
+      ],
+      "doneWhen": "Your project is live or usable by others and documented on GitHub.",
+      "guides": [
+        "github-skills-intro"
+      ]
     },
     {
       "id": "e-hackathon",
@@ -1930,7 +2387,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Fast team experience and recruiter exposure in a weekend."
+      "why": "Fast team experience and recruiter exposure in a weekend.",
+      "steps": [
+        "Find a hackathon on your campus or on MLH's event list and register early, since spots fill up.",
+        "Team up with 2–3 people, or join team-forming at the start.",
+        "Go to the beginner workshops, pick an idea you can demo in the time limit, and build the smallest working version.",
+        "Practice a 2-minute demo and submit your project with a short write-up."
+      ],
+      "doneWhen": "You've competed in a hackathon and submitted a working project.",
+      "guides": []
     },
     {
       "id": "e-design-team",
@@ -1968,7 +2433,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Hands-on build experience that engineering recruiters ask about first."
+      "why": "Hands-on build experience that engineering recruiters ask about first.",
+      "steps": [
+        "Find your school's engineering design teams (Formula SAE, robotics, and others) at the involvement fair or engineering school site.",
+        "Attend recruitment meetings early in the fall.",
+        "Join a subteam that matches your interests and commit to its weekly build sessions.",
+        "Take ownership of one part or system so you have a concrete contribution to describe."
+      ],
+      "doneWhen": "You're an active team member responsible for a specific part or system.",
+      "guides": []
     },
     {
       "id": "e-case-competition",
@@ -2012,7 +2485,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Shows business problem-solving under pressure; firms recruit at them."
+      "why": "Shows business problem-solving under pressure; firms recruit at them.",
+      "steps": [
+        "Find competitions through your business school, consulting or finance clubs, and professional groups.",
+        "Form a team of 3–4 with mixed strengths: analysis, slides, and presenting.",
+        "Practice on old cases: define the problem, structure the analysis, and back your recommendation with numbers.",
+        "Rehearse your presentation and practice answering tough questions."
+      ],
+      "doneWhen": "You've competed in a case competition and presented your recommendation.",
+      "guides": []
     },
     {
       "id": "e-virtual-sim",
@@ -2046,7 +2527,14 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A quick way to test a field and get interview stories before your first internship."
+      "why": "A quick way to test a field and get interview stories before your first internship.",
+      "steps": [
+        "Browse free virtual job simulations on Forage for companies or roles in your field.",
+        "Complete two simulations, taking notes on the tasks you did.",
+        "Add them to your resume and LinkedIn as projects, naming the skills you used."
+      ],
+      "doneWhen": "You've completed two simulations and added them to your resume.",
+      "guides": []
     },
     {
       "id": "e-internship-explore",
@@ -2090,7 +2578,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Any relevant summer experience makes the junior-year internship far easier to land."
+      "why": "Any relevant summer experience makes the junior-year internship far easier to land.",
+      "steps": [
+        "Read a first- and second-year internship search guide so you know where to look.",
+        "Search Handshake for first-year-friendly roles, summer programs, and campus jobs related to your field.",
+        "Ask your career center and professors about early programs, many of which are built for students without experience.",
+        "Apply to 10–15 options with a tailored resume."
+      ],
+      "doneWhen": "You've accepted a summer internship or career-related job.",
+      "guides": [
+        "mit-internship-search"
+      ]
     },
     {
       "id": "e-internship-target",
@@ -2128,7 +2626,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Junior-summer internships are the main pipeline to full-time offers."
+      "why": "Junior-summer internships are the main pipeline to full-time offers.",
+      "steps": [
+        "Make a list of 20–30 employers in your target field.",
+        "Set up Handshake and LinkedIn job alerts for those employers and roles.",
+        "Reach out to alumni at your top employers for advice and, if it goes well, a referral.",
+        "Apply as postings open (many open in late summer and fall for the next summer) and prepare STAR stories for interviews."
+      ],
+      "doneWhen": "You've accepted an internship in your target field.",
+      "guides": [
+        "linkedin-job-alerts",
+        "mit-star-interview"
+      ]
     },
     {
       "id": "e-coop",
@@ -2178,7 +2687,17 @@
         "e-internship-target"
       ],
       "requires": [],
-      "why": "Deeper than an internship and often converts to a job offer."
+      "why": "Deeper than an internship and often converts to a job offer.",
+      "steps": [
+        "Meet your school's co-op office to learn how co-op terms, credit, and timing work for your major.",
+        "Plan which semesters you'll be away so your required courses still fit.",
+        "Apply through the co-op office and Handshake, tailoring your resume to each employer.",
+        "Prepare for interviews with the STAR method."
+      ],
+      "doneWhen": "You've completed a co-op placement.",
+      "guides": [
+        "mit-star-interview"
+      ]
     },
     {
       "id": "e-shadowing",
@@ -2219,7 +2738,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Health programs want proof you know what the job is."
+      "why": "Health programs want proof you know what the job is.",
+      "steps": [
+        "Ask physicians or professionals you already know first, then your pre-health office, professors, and local hospitals.",
+        "Email a short, polite request with your goals and availability.",
+        "Shadow in more than one setting or specialty if you can.",
+        "Keep a log of dates, hours, and what you learned after each session.",
+        "Send a thank-you note after each shadowing experience."
+      ],
+      "doneWhen": "You've logged 40+ hours of shadowing with notes from each session.",
+      "guides": [
+        "aamc-shadowing"
+      ]
     },
     {
       "id": "e-clinical-hours",
@@ -2264,7 +2794,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Medical, PA, and PT schools screen on hands-on patient care."
+      "why": "Medical, PA, and PT schools screen on hands-on patient care.",
+      "steps": [
+        "Choose a role with direct patient contact: EMT, CNA, medical scribe, patient-care technician, or hospital volunteer.",
+        "Complete any training or certification the role needs.",
+        "Commit to a regular schedule, such as one shift a week.",
+        "Log your hours and a few patient interactions that taught you something."
+      ],
+      "doneWhen": "You've logged 150+ patient-care hours with notes on what you learned.",
+      "guides": [
+        "aamc-shadowing"
+      ]
     },
     {
       "id": "e-nursing-externship",
@@ -2302,7 +2842,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Hospitals often hire new grads from their own extern pools."
+      "why": "Hospitals often hire new grads from their own extern pools.",
+      "steps": [
+        "Ask your nursing school about externship timing and hospital partners; most are the summer before senior year.",
+        "Research hospital externship programs and their deadlines, which often fall in winter.",
+        "Get your resume and references ready and keep your BLS current.",
+        "Apply to several programs and prepare for interviews."
+      ],
+      "doneWhen": "You've completed a nursing externship.",
+      "guides": [
+        "mit-star-interview"
+      ]
     },
     {
       "id": "e-pharmacy-intern",
@@ -2340,7 +2890,14 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Paid experience that also builds residency and job references."
+      "why": "Paid experience that also builds residency and job references.",
+      "steps": [
+        "Register as a pharmacist intern with the New Jersey Board of Pharmacy once your program says you're eligible.",
+        "Apply for intern roles at community, hospital, or specialty pharmacies.",
+        "Track your intern hours the way your program requires."
+      ],
+      "doneWhen": "You're registered and working as a pharmacy intern.",
+      "guides": []
     },
     {
       "id": "e-field-placement",
@@ -2377,7 +2934,15 @@
       "integrated": true,
       "satisfies": [],
       "requires": [],
-      "why": "Required for the degree and for advanced-standing MSW programs."
+      "why": "Required for the degree and for advanced-standing MSW programs.",
+      "steps": [
+        "Attend your BSW program's field orientation and complete its placement application on time.",
+        "List the populations and settings you want to work with.",
+        "Interview with the agencies your field office suggests.",
+        "Complete the required hours and supervision, and keep your field log current."
+      ],
+      "doneWhen": "You've completed your BSW field placement hours.",
+      "guides": []
     },
     {
       "id": "e-student-media",
@@ -2417,7 +2982,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Published work is the entry ticket for media and PR roles."
+      "why": "Published work is the entry ticket for media and PR roles.",
+      "steps": [
+        "Find your campus newspaper, radio, or TV station and go to an open meeting or training.",
+        "Start with small assignments and meet every deadline.",
+        "Ask editors for feedback and take on a regular beat or show.",
+        "Save links to your published work for your portfolio."
+      ],
+      "doneWhen": "You've published or produced several pieces for student media.",
+      "guides": []
     },
     {
       "id": "e-government-internship",
@@ -2462,7 +3035,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Public-sector jobs hire from people they already know."
+      "why": "Public-sector jobs hire from people they already know.",
+      "steps": [
+        "List offices that match your interests: your state legislator, a member of Congress, a city or county office, or a campaign.",
+        "Check deadlines early, since many legislative and congressional internships open months before each term.",
+        "Apply with your resume, a writing sample, and a short cover letter.",
+        "Ask your school about credit and funding for unpaid placements."
+      ],
+      "doneWhen": "You've completed an internship in a government or campaign office.",
+      "guides": [
+        "mit-cover-letter"
+      ]
     },
     {
       "id": "e-justice-exposure",
@@ -2500,7 +3083,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Shows you understand the system you want to work in."
+      "why": "Shows you understand the system you want to work in.",
+      "steps": [
+        "Ask your criminal justice department or advisor about court observation, ride-alongs, and reentry programs.",
+        "Sit in on a public court session and take notes on the roles and procedures.",
+        "Ask a local police department whether it offers ride-alongs through a community program.",
+        "Volunteer with a reentry or legal aid organization and reflect on what you learned."
+      ],
+      "doneWhen": "You've done at least two of: court observation, a ride-along, and reentry volunteering.",
+      "guides": []
     },
     {
       "id": "e-study-abroad",
@@ -2539,7 +3130,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Builds independence and global perspective; Gilman covers costs for Pell recipients."
+      "why": "Builds independence and global perspective; Gilman covers costs for Pell recipients.",
+      "steps": [
+        "Meet your study abroad office by your second year to see programs that fit your major.",
+        "Plan with your academic advisor which courses will transfer back.",
+        "Apply for funding, such as the Gilman Scholarship if you receive a Pell Grant, plus campus awards.",
+        "Submit your program application and passport paperwork on time."
+      ],
+      "doneWhen": "You've studied or interned abroad.",
+      "guides": []
     },
     {
       "id": "e-entrepreneurship",
@@ -2575,7 +3174,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Teaches selling an idea and moving fast."
+      "why": "Teaches selling an idea and moving fast.",
+      "steps": [
+        "Join your campus entrepreneurship club or attend a startup event.",
+        "Write a one-page summary of your idea: the problem, who has it, and your solution.",
+        "Talk to 10 potential customers about the problem before building anything.",
+        "Pitch at a campus competition, or join an early-stage startup as an intern."
+      ],
+      "doneWhen": "You've pitched a venture or worked at a startup.",
+      "guides": [
+        "mit-elevator-pitch"
+      ]
     },
     {
       "id": "e-tutor-ta",
@@ -2607,7 +3216,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Teaching proves mastery and builds faculty relationships."
+      "why": "Teaching proves mastery and builds faculty relationships.",
+      "steps": [
+        "Ask the professor of a course you did well in about TA or grader openings.",
+        "Apply to your campus learning or tutoring center.",
+        "Complete any tutor training they offer.",
+        "Ask students for feedback and keep track of what works."
+      ],
+      "doneWhen": "You're working as a tutor or teaching assistant.",
+      "guides": [
+        "uci-faculty-connections"
+      ]
     },
     {
       "id": "n-career-fair-first",
@@ -2643,7 +3262,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Low-pressure practice before the fairs that count."
+      "why": "Low-pressure practice before the fairs that count.",
+      "steps": [
+        "Check your campus career fair's employer list in Handshake and pick 5 employers to visit.",
+        "Read each employer's website so you can ask one real question.",
+        "Bring copies of your resume and practice your 30-second introduction.",
+        "Talk to your 5 employers, ask about opportunities for students in your year, and collect names.",
+        "Send each person a short thank-you message or LinkedIn request within a day."
+      ],
+      "doneWhen": "You've talked with 5 employers at a career fair and followed up with each.",
+      "guides": [
+        "mit-career-fair",
+        "mit-elevator-pitch"
+      ]
     },
     {
       "id": "n-career-fair-target",
@@ -2682,7 +3313,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Fall junior-year fairs feed most junior-summer internships."
+      "why": "Fall junior-year fairs feed most junior-summer internships.",
+      "steps": [
+        "Two weeks before, rank 8–10 employers with open roles that fit you.",
+        "Apply online to their postings before the fair when possible.",
+        "Prepare a tailored pitch and two specific questions for each top employer.",
+        "At the fair, visit your top choices first, ask about next steps, and get contact information.",
+        "Follow up within 24 hours, referring to your conversation."
+      ],
+      "doneWhen": "You've met your target employers, applied to their roles, and followed up with each.",
+      "guides": [
+        "mit-career-fair"
+      ]
     },
     {
       "id": "n-info-interviews",
@@ -2718,7 +3360,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The fastest way to learn what a job is really like and get referred."
+      "why": "The fastest way to learn what a job is really like and get referred.",
+      "steps": [
+        "Find alumni in roles you're curious about using your school's LinkedIn alumni page.",
+        "Send a short message asking for 15–20 minutes to learn about their path, not for a job.",
+        "Prepare 5–8 questions about their work, how they got there, and advice for someone in your position.",
+        "Keep the call on time, ask who else they'd suggest you talk to, and send a thank-you within 24 hours.",
+        "Keep a simple log of whom you talked to and what you learned."
+      ],
+      "doneWhen": "You've had 5 informational interviews and sent a thank-you after each.",
+      "guides": [
+        "tufts-info-interview"
+      ]
     },
     {
       "id": "n-faculty-relationships",
@@ -2750,7 +3403,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "You'll need recommendation letters for research, fellowships, and grad school."
+      "why": "You'll need recommendation letters for research, fellowships, and grad school.",
+      "steps": [
+        "Go to office hours in the first few weeks of each semester, even just to introduce yourself.",
+        "Read your professors' faculty pages and ask about their research or career path.",
+        "Return regularly with questions about the material or your goals.",
+        "Stay in touch after the class ends with a short email or a visit once a semester."
+      ],
+      "doneWhen": "Two professors know you by name, know your goals, and could write you a letter.",
+      "guides": [
+        "uci-faculty-connections"
+      ]
     },
     {
       "id": "n-mentor",
@@ -2786,7 +3449,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A mentor shortens every decision on this map."
+      "why": "A mentor shortens every decision on this map.",
+      "steps": [
+        "Decide what you want help with: choosing a path, landing internships, or a specific field.",
+        "Look for potential mentors among professors, alumni, supervisors, and program advisors such as SEO, MLT, or INROADS.",
+        "Start with a small ask, like a 20-minute conversation, rather than asking someone to be your mentor.",
+        "If it goes well, suggest a regular check-in (monthly works for most people) and bring questions each time."
+      ],
+      "doneWhen": "You meet regularly with someone in your target field who gives you advice.",
+      "guides": [
+        "case-mentor"
+      ]
     },
     {
       "id": "n-professional-society",
@@ -2820,7 +3493,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Student rates are cheap and give access to scholarships, job boards, and conferences."
+      "why": "Student rates are cheap and give access to scholarships, job boards, and conferences.",
+      "steps": [
+        "Find the main professional society for your field and its student membership rate, which is often discounted.",
+        "Join, and check whether your campus has a student chapter.",
+        "Use member benefits: job boards, scholarships, mentoring, and webinars.",
+        "Attend at least one chapter or society event each semester."
+      ],
+      "doneWhen": "You're a student member and have attended at least one event.",
+      "guides": []
     },
     {
       "id": "n-conference",
@@ -2861,7 +3542,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Conference career fairs often interview on the spot."
+      "why": "Conference career fairs often interview on the spot.",
+      "steps": [
+        "Choose a national or diversity career conference in your field and check student registration and travel scholarships.",
+        "Ask your department, student organization, or school about funding.",
+        "Before you go, list the companies and sessions you want and prepare your resume and pitch.",
+        "Collect contacts and follow up within a week."
+      ],
+      "doneWhen": "You've attended a conference and followed up with the people you met.",
+      "guides": [
+        "mit-elevator-pitch"
+      ]
     },
     {
       "id": "n-info-sessions",
@@ -2897,7 +3588,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Recruiters remember the people who showed up."
+      "why": "Recruiters remember the people who showed up.",
+      "steps": [
+        "Check Handshake events for employer info sessions and workshops in your field.",
+        "RSVP to 3 sessions this semester.",
+        "Prepare one question for each, and introduce yourself to a presenter afterward.",
+        "Follow up on LinkedIn with anyone you spoke to."
+      ],
+      "doneWhen": "You've attended 3 info sessions and connected with at least one presenter.",
+      "guides": [
+        "mit-elevator-pitch"
+      ]
     },
     {
       "id": "c-bls",
@@ -2938,7 +3639,14 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Required for nearly every clinical job and volunteer role."
+      "why": "Required for nearly every clinical job and volunteer role.",
+      "steps": [
+        "Find an American Heart Association or Red Cross BLS class; many campuses and hospitals offer them.",
+        "Complete the course and its skills test.",
+        "Save your card and its expiration date, usually two years out, and add it to your resume."
+      ],
+      "doneWhen": "You hold a current BLS card.",
+      "guides": []
     },
     {
       "id": "c-emt",
@@ -2978,7 +3686,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Fastest route to paid patient-care hours."
+      "why": "Fastest route to paid patient-care hours.",
+      "steps": [
+        "Find a state-approved EMT course; some campus EMS squads sponsor training.",
+        "Complete the course and its clinical hours.",
+        "Pass the certification exam your course prepares you for and apply for New Jersey certification.",
+        "Join a campus or local squad to start logging patient-care hours."
+      ],
+      "doneWhen": "You're a certified EMT.",
+      "guides": []
     },
     {
       "id": "c-rbt",
@@ -3015,7 +3731,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Common paid clinical job for psychology students."
+      "why": "Common paid clinical job for psychology students.",
+      "steps": [
+        "Complete the 40-hour RBT training; many programs are online.",
+        "Complete the competency assessment with a qualified supervisor.",
+        "Apply to the BACB, pass the background check, and pass the RBT exam.",
+        "Work in a supervised role at an ABA provider to keep the credential active."
+      ],
+      "doneWhen": "You hold the RBT credential.",
+      "guides": []
     },
     {
       "id": "c-pharm-tech",
@@ -3052,7 +3776,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Paid pharmacy experience while in school."
+      "why": "Paid pharmacy experience while in school.",
+      "steps": [
+        "Complete a pharmacy technician training program or the required work experience.",
+        "Register for the PTCB's CPhT exam.",
+        "Study with the official content outline and practice exams.",
+        "Pass the exam and register as a pharmacy technician with the New Jersey Board of Pharmacy."
+      ],
+      "doneWhen": "You're a certified pharmacy technician.",
+      "guides": []
     },
     {
       "id": "c-aphr",
@@ -3090,7 +3822,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Entry-level HR certification with no experience requirement."
+      "why": "Entry-level HR certification with no experience requirement.",
+      "steps": [
+        "Read HRCI's aPHR eligibility and exam outline; no HR experience is required.",
+        "Study with a prep course for 6–10 weeks.",
+        "Schedule and pass the exam.",
+        "Add it to your resume and LinkedIn."
+      ],
+      "doneWhen": "You've earned the aPHR.",
+      "guides": []
     },
     {
       "id": "c-ches",
@@ -3126,7 +3866,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Recognized credential for health education roles."
+      "why": "Recognized credential for health education roles.",
+      "steps": [
+        "Check that your coursework meets NCHEC's eligibility requirements.",
+        "Register for the CHES exam window that follows your graduation.",
+        "Study with the official exam outline and practice questions.",
+        "Sit for the exam."
+      ],
+      "doneWhen": "You've sat for the CHES exam.",
+      "guides": []
     },
     {
       "id": "c-fitness",
@@ -3163,7 +3911,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Required for many fitness and strength roles."
+      "why": "Required for many fitness and strength roles.",
+      "steps": [
+        "Choose ACSM or NSCA based on the jobs you want: clinical, personal training, or strength and conditioning.",
+        "Check eligibility; some certifications require a degree and current CPR/AED.",
+        "Study with the certifying body's official materials.",
+        "Schedule and pass the exam."
+      ],
+      "doneWhen": "You hold an ACSM or NSCA certification.",
+      "guides": []
     },
     {
       "id": "c-security-plus",
@@ -3201,7 +3957,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Baseline credential for security and many government IT jobs."
+      "why": "Baseline credential for security and many government IT jobs.",
+      "steps": [
+        "Choose ISC2 Certified in Cybersecurity (entry level) or CompTIA Security+.",
+        "Study the official exam objectives and do hands-on labs alongside.",
+        "Take practice exams until you score comfortably above passing.",
+        "Schedule and pass the exam, then add it to your resume."
+      ],
+      "doneWhen": "You hold Security+ or ISC2 CC.",
+      "guides": []
     },
     {
       "id": "c-cloud",
@@ -3237,7 +4001,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Cloud shows up in most modern software and IT roles."
+      "why": "Cloud shows up in most modern software and IT roles.",
+      "steps": [
+        "Sign up for AWS's free Cloud Practitioner training through AWS Educate or AWS Skill Builder.",
+        "Learn the core services (compute, storage, databases), pricing, and security basics.",
+        "Practice in the free tier by deploying a small project.",
+        "Take practice questions, then schedule and pass the exam."
+      ],
+      "doneWhen": "You hold the AWS Certified Cloud Practitioner or a similar entry cloud certification.",
+      "guides": []
     },
     {
       "id": "c-google-cert",
@@ -3275,7 +4047,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Structured, recognized skill credential in data, IT, UX, or project management."
+      "why": "Structured, recognized skill credential in data, IT, UX, or project management.",
+      "steps": [
+        "Pick the Google Career Certificate that fits your goals, such as Data Analytics, IT Support, UX Design, or Project Management.",
+        "Check whether your school or library offers free access.",
+        "Complete the courses and graded projects at a steady weekly pace.",
+        "Add the certificate and its portfolio project to LinkedIn and your resume."
+      ],
+      "doneWhen": "You've completed a Google Career Certificate.",
+      "guides": []
     },
     {
       "id": "c-cswa",
@@ -3313,7 +4093,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Proves CAD skill on paper."
+      "why": "Proves CAD skill on paper.",
+      "steps": [
+        "Get SOLIDWORKS student access.",
+        "Review the CSWA exam topics and sample exam.",
+        "Practice modeling parts and assemblies under time pressure.",
+        "Take and pass the CSWA exam."
+      ],
+      "doneWhen": "You hold the CSWA.",
+      "guides": []
     },
     {
       "id": "c-fe",
@@ -3350,7 +4138,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "First step to a PE license; easiest while coursework is fresh."
+      "why": "First step to a PE license; easiest while coursework is fresh.",
+      "steps": [
+        "Create an NCEES account and read the FE exam specifications for your discipline.",
+        "Schedule the exam for your final year or soon after graduation, while the material is fresh.",
+        "Study with the official NCEES practice exam and the FE reference handbook.",
+        "Take the exam, then apply for Engineer in Training status once you pass."
+      ],
+      "doneWhen": "You've taken the FE exam.",
+      "guides": []
     },
     {
       "id": "c-lean",
@@ -3388,7 +4184,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Valued in manufacturing and operations roles."
+      "why": "Valued in manufacturing and operations roles.",
+      "steps": [
+        "Choose a reputable Green Belt program; some schools and employers sponsor them.",
+        "Learn DMAIC, process mapping, and basic statistics.",
+        "Complete a real improvement project if your program requires one.",
+        "Pass the exam and add the certification to your resume."
+      ],
+      "doneWhen": "You hold a Lean Six Sigma Green Belt.",
+      "guides": []
     },
     {
       "id": "c-excel-mos",
@@ -3431,7 +4235,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Turns 'proficient in Excel' into something verifiable."
+      "why": "Turns 'proficient in Excel' into something verifiable.",
+      "steps": [
+        "Ask whether your school offers free Microsoft Office Specialist exams.",
+        "Review the official Excel exam objectives.",
+        "Practice with official practice tests until you're comfortable with every objective.",
+        "Schedule and pass the exam."
+      ],
+      "doneWhen": "You hold Microsoft Office Specialist: Excel.",
+      "guides": []
     },
     {
       "id": "c-citi",
@@ -3470,7 +4282,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Required before joining most human-subjects labs."
+      "why": "Required before joining most human-subjects labs.",
+      "steps": [
+        "Ask your lab or IRB which CITI courses you need, usually human subjects research.",
+        "Log in to CITI through your school.",
+        "Complete the modules and quizzes.",
+        "Save the completion certificate and send it to your lab."
+      ],
+      "doneWhen": "You've completed the required CITI training and shared the certificate.",
+      "guides": []
     },
     {
       "id": "a-cpa-plan",
@@ -3506,7 +4326,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "NJ requires 150 credits; deciding early saves a year or a lot of money."
+      "why": "NJ requires 150 credits; deciding early saves a year or a lot of money.",
+      "steps": [
+        "Read New Jersey's current CPA education requirements; check whether the 150-hour rule or a newer alternative applies to you.",
+        "Count the credits you'll have at graduation and how many more you need.",
+        "Compare options with your advisor: a master's in accounting, a minor, summer courses, or extra credits during your degree.",
+        "Write the plan down by semester with costs, and confirm it covers the required accounting and business courses."
+      ],
+      "doneWhen": "You have a written, semester-by-semester plan to meet New Jersey's CPA education requirement.",
+      "guides": []
     },
     {
       "id": "a-certificate-minor",
@@ -3538,7 +4366,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A targeted minor can cover what your major doesn't."
+      "why": "A targeted minor can cover what your major doesn't.",
+      "steps": [
+        "Name the gap you want to fill for your target career, such as data skills, writing, or a language.",
+        "Look up the minors and certificates at your school that cover it and how many credits each takes.",
+        "Check with your advisor how it fits your remaining semesters without delaying graduation.",
+        "Declare it and put its courses into your semester plan."
+      ],
+      "doneWhen": "The minor or certificate is declared and its courses are in your semester plan.",
+      "guides": []
     },
     {
       "id": "a-eagleton",
@@ -3578,7 +4414,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Selective politics program with a stipend and placement network."
+      "why": "Selective politics program with a stipend and placement network.",
+      "steps": [
+        "Read the Eagleton Undergraduate Associates requirements and timeline; applications open in early fall.",
+        "Talk to a past associate or Eagleton staff about what the program looks for.",
+        "Ask a professor for a recommendation at least 3 weeks before the deadline.",
+        "Draft your essays, get them reviewed at your writing center, and submit on time."
+      ],
+      "doneWhen": "Your application is submitted before the deadline.",
+      "guides": [
+        "pitt-rec-letters"
+      ]
     },
     {
       "id": "a-fellowship-advising",
@@ -3613,7 +4459,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Many awards need a campus nomination a year ahead."
+      "why": "Many awards need a campus nomination a year ahead.",
+      "steps": [
+        "Browse your fellowships office's list of national awards and note 2–3 that fit your goals.",
+        "Book an appointment and bring your resume and a few sentences on what you want to do.",
+        "Ask about the campus deadlines, which come weeks before the national ones.",
+        "Leave with a timeline for any award you'll apply to."
+      ],
+      "doneWhen": "You've met your fellowships office and have a timeline for at least one award.",
+      "guides": []
     },
     {
       "id": "a-fellowship-apps",
@@ -3654,7 +4508,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Even unsuccessful applications sharpen your story for everything else."
+      "why": "Even unsuccessful applications sharpen your story for everything else.",
+      "steps": [
+        "Meet your fellowships office at least 6 months before the national deadline.",
+        "Read past winners' profiles and the selection criteria carefully.",
+        "Ask recommenders early and give them your materials.",
+        "Write and revise your essays with your fellowships advisor to meet the campus deadline.",
+        "Submit, and practice for interviews if you advance."
+      ],
+      "doneWhen": "You've submitted a national fellowship application.",
+      "guides": [
+        "pitt-rec-letters"
+      ]
     },
     {
       "id": "a-test-prep",
@@ -3688,7 +4553,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Gate for professional and graduate school."
+      "why": "Gate for professional and graduate school.",
+      "steps": [
+        "Check test dates and score deadlines for your programs and pick a date that leaves time for a retake.",
+        "Take a free official practice test to get your baseline score.",
+        "Make a study plan (often 2–4 months at 10–15 hours a week) built around your weakest sections.",
+        "Use the test maker's official materials first, and take a full practice test every 2–3 weeks.",
+        "If cost is a barrier, apply for the test's fee assistance program before you register."
+      ],
+      "doneWhen": "You've taken the exam, or you're registered with practice scores in your target programs' range.",
+      "guides": [
+        "aamc-mcat-free",
+        "ets-gre-prepare"
+      ]
     },
     {
       "id": "a-letters",
@@ -3721,7 +4598,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Letter writers need months of notice and real knowledge of your work."
+      "why": "Letter writers need months of notice and real knowledge of your work.",
+      "steps": [
+        "Pick 3 people who know your work well: ideally two professors and one supervisor or research mentor.",
+        "Ask each at least 4–6 weeks before your first deadline whether they can write a strong letter.",
+        "Send them your resume, a draft of your statement, the deadlines, and a short list of what you'd like them to mention.",
+        "Send a polite reminder a week before the deadline and a thank-you note once it's submitted."
+      ],
+      "doneWhen": "Three recommenders have agreed and have everything they need, with deadlines confirmed.",
+      "guides": [
+        "pitt-rec-letters"
+      ]
     },
     {
       "id": "a-grad-list",
@@ -3752,7 +4639,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A balanced list beats applying only to reach schools."
+      "why": "A balanced list beats applying only to reach schools.",
+      "steps": [
+        "Write down what matters most: field, location, cost and funding, program length, and outcomes.",
+        "Research 10–15 programs using their websites and admitted-student data (GPA and test ranges).",
+        "Sort them into reach, target, and likely programs based on how your record compares.",
+        "Narrow to a balanced list you can afford to apply to, often 6–10, and talk it through with an advisor."
+      ],
+      "doneWhen": "You have a balanced, budgeted list of programs with their deadlines.",
+      "guides": [
+        "mit-grad-school"
+      ]
     },
     {
       "id": "a-personal-statement",
@@ -3792,7 +4689,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Takes several drafts; start before senior fall."
+      "why": "Takes several drafts; start before senior fall.",
+      "steps": [
+        "Read each program's prompt and note what it asks for (your story, your goals, your fit).",
+        "Brainstorm 3–4 experiences that show why you want this path, then choose one theme that ties them together.",
+        "Write a full rough draft without worrying about length.",
+        "Get feedback from your writing center and a pre-professional or faculty advisor, and revise at least twice.",
+        "Tailor the final version to each program and proofread it aloud."
+      ],
+      "doneWhen": "You have a final statement, reviewed by at least two people, tailored to each program.",
+      "guides": [
+        "owl-personal-statement"
+      ]
     },
     {
       "id": "a-nclex-prep",
@@ -3828,7 +4736,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Licensure gate after graduation."
+      "why": "Licensure gate after graduation.",
+      "steps": [
+        "Read the official NCLEX candidate information so you know the format and how registration works.",
+        "Start practice questions in your final year at a steady weekly pace.",
+        "Track your weak areas and review them with your nursing program's prep resources.",
+        "As graduation nears, apply to the New Jersey Board of Nursing and register for the exam with Pearson VUE."
+      ],
+      "doneWhen": "You've applied to the board, registered for the NCLEX, and your practice results show you're ready.",
+      "guides": []
     },
     {
       "id": "a-residency-plan",
@@ -3864,7 +4780,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Each route has different deadlines and experiences to build."
+      "why": "Each route has different deadlines and experiences to build.",
+      "steps": [
+        "List the paths you're weighing: residency, industry, and community or hospital practice.",
+        "Talk to at least one pharmacist in each path about their day and how they got there.",
+        "If residency appeals, read the ASHP residency process and note its timeline for your final year.",
+        "Decide by the fall of your next-to-last year so you can plan rotations and applications."
+      ],
+      "doneWhen": "You've chosen a path and planned your rotations and applications around it.",
+      "guides": []
     },
     {
       "id": "ap-scholarships",
@@ -3906,7 +4830,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Free money; many awards get few applicants."
+      "why": "Free money; many awards get few applicants.",
+      "steps": [
+        "Search free sources: your school's scholarship site, professional societies, community groups, and the scholarships linked here.",
+        "Make a spreadsheet of 10 options with deadlines, requirements, and essay prompts.",
+        "Write one strong base essay you can adapt for each.",
+        "Apply to at least 5, starting with the ones that fit you best.",
+        "Never pay to apply; skip any 'scholarship' that asks for a fee."
+      ],
+      "doneWhen": "You've submitted 5 outside scholarship applications.",
+      "guides": [
+        "studentaid-scams"
+      ]
     },
     {
       "id": "ap-early-programs",
@@ -3948,7 +4883,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "These programs feed directly into the competitive junior internships."
+      "why": "These programs feed directly into the competitive junior internships.",
+      "steps": [
+        "Research early-career programs for first- and second-year students in your field, such as SEO, MLT, INROADS, and company programs.",
+        "Note their deadlines, which are often in the fall for the following summer.",
+        "Prepare your resume and short answers about your goals.",
+        "Apply to 3–5 programs and track their status."
+      ],
+      "doneWhen": "You've applied to at least 3 early-career programs.",
+      "guides": [
+        "mit-internship-search"
+      ]
     },
     {
       "id": "ap-research-apps",
@@ -3990,7 +4935,17 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Deadlines come months before summer."
+      "why": "Deadlines come months before summer.",
+      "steps": [
+        "Search NSF REU listings and the other programs here for your field, and note deadlines (usually December to February).",
+        "Ask 2 professors for letters at least 4 weeks ahead.",
+        "Write a research statement: what interests you, what you've done, and what you hope to learn.",
+        "Apply to 5–10 programs to improve your odds."
+      ],
+      "doneWhen": "You've applied to at least 5 summer research programs.",
+      "guides": [
+        "pitt-rec-letters"
+      ]
     },
     {
       "id": "ap-internship-early",
@@ -4031,7 +4986,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Sophomore summer experience is what makes junior internships winnable."
+      "why": "Sophomore summer experience is what makes junior internships winnable.",
+      "steps": [
+        "Read a first- and second-year internship search guide.",
+        "Set up Handshake and LinkedIn job alerts for internships in your field that are open to sophomores.",
+        "Tailor your resume to each type of role you're targeting.",
+        "Apply to 15 or more, tracking where and when you applied in a spreadsheet.",
+        "Follow up with any contacts you have at those companies."
+      ],
+      "doneWhen": "You've applied to 15+ summer opportunities and tracked them.",
+      "guides": [
+        "mit-internship-search",
+        "linkedin-job-alerts"
+      ]
     },
     {
       "id": "ap-internship-target",
@@ -4074,7 +5041,20 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "The main recruiting window for full-time offers."
+      "why": "The main recruiting window for full-time offers.",
+      "steps": [
+        "Start in late summer before junior year, when many large employers open applications.",
+        "Build a list of 30+ target roles and set job alerts for each company.",
+        "Ask alumni at your top companies for a conversation and, if it goes well, a referral.",
+        "Apply with a tailored resume (and cover letter when asked) and prepare STAR stories for interviews.",
+        "Track every application and follow up after interviews."
+      ],
+      "doneWhen": "You've submitted 30+ applications to target internships.",
+      "guides": [
+        "linkedin-job-alerts",
+        "mit-star-interview",
+        "tufts-info-interview"
+      ]
     },
     {
       "id": "ap-federal",
@@ -4111,7 +5091,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Federal hiring uses its own resume rules and timelines."
+      "why": "Federal hiring uses its own resume rules and timelines.",
+      "steps": [
+        "Create a USAJOBS profile and save searches for internships and Pathways roles.",
+        "Build a federal-style resume with dates, hours per week, and detailed duties; it's longer than a private-sector resume.",
+        "Read each announcement's qualifications and use matching wording in your resume.",
+        "Apply well before announcements close; some close early once they get enough applicants."
+      ],
+      "doneWhen": "You've applied to federal internships on USAJOBS.",
+      "guides": []
     },
     {
       "id": "ap-fulltime",
@@ -4153,7 +5141,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Start in senior fall; many offers go out before spring."
+      "why": "Start in senior fall; many offers go out before spring.",
+      "steps": [
+        "Start in the fall of senior year (earlier in finance and consulting), and if you interned, ask about a return offer.",
+        "Pick 2–3 role types and make a list of target employers.",
+        "Set job alerts, reach out to alumni, and apply steadily every week.",
+        "Practice interviews with your career center and prepare STAR stories.",
+        "Track every application and follow up."
+      ],
+      "doneWhen": "You've accepted a full-time offer.",
+      "guides": [
+        "mit-job-search-tasks",
+        "mit-star-interview"
+      ]
     },
     {
       "id": "ap-grad-apps",
@@ -4188,7 +5188,19 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Most deadlines fall between September and January of senior year."
+      "why": "Most deadlines fall between September and January of senior year.",
+      "steps": [
+        "Make a calendar of every program's deadlines and requirements.",
+        "Order transcripts and send test scores early.",
+        "Confirm your recommenders have everything they need.",
+        "Tailor your statement to each program and proofread everything.",
+        "Ask about application fee waivers before paying."
+      ],
+      "doneWhen": "All your graduate or professional school applications are submitted.",
+      "guides": [
+        "mit-grad-school",
+        "owl-personal-statement"
+      ]
     },
     {
       "id": "ap-negotiate",
@@ -4228,7 +5240,18 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Many entry-level offers have room to negotiate; few graduates ask."
+      "why": "Many entry-level offers have room to negotiate; few graduates ask.",
+      "steps": [
+        "Get every offer in writing and ask when they need your answer.",
+        "Research pay for the role and city using salary sites and your career center's data.",
+        "Compare the whole package: salary, bonus, benefits, location, growth, and start date.",
+        "Practice with a career advisor, then ask politely for what you want, with evidence.",
+        "Get the final terms in writing before you accept, then withdraw from your other processes."
+      ],
+      "doneWhen": "You've compared your offers and accepted one on the best terms you could reach.",
+      "guides": [
+        "mit-negotiation"
+      ]
     },
     {
       "id": "e-pack-competition",
@@ -4268,7 +5291,15 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "A finished package design is the portfolio piece packaging recruiters ask about."
+      "why": "A finished package design is the portfolio piece packaging recruiters ask about.",
+      "steps": [
+        "Look up current student packaging competitions (IoPP AmeriStar Student, PPA, and FPA) and their deadlines.",
+        "Form a team or work solo, and pick a real product with a packaging problem.",
+        "Design, prototype, and test your package against the competition's criteria.",
+        "Submit your entry with clear photos and a write-up, and add it to your portfolio."
+      ],
+      "doneWhen": "You've submitted an entry to a student packaging competition.",
+      "guides": []
     },
     {
       "id": "a-packaging-certificate",
@@ -4305,7 +5336,14 @@
       "integrated": true,
       "satisfies": [],
       "requires": [],
-      "why": "Four packaging courses open packaging and consumer-products roles to engineers in other majors."
+      "why": "Four packaging courses open packaging and consumer-products roles to engineers in other majors.",
+      "steps": [
+        "Take Introduction to Packaging Engineering (14:440:301), the required first course.",
+        "Plan three more packaging courses into your remaining semesters with your advisor.",
+        "Confirm with the packaging program how to declare the certificate."
+      ],
+      "doneWhen": "You've completed or scheduled all four packaging courses and declared the certificate.",
+      "guides": []
     }
   ]
 }

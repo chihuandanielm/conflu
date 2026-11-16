@@ -37,7 +37,7 @@ All files live in `data/`. `scripts/validate.mjs` enforces every cross-reference
 | `goals.json` | Milestones the engine schedules | 111 |
 | `tracks.json` | Career targets ("end goals") that reweight goals | 28 |
 | `intake.json` | Intake questions and how each answer maps to goals | 44 experience, 18 skills, 15 credentials |
-| `resources/*.json` | Programs, orgs, tools, and offices attached to goals. Every `scope: "rutgers"` resource lists the `campuses` whose students can use it (`nb`, `newark`, `camden`, or `all`) | 339 |
+| `resources/*.json` | Programs, orgs, tools, and offices attached to goals. Every `scope: "rutgers"` resource lists the `campuses` whose students can use it (`nb`, `newark`, `camden`, or `all`). `guides.json` holds 30 how-to guides | 369 |
 | `vocab.json` | Allowed values for resource fields | — |
 | `version.json` | Data version stamped into every plan | — |
 
@@ -74,6 +74,11 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `requires` | Legal eligibility: `us-citizen-or-pr`, `not-international` |
 | `resources` | Resource ids shown on the goal's card |
 | `why` | One-sentence reason always shown last |
+| `steps` | 3–6 concrete actions, in order: what the student actually does (display only) |
+| `doneWhen` | One sentence saying how the student knows it's finished (display only) |
+| `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
+
+`steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "Your next moves", and the steps in the PDF), so a plan says what to do, not only why.
 
 ### 2.3 Track (career target)
 

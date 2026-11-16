@@ -11,6 +11,7 @@ const majorIds = new Set(majors.map((m) => m.id));
 const campusIds = JSON.parse(readFileSync(join(root, "data/campuses.json"), "utf8")).campuses.map((c) => c.id);
 const errors = [];
 const seen = new Map();
+const resById = new Map();
 let total = 0;
 
 const resDir = join(root, "data/resources");
@@ -22,6 +23,7 @@ for (const file of readdirSync(resDir).filter((f) => f.endsWith(".json"))) {
     if (!/^[a-z0-9-]+$/.test(r.id)) errors.push(`${at}: id must be kebab-case`);
     if (seen.has(r.id)) errors.push(`${at}: duplicate id (also in ${seen.get(r.id)})`);
     seen.set(r.id, file);
+    resById.set(r.id, r);
     for (const k of ["name", "type", "scope", "summary", "url", "status"]) if (!r[k]) errors.push(`${at}: missing ${k}`);
     if (!vocab.types.includes(r.type)) errors.push(`${at}: unknown type "${r.type}"`);
     if (!vocab.scopes.includes(r.scope)) errors.push(`${at}: unknown scope "${r.scope}"`);
@@ -88,6 +90,16 @@ for (const o of intake.experience) {
   if (n !== 1) errors.push(`ui/intake › experience option ${o.id} is in ${n} groups (needs exactly 1)`);
 }
 for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
+// Every goal says what to do: 3–6 steps, a done-when line, and guides any campus can open (test/goals.test.ts checks the same).
+for (const g of goals) {
+  if (!Array.isArray(g.steps) || g.steps.length < 3 || g.steps.length > 6) errors.push(`goals › ${g.id}: needs 3–6 steps`);
+  if (typeof g.doneWhen !== "string" || g.doneWhen.length < 15) errors.push(`goals › ${g.id}: needs a doneWhen line`);
+  for (const id of g.guides ?? []) {
+    const r = resById.get(id);
+    if (!r) errors.push(`goals › ${g.id}: unknown guide ${id}`);
+    else if (r.scope === "rutgers") errors.push(`goals › ${g.id}: guide ${id} must be usable at every campus`);
+  }
+}
 const expIds = new Set(intake.experience.map((o) => o.id));
 for (const g of ui.experienceGroups) if (!g.label || !g.hint) errors.push(`ui/intake › experience group ${g.id} needs a label and a hint`);
 for (const o of intake.experience) if (!ui.experienceKeywords?.[o.id]) errors.push(`ui/intake › experience option ${o.id} has no search keywords`);

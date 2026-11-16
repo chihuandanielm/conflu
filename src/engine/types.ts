@@ -25,6 +25,10 @@ export interface Goal {
   satisfies: string[];
   requires?: string[];         // legal eligibility: "us-citizen-or-pr" | "not-international"         // completing this goal also completes these (a co-op covers the target internship)
   why: string;
+  /** What to do, in order (3–6 steps), how the student knows it's done, and how-to guide resource ids. Display only: the engine never reads these. */
+  steps?: string[];
+  doneWhen?: string;
+  guides?: string[];
 }
 
 export interface Track {

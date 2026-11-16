@@ -87,6 +87,9 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   const drawer = page.getByRole("dialog");
   await expect(drawer.getByRole("heading", { name: title })).toBeVisible();
   await expect(drawer.getByText("Why it's in your plan")).toBeVisible();
+  await expect(drawer.getByRole("heading", { name: "What to do" })).toBeVisible();
+  await drawer.getByRole("checkbox").first().check();
+  await expect(drawer.getByText(/^1 of \d+ done$/)).toBeVisible();
   await drawer.getByRole("button", { name: "Mark as done" }).click();
   await expect(drawer).toBeHidden();
 

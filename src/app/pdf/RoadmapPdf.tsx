@@ -3,6 +3,7 @@
 import { Document, Font, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { Plan, PlanInput } from "../../engine/types.ts";
 import { contactParts } from "../resources/format.ts";
+import { howTo } from "../state/steps.ts";
 import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
 
 export interface FontFiles { regular: string; semibold: string; mono: string }
@@ -98,6 +99,8 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
           <View key={it.goalId} style={s.item} wrap={false}>
             <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h this term{it.gate ? " · Must-do" : ""}</Text></Text>
             <Text style={s.why}>{it.why[0]}</Text>
+            {howTo(it.goalId).steps.map((st, i) => <Text key={st} style={{ fontSize: 9, marginTop: 1 }}>{i + 1}. {st}</Text>)}
+            {howTo(it.goalId).doneWhen && <Text style={[s.small, { marginTop: 2 }]}>Done when: {howTo(it.goalId).doneWhen}</Text>}
             {it.resources[0] && <Text style={{ marginTop: 2 }}>Start with: {it.resources[0].name} <Link src={it.resources[0].url} style={s.link}>{it.resources[0].url}</Link></Text>}
           </View>
         ))}
@@ -111,6 +114,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) 
               <View key={it.goalId} style={s.item} wrap={false}>
                 <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h{it.gate ? " · Must-do" : ""}{it.partial ? " · continues next term" : ""}</Text></Text>
                 <Text style={s.why}>{it.why.join(" ")}</Text>
+                {howTo(it.goalId).steps[0] && <Text style={{ fontSize: 9 }}>First step: {howTo(it.goalId).steps[0]}</Text>}
                 {it.resources.map((r) => (
                   <Text key={r.id} style={{ fontSize: 8.5 }}>{r.name}{r.note ? ` (${r.note})` : ""}: <Link src={r.url} style={s.link}>{r.url}</Link></Text>
                 ))}
