@@ -38,9 +38,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://camden.rutgers.edu/career-advancement-center"
       },
       "tags": []
     },
@@ -78,9 +79,11 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "broken",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 404,
+        "finalUrl": "https://camden.rutgers.edu/career-advancement-centerhandshake",
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": []
     },
@@ -117,9 +120,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -155,9 +158,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -197,9 +200,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -236,9 +239,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -275,9 +278,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -319,9 +322,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -363,9 +366,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://camden.rutgers.edu/sas/trio"
       },
       "tags": []
     },
@@ -405,9 +409,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -446,9 +450,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -489,9 +493,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -529,9 +533,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://camden.rutgers.edu/sas/class"
       },
       "tags": []
     },
@@ -568,9 +573,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -612,9 +617,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -653,9 +658,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -693,9 +698,11 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "broken",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 404,
+        "finalUrl": "https://camden.rutgers.edu/career-advancement-centermedical-school-committee-letter/",
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": []
     },
@@ -732,9 +739,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://polisci.camden.rutgers.edu/pre-law-advising-and-resources/"
       },
       "tags": []
     },
@@ -775,9 +783,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -818,9 +826,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://camden.rutgers.edu/veterans"
       },
       "tags": []
     },
@@ -862,9 +871,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://business.camden.rutgers.edu/seed/internships/"
       },
       "tags": []
     },
@@ -906,9 +916,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -946,9 +956,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -985,9 +995,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     }
