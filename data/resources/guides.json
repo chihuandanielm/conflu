@@ -29,9 +29,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -65,9 +65,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -101,9 +101,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -137,9 +137,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -173,9 +173,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -209,9 +209,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -245,9 +245,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -281,9 +281,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -317,9 +317,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -353,9 +353,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -389,9 +389,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -425,9 +425,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -461,9 +461,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -497,9 +497,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "broken",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 410,
+        "note": "Link failed (HTTP 410); needs a new URL."
       },
       "tags": [
         "guide"
@@ -533,9 +534,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -569,9 +570,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -605,9 +606,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -641,9 +642,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -677,9 +678,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -713,9 +714,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -751,7 +752,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
       },
       "tags": [
         "guide"
@@ -785,9 +787,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -821,9 +823,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -857,9 +859,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://students-residents.aamc.org/aspiring-docs-fact-sheets-get-experience/shadowing-doctor"
       },
       "tags": [
         "guide"
@@ -893,9 +896,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -931,7 +934,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (UND_ERR_HEADERS_OVERFLOW).",
+        "httpStatus": null
       },
       "tags": [
         "guide"
@@ -965,9 +969,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1001,9 +1005,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1037,9 +1041,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://onetinterestprofiler.org/"
       },
       "tags": [
         "guide"
@@ -1075,7 +1080,8 @@
       "verification": {
         "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "note": "Confirmed by search; automated check was refused (bot wall).",
+        "httpStatus": 200
       },
       "tags": [
         "guide"
