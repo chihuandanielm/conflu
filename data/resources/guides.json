@@ -1127,25 +1127,24 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "search-confirmed",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://www.ist.psu.edu/current-students"
+        "note": "Replaced after the 2026-11-16 link check (old page moved); found by web search."
       },
       "tags": [
         "guide"
       ],
-      "id": "psu-career-fair-success",
-      "name": "Penn State IST: Tips for career fair success",
+      "id": "iu-career-fairs-by-year",
+      "name": "IU O’Neill Career Hub: Should I attend the career fairs this year?",
       "type": "guide",
       "majors": [
         "all"
       ],
       "identity": [],
-      "summary": "How to prepare an introduction that says whether you want an internship or a full-time role, research employers, and follow up.",
-      "url": "https://www.ist.psu.edu/current/careers/fairs/success",
+      "summary": "What a career fair is for at each stage: juniors use it to land internships that often turn into job offers, and seniors use it to find employers hiring full-time.",
+      "url": "https://oneillcareerhub.indiana.edu/?p=35697",
       "contact": {
-        "how": "Prepare your intro and target list from it."
+        "how": "Read it, then pick the employers hiring for your year."
       }
     },
     {
@@ -1197,8 +1196,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://www.lebow.drexel.edu/careers-recruiting/center-career-readiness/advising/job-search-timeline"
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1211,7 +1209,7 @@
       ],
       "identity": [],
       "summary": "Month-by-month plan for a senior's full-time search: what to do in summer, fall recruiting, spring, and after graduation.",
-      "url": "https://lebow.drexel.edu/academics/undergraduate/career-services/senior-year-job-search-timeline",
+      "url": "https://www.lebow.drexel.edu/careers-recruiting/center-career-readiness/advising/job-search-timeline",
       "contact": {
         "how": "Copy its fall and spring steps into your calendar."
       }

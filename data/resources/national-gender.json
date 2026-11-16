@@ -19,8 +19,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://amwa-doc.org/members/"
+        "httpStatus": 200
       },
       "tags": [],
       "id": "amwa-premed",
@@ -37,7 +36,7 @@
         "women"
       ],
       "summary": "National network for women in medicine. Its premedical division is open to any student before medical school, with mentoring, conference fee waivers, and premedical awards.",
-      "url": "https://amwa-doc.org/membership-registration",
+      "url": "https://amwa-doc.org/members/",
       "contact": {
         "how": "Join the premedical division, or start or join a campus branch."
       }
@@ -140,8 +139,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://www.wicys.org/benefits/"
+        "httpStatus": 200
       },
       "tags": [],
       "id": "wicys",
@@ -156,7 +154,7 @@
         "women"
       ],
       "summary": "Community for women in cybersecurity. Student members can apply for conference scholarships (applications usually open in the fall) and training scholarships.",
-      "url": "https://www.wicys.org/join",
+      "url": "https://www.wicys.org/benefits/",
       "contact": {
         "how": "Become a student member, then apply for the conference scholarship."
       }
