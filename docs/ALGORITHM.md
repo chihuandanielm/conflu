@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.8 design (engine 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.8 design (engine 0.8.1: goals that need semesters left close before the final semester, and late goals explain themselves for now; 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -75,7 +75,7 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `resources` | Resource ids shown on the goal's card |
 | `why` | One-sentence reason always shown last |
 | `steps` | 3–6 concrete actions, in order: what the student actually does (display only) |
-| `late` | Optional `{ title, steps, doneWhen }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan your remaining semesters", not "sketch a 4-year plan") |
+| `late` | Optional `{ title?, steps?, doneWhen?, why? }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan your remaining semesters", not "sketch a 4-year plan") |
 | `forNextYear` | Yearly goals that pay off the following school year (FAFSA, outside scholarships): no round in the final year |
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
@@ -432,7 +432,8 @@ The PDF follows the same order.
 25. Nothing impossible before graduation is "next in line" for a senior (junior-summer internships, co-ops).
 26. First-year-only goals (first career fair, joining organizations, design teams) stay out of upper-year plans.
 28. Engine 0.8.0 (`test/engine.test.ts`): the semester decides the starting term; no term exceeds the goal cap (must-dos and essential steps aside); the queue never repeats the plan, hides past stages, and names yearly rounds; notices are true for the student; gender answers only add programs for that gender.
-29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 21 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome). Must report 0 issues.
+30. Engine 0.8.1: nothing that needs semesters left (advisor planning, career research, a minor or certificate, an officer term, aid eligibility, starting research, study abroad, fellowship advising) starts in the final semester; a goal done late never explains itself as "early".
+29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 23 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome). Must report 0 issues.
 27. New Brunswick plans match `test/fixtures/nb-plans-baseline.json`, recorded with the current engine by `scripts/nb-baseline.ts`; re-record only for intended planning changes.
 
 Add a test for every bug found in review.

@@ -122,6 +122,15 @@ function check(input: PlanInput, p: Plan, label: string) {
   for (const w of p.warnings) { const m = w.match(/^"(.+?)" is usually required .* has passed/); if (m && p.terms.some((t) => t.items.some((i) => i.title === m[1]))) add("R20 notice contradicts the plan", m[1]); }
   // R21: backward-looking notices ("you missed this").
   for (const w of p.warnings) if (/has passed|too late|missed/i.test(w)) add("R21 backward-looking notice", w.slice(0, 110));
+  // R22: goals that need semesters left (planning, a minor, an officer term, next year's aid, starting research or
+  // study abroad) never start in the final semester before graduation.
+  const NEEDS_TIME = new Set(["f-ces-advisor", "f-explore-careers", "a-certificate-minor", "a-packaging-certificate", "e-org-leadership", "f-aid-check", "e-research-assistant", "e-study-abroad", "a-fellowship-advising"]);
+  const last = p.terms.find((t) => t.code === "4S"), before = p.terms.find((t) => t.code === "4F");
+  for (const it of last?.items ?? []) if (NEEDS_TIME.has(it.goalId) && !before?.items.some((i) => i.goalId === it.goalId)) add("R22 needs-time goal in the final semester", `"${it.title}"`);
+  // R23: a goal done late explaining itself as "early".
+  for (const t of p.terms) for (const it of t.items) if (it.why.some((w) => /Most students do this earlier/.test(w))) {
+    for (const w of it.why) if (/\bearly\b(?!-career|-ID)|start before|before senior fall/i.test(w)) add("R23 late goal explained as early", `${it.goalId}: ${w}`);
+  }
   // R12: Rutgers-only offices shown to a student at another school.
   if (!campus) for (const t of p.terms) for (const it of t.items) for (const r of it.resources) if (res.get(r.id)!.scope === "rutgers") add("R12 Rutgers office for another school", r.id);
 }

@@ -43,7 +43,7 @@
           "1F",
           "1S"
         ],
-        "latest": "4S"
+        "latest": "4F"
       },
       "prereqs": [],
       "season": null,
@@ -56,7 +56,7 @@
         "rutgers-camden-career"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -79,7 +79,8 @@
           "Ask what to prioritize in the semesters you have left: applications, deadlines, and campus programs.",
           "Leave with a short plan through graduation and the date of your next check-in."
         ],
-        "doneWhen": "You have a plan for your remaining semesters, made with an advisor, and a follow-up date on your calendar."
+        "doneWhen": "You have a plan for your remaining semesters, made with an advisor, and a follow-up date on your calendar.",
+        "why": "An advisor can point you to what matters most in the time you have left, and to campus programs you might miss."
       }
     },
     {
@@ -262,7 +263,7 @@
           "1F",
           "2F"
         ],
-        "latest": "3S"
+        "latest": "4F"
       },
       "prereqs": [],
       "season": null,
@@ -275,7 +276,7 @@
         "college-scorecard"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -374,7 +375,7 @@
         "rutgers-camden-eof"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [
@@ -2066,7 +2067,7 @@
       "majors": null,
       "resources": [],
       "splittable": true,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -2197,7 +2198,7 @@
         "rutgers-camden-cs-research-academy"
       ],
       "splittable": true,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -3154,7 +3155,7 @@
         "rutgers-camden-international"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -4371,7 +4372,10 @@
         "Write the plan down by semester with costs, and confirm it covers the required accounting and business courses."
       ],
       "doneWhen": "You have a written, semester-by-semester plan to meet New Jersey's CPA education requirement.",
-      "guides": []
+      "guides": [],
+      "late": {
+        "why": "It decides whether you need a master’s or extra credits after graduation, and how to pay for them."
+      }
     },
     {
       "id": "a-certificate-minor",
@@ -4399,7 +4403,7 @@
       "majors": null,
       "resources": [],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -4492,7 +4496,7 @@
         "rutgers-camden-osdfa"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -4739,7 +4743,10 @@
       "doneWhen": "You have a final statement, reviewed by at least two people, tailored to each program.",
       "guides": [
         "owl-personal-statement"
-      ]
+      ],
+      "late": {
+        "why": "It takes several drafts, so give yourself a few weeks before your first deadline."
+      }
     },
     {
       "id": "a-nclex-prep",
@@ -5184,7 +5191,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Start in senior fall; many offers go out before spring.",
+      "why": "Many offers go out in senior fall, and hiring continues through spring and summer.",
       "steps": [
         "Start in the fall of senior year (earlier in finance and consulting), and if you interned, ask about a return offer.",
         "Pick 2–3 role types and make a list of target employers.",
@@ -5363,7 +5370,7 @@
           "2S",
           "4F"
         ],
-        "latest": "4S"
+        "latest": "4F"
       },
       "prereqs": [],
       "season": null,

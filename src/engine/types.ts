@@ -30,7 +30,7 @@ export interface Goal {
   doneWhen?: string;
   guides?: string[];
   /** Wording for when the goal is scheduled after its ideal window (engine 0.7.0). */
-  late?: { title: string; steps?: string[]; doneWhen?: string };
+  late?: { title?: string; steps?: string[]; doneWhen?: string; why?: string };
   /** Yearly goal that pays off the following school year (FAFSA, outside scholarships): no round in the final year. */
   forNextYear?: boolean;
 }
