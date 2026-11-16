@@ -4,7 +4,7 @@ A free website that turns a college student's answers into a semester-by-semeste
 
 - **One question at a time:** a 3-minute intake, by keyboard or touch, that saves as you go.
 - **Every goal says what to do:** 3–6 concrete steps you can check off, a "done when" line, and how-to guides, so a plan is a path, not only a list of reasons. The results open on one "Start here" step.
-- **A plan sized to your time:** "Start here" (one step), "This term" (three goals, more on request), then an ordered "Up next" queue instead of a list of what didn't fit. Also a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
+- **A plan sized to your time:** the results open on where you're headed (your outcome and milestones), what you have, and what you need, then one "Start here" step, this semester's few goals (capped by your free hours), and "Coming up" with "when you have more time" built in. The full map and all resources are one click away. Also a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
 - **Your resources:** every eligible program tied to the plan, plus everything for the student's major and year, with filters.
 - **A PDF** with real text, generated in the browser.
 - **Private by default:** no accounts, no names, no analytics, no cookies, no third-party requests, no AI. Everything runs in the browser from the JSON data in this repo, and answers stay in `localStorage`.
@@ -31,6 +31,7 @@ The dev server prints a local URL. Other commands:
 | `npm run serve` | Serves `dist/` locally, compressed, the way GitHub Pages does |
 | `npm run validate` | Data integrity: references, vocabularies, UI groupings |
 | `npm test` | Engine invariants and link-checker tests (Node's built-in runner) |
+| `npm run simulate` | 260 varied students across every major and school, checked against 21 rules; CI fails on any issue |
 | `npm run test:ui` | Vitest and Testing Library: components, intake, results, chart layout, resources, PDF, contrast |
 | `npm run e2e` | Playwright: builds for `/conflu/`, serves it like GitHub Pages, runs the full flow on desktop and phone |
 | `npm run samples` | Regenerates `docs/sample-plans.md` |
@@ -78,7 +79,7 @@ Saved state lives only in the browser: `cpm.intake.v1` (answers in progress), `c
 
 ## The data
 
-- **369 resources** (including 30 how-to guides) for 21 majors across three Rutgers campuses: each campus's offices, labs, and programs (tagged with the `campuses` that can use them); NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools.
+- **381 resources** (including 34 how-to guides tagged by year and 8 gender-related programs) for 21 majors across three Rutgers campuses: each campus's offices, labs, and programs (tagged with the `campuses` that can use them); NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools.
 - **111 career goals** and **28 career tracks** (including Packaging Engineering) that the engine turns into a semester-by-semester roadmap.
 
 ## Why JSON files
@@ -113,7 +114,8 @@ data/
     majors-health-life.json                   26
     majors-business.json                      21
     majors-social-communication.json          18
-    guides.json                               30  how-to guides (MIT CAPD, LinkedIn Help, StudentAid.gov, AAMC, ETS, Purdue OWL, others)
+    national-gender.json                       8  women in medicine, law, cybersecurity, science, supply chain, federal law enforcement; men in nursing; LGBTQ+ in tech
+    guides.json                               34  how-to guides, tagged by year (MIT CAPD, LinkedIn Help, StudentAid.gov, AAMC, ETS, Purdue OWL, others)
     majors-packaging.json                      9  Rutgers packaging program, co-op, certificate; IoPP, PMMI, competitions
     skills-tools-basics.json                  12  free certs, FAFSA, O*NET, job boards
 src/types.ts         TypeScript resource types + a forStudent(resources, major, year) filter

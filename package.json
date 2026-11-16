@@ -17,7 +17,8 @@
     "fonts": "node scripts/woff-to-ttf.mjs",
     "predev": "node scripts/woff-to-ttf.mjs",
     "pretest:ui": "node scripts/woff-to-ttf.mjs",
-    "serve": "node scripts/serve.mjs 4321 /"
+    "serve": "node scripts/serve.mjs 4321 /",
+    "simulate": "node --experimental-strip-types scripts/simulate.ts"
   },
   "engines": {
     "node": ">=22.6"

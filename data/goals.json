@@ -180,7 +180,8 @@
       "doneWhen": "You have a one-page PDF resume that someone at your career center or writing center has reviewed.",
       "guides": [
         "mit-resume-first-year",
-        "mit-sample-resumes"
+        "mit-sample-resumes",
+        "mit-resume-toolkit"
       ],
       "late": {
         "title": "Write your resume",
@@ -240,7 +241,8 @@
       ],
       "doneWhen": "Your resume is current, one page, tailored to your next applications, and reviewed this year.",
       "guides": [
-        "mit-sample-resumes"
+        "mit-sample-resumes",
+        "mit-resume-toolkit"
       ]
     },
     {
@@ -2611,7 +2613,8 @@
       ],
       "doneWhen": "You've accepted a summer internship or career-related job.",
       "guides": [
-        "mit-internship-search"
+        "mit-internship-search",
+        "mit-finding-jobs"
       ]
     },
     {
@@ -2660,7 +2663,8 @@
       "doneWhen": "You've accepted an internship in your target field.",
       "guides": [
         "linkedin-job-alerts",
-        "mit-star-interview"
+        "mit-star-interview",
+        "mit-finding-jobs"
       ]
     },
     {
@@ -3347,7 +3351,8 @@
       ],
       "doneWhen": "You've met your target employers, applied to their roles, and followed up with each.",
       "guides": [
-        "mit-career-fair"
+        "mit-career-fair",
+        "iu-career-fairs-by-year"
       ]
     },
     {
@@ -3466,7 +3471,9 @@
       "resources": [
         "mlt-career-prep",
         "seo-career",
-        "inroads"
+        "inroads",
+        "awis",
+        "amwa-premed"
       ],
       "splittable": false,
       "lateOk": true,
@@ -3510,7 +3517,12 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "iopp"
+        "iopp",
+        "amwa-premed",
+        "aamn",
+        "wicys",
+        "awis",
+        "lesbians-who-tech"
       ],
       "splittable": false,
       "lateOk": true,
@@ -3559,7 +3571,8 @@
         "out-for-undergrad",
         "anitab-ghc",
         "tapia",
-        "sacnas"
+        "sacnas",
+        "wicys"
       ],
       "splittable": false,
       "lateOk": true,
@@ -4570,7 +4583,8 @@
       "majors": null,
       "resources": [
         "lawhub",
-        "aamc-premed"
+        "aamc-premed",
+        "ms-jd-prelaw"
       ],
       "splittable": true,
       "lateOk": true,
@@ -4706,7 +4720,8 @@
         "rutgers-newark-preprofessional",
         "rutgers-camden-prehealth",
         "rutgers-camden-osdfa",
-        "rutgers-camden-writing-design-lab"
+        "rutgers-camden-writing-design-lab",
+        "ms-jd-prelaw"
       ],
       "splittable": false,
       "lateOk": true,
@@ -4847,7 +4862,9 @@
         "american-indian-college-fund",
         "thedream-us",
         "iopp-scholarships",
-        "pmmi-foundation-scholarships"
+        "pmmi-foundation-scholarships",
+        "wifle-scholarship",
+        "awesome-scholarship"
       ],
       "splittable": true,
       "lateOk": true,
@@ -5078,7 +5095,8 @@
       "guides": [
         "linkedin-job-alerts",
         "mit-star-interview",
-        "tufts-info-interview"
+        "tufts-info-interview",
+        "mit-finding-jobs"
       ]
     },
     {
@@ -5177,7 +5195,9 @@
       "doneWhen": "You've accepted a full-time offer.",
       "guides": [
         "mit-job-search-tasks",
-        "mit-star-interview"
+        "mit-star-interview",
+        "drexel-senior-search",
+        "mit-finding-jobs"
       ]
     },
     {
@@ -5196,7 +5216,7 @@
           "4F",
           "4F"
         ],
-        "latest": "4S"
+        "latest": "G2"
       },
       "prereqs": [
         "a-grad-list",

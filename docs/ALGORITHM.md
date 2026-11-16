@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.7 design (engine 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.8 design (engine 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -108,6 +108,8 @@ Each experience, skill, or credential answer lists `completes: [{goal, strength}
 | `trackId` | "Where do you want to end up?" (track list filtered by `suggestedMajors`, with "show all" and "Still exploring") | required |
 | `horizon` | 6mo, 1yr, 2yr, graduation, after-graduation | graduation |
 | `today` | Browser clock | — |
+| `semester` | Part of "Where are you in school?" (year and semester in one answer). 1 = fall, 2 = spring; overrides the calendar (off-cycle students). A summer date with a fall answer starts at the summer before it | calendar |
+| `identity` (gender) | The optional gender question adds `women`, `men`, or `nonbinary` to identity; it only surfaces programs and is never in a share link | none |
 | `enrollment` | "Are you a full-time or part-time student?" (full-time = 12+ credits a term). Part-time adds a Step 9 note; scheduling is unchanged | full-time |
 | `weeklyHours` | Free hours a week outside class (after classes, studying, work, and family), 2/5/10/15/20 | 5 |
 | `summer` | full / part / none | full |
@@ -167,6 +169,8 @@ For every goal:
 4. Skip instances already at strength 1.
 5. Send to the **backlog**, with the reason, if: the window opens after the horizon; the window has closed and the goal isn't `lateOk`; or `weight < threshold` (and not a gate).
 
+**Final year (engine 0.8.0).** The track's `outcome` (`job` or `grad-school`) makes `ap-fulltime` or `ap-grad-apps` a must-do once the student is in year 4, and a "by graduation" plan also covers G1–G2, where only goals that run past graduation (and the steps they need) can go.
+
 **Horizon squeeze.** `runway = termsInHorizon / termsUntilGraduation`. `threshold = 0.45 + 0.35 × (1 − runway)`. A shorter horizon raises the bar, so a 1-year plan contains fewer, higher-impact goals instead of a compressed 4-year list.
 
 ### Step 5 — Prerequisite closure
@@ -208,10 +212,12 @@ For each term from now to the horizon:
 
 **Readiness.** A goal is ready when every prerequisite is done, at strength ≥ 0.5, or completed in an earlier term. A quick prerequisite (≤ 3 hours) finished earlier in the **same** term also counts.
 
+**Goal cap (baby steps, engine 0.8.0).** A term holds at most `round(2 + weeklyHours / 4)` goals, between 3 and 6 (2 h/week: 3; 10: 5; 20: 6). Must-dos are never crowded out, and neither are quick steps (≤ 6 hours) that unlock a must-do this term or have a deadline now (FAFSA); these are flagged `essential`. Everything else waits in the queue. A prerequisite ranks at least 0.99× the goal it unlocks when that goal is due now or next term, and a prerequisite of up to 6 hours finished earlier in a term unlocks its dependent that term. A closed prerequisite reopens only for a goal that runs past graduation.
+
 **Placement order inside a term**
 1. **Phase 1** places only tier 0 and tier 1 goals:
    - tier 0: last-chance goals (not `lateOk` and this is their `latest` term)
-   - tier 1: quick wins (flex, ≤ 3 hours, U ≥ 1), except stale catch-ups more than 3 terms past their ideal window
+   - (quick-win priority was removed in 0.8.0: under the goal cap, slots are scarce, so priority decides)
 
 2. **Phase 2** places everything else by tier, then term score, then id (deterministic tie-break).
 
@@ -234,9 +240,11 @@ The plan is sized to the student's free time. Everything else is a queue, not a 
 
 | kind | When | Reason text |
 |---|---|---|
+| `continues` | Started in the plan and runs past its end (0.8.0): shown on the plan item, never repeated in the queue | "Continues after this plan." |
 | `next` | Selected but not placed, and still possible before the plan ends: started, waiting on a prerequisite, or no room yet | "Started in your plan; keep going when you have time." / "Comes after \"X\"." / "Next in line: it moves into your plan as you finish goals or add hours." |
 | `optional` | Below the horizon threshold (Step 4) | "Lower priority for your time frame; add it if you have time." |
-| `not-now` | Outside the time frame, past its window, impossible in any remaining term (a senior has no junior summer left: "Needs a summer before you graduate."), depends on such a goal, needs a full-time summer the student doesn't have, or legally unavailable | The specific reason |
+| `not-now` | After the time frame, needs a full-time summer the student doesn't have, or legally unavailable | The specific reason |
+| `past` | An earlier stage that has passed for this student's year: its window closed, impossible in any remaining term, or depends on such a goal (0.8.0). Never shown, so the page never reads as "you missed this" | Kept for tests |
 
 Order: `next` first (started goals first, then by static score), then `optional` (by weight), then `not-now`; ties by id. A gate that ends up in `next` adds a note: "\"X\" is essential for T and is next in line. To fit it sooner, add a few hours a week or free up a summer." No goal is ever described as "didn't fit", and no hours-needed number is shown.
 
@@ -246,7 +254,8 @@ Order: `next` first (started goals first, then by static score), then `optional`
 - **Limited summers** on a track that runs through a junior-summer internship.
 - **International students:** CPT/OPT authorization note naming the student's campus office (Rutgers Global ISSS, the Rutgers–Newark Office of International Student & Scholar Services, the Rutgers–Camden Office of International Students & Global Programs, or "your school's international student office").
 - **Part-time students:** the plan spaces goals at a full-time pace for their year; plan by credits with an advisor and check whether wanted internships or scholarships require full-time enrollment.
-- **Track recruiting note.**
+- **Track recruiting note**, only until the track's `recruitingNoteUntil` term (0.8.0).
+- **No backward-looking notices** (0.8.0): a must-do from a passed stage gets no notice; gate notices never contradict the plan.
 - **Gate** that can't fit or whose window has closed.
 
 ### Step 10 — Output
@@ -331,15 +340,17 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 
 ## 7. How the site uses the plan
 
-### Results page order (one baby step, then wider)
+### Results page order (engine 0.8.0 redesign; see docs/REDESIGN_PLAN.md)
 
-1. **Start here:** the first unchecked step of this term's highest-scoring goal, with its first guide. One action, nothing else.
-2. **This term:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
-3. **Notices:** amber only for things to act on soon (a required goal whose window passed, a track that limited summers make harder). Queue notes stay blue.
-4. **Semester by semester:** the roadmap.
-5. **Up next:** `backlog` entries of kind `next`, numbered, first five shown: "When you finish a goal or have more time, these join your plan in this order. Nothing here is overdue." `optional` and `not-now` sit in a closed "Not in this plan" list.
+1. **Where you're headed:** the track's outcome in one sentence and up to five milestones (must-dos and the biggest applications and experiences) in order.
+2. **What you have / What you need:** the student's own answers as strengths; up to four needs (unfinished must-dos, then the biggest skill gaps with the goal that builds each).
+3. **Start here:** the first unchecked step of this term's highest-scoring goal, with its first guide. One action, nothing else.
+4. **This semester:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
+   Notices ("good to know") sit under it.
+5. **Coming up:** the next two semesters in full, later ones folded, and "When you have more time" (kind `next`, first three, "Start any of them whenever you like") right there instead of at the bottom.
+6. The full map (chart or list, plus the skills picture) and all resources are their own views, one click away, with "Back to your plan". No tabs inside the plan.
 
-The PDF follows the same order: a Start here box, This term with every step, the semester list (first step each), then Up next as a numbered list.
+The PDF follows the same order.
 
 ### Flow map layout
 
@@ -420,6 +431,8 @@ The PDF follows the same order: a Start here box, This term with every step, the
 24. Goals done late use late wording ("plan your remaining semesters"), in the plan and the queue, with no stale "by year 1 spring" timing.
 25. Nothing impossible before graduation is "next in line" for a senior (junior-summer internships, co-ops).
 26. First-year-only goals (first career fair, joining organizations, design teams) stay out of upper-year plans.
+28. Engine 0.8.0 (`test/engine.test.ts`): the semester decides the starting term; no term exceeds the goal cap (must-dos and essential steps aside); the queue never repeats the plan, hides past stages, and names yearly rounds; notices are true for the student; gender answers only add programs for that gender.
+29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 21 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome). Must report 0 issues.
 27. New Brunswick plans match `test/fixtures/nb-plans-baseline.json`, recorded with the current engine by `scripts/nb-baseline.ts`; re-record only for intended planning changes.
 
 Add a test for every bug found in review.

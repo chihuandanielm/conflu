@@ -1,5 +1,5 @@
 {
-  "_about": "Career targets (the 'end goal' a student picks). boosts override a goal's baseWeight for this track; gates are must-do goals the plan never drops; suppress hides goals that don't fit. competencyTarget is where a ready graduate should be on NACE's 8 competencies (0–1).",
+  "_about": "Career targets (the 'end goal' a student picks). boosts override a goal's baseWeight for this track; gates are must-do goals the plan never drops; suppress hides goals that don't fit. competencyTarget is where a ready graduate should be on NACE's 8 competencies (0–1). outcome: what the track leads to after graduation, 'job' or 'grad-school'; in the final year it decides the must-do (the full-time job search or graduate applications) and the results page's goal card.",
   "tracks": [
     {
       "id": "software-engineering",
@@ -44,7 +44,9 @@
         "e-clinical-hours"
       ],
       "recruitingNote": "Big tech opens junior-summer internships July–September; first/second-year programs open in early fall.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "recruitingNoteUntil": "3F",
+      "outcome": "job"
     },
     {
       "id": "data-analytics",
@@ -88,7 +90,8 @@
       ],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "cybersecurity",
@@ -122,7 +125,8 @@
       ],
       "suppress": [],
       "recruitingNote": "Federal and defense roles need long background checks; apply early.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "ux-design",
@@ -158,7 +162,8 @@
       ],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "mechanical-design",
@@ -194,7 +199,8 @@
       ],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "medical-devices-biotech",
@@ -228,7 +234,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "pharma-industry",
@@ -262,7 +269,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "research-phd",
@@ -308,7 +316,8 @@
         "ap-negotiate"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "grad-school"
     },
     {
       "id": "medicine",
@@ -360,8 +369,10 @@
         "a-letters": "3F 3S-3S 4F",
         "a-grad-list": "3F 3S-3S 4F",
         "a-personal-statement": "3F 3S-3U 4F",
-        "ap-grad-apps": "3S 3U-3U 4F"
-      }
+        "ap-grad-apps": "3S 3U-3U G2"
+      },
+      "recruitingNoteUntil": "3S",
+      "outcome": "grad-school"
     },
     {
       "id": "allied-health",
@@ -402,7 +413,8 @@
         "e-internship-target"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "grad-school"
     },
     {
       "id": "nursing-clinical",
@@ -439,7 +451,8 @@
         "s-dsa"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "pharmacist",
@@ -474,7 +487,8 @@
         "e-internship-target"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "public-health-practice",
@@ -509,7 +523,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "clinical-mental-health",
@@ -546,7 +561,8 @@
         "e-internship-target"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "grad-school"
     },
     {
       "id": "social-work-practice",
@@ -582,7 +598,8 @@
         "s-dsa"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "investment-banking",
@@ -619,7 +636,9 @@
       ],
       "suppress": [],
       "recruitingNote": "Banks recruit for junior summer as early as sophomore winter–spring. Network in sophomore fall.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "recruitingNoteUntil": "2S",
+      "outcome": "job"
     },
     {
       "id": "corporate-finance",
@@ -650,7 +669,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "public-accounting",
@@ -682,7 +702,9 @@
       ],
       "suppress": [],
       "recruitingNote": "Firms recruit for junior-year internships in sophomore spring and junior fall.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "recruitingNoteUntil": "3F",
+      "outcome": "job"
     },
     {
       "id": "marketing-brand",
@@ -714,7 +736,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "supply-chain-ops",
@@ -748,7 +771,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "consulting",
@@ -787,7 +811,8 @@
       ],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "human-resources",
@@ -817,7 +842,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "pr-media",
@@ -851,7 +877,8 @@
       ],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "government-policy",
@@ -886,7 +913,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "law-school",
@@ -926,7 +954,8 @@
         "e-internship-target"
       ],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "grad-school"
     },
     {
       "id": "federal-law-enforcement",
@@ -958,7 +987,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": "Federal internships require background checks that take months; apply 9–12 months ahead.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     },
     {
       "id": "packaging-cpg",
@@ -993,7 +1023,9 @@
       ],
       "suppress": [],
       "recruitingNote": "Packaging co-ops and summer internships at consumer products, food, and pharma companies are posted in early fall; Rutgers packaging students usually plan a co-op semester in junior year.",
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "recruitingNoteUntil": "3F",
+      "outcome": "job"
     },
     {
       "id": "exploring",
@@ -1021,7 +1053,8 @@
       "gates": [],
       "suppress": [],
       "recruitingNote": null,
-      "windowOverrides": {}
+      "windowOverrides": {},
+      "outcome": "job"
     }
   ]
 }
