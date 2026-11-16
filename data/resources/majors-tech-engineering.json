@@ -688,9 +688,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "URL supplied by the site owner; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": []
     },
