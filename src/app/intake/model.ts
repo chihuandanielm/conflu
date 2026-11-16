@@ -95,6 +95,11 @@ export function isAnswered(s: StepId, a: Answers): boolean {
   }
 }
 
+/** Every required step still missing an answer, in order (the review lists them). */
+export function missingSteps(a: Answers): StepId[] {
+  return questionSteps(a).filter((s) => !OPTIONAL.has(s) && !isMulti(s) && !isAnswered(s, a));
+}
+
 /** First step that still needs an answer, for resuming and for guarding the review. */
 export function firstIncomplete(a: Answers): StepId | null {
   for (const s of questionSteps(a)) if (!OPTIONAL.has(s) && !isMulti(s) && !isAnswered(s, a)) return s;

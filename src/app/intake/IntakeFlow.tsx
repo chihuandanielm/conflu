@@ -117,7 +117,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
       onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); }} />;
   } else if (step === "review") {
-    screen = <Review answers={answers} canBuild={!firstIncomplete(answers)} onBack={back}
+    screen = <Review answers={answers} onBack={back}
       onEdit={(s) => dispatch({ type: "go", step: s, returnToReview: true })} onBuild={() => onBuild(answers)} />;
   } else {
     const body = renderStep(step, answers, headingId, choose, (field, id) => dispatch({ type: "toggle", field, id }));

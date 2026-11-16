@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
-import { ArrowLeft, Pencil } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Pencil } from "lucide-react";
 import { intake, uiIntake } from "../data/dataset.ts";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { COPY } from "./copy.ts";
 import {
-  identityLabel, yearTermLabel, majorName, optionLabel, OPTIONAL, questionSteps, trackName, type Answers, type StepId,
+  identityLabel, yearTermLabel, majorName, missingSteps, optionLabel, OPTIONAL, questionSteps, trackName, type Answers, type StepId,
 } from "./model.ts";
 
 const list = (ids: string[], options: { id: string; label: string }[]) =>
@@ -42,9 +42,14 @@ const SHORT: Partial<Record<StepId, string>> = {
   location: "Based in", citizenship: "Citizenship", identity: "About you",
 };
 
-export function Review({ answers, onEdit, onBack, onBuild, canBuild }: {
-  answers: Answers; onEdit: (s: StepId) => void; onBack: () => void; onBuild: () => void; canBuild: boolean;
+/**
+ * Check your answers. Missing required answers are listed at the top and marked in place, and the main button is never
+ * disabled: with something missing, it takes the student straight to the first missing question.
+ */
+export function Review({ answers, onEdit, onBack, onBuild }: {
+  answers: Answers; onEdit: (s: StepId) => void; onBack: () => void; onBuild: () => void;
 }) {
+  const missing = missingSteps(answers);
   const h1 = useRef<HTMLHeadingElement>(null);
   useEffect(() => { h1.current?.focus({ preventScroll: true }); }, []);
   const steps = questionSteps(answers);
@@ -56,25 +61,52 @@ export function Review({ answers, onEdit, onBack, onBuild, canBuild }: {
       <main className="mx-auto w-full max-w-[640px] flex-1 px-4 py-10 sm:px-6">
         <h1 ref={h1} tabIndex={-1} className="text-2xl font-semibold outline-none">Check your answers</h1>
         <p className="mt-2 text-muted">Edit anything that's off, then build your plan.</p>
-        <dl className="mt-8 divide-y divide-border rounded-md border border-border">
-          {steps.map((s) => (
-            <div key={s} className="flex items-start gap-4 px-4 py-3">
-              <dt className="w-32 shrink-0 text-sm text-muted">{SHORT[s]}</dt>
-              <dd className="flex-1 text-sm text-ink">{answerText(s, answers)}</dd>
-              <dd>
-                <button type="button" onClick={() => onEdit(s)}
-                  aria-label={`Edit ${SHORT[s]?.toLowerCase()}: ${COPY[s as keyof typeof COPY].question}`}
-                  className="inline-flex items-center gap-1 rounded-sm px-1 text-sm font-semibold text-blue hover:underline">
-                  <Pencil size={14} aria-hidden="true" /> Edit
-                </button>
-              </dd>
+        {missing.length > 0 && (
+          <div role="alert" className="mt-6 flex gap-3 rounded-md border border-amber/40 bg-amber-tint px-4 py-3 text-sm text-ink">
+            <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-amber" />
+            <div>
+              <p className="font-semibold">
+                {missing.length === 1 ? "1 answer is still needed before we can build your plan." : `${missing.length} answers are still needed before we can build your plan.`}
+              </p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {missing.map((s) => (
+                  <li key={s}>
+                    <button type="button" onClick={() => onEdit(s)} aria-label={`Answer: ${SHORT[s]}`}
+                      className="min-h-10 rounded-md border border-amber/50 bg-bg px-3 font-semibold text-ink hover:bg-surface">
+                      {SHORT[s]}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
+          </div>
+        )}
+        <dl className="mt-8 divide-y divide-border rounded-md border border-border">
+          {steps.map((s) => {
+            const needed = missing.includes(s);
+            return (
+              <div key={s} className={`flex items-start gap-4 px-4 py-3 ${needed ? "bg-amber-tint" : ""}`}>
+                <dt className={`w-32 shrink-0 text-sm ${needed ? "font-semibold text-ink" : "text-muted"}`}>{SHORT[s]}</dt>
+                <dd className="flex-1 text-sm text-ink">
+                  {needed ? <span className="inline-flex items-center gap-1 font-semibold text-ink"><AlertTriangle size={14} aria-hidden="true" className="text-amber" />Needed</span> : answerText(s, answers)}
+                </dd>
+                <dd>
+                  <button type="button" onClick={() => onEdit(s)}
+                    aria-label={`${needed ? "Answer" : "Edit"} ${SHORT[s]?.toLowerCase()}: ${COPY[s as keyof typeof COPY].question}`}
+                    className="inline-flex items-center gap-1 rounded-sm px-1 text-sm font-semibold text-blue hover:underline">
+                    <Pencil size={14} aria-hidden="true" /> {needed ? "Answer" : "Edit"}
+                  </button>
+                </dd>
+              </div>
+            );
+          })}
         </dl>
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <Button variant="secondary" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
           <span className="flex-1" />
-          <Button onClick={onBuild} disabled={!canBuild}>Build my plan</Button>
+          <Button onClick={() => (missing.length ? onEdit(missing[0]) : onBuild())}>
+            {missing.length ? "Answer the missing question first" : "Build my plan"}
+          </Button>
         </div>
       </main>
     </div>
