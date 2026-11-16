@@ -45,7 +45,12 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("radio", { name: "By graduation" }).click();
 
   await expect(heading(page)).toHaveText("What have you already done?");
+  await expect(page.getByRole("button", { name: "None yet, continue" })).toBeVisible();
   await page.getByRole("button", { name: "I have a resume" }).click();
+  await page.getByRole("searchbox", { name: "Search what you've done" }).fill("hack");
+  await page.getByRole("button", { name: "A hackathon" }).click();
+  await expect(page.getByRole("heading", { name: "Your picks (2)" })).toBeVisible();
+  await page.getByRole("button", { name: "Clear search" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
   await expect(heading(page)).toHaveText("Which skills are you comfortable with?");
   await page.getByRole("button", { name: "Python" }).click();

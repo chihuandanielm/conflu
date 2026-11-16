@@ -1,5 +1,5 @@
 {
-  "_about": "UI-only intake content: question copy, the school and co-op questions, and how the experience checklist is grouped. The engine never reads this file. scripts/validate.mjs checks that every experience option belongs to exactly one group. identityLabels gives plain-language labels for intake.json optionalIdentity tags.",
+  "_about": "UI-only intake content: question copy, the school and co-op questions, and the experience step. The engine never reads this file. experienceGroups: the experience tabs (every option in exactly one; hint is the line under the tab buttons). experienceKeywords: everyday words search also matches. experienceFollowUps: options shown only after their starting option is picked. experienceBasics: universal options that fill the Suggested tab after the major's own. experienceSuggested: a hand-picked Suggested list for a major, used instead of the computed one (8 options). scripts/validate.mjs checks all ids. identityLabels gives plain-language labels for intake.json optionalIdentity tags.",
   "school": {
     "question": "Which Rutgers campus are you at?",
     "help": "Your campus decides which majors, offices, and programs show up in your plan.",
@@ -48,33 +48,8 @@
   },
   "experienceGroups": [
     {
-      "id": "getting-started",
-      "label": "Getting started",
-      "options": [
-        "resume",
-        "ces-visit",
-        "handshake",
-        "mock-interview",
-        "scholarship-apps",
-        "test-taken"
-      ]
-    },
-    {
-      "id": "online-presence",
-      "label": "Online presence",
-      "options": [
-        "linkedin",
-        "linkedin-strong",
-        "github",
-        "github-active",
-        "open-source",
-        "portfolio",
-        "writing-clips"
-      ]
-    },
-    {
       "id": "experience",
-      "label": "Experience",
+      "label": "Jobs and activities",
       "options": [
         "job",
         "club",
@@ -93,7 +68,8 @@
         "startup",
         "tutor",
         "pack-competition"
-      ]
+      ],
+      "hint": "Work, clubs, projects, and internships."
     },
     {
       "id": "research-clinical",
@@ -107,7 +83,21 @@
         "externship",
         "pharm-intern",
         "justice"
-      ]
+      ],
+      "hint": "Labs, research programs, shadowing, and patient care."
+    },
+    {
+      "id": "getting-started",
+      "label": "Career basics",
+      "options": [
+        "resume",
+        "ces-visit",
+        "handshake",
+        "mock-interview",
+        "scholarship-apps",
+        "test-taken"
+      ],
+      "hint": "Resume, advising, Handshake, interviews, and applications."
     },
     {
       "id": "networking",
@@ -119,7 +109,22 @@
         "society",
         "conference",
         "recommenders"
-      ]
+      ],
+      "hint": "Career fairs, mentors, and people who know your work."
+    },
+    {
+      "id": "online-presence",
+      "label": "Online presence",
+      "options": [
+        "linkedin",
+        "linkedin-strong",
+        "github",
+        "github-active",
+        "open-source",
+        "portfolio",
+        "writing-clips"
+      ],
+      "hint": "LinkedIn, GitHub, and anything you have published."
     }
   ],
   "identityLabels": {
@@ -144,5 +149,85 @@
     "nj-resident": "New Jersey residents",
     "us-citizen": "U.S. citizens",
     "us-citizen-or-pr": "U.S. citizens and permanent residents"
+  },
+  "experienceKeywords": {
+    "resume": "cv",
+    "ces-visit": "career center advising counselor appointment",
+    "handshake": "job board profile",
+    "mock-interview": "practice interview",
+    "scholarship-apps": "money aid funding",
+    "test-taken": "exam test grad school med law",
+    "linkedin": "social profile",
+    "linkedin-strong": "connections network",
+    "github": "code repo git",
+    "github-active": "code git programming",
+    "open-source": "code github pull request",
+    "portfolio": "website personal site design",
+    "writing-clips": "article journalism blog clips newspaper",
+    "job": "work employment paid retail restaurant",
+    "club": "student org society group",
+    "leader": "president board officer leadership",
+    "volunteer": "service community nonprofit",
+    "project": "side project app code build",
+    "hackathon": "hackru coding competition",
+    "design-team": "solar car robotics formula team",
+    "case-comp": "business consulting competition",
+    "virtual-sim": "forage online simulation",
+    "internship-any": "intern summer job work",
+    "internship-target": "intern summer job work",
+    "coop": "intern coop co op work semester",
+    "government": "intern politics campaign public office",
+    "abroad": "international travel exchange",
+    "startup": "founder entrepreneur business",
+    "tutor": "ta teaching tutoring",
+    "pack-competition": "packaging competition design",
+    "research": "lab research assistant faculty",
+    "summer-research": "reu lab research summer",
+    "thesis": "research paper thesis",
+    "shadowing": "shadow doctor observe",
+    "clinical": "emt cna scribe hospital clinical patient medical",
+    "externship": "intern nursing hospital clinical extern",
+    "pharm-intern": "intern pharmacy pharmacist",
+    "justice": "court police law criminal justice",
+    "career-fair": "fair recruiting employers",
+    "info-interviews": "coffee chat networking alumni",
+    "mentor": "mentorship advisor",
+    "society": "acm ieee professional association club",
+    "conference": "conference event",
+    "recommenders": "recommendation letters faculty professors"
+  },
+  "experienceFollowUps": {
+    "github": [
+      "github-active",
+      "open-source"
+    ],
+    "linkedin": [
+      "linkedin-strong"
+    ],
+    "club": [
+      "leader"
+    ]
+  },
+  "experienceBasics": [
+    "resume",
+    "job",
+    "club",
+    "volunteer",
+    "internship-any",
+    "linkedin",
+    "ces-visit",
+    "career-fair"
+  ],
+  "experienceSuggested": {
+    "psychology": [
+      "research",
+      "volunteer",
+      "clinical",
+      "shadowing",
+      "resume",
+      "job",
+      "club",
+      "internship-any"
+    ]
   }
 }
