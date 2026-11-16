@@ -1127,9 +1127,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Replaced after the 2026-11-16 link check (old page moved); found by web search."
+        "httpStatus": 200,
+        "finalUrl": "https://oneill.indiana.edu/"
       },
       "tags": [
         "guide"
