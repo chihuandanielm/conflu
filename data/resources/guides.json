@@ -1,0 +1,1088 @@
+{
+  "_about": "How-to guides: specific pages that explain how to do a goal's steps (resumes, LinkedIn, interviews, applications). Goals link them in their guides field; the engine never ranks them. Found by web search 2026-11-16.",
+  "resources": [
+    {
+      "id": "mit-resume-first-year",
+      "name": "MIT CAPD: Enhance your resume (first-year guide)",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Step-by-step guide to a first college resume: what to include, what to cut, and how to write bullets.",
+      "url": "https://capd.mit.edu/blog/2023/09/01/enhance-your-resume-a-guide-for-first-year-undergraduates/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it, then draft your resume section by section."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-sample-resumes",
+      "name": "MIT CAPD: Sample resumes and cover letters",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Sample resumes and cover letters from first-years through graduate students, across many career interests.",
+      "url": "https://capd.mit.edu/resources/sample-resumes/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Find a sample close to your year and field and compare it with yours."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-cover-letter",
+      "name": "MIT CAPD: How to write an effective cover letter",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to structure, research, and tailor a cover letter, with samples.",
+      "url": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use its structure for your template."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-elevator-pitch",
+      "name": "MIT CAPD: Develop your elevator pitch",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to build a short, natural introduction for career fairs, networking, and interviews.",
+      "url": "https://capd.mit.edu/resources/develop-your-elevator-pitch/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Draft yours with its outline and practice out loud."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-star-interview",
+      "name": "MIT CAPD: The STAR method for behavioral interviews",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to answer 'Tell me about a time…' questions with Situation, Task, Action, Result, with a worksheet for 3–5 stories.",
+      "url": "https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews",
+      "applyUrl": null,
+      "contact": {
+        "how": "Fill in the worksheet with your own stories."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-career-fair",
+      "name": "MIT CAPD: How first-years can thrive at career fairs",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to prepare for a career fair, approach employers, and follow up, written for students early in college.",
+      "url": "https://capd.mit.edu/resources/how-first-years-can-thrive-at-career-fairs/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it the week before your fair."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-linkedin",
+      "name": "MIT CAPD: Build your LinkedIn profile",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to build a student LinkedIn profile and use it for networking and job searching.",
+      "url": "https://capd.mit.edu/resources/linkedin/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Work through it with your profile open in another tab."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "uw-linkedin-checklist",
+      "name": "University of Washington: LinkedIn profile checklist",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Section-by-section checklist for a complete LinkedIn profile: photo, headline, About, experience, skills, and URL.",
+      "url": "https://careers.uw.edu/resources/linkedin-profile-checklist/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check off each section as you finish it."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "linkedin-job-alerts",
+      "name": "LinkedIn Help: Job alerts",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "LinkedIn's official instructions for turning on job alerts from a search, so new postings come to you.",
+      "url": "https://www.linkedin.com/help/linkedin/answer/a511279",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search for a role, then switch on the job alert toggle."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-how-to-network",
+      "name": "MIT CAPD: How to network",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Where to meet people in your field and how to reach out, including through LinkedIn and alumni.",
+      "url": "https://capd.mit.edu/resources/how-to-network/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Pick two places from it to meet people this month."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "tufts-info-interview",
+      "name": "Tufts Career Center: Career conversations (informational interviews)",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to ask for an informational interview, sample outreach messages, questions to ask, and how to follow up.",
+      "url": "https://careers.tufts.edu/resources/informational-interview/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Adapt its sample message for your first outreach."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-internship-search",
+      "name": "MIT CAPD: First-year and sophomore internship search",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Search strategies for students early in college: where to look, first-year-friendly roles, and networking.",
+      "url": "https://capd.mit.edu/resources/summer-internship-search-strategies-guiding-document/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use its strategies to build your list of places to apply."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-job-search-tasks",
+      "name": "MIT CAPD: Practical tasks for career planning and job searching",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A practical checklist for running a job search alongside classes.",
+      "url": "https://capd.mit.edu/resources/practical-tasks-common-to-career-planning-job-searching/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Turn its tasks into a weekly routine."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-negotiation",
+      "name": "MIT CAPD: Demystifying salary negotiation (5 takeaways from alumni)",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to research pay, judge an offer on more than base salary, and ask for more, from alumni who have done it.",
+      "url": "https://capd.mit.edu/resources/demystifying-the-salary-negotiation-process-5-key-takeaways-from-mit-alumni/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it before you reply to any offer."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mit-grad-school",
+      "name": "MIT CAPD: Apply to graduate school",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Timeline and checklist for applying to graduate and professional school.",
+      "url": "https://capd.mit.edu/resources/apply-to-graduate-school/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Copy its timeline into your calendar."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "emory-handshake-profile",
+      "name": "Emory Career Center: Design an impactful Handshake profile",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "What to put in each Handshake section and how to make your profile visible to employers.",
+      "url": "https://cpd.emory.edu/resources/design-an-impactful-handshake-profile/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Follow it with your Handshake profile open."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "pitt-rec-letters",
+      "name": "Pitt Career Central: Asking faculty for a letter of recommendation",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Whom to ask, how far ahead, what to send your recommenders, and how to follow up.",
+      "url": "https://careercentral.pitt.edu/resources/asking-faculty-for-a-letter-of-recommendation/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use it when you ask each recommender."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "owl-personal-statement",
+      "name": "Purdue OWL: Writing the personal statement",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to answer the prompt, find a theme, and revise a personal statement for graduate or professional school.",
+      "url": "https://owl.purdue.edu/owl/job_search_writing/preparing_an_application/writing_the_personal_statement/index.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it before your first draft."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "owl-memos",
+      "name": "Purdue OWL: Memos",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Memo format and structure: the heading, purpose, key points first, and closing.",
+      "url": "https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing/memos/index.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use it as the template for your memo."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "illinois-emailing-professors",
+      "name": "University of Illinois: Emailing professors about research",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to write a short, specific email asking a professor about joining their research.",
+      "url": "https://ursa.grainger.illinois.edu/emailing-professors/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Model your email on its structure."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "uci-faculty-connections",
+      "name": "UC Irvine Biological Sciences: Building connections with faculty",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to use office hours and follow-ups to build real relationships with professors.",
+      "url": "https://undergraduate.bio.uci.edu/building-connections-with-faculty/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Pick one professor and start this week."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Confirmed by search; automated check was refused (HTTP 403).",
+        "httpStatus": 403
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "fafsa-student-steps",
+      "name": "StudentAid.gov: Steps for students filling out the FAFSA",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The official step-by-step walkthrough of the FAFSA form for students.",
+      "url": "https://studentaid.gov/articles/fafsa-student-steps/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Keep it open while you fill out the form."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "studentaid-scams",
+      "name": "StudentAid.gov: Avoiding scams",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to spot financial aid and scholarship scams. Real aid never charges a fee to apply.",
+      "url": "https://studentaid.gov/resources/scams",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check any unfamiliar offer against it."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "aamc-shadowing",
+      "name": "AAMC: Shadowing a doctor",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The AAMC's guidance on finding physicians to shadow and getting the most from it.",
+      "url": "https://students-residents.aamc.org/aspiring-docs-fact-sheets-get-experience/shadowing-doctor",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use it to plan whom to ask first."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "aamc-mcat-free",
+      "name": "AAMC: Free MCAT planning and study resources",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free official MCAT prep: the study-plan guide, a sample test, and Khan Academy content.",
+      "url": "https://students-residents.aamc.org/prepare-mcat-exam/free-planning-and-study-resources",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with the free sample test for a baseline."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "ets-gre-prepare",
+      "name": "ETS: Prepare for the GRE General Test",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Official free and low-cost GRE prep, including POWERPREP practice tests.",
+      "url": "https://www.ets.org/gre/test-takers/general-test/prepare.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Take a free practice test first."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Confirmed by search; automated check was refused (UND_ERR_HEADERS_OVERFLOW).",
+        "httpStatus": null
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "case-mentor",
+      "name": "Case Western Reserve: Finding a mentor",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How students can find a mentor, make a first low-pressure ask, and keep the relationship going.",
+      "url": "https://case.edu/studentlife/about/mentoring/finding-mentor",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use it to plan your first ask."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "wofford-email-signature",
+      "name": "Wofford Career Center: Professional email signatures in college",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "What to put in a student email signature and how to keep it short.",
+      "url": "https://careercenter.wofford.edu/blog/2023/09/20/how-to-set-up-professional-email-signatures-in-college/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Set yours up in your school email."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mynextmove",
+      "name": "O*NET Interest Profiler",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The Department of Labor’s free interest quiz (formerly on My Next Move) that suggests careers matching what you like to do.",
+      "url": "https://onetinterestprofiler.org/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Take the quiz, then open the careers it suggests."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "github-skills-intro",
+      "name": "GitHub Skills: Introduction to GitHub",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "GitHub's free, hands-on course: branches, commits, and pull requests in under an hour.",
+      "url": "https://github.com/skills/introduction-to-github",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start the course from the repository page."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Confirmed by search; automated check was refused (bot wall).",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    }
+  ]
+}

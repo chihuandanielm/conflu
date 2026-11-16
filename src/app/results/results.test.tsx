@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { emptyAnswers, type Answers } from "../intake/model.ts";
 import { createSaved, type SavedPlan } from "../state/plan.ts";
+import { dataset } from "../data/dataset.ts";
 import { noticeTone } from "./Notices.tsx";
 import { ResultsPage } from "./ResultsPage.tsx";
 
@@ -38,6 +39,32 @@ describe("results page", () => {
     await act(async () => {});
     expect(get().completedGoals).toContain(first.goalId);
     expect(screen.getByRole("heading", { name: "Checked off" })).toBeInTheDocument();
+  });
+
+  it("says what to do: next moves show the next step, and steps check off and are remembered", async () => {
+    localStorage.clear();
+    const { get } = setup();
+    const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
+    const first = within(next).getAllByRole("listitem")[0];
+    const item = get().plan.terms[0].items.find((i) => first.textContent!.startsWith(i.title))!;
+    const goal = dataset.goals.find((g) => g.id === item.goalId.split("@")[0])!;
+    expect(within(first).getByText(goal.steps![0])).toBeInTheDocument();
+    expect(first.textContent).toContain(`Step 1 of ${goal.steps!.length}:`);
+
+    fireEvent.click(within(first).getByRole("button", { name: new RegExp(item.title.replace(/[()]/g, ".")) }));
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).getByRole("heading", { name: "What to do" })).toBeInTheDocument();
+    expect(within(dialog).getByText(goal.doneWhen!)).toBeInTheDocument();
+    const boxes = within(dialog).getAllByRole("checkbox");
+    expect(boxes).toHaveLength(goal.steps!.length);
+    fireEvent.click(boxes[0]);
+    expect(within(dialog).getByText(`1 of ${goal.steps!.length} done`)).toBeInTheDocument();
+    expect(JSON.parse(localStorage.getItem("cpm.steps.v1")!)[item.goalId]).toEqual([0]);
+    expect(first.textContent).toContain(`Step 2 of ${goal.steps!.length}:`);
+    for (const id of goal.guides ?? []) {
+      const r = dataset.resources.find((x) => x.id === id)! as unknown as { name: string };
+      expect(within(dialog).getByRole("link", { name: new RegExp(r.name.replace(/[()*+?.]/g, ".")) })).toBeInTheDocument();
+    }
   });
 
   it("closes the drawer with Escape", async () => {

@@ -16,6 +16,7 @@ import { useMediaQuery } from "./useMediaQuery.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { toPlanInput } from "../intake/model.ts";
 import { shareHash } from "../state/share.ts";
+import { loadSteps, toggleStep } from "../state/steps.ts";
 import { load, save } from "../state/storage.ts";
 
 const RoadmapChart = lazy(() => import("../chart/RoadmapChart.tsx"));
@@ -38,6 +39,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   const { plan, answers } = saved;
   const [open, setOpen] = useState<{ item: PlanItem; term: PlanTerm } | null>(null);
   const [changed, setChanged] = useState<Set<string>>(new Set());
+  const [progress, setProgress] = useState(loadSteps);
+  const onToggleStep = useCallback((goalId: string, i: number) => setProgress((p) => toggleStep(p, goalId, i)), []);
   const [announcement, setAnnouncement] = useState("");
   const h1 = useRef<HTMLHeadingElement>(null);
   useEffect(() => { h1.current?.focus({ preventScroll: true }); }, []);
@@ -150,7 +153,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </div>
         )}
 
-        <NextMoves term={plan.terms[0]} onOpen={openItem} />
+        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} />
 
         <Notices warnings={plan.warnings} dismissed={saved.dismissed}
           onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
@@ -244,7 +247,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
       )}
 
       <AnimatePresence>
-        {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done} />}
+        {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done}
+          progress={progress} onToggleStep={onToggleStep} />}
       </AnimatePresence>
     </div>
   );

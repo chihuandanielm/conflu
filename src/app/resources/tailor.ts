@@ -7,7 +7,7 @@ import type { Resource } from "../../types.ts";
 import { campuses, goals, resources } from "../data/dataset.ts";
 import uiResources from "../../../data/ui/resources.json";
 
-export type GroupId = "programs" | "research" | "aid" | "orgs" | "tools" | "offices";
+export type GroupId = "programs" | "research" | "aid" | "orgs" | "tools" | "offices" | "guides";
 export const GROUPS = uiResources.groups as { id: GroupId; label: string; types: string[] }[];
 const groupOfType = new Map(GROUPS.flatMap((g) => g.types.map((t) => [t, g.id] as const)));
 export const groupOf = (r: Resource): GroupId => groupOfType.get(r.type) ?? "programs";
@@ -44,7 +44,7 @@ export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
   for (const t of plan.terms) for (const it of t.items) planGoalIds.add(it.goalId.split("@")[0]);
   for (const o of plan.ongoing) planGoalIds.add(o.goalId);
   const attached = new Map<string, Set<string>>();
-  for (const gid of planGoalIds) for (const rid of goalById.get(gid)?.resources ?? []) {
+  for (const gid of planGoalIds) for (const rid of [...(goalById.get(gid)?.resources ?? []), ...(goalById.get(gid)?.guides ?? [])]) {
     attached.set(rid, (attached.get(rid) ?? new Set()).add(goalById.get(gid)!.title));
   }
 
@@ -52,7 +52,8 @@ export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
   for (const r of resources) {
     if (r.status === "ended") continue;
     if (!availableAt(r as unknown as ResourceLite, input)) continue; // another campus's office, or Rutgers-only for another school
-    const forMajorYear = (r.majors.includes("all") || r.majors.includes(input.majorId as never)) && r.years.includes(input.year);
+    // How-to guides only show when a goal on the plan uses them; otherwise every student would see all of them.
+    const forMajorYear = r.type !== "guide" && (r.majors.includes("all") || r.majors.includes(input.majorId as never)) && r.years.includes(input.year);
     if (!attached.has(r.id) && !forMajorYear) continue;
     if (!eligibleFor(r as unknown as ResourceLite, identity, input)) continue;
     const forYou = r.identity.some((x) => !LEGAL.has(x) && stated.has(x));

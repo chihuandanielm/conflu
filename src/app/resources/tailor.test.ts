@@ -86,6 +86,16 @@ describe("tailored resources", () => {
     expect(whereLabel({ scope: "national" })).toBe("National");
   });
 
+  it("lists how-to guides only for goals on the plan", () => {
+    const input = base; const plan = buildPlan(input, dataset);
+    const list = tailoredResources(plan, input);
+    const guides = list.filter((t) => t.resource.type === "guide");
+    expect(guides.length).toBeGreaterThan(0);
+    const planGoals = new Set([...plan.terms.flatMap((t) => t.items.map((i) => i.goalId.split("@")[0])), ...plan.ongoing.map((o) => o.goalId)]);
+    for (const t of guides) expect(goals.some((g) => planGoals.has(g.id) && g.guides?.includes(t.resource.id)), t.resource.id).toBe(true);
+    expect(guides.every((t) => t.group === "guides")).toBe(true);
+  });
+
   it("describes who a resource is for", () => {
     const r = dataset.resources.find((x) => x.id === "fafsa")!;
     expect(audience(r as never)).toMatch(/any major/);
