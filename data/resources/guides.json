@@ -1093,9 +1093,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1127,9 +1127,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://www.ist.psu.edu/current-students"
       },
       "tags": [
         "guide"
@@ -1161,9 +1162,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
@@ -1194,9 +1195,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Found by web search; awaiting the next live link check."
+        "httpStatus": 200,
+        "finalUrl": "https://www.lebow.drexel.edu/careers-recruiting/center-career-readiness/advising/job-search-timeline"
       },
       "tags": [
         "guide"
