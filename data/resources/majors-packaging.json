@@ -105,7 +105,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "A packaging credential any Rutgers–New Brunswick student can add: Introduction to Packaging Engineering plus three more packaging courses.",
-      "url": "https://soe.rutgers.edu/oas/packaging",
+      "url": "https://soe.rutgers.edu/academics/majors-and-areas-study/packaging-engineering",
       "applyUrl": null,
       "contact": {
         "how": "Start with Introduction to Packaging Engineering (14:440:301)."
@@ -115,8 +115,7 @@
       "verification": {
         "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": 200,
-        "finalUrl": "https://soe.rutgers.edu/academics/majors-and-areas-study/packaging-engineering"
+        "httpStatus": 200
       },
       "tags": []
     },
