@@ -497,9 +497,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Replaced after the 2026-11-16 link check (old post returned 410); found by web search."
+        "httpStatus": 200
       },
       "tags": [
         "guide"
