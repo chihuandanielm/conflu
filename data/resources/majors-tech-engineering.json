@@ -546,10 +546,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "httpStatus": null,
-        "note": "Site refused the automated check (timed out); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
