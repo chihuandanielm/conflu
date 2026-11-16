@@ -633,10 +633,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
+        "state": "link-checked",
         "checkedOn": "2026-11-16",
-        "note": "Confirmed by search; automated check was refused (HTTP 403).",
-        "httpStatus": 403
+        "httpStatus": 200
       },
       "tags": []
     },
