@@ -8,6 +8,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const vocab = JSON.parse(readFileSync(join(root, "data/vocab.json"), "utf8"));
 const majors = JSON.parse(readFileSync(join(root, "data/majors.json"), "utf8")).majors;
 const majorIds = new Set(majors.map((m) => m.id));
+const campusIds = JSON.parse(readFileSync(join(root, "data/campuses.json"), "utf8")).campuses.map((c) => c.id);
 const errors = [];
 const seen = new Map();
 let total = 0;
@@ -27,6 +28,13 @@ for (const file of readdirSync(resDir).filter((f) => f.endsWith(".json"))) {
     if (!vocab.statuses.includes(r.status)) errors.push(`${at}: unknown status "${r.status}"`);
     if (r.status !== "active" && !r.statusNote) errors.push(`${at}: non-active status needs a statusNote`);
     if (!/^https:\/\//.test(r.url)) errors.push(`${at}: url must start with https://`);
+    if (r.scope === "rutgers") {
+      if (!Array.isArray(r.campuses) || !r.campuses.length) errors.push(`${at}: Rutgers resources need campuses (${campusIds.join(", ")}, or all)`);
+      else {
+        for (const c of r.campuses) if (!vocab.campuses.includes(c)) errors.push(`${at}: unknown campus "${c}"`);
+        if (r.campuses.includes("all") && r.campuses.length > 1) errors.push(`${at}: campuses "all" can't be combined with others`);
+      }
+    } else if (r.campuses) errors.push(`${at}: only Rutgers resources carry campuses`);
     if (r.applyUrl && !/^https:\/\//.test(r.applyUrl)) errors.push(`${at}: applyUrl must start with https://`);
     if (!vocab.verificationStates.includes(r.verification?.state)) errors.push(`${at}: unknown verification state "${r.verification?.state}"`);
     if (!Array.isArray(r.majors) || r.majors.length === 0) errors.push(`${at}: majors must be a non-empty array`);
@@ -90,6 +98,18 @@ for (const v of vocab.pay) { if (!payAll.includes(v)) errors.push(`ui/resources 
 for (const v of vocab.scopes) if (!uiRes.scopeLabels[v]) errors.push(`ui/resources › scope ${v} has no label`);
 for (const v of vocab.seasons) if (!uiRes.seasonLabels[v]) errors.push(`ui/resources › season ${v} has no label`);
 for (const t of vocab.identity) if (!ui.identityLabels[t]) errors.push(`ui/intake › identity ${t} has no label`);
+for (const m of majors) {
+  const at = `majors › ${m.id}`;
+  if (!m.offeredAt || !Object.keys(m.offeredAt).length) errors.push(`${at}: needs offeredAt with at least one campus`);
+  for (const [c, o] of Object.entries(m.offeredAt ?? {})) {
+    if (!campusIds.includes(c)) errors.push(`${at}: unknown campus ${c}`);
+    if (!o.school) errors.push(`${at} › ${c}: missing school`);
+    if (!/^https:\/\//.test(o.url ?? "")) errors.push(`${at} › ${c}: url must start with https://`);
+  }
+}
+for (const c of campusIds) if (!vocab.campuses.includes(c)) errors.push(`campuses: ${c} missing from vocab.campuses`);
+const campusSchools = JSON.parse(readFileSync(join(root, "data/campuses.json"), "utf8")).campuses.map((c) => c.school);
+for (const s of campusSchools) if (!ui.school.options.some((o) => o.id === s)) errors.push(`ui/intake › school options are missing campus ${s}`);
 const uncovered = [...majorIds].filter((m) => !tracks.some((t) => t.suggestedMajors.includes(m)));
 if (uncovered.length) errors.push(`tracks: majors with no suggested track: ${uncovered.join(", ")}`);
 
@@ -98,5 +118,5 @@ if (errors.length) {
   console.error(`\n${errors.length} problem(s) in ${total} resources.`);
   process.exit(1);
 }
-console.log(`OK: ${total} resources, ${majors.length} majors, ${goals.length} goals, ${tracks.length} tracks.`);
+console.log(`OK: ${total} resources, ${majors.length} majors, ${campusIds.length} campuses, ${goals.length} goals, ${tracks.length} tracks.`);
 console.log("Resources reachable per major:", perMajor);

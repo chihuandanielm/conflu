@@ -1,0 +1,995 @@
+{
+  "_about": "Rutgers–Camden offices, programs, and organizations (researched 2026-11-16).",
+  "resources": [
+    {
+      "id": "rutgers-camden-career",
+      "name": "Rutgers–Camden Career Center",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "career-planning",
+        "job-search"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's career office: choosing a major, resume critiques, interview practice, internship and job search, and the Rutgers–Camden Handshake board.",
+      "url": "https://camden.rutgers.edu/career-advancement-center",
+      "applyUrl": null,
+      "contact": {
+        "email": "careercenter@camden.rutgers.edu",
+        "phone": "856-225-6046",
+        "location": "Campus Center, Lower Level, Room 006",
+        "how": "Schedule an appointment through Rutgers–Camden Handshake."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-handshake",
+      "name": "Rutgers–Camden Handshake",
+      "type": "job_board",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "job-search",
+        "internships"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's job and internship database and appointment booking. Students are preloaded; upload a resume (critiqued first) to apply.",
+      "url": "https://camden.rutgers.edu/career-advancement-center/students-alumni/student-guide/online-tools/online-career-resources/handshake",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign in at Rutgers-Camden.joinhandshake.com with your NetID."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-research",
+      "name": "Rutgers–Camden Student Research Support",
+      "type": "directory",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's Research Office help for undergraduates, including the CURCA Hub database of current undergraduate research opportunities searchable by subject.",
+      "url": "https://camden.rutgers.edu/research/student",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search the CURCA Hub, then contact the faculty mentor."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-research-grants",
+      "name": "Rutgers–Camden Undergraduate Research Grants",
+      "type": "grant",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Research and conference-travel grants for Rutgers–Camden undergraduates, including the Chancellor's Grant for Undergraduate Student Research (up to $8,000; recipients present at Research Week).",
+      "url": "https://research.camden.rutgers.edu/grants/undergraduate/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Full-time undergraduates in good standing apply with a faculty mentor."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-u-rise",
+      "name": "U-RISE at Rutgers–Camden",
+      "type": "research_program",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "biological-sciences",
+        "computer-science",
+        "psychology"
+      ],
+      "years": [
+        2,
+        3
+      ],
+      "identity": [
+        "us-citizen-or-pr"
+      ],
+      "interests": [
+        "research",
+        "graduate-school"
+      ],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "NIH-funded program that prepares Rutgers–Camden undergraduates for PhD programs, with a monthly stipend (about $1,114) and partial tuition support.",
+      "url": "https://u-rise.camden.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check the program site for eligibility and the application cycle."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-cs-research-academy",
+      "name": "Rutgers–Camden Computer Science Research Academy",
+      "type": "research_program",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "computer-science"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research",
+        "computer-science"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Department program that gives Rutgers–Camden CS students early access to advanced courses and faculty-mentored research.",
+      "url": "https://cs.camden.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Send an unofficial transcript and a recommendation from a CS professor to the academy director."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-honors-college",
+      "name": "Rutgers–Camden Honors College",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "honors"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Honors community for students in Rutgers–Camden's College of Arts and Sciences, School of Business, and School of Nursing; membership is mostly by invitation.",
+      "url": "https://camden.rutgers.edu/honors-college",
+      "applyUrl": null,
+      "contact": {
+        "how": "Most members are invited at admission; a few are admitted by application."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-eof",
+      "name": "Rutgers–Camden Educational Opportunity Fund (EOF)",
+      "type": "state_program",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "nj-resident",
+        "low-income",
+        "first-generation"
+      ],
+      "interests": [
+        "financial-aid",
+        "first-generation"
+      ],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Support, resources, and community for first-generation and low-income students at Rutgers–Camden, including an EOF Summer Institute for incoming students.",
+      "url": "https://camden.rutgers.edu/sas/eof/about-us",
+      "applyUrl": null,
+      "contact": {
+        "how": "EOF admission is part of the Rutgers application; current students contact the EOF office."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-trio",
+      "name": "Rutgers–Camden TRiO Student Support Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income",
+        "disability"
+      ],
+      "interests": [
+        "academic-support"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federally funded academic and personal support at Rutgers–Camden for first-generation and limited-income students and students with disabilities.",
+      "url": "https://camden.rutgers.edu/sas/trio",
+      "applyUrl": null,
+      "contact": {
+        "phone": "856-225-6229",
+        "how": "Check eligibility and apply on the TRiO site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "bridging-the-gap",
+      "name": "Bridging the Gap (Rutgers–Camden)",
+      "type": "aid_program",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "nj-resident",
+        "low-income"
+      ],
+      "interests": [
+        "financial-aid"
+      ],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's last-dollar program covering remaining tuition and mandatory fees after other aid, for full-time students who qualify financially.",
+      "url": "https://admissions.camden.rutgers.edu/bridging-the-gap",
+      "applyUrl": null,
+      "contact": {
+        "how": "File the FAFSA (or the NJ Alternative Financial Aid Application); there's no separate application."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-osdfa",
+      "name": "Office of Scholar Development & Fellowship Advising (Rutgers–Camden)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "fellowships",
+        "graduate-school"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Mentoring for graduate school, medical school, study abroad, and national fellowships such as the Fulbright, including help with personal statements and CVs.",
+      "url": "https://camden.rutgers.edu/osdfa",
+      "applyUrl": null,
+      "contact": {
+        "email": "scholardev@camden.rutgers.edu",
+        "location": "319 Cooper Street, Room 210",
+        "how": "Fill out the office's information form to get started."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-involvement",
+      "name": "Rutgers–Camden Office of Student Involvement",
+      "type": "directory",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "student-organizations",
+        "leadership"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Supports Rutgers–Camden's 100+ student organizations; the full list and events are on Engage.",
+      "url": "https://camden.rutgers.edu/office-student-involvement",
+      "applyUrl": null,
+      "contact": {
+        "email": "involved@camden.rutgers.edu",
+        "phone": "856-225-6163",
+        "location": "Campus Center, Lower Level",
+        "how": "Sign in to Engage with your NetID, or go to the involvement fair each semester."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-class",
+      "name": "Center for Learning and Student Success (CLASS, Rutgers–Camden)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "academic-support",
+        "writing"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's tutoring, writing support, supplemental instruction, and study groups (formerly the Rutgers–Camden Learning Center).",
+      "url": "https://camden.rutgers.edu/sas/class",
+      "applyUrl": null,
+      "contact": {
+        "how": "Book through NavigateStudent."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-writing-design-lab",
+      "name": "Rutgers–Camden Writing and Design Lab",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "writing"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Writing help for Rutgers–Camden students, especially in English courses.",
+      "url": "https://wdl.camden.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Make an appointment on the lab's site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-ods",
+      "name": "Rutgers–Camden Office of Disability Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "disability"
+      ],
+      "interests": [
+        "accessibility"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Confidential accommodation services for Rutgers–Camden students with documented physical, mental health, and learning disabilities.",
+      "url": "https://camden.rutgers.edu/deanofstudents/ods",
+      "applyUrl": null,
+      "contact": {
+        "email": "disability-services@camden.rutgers.edu",
+        "phone": "856-225-2717",
+        "location": "Paul Robeson Library, Offices 133-135",
+        "how": "Email the registration form to the office."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-wellness",
+      "name": "Rutgers–Camden Student Wellness Center and Scarlet Raptor's Nest pantry",
+      "type": "basic_needs",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "wellness",
+        "basic-needs"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's Student Wellness Center, home of the Scarlet Raptor's Nest food pantry for students with a Rutgers ID.",
+      "url": "https://wellnesscenter.camden.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "phone": "856-225-6005",
+        "how": "Check the Wellness Center site for pantry hours and appointments."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-prehealth",
+      "name": "Rutgers–Camden Pre-Health Advising and Committee Letter",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-health"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Career Center advising for medical, dental, veterinary, PA, podiatry, and optometry applicants, including the medical and dental school committee letter.",
+      "url": "https://camden.rutgers.edu/career-advancement-center",
+      "applyUrl": null,
+      "contact": {
+        "email": "ruc_premed@camden.rutgers.edu",
+        "how": "The committee letter page moved with the Career Advancement Center's site: email ruc_premed@camden.rutgers.edu or ask the center. Register in the pre-health database early; registering doesn't commit you to applying."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-prelaw",
+      "name": "Rutgers–Camden Pre-Law Advising",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-law"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's pre-law adviser (Department of Political Science) and the Legal Studies minor; the Career Center also helps with law school personal statements.",
+      "url": "https://polisci.camden.rutgers.edu/pre-law-advising-and-resources/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Meet the pre-law adviser; consider the Legal Studies minor."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-international",
+      "name": "Rutgers–Camden Office of International Students & Global Programs",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "international",
+        "study-abroad"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's office for international student advising (including CPT/OPT) and short faculty-led Learning Abroad courses.",
+      "url": "https://international.camden.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "email": "ois@camden.rutgers.edu",
+        "phone": "856-225-6832",
+        "location": "215 N. 3rd Street, Suite 112",
+        "how": "Walk-ins Wednesdays; otherwise book an appointment."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-veterans",
+      "name": "Rutgers–Camden Office of Military & Veterans Affairs",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "veteran"
+      ],
+      "interests": [
+        "veterans"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Support for military-affiliated students at Rutgers–Camden, a Purple Heart University.",
+      "url": "https://camden.rutgers.edu/veterans",
+      "applyUrl": null,
+      "contact": {
+        "email": "ova@camden.rutgers.edu",
+        "phone": "856-225-6011",
+        "how": "Email or call the office."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rsbc-seed-internships",
+      "name": "Rutgers School of Business–Camden SEED Office (internships)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "human-resource-management"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "business",
+        "internships"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Internship help and the business internship course (elective credit with a 2.75+ GPA) for Rutgers School of Business–Camden students.",
+      "url": "https://business.camden.rutgers.edu/seed/internships/",
+      "applyUrl": null,
+      "contact": {
+        "phone": "856-225-6800",
+        "location": "227 Penn Street (BSB), 2nd Floor",
+        "how": "Use the Career Center and Handshake for the search; contact SEED about credit."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "walter-rand-institute",
+      "name": "Senator Walter Rand Institute for Public Affairs (Rutgers–Camden)",
+      "type": "research_program",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "political-science",
+        "psychology",
+        "economics",
+        "social-work",
+        "criminal-justice"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "public-policy",
+        "research"
+      ],
+      "pay": "paid",
+      "season": "summer",
+      "typicalDeadline": "Mid-March for the summer internship",
+      "summary": "Rutgers–Camden's applied public affairs research institute; offers a paid 11-week undergraduate summer internship and a public engagement seminar.",
+      "url": "https://rand.camden.rutgers.edu/working-with-us/students",
+      "applyUrl": null,
+      "contact": {
+        "email": "wrand@camden.rutgers.edu",
+        "how": "Apply by email as the posting describes; late applications aren't accepted."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-gleaner",
+      "name": "The Gleaner (Rutgers–Camden student newspaper)",
+      "type": "club",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "journalism",
+        "media"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's student-run newspaper covering campus news, politics, student government, sports, and lifestyle.",
+      "url": "https://gleaner.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the 'Want to work with us?' page on the site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-camden-community-engagement",
+      "name": "Rutgers–Camden Community Engagement",
+      "type": "volunteer",
+      "scope": "rutgers",
+      "campuses": [
+        "camden"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "community-service"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Camden's ways to get involved in Camden through service, tutoring, and community partnerships.",
+      "url": "https://camden.rutgers.edu/dice/community-engagement/get-involved",
+      "applyUrl": null,
+      "contact": {
+        "how": "Pick an opportunity on the page and contact the program."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 // The "Your resources" list: everything attached to the student's planned goals, plus every resource
 // for their major and year. Eligibility uses the engine's own rule (eligibleFor), so the tab and the plan
 // never disagree: identity only adds, and citizenship hides only when the student stated it.
-import { eligibleFor, identitySet, LEGAL } from "../../engine/engine.ts";
+import { availableAt, eligibleFor, identitySet, LEGAL } from "../../engine/engine.ts";
 import type { Plan, PlanInput, ResourceLite } from "../../engine/types.ts";
 import type { Resource } from "../../types.ts";
-import { goals, resources } from "../data/dataset.ts";
+import { campuses, goals, resources } from "../data/dataset.ts";
 import uiResources from "../../../data/ui/resources.json";
 
 export type GroupId = "programs" | "research" | "aid" | "orgs" | "tools" | "offices";
@@ -14,6 +14,13 @@ export const groupOf = (r: Resource): GroupId => groupOfType.get(r.type) ?? "pro
 export const PAY = uiResources.pay as Record<"paid" | "free" | "other", string[]>;
 export const payLabel = (v: string | null) => (v ? (uiResources.payLabels as Record<string, string>)[v] ?? v : null);
 export const scopeLabel = (v: string) => (uiResources.scopeLabels as Record<string, string>)[v] ?? v;
+/** Where a resource applies, naming the campus for Rutgers ones: "Rutgers–Camden", "Rutgers (all campuses)". */
+export function whereLabel(r: Pick<Resource, "scope" | "campuses">): string {
+  if (r.scope !== "rutgers" || !r.campuses?.length) return scopeLabel(r.scope);
+  if (r.campuses.includes("all")) return "Rutgers (all campuses)";
+  const names = campuses.filter((c) => r.campuses!.includes(c.id));
+  return names.length === 1 ? names[0].name : `Rutgers–${names.map((c) => c.short).join(" and ")}`;
+}
 export const seasonLabel = (v: string | null) => (v ? (uiResources.seasonLabels as Record<string, string>)[v] ?? v : null);
 
 export interface Tailored {
@@ -31,7 +38,6 @@ const goalById = new Map(goals.map((g) => [g.id, g]));
 export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
   const identity = identitySet(input);
   const stated = new Set(input.identity ?? []);
-  const school = input.school ?? "rutgers-nb";
 
   // Goals on the plan (placed, ongoing, and backlog all count: the student may pick them up).
   const planGoalIds = new Set<string>();
@@ -45,12 +51,13 @@ export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
   const out: Tailored[] = [];
   for (const r of resources) {
     if (r.status === "ended") continue;
+    if (!availableAt(r as unknown as ResourceLite, input)) continue; // another campus's office, or Rutgers-only for another school
     const forMajorYear = (r.majors.includes("all") || r.majors.includes(input.majorId as never)) && r.years.includes(input.year);
     if (!attached.has(r.id) && !forMajorYear) continue;
     if (!eligibleFor(r as unknown as ResourceLite, identity, input)) continue;
     const forYou = r.identity.some((x) => !LEGAL.has(x) && stated.has(x));
     // Same ranking as the engine's resource cards (ALGORITHM.md §5).
-    const score = (r.scope === "rutgers" && school === "rutgers-nb" ? 3 : 0) + (r.scope === "new_jersey" && input.location === "nj" ? 2 : 0)
+    const score = (r.scope === "rutgers" ? 3 : 0) + (r.scope === "new_jersey" && input.location === "nj" ? 2 : 0)
       + (r.scope === "national" ? 1 : 0) + (r.status === "active" ? 1 : 0)
       + (r.verification.state === "link-checked" || r.verification.state === "search-confirmed" ? 0.5 : 0) + (forYou ? 2 : 0);
     out.push({ resource: r, group: groupOf(r), forYou, goals: [...(attached.get(r.id) ?? [])].sort(), score });

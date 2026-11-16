@@ -29,12 +29,24 @@ export const PERSONAS: Record<string, PlanInput> = {
     today: "2026-11-13", weeklyHours: 6, summer: "none", citizenship: "international",
     experience: ["resume", "club", "writing-clips"],
   },
+  "newark-nursing-sophomore": {
+    status: "college-student", majorId: "nursing", year: 2, trackId: "nursing-clinical", horizon: "graduation", school: "rutgers-newark",
+    today: "2026-11-13", weeklyHours: 6, summer: "part", location: "nj", identity: ["first-generation"], experience: ["resume", "job"],
+  },
+  "camden-cs-junior": {
+    status: "college-student", majorId: "computer-science", year: 3, trackId: "data-analytics", horizon: "graduation", school: "rutgers-camden",
+    today: "2026-11-13", weeklyHours: 8, summer: "full", location: "nj", citizenship: "us-citizen", skills: ["python", "sql"],
+  },
+  "packaging-sophomore": {
+    status: "college-student", majorId: "packaging-engineering", year: 2, trackId: "packaging-cpg", horizon: "graduation", school: "rutgers-nb",
+    today: "2026-11-13", weeklyHours: 8, summer: "full", openToCoop: true, location: "nj", experience: ["resume"],
+  },
 };
 
 const out: string[] = [];
 for (const [name, input] of Object.entries(PERSONAS)) {
   const plan = buildPlan(input, data);
-  out.push(`\n## ${name}  (${input.majorId}, year ${input.year}, ${input.trackId}, horizon ${input.horizon}, ${input.weeklyHours}h/wk)`);
+  out.push(`\n## ${name}  (${input.school ?? "rutgers-nb"}, ${input.majorId}, year ${input.year}, ${input.trackId}, horizon ${input.horizon}, ${input.weeklyHours}h/wk)`);
   out.push(`Biggest gaps: ${Object.entries(plan.competencies.gap).sort((a, b) => (b[1] as number) - (a[1] as number)).slice(0, 3).map(([c, v]) => `${c} ${v}`).join(", ")}`);
   for (const t of plan.terms) {
     out.push(`\n### ${t.label}  [${t.usedHours}/${t.capacityHours} flex hrs${t.summerBlock ? ", summer block used" : ""}]`);

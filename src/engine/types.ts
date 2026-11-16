@@ -43,6 +43,7 @@ export interface Track {
 export interface ResourceLite {
   id: string; name: string; type: string; scope: string; majors: string[]; years: (number | string)[];
   identity: string[]; status: string; statusNote: string | null; url: string; summary: string;
+  campuses?: string[];         // Rutgers resources only: campus ids ("nb", "newark", "camden") or ["all"]
   verification: { state: string };
 }
 
@@ -72,7 +73,7 @@ export interface PlanInput {
   weeklyHours?: number;
   summer?: "full" | "part" | "none";
   openToCoop?: boolean;
-  school?: "rutgers-nb" | string;
+  school?: "rutgers-nb" | "rutgers-newark" | "rutgers-camden" | "other"; // missing = New Brunswick (pre-0.4 default)
   location?: "nj" | "us-other" | "outside-us" | "skip";
   citizenship?: "us-citizen" | "us-pr" | "international" | "undocumented" | "skip";
   identity?: string[];

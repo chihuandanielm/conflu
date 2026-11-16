@@ -3,7 +3,7 @@ import { AnimatePresence } from "motion/react";
 import { Download, Link2, List, Network, RefreshCw, RotateCcw, Pencil, Undo2 } from "lucide-react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
-import { majorName, trackName, type Answers } from "../intake/model.ts";
+import { campusName, majorName, trackName, type Answers } from "../intake/model.ts";
 import { diff, isOutdated, markDone, refresh, undoDone, type SavedPlan } from "../state/plan.ts";
 import { todayISO } from "../today.ts";
 import { Button } from "../ui/Button.tsx";
@@ -23,7 +23,7 @@ const MODE_KEY = "cpm.roadmap-view"; // per-viewer convenience: chart or list on
 
 export function planSummary(a: Answers): string {
   const horizon = intake.horizons.find((h) => h.id === (a.horizon ?? "graduation"))?.label.toLowerCase();
-  return `${trackName(a.trackId)} · ${majorName(a.majorId)}, year ${a.year} · ${horizon} · ${a.weeklyHours} hrs/week`;
+  return `${trackName(a.trackId)} · ${majorName(a.majorId)}, year ${a.year} · ${campusName(a.school)} · ${horizon} · ${a.weeklyHours} hrs/week`;
 }
 
 const goalTitle = (key: string) => {

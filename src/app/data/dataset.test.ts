@@ -1,13 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { buildPlan } from "../../engine/engine.ts";
-import { dataset, majors, resources, uiIntake } from "./dataset.ts";
+import { campuses, dataset, majors, resources, uiIntake } from "./dataset.ts";
 
 describe("browser dataset", () => {
   it("loads every data file", () => {
-    expect(majors).toHaveLength(20);
-    expect(dataset.goals).toHaveLength(109);
-    expect(dataset.tracks).toHaveLength(27);
-    expect(resources).toHaveLength(285);
+    expect(majors).toHaveLength(21);
+    expect(campuses.map((c) => c.school)).toEqual(["rutgers-nb", "rutgers-newark", "rutgers-camden"]);
+    expect(dataset.goals).toHaveLength(111);
+    expect(dataset.tracks).toHaveLength(28);
+    expect(resources).toHaveLength(339);
     expect(new Set(resources.map((r) => r.id)).size).toBe(resources.length);
     expect(uiIntake.experienceGroups.flatMap((g) => g.options)).toHaveLength(dataset.intake.experience.length);
   });

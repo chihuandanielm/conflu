@@ -35,7 +35,7 @@ export function answerText(s: StepId, a: Answers): string {
 }
 
 const SHORT: Partial<Record<StepId, string>> = {
-  status: "Status", major: "Major", year: "Year", school: "School", track: "Goal", horizon: "Time frame", experience: "Experience",
+  status: "Status", major: "Major", year: "Year", school: "Campus", track: "Goal", horizon: "Time frame", experience: "Experience",
   skills: "Skills", credentials: "Certifications", hours: "Weekly hours", summer: "Summers", coop: "Co-op",
   location: "Based in", citizenship: "Citizenship", identity: "About you",
 };

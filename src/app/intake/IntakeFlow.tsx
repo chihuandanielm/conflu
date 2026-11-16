@@ -14,7 +14,8 @@ import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
 import { Button } from "../ui/Button.tsx";
 import {
-  emptyAnswers, firstIncomplete, identityLabel, isAnswered, isSummerBreak, questionSteps, stepsFor, type Answers, type StepId,
+  emptyAnswers, firstIncomplete, identityLabel, isAnswered, isSummerBreak, majorOfferedAt, questionSteps, stepsFor,
+  type Answers, type School, type StepId,
 } from "./model.ts";
 
 export const INTAKE_KEY = "cpm.intake.v1";
@@ -120,13 +121,13 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
       onEdit={(s) => dispatch({ type: "go", step: s, returnToReview: true })} onBuild={() => onBuild(answers)} />;
   } else {
     const body = renderStep(step, answers, headingId, choose, (field, id) => dispatch({ type: "toggle", field, id }));
-    const optional = step === "school" || step === "location" || step === "citizenship" || step === "identity" || step === "credentials";
+    const optional = step === "location" || step === "citizenship" || step === "identity" || step === "credentials";
     screen = (
       <QuestionShell focusHeading={step !== "major"} copy={COPY[step]} headingId={headingId} step={qIndex + 1} total={qSteps.length}
         onBack={back} onContinue={next} canContinue={canContinue}
         continueLabel={state.returnToReview ? "Back to review" : "Continue"}
         onSkip={optional ? () => {
-          const clear: Partial<Answers> = step === "school" ? { school: undefined } : step === "location" ? { location: undefined }
+          const clear: Partial<Answers> = step === "location" ? { location: undefined }
             : step === "citizenship" ? { citizenship: undefined } : step === "identity" ? { identity: [] } : { credentials: [] };
           dispatch({ type: "set", patch: clear }); next();
         } : undefined}
@@ -166,7 +167,7 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
       return single(intake.status.map((s) => ({ value: s.id, label: s.label, disabled: !s.enabled, note: s.enabled ? undefined : "Coming soon" })),
         a.status, () => ({ status: "college-student" }));
     case "major":
-      return <MajorPicker labelledBy={labelledBy} value={a.majorId} onSelect={(id) => choose({ majorId: id })} />;
+      return <MajorPicker labelledBy={labelledBy} school={a.school} value={a.majorId} onSelect={(id) => choose({ majorId: id })} />;
     case "year":
       return (
         <>
@@ -175,7 +176,9 @@ function renderStep(step: StepId, a: Answers, labelledBy: string, choose: (p: Pa
         </>
       );
     case "school":
-      return single(uiIntake.school.options.map((o) => ({ value: o.id as "rutgers-nb" | "other", label: o.label })), a.school, (v) => ({ school: v }));
+      // A campus that doesn't offer the chosen major clears it (and the co-op answer that depended on it).
+      return single(uiIntake.school.options.map((o) => ({ value: o.id as School, label: o.label })), a.school,
+        (v) => (majorOfferedAt(a.majorId, v) || !a.majorId ? { school: v } : { school: v, majorId: undefined, openToCoop: undefined }));
     case "track":
       return <TrackPicker labelledBy={labelledBy} majorId={a.majorId} value={a.trackId} onSelect={(id) => choose({ trackId: id })} />;
     case "horizon":

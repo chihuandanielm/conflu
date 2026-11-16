@@ -1,0 +1,127 @@
+// Campus expansion (engine 0.4.0, data 2026.11.16-1): Rutgers–Newark, Rutgers–Camden, and Packaging Engineering.
+// Run: node --experimental-strip-types --test test/
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { availableAt, buildPlan, campusOf } from "../src/engine/engine.ts";
+import { loadDataset } from "../src/engine/load.ts";
+import type { Plan, PlanInput, ResourceLite } from "../src/engine/types.ts";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const data = loadDataset(join(here, "../data"));
+const majors = JSON.parse(readFileSync(join(here, "../data/majors.json"), "utf8")).majors as { id: string; offeredAt: Record<string, unknown> }[];
+const res = new Map(data.resources.map((r) => [r.id, r as ResourceLite & { campuses?: string[] }]));
+const SCHOOL = { nb: "rutgers-nb", newark: "rutgers-newark", camden: "rutgers-camden" } as const;
+
+const base: PlanInput = { status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
+  horizon: "graduation", today: "2026-11-13", weeklyHours: 8, summer: "full", location: "nj" };
+const shown = (p: Plan) => p.terms.flatMap((t) => t.items.flatMap((i) => i.resources.map((r) => res.get(r.id)!)));
+const usableAt = (r: { scope: string; campuses?: string[] }, campus: string | null) =>
+  r.scope !== "rutgers" || (campus !== null && !!r.campuses && (r.campuses.includes("all") || r.campuses.includes(campus)));
+
+test("campusOf maps PlanInput.school, defaulting to New Brunswick as before", () => {
+  assert.equal(campusOf(undefined), "nb");
+  assert.equal(campusOf("rutgers-nb"), "nb");
+  assert.equal(campusOf("rutgers-newark"), "newark");
+  assert.equal(campusOf("rutgers-camden"), "camden");
+  assert.equal(campusOf("other"), null);
+});
+
+test("availableAt: Rutgers resources only at their campuses; NJ and national everywhere", () => {
+  const ces = res.get("rutgers-ces")!, nwk = res.get("rutgers-newark-career")!, cam = res.get("rutgers-camden-career")!;
+  const anyCampus = res.get("rutgers-study-abroad")!, national = res.get("fafsa")!;
+  assert.equal(availableAt(ces, { ...base, school: "rutgers-nb" }), true);
+  assert.equal(availableAt(ces, { ...base, school: "rutgers-newark" }), false);
+  assert.equal(availableAt(nwk, { ...base, school: "rutgers-newark" }), true);
+  assert.equal(availableAt(cam, { ...base, school: "rutgers-newark" }), false);
+  assert.equal(availableAt(anyCampus, { ...base, school: "rutgers-camden" }), true);
+  assert.equal(availableAt(anyCampus, { ...base, school: "other" }), false);
+  assert.equal(availableAt(national, { ...base, school: "other" }), true);
+});
+
+test("New Brunswick plans are unchanged: same goals, terms, hours, and backlog as engine 0.3.0", () => {
+  const baseline = JSON.parse(readFileSync(join(here, "fixtures/nb-plans-engine-0.3.0.json"), "utf8")) as
+    { input: PlanInput; terms: { code: string; items: string[] }[]; backlog: string[] }[];
+  for (const b of baseline) {
+    const p = buildPlan(b.input, data);
+    const label = `${b.input.trackId} y${b.input.year} ${b.input.citizenship ?? ""} ${(b.input.identity ?? []).join("+")}`;
+    assert.deepEqual(p.terms.map((t) => ({ code: t.code, items: t.items.map((i) => `${i.goalId}|${i.hours}|${i.partial}`) })),
+      b.terms.map((t) => ({ code: t.code, items: t.items.map((s) => s.split("|").slice(0, 3).join("|")) })), `${label}: placements changed`);
+    // The only goals allowed to appear: the two added in this change (as optional backlog items for engineers).
+    const NEW_GOALS = new Set(["e-pack-competition", "a-packaging-certificate"]);
+    assert.deepEqual(p.backlog.map((x) => x.goalId).filter((g) => !NEW_GOALS.has(g)), b.backlog, `${label}: backlog changed`);
+    // Resource cards may only gain resources added in this change that NB students can use.
+    for (const t of p.terms) for (const it of t.items) {
+      const before = b.terms.find((x) => x.code === t.code)!.items.find((s) => s.startsWith(`${it.goalId}|`))!.split("|")[3].split(",").filter(Boolean);
+      for (const r of it.resources) if (!before.includes(r.id)) {
+        assert.ok(usableAt(res.get(r.id)!, "nb"), `${label}: ${it.goalId} now shows ${r.id}, which NB students can't use`);
+      }
+    }
+  }
+});
+
+test("Newark and Camden students never see another campus's Rutgers offices", () => {
+  for (const campus of ["newark", "camden"] as const) {
+    for (const m of majors.filter((x) => campus in x.offeredAt)) {
+      const track = data.tracks.find((t) => t.suggestedMajors.includes(m.id)) ?? data.tracks.find((t) => t.id === "exploring")!;
+      for (const year of [1, 2, 3, 4] as const) {
+        const p = buildPlan({ ...base, majorId: m.id, trackId: track.id, year, school: SCHOOL[campus] }, data);
+        for (const r of shown(p)) assert.ok(usableAt(r, campus), `${campus} ${m.id} y${year}: shows ${r.id} (${r.campuses?.join(",")})`);
+      }
+    }
+  }
+});
+
+test("each campus gets its own career office and Handshake on the same goals", () => {
+  const card = (school: PlanInput["school"], goalId: string) => {
+    const p = buildPlan({ ...base, year: 1, today: "2026-09-15", school }, data);
+    return p.terms.flatMap((t) => t.items).find((i) => i.goalId === goalId)?.resources.map((r) => r.id) ?? [];
+  };
+  assert.ok(card("rutgers-nb", "f-ces-advisor").includes("rutgers-ces"));
+  assert.ok(card("rutgers-newark", "f-ces-advisor").includes("rutgers-newark-career"));
+  assert.ok(card("rutgers-camden", "f-ces-advisor").includes("rutgers-camden-career"));
+  assert.ok(card("rutgers-camden", "f-handshake-profile").includes("rutgers-camden-handshake"));
+  assert.ok(!card("rutgers-camden", "f-ces-advisor").includes("rutgers-ces"));
+});
+
+test("students at another school see no Rutgers-only resources", () => {
+  const p = buildPlan({ ...base, school: "other" }, data);
+  assert.equal(shown(p).filter((r) => r.scope === "rutgers").length, 0);
+  assert.ok(shown(p).length > 0, "national and NJ resources still show");
+});
+
+test("every campus, offered major, track, and year satisfies the core invariants", () => {
+  for (const [campus, school] of Object.entries(SCHOOL)) for (const m of majors.filter((x) => campus in x.offeredAt)) {
+    for (const track of data.tracks.filter((t) => t.suggestedMajors.includes(m.id) || t.id === "exploring")) for (const year of [1, 2, 3, 4] as const) {
+      const p = buildPlan({ ...base, majorId: m.id, trackId: track.id, year, school }, data);
+      for (const t of p.terms) assert.ok(t.usedHours <= t.capacityHours + 1, `${campus} ${m.id} ${track.id} y${year}: over capacity in ${t.code}`);
+      const first = new Map<string, number>(), last = new Map<string, number>();
+      p.terms.forEach((t, i) => t.items.forEach((it) => { if (!first.has(it.goalId)) first.set(it.goalId, i); last.set(it.goalId, i); }));
+      for (const e of p.edges) {
+        const g = data.goals.find((x) => x.id === e.from)!;
+        assert.ok(last.get(e.from)! < first.get(e.to)! || (last.get(e.from) === first.get(e.to) && g.hours <= 3), `${campus} ${m.id} ${track.id}: ${e.to} before ${e.from}`);
+      }
+    }
+  }
+});
+
+test("identity answers still never remove goals for Newark and Camden students", () => {
+  for (const school of ["rutgers-newark", "rutgers-camden"] as const) {
+    const keys = (p: Plan) => new Set([...p.terms.flatMap((t) => t.items.map((i) => i.goalId)), ...p.backlog.map((b) => b.goalId)]);
+    const without = keys(buildPlan({ ...base, school }, data));
+    const withId = keys(buildPlan({ ...base, school, identity: ["first-generation", "low-income"] }, data));
+    for (const k of without) assert.ok(withId.has(k), `${school}: ${k} disappeared with identity`);
+  }
+});
+
+test("a packaging engineering student gets packaging goals, the co-op, and packaging resources", () => {
+  const p = buildPlan({ ...base, majorId: "packaging-engineering", trackId: "packaging-cpg", school: "rutgers-nb", openToCoop: true }, data);
+  const items = p.terms.flatMap((t) => t.items);
+  const all = new Set([...items.map((i) => i.goalId), ...p.backlog.map((b) => b.goalId)]);
+  assert.ok(all.has("e-pack-competition"), "packaging competition goal considered");
+  assert.ok(all.has("e-coop"), "co-op considered");
+  assert.ok(items.some((i) => i.resources.some((r) => r.id === "iopp-student-ameristar" || r.id === "rutgers-packaging-coop" || r.id === "iopp")), "packaging resources shown");
+  assert.ok(p.warnings.some((w) => w.includes("Packaging co-ops")), "packaging recruiting note");
+});

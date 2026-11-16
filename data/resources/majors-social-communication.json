@@ -185,6 +185,9 @@
       "name": "Rutgers Model United Nations",
       "type": "club",
       "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
       "majors": [
         "political-science",
         "economics",
@@ -442,6 +445,10 @@
       "name": "Rutgers School of Criminal Justice (Newark)",
       "type": "lab_or_center",
       "scope": "rutgers",
+      "campuses": [
+        "nb",
+        "newark"
+      ],
       "majors": [
         "criminal-justice"
       ],
@@ -613,6 +620,9 @@
       "name": "Rutgers School of Social Work institutes",
       "type": "lab_or_center",
       "scope": "rutgers",
+      "campuses": [
+        "all"
+      ],
       "majors": [
         "social-work",
         "psychology",

@@ -1,0 +1,345 @@
+{
+  "_about": "Packaging Engineering: the Rutgers program, packaging societies, scholarships, competitions, and employers (researched 2026-11-16).",
+  "resources": [
+    {
+      "id": "rutgers-packaging-program",
+      "name": "Rutgers Packaging Engineering",
+      "type": "program",
+      "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "engineering"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–New Brunswick's packaging program in the School of Engineering (B.S. in Applied Sciences in Engineering, Packaging Engineering concentration), described as the only packaging program housed in a U.S. engineering school.",
+      "url": "https://mae.rutgers.edu/admissions/undergraduate-program/packaging-engineering",
+      "applyUrl": null,
+      "contact": {
+        "how": "Talk to the packaging undergraduate director about the curriculum and co-op timing."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-packaging-coop",
+      "name": "Packaging Engineering Co-op and Internship (14:440:498/499)",
+      "type": "co_op",
+      "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "internships"
+      ],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Credit-bearing packaging co-ops built into the Rutgers packaging schedule (alternative fall or spring plans in junior year); past students worked at Mondelēz, Johnson & Johnson, Estée Lauder, and Unilever, and some received job offers.",
+      "url": "https://mae.rutgers.edu/admissions/undergraduate-program/packaging-engineering",
+      "applyUrl": null,
+      "contact": {
+        "how": "Plan the co-op semester with the packaging program before junior year."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-packaging-certificate",
+      "name": "Rutgers Undergraduate Packaging Certificate",
+      "type": "certificate_program",
+      "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
+      "majors": [
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "supply-chain"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A packaging credential any Rutgers–New Brunswick student can add: Introduction to Packaging Engineering plus three more packaging courses.",
+      "url": "https://soe.rutgers.edu/academics/majors-and-areas-study/packaging-engineering",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with Introduction to Packaging Engineering (14:440:301)."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "iopp",
+      "name": "IoPP (Institute of Packaging Professionals)",
+      "type": "professional_org",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering",
+        "mechanical-engineering",
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The main U.S. packaging professional society: student membership, chapter events, scholarships, and student design competitions.",
+      "url": "https://www.iopp.org",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join as a student member on the site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "iopp-student-ameristar",
+      "name": "IoPP Student AmeriStar Packaging Competition",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "design"
+      ],
+      "pay": "prize",
+      "season": null,
+      "typicalDeadline": "Spring (check the site for the current cycle)",
+      "summary": "Free-to-enter packaging design competition for undergraduate and graduate students; winners are shown at PACK EXPO and can advance to the WorldStar awards.",
+      "url": "https://iopp.org/studentameristar",
+      "applyUrl": null,
+      "contact": {
+        "how": "Submit a design on the IoPP site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200,
+        "finalUrl": "https://www.iopp.org/i4a/pages/index.cfm?_seoSlug=studentameristar"
+      },
+      "tags": []
+    },
+    {
+      "id": "iopp-scholarships",
+      "name": "IoPP Packaging Education Scholarships",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging"
+      ],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": "Usually November to January",
+      "summary": "Scholarships for upper-division packaging students, including a $5,000 PepsiCo R&D award (a Rutgers packaging student won it in 2025) and awards up to $2,500.",
+      "url": "https://www.iopp.org/scholarships",
+      "applyUrl": null,
+      "contact": {
+        "how": "Apply on the IoPP site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "pmmi-foundation-scholarships",
+      "name": "PMMI Foundation Scholarships (PACK EXPO)",
+      "type": "scholarship",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering",
+        "mechanical-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "manufacturing"
+      ],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Over $160,000 a year for students in packaging, processing, engineering, and mechatronics, including six $5,000 PACK EXPO scholarships; the foundation also funds student travel to PACK EXPO.",
+      "url": "https://www.pmmifoundation.org/scholarships",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check the scholarship page for current eligibility and dates."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Confirmed by search; automated check was refused (bot wall).",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "ppa-student-design-challenge",
+      "name": "Paperboard Packaging Alliance Student Design Challenge",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "design",
+        "sustainability"
+      ],
+      "pay": "prize",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Annual team challenge to design paper-based packaging; the top three teams present at the Paperboard Packaging Council's fall meeting, and first place won $10,500 plus $10,000 for the school in 2026.",
+      "url": "https://paperboardpackaging.org/student-design-challenge",
+      "applyUrl": null,
+      "contact": {
+        "how": "Download the current challenge packet and enter as a team."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Confirmed by search; automated check was refused (bot wall).",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "fpa-student-design-challenge",
+      "name": "Flexible Packaging Association Student Design Challenge",
+      "type": "competition",
+      "scope": "national",
+      "majors": [
+        "packaging-engineering"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "packaging",
+        "design"
+      ],
+      "pay": "prize",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Design a flexible package that solves a real packaging problem; open to students at FPA academic member schools, individually or in teams.",
+      "url": "https://www.flexpack.org/student-design-challenge",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check whether Rutgers is an FPA academic member, then submit a concept outline."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    }
+  ]
+}

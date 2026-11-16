@@ -1,0 +1,876 @@
+{
+  "_about": "Rutgers–Newark offices, programs, and organizations (researched 2026-11-16).",
+  "resources": [
+    {
+      "id": "rutgers-newark-career",
+      "name": "Career Resources & Exploration (Rutgers–Newark)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "career-planning",
+        "job-search"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's career office: advising appointments, resume and interview help, career fairs, and the Rutgers–Newark Handshake job board.",
+      "url": "https://careers.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "email": "careers@newark.rutgers.edu",
+        "phone": "973-353-5311",
+        "how": "Book an appointment through Rutgers–Newark Handshake."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-handshake",
+      "name": "Rutgers–Newark Handshake",
+      "type": "job_board",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "job-search",
+        "internships"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's job and internship board, career fair listings, and appointment booking with Career Resources & Exploration. Accounts are created automatically after enrollment.",
+      "url": "https://careers.newark.rutgers.edu/resources/rutgers-newark-handshake/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign in with your NetID."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-research",
+      "name": "Undergraduate Research at Rutgers–Newark",
+      "type": "directory",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "research"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's overview of undergraduate research in its labs, field stations, archives, and studios, with links to programs and faculty mentors.",
+      "url": "https://newark.rutgers.edu/undergraduate-research",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with a professor whose work interests you; the page lists campus research programs."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-hllc",
+      "name": "Honors Living-Learning Community (HLLC)",
+      "type": "program",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1
+      ],
+      "identity": [],
+      "interests": [
+        "honors",
+        "social-justice"
+      ],
+      "pay": "scholarship",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's residential honors community focused on local citizenship in a global world; admitted scholars receive housing and meal support and complete a capstone project.",
+      "url": "https://hllc.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "phone": "973-353-1039",
+        "location": "48 New Street, Suite 212, Newark",
+        "how": "High school seniors and community college transfers apply through the HLLC site."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-honors-college",
+      "name": "Rutgers–Newark Honors College",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "honors"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's traditional honors college for School of Arts and Sciences–Newark students, with honors courses and advising.",
+      "url": "https://sasn.rutgers.edu/honors-college",
+      "applyUrl": null,
+      "contact": {
+        "email": "honorsn@newark.rutgers.edu",
+        "phone": "973-353-5860",
+        "location": "Engelhard Hall, Rooms 219-225",
+        "how": "Email or call the Honors College office about admission and advising."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-eof",
+      "name": "Rutgers–Newark Educational Opportunity Fund (EOF)",
+      "type": "state_program",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "nj-resident",
+        "low-income"
+      ],
+      "interests": [
+        "financial-aid",
+        "first-generation"
+      ],
+      "pay": "grant",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "State-funded support for low-income New Jersey residents at Rutgers–Newark: grants, advising, and academic support, run by the Academic Foundations Center.",
+      "url": "https://afc.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "EOF admission is part of the Rutgers application; current students contact the Academic Foundations Center."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-mcnair",
+      "name": "Rutgers–Newark McNair Scholars Program",
+      "type": "pipeline_program",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income",
+        "underrepresented"
+      ],
+      "interests": [
+        "research",
+        "graduate-school"
+      ],
+      "pay": "stipend",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federal TRIO program at Rutgers–Newark that prepares first-generation, low-income, and underrepresented undergraduates for doctoral study through mentored research and graduate school preparation.",
+      "url": "https://afc.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Apply through the Academic Foundations Center."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-sss",
+      "name": "Rutgers–Newark TRIO Student Support Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "first-generation",
+        "low-income",
+        "disability"
+      ],
+      "interests": [
+        "academic-support"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Federally funded tutoring, counseling, and academic support at Rutgers–Newark for first-generation and low-income students and students with disabilities.",
+      "url": "https://afc.newark.rutgers.edu/sss/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check eligibility and apply through the Academic Foundations Center."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "ru-n-to-the-top",
+      "name": "RU-N to the Top",
+      "type": "aid_program",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "nj-resident",
+        "low-income"
+      ],
+      "interests": [
+        "financial-aid"
+      ],
+      "pay": "tuition",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's last-dollar tuition program for New Jersey students: with the Garden State Guarantee, tuition and mandatory fees can be free or capped for qualifying household incomes.",
+      "url": "https://myrun.newark.rutgers.edu/top",
+      "applyUrl": null,
+      "contact": {
+        "how": "No separate application: file the FAFSA (or the NJ Alternative Financial Aid Application) every year."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-fellowships",
+      "name": "Rutgers–Newark Fellowships Advising",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "fellowships",
+        "graduate-school"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's advising for nationally competitive awards such as the Truman, Udall, Gilman, and Critical Language Scholarships.",
+      "url": "https://fellowships.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "how": "Contact the office a year before the award deadline; some awards need a campus nomination."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-raiderlink",
+      "name": "RaiderLink (Rutgers–Newark student organizations)",
+      "type": "directory",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "student-organizations",
+        "leadership"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's platform for 100+ student organizations and events, supported by the Office of Student Life & Leadership.",
+      "url": "https://raiderlink.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "email": "studentlife@newark.rutgers.edu",
+        "phone": "973-353-5300",
+        "how": "Sign in with your NetID to browse and join organizations."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200,
+        "finalUrl": "https://raiderlink.newark.rutgers.edu/home_login"
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-ods",
+      "name": "Rutgers–Newark Office of Disability Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "disability"
+      ],
+      "interests": [
+        "accessibility"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Works with Rutgers–Newark students with medical, physical, or mental health conditions to set up reasonable accommodations.",
+      "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/disability-services",
+      "applyUrl": null,
+      "contact": {
+        "email": "ODS@newark.rutgers.edu",
+        "phone": "973-353-5375",
+        "how": "Submit the initial information form, then meet with the office."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-counseling",
+      "name": "Rutgers–Newark Counseling Center",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "wellness"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free, confidential counseling for Rutgers–Newark students, in person or by telehealth.",
+      "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/counseling-center",
+      "applyUrl": null,
+      "contact": {
+        "email": "counseling@newark.rutgers.edu",
+        "phone": "973-353-5805",
+        "how": "Call or email to schedule."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-pantry",
+      "name": "pantryRUN (Rutgers–Newark food pantry)",
+      "type": "basic_needs",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "basic-needs"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free groceries for any Rutgers–Newark student, staff, or faculty member.",
+      "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/pantry-ru-n",
+      "applyUrl": null,
+      "contact": {
+        "email": "pantry_run@newark.rutgers.edu",
+        "how": "Check the pantry page for current hours."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-preprofessional",
+      "name": "Rutgers–Newark Pre-Professional Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-health",
+        "pre-law"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Advising for Rutgers–Newark students and recent alumni preparing for medical, dental, health professions, and law school, in the Office of Academic Services.",
+      "url": "https://careers.newark.rutgers.edu/resources/rutgers-newark-pre-professional-services/",
+      "applyUrl": null,
+      "contact": {
+        "location": "Engelhard Hall, Suite 101",
+        "how": "Meet an adviser early to plan prerequisites and application timing."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-oiss",
+      "name": "Rutgers–Newark Office of International Student & Scholar Services",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "international"
+      ],
+      "interests": [
+        "international"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Immigration advising, CPT/OPT work authorization, and support for Rutgers–Newark's international students.",
+      "url": "https://myrun.newark.rutgers.edu/oiss",
+      "applyUrl": null,
+      "contact": {
+        "email": "oiss@newark.rutgers.edu",
+        "location": "Conklin Hall, Room 216",
+        "how": "Book an advising appointment before accepting any internship."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-global-experiences",
+      "name": "Rutgers–Newark Global Initiatives and Experiential Learning",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "study-abroad"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's study abroad, study away, and field study office.",
+      "url": "https://globalexp.newark.rutgers.edu",
+      "applyUrl": null,
+      "contact": {
+        "location": "Dana Library, Room 306B",
+        "how": "Meet the office a year before you want to go."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-veterans",
+      "name": "Rutgers–Newark Office of Veteran Affairs",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [
+        "veteran"
+      ],
+      "interests": [
+        "veterans"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "First stop for military-affiliated Rutgers–Newark students: benefits, transition support, and community.",
+      "url": "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs",
+      "applyUrl": null,
+      "contact": {
+        "email": "veteranaffairs@newark.rutgers.edu",
+        "phone": "973-353-5374",
+        "how": "Email or call the office."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rbs-newark-career-management",
+      "name": "Rutgers Business School Office of Career Management (Newark)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "finance",
+        "accounting",
+        "marketing",
+        "supply-chain"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "business",
+        "internships"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Career counseling, employer connections, and internship and co-op preparation for Rutgers Business School–Newark undergraduates.",
+      "url": "https://business.rutgers.edu/undergraduate-newark/career-management",
+      "applyUrl": null,
+      "contact": {
+        "email": "ocm-nwk@business.rutgers.edu",
+        "location": "1 Washington Park, Suite 324, Newark",
+        "how": "Email the office or request an appointment."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-prelaw-society",
+      "name": "Rutgers–Newark Pre-Law Society",
+      "type": "club",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "pre-law"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Student organization with law school workshops, mock trials, and lawyer forums for Rutgers–Newark undergraduates.",
+      "url": "https://raiderlink.newark.rutgers.edu/prelaw/home/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Join through RaiderLink."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-writing-center",
+      "name": "Rutgers–Newark Writing Center",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "writing"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free writing tutoring and workshops for every Rutgers–Newark undergraduate, at any stage of a paper, application, or cover letter. It also hires students as tutors.",
+      "url": "https://myrun.newark.rutgers.edu/node/108",
+      "applyUrl": null,
+      "contact": {
+        "how": "Book an appointment through RU-N4Success."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-16",
+        "httpStatus": 200
+      },
+      "tags": []
+    }
+  ]
+}

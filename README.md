@@ -1,6 +1,6 @@
 # Career Pathway Mapper
 
-A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It starts with Rutgers–New Brunswick undergraduates in 20 majors.
+A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It covers Rutgers undergraduates at New Brunswick, Newark, and Camden, in 21 majors (each campus sees only the majors it offers and its own campus offices).
 
 - **One question at a time:** a 3-minute intake, by keyboard or touch, that saves as you go.
 - **A plan, not a list:** "Your next moves" for this term, a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
@@ -77,8 +77,8 @@ Saved state lives only in the browser: `cpm.intake.v1` (answers in progress), `c
 
 ## The data
 
-- **285 resources** for 20 Rutgers–New Brunswick majors: Rutgers offices, labs, and programs; NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools.
-- **109 career goals** and **27 career tracks** that the engine turns into a semester-by-semester roadmap.
+- **339 resources** for 21 majors across three Rutgers campuses: each campus's offices, labs, and programs (tagged with the `campuses` that can use them); NJ state aid and employers; national fellowships, internships, scholarships, professional societies, certifications, access programs; and professional-presence tools.
+- **111 career goals** and **28 career tracks** (including Packaging Engineering) that the engine turns into a semester-by-semester roadmap.
 
 ## Why JSON files
 
@@ -93,15 +93,18 @@ The site is a static TypeScript app with no server, so the data ships as JSON ne
 
 ```
 data/
-  majors.json        20 majors with CIP codes (for joining to O*NET occupations)
-  goals.json         109 milestones: competencies, weights, hours, time windows, prerequisites, linked resources
-  tracks.json        27 career targets: per-goal weight boosts, must-do gates, suppressed goals, timing overrides
+  campuses.json      the three Rutgers campuses and the intake value for each
+  majors.json        21 majors with CIP codes (for joining to O*NET occupations); offeredAt lists the campuses and program pages
+  goals.json         111 milestones: competencies, weights, hours, time windows, prerequisites, linked resources
+  tracks.json        28 career targets: per-goal weight boosts, must-do gates, suppressed goals, timing overrides
   intake.json        intake questions and which goals each answer marks done
   vocab.json         allowed values for type, scope, status, years, pay, season, identity
   version.json       data version stamped into every plan
   resources/
     professional-presence.json                35  LinkedIn, GitHub, open source, portfolios, practice platforms
-    rutgers.json                              59  offices, programs, labs, centers, student media
+    rutgers-new-brunswick.json                59  NB offices, programs, labs, centers, student media (plus a few open to all campuses)
+    rutgers-newark.json                       21  Newark career, research, honors, EOF, McNair, TRIO, writing, aid
+    rutgers-camden.json                       24  Camden career, research, honors, EOF, TRIO, Bridging the Gap, media
     new-jersey.json                           19  EOF, TAG, Garden State Guarantee, NJ employers
     national-access.json                      47  identity, income, first-gen, disability, undocumented, transfer
     national-fellowships-research-federal.json 28  Goldwater, Truman, REUs, NIH, Pathways, service corps
@@ -109,6 +112,7 @@ data/
     majors-health-life.json                   26
     majors-business.json                      21
     majors-social-communication.json          18
+    majors-packaging.json                      9  Rutgers packaging program, co-op, certificate; IoPP, PMMI, competitions
     skills-tools-basics.json                  12  free certs, FAFSA, O*NET, job boards
 src/types.ts         TypeScript resource types + a forStudent(resources, major, year) filter
 src/engine/          planning engine: types.ts, engine.ts (buildPlan), load.ts

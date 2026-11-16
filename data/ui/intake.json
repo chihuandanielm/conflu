@@ -1,12 +1,20 @@
 {
   "_about": "UI-only intake content: question copy, the school and co-op questions, and how the experience checklist is grouped. The engine never reads this file. scripts/validate.mjs checks that every experience option belongs to exactly one group. identityLabels gives plain-language labels for intake.json optionalIdentity tags.",
   "school": {
-    "question": "Which school do you go to?",
-    "help": "Optional. It only changes which programs we list first.",
+    "question": "Which Rutgers campus are you at?",
+    "help": "Your campus decides which majors, offices, and programs show up in your plan.",
     "options": [
       {
         "id": "rutgers-nb",
         "label": "Rutgers–New Brunswick"
+      },
+      {
+        "id": "rutgers-newark",
+        "label": "Rutgers–Newark"
+      },
+      {
+        "id": "rutgers-camden",
+        "label": "Rutgers–Camden"
       },
       {
         "id": "other",
@@ -21,7 +29,8 @@
       "mechanical-engineering",
       "biomedical-engineering",
       "pharmacy",
-      "supply-chain"
+      "supply-chain",
+      "packaging-engineering"
     ],
     "options": [
       {
@@ -82,7 +91,8 @@
         "government",
         "abroad",
         "startup",
-        "tutor"
+        "tutor",
+        "pack-competition"
       ]
     },
     {

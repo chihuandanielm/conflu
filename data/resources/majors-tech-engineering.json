@@ -658,6 +658,9 @@
       "name": "New Jersey Center for Biomaterials",
       "type": "lab_or_center",
       "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
       "majors": [
         "biomedical-engineering",
         "biological-sciences"

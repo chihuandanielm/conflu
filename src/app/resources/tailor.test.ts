@@ -3,7 +3,7 @@ import { buildPlan } from "../../engine/engine.ts";
 import type { PlanInput } from "../../engine/types.ts";
 import { dataset, goals } from "../data/dataset.ts";
 import { audience } from "./format.ts";
-import { applyFilters, noFilters, tailoredResources } from "./tailor.ts";
+import { applyFilters, noFilters, tailoredResources, whereLabel } from "./tailor.ts";
 
 const base: PlanInput = { status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
   horizon: "graduation", today: "2026-11-15", weeklyHours: 10, location: "nj", school: "rutgers-nb" };
@@ -65,6 +65,25 @@ describe("tailored resources", () => {
     expect(withGoals.length).toBeGreaterThan(0);
     const titles = new Set(goals.map((g) => g.title));
     for (const t of withGoals) for (const g of t.goals) expect(titles.has(g)).toBe(true);
+  });
+
+  it("lists only the student's own campus's Rutgers offices, first", () => {
+    for (const [school, campus] of [["rutgers-nb", "nb"], ["rutgers-newark", "newark"], ["rutgers-camden", "camden"]] as const) {
+      const list = run({ school });
+      for (const t of list.filter((x) => x.resource.scope === "rutgers")) {
+        expect(t.resource.campuses!.some((c) => c === "all" || c === campus), `${school}: ${t.resource.id}`).toBe(true);
+      }
+      expect(list[0].resource.scope).toBe("rutgers");
+    }
+    expect(run({ school: "rutgers-newark" }).some((t) => t.resource.id === "rutgers-newark-career")).toBe(true);
+    expect(run({ school: "other" }).some((t) => t.resource.scope === "rutgers")).toBe(false);
+  });
+
+  it("names the campus on Rutgers resources", () => {
+    expect(whereLabel({ scope: "rutgers", campuses: ["camden"] })).toBe("Rutgers–Camden");
+    expect(whereLabel({ scope: "rutgers", campuses: ["all"] })).toBe("Rutgers (all campuses)");
+    expect(whereLabel({ scope: "rutgers", campuses: ["nb", "newark"] })).toBe("Rutgers–New Brunswick and Newark");
+    expect(whereLabel({ scope: "national" })).toBe("National");
   });
 
   it("describes who a resource is for", () => {

@@ -2,7 +2,7 @@
 import { createElement } from "react";
 import type { SavedPlan } from "../state/plan.ts";
 import { intake } from "../data/dataset.ts";
-import { majorName, toPlanInput, trackName } from "../intake/model.ts";
+import { campusName, majorName, toPlanInput, trackName } from "../intake/model.ts";
 import { tailoredResources } from "../resources/tailor.ts";
 import { todayISO } from "../today.ts";
 
@@ -18,7 +18,7 @@ export async function downloadRoadmapPdf(saved: SavedPlan): Promise<void> {
   const input = toPlanInput(a, date, { completedGoals: saved.completedGoals, previousPlan: saved.previousPlan });
   const doc = createElement(RoadmapPdf, {
     plan: saved.plan, input, date, resources: tailoredResources(saved.plan, input),
-    summary: { track: trackName(a.trackId) ?? "", major: majorName(a.majorId) ?? "", year: a.year ?? 1,
+    summary: { track: trackName(a.trackId) ?? "", campus: campusName(a.school), major: majorName(a.majorId) ?? "", year: a.year ?? 1,
       horizon: intake.horizons.find((h) => h.id === (a.horizon ?? "graduation"))?.label ?? "", hours: a.weeklyHours },
   });
   // react-pdf's types want a <Document> element; RoadmapPdf renders one.
