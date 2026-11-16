@@ -67,6 +67,18 @@ describe("results page", () => {
     }
   });
 
+  it("tells you to reload when the page is older than the site's latest deploy", async () => {
+    vi.doMock("../pdf/download.ts", () => ({ downloadRoadmapPdf: () => Promise.reject(new TypeError("Failed to fetch dynamically imported module: https://x/assets/react-pdf.js")) }));
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    setup();
+    fireEvent.click(screen.getByRole("button", { name: "Download PDF" }));
+    await act(async () => {});
+    expect(await screen.findByText(/site was updated after you opened this page/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reload page" })).toBeInTheDocument();
+    expect(screen.queryByText(/Try again/)).toBeNull();
+    vi.doUnmock("../pdf/download.ts");
+  });
+
   it("closes the drawer with Escape", async () => {
     setup();
     const next = screen.getByRole("heading", { name: "Your next moves" }).closest("section")!;
