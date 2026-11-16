@@ -11,9 +11,7 @@
       ],
       "years": [
         1,
-        2,
-        3,
-        4
+        2
       ],
       "identity": [],
       "interests": [],
@@ -191,9 +189,7 @@
       ],
       "years": [
         1,
-        2,
-        3,
-        4
+        2
       ],
       "identity": [],
       "interests": [],
@@ -407,9 +403,7 @@
       ],
       "years": [
         1,
-        2,
-        3,
-        4
+        2
       ],
       "identity": [],
       "interests": [],
@@ -1083,6 +1077,142 @@
       "tags": [
         "guide"
       ]
+    },
+    {
+      "scope": "national",
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [
+        "guide"
+      ],
+      "id": "mit-resume-toolkit",
+      "name": "MIT CAPD: Career toolkit, crafting an effective resume",
+      "type": "guide",
+      "majors": [
+        "all"
+      ],
+      "identity": [],
+      "summary": "How to turn experience into strong, results-first bullets and tailor a resume to each kind of role, past the first-year basics.",
+      "url": "https://capd.mit.edu/resources/career-toolkit-crafting-an-effective-resume/",
+      "contact": {
+        "how": "Use it to rewrite your bullets around results."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [
+        "guide"
+      ],
+      "id": "psu-career-fair-success",
+      "name": "Penn State IST: Tips for career fair success",
+      "type": "guide",
+      "majors": [
+        "all"
+      ],
+      "identity": [],
+      "summary": "How to prepare an introduction that says whether you want an internship or a full-time role, research employers, and follow up.",
+      "url": "https://www.ist.psu.edu/current/careers/fairs/success",
+      "contact": {
+        "how": "Prepare your intro and target list from it."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [
+        "guide"
+      ],
+      "id": "mit-finding-jobs",
+      "name": "MIT CAPD: Career toolkit, finding jobs, internships, and opportunities",
+      "type": "guide",
+      "majors": [
+        "all"
+      ],
+      "identity": [],
+      "summary": "How to run an active search across job boards, networking, and referrals instead of relying on one channel.",
+      "url": "https://capd.mit.edu/resources/career-toolkit-finding-jobs-internships-and-opportunities/",
+      "contact": {
+        "how": "Pick two new search channels from it this week."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [
+        "guide"
+      ],
+      "id": "drexel-senior-search",
+      "name": "Drexel LeBow: Senior year job search timeline",
+      "type": "guide",
+      "majors": [
+        "all"
+      ],
+      "identity": [],
+      "summary": "Month-by-month plan for a senior's full-time search: what to do in summer, fall recruiting, spring, and after graduation.",
+      "url": "https://lebow.drexel.edu/academics/undergraduate/career-services/senior-year-job-search-timeline",
+      "contact": {
+        "how": "Copy its fall and spring steps into your calendar."
+      }
     }
   ]
 }

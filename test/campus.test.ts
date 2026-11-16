@@ -94,7 +94,7 @@ test("every campus, offered major, track, and year satisfies the core invariants
       p.terms.forEach((t, i) => t.items.forEach((it) => { if (!first.has(it.goalId)) first.set(it.goalId, i); last.set(it.goalId, i); }));
       for (const e of p.edges) {
         const g = data.goals.find((x) => x.id === e.from)!;
-        assert.ok(last.get(e.from)! < first.get(e.to)! || (last.get(e.from) === first.get(e.to) && g.hours <= 3), `${campus} ${m.id} ${track.id}: ${e.to} before ${e.from}`);
+        assert.ok(last.get(e.from)! < first.get(e.to)! || (last.get(e.from) === first.get(e.to) && g.hours <= 6), `${campus} ${m.id} ${track.id}: ${e.to} before ${e.from}`);
       }
     }
   }

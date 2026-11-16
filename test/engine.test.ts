@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPlan, currentTerm } from "../src/engine/engine.ts";
+import { buildPlan, currentTerm, eligibleFor, identitySet } from "../src/engine/engine.ts";
 import { loadDataset } from "../src/engine/load.ts";
 import type { Plan, PlanInput } from "../src/engine/types.ts";
 
@@ -26,7 +26,7 @@ test("every track x year x horizon runs and respects core invariants", () => {
     for (const t of plan.terms) assert.ok(t.usedHours <= t.capacityHours + 1, `${track.id} y${year}: over capacity in ${t.code}`);
     for (const e of plan.edges) {
       const p = data.goals.find((g) => g.id === e.from)!;
-      const ok = last.get(e.from)! < first.get(e.to)! || (last.get(e.from) === first.get(e.to) && p.hours <= 3);
+      const ok = last.get(e.from)! < first.get(e.to)! || (last.get(e.from) === first.get(e.to) && p.hours <= 6); // engine 0.8.0: a prerequisite of up to 6 hours can finish earlier in the same term
       assert.ok(ok, `${track.id} y${year}: ${e.to} scheduled before its prerequisite ${e.from}`);
     }
     for (const x of placed(plan)) {
@@ -124,9 +124,9 @@ test("engine 0.6.0: leftover goals become an ordered 'up next' queue, never an h
     today: "2026-11-16", weeklyHours: 2, summer: "full", location: "nj" }, data);
   for (const w of tight.warnings) assert.doesNotMatch(w, /hours a week would|hours of goals|didn't fit/i, `taxing warning: ${w}`);
   const kinds = tight.backlog.map((b) => b.kind);
-  assert.ok(kinds.every((k) => k === "next" || k === "optional" || k === "not-now"), "every leftover has a kind");
+  assert.ok(kinds.every((k) => ["continues", "next", "optional", "not-now", "past"].includes(k!)), "every leftover has a kind");
   assert.ok(kinds.includes("next"), "with 2 hours a week some goals are next in line");
-  const rank = { next: 0, optional: 1, "not-now": 2 } as const;
+  const rank = { continues: 0, next: 1, optional: 2, "not-now": 3, past: 4 } as const;
   for (let i = 1; i < kinds.length; i++) assert.ok(rank[kinds[i - 1]!] <= rank[kinds[i]!], "next, then optional, then not now");
   for (const b of tight.backlog) assert.doesNotMatch(b.reason, /didn't fit|more hours than/i, `${b.goalId}: ${b.reason}`);
   // Must-do goals that wait get a concrete, kind note.
@@ -184,4 +184,57 @@ test("engine 0.7.0: first-year-only goals stay out of upper-year plans", () => {
 
 test("engine 0.7.0: the up-next queue uses late wording too", () => {
   for (const year of [3, 4] as const) for (const b of senior({ year, weeklyHours: 2 }).backlog) assert.doesNotMatch(b.title, /4-year plan|first college resume/, `y${year}: ${b.title}`);
+});
+
+// ---------- engine 0.8.0 ----------
+const cs = (over: Partial<PlanInput> = {}) => buildPlan({ ...base, ...over } as PlanInput, data);
+const capFor = (h: number) => Math.min(6, Math.max(3, Math.round(2 + h / 4)));
+
+test("engine 0.8.0: the semester answer decides the starting term, off-cycle included", () => {
+  assert.equal(cs({ year: 2, semester: 2, today: "2026-10-01" }).terms[0].code, "2S"); // second semester, though it's fall
+  assert.equal(cs({ year: 2, semester: 1, today: "2027-03-01" }).terms[0].code, "2F"); // first semester, though it's spring
+  assert.equal(cs({ year: 3, semester: 1, today: "2027-06-20" }).terms[0].code, "2U"); // summer before the fall they named
+  assert.equal(cs({ year: 2, today: "2027-03-01" }).terms[0].code, "2S");              // no answer: the calendar, as before
+});
+
+test("engine 0.8.0: baby steps: a term never holds more goals than the student's time allows", () => {
+  for (const weeklyHours of [2, 5, 10, 20]) for (const year of [1, 2, 3, 4] as const) {
+    const p = cs({ weeklyHours, year, trackId: "software-engineering" });
+    for (const t of p.terms) assert.ok(t.items.filter((i) => !i.gate && !i.essential).length <= capFor(weeklyHours), `${weeklyHours}h y${year} ${t.code}: ${t.items.length} goals`);
+  }
+});
+
+test("engine 0.8.0: the queue never repeats the plan, hides missed earlier-year goals, and names yearly rounds", () => {
+  const p = senior();
+  const planned = new Set(p.terms.flatMap((t) => t.items.map((i) => i.goalId)));
+  for (const b of p.backlog) {
+    if (b.kind === "next") assert.ok(!planned.has(b.goalId), `${b.goalId} is planned and next`);
+    if (planned.has(b.goalId)) assert.equal(b.kind, "continues", `${b.goalId}`);
+  }
+  for (const b of p.backlog.filter((x) => x.kind !== "past")) assert.doesNotMatch(b.title, /junior summer|sophomore|first- and second-year/i, b.title);
+  assert.ok(p.backlog.some((b) => b.goalId === "ap-internship-target" && b.kind === "past"));
+  const y = cs({ year: 1, weeklyHours: 2 });
+  const titles = y.backlog.filter((b) => b.kind === "next").map((b) => b.title);
+  assert.equal(new Set(titles).size, titles.length, "no repeated titles in the queue");
+});
+
+test("engine 0.8.0: notices are true for this student", () => {
+  for (const w of senior({ majorId: "finance", trackId: "investment-banking" }).warnings) assert.doesNotMatch(w, /sophomore|junior summer/i, w);
+  assert.ok(cs({ year: 1, majorId: "finance", trackId: "investment-banking" }).warnings.some((w) => /Recruiting timeline/.test(w)));
+  for (const year of [1, 2, 3, 4] as const) for (const weeklyHours of [2, 10]) {
+    const p = cs({ year, weeklyHours, majorId: "nursing", trackId: "nursing-clinical" });
+    for (const w of p.warnings) {
+      const m = w.match(/^"(.+?)" is essential/);
+      if (m) assert.ok(!p.terms.some((t) => t.items.some((i) => i.title === m[1])), `notice for a planned goal: ${m[1]}`);
+    }
+  }
+});
+
+test("engine 0.8.0: gender answers only add programs for that gender", () => {
+  const aamn = data.resources.find((r) => r.id === "aamn")!;
+  const asInput = (identity: string[]) => ({ ...base, identity });
+  assert.equal(eligibleFor(aamn, identitySet(asInput(["men"])), asInput(["men"])), true);
+  assert.equal(eligibleFor(aamn, identitySet(asInput(["women"])), asInput(["women"])), false);
+  const ghc = data.resources.find((r) => r.id === "anitab-ghc")!;
+  assert.equal(eligibleFor(ghc, identitySet(asInput(["nonbinary"])), asInput(["nonbinary"])), true);
 });

@@ -1,0 +1,317 @@
+{
+  "_about": "Programs for students of a given gender, across fields: women in medicine, law, cybersecurity, science, supply chain, and federal law enforcement; men in nursing; LGBTQ+ women and non-binary people in tech. Shown only to students who say their gender (or skip identity questions, labeled to check eligibility). Found by web search 2026-11-16.",
+  "resources": [
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "amwa-premed",
+      "name": "American Medical Women's Association (premedical)",
+      "type": "professional_org",
+      "majors": [
+        "biological-sciences",
+        "psychology",
+        "public-health",
+        "exercise-science",
+        "biomedical-engineering"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "National network for women in medicine. Its premedical division is open to any student before medical school, with mentoring, conference fee waivers, and premedical awards.",
+      "url": "https://amwa-doc.org/membership-registration",
+      "contact": {
+        "how": "Join the premedical division, or start or join a campus branch."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "aamn",
+      "name": "American Association for Men in Nursing",
+      "type": "professional_org",
+      "majors": [
+        "nursing"
+      ],
+      "identity": [
+        "men"
+      ],
+      "summary": "Professional association that supports men in nursing, with student chapters, scholarships for student members, and an annual conference. Membership is open to nursing students of any gender.",
+      "url": "https://www.aamn.org",
+      "contact": {
+        "how": "Join as a student member; NSNA members get a discount."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "ms-jd-prelaw",
+      "name": "Ms. JD pre-law programs",
+      "type": "program",
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics",
+        "communication",
+        "psychology",
+        "social-work",
+        "finance",
+        "accounting"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "Free pre-law programs from a nonprofit for women in law: step-by-step guidance through the law school application and a twice-yearly application conference.",
+      "url": "https://ms-jd.org/pre-law/",
+      "contact": {
+        "how": "Sign up for the free pre-law program on the site."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "wicys",
+      "name": "Women in CyberSecurity (WiCyS)",
+      "type": "professional_org",
+      "majors": [
+        "computer-science",
+        "information-technology",
+        "criminal-justice"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "Community for women in cybersecurity. Student members can apply for conference scholarships (applications usually open in the fall) and training scholarships.",
+      "url": "https://www.wicys.org/join",
+      "contact": {
+        "how": "Become a student member, then apply for the conference scholarship."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "awis",
+      "name": "Association for Women in Science (AWIS)",
+      "type": "professional_org",
+      "majors": [
+        "biological-sciences",
+        "computer-science",
+        "information-technology",
+        "mechanical-engineering",
+        "biomedical-engineering",
+        "packaging-engineering",
+        "pharmacy",
+        "public-health",
+        "exercise-science",
+        "psychology"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "Professional network for women in STEM with scholarships, career resources, and mentoring. Many universities cover student membership; check before paying.",
+      "url": "https://awis.org/",
+      "contact": {
+        "how": "Join as a student member with your school email."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "awesome-scholarship",
+      "name": "AWESOME Excellence in Education Scholarship",
+      "type": "scholarship",
+      "majors": [
+        "supply-chain"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "A $5,000 award for women in full-time supply chain programs, with a trip to the AWESOME Symposium and CSCMP EDGE and ongoing mentoring. Schools nominate candidates.",
+      "url": "https://awesomeleaders.org/",
+      "contact": {
+        "how": "Ask your supply chain department whether it nominates students."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "paid",
+      "season": null,
+      "typicalDeadline": "May 1 (recent cycles)",
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "wifle-scholarship",
+      "name": "Women in Federal Law Enforcement (WIFLE) Scholarship",
+      "type": "scholarship",
+      "majors": [
+        "criminal-justice",
+        "computer-science",
+        "information-technology",
+        "finance",
+        "political-science"
+      ],
+      "identity": [
+        "women"
+      ],
+      "summary": "Scholarship for students preparing for federal law enforcement careers, open after at least one year of college. An essay is required.",
+      "url": "https://wiflefoundation.wildapricot.org/scholarships",
+      "contact": {
+        "how": "Apply on the WIFLE Foundation site in spring."
+      }
+    },
+    {
+      "scope": "national",
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "applyUrl": null,
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-16",
+        "note": "Found by web search; awaiting the next live link check."
+      },
+      "tags": [],
+      "id": "lesbians-who-tech",
+      "name": "Lesbians Who Tech",
+      "type": "professional_org",
+      "majors": [
+        "computer-science",
+        "information-technology"
+      ],
+      "identity": [
+        "lgbtq"
+      ],
+      "summary": "Community of LGBTQ+ women, trans, and non-binary people in tech, with events, a job board, and the Edie Windsor coding scholarship.",
+      "url": "https://lesbianswhotech.org",
+      "contact": {
+        "how": "Join the community and look for local events."
+      }
+    }
+  ]
+}

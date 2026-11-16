@@ -40,6 +40,62 @@
       "label": "Fourth year or later"
     }
   ],
+  "yearTerms": [
+    {
+      "id": "1F",
+      "year": 1,
+      "semester": 1,
+      "label": "First year, fall semester"
+    },
+    {
+      "id": "1S",
+      "year": 1,
+      "semester": 2,
+      "label": "First year, spring semester"
+    },
+    {
+      "id": "2F",
+      "year": 2,
+      "semester": 1,
+      "label": "Second year, fall semester"
+    },
+    {
+      "id": "2S",
+      "year": 2,
+      "semester": 2,
+      "label": "Second year, spring semester"
+    },
+    {
+      "id": "3F",
+      "year": 3,
+      "semester": 1,
+      "label": "Third year, fall semester"
+    },
+    {
+      "id": "3S",
+      "year": 3,
+      "semester": 2,
+      "label": "Third year, spring semester"
+    },
+    {
+      "id": "4F",
+      "year": 4,
+      "semester": 1,
+      "label": "Fourth year, fall semester"
+    },
+    {
+      "id": "4S",
+      "year": 4,
+      "semester": 2,
+      "label": "Fourth year, spring semester"
+    },
+    {
+      "id": "5+",
+      "year": 4,
+      "semester": 2,
+      "label": "Fifth year or later"
+    }
+  ],
   "enrollment": [
     {
       "id": "full-time",
@@ -161,6 +217,42 @@
       "disability",
       "veteran",
       "transfer"
+    ]
+  },
+  "gender": {
+    "note": "Optional. Only used to show programs for students of that gender; never changes the plan otherwise; stays in the browser and is never in a share link.",
+    "options": [
+      {
+        "id": "woman",
+        "label": "Woman",
+        "tags": [
+          "women"
+        ]
+      },
+      {
+        "id": "man",
+        "label": "Man",
+        "tags": [
+          "men"
+        ]
+      },
+      {
+        "id": "nonbinary",
+        "label": "Non-binary",
+        "tags": [
+          "nonbinary"
+        ]
+      },
+      {
+        "id": "another",
+        "label": "I describe my gender another way",
+        "tags": []
+      },
+      {
+        "id": "skip",
+        "label": "Prefer not to say",
+        "tags": []
+      }
     ]
   },
   "experience": [

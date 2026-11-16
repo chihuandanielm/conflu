@@ -18,6 +18,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm run validate
       - run: npm test
+      - run: npm run simulate   # 260 varied students across every major and school; fails on any audit issue
       - run: npm run test:ui
       - run: npm run build
 

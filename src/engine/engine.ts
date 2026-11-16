@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.7.0";
+export const ENGINE_VERSION = "0.8.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -34,6 +34,11 @@ export const K = {
   staleTerms: 3,            // a goal whose ideal window ended this many terms ago is a catch-up, not a priority
   staleDiscount: 0.6,       // catch-ups score this share, so an upper-year student's own goals come first
   blockingBoost: 1.4,       // prerequisites of a goal that's due now or next term
+  goalCapBase: 2,           // baby steps: at most goalCapBase + weeklyHours / goalCapPerHours goals in a term,
+  goalCapPerHours: 4,       //   between goalCapMin and goalCapMax (2 h/week: 3 goals; 10: 5; 20: 6)
+  goalCapMin: 3,
+  goalCapMax: 6,
+  sameTermPrereqHours: 6,   // a prerequisite this small finished earlier in a term unlocks its dependent that term
 };
 
 const COMP_NAMES: Record<Competency, string> = {
@@ -70,7 +75,16 @@ export const CALENDAR = {
  * (a rising junior answers 3), so summer maps to the summer after the previous year. An incoming first-year in
  * summer, or anyone in August, starts at the coming fall. After fall exams, the plan starts at the coming spring.
  */
-export function currentTerm(year: number, todayISO: string): { code: TermCode; remaining: number } {
+export function currentTerm(year: number, todayISO: string, semester?: 1 | 2): { code: TermCode; remaining: number } {
+  const cal = calendarTerm(year, todayISO);
+  if (!semester) return cal;
+  // The student's answer wins over the calendar (engine 0.8.0): off-cycle students, transfers, and part-time pacing.
+  const want = `${year}${semester === 1 ? "F" : "S"}` as TermCode;
+  if (cal.code === want) return cal;
+  if (semester === 1 && cal.code.endsWith("U") && year > 1) return cal; // the summer before the fall they named
+  return { code: want, remaining: 1 };
+}
+function calendarTerm(year: number, todayISO: string): { code: TermCode; remaining: number } {
   const d = new Date(todayISO + "T12:00:00Z");
   const y = d.getUTCFullYear(), md = (d.getUTCMonth() + 1) * 100 + d.getUTCDate();
   const at = ([m, day]: readonly [number, number], yr = y) => Date.UTC(yr, m - 1, day, 12);
@@ -109,12 +123,15 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const identity = identitySet(input);
 
   // 1. Time frame -------------------------------------------------------------
-  const now = currentTerm(input.year, input.today);
+  const now = currentTerm(input.year, input.today, input.semester);
   const nowIdx = idx(now.code), gradIdx = idx("4S");
   const horizon = data.intake.horizons.find((h) => h.id === input.horizon)!;
   let endIdx = horizon.terms ? Math.min(nowIdx + horizon.terms - 1, T.length - 1)
     : Math.min(gradIdx + (horizon.extraTerms ?? 0), T.length - 1);
   if (endIdx < nowIdx) endIdx = nowIdx;
+  // Engine 0.8.0: a final-year student's plan "by graduation" also covers the first two terms after it, where only the
+  // goals that naturally run past graduation can go (the job search, graduate applications, and what they need).
+  if (yearOfIdx(nowIdx) >= 4 && input.horizon === "graduation") endIdx = Math.max(endIdx, Math.min(idx("G2"), T.length - 1));
   const weekly = input.weeklyHours ?? data.intake.defaultWeeklyHours;
   const summer = input.summer ?? "full";
   const summerBlock = { full: 1, part: 0.5, none: 0 }[summer];
@@ -157,6 +174,10 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const nodes = new Map<string, Node>();
   const suppressed = new Set(track.suppress);
   const gates = new Set(track.gates);
+  // Engine 0.8.0: in the final year the track's outcome is the must-do: the full-time job search, or graduate and
+  // professional school applications for tracks that lead there.
+  const finalGoal = track.outcome === "grad-school" ? "ap-grad-apps" : "ap-fulltime";
+  if (yearOfIdx(idx(currentTerm(input.year, input.today, input.semester).code)) >= 4 && !(track.suppress ?? []).includes(finalGoal)) gates.add(finalGoal);
   const runway = (endIdx - nowIdx + 1) / Math.max(1, gradIdx - nowIdx + 1);
   const threshold = K.thresholdBase + K.thresholdSqueeze * (1 - Math.min(1, runway));
 
@@ -169,7 +190,11 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       perTerm, mode, blockNeed: perTerm >= K.fullBlockHours ? 1 : 0.5, placedAt: [], completeAt: null, staticScore: 0, coverage: 0, eligibility: 1 };
   };
   // A goal already past its ideal window is named with its late wording everywhere (plan, queue), not only when placed.
-  const titleNow = (g: Goal, win: Node["win"]) => (g.late && nowIdx > win.b ? g.late.title : g.title);
+  const titleNow = (g: Goal, win: Node["win"], key = g.id) => {
+    const t = g.late && nowIdx > win.b ? g.late.title : g.title;
+    const y = key.split("@Y")[1];
+    return y ? `${t} (year ${y})` : t; // yearly rounds stay distinct in the queue
+  };
   const winOf = (g: Goal) => {
     const o = track.windowOverrides?.[g.id]; // tracks can retime goals (pre-med applies the summer after junior year)
     if (o) { const [e, ab, l] = o.split(" "); const [a, b] = ab.split("-"); return { e: idx(e), a: idx(a), b: idx(b), l: idx(l) }; }
@@ -206,9 +231,9 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       if (inst.win.e > endIdx) { backlog.push({ goalId: n.key, title: g.title, reason: "Starts after your time frame.", kind: "not-now" }); continue; }
       if (inst.win.l < nowIdx && !g.lateOk) {
         if (n.gate) warnings.push(`"${g.title}" is required for ${track.name}, but its window has passed. Talk to an advisor about alternatives.`);
-        backlog.push({ goalId: n.key, title: g.title, reason: "Its useful window has passed.", kind: "not-now" }); continue;
+        backlog.push({ goalId: n.key, title: g.title, reason: "Its usual time has passed for your year.", kind: "past" }); continue;
       }
-      if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: titleNow(g, inst.win), reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); rank.set(n.key, weight); continue; }
+      if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: titleNow(g, inst.win, n.key), reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); rank.set(n.key, weight); continue; }
       nodes.set(n.key, n);
     }
   }
@@ -252,17 +277,23 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   }
 
   // 7. Schedule term by term --------------------------------------------------
+  // Does an unfinished goal that runs past graduation depend on this one, directly or through a chain?
+  const neededAfterGrad = (n: Node, depth = 0): boolean => depth < 5 && n.addedAsPrereq.some((k) => {
+    const d = nodes.get(k);
+    return !!d && d.completeAt === null && (d.win.l > gradIdx || neededAfterGrad(d, depth + 1));
+  });
   const urgency = (n: Node, t: number): number => {
     const s = seasonOf(T[t]);
     if (n.goal.season === "summer" && s !== "U") return 0;
     if (n.mode === "block" && s !== "U" && s !== "G" && n.goal.season === "summer") return 0;
     const { e, a, b, l } = n.win;
     if (t < e) return 0;
-    if (s === "G" && l <= gradIdx) return 0; // student-only goals never spill past graduation
+    // Student-only goals never spill past graduation, unless a goal that does (the job search) still needs them.
+    if (s === "G" && l <= gradIdx && !neededAfterGrad(n)) return 0;
     if (t < a) return K.earlyFloor + (1 - K.earlyFloor) * (t - e + 1) / (a - e + 1);
     if (t <= b) return 1;
     if (t <= l) return 1 + K.lateCeiling * (t - b) / Math.max(1, l - b);
-    if (!n.goal.lateOk) return 0;
+    if (!n.goal.lateOk && !neededAfterGrad(n)) return 0; // closed, unless a goal that runs past graduation still needs it
     return n.addedAsPrereq.length ? 1.2 : K.pastLatest; // overdue but blocking something: still urgent
   };
   const prereqsReady = (n: Node, t: number) => n.goal.prereqs.every((pid) => {
@@ -275,7 +306,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     if ((strength.get(pid) ?? 0) >= 0.5) return true;
     const p = nodes.get(pid);
     if (!p || p.completeAt === null) return false;
-    return p.completeAt < t || (p.completeAt === t && p.mode === "flex" && p.goal.hours <= K.quickWinHours);
+    return p.completeAt < t || (p.completeAt === t && p.mode === "flex" && p.goal.hours <= K.sameTermPrereqHours);
   });
   // Finishing a goal also finishes the goals it satisfies; for a yearly goal, that year's round (writing a resume
   // counts as this year's resume refresh).
@@ -296,16 +327,39 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const blocking = n.addedAsPrereq.some((k) => { const d = nodes.get(k); return !!d && d.completeAt === null && d.win.a <= t + 1; }) ? K.blockingBoost : 1;
     return { u, stab, total: n.staticScore * u * stab * pin * blocking };
   };
+  // Engine 0.8.0: under the goal cap, a prerequisite ranks at least just below the goal it unlocks (when that goal is due
+  // now or next term), so the mock interview isn't crowded out by something less important than the job search it opens.
+  const rankAt = (n: Node, t: number, depth = 0): number => {
+    let r = scoreAt(n, t).total;
+    if (depth > 4) return r;
+    for (const k of n.addedAsPrereq) {
+      const d = nodes.get(k);
+      const next = Math.min(t + 1, T.length - 1); // never look past the last term
+      if (d && d.completeAt === null && d.win.a <= t + 1 && urgency(d, next) > 0) r = Math.max(r, 0.99 * rankAt(d, t, depth + 1));
+    }
+    return r;
+  };
 
+  // A must-do, or a prerequisite (direct or not) of an unfinished must-do that's due now or next term.
+  const protectedKeys = new Set<string>();
+  // Only quick steps (a few hours, like a resume or mock interview) are protected: they unlock the must-do this term
+  // without turning a semester into a long list.
+  const protectedAt = (n: Node, t: number, depth = 0): boolean => n.gate
+    || (depth === 0 && !!n.goal.deadline && n.goal.hours <= K.sameTermPrereqHours && urgency(n, t) >= 1) // a quick task with a deadline now (FAFSA)
+    || (n.goal.hours <= K.sameTermPrereqHours && depth < 5 && n.addedAsPrereq.some((k) => {
+    const d = nodes.get(k);
+    return !!d && d.completeAt === null && d.win.a <= t + 1 && protectedAt(d, t, depth + 1);
+  }));
+  const goalCap = Math.min(K.goalCapMax, Math.max(K.goalCapMin, Math.round(K.goalCapBase + weekly / K.goalCapPerHours)));
   for (let t = nowIdx; t <= endIdx; t++) {
     const cap = termCap[t];
     const termItems = new Map<string, PlanItem>();
     const open: Node[] = [];
     // Order: last-chance hard deadlines, then quick wins, then score.
-    // Quick wins jump the queue, except stale catch-ups more than a year past their ideal window (engine 0.7.0):
-    // those compete on score, so a senior's own goals come before "meet an advisor".
-    const tier = (n: Node) => (!n.goal.lateOk && t === n.win.l ? 0
-      : n.mode === "flex" && n.remaining <= K.quickWinHours && urgency(n, t) >= 1 && t <= n.win.b + K.staleTerms ? 1 : 2);
+    // Last-chance goals go first; everything else competes on score (engine 0.8.0). With a cap on goals per term,
+    // slots are the scarce resource, so small quick wins no longer jump ahead of what matters most. One-at-a-time
+    // placement still resolves short chains (pitch, then mock interview) within a term.
+    const tier = (n: Node) => (!n.goal.lateOk && t === n.win.l ? 0 : 2);
     // Sweep until nothing new becomes ready: a small prerequisite finished early in the term can unlock its dependent.
     // Phase 1 places only last-chance and quick-win goals (repeating so quick chains resolve); phase 2 places the rest.
     // Engine 0.7.0: one goal at a time, rechecking readiness after each, so a goal that finishes can be followed by
@@ -317,11 +371,14 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       && !(n.mode === "block" && n.placedAt.length > 0) && !(n.mode === "integrated" && n.placedAt.length > 0)
       && (phase === 2 || tier(n) < 2));
     if (!batch.length) break;
-    batch.sort((x, y) => tier(x) - tier(y) || scoreAt(y, t).total - scoreAt(x, t).total || x.key.localeCompare(y.key));
+    batch.sort((x, y) => tier(x) - tier(y) || rankAt(y, t) - rankAt(x, t) || x.key.localeCompare(y.key));
 
     for (const n of batch.slice(0, 1)) {
       tried.add(n.key);
       if (!open.includes(n)) open.push(n);
+      // Baby steps (engine 0.8.0): at most goalCap goals a term, plus must-dos and what they need, never crowded out.
+      if (!protectedAt(n, t) && (placements.get(t)?.filter((x) => !x.gate && !x.essential).length ?? 0) >= goalCap) continue;
+      if (protectedAt(n, t)) protectedKeys.add(n.key);
       if (n.completeAt !== null) continue; // satisfied by another goal earlier in this term
       const sc = scoreAt(n, t);
       let hours = 0, partial = false;
@@ -360,6 +417,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
         else partial = true;
       }
       const it = item(n, t, hours, partial, sc);
+      if (!n.gate && protectedKeys.has(n.key)) it.essential = true;
       termItems.set(n.key, it);
       pushItem(placements, t, it);
     }
@@ -383,13 +441,14 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   // 8. Leftovers join the queue: what comes next when the student finishes a goal or has more time ----------
   for (const n of nodes.values()) {
     if (n.completeAt !== null) continue;
-    const blocked = n.goal.prereqs.find((pid) => (strength.get(pid) ?? 0) < 0.5 && nodes.get(pid)?.completeAt == null);
+    // Waiting on a prerequisite that isn't done before the plan's last term (it may finish right at the end).
+    const blocked = n.goal.prereqs.find((pid) => (strength.get(pid) ?? 0) < 0.5 && (nodes.get(pid)?.completeAt == null || nodes.get(pid)!.completeAt! >= endIdx));
     const summerOnly = n.mode === "block" && summer !== "full";
     const late = n.win.e > endIdx;
     // Only goals that could still happen before the plan ends are "next in line" (a senior has no junior summer left).
     let possible = false;
     for (let t = nowIdx; t <= endIdx && !possible; t++) possible = urgency(n, t) > 0;
-    const blockedForGood = blocked && !nodes.get(blocked)?.placedAt.length && ![...Array(endIdx - nowIdx + 1).keys()].some((k) => urgency(nodes.get(blocked)!, nowIdx + k) > 0);
+    const blockedForGood = blocked && !!nodes.get(blocked) && !nodes.get(blocked)!.placedAt.length && ![...Array(endIdx - nowIdx + 1).keys()].some((k) => urgency(nodes.get(blocked)!, nowIdx + k) > 0);
     const reason = n.placedAt.length ? "Started in your plan; keep going when you have time."
       : !possible ? (n.goal.season === "summer" ? "Needs a summer before you graduate." : "Its usual time has passed for your year.")
       : blockedForGood ? `Depends on "${goals.get(blocked!)?.title}", whose usual time has passed.`
@@ -397,18 +456,18 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       : summerOnly ? "Needs a full-time summer; you said summers are limited."
       : late ? "Starts after your time frame."
       : "Next in line: it moves into your plan as you finish goals or add hours.";
-    const kind = summerOnly || late || !possible || blockedForGood ? "not-now" : "next";
-    backlog.push({ goalId: n.key, title: titleNow(n.goal, n.win), reason, kind });
+    const kind: Plan["backlog"][number]["kind"] = n.placedAt.length ? "continues" : !possible || blockedForGood ? "past" : summerOnly || late ? "not-now" : "next";
+    backlog.push({ goalId: n.key, title: titleNow(n.goal, n.win, n.key), reason: n.placedAt.length ? "Continues after this plan." : reason, kind });
     rank.set(n.key, n.staticScore + (n.placedAt.length ? 1 : 0)); // finishing what's started comes first
     if (n.gate && kind === "next") warnings.push(`"${n.goal.title}" is essential for ${track.name} and is next in line. To fit it sooner, add a few hours a week or free up a summer.`);
-    else if (n.gate) warnings.push(`"${n.goal.title}" is usually required for ${track.name}, but its window has passed. Talk to an advisor about alternatives.`);
+    else if (n.gate && kind === "past") warnings.push(`"${n.goal.title}" is usually required for ${track.name}, but its usual time has passed. Talk to an advisor about alternatives.`);
   }
-  const order = { next: 0, optional: 1, "not-now": 2 } as const;
+  const order = { continues: 0, next: 1, optional: 2, "not-now": 3, past: 4 } as const;
   backlog.sort((a, b) => order[a.kind] - order[b.kind] || (rank.get(b.goalId) ?? 0) - (rank.get(a.goalId) ?? 0) || a.goalId.localeCompare(b.goalId));
 
   // 9. Warnings ------------------------------------------------------------------
   // No hours-shortfall warning (removed in 0.6.0): the plan is sized to the student's time, and the rest is the "next" queue.
-  if (summer !== "full" && ("e-internship-target" in track.boosts || track.boosts["ap-internship-target"])) {
+  if (summer !== "full" && nowIdx <= idx("3U") && ("e-internship-target" in track.boosts || track.boosts["ap-internship-target"])) {
     warnings.push(`${track.name} usually runs through a full-time junior-summer internship; limited summers make that harder.`);
   }
   if (input.citizenship === "international") {
@@ -418,7 +477,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     warnings.push(`International students need CPT or OPT authorization before any internship. Check with ${office} before accepting an offer.`);
   }
   if (input.enrollment === "part-time") warnings.push("You're part-time, so this plan spaces goals at a full-time pace for your year. If you'll graduate later, plan by credits with an advisor, and check whether internships or scholarships you want require full-time enrollment.");
-  if (track.recruitingNote) warnings.push(`Recruiting timeline: ${track.recruitingNote}`);
+  if (track.recruitingNote && (!track.recruitingNoteUntil || nowIdx <= idx(track.recruitingNoteUntil))) warnings.push(`Recruiting timeline: ${track.recruitingNote}`);
 
   // 10. Assemble ---------------------------------------------------------------
   const terms: PlanTerm[] = [];

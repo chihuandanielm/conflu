@@ -121,6 +121,11 @@ for (const [m, ids] of Object.entries(ui.experienceSuggested ?? {})) {
   if (ids.length !== 8) errors.push(`ui/intake › suggested for ${m} needs exactly 8 options`);
   for (const id of ids) if (!expIds.has(id) || followers.has(id)) errors.push(`ui/intake › suggested for ${m}: ${id} is unknown or a follow-up`);
 }
+// Year and semester in one question; gender tags must be identity tags; recruiting notes tagged by year.
+for (const y of intake.yearTerms ?? []) if (![1, 2, 3, 4].includes(y.year) || ![1, 2].includes(y.semester)) errors.push(`intake › yearTerms ${y.id}: bad year or semester`);
+if (new Set((intake.yearTerms ?? []).map((y) => y.id)).size !== (intake.yearTerms ?? []).length) errors.push("intake › yearTerms ids must be unique");
+for (const o of intake.gender?.options ?? []) for (const t of o.tags) if (!vocab.identity.includes(t)) errors.push(`intake › gender ${o.id}: unknown identity tag ${t}`);
+for (const t of tracks) if (t.recruitingNoteUntil && !goalsFile.terms.includes(t.recruitingNoteUntil)) errors.push(`tracks › ${t.id}: recruitingNoteUntil ${t.recruitingNoteUntil} is not a term`);
 for (const t of intake.optionalIdentity.tags) if (!ui.identityLabels?.[t]) errors.push(`ui/intake › identity tag ${t} has no label`);
 for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);
 const uiRes = JSON.parse(readFileSync(join(root, "data/ui/resources.json"), "utf8"));

@@ -148,7 +148,9 @@
     "migrant-farmworker": "Students from migrant or farmworker families",
     "nj-resident": "New Jersey residents",
     "us-citizen": "U.S. citizens",
-    "us-citizen-or-pr": "U.S. citizens and permanent residents"
+    "us-citizen-or-pr": "U.S. citizens and permanent residents",
+    "men": "Man",
+    "nonbinary": "Non-binary"
   },
   "experienceKeywords": {
     "resume": "cv",

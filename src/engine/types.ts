@@ -45,6 +45,8 @@ export interface Track {
   gates: string[];
   suppress: string[];
   recruitingNote: string | null;
+  outcome?: "job" | "grad-school"; // what the track leads to; decides the final-year must-do (engine 0.8.0)
+  recruitingNoteUntil?: TermCode;  // last term the note applies to (engine 0.8.0); missing = always
   windowOverrides?: Record<string, string>; // goalId -> "E I1-I2 L" term codes
 }
 
@@ -75,6 +77,8 @@ export interface PlanInput {
   status: "college-student";
   majorId: string;
   year: 1 | 2 | 3 | 4;
+  /** 1 = first (fall) semester, 2 = second (spring). Overrides the calendar when given (engine 0.8.0). */
+  semester?: 1 | 2;
   trackId: string;
   horizon: "6mo" | "1yr" | "2yr" | "graduation" | "after-graduation";
   today: string;                       // ISO date; decides the current term and how much of it is left
@@ -101,6 +105,8 @@ export interface PlanItem {
   score: ScoreBreakdown; why: string[]; resources: { id: string; name: string; url: string; note?: string }[];
   /** Scheduled after its ideal window, so the title (and the steps the site shows) use the goal's `late` wording. */
   late?: boolean;
+  /** A quick, time-critical step placed on top of the goal cap (engine 0.8.0): it unlocks a must-do this term, or it has a deadline now. */
+  essential?: boolean;
 }
 
 export interface PlanTerm { code: TermCode; label: string; capacityHours: number; usedHours: number; summerBlock: boolean; items: PlanItem[] }
@@ -112,10 +118,12 @@ export interface Plan {
   ongoing: { goalId: string; title: string; why: string }[]; // standing habits shown beside the timeline
   edges: { from: string; to: string }[];
   /**
-   * Goals not in this plan, as a queue (engine 0.6.0): "next" would join the plan with more time, highest priority first;
-   * "optional" is lower priority for this time frame; "not-now" is outside the time frame, past its window, or unavailable.
+   * Goals not finished in this plan, as a queue. "continues": started in the plan and runs past its end (0.8.0). "next": would
+   * join the plan with more time, highest priority first. "optional": lower priority for this time frame. "not-now": after
+   * the time frame, needs a summer the student doesn't have, or legally unavailable. "past": an earlier stage that has passed
+   * for this student's year (0.8.0); never shown, so the page doesn't read as "you missed this".
    */
-  backlog: { goalId: string; title: string; reason: string; kind: "next" | "optional" | "not-now" }[];
+  backlog: { goalId: string; title: string; reason: string; kind: "continues" | "next" | "optional" | "not-now" | "past" }[];
   done: string[];
   warnings: string[];
 }
