@@ -159,9 +159,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           </div>
         )}
 
-        <StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} />
+        <StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
 
-        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} />
+        <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
 
         <Notices warnings={plan.warnings} dismissed={saved.dismissed}
           onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />

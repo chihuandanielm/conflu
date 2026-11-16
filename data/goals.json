@@ -1,5 +1,5 @@
 {
-  "_about": "Career goals (milestones). The engine scores and schedules these. Term codes: 1F = year 1 fall, 1S = spring, 1U = summer after year 1, … 4S, then G1/G2 = first two terms after graduation. window = earliest term it makes sense, the ideal range, and the latest useful term. steps: 3–6 concrete actions in order. doneWhen: how the student knows it's finished. guides: how-to pages (resources of type guide, or other non-Rutgers resources) shown with the steps; the engine never reads steps, doneWhen, or guides.",
+  "_about": "Career goals (milestones). The engine scores and schedules these. Term codes: 1F = year 1 fall, 1S = spring, 1U = summer after year 1, … 4S, then G1/G2 = first two terms after graduation. window = earliest term it makes sense, the ideal range, and the latest useful term. steps: 3–6 concrete actions in order. doneWhen: how the student knows it's finished. guides: how-to pages (resources of type guide, or other non-Rutgers resources) shown with the steps; the engine never reads steps, doneWhen, or guides. forNextYear: a yearly goal that pays off the following school year (FAFSA, outside scholarships), so there is no round in the final year. late: title, steps, and doneWhen to use when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students.",
   "terms": [
     "1F",
     "1S",
@@ -70,7 +70,17 @@
       "doneWhen": "You have a written 4-year plan you made with an advisor and a follow-up date on your calendar.",
       "guides": [
         "mit-job-search-tasks"
-      ]
+      ],
+      "late": {
+        "title": "Meet a career advisor and plan your remaining semesters",
+        "steps": [
+          "Book a 30-minute appointment with your campus career center through Handshake.",
+          "Bring your resume and the roles or programs you are aiming for after graduation.",
+          "Ask what to prioritize in the semesters you have left: applications, deadlines, and campus programs.",
+          "Leave with a short plan through graduation and the date of your next check-in."
+        ],
+        "doneWhen": "You have a plan for your remaining semesters, made with an advisor, and a follow-up date on your calendar."
+      }
     },
     {
       "id": "f-handshake-profile",
@@ -155,7 +165,9 @@
       "splittable": false,
       "lateOk": true,
       "integrated": false,
-      "satisfies": [],
+      "satisfies": [
+        "f-resume-refresh"
+      ],
       "requires": [],
       "why": "Nearly every application below needs one.",
       "steps": [
@@ -169,7 +181,18 @@
       "guides": [
         "mit-resume-first-year",
         "mit-sample-resumes"
-      ]
+      ],
+      "late": {
+        "title": "Write your resume",
+        "steps": [
+          "Look at two or three sample resumes from students in your field and year.",
+          "List your college classes, projects, jobs, clubs, volunteering, awards, and skills.",
+          "Write each entry as 2–3 bullets that start with an action verb and show a result or a number where you can.",
+          "Fit it on one page with your name, school email, phone, and LinkedIn URL at the top.",
+          "Get it reviewed at your career center or writing center, then save it as a PDF named Firstname-Lastname-Resume."
+        ],
+        "doneWhen": "You have a one-page PDF resume that someone at your career center or writing center has reviewed."
+      }
     },
     {
       "id": "f-resume-refresh",
@@ -313,7 +336,8 @@
       "doneWhen": "Your FAFSA is submitted for next year, its summary shows no open issues, and your school lists no missing documents.",
       "guides": [
         "fafsa-student-steps"
-      ]
+      ],
+      "forNextYear": true
     },
     {
       "id": "f-aid-check",
@@ -1984,7 +2008,7 @@
           "1F",
           "1S"
         ],
-        "latest": "3F"
+        "latest": "3S"
       },
       "prereqs": [],
       "season": null,
@@ -1997,7 +2021,7 @@
         "rutgers-camden-involvement"
       ],
       "splittable": true,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -2415,7 +2439,7 @@
           "1F",
           "2S"
         ],
-        "latest": "4F"
+        "latest": "3S"
       },
       "prereqs": [],
       "season": null,
@@ -2429,7 +2453,7 @@
         "formula-sae"
       ],
       "splittable": true,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -2657,7 +2681,7 @@
           "3S",
           "3U"
         ],
-        "latest": "4F"
+        "latest": "3U"
       },
       "prereqs": [
         "f-resume-v1"
@@ -2681,7 +2705,7 @@
         "employer-colgate"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [
         "e-internship-target"
@@ -3245,7 +3269,7 @@
           "1F",
           "1S"
         ],
-        "latest": "3F"
+        "latest": "2S"
       },
       "prereqs": [],
       "season": null,
@@ -3258,7 +3282,7 @@
         "rutgers-camden-career"
       ],
       "splittable": false,
-      "lateOk": true,
+      "lateOk": false,
       "integrated": false,
       "satisfies": [],
       "requires": [],
@@ -4841,7 +4865,8 @@
       "doneWhen": "You've submitted 5 outside scholarship applications.",
       "guides": [
         "studentaid-scams"
-      ]
+      ],
+      "forNextYear": true
     },
     {
       "id": "ap-early-programs",

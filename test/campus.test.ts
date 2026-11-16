@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { availableAt, buildPlan, campusOf } from "../src/engine/engine.ts";
+import { availableAt, buildPlan, campusOf, ENGINE_VERSION } from "../src/engine/engine.ts";
 import { loadDataset } from "../src/engine/load.ts";
 import type { Plan, PlanInput, ResourceLite } from "../src/engine/types.ts";
 
@@ -41,25 +41,17 @@ test("availableAt: Rutgers resources only at their campuses; NJ and national eve
   assert.equal(availableAt(national, { ...base, school: "other" }), true);
 });
 
-test("New Brunswick plans are unchanged: same goals, terms, hours, and backlog as engine 0.3.0", () => {
-  const baseline = JSON.parse(readFileSync(join(here, "fixtures/nb-plans-engine-0.3.0.json"), "utf8")) as
-    { input: PlanInput; terms: { code: string; items: string[] }[]; backlog: string[] }[];
-  for (const b of baseline) {
+test("New Brunswick plans match the stored baseline (re-record with scripts/nb-baseline.ts when planning changes on purpose)", () => {
+  const { engineVersion, plans } = JSON.parse(readFileSync(join(here, "fixtures/nb-plans-baseline.json"), "utf8")) as
+    { engineVersion: string; plans: { input: PlanInput; terms: { code: string; items: string[] }[]; backlog: string[] }[] };
+  assert.equal(engineVersion, ENGINE_VERSION, "the baseline was recorded with an older engine: re-run scripts/nb-baseline.ts and explain the change");
+  for (const b of plans) {
     const p = buildPlan(b.input, data);
     const label = `${b.input.trackId} y${b.input.year} ${b.input.citizenship ?? ""} ${(b.input.identity ?? []).join("+")}`;
-    assert.deepEqual(p.terms.map((t) => ({ code: t.code, items: t.items.map((i) => `${i.goalId}|${i.hours}|${i.partial}`) })),
-      b.terms.map((t) => ({ code: t.code, items: t.items.map((s) => s.split("|").slice(0, 3).join("|")) })), `${label}: placements changed`);
-    // The only goals allowed to appear: the two added in this change (as optional backlog items for engineers).
-    const NEW_GOALS = new Set(["e-pack-competition", "a-packaging-certificate"]);
-    // Same backlog goals; engine 0.6.0 orders them as a priority queue, so compare as sets.
-    assert.deepEqual(p.backlog.map((x) => x.goalId).filter((g) => !NEW_GOALS.has(g)).sort(), [...b.backlog].sort(), `${label}: backlog changed`);
-    // Resource cards may only gain resources added in this change that NB students can use.
-    for (const t of p.terms) for (const it of t.items) {
-      const before = b.terms.find((x) => x.code === t.code)!.items.find((s) => s.startsWith(`${it.goalId}|`))!.split("|")[3].split(",").filter(Boolean);
-      for (const r of it.resources) if (!before.includes(r.id)) {
-        assert.ok(usableAt(res.get(r.id)!, "nb"), `${label}: ${it.goalId} now shows ${r.id}, which NB students can't use`);
-      }
-    }
+    assert.deepEqual(p.terms.map((t) => ({ code: t.code, items: t.items.map((i) => `${i.goalId}|${i.hours}|${i.partial}|${i.resources.map((r) => r.id).join(",")}`) })),
+      b.terms, `${label}: placements changed`);
+    assert.deepEqual(p.backlog.map((x) => x.goalId), b.backlog, `${label}: backlog changed`);
+    for (const r of shown(p)) assert.ok(usableAt(r, "nb"), `${label}: shows ${r.id}, which NB students can't use`);
   }
 });
 

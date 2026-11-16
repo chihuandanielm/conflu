@@ -29,6 +29,10 @@ export interface Goal {
   steps?: string[];
   doneWhen?: string;
   guides?: string[];
+  /** Wording for when the goal is scheduled after its ideal window (engine 0.7.0). */
+  late?: { title: string; steps?: string[]; doneWhen?: string };
+  /** Yearly goal that pays off the following school year (FAFSA, outside scholarships): no round in the final year. */
+  forNextYear?: boolean;
 }
 
 export interface Track {
@@ -95,6 +99,8 @@ export interface ScoreBreakdown { weight: number; coverage: number; urgency: num
 export interface PlanItem {
   goalId: string; title: string; lane: Goal["category"]; hours: number; partial: boolean; gate: boolean;
   score: ScoreBreakdown; why: string[]; resources: { id: string; name: string; url: string; note?: string }[];
+  /** Scheduled after its ideal window, so the title (and the steps the site shows) use the goal's `late` wording. */
+  late?: boolean;
 }
 
 export interface PlanTerm { code: TermCode; label: string; capacityHours: number; usedHours: number; summerBlock: boolean; items: PlanItem[] }

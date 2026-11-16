@@ -18,6 +18,14 @@ test("every goal has 3–6 concrete steps and a done-when line", () => {
   }
 });
 
+test("late wording, where present, is complete and drops early-college phrasing", () => {
+  for (const g of data.goals) if (g.late) {
+    assert.ok(g.late.title && g.late.title !== g.title, `${g.id}: late title`);
+    if (g.late.steps) assert.ok(g.late.steps.length >= 3 && g.late.steps.length <= 6, `${g.id}: late steps`);
+    assert.doesNotMatch([g.late.title, ...(g.late.steps ?? []), g.late.doneWhen ?? ""].join(" "), /4-year|first-year|first college/i, g.id);
+  }
+});
+
 test("guides exist, are open to every campus, and are not also counted as programs", () => {
   for (const g of data.goals) for (const id of g.guides ?? []) {
     const r = res.get(id);

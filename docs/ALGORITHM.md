@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.6 design (engine 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.7 design (engine 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -75,6 +75,8 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `resources` | Resource ids shown on the goal's card |
 | `why` | One-sentence reason always shown last |
 | `steps` | 3–6 concrete actions, in order: what the student actually does (display only) |
+| `late` | Optional `{ title, steps, doneWhen }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan your remaining semesters", not "sketch a 4-year plan") |
+| `forNextYear` | Yearly goals that pay off the following school year (FAFSA, outside scholarships): no round in the final year |
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
 
@@ -161,7 +163,7 @@ For every goal:
 2. Skip if suppressed by the track, if restricted to other majors (unless the track boosts or gates it), if `requires` fails for a stated citizenship, or if every attached resource the student can use is citizen-only and the student is international or undocumented.
 
    "Can use" is `availableAt(resource, input)`: every NJ and national resource; a Rutgers resource only when its `campuses` include the student's campus or `all`. `campusOf(school)` maps `rutgers-newark` to `newark`, `rutgers-camden` to `camden`, `other` to none, and anything else (including missing) to `nb`. A student at another school can use no Rutgers resource.
-3. Yearly goals become one instance per remaining year (`f-fafsa@Y2`, `f-fafsa@Y3`, …), each with a one-term ideal window.
+3. Yearly goals become one instance per remaining year (`f-fafsa@Y2`, `f-fafsa@Y3`, …), each with a one-term ideal window. `forNextYear` goals skip the final year: a senior's FAFSA would only pay for the year after graduation.
 4. Skip instances already at strength 1.
 5. Send to the **backlog**, with the reason, if: the window opens after the horizon; the window has closed and the goal isn't `lateOk`; or `weight < threshold` (and not a gate).
 
@@ -177,7 +179,8 @@ Any selected goal pulls in its unfinished prerequisites (strength under 0.5) eve
 coverage(g)    = Σ_c comp_g[c] × gap[c]  /  (Σ_c comp_g[c] × max_c gap[c])      ∈ [0, 1]
 eligibility(g) = 1.15 if any attached resource the student can use targets one of their identity tags, else 1
 focus(g)       = 1.3 for applications/network goals when runway ≤ 0.5, else 1
-static(g)      = weight × (1 + 0.5 × coverage) × eligibility × focus
+static(g)      = weight × (1 + 0.5 × coverage) × eligibility × focus × stale
+stale(g)       = 0.6 if the goal's ideal window ended more than 3 terms ago and it isn't a gate or a prerequisite of a selected goal, else 1
 ```
 
 Coverage rewards goals that hit the student's **biggest** gaps, not just any gap.
@@ -198,24 +201,26 @@ For each term from now to the horizon:
 | summer-only goal in a non-summer term | 0 |
 | after-graduation term, goal's `latest` ≤ 4S | 0 (student-only goals never spill past graduation) |
 
-**Term score** = `static × U × stability × pin`
+**Term score** = `static × U × stability × pin × blocking`
 - `stability` = 1.1 if the goal was in this same term in `previousPlan` (prevents churn when a student re-plans).
 - `pin` = 1.25 for gates, and for deadline goals while U ≥ 1.
+- `blocking` = 1.4 when the goal is a prerequisite of a selected goal whose ideal window starts this term or next, so the senior job search isn't stuck behind an unscheduled mock interview.
 
 **Readiness.** A goal is ready when every prerequisite is done, at strength ≥ 0.5, or completed in an earlier term. A quick prerequisite (≤ 3 hours) finished earlier in the **same** term also counts.
 
 **Placement order inside a term**
 1. **Phase 1** places only tier 0 and tier 1 goals:
    - tier 0: last-chance goals (not `lateOk` and this is their `latest` term)
-   - tier 1: quick wins (flex, ≤ 3 hours, U ≥ 1)
+   - tier 1: quick wins (flex, ≤ 3 hours, U ≥ 1), except stale catch-ups more than 3 terms past their ideal window
 
-   Phase 1 sweeps repeatedly, so quick chains resolve in one term (elevator pitch → mock interview).
-2. **Phase 2** places everything else by tier, then term score, then id (deterministic tie-break), sweeping again so newly unlocked goals get a chance.
+2. **Phase 2** places everything else by tier, then term score, then id (deterministic tie-break).
+
+   Both phases place **one goal at a time** and recheck readiness after each (engine 0.7.0), so a goal that finishes is followed by what it unlocks in the same term (elevator pitch → mock interview → job search) before the hours run out. Earlier engines placed a whole batch first, which starved dependents.
 3. **Top-up pass:** leftover hours go to goals already in progress this term, highest score first.
 
 **How each goal type is placed**
 - **Integrated:** costs no hours. Placed in the first eligible term; completes after `spanTerms` terms.
-- **Block** (per-term hours ≥ 300): needs a free block slot in each of its `spanTerms` consecutive terms. It needs a full slot if per-term hours ≥ 350, otherwise half. It waits for its ideal window unless that falls after the horizon. A co-op in a fall/spring term cuts that term's free hours to 30%. Placing a block marks everything in its `satisfies` list as complete.
+- **Block** (per-term hours ≥ 300): needs a free block slot in each of its `spanTerms` consecutive terms. It needs a full slot if per-term hours ≥ 350, otherwise half. It waits for its ideal window unless that falls after the horizon. A co-op in a fall/spring term cuts that term's free hours to 30%. Finishing any goal marks everything in its `satisfies` list as complete; for a yearly goal, that year's round (writing a first resume counts as that year's resume refresh).
 - **Flex:** takes `min(need, share cap, pace)` where:
   - `need` = per-term hours (splittable goals) or all remaining hours.
   - `share cap` = 50% of the term's free hours, so one big goal can't crowd out everything else. It applies to splittable goals, or goals larger than two terms of capacity (auto-split).
@@ -229,9 +234,9 @@ The plan is sized to the student's free time. Everything else is a queue, not a 
 
 | kind | When | Reason text |
 |---|---|---|
-| `next` | Selected but not placed: started, waiting on a prerequisite, or no room yet | "Started in your plan; keep going when you have time." / "Comes after \"X\"." / "Next in line: it moves into your plan as you finish goals or add hours." |
+| `next` | Selected but not placed, and still possible before the plan ends: started, waiting on a prerequisite, or no room yet | "Started in your plan; keep going when you have time." / "Comes after \"X\"." / "Next in line: it moves into your plan as you finish goals or add hours." |
 | `optional` | Below the horizon threshold (Step 4) | "Lower priority for your time frame; add it if you have time." |
-| `not-now` | Outside the time frame, past its window, needs a full-time summer the student doesn't have, or legally unavailable | The specific reason |
+| `not-now` | Outside the time frame, past its window, impossible in any remaining term (a senior has no junior summer left: "Needs a summer before you graduate."), depends on such a goal, needs a full-time summer the student doesn't have, or legally unavailable | The specific reason |
 
 Order: `next` first (started goals first, then by static score), then `optional` (by weight), then `not-now`; ties by id. A gate that ends up in `next` adds a note: "\"X\" is essential for T and is next in line. To fit it sooner, add a few hours a week or free up a summer." No goal is ever described as "didn't fit", and no hours-needed number is shown.
 
@@ -273,7 +278,7 @@ PlanItem {
 
 1. "Must-do for {track}." (gate) or "High priority for {track}." (weight ≥ 0.85)
 2. "Builds {competency}, one of your biggest gaps right now." (coverage ≥ 0.5; names the competency where gap × contribution is largest)
-3. "Timing: {deadline}." or "Good to do soon: students usually do this by {term}." (U > 1.2; reworded from "Getting late" in 0.6.0)
+3. "Timing: {deadline}.", or "Most students do this earlier, and it still helps now." when the term is past the ideal window, or "Good to do soon: students usually do this by {term}." (U > 1.2)
 4. "Needed before: {up to 2 dependent goals}."
 5. "Some programs here are specifically for students like you." (eligibility > 1)
 6. "You've already started this." (strength > 0)
@@ -316,6 +321,9 @@ From the goal's `resources`:
 | blockHours / fullBlockHours | 300 / 350 | What counts as a full-time commitment |
 | coopFlexShare | 0.3 | Free time left during a co-op semester |
 | prereqInherit | 0.9 | How strongly a prerequisite inherits its dependent's weight |
+| staleTerms | 3 | How long past its ideal window a goal counts as a stale catch-up |
+| staleDiscount | 0.6 | Share of score stale catch-ups keep (lower puts an upper-year student's own goals further ahead) |
+| blockingBoost | 1.4 | Priority for prerequisites of goals due now or next term |
 
 Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example students, adjust, and repeat. Bump `ENGINE_VERSION` when behavior changes.
 
@@ -326,7 +334,7 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 ### Results page order (one baby step, then wider)
 
 1. **Start here:** the first unchecked step of this term's highest-scoring goal, with its first guide. One action, nothing else.
-2. **This term:** the term's goals by score, three shown (more on request), each with its next step. "Sized to your N free hours a week."
+2. **This term:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
 3. **Notices:** amber only for things to act on soon (a required goal whose window passed, a track that limited summers make harder). Queue notes stay blue.
 4. **Semester by semester:** the roadmap.
 5. **Up next:** `backlog` entries of kind `next`, numbered, first five shown: "When you finish a goal or have more time, these join your plan in this order. Nothing here is overdue." `optional` and `not-now` sit in a closed "Not in this plan" list.
@@ -397,7 +405,7 @@ The PDF follows the same order: a Start here box, This term with every step, the
 `test/campus.test.ts` (engine 0.4.0) checks:
 
 11. `campusOf` and `availableAt` behave as described in Step 4.
-12. New Brunswick plans are unchanged from engine 0.3.0: 324 stored plans (every track × year, plain, international, and first-generation + low-income) keep the same goals, terms, hours, and backlog (`test/fixtures/nb-plans-engine-0.3.0.json`, made by `scripts/nb-baseline.ts` before the data change). Cards may only gain new resources NB students can use, and the backlog may only gain the two new packaging goals.
+12. New Brunswick plans were unchanged by the campus expansion (engine 0.4.0, checked then against 324 plans recorded with 0.3.0). That check now lives on as test 27's baseline.
 13. Newark and Camden students never see another campus's Rutgers resources, for every offered major and year.
 14. Each campus gets its own career office and Handshake on the same goals.
 15. Students at another school see no Rutgers-only resources.
@@ -407,6 +415,12 @@ The PDF follows the same order: a Start here box, This term with every step, the
 19. The international note names each campus's office (engine 0.5.0).
 20. Part-time students get the pace note and identical goals and terms; full-time and missing enrollment get no note.
 21. Leftover goals are an ordered queue (`next`, `optional`, `not-now`) with no "didn't fit" wording and no hours-shortfall warning (engine 0.6.0, `test/engine.test.ts`).
+22. No FAFSA or outside-scholarship round in the final year (engine 0.7.0).
+23. A senior's plan includes the full-time job search, after the resume it needs.
+24. Goals done late use late wording ("plan your remaining semesters"), in the plan and the queue, with no stale "by year 1 spring" timing.
+25. Nothing impossible before graduation is "next in line" for a senior (junior-summer internships, co-ops).
+26. First-year-only goals (first career fair, joining organizations, design teams) stay out of upper-year plans.
+27. New Brunswick plans match `test/fixtures/nb-plans-baseline.json`, recorded with the current engine by `scripts/nb-baseline.ts`; re-record only for intended planning changes.
 
 Add a test for every bug found in review.
 
