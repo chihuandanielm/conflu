@@ -33,9 +33,12 @@ export function Intro({ onStart, hasProgress, onResume, onStartOver, onContinueP
             <Button variant="secondary" onClick={onStartOver}>Start over</Button>
           </>
         ) : (
-          <Button onClick={onStart}>Start</Button>
+          <Button onClick={onStart}>I'm a college student, start</Button>
         )}
       </div>
+      {!onContinuePlan && !hasProgress && (
+        <p className="mt-4 text-sm text-muted">This planner is for current college students.</p>
+      )}
     </main>
   );
 }

@@ -28,23 +28,26 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(ran).toBe(false);
   seen.violations.length = 0; // that probe's own violation is expected
 
-  await page.getByRole("button", { name: "Start" }).click();
+  await page.getByRole("button", { name: "I'm a college student, start" }).click();
 
-  await expect(heading(page)).toHaveText("Where are you right now?");
-  await page.keyboard.press("1");                                         // college student (auto-advances)
-  await expect(heading(page)).toHaveText("Which Rutgers campus are you at?");
+  // Campus and major share a screen; picking the major moves on.
+  await expect(heading(page)).toHaveText("What do you study?");
   await page.getByRole("radio", { name: "Rutgers–New Brunswick" }).click();
-  await expect(heading(page)).toHaveText("What's your major?");
   await page.getByRole("searchbox", { name: "Search majors" }).fill("Computer Science");
   await page.keyboard.press("Enter");
-  await expect(heading(page)).toHaveText("Where are you in school?");
-  await page.getByRole("radio", { name: "Second year, fall semester" }).click();
-  await expect(heading(page)).toHaveText("Are you a full-time or part-time student?");
-  await page.getByRole("radio", { name: /Full-time/ }).click();
+  // The goal comes right after the major, then the time frame.
   await expect(heading(page)).toHaveText("Where do you want to end up?");
   await page.getByRole("radio", { name: /Software engineering/ }).click();
   await expect(heading(page)).toHaveText("How soon do you want to get there?");
   await page.getByRole("radio", { name: "By graduation" }).click();
+
+  // Year and full-time/part-time share a screen. Continue with one missing marks it instead of greying out.
+  await expect(heading(page)).toHaveText("Where are you in school?");
+  await page.getByRole("radio", { name: "Second year, fall semester" }).click();
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(page.getByRole("alert")).toHaveText("1 question on this page still needs an answer.");
+  await expect(page.getByText("Pick full-time or part-time to continue.")).toBeVisible();
+  await page.getByRole("radio", { name: /Full-time/ }).click();
 
   await expect(heading(page)).toHaveText("What have you already done?");
   await expect(page.getByRole("button", { name: "None yet, continue" })).toBeVisible();
@@ -54,23 +57,15 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByRole("heading", { name: "Your picks (2)" })).toBeVisible();
   await page.getByRole("button", { name: "Clear search" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
-  await expect(heading(page)).toHaveText("Which skills are you comfortable with?");
+  await expect(heading(page)).toHaveText("What can you already do?");
   await page.getByRole("button", { name: "Python" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
-  await expect(heading(page)).toHaveText("Do you have any of these certifications?");
-  await page.getByRole("button", { name: "Skip" }).click();
-  await expect(heading(page)).toHaveText("Outside of class, how many hours a week can you give your career goals?");
+  await expect(heading(page)).toHaveText("How much time do you have?");
   await page.getByRole("radio", { name: "10 hours a week outside class" }).click();
-  await expect(heading(page)).toHaveText("What about summers?");
-  await page.keyboard.press("1");
-  await expect(heading(page)).toHaveText("Where are you based?");
+  await page.getByRole("radio", { name: "Free for a full-time summer role" }).click();
+  await expect(heading(page)).toHaveText("About you (optional)");
   await page.getByRole("radio", { name: "New Jersey" }).click();
-  await expect(heading(page)).toHaveText("What's your citizenship status?");
-  await page.getByRole("button", { name: "Skip" }).click();
-  await expect(heading(page)).toHaveText("What's your gender?");
-  await page.getByRole("button", { name: "Skip" }).click();
-  await expect(heading(page)).toHaveText("Anything else we should know?");
-  await page.getByRole("button", { name: "Skip" }).click();
+  await page.getByRole("button", { name: "Continue" }).click();
 
   await expect(heading(page)).toHaveText("Check your answers");
   await expect(page.getByText("Computer Science", { exact: true })).toBeVisible();

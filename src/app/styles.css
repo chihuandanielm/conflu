@@ -19,6 +19,8 @@
   --green-tint: #e8f4f0;
   --amber: #9a6a12;
   --amber-tint: #fbf4e6;
+  /* Text that marks a missing answer: readable on white and on the amber tint (>= 6:1). */
+  --amber-strong: #80520a;
 
   /* Chart lanes: quiet tints in the blue–green range. Ink on each passes AA (>= 12:1). */
   --lane-foundation: #eaf2fa;
@@ -45,6 +47,7 @@
   --color-green-tint: var(--green-tint);
   --color-amber: var(--amber);
   --color-amber-tint: var(--amber-tint);
+  --color-amber-strong: var(--amber-strong);
 
   --font-sans: "IBM Plex Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;

@@ -5,8 +5,8 @@ import { majorsFor, type School } from "../model.ts";
 import { SingleChoice } from "./SingleChoice.tsx";
 
 /** Searchable list of the majors offered at the student's campus. Enter in the search box picks the first match. */
-export function MajorPicker({ value, onSelect, labelledBy, school }: {
-  value?: string; onSelect: (id: string) => void; labelledBy: string; school?: School;
+export function MajorPicker({ value, onSelect, labelledBy, school, invalid, describedBy }: {
+  value?: string; onSelect: (id: string) => void; labelledBy: string; school?: School; invalid?: boolean; describedBy?: string;
 }) {
   const [q, setQ] = useState("");
   const inputId = useId();
@@ -26,7 +26,7 @@ export function MajorPicker({ value, onSelect, labelledBy, school }: {
       <p className="sr-only" aria-live="polite">{matches.length} majors match</p>
       <div className="max-h-[50vh] overflow-y-auto pr-1">
         {matches.length ? (
-          <SingleChoice labelledBy={labelledBy} numberKeys={false} value={value} onSelect={onSelect}
+          <SingleChoice labelledBy={labelledBy} numberKeys={false} invalid={invalid} describedBy={describedBy} value={value} onSelect={onSelect}
             choices={matches.map((m) => ({ value: m.id, label: m.name }))} />
         ) : (
           <p className="text-muted">

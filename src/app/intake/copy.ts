@@ -1,5 +1,5 @@
 // Question wording. Options come from data/intake.json and data/ui/intake.json; only the prose lives here.
-import type { StepId } from "./model.ts";
+import type { ScreenId, StepId } from "./model.ts";
 import { uiIntake } from "../data/dataset.ts";
 
 export interface StepCopy { question: string; help?: string; why?: string }
@@ -26,4 +26,35 @@ export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
   identity: { question: "Anything else we should know?",
     help: "Optional. Pick any that apply.",
     why: "These only add programs you may be eligible for. They never remove anything, and they never leave your browser." },
+};
+
+/** Titles for screens that ask more than one question; one-question screens use that question's wording. */
+export const SCREEN_COPY: Partial<Record<ScreenId, StepCopy>> = {
+  study: { question: "What do you study?", help: "Pick your campus, then your major." },
+  year: { question: "Where are you in school?" },
+  skills: { question: "What can you already do?", help: "Tap anything that fits and skip the rest." },
+  time: { question: "How much time do you have?", help: "A rough guess is fine. The plan fits to it." },
+  about: { question: "About you (optional)",
+    help: "Everything here is optional. Answers only add programs you may qualify for, or hide ones you can't apply to." },
+};
+
+/** A question's heading when it shares a screen and its own wording would repeat the screen title. */
+export const PART_TITLE: Partial<Record<StepId, string>> = { year: "Year and semester" };
+
+/** Help shown under each question when it shares a screen (shorter than the one-question version). */
+export const PART_HELP: Partial<Record<StepId, string>> = {
+  hours: "Count only the free time left after classes, studying, work, and family.",
+  skills: "Only pick ones you could use on a project today.",
+};
+
+/** What a missing required answer says, in color, when the student tries to continue without it. */
+export const MISSING: Partial<Record<StepId, string>> = {
+  school: "Pick your campus to continue.",
+  major: "Pick your major to continue.",
+  year: "Pick your year and semester to continue.",
+  enrollment: "Pick full-time or part-time to continue.",
+  track: "Pick the goal closest to yours to continue.",
+  horizon: "Pick a time frame to continue.",
+  summer: "Pick what works for your summers to continue.",
+  coop: "Answer yes or no to continue.",
 };

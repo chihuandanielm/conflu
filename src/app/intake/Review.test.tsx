@@ -28,9 +28,9 @@ describe("review screen", () => {
     const build = screen.getByRole("button", { name: "Answer the missing question first" });
     expect(build).toBeEnabled();
     fireEvent.click(build);
-    expect(onEdit).toHaveBeenCalledWith("year");
+    expect(onEdit).toHaveBeenCalledWith("horizon"); // the time frame is now asked before the year
     expect(onBuild).not.toHaveBeenCalled();
-    fireEvent.click(within(alert).getByRole("button", { name: "Answer: Time frame" }));
-    expect(onEdit).toHaveBeenLastCalledWith("horizon");
+    fireEvent.click(within(alert).getByRole("button", { name: "Answer: Year and semester" }));
+    expect(onEdit).toHaveBeenLastCalledWith("year");
   });
 });

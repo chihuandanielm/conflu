@@ -4,8 +4,8 @@ import { tracksForMajor } from "../model.ts";
 import { SingleChoice, type Choice } from "./SingleChoice.tsx";
 
 /** Tracks suggested for the major first, the rest behind "See all paths", and "Still exploring" always. */
-export function TrackPicker({ majorId, value, onSelect, labelledBy }: {
-  majorId?: string; value?: string; onSelect: (id: string) => void; labelledBy: string;
+export function TrackPicker({ majorId, value, onSelect, labelledBy, invalid, describedBy }: {
+  majorId?: string; value?: string; onSelect: (id: string) => void; labelledBy: string; invalid?: boolean; describedBy?: string;
 }) {
   const { suggested, others, exploring } = tracksForMajor(majorId);
   const [showAll, setShowAll] = useState(() => !!value && others.some((t) => t.id === value));
@@ -16,7 +16,7 @@ export function TrackPicker({ majorId, value, onSelect, labelledBy }: {
   ];
   return (
     <div className="flex flex-col gap-4">
-      <SingleChoice labelledBy={labelledBy} value={value} onSelect={onSelect} choices={choices} />
+      <SingleChoice labelledBy={labelledBy} invalid={invalid} describedBy={describedBy} value={value} onSelect={onSelect} choices={choices} />
       {!showAll && others.length > 0 && (
         <button type="button" aria-expanded={false} onClick={() => setShowAll(true)}
           className="inline-flex items-center gap-1 self-start rounded-md px-2 py-1 font-semibold text-blue hover:bg-blue-tint">

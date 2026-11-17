@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildPlan } from "../../engine/engine.ts";
 import { dataset } from "../data/dataset.ts";
-import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, experienceProfile, relevance, searchExperience, withFollowUps, stepsFor, toPlanInput, tracksForMajor, type Answers } from "./model.ts";
+import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, experienceProfile, relevance, screenOf, screensFor, searchExperience, withFollowUps, stepsFor, toPlanInput, tracksForMajor, type Answers } from "./model.ts";
 import { reducer, type IntakeState } from "./IntakeFlow.tsx";
 import { answerText } from "./Review.tsx";
 
@@ -9,19 +9,33 @@ const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "co
   horizon: "graduation", summer: "full", school: "rutgers-nb", enrollment: "full-time", location: "nj", experience: ["resume"], skills: ["python"] };
 
 describe("steps", () => {
-  it("asks about co-ops only for majors that have them", () => {
-    expect(stepsFor(cs)).not.toContain("coop");
-    expect(stepsFor({ ...cs, majorId: "mechanical-engineering" })).toContain("coop");
-    expect(stepsFor({ ...cs, majorId: "pharmacy" })).toContain("coop");
+  it("asks about co-ops only for majors that have them, on the time screen", () => {
+    expect(questionSteps(cs)).not.toContain("coop");
+    expect(screensFor({ ...cs, majorId: "mechanical-engineering" }).find((s) => s.id === "time")!.parts).toEqual(["hours", "summer", "coop"]);
+    expect(questionSteps({ ...cs, majorId: "pharmacy" })).toContain("coop");
   });
-  it("counts 16 questions for a CS student and starts with intro, ends with review", () => {
-    expect(questionSteps(cs)).toHaveLength(16);
-    expect(stepsFor(cs).slice(4, 6)).toEqual(["year", "enrollment"]); // enrollment right after year, before the goal
-    expect(stepsFor(cs)[0]).toBe("intro");
-    expect(stepsFor(cs).at(-1)).toBe("review");
+  it("groups the questions into 8 screens: study, then the goal, then the details, personal questions last", () => {
+    expect(stepsFor(cs)).toEqual(["intro", "study", "track", "horizon", "year", "experience", "skills", "time", "about", "review"]);
+    expect(screensFor(cs).map((s) => s.parts)).toEqual([
+      ["school", "major"], ["track"], ["horizon"], ["year", "enrollment"], ["experience"], ["skills", "credentials"],
+      ["hours", "summer"], ["location", "citizenship", "gender", "identity"],
+    ]);
+    // The "where are you right now" question is folded into the intro, so it isn't a question any more.
+    expect(questionSteps(cs)).not.toContain("status");
+    expect(questionSteps(cs)).toHaveLength(15);
+  });
+  it("maps every question, and steps saved by older versions, to the screen that asks it", () => {
+    expect(screenOf("enrollment", cs)).toBe("year");
+    expect(screenOf("major", cs)).toBe("study");
+    expect(screenOf("credentials", cs)).toBe("skills");
+    expect(screenOf("summer", cs)).toBe("time");
+    expect(screenOf("gender", cs)).toBe("about");
+    expect(screenOf("status", cs)).toBe("study");
+    expect(screenOf("review", cs)).toBe("review");
+    expect(screenOf("intro", cs)).toBe("intro");
   });
   it("knows which required answers are missing", () => {
-    expect(firstIncomplete(emptyAnswers())).toBe("status");
+    expect(firstIncomplete(emptyAnswers())).toBe("school");
     expect(firstIncomplete({ ...cs, horizon: undefined })).toBe("horizon");
     expect(firstIncomplete({ ...cs, enrollment: undefined })).toBe("enrollment");
     expect(firstIncomplete({ ...cs, semester: undefined })).toBe("year"); // year and semester are one answer
@@ -107,18 +121,23 @@ describe("experience step", () => {
 
 describe("reducer", () => {
   const at = (step: IntakeState["step"], returnToReview = false): IntakeState => ({ answers: cs, step, returnToReview });
-  it("moves forward and back through the steps", () => {
-    expect(reducer(at("major"), { type: "next" }).step).toBe("year");
-    expect(reducer(at("year"), { type: "back" }).step).toBe("major");
-    expect(reducer(at("status"), { type: "back" }).step).toBe("intro");
+  it("moves forward and back through the screens", () => {
+    expect(reducer(at("study"), { type: "next" }).step).toBe("track");
+    expect(reducer(at("year"), { type: "back" }).step).toBe("horizon");
+    expect(reducer(at("study"), { type: "back" }).step).toBe("intro");
   });
   it("returns to review after editing from the review screen", () => {
-    expect(reducer(at("hours", true), { type: "next" }).step).toBe("review");
-    expect(reducer(at("hours", true), { type: "back" }).step).toBe("review");
+    expect(reducer(at("time", true), { type: "next" }).step).toBe("review");
+    expect(reducer(at("time", true), { type: "back" }).step).toBe("review");
   });
-  it("records passed steps so the review can say Skipped", () => {
-    const s = reducer(at("school"), { type: "next" });
-    expect(s.answers.seen).toContain("school");
+  it("records every question on a passed screen so the review can say Skipped", () => {
+    const s = reducer(at("about"), { type: "next" });
+    expect(s.answers.seen).toEqual(expect.arrayContaining(["location", "citizenship", "gender", "identity"]));
+  });
+  it("starting from the intro answers the student question", () => {
+    const s = reducer({ answers: emptyAnswers(), step: "intro", returnToReview: false }, { type: "start" });
+    expect(s.step).toBe("study");
+    expect(s.answers.status).toBe("college-student");
   });
   it("toggles checklist answers", () => {
     const s = reducer(at("skills"), { type: "toggle", field: "skills", id: "sql" });

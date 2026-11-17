@@ -1,95 +1,144 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { IntakeFlow, INTAKE_KEY } from "./IntakeFlow.tsx";
-import { emptyAnswers } from "./model.ts";
+import { emptyAnswers, type Answers } from "./model.ts";
 
 const heading = () => screen.getByRole("heading", { level: 1 }).textContent;
 const advance = () => act(() => { vi.advanceTimersByTime(300); });
+const saved = () => JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers as Answers;
+const nb: Answers = { ...emptyAnswers(), status: "college-student", school: "rutgers-nb", majorId: "computer-science" };
+const full: Answers = { ...nb, year: 2, semester: 1, yearTerm: "2F", enrollment: "full-time", trackId: "software-engineering", horizon: "graduation", summer: "full" };
 
 describe("IntakeFlow", () => {
   beforeEach(() => { localStorage.clear(); vi.useFakeTimers(); });
   afterEach(() => { vi.useRealTimers(); });
 
-  it("starts on the intro and says it's a general trajectory", () => {
+  it("starts on the intro, which is also where a student says they're in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
     expect(screen.getByText(/general trajectory, not a blueprint/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Start" })).toBeInTheDocument();
+    expect(screen.getByText(/for current college students/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "I'm a college student, start" })); await act(async () => {});
+    expect(heading()).toBe("What do you study?");
+    expect(saved().status).toBe("college-student");
   });
 
-  it("only enables college students, and number keys pick and auto-advance", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="status" />);
-    expect(screen.getByRole("radio", { name: /Recent graduate/ })).toBeDisabled();
-    expect(screen.getAllByText("Coming soon")).toHaveLength(3);
-    fireEvent.keyDown(window, { key: "1" });
-    expect(screen.getByRole("radio", { name: /College student/ })).toHaveAttribute("aria-checked", "true");
-    advance(); await act(async () => {});
-    expect(heading()).toBe("Which Rutgers campus are you at?");
-  });
-
-  it("goes back with Escape and saves progress to localStorage", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="status" />);
-    fireEvent.keyDown(window, { key: "1" }); advance(); await act(async () => {});
-    expect(heading()).toBe("Which Rutgers campus are you at?");
-    fireEvent.keyDown(window, { key: "Escape" }); await act(async () => {});
-    expect(heading()).toBe("Where are you right now?");
-    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers.status).toBe("college-student");
-  });
-
-  it("picks a major from the search box with Enter", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="major" />);
-    const box = screen.getByRole("searchbox", { name: "Search majors" });
-    fireEvent.change(box, { target: { value: "nurs" } });
-    expect(screen.getAllByRole("radio")).toHaveLength(1);
-    fireEvent.keyDown(box, { key: "Enter" }); advance(); await act(async () => {});
-    expect(heading()).toBe("Where are you in school?");
-    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers.majorId).toBe("nursing");
-  });
-
-  it("asks the campus before the major and lists only that campus's majors", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="school" />);
-    expect(screen.queryByRole("button", { name: "Skip" })).toBeNull(); // the campus decides the majors, so it's required
+  it("asks campus and major on one screen, lists only that campus's majors, and moves on once the major is picked", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="study" />);
+    expect(screen.getByText("Pick your campus first.")).toBeInTheDocument();
+    expect(screen.queryByRole("searchbox", { name: "Search majors" })).toBeNull();
     fireEvent.click(screen.getByRole("radio", { name: "Rutgers–Camden" })); advance(); await act(async () => {});
-    expect(heading()).toBe("What's your major?");
-    const names = screen.getAllByRole("radio").map((r) => r.textContent);
-    expect(names).toContain("Human Resource Management");
-    expect(names).not.toContain("Pharmacy");
-    expect(names).not.toContain("Packaging Engineering");
+    expect(heading()).toBe("What do you study?"); // the campus alone doesn't move on
+    const majors = within(screen.getByRole("radiogroup", { name: "What's your major?" })).getAllByRole("radio").map((r) => r.textContent);
+    expect(majors).toContain("Human Resource Management");
+    expect(majors).not.toContain("Pharmacy");
     fireEvent.change(screen.getByRole("searchbox", { name: "Search majors" }), { target: { value: "pharm" } });
     expect(screen.getByText("No majors match. This version covers 12 majors offered at Rutgers–Camden.")).toBeInTheDocument();
+    fireEvent.change(screen.getByRole("searchbox", { name: "Search majors" }), { target: { value: "account" } });
+    fireEvent.keyDown(screen.getByRole("searchbox", { name: "Search majors" }), { key: "Enter" }); advance(); await act(async () => {});
+    expect(saved()).toMatchObject({ school: "rutgers-camden", majorId: "accounting" });
+    expect(heading()).toBe("Where do you want to end up?"); // the goal comes right after the major
   });
 
   it("clears a major the new campus doesn't offer", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="school"
-      initialAnswers={{ ...emptyAnswers(), status: "college-student", school: "rutgers-nb", majorId: "pharmacy", openToCoop: true }} />);
+    render(<IntakeFlow onBuild={() => {}} startAt="study" initialAnswers={{ ...nb, majorId: "pharmacy", openToCoop: true }} />);
     fireEvent.click(screen.getByRole("radio", { name: "Rutgers–Newark" })); advance(); await act(async () => {});
-    const saved = JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers;
-    expect(saved.school).toBe("rutgers-newark");
-    expect(saved.majorId).toBeUndefined();
-    expect(saved.openToCoop).toBeUndefined();
+    expect(saved().school).toBe("rutgers-newark");
+    expect(saved().majorId).toBeUndefined();
+    expect(saved().openToCoop).toBeUndefined();
+    expect(heading()).toBe("What do you study?");
   });
 
-  it("asks full-time or part-time right after the year, and asks for hours outside class", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="year" />);
+  it("asks the time frame right after the goal; number keys still pick on one-question screens", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="track" initialAnswers={nb} />);
+    fireEvent.click(screen.getByRole("radio", { name: /Software engineering/ })); advance(); await act(async () => {});
+    expect(heading()).toBe("How soon do you want to get there?");
+    fireEvent.keyDown(window, { key: "4" }); advance(); await act(async () => {});
+    expect(saved().horizon).toBe("graduation");
+    expect(heading()).toBe("Where are you in school?");
+  });
+
+  it("asks year and full-time/part-time together and moves on after the last one", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="year" initialAnswers={nb} />);
     expect(screen.getByText(/matches your credits so far/)).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: /Third year, spring semester/ })).toBeInTheDocument();
-    fireEvent.keyDown(window, { key: "6" }); advance(); await act(async () => {}); // third year, spring
-    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers).toMatchObject({ year: 3, semester: 2, yearTerm: "3S" });
-    expect(heading()).toBe("Are you a full-time or part-time student?");
-    expect(screen.queryByRole("button", { name: "Skip" })).toBeNull();
+    fireEvent.click(screen.getByRole("radio", { name: /Third year, spring semester/ })); advance(); await act(async () => {});
+    expect(heading()).toBe("Where are you in school?");
     fireEvent.click(screen.getByRole("radio", { name: /Part-time/ })); advance(); await act(async () => {});
-    expect(JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers.enrollment).toBe("part-time");
-    expect(heading()).toBe("Where do you want to end up?");
+    expect(saved()).toMatchObject({ year: 3, semester: 2, yearTerm: "3S", enrollment: "part-time" });
+    expect(heading()).toBe("What have you already done?");
   });
 
-  it("explains optional questions and lets students skip them", async () => {
-    render(<IntakeFlow onBuild={() => {}} startAt="citizenship" />);
+  it("never greys out Continue: it marks each missing question in color and says what to pick", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="year" initialAnswers={nb} />);
+    expect(screen.queryByText(/to continue\./)).toBeNull(); // nothing is flagged before the student tries
+    const go = screen.getByRole("button", { name: "Continue" });
+    expect(go).toBeEnabled();
+    fireEvent.click(go); await act(async () => {});
+    expect(heading()).toBe("Where are you in school?");
+    expect(screen.getByRole("alert")).toHaveTextContent("2 questions on this page still need an answer.");
+    expect(screen.getByText("Pick your year and semester to continue.")).toBeInTheDocument();
+    expect(screen.getByText("Pick full-time or part-time to continue.")).toBeInTheDocument();
+    expect(screen.getByRole("radiogroup", { name: "Are you a full-time or part-time student?" })).toHaveAttribute("aria-invalid", "true");
+    // Answering one clears its mark and leaves the other.
+    fireEvent.click(screen.getByRole("radio", { name: /Second year, fall semester/ })); await act(async () => {});
+    expect(screen.queryByText("Pick your year and semester to continue.")).toBeNull();
+    expect(screen.getByRole("alert")).toHaveTextContent("1 question on this page still needs an answer.");
+  });
+
+  it("marks a missing answer on a one-question screen too", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="horizon" initialAnswers={{ ...nb, trackId: "software-engineering" }} />);
+    fireEvent.click(screen.getByRole("button", { name: "Continue" })); await act(async () => {});
+    expect(screen.getByText("Pick a time frame to continue.")).toBeInTheDocument();
+    expect(heading()).toBe("How soon do you want to get there?");
+  });
+
+  it("opens a missing question from the review with its mark already showing", async () => {
+    render(<IntakeFlow onBuild={() => {}} initialAnswers={{ ...full, horizon: undefined }} />);
+    expect(heading()).toBe("Check your answers");
+    fireEvent.click(screen.getByRole("button", { name: "Answer: Time frame" })); await act(async () => {});
+    expect(heading()).toBe("How soon do you want to get there?");
+    expect(screen.getByText("Pick a time frame to continue.")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("radio", { name: "Within a year" })); advance(); await act(async () => {});
+    expect(heading()).toBe("Check your answers");
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
+  it("edits a question from the review on the screen that asks it", async () => {
+    render(<IntakeFlow onBuild={() => {}} initialAnswers={full} />);
+    fireEvent.click(screen.getByRole("button", { name: /^Edit enrollment/ })); await act(async () => {});
+    expect(heading()).toBe("Where are you in school?");
+    expect(screen.getByRole("button", { name: "Back to review" })).toBeInTheDocument();
+  });
+
+  it("asks skills and certifications together, certifications optional", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="skills" initialAnswers={full} />);
+    expect(screen.getByRole("heading", { level: 2, name: "Which skills are you comfortable with?" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: /Do you have any of these certifications\?/ })).toBeInTheDocument();
+    expect(screen.getByText("Optional")).toBeInTheDocument();
+  });
+
+  it("puts every optional, personal question on one last screen that can be skipped in one tap", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="about" initialAnswers={{ ...full, experience: ["resume"] }} />);
+    expect(heading()).toBe("About you (optional)");
     expect(screen.getByText(/Only used to hide programs you legally can't apply to/)).toBeInTheDocument();
-    expect(screen.queryByRole("radio", { name: "Prefer not to say" })).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Skip" })); await act(async () => {});
-    expect(heading()).toBe("What's your gender?");
     expect(screen.getByText(/never part of a share link/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Skip" })); await act(async () => {});
-    expect(heading()).toBe("Anything else we should know?");
     expect(screen.getByText(/never remove anything, and they never leave your browser/)).toBeInTheDocument();
+    // Skipping replaces "Prefer not to say" for citizenship (gender keeps it as a real answer).
+    expect(within(screen.getByRole("radiogroup", { name: "What's your citizenship status?" })).queryByRole("radio", { name: "Prefer not to say" })).toBeNull();
+    fireEvent.click(screen.getByRole("radio", { name: "New Jersey" })); advance(); await act(async () => {});
+    expect(heading()).toBe("About you (optional)"); // optional screens never move on by themselves
+    expect(screen.getByRole("button", { name: "Continue" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("radio", { name: "New Jersey" })); // tap again to clear
+    fireEvent.click(screen.getByRole("button", { name: "Skip these" })); await act(async () => {});
+    expect(heading()).toBe("Check your answers");
+    expect(saved().location).toBeUndefined();
+  });
+
+  it("goes back with Escape and resumes old saved steps on the right screen", async () => {
+    localStorage.setItem(INTAKE_KEY, JSON.stringify({ answers: { ...nb, seen: ["status", "school", "major", "year"] }, step: "enrollment", returnToReview: false }));
+    render(<IntakeFlow onBuild={() => {}} />);
+    fireEvent.click(screen.getByRole("button", { name: "Continue where you left off" })); await act(async () => {});
+    expect(heading()).toBe("Where are you in school?");
+    fireEvent.keyDown(window, { key: "Escape" }); await act(async () => {});
+    expect(heading()).toBe("How soon do you want to get there?");
   });
 });

@@ -4,12 +4,15 @@ import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import type { StepCopy } from "./copy.ts";
 
-/** One question owns the screen: progress, question, help, controls, then Back / Skip / Continue. */
-export function QuestionShell({ copy, headingId, step, total, children, onBack, onContinue, canContinue, continueLabel = "Continue",
-  showContinue = true, onSkip, secondary, focusHeading = true }: {
+/**
+ * One screen: progress, title, help, the question(s), then Back / Continue. Continue is never disabled: pressing it
+ * with a required answer missing marks that question instead (see `notice`).
+ */
+export function QuestionShell({ copy, headingId, step, total, children, onBack, onContinue, continueLabel = "Continue",
+  showContinue = true, onSkip, secondary, focusHeading = true, notice, keyHint = true }: {
   copy: StepCopy; headingId: string; step: number; total: number; children: ReactNode;
-  onBack: () => void; onContinue: () => void; canContinue: boolean; continueLabel?: string; showContinue?: boolean;
-  onSkip?: () => void; secondary?: ReactNode; focusHeading?: boolean;
+  onBack: () => void; onContinue: () => void; continueLabel?: string; showContinue?: boolean;
+  onSkip?: () => void; secondary?: ReactNode; focusHeading?: boolean; notice?: ReactNode; keyHint?: boolean;
 }) {
   const h1 = useRef<HTMLHeadingElement>(null);
   useEffect(() => { if (focusHeading) h1.current?.focus({ preventScroll: true }); }, [headingId, focusHeading]);
@@ -28,15 +31,16 @@ export function QuestionShell({ copy, headingId, step, total, children, onBack, 
           </p>
         )}
         <div className="mt-8">{children}</div>
+        {notice}
         <nav aria-label="Question navigation" className="mt-10 flex flex-wrap items-center gap-3">
           <Button variant="secondary" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
           <span className="flex-1" />
           {secondary}
           {onSkip && <Button variant="ghost" onClick={onSkip}>Skip</Button>}
-          {showContinue && <Button onClick={onContinue} disabled={!canContinue}>{continueLabel}</Button>}
+          {showContinue && <Button onClick={onContinue}>{continueLabel}</Button>}
         </nav>
         <p className="mt-6 hidden text-xs text-muted sm:block">
-          Keyboard: number keys pick an option, Enter continues, Escape goes back.
+          {keyHint ? "Keyboard: number keys pick an option, Enter continues, Escape goes back." : "Keyboard: Enter continues, Escape goes back."}
         </p>
       </main>
     </div>
