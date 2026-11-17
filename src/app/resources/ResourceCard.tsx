@@ -1,9 +1,7 @@
 import { lastChecked, needsEligibilityCheck } from "../data/resources.ts";
-import { audience, contactParts } from "./format.ts";
+import { audience, contactParts, shortUrl } from "./format.ts";
 import { payLabel, seasonLabel, whereLabel, type Tailored } from "./tailor.ts";
 
-/** The address a link goes to, shown in mono so the student sees where it leads before clicking. */
-export const shortUrl = (u: string) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 const kindLabel = (type: string) => type.replace(/[_-]+/g, " ");
 
 /**

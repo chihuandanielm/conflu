@@ -2,7 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type Keyboard
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals } from "../data/dataset.ts";
-import { campusName, majorName, toPlanInput, trackName, yearTermLabel, type Answers } from "../intake/model.ts";
+import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
 import { mapModel } from "../map/facts.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
@@ -22,12 +22,9 @@ import { HaveNeed } from "./HaveNeed.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
 import { StartHere } from "./StartHere.tsx";
-import { outcomeText } from "./summary.ts";
+import { outcomeText, planSummary } from "./summary.ts";
 
-export function planSummary(a: Answers): string {
-  const when = yearTermLabel(a) ?? `Year ${a.year}`;
-  return `${trackName(a.trackId)} · ${majorName(a.majorId)} · ${when}${a.enrollment === "part-time" ? " (part-time)" : ""} · ${campusName(a.school)} · ${a.weeklyHours} free hours a week`;
-}
+export { planSummary } from "./summary.ts";
 
 const goalTitle = (key: string) => {
   const [id, y] = key.split("@");
