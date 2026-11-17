@@ -16,6 +16,7 @@ const pairs: [string, string, number][] = [
   ...["bg", "surface", "blue-tint", "green-tint", "amber-tint", ...lanes].flatMap((bg) => [["ink", bg, 4.5], ["muted", bg, 4.5]] as [string, string, number][]),
   ["blue", "bg", 4.5], ["blue", "surface", 4.5], ["blue", "blue-tint", 4.5],
   ["green", "bg", 4.5], ["green", "green-tint", 4.5], ["amber", "bg", 4.5], ["amber", "amber-tint", 3], // amber on its tint: icons and borders only (3:1); text there is ink
+  ["amber-strong", "bg", 4.5], ["amber-strong", "amber-tint", 4.5], // "missing answer" text
   ["bg", "blue", 4.5], ["bg", "blue-hover", 4.5],
   ["blue", "bg", 3], ["border-strong", "bg", 1.5],
 ];

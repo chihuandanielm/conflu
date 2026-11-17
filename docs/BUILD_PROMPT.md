@@ -90,7 +90,7 @@ A thin progress bar sits at the top, with a step count ("4 of 12"). No sidebar a
 - Answers save to `localStorage` on every step, so a refresh resumes where the student left off.
 - Announce each new question with `aria-live` so screen readers follow along.
 
-**Question order** (build it from `data/intake.json`; branching noted):
+**Question order** (build it from `data/intake.json`; branching noted). *Superseded: the intake now groups these into 8 screens, goal first. See `docs/INTAKE_ORDER.md`.*
 
 1. **Intro screen.** One sentence on what the site does. The "general trajectory, not a blueprint" note. About 3 minutes. Nothing is stored outside your browser. Start button.
 2. **Where are you right now?** Status. Only "College student" is enabled; the others show "coming soon".

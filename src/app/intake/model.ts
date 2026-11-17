@@ -60,16 +60,41 @@ export type StepId =
 
 export const coopMajors = new Set(uiIntake.coop.majors);
 
-/** The steps this student sees, in order. The co-op question only appears for majors that offer co-ops. */
-export function stepsFor(a: Answers): StepId[] {
-  const s: StepId[] = ["intro", "status", "school", "major", "year", "enrollment", "track", "horizon", "experience", "skills", "credentials", "hours", "summer"];
-  if (a.majorId && coopMajors.has(a.majorId)) s.push("coop");
-  s.push("location", "citizenship", "gender", "identity", "review");
-  return s;
+/**
+ * Screens, in order (docs/INTAKE_ORDER.md). Small related questions share a screen; the goal comes right after the
+ * major; strengths come before time limits; the optional, personal questions share the last screen. "Are you in
+ * college?" is answered by the intro's start button, so it isn't a screen.
+ */
+export type ScreenId = "intro" | "study" | "track" | "horizon" | "year" | "experience" | "skills" | "time" | "about" | "review";
+export interface Screen { id: Exclude<ScreenId, "intro" | "review">; parts: StepId[] }
+
+/** The question screens this student sees. The co-op question only appears for majors that offer co-ops. */
+export function screensFor(a: Answers): Screen[] {
+  return [
+    { id: "study", parts: ["school", "major"] },
+    { id: "track", parts: ["track"] },
+    { id: "horizon", parts: ["horizon"] },
+    { id: "year", parts: ["year", "enrollment"] },
+    { id: "experience", parts: ["experience"] },
+    { id: "skills", parts: ["skills", "credentials"] },
+    { id: "time", parts: a.majorId && coopMajors.has(a.majorId) ? ["hours", "summer", "coop"] : ["hours", "summer"] },
+    { id: "about", parts: ["location", "citizenship", "gender", "identity"] },
+  ];
 }
 
-/** Question steps only (no intro or review): what the "4 of 12" counter counts. */
-export const questionSteps = (a: Answers): StepId[] => stepsFor(a).filter((s) => s !== "intro" && s !== "review");
+/** Every screen in order, intro to review: what Back and Continue walk through. */
+export const stepsFor = (a: Answers): ScreenId[] => ["intro", ...screensFor(a).map((s) => s.id), "review"];
+
+/** Every question in the order it's asked (the review lists them in this order). */
+export const questionSteps = (a: Answers): StepId[] => screensFor(a).flatMap((s) => s.parts);
+
+/** The screen that asks a question. Also maps steps saved by older versions (one question per screen) to their screen. */
+export function screenOf(s: StepId | ScreenId, a: Answers): ScreenId {
+  if (s === "intro" || s === "review") return s;
+  if (s === "status") return "study";
+  if (s === "coop") return "time";
+  return screensFor(a).find((x) => x.id === s || x.parts.includes(s as StepId))?.id ?? "study";
+}
 
 export const OPTIONAL: ReadonlySet<StepId> = new Set(["credentials", "location", "citizenship", "gender", "identity"]);
 const MULTI: ReadonlySet<StepId> = new Set(["experience", "skills", "credentials", "identity"]);
@@ -93,6 +118,11 @@ export function isAnswered(s: StepId, a: Answers): boolean {
     case "citizenship": return !!a.citizenship;
     default: return true;
   }
+}
+
+/** Every required step still missing an answer, in order (the review lists them). */
+export function missingSteps(a: Answers): StepId[] {
+  return questionSteps(a).filter((s) => !OPTIONAL.has(s) && !isMulti(s) && !isAnswered(s, a));
 }
 
 /** First step that still needs an answer, for resuming and for guarding the review. */

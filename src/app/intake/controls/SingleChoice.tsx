@@ -7,8 +7,10 @@ export interface Choice<V> { value: V; label: string; description?: string; disa
  * One answer from a list, as a radio group of large buttons.
  * Number keys 1–9 pick the matching enabled option (ignored while typing in a text field).
  */
-export function SingleChoice<V extends string | number>({ choices, value, onSelect, labelledBy, numberKeys = true }: {
+export function SingleChoice<V extends string | number>({ choices, value, onSelect, labelledBy, numberKeys = true, invalid, describedBy }: {
   choices: Choice<V>[]; value: V | undefined; onSelect: (v: V) => void; labelledBy: string; numberKeys?: boolean;
+  /** Marks a required answer that's still missing; `describedBy` points at the message that says so. */
+  invalid?: boolean; describedBy?: string;
 }) {
   useEffect(() => {
     if (!numberKeys) return;
@@ -25,7 +27,7 @@ export function SingleChoice<V extends string | number>({ choices, value, onSele
   }, [choices, onSelect, numberKeys]);
 
   return (
-    <div role="radiogroup" aria-labelledby={labelledBy} className="flex flex-col gap-2">
+    <div role="radiogroup" aria-labelledby={labelledBy} aria-invalid={invalid || undefined} aria-describedby={describedBy} className="flex flex-col gap-2">
       {choices.map((c, i) => {
         const selected = c.value === value;
         const showSection = c.section && c.section !== choices[i - 1]?.section;

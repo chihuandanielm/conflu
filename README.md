@@ -2,7 +2,7 @@
 
 A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It covers Rutgers undergraduates at New Brunswick, Newark, and Camden, in 21 majors (each campus sees only the majors it offers and its own campus offices).
 
-- **One question at a time:** a 3-minute intake, by keyboard or touch, that saves as you go.
+- **A short intake:** 8 screens of related questions, goal first and personal questions last (`docs/INTAKE_ORDER.md`). It works by keyboard or touch, saves as you go, and marks any missing answer in color instead of greying out the button.
 - **Every goal says what to do:** 3–6 concrete steps you can check off, a "done when" line, and how-to guides, so a plan is a path, not only a list of reasons. The results open on one "Start here" step.
 - **A plan sized to your time:** the results open on where you're headed (your outcome and milestones), what you have, and what you need, then one "Start here" step, this semester's few goals (capped by your free hours), and "Coming up" with "when you have more time" built in. The full map and all resources are one click away. Also a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
 - **Your resources:** every eligible program tied to the plan, plus everything for the student's major and year, with filters.
