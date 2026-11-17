@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confluence prototype: landing to questions</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  html, body { height: 100%; }
+  body { overflow-x: hidden; }
+  #river { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  .screen { position: relative; min-height: 100dvh; opacity: 0; transition: opacity var(--t-ui) var(--ease); }
+  .screen[hidden] { display: none !important; }
+  .screen.is-in { opacity: 1; }
+
+  /* ---------- landing ---------- */
+  #landing { display: grid; grid-template-rows: auto 1fr auto; justify-items: center; padding: clamp(28px, 7vh, 72px) 20px clamp(14px, 3vh, 28px); text-align: center; }
+  .hero { max-width: 620px; }
+  .hero .note { display: inline-flex; align-items: center; gap: 10px; }
+  .hero .note::before, .hero .note::after { content: ""; width: 28px; border-top: var(--rule) solid var(--blue); }
+  .hero h1 { font-size: var(--text-hero); margin-top: 14px; }
+  .hero h1 b { font-weight: 400; box-shadow: inset 0 -0.16em 0 var(--sand); }
+  .hero p { margin: 14px auto 0; max-width: 30em; }
+  .go { display: flex; flex-direction: column; align-items: center; gap: 12px; align-self: end; }
+  .go .btn--primary { min-width: 220px; min-height: 56px; font-size: 1.25rem; }
+  .promises { list-style: none; margin: 16px 0 0; padding: 10px 14px; display: grid; gap: 2px; }
+  .promises li { font-family: var(--font-mono); font-size: var(--text-note); }
+  .promises li::before { content: "~ "; color: var(--green); }
+  #skip { position: fixed; right: 16px; bottom: 14px; z-index: 2; background: var(--sage); border: 0; padding: 6px 8px; color: var(--blue); cursor: pointer; }
+
+  /* ---------- questions ---------- */
+  #intake { display: flex; flex-direction: column; align-items: center; padding: 20px 16px calc(var(--band) + 28px); }
+  .gauge { width: 100%; max-width: 640px; }
+  .gauge pre { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1; white-space: pre; overflow: hidden; }
+  .gauge pre b { color: var(--green); font-weight: 600; }
+  .gauge p { margin-top: 6px; }
+  .q { width: 100%; max-width: 640px; margin: auto 0; padding-top: 20px; transition: opacity var(--t-ui) var(--ease), transform var(--t-ui) var(--ease); }
+  .q.is-out { opacity: 0; transform: translateX(-14px); }
+  .q.is-pre { opacity: 0; transform: translateX(14px); transition: none; }
+  .q h1 { font-size: var(--text-h1); }
+  .q .help { margin-top: 10px; }
+  .q .why { margin-top: 12px; padding-left: 12px; border-left: 3px solid var(--sand); font-size: 0.9375rem; }
+  .opts { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+  .opt { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 52px; padding: 8px 14px; text-align: left;
+    border: var(--rule) solid var(--blue); background: var(--sage); color: var(--blue); font: inherit; cursor: pointer;
+    transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+  .opt kbd { flex: none; width: 24px; height: 24px; display: grid; place-items: center; border: var(--rule) solid var(--blue); font-family: var(--font-mono); font-size: 12px; }
+  .opt:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--sand); }
+  .opt[aria-checked="true"] { background: var(--blue); color: var(--sage); box-shadow: var(--lift) var(--lift) 0 var(--green); }
+  .opt[aria-checked="true"] kbd { border-color: var(--sage); }
+  .opt small { display: block; font-size: 0.875rem; }
+  .nav { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+  .nav .spacer { flex: 1; }
+  .keys { margin-top: 18px; }
+  @media (max-width: 599px) { .keys { display: none; } .nav .btn { padding: 0 16px; } }
+
+  /* ---------- results stub ---------- */
+  #results { padding: 110px 20px 40px; display: grid; justify-items: center; align-content: start; }
+  #results .window { max-width: 560px; width: 100%; }
+</style>
+</head>
+<body>
+<canvas id="river" aria-hidden="true"></canvas>
+
+<main id="landing" class="screen" hidden>
+  <div class="hero" data-mask>
+    <span class="note">career pathway mapper</span>
+    <h1>Many streams, <b>one plan.</b></h1>
+    <p>Answer a few questions and get a semester-by-semester career plan, with the programs and resources that fit you.</p>
+  </div>
+  <span></span>
+  <div class="go">
+    <button class="btn btn--primary" id="start" data-mask>Start</button>
+    <ul class="promises" data-mask>
+      <li>A general trajectory, not a blueprint.</li>
+      <li>About 3 minutes. No account, no name, no email.</li>
+      <li>Your answers never leave this device.</li>
+    </ul>
+  </div>
+</main>
+<button id="skip" class="note" hidden>skip intro</button>
+
+<main id="intake" class="screen" hidden>
+  <div class="gauge">
+    <pre id="gauge" role="progressbar" aria-label="Intake progress" aria-valuemin="0"></pre>
+    <p class="note" id="count"></p>
+  </div>
+  <section class="q" id="q">
+    <div class="window">
+      <div class="window__bar"><i></i><span id="qlabel"></span><i></i></div>
+      <div class="window__body">
+        <h1 id="qh" tabindex="-1"></h1>
+        <p class="help" id="qhelp"></p>
+        <p class="why" id="qwhy"></p>
+        <ul class="opts" id="qopts" role="radiogroup" aria-labelledby="qh"></ul>
+        <nav class="nav" aria-label="Question navigation">
+          <button class="btn" id="back">Back</button>
+          <span class="spacer"></span>
+          <button class="btn btn--primary" id="next" disabled>Continue</button>
+        </nav>
+        <p class="note keys">number keys pick, enter continues, escape goes back</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main id="results" class="screen" hidden>
+  <div class="window">
+    <div class="window__bar"><i></i><span>your plan</span><i></i></div>
+    <div class="window__body">
+      <h1 style="font-size:var(--text-h1)">The river settles at the top.</h1>
+      <p style="margin-top:12px">This is where the results page begins. Its layout is the next piece to design; this stub only shows the transition out of the questions.</p>
+      <p style="margin-top:20px"><button class="btn" id="again">Replay from the start</button></p>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import { createRiver, SCENES } from "../river/river.js";
+
+// Real question copy from src/app/intake/copy.ts and data/. Three of the sixteen, to show the shell.
+const TOTAL = 16;
+const QUESTIONS = [
+  { n: 2, q: "Which Rutgers campus are you at?", help: "Your campus decides which majors, offices, and programs show up in your plan.",
+    why: "Each campus has its own career center, research office, and programs, and offers different majors.",
+    opts: ["Rutgers–New Brunswick", "Rutgers–Newark", "Rutgers–Camden", "Another school"] },
+  { n: 5, q: "Are you a full-time or part-time student?", why: "The plan spaces goals at a full-time pace; part-time students get a note on what to adjust.",
+    opts: [["Full-time", "12 or more credits a term"], ["Part-time", "Fewer than 12 credits a term"]] },
+  { n: 12, q: "What about summers?", help: "Many internships and research programs are full-time in summer.",
+    opts: ["Free for a full-time summer role", "Part of the summer", "Not available in summer"], last: true },
+];
+
+const $ = (id) => document.getElementById(id);
+const canvas = $("river");
+await document.fonts.load('13px "IBM Plex Mono"'); await document.fonts.load('600 13px "IBM Plex Mono"');
+const river = createRiver(canvas, { scene: "intro" });
+window.river = river;
+const wait = (ms) => new Promise((r) => setTimeout(r, river.reducedMotion ? 0 : ms));
+
+function show(id) {
+  for (const s of document.querySelectorAll(".screen")) { if (s.id !== id) { s.classList.remove("is-in"); s.hidden = true; } }
+  if (!id) return;
+  const el = $(id); el.hidden = false; void el.offsetWidth; el.classList.add("is-in");
+}
+const maskRects = (root) => [...root.querySelectorAll("[data-mask]")].map((e) => {
+  const r = e.getBoundingClientRect(); return { x: r.left - 14, y: r.top - 10, w: r.width + 28, h: r.height + 20 };
+});
+
+// ---------- landing: angled view, then the camera rises into the map ----------
+let state = "intro";
+async function intro(fast = false) {
+  state = "intro"; show(null); river.setMasks([]); river.setScene("intro");
+  $("skip").hidden = river.reducedMotion;
+  if (!fast) await wait(2100);
+  if (state !== "intro") return;
+  const landing = $("landing"); landing.hidden = false; // laid out but still transparent, so masks can be measured
+  river.setMasks(maskRects(landing), { fadeMs: 1500 });
+  const arrive = river.goTo("full", { ms: fast ? 900 : 2400 });
+  await wait(fast ? 300 : 1300);
+  if (state !== "intro") return;
+  landing.classList.add("is-in"); $("skip").hidden = true;
+  await arrive; state = "landing";
+}
+$("skip").onclick = () => { if (state === "intro") intro(true); };
+addEventListener("resize", () => { if (state === "landing") river.updateMasks(maskRects($("landing"))); });
+
+// ---------- start: follow the stem downstream to the reach ----------
+$("start").onclick = async () => {
+  if (state !== "landing") return;
+  state = "moving"; $("landing").classList.remove("is-in");
+  river.setMasks([], { fadeMs: 500 });
+  river.setCurrent(1.8);
+  const arrive = river.goTo("close", { ms: 2800, along: true });
+  await wait(1900);
+  river.setCurrent(1);
+  document.documentElement.style.setProperty("--band", Math.round(innerHeight * (1 - SCENES.close(innerWidth, innerHeight).ay) * 2) + "px");
+  qi = 0; render(); show("intake"); state = "intake";
+  await arrive; $("qh").focus({ preventScroll: true });
+};
+
+// ---------- questions ----------
+let qi = 0; const answers = [];
+function gauge(n) {
+  const pre = $("gauge"), cell = 7.83, width = Math.min(640, innerWidth - 32), cols = Math.floor(width / cell);
+  const at = Math.max(3, Math.round((cols - 3) * n / TOTAL));
+  let behind = ""; for (let i = 0; i < at - 3; i++) behind += "~-~~-"[i % 5];
+  let ahead = ""; for (let i = at; i < cols; i++) ahead += (i - at) % 2 ? "." : " ";
+  pre.innerHTML = behind + "<b>&gt;&lt;&gt;</b>" + ahead;
+  pre.setAttribute("aria-valuemax", TOTAL); pre.setAttribute("aria-valuenow", n);
+  $("count").textContent = `question ${n} of ${TOTAL}`;
+}
+function render() {
+  const Q = QUESTIONS[qi];
+  gauge(Q.n);
+  $("qlabel").textContent = `question ${Q.n} of ${TOTAL}`;
+  $("qh").textContent = Q.q;
+  $("qhelp").textContent = Q.help ?? ""; $("qhelp").hidden = !Q.help;
+  $("qwhy").textContent = Q.why ?? ""; $("qwhy").hidden = !Q.why;
+  $("qopts").innerHTML = "";
+  Q.opts.forEach((o, i) => {
+    const [label, small] = Array.isArray(o) ? o : [o];
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.className = "opt"; b.type = "button"; b.setAttribute("role", "radio"); b.setAttribute("aria-checked", answers[qi] === i);
+    b.innerHTML = `<kbd>${i + 1}</kbd><span>${label}${small ? `<small>${small}</small>` : ""}</span>`;
+    b.onclick = () => { answers[qi] = i; render(); };
+    li.append(b); $("qopts").append(li);
+  });
+  $("next").textContent = Q.last ? "Build my plan" : "Continue";
+  $("next").disabled = answers[qi] === undefined;
+}
+async function turn(d) {
+  const q = $("q");
+  q.classList.add("is-out"); await wait(200);
+  qi += d; render();
+  q.classList.remove("is-out"); q.classList.add("is-pre"); void q.offsetWidth; q.classList.remove("is-pre");
+  $("qh").focus({ preventScroll: true });
+}
+$("next").onclick = () => { if (QUESTIONS[qi].last) build(); else turn(1); };
+$("back").onclick = () => { if (qi > 0) turn(-1); };
+addEventListener("keydown", (e) => {
+  if (state !== "intake") return;
+  const n = Number(e.key);
+  if (n >= 1 && n <= QUESTIONS[qi].opts.length) { answers[qi] = n - 1; render(); }
+  else if (e.key === "Enter" && !$("next").disabled && document.activeElement?.tagName !== "BUTTON") $("next").click();
+  else if (e.key === "Escape") $("back").click();
+});
+addEventListener("resize", () => { if (state === "intake") gauge(QUESTIONS[qi].n); });
+
+// ---------- build: the fish celebrate, the river lifts to the top of the page ----------
+async function build() {
+  state = "moving"; $("intake").classList.remove("is-in");
+  river.celebrate(1.6); river.setCurrent(2.2);
+  await wait(700);
+  const arrive = river.goTo("header", { ms: 1500 });
+  await wait(900); river.setCurrent(1);
+  show("results"); await arrive; state = "results";
+}
+$("again").onclick = () => { answers.length = 0; intro(); };
+
+intro();
+</script>
+</body>
+</html>

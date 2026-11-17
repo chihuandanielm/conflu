@@ -1,0 +1,97 @@
+/* Confluence design tokens. Four colours, nothing else: no tints, no opacity, no gradients between them.
+   Tone comes from pattern (ruled lines, dot screens, ASCII density), never from a fifth colour. */
+
+@font-face { font-family: "Quantico"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/quantico-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Quantico"; font-weight: 700; font-display: swap; src: url("./prototypes/fonts/quantico-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-display: swap; src: url("./prototypes/fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-display: swap; src: url("./prototypes/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); }
+
+:root {
+  /* The palette. */
+  --sage: #E0E7DA;  /* ground: every background */
+  --blue: #466995;  /* ink and water: all text, all structure, the one filled button */
+  --green: #00A37D; /* alive: fish, done, selected, progress */
+  --sand: #E6B989;  /* bank: attention, warmth, the flat shadow under windows */
+
+  --font-display: "Quantico", "IBM Plex Sans", system-ui, sans-serif; /* headings, buttons, labels */
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;                /* anything read as a sentence */
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;              /* ASCII, drafting labels, key hints */
+
+  --text-note: 0.8125rem;  /* 13px mono labels only */
+  --text-body: 1.0625rem;  /* 17px */
+  --text-lead: 1.25rem;    /* 20px */
+  --text-h2: 1.5rem;       /* 24px */
+  --text-h1: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --text-hero: clamp(2.125rem, 1.2rem + 4.6vw, 3.75rem);
+
+  --rule: 1.5px;           /* every border and line */
+  --lift: 4px;             /* the flat offset under windows and the pressed travel of buttons */
+  --space: 8px;            /* spacing unit: 8, 16, 24, 40, 64 */
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 160ms;         /* hover, press, select */
+  --t-ui: 240ms;           /* panels and questions fading */
+
+  /* Tone without new colours. */
+  --rule-stripes: repeating-linear-gradient(to bottom, var(--blue) 0 1px, var(--sage) 1px 4px);
+  --hatch-sand: repeating-linear-gradient(-45deg, var(--sand) 0 1.5px, var(--sage) 1.5px 7px);
+  --hatch-green: repeating-linear-gradient(-45deg, var(--green) 0 1.5px, var(--sage) 1.5px 7px);
+  --dots-sand: radial-gradient(var(--sand) 1px, var(--sage) 1.2px) 0 0 / 7px 7px;
+  --dots-blue: radial-gradient(var(--blue) 0.8px, var(--sage) 1px) 0 0 / 6px 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light; }
+body {
+  margin: 0;
+  background: var(--sage);
+  color: var(--blue);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: var(--rule) solid var(--blue); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; } /* headings focused by script for screen readers */
+
+/* A drafting label: small mono, lower case, a little air. */
+.note { font-family: var(--font-mono); font-size: var(--text-note); letter-spacing: 0.04em; }
+
+/* Buttons. Square corners, one rule weight. Primary is the only solid blue shape on a screen. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px;
+  border: var(--rule) solid var(--blue); border-radius: 0;
+  background: var(--sage); color: var(--blue);
+  font-family: var(--font-display); font-size: 1.0625rem; font-weight: 400; letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: var(--lift) var(--lift) 0 var(--sand);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: calc(var(--lift) + 1px) calc(var(--lift) + 1px) 0 var(--sand); }
+.btn:active { transform: translate(var(--lift), var(--lift)); box-shadow: 0 0 0 var(--sand); }
+.btn--primary { background: var(--blue); color: var(--sage); font-weight: 700; box-shadow: var(--lift) var(--lift) 0 var(--green); }
+.btn--primary:hover { box-shadow: calc(var(--lift) + 1px) calc(var(--lift) + 1px) 0 var(--green); }
+.btn--primary:active { box-shadow: 0 0 0 var(--green); }
+.btn--quiet { border-color: var(--sage); box-shadow: none; text-decoration: underline; text-underline-offset: 4px; }
+.btn--quiet:hover, .btn--quiet:active { transform: none; box-shadow: none; border-color: var(--blue); }
+.btn[disabled] { cursor: not-allowed; background: var(--sage); color: var(--blue); font-weight: 400; box-shadow: none; border-style: dashed; transform: none; }
+
+/* A window: the frame around anything the student reads or answers. */
+.window { border: var(--rule) solid var(--blue); background: var(--sage); box-shadow: var(--lift) var(--lift) 0 var(--sand); }
+.window__bar {
+  display: flex; align-items: center; gap: 10px; height: 26px; padding: 0 8px;
+  border-bottom: var(--rule) solid var(--blue); background: var(--rule-stripes);
+}
+.window__bar i { width: 11px; height: 11px; border: var(--rule) solid var(--blue); background: var(--sage); flex: none; }
+.window__bar span { margin: 0 auto; padding: 0 10px; background: var(--sage); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; line-height: 23px; white-space: nowrap; }
+.window__bar span + i { visibility: hidden; }
+.window__body { padding: clamp(18px, 4vw, 32px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
