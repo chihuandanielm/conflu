@@ -43,7 +43,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   // Year and full-time/part-time share a screen. Continue with one missing marks it instead of greying out.
   await expect(heading(page)).toHaveText("Where are you in school?");
-  await page.getByRole("radio", { name: "Second year, fall semester" }).click();
+  await page.getByRole("radio", { name: "Second year" }).click();
+  await page.getByRole("radio", { name: "Fall semester" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
   await expect(page.getByRole("alert")).toHaveText("1 question on this page still needs an answer.");
   await expect(page.getByText("Pick full-time or part-time to continue.")).toBeVisible();

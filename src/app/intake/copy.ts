@@ -7,7 +7,7 @@ export interface StepCopy { question: string; help?: string; why?: string }
 export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
   status: { question: "Where are you right now?" },
   major: { question: "What's your major?", help: "Pick the closest one. You can change it later." },
-  year: { question: "Where are you in school?", help: "Pick your year and semester. Part-time or transferred? Choose the one that matches your credits so far." },
+  year: { question: "Where are you in school?", help: "Pick your year, then fall or spring. Part-time or transferred? Choose the year that matches your credits so far." },
   gender: { question: "What's your gender?", help: "Optional. Only used to show programs for students of your gender, like women in science or men in nursing.",
     why: "It stays on this device and is never part of a share link." },
   enrollment: { question: "Are you a full-time or part-time student?", why: "The plan spaces goals at a full-time pace; part-time students get a note on what to adjust." },

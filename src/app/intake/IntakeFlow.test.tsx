@@ -60,11 +60,37 @@ describe("IntakeFlow", () => {
   it("asks year and full-time/part-time together and moves on after the last one", async () => {
     render(<IntakeFlow onBuild={() => {}} startAt="year" initialAnswers={nb} />);
     expect(screen.getByText(/matches your credits so far/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("radio", { name: /Third year, spring semester/ })); advance(); await act(async () => {});
+    fireEvent.click(screen.getByRole("radio", { name: "Third year" })); fireEvent.click(screen.getByRole("radio", { name: "Spring semester" }));
+    advance(); await act(async () => {});
     expect(heading()).toBe("Where are you in school?");
     fireEvent.click(screen.getByRole("radio", { name: /Part-time/ })); advance(); await act(async () => {});
     expect(saved()).toMatchObject({ year: 3, semester: 2, yearTerm: "3S", enrollment: "part-time" });
     expect(heading()).toBe("What have you already done?");
+  });
+
+  it("asks the year from 5 choices, then turns the pick into a fall-or-spring choice", async () => {
+    render(<IntakeFlow onBuild={() => {}} startAt="year" initialAnswers={nb} />);
+    const years = within(screen.getByRole("radiogroup", { name: "Which year are you in?" })).getAllByRole("radio").map((r) => r.textContent);
+    expect(years).toEqual(["First year", "Second year", "Third year", "Fourth year", "Fifth year or later"]);
+    expect(screen.queryByRole("radio", { name: "Fall semester" })).toBeNull();
+    fireEvent.click(screen.getByRole("radio", { name: "Second year" })); await act(async () => {});
+    // The year list collapses to the pick, and fall/spring takes its place.
+    expect(screen.queryByRole("radiogroup", { name: "Which year are you in?" })).toBeNull();
+    expect(screen.getByText("Second year")).toBeInTheDocument();
+    expect(within(screen.getByRole("radiogroup", { name: "Which semester of your second year?" })).getAllByRole("radio")).toHaveLength(2);
+    expect(saved().semester).toBeUndefined();
+    fireEvent.click(screen.getByRole("radio", { name: "Spring semester" })); await act(async () => {});
+    expect(saved()).toMatchObject({ year: 2, semester: 2, yearTerm: "2S" });
+    // Change year brings the list back; a different year asks the semester again.
+    fireEvent.click(screen.getByRole("button", { name: "Change year" })); await act(async () => {});
+    fireEvent.click(screen.getByRole("radio", { name: "Fourth year" })); await act(async () => {});
+    expect(saved().year).toBe(4);
+    expect(saved().semester).toBeUndefined();
+    // Fifth year or later needs no semester.
+    fireEvent.click(screen.getByRole("button", { name: "Change year" })); await act(async () => {});
+    fireEvent.click(screen.getByRole("radio", { name: "Fifth year or later" })); await act(async () => {});
+    expect(saved()).toMatchObject({ yearTerm: "5+", year: 4, semester: 2 });
+    expect(screen.queryByRole("radio", { name: "Fall semester" })).toBeNull();
   });
 
   it("never greys out Continue: it marks each missing question in color and says what to pick", async () => {
@@ -79,7 +105,10 @@ describe("IntakeFlow", () => {
     expect(screen.getByText("Pick full-time or part-time to continue.")).toBeInTheDocument();
     expect(screen.getByRole("radiogroup", { name: "Are you a full-time or part-time student?" })).toHaveAttribute("aria-invalid", "true");
     // Answering one clears its mark and leaves the other.
-    fireEvent.click(screen.getByRole("radio", { name: /Second year, fall semester/ })); await act(async () => {});
+    fireEvent.click(screen.getByRole("radio", { name: "Second year" })); await act(async () => {});
+    expect(screen.getByText("Pick fall or spring to continue.")).toBeInTheDocument(); // the message follows what's left
+    fireEvent.click(screen.getByRole("radio", { name: "Fall semester" })); await act(async () => {});
+    expect(screen.queryByText("Pick fall or spring to continue.")).toBeNull();
     expect(screen.queryByText("Pick your year and semester to continue.")).toBeNull();
     expect(screen.getByRole("alert")).toHaveTextContent("1 question on this page still needs an answer.");
   });

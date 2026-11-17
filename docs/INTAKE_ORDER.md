@@ -23,7 +23,9 @@ A second problem: when a required answer was empty, Continue and "Build my plan"
 | 8 | About you (optional) | location, citizenship, gender, about you | no; Continue reads "Skip these" until something is picked |
 | — | Check your answers | every answer, with Edit / Answer | — |
 
-A screen moves on by itself only when the student picks the **last required question** on it and nothing required is missing. Picking an earlier question (the campus, the year) never jumps away. An optional screen never moves on by itself. Number keys pick options only on screens with one list of options. With two lists, "2" would be ambiguous.
+A screen moves on by itself only when the student picks the **last required question** on it and nothing required is missing. Picking an earlier question (the campus, the year) never jumps away. An optional screen never moves on by itself.
+
+**Year and semester** is two small steps, not one list of nine. The student picks the year from 5 choices (first to fourth, or "Fifth year or later"). The list then collapses to that year, with "Change year", and "Fall semester / Spring semester" takes its place. "Fifth year or later" needs no semester. If only the year is picked, the missing-answer line says "Pick fall or spring to continue." Number keys pick options only on screens with one list of options. With two lists, "2" would be ambiguous.
 
 Older saved progress (one step per question) resumes on the screen that now asks that question (`screenOf` in `src/app/intake/model.ts`).
 

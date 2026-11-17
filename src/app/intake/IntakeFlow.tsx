@@ -14,6 +14,7 @@ import { ExperiencePicker } from "./controls/ExperiencePicker.tsx";
 import { RankedChips } from "./controls/RankedChips.tsx";
 import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
+import { YearTermPicker } from "./controls/YearTermPicker.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isMulti, isSummerBreak, majorOfferedAt, OPTIONAL, screenOf, screensFor, stepsFor,
   type Answers, type Enrollment, type School, type ScreenId, type StepId,
@@ -172,7 +173,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
         )}>
         <div className="flex flex-col gap-8">
           {parts.map((p) => (
-            <Part key={p} part={p} single={single} headingId={single ? headingId : partHeadingId(p)} missing={missing.includes(p)}>
+            <Part key={p} part={p} single={single} message={p === "year" && answers.year && !answers.semester ? "Pick fall or spring to continue." : MISSING[p]} headingId={single ? headingId : partHeadingId(p)} missing={missing.includes(p)}>
               {renderPart(p, answers, single ? headingId : partHeadingId(p), missing.includes(p), numbered, choose, toggle)}
             </Part>
           ))}
@@ -205,8 +206,8 @@ const missingId = (p: StepId) => `missing-${p}`;
  * One question on a screen. On a shared screen it has its own heading, help, and "why". A missing required answer is
  * tinted amber with a colored line saying what to pick.
  */
-function Part({ part, single, headingId, missing, children }: {
-  part: StepId; single: boolean; headingId: string; missing: boolean; children: ReactNode;
+function Part({ part, single, headingId, missing, message, children }: {
+  part: StepId; single: boolean; headingId: string; missing: boolean; message?: string; children: ReactNode;
 }) {
   const c = COPY[part as keyof typeof COPY];
   const help = PART_HELP[part] ?? c.help;
@@ -229,7 +230,7 @@ function Part({ part, single, headingId, missing, children }: {
       )}
       {missing && (
         <p id={missingId(part)} className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-strong">
-          <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />{MISSING[part]}
+          <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />{message}
         </p>
       )}
       {children}
@@ -261,8 +262,7 @@ function renderPart(part: StepId, a: Answers, labelledBy: string, missing: boole
       return (
         <>
           {isSummerBreak(todayISO()) && <p className="mb-4 rounded-md bg-blue-tint px-4 py-3 text-sm text-ink">{uiIntake.year.summerHint}</p>}
-          {single(intake.yearTerms.map((y) => ({ value: y.id, label: y.label })), a.yearTerm ?? intake.yearTerms.find((y) => y.year === a.year && y.semester === a.semester)?.id,
-            (v) => { const y = intake.yearTerms.find((x) => x.id === v)!; return { yearTerm: y.id, year: y.year as 1 | 2 | 3 | 4, semester: y.semester as 1 | 2 }; })}
+          <YearTermPicker a={a} onPick={(p) => choose(p, "year")} {...invalid} />
         </>
       );
     case "enrollment":
