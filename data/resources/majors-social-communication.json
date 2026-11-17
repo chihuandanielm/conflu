@@ -31,7 +31,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "note": "Confirmed by search; automated check was refused (ERR_TLS_CERT_ALTNAME_INVALID).",
         "httpStatus": null
       },
@@ -67,7 +67,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -101,7 +101,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -135,7 +135,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -174,7 +174,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -216,7 +216,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -253,7 +253,7 @@
       "statusNote": "The 2026 application cycle was postponed pending State Department updates.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -290,7 +290,7 @@
       "statusNote": "The 2026 application cycle was postponed pending State Department updates.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -324,7 +324,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -361,7 +361,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -400,7 +400,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -435,7 +435,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -475,7 +475,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -509,7 +509,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -541,7 +541,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -575,7 +575,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -607,7 +607,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -650,7 +650,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
