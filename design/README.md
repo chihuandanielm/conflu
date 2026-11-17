@@ -42,7 +42,8 @@ The prototypes in `prototypes/` import modules, so they need a local server (any
 ## Known gaps
 
 - The prototype shows three of the sixteen questions, single-choice only. The multi-select, picker and review screens are specified in `DESIGN.md` section 7.2 but not drawn.
-- "All resources", the skills picture and the returning-visitor landing are specified but not drawn.
+- The results tabs (Plan, Map, Resources) and the resource boxes are specified in `DESIGN.md` 7.4a and 7.4b but not drawn; the prototype still shows the older buttons at the foot of the page and plain links in the drawer.
+- The skills picture and the returning-visitor landing are specified but not drawn.
 - The PDF prototype is HTML at page size, not a real `@react-pdf/renderer` document.
 - Blue on sage is 4.47:1, just under the 4.5:1 WCAG AA line for small text. The design keeps sentences at 17px or larger because of it.
 - Frame rates were measured in headless Chromium without a graphics card, at 60Hz. Real phones and faster displays were not measured.

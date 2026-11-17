@@ -37,7 +37,7 @@ Rules that follow from the jobs:
 2. **Green is never a background, a border or a shadow.** If something is green, it is alive (a fish), it is the student (the "you are here" dot, the fish on the progress line), or it is finished (a done dot, a done stream, a ticked box). One glance at a page should show where you are and what you've finished, and nothing else should compete for that.
 3. **Sand never means "selected" or "important".** It is ground. In the interface it only separates (the dotted shore rule) or sits beside a notice.
 4. **Selected is solid blue with sage text.** No green edge, no offset block, no glow.
-5. **One solid blue block per screen**, at most: the Start button, the Continue button, the "Start here" block. If two things are solid blue, one of them is wrong.
+5. **One solid blue call to action per screen**, at most: the Start button, the Continue button, the "Start here" block. If two actions are solid blue, one of them is wrong. A selected state (an answer, the current tab, an active filter) is also solid blue; that is a state, not an action, and does not count.
 6. **Meaning never rests on colour alone.** A must-do has a filled dot and the word "must-do". A done goal has a green dot and the word "done". The eight kinds of goal are told apart by a glyph and a word (section 6), not by eight colours.
 7. Tone comes from **density and weight**: more or darker glyphs in the river, a 3px line for a must-do against 1.5px for the rest.
 
@@ -70,7 +70,7 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows, no deco
 - Corners are square. No radius except the round dots.
 - No shadows of any kind, including flat offset ones.
 - Spacing steps: 8, 16, 24, 40, 64, 96.
-- **Rows, not cards.** A list of options or goals is a ruled list: a 1.5px blue line above the first row and under each row. Boxes around every item are not used.
+- **Rows for choices and goals, boxes for resources.** A list of options or goals is a ruled list: a 1.5px blue line above the first row and under each row. A resource (a program, office, tool or guide the student will leave the site to use) gets a box, because it is a thing to pick up and act on: see 7.4b. Nothing else is boxed.
 - **Drafting corners** (`.corners` in `tokens.css`): four small corner marks frame the question sheet. They frame without boxing. Use them on the question sheet only.
 - **The shore** (`.shore`): a 1.5px dotted sand rule between major parts of a page, and across the map at each semester.
 - **The dot** (`.dot`): 11px. Open ring = a goal. Solid blue = a must-do. Solid green = done.
@@ -169,13 +169,50 @@ Top to bottom. The order is the product's (engine 0.8 redesign) and does not cha
 | | shore | |
 | 6 | Checked off, Habits to keep | Checked off: rows with green dots and "Undo" as a text button. Habits: open dots, the reason in `--text-small`. |
 | | shore | |
-| 7 | Doors | "See the full map" and "All resources", outline buttons, then the footer sentence with dataset and engine versions in mono. |
+| 7 | Footer | The footer sentence with dataset and engine versions in mono. The map and the resources are reached from the tabs (7.4a), and "See the full map" under the milestone map switches to the Map tab. |
 
 **The goal drawer** opens from any goal, anywhere. A side sheet on the right (480px, 1.5px blue left edge) on wide screens; a bottom sheet under 600px. No dimming behind it (there is no fifth colour to dim with); the page behind is inert. Order inside: Close, the fact line, the title, **What to do** (steps as tick boxes; a ticked box is green), **Done when**, **Why it's here**, **Where to go** (resources as text links), then "Mark as done" as the solid button. It slides in over 260ms.
 
-**The full map** is its own view ("<- Back to your plan" at the top). It is the confluence map with every goal. Each name is a real button that opens the drawer. Under the map, the skills picture: one row per competency, a 1.5px line from 0 to 1 with a green dot at "now" and an open blue ring at "target", the name on the left. This view replaces the React Flow chart and the chart/list switch: the map is already a list in document order, and it is one-sided on a phone.
+**The full map** is the Map tab. It is the confluence map with every goal. Each name is a real button that opens the drawer. Under the map, the skills picture: one row per competency, a 1.5px line from 0 to 1 with a green dot at "now" and an open blue ring at "target", the name on the left. This view replaces the React Flow chart and the chart/list switch: the map is already a list in document order, and it is one-sided on a phone.
 
-**All resources** is its own view. Filters are text toggles in a row (selected = solid blue). Each resource is a ruled row: name (`--text-lead`), one sentence, a fact line (where, pay, season, deadline), the link. Group headings in `--text-h2` with a shore rule between groups.
+**All resources** is the Resources tab: see 7.4b.
+
+### 7.4a Tabs
+
+The results page has three tabs, directly under the header: **Plan**, **Map**, **Resources**. (The prototype still shows the earlier "doors" at the foot of the page; tabs replace them.)
+
+- A row of three text tabs sitting on a 1.5px blue line that runs the width of the content. Each tab is at least 48px tall with 20px side padding, `--text-body`.
+- The current tab is solid blue with sage text. The others are plain blue text; hover fills them the same way a button does.
+- A count in mono follows the label where it helps: `Map  28`, `Resources  41`.
+- The tab row sticks to the top of the window once the header has scrolled away, on a solid sage background with the blue line under it, so the student can switch from anywhere on the page.
+- On a phone the three tabs share the width equally. There are only ever a few tabs; if a fourth is added it still fits. Do not turn them into a menu.
+- Real tabs: `role="tablist"`, `role="tab"` with `aria-selected`, `role="tabpanel"`; left and right arrow keys move between them; the choice is not saved (a returning student lands on Plan).
+- Switching tabs fades the panel (260ms, opacity only) and scrolls to the top of the panel. The river in the header does not react.
+- The goal drawer may also use two tabs when a goal has many resources: **What to do** (steps, done when, why) and **Where to go** (resource boxes). With three or fewer resources, keep one scroll.
+
+### 7.4b Resource boxes
+
+A resource is where the plan hands the student to the real world, so each one says plainly what it is, who it is for, what it costs or pays, when, and exactly where to click. Every word in a box comes from `data/resources/*.json` or the existing helpers in `src/app/resources/`; nothing is written for the box.
+
+The box: a 1.5px blue border, square corners, sage inside, 20px padding, no shadow. Inside, top to bottom:
+
+| Line | Content | Source | Style |
+|---|---|---|---|
+| 1 | Name | `name` | `--text-lead` |
+| 2 | Where it is from, and the kind of thing | `whereLabel(r)`, `type` | mono fact line, for example `rutgers new brunswick  campus office` |
+| 3 | What it is | `summary` | body, in full, never cut short |
+| 4 | Who it is for | `audience(r)`; add "Check eligibility." when `needsEligibilityCheck` | `--text-small` |
+| 5 | Cost or pay, season, deadline | `payLabel`, `seasonLabel`, `typicalDeadline` | mono fact line; leave out what is empty |
+| 6 | Helps with | the goals from the plan that point to it (`t.goals`) | `--text-small`, "Helps with: ..." |
+| 7 | How to reach them | `contact.how`, then email, phone, place from `contactParts(r)` | `--text-small`; email and phone are links |
+| 8 | Links | "Visit site ->" always; "Apply ->" when `applyUrl` exists. Under them the address itself in mono (`careers.rutgers.edu`), so the student sees where the link goes before clicking | outline buttons, 42px; the first one in a box is never solid |
+| 9 | Small print | "Link last checked 16 Nov 2026" from `lastChecked(r)`; and the status note when `status` is not `active` | mono; the status note gets the 3px sand bar on its left, like any notice |
+
+- "For students like you" (when `t.forYou`) is a green dot before the name with those words after it in `--text-small`. It is about the student, so it may be green; it is still said in words.
+- **Resources tab:** boxes in a grid, 340px minimum column, 16px gaps, one column on a phone. Grouped by the groups in `data/ui/resources.json`, each group under a `--text-h2` heading with its count in mono and a shore rule above. Boxes in a row are the same height; the links sit at the bottom of each.
+- **Filters** sit above the grid as a row of text toggles (selected = solid blue), with "Clear" as a text button. The existing filter logic stays.
+- **In the goal drawer** ("Where to go"): the same box, full width, stacked with 12px gaps. Lines 6 and 9 may be left out there.
+- **Links open in a new tab** with `rel="noopener noreferrer"` and a screen-reader phrase naming the resource, as today.
 
 ### 7.5 The confluence map
 
@@ -201,7 +238,7 @@ US Letter, sage background on every page, 54px (40pt) side margins. `prototypes/
 | **1. The map** | A still ASCII banner of the river across the top (`asciiFrame("banner", ...)`, two overlaid mono text blocks, sand then blue, 7px). "Your plan", the summary line, the outcome. Then the confluence map, two-sided, fitted to the rest of the page with `maxHeight`. This page alone should tell a student where they are going and in what order. |
 | **2. Where you stand** | What you have / What you need in two columns. The "Start here" block, solid blue. Notices with the sand bar. Then "This semester" begins. |
 | **2 onward. Every semester** | A semester heading on a dotted sand rule. Each goal is drawn as a piece of its stream: a vertical line down the left (3px for a must-do), a dot on it, and to the right the title, the fact line, one sentence of why, **the steps as empty boxes to tick with a pen** in two columns, "Done when", and up to three links. A goal that continues from an earlier semester is named again with "keep going", not repeated in full. A goal block never splits across pages. |
-| **Last** | "When you have more time", "Habits to keep". The resources list, if kept, uses the same ruled rows as the site. |
+| **Last** | "When you have more time", "Habits to keep". Then **Resources**: the same boxes as the site (7.4b), two to a row, grouped the same way. In print the address is written out in full in mono under the name, because a printed link cannot be clicked; it is still a live link in the file. A box never splits across pages. |
 | **Every page** | A footer on a dotted sand rule: "Career Pathway Mapper  a general trajectory, not a blueprint" on the left; dataset, engine and "page 2 of 11" on the right, in mono. |
 
 Type in the PDF: Quantico for everything read, Plex Mono for facts and the banner. Sizes: title 26pt, outcome 16.5pt, section headings 14pt, goal titles 10.5pt, body 8.5 to 9.5pt, facts 7.5pt, banner 5.25pt. All real, selectable text. The banner is decoration made of text: keep it out of the reading order if the renderer allows (see the handoff notes).
@@ -245,6 +282,7 @@ Rules:
 | The wording on the landing page | The river moves to make room | Nothing |
 | The number or order of questions | The fish gauge and "Question n of N" follow | Nothing |
 | A question's options | The ruled list grows or shrinks; long lists scroll over the river | Nothing |
+| The number of resources or their fields | The grid grows; empty lines drop out of each box | Nothing |
 | The number of semesters or goals | The map adds rows and lanes; the PDF map trims to fit and says how many it left out | Nothing |
 | A goal's title length | It wraps to two lines, then ends in an ellipsis on the map; lists show it in full | Nothing |
 | A new kind of goal | | One entry in `LANE_GLYPH` and `LANE_NAME` |
