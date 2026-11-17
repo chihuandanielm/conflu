@@ -187,7 +187,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           <p className="mt-2 text-small">{planSummary(answers)}</p>
         </div>
         <div>
-          <div ref={actionsBox} className="mt-4 flex flex-wrap gap-2">
+          {/* As wide as the buttons (not the header): the river is cleared from under exactly this box. */}
+          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
