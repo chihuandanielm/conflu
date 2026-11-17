@@ -3,6 +3,8 @@
 @source not "../../design";
 @source not "../../docs";
 @source not "../../scripts";
+/* Words in comments ("an open ring") must not turn into ring or shadow utilities (they bring a white default). */
+@source not inline("{ring,shadow,inset-ring,inset-shadow}");
 
 /* Self-hosted fonts (design/DESIGN.md §3): Quantico for everything read, IBM Plex Mono for the river and short facts. */
 @import "@fontsource/quantico/latin-400.css";
@@ -129,6 +131,11 @@ a { color: inherit; }
   .dot--must { background: var(--blue); }
   .dot--done { background: var(--green); border-color: var(--green); }
 
+  /* A step to tick: an open square; ticked, it is done, so it turns green with a sage tick. */
+  .tick { appearance: none; flex: none; width: 18px; height: 18px; margin: 4px 0 0; border: var(--line) solid var(--blue); background: var(--sage); cursor: pointer; display: grid; place-items: center; }
+  .tick:checked { background: var(--green); border-color: var(--green); }
+  .tick:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--sage); border-bottom: 2px solid var(--sage); transform: translateY(-1px) rotate(-45deg); }
+
   /* A notice: a paragraph with a 3px sand bar on its left. Also marks a missing answer. */
   .notice { border-left: var(--heavy) solid var(--sand); padding-left: 16px; }
 }
@@ -136,7 +143,3 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
-
-/* React Flow (removed in M4): keep its attribution readable meanwhile. */
-.react-flow__attribution { background: var(--sage) !important; padding: 0 !important; }
-.react-flow__attribution a { color: var(--blue) !important; display: inline-block; min-height: 24px; min-width: 24px; padding: 4px 8px; font-size: 13px; line-height: 16px; box-sizing: border-box; }

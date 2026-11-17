@@ -1,8 +1,7 @@
 // A tab opened before a redeploy still points at the old build's file names. GitHub Pages only serves the new build,
-// so the parts that load on demand (the PDF maker, the roadmap chart) fail to load. Only a reload fixes that;
+// so the parts that load on demand (the PDF maker) fail to load. Only a reload fixes that;
 // saved answers and the plan live in localStorage, so reloading loses nothing.
 import { Component, type ReactNode } from "react";
-import { RefreshCw } from "lucide-react";
 
 const STALE = /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Loading chunk .* failed|ChunkLoadError/i;
 
@@ -14,12 +13,9 @@ export const STALE_MESSAGE = "The site was updated after you opened this page. R
 
 export function ReloadNotice({ id, children = STALE_MESSAGE }: { id?: string; children?: ReactNode }) {
   return (
-    <div id={id} role="alert" className="flex flex-wrap items-center gap-3 text-small text-blue">
+    <div id={id} role="alert" className="notice flex flex-wrap items-center gap-3 text-small">
       <span>{children}</span>
-      <button type="button" onClick={() => window.location.reload()}
-        className="inline-flex min-h-10 items-center gap-1.5 border border-blue bg-sage px-3 text-blue hover:bg-sage">
-        <RefreshCw size={14} aria-hidden="true" /> Reload page
-      </button>
+      <button type="button" onClick={() => window.location.reload()} className="btn btn--small">Reload page</button>
     </div>
   );
 }
@@ -32,7 +28,7 @@ export class ChunkBoundary extends Component<{ children: ReactNode; fallback: Re
   render() {
     if (!this.state.error) return this.props.children;
     return isStaleBuildError(this.state.error)
-      ? <div className="border border-blue bg-sage p-6"><ReloadNotice /></div>
+      ? <ReloadNotice />
       : this.props.fallback;
   }
 }

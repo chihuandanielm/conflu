@@ -1,41 +1,37 @@
-import { Flag } from "lucide-react";
+import { useMemo } from "react";
 import type { Plan, PlanItem, PlanTerm } from "../../engine/types.ts";
+import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
+import { mapModel } from "../map/facts.ts";
 import { milestones, outcomeText } from "./summary.ts";
 
-/** Where the student is headed, and the few milestones on the way there, in order. */
-export function GoalPath({ plan, trackId, onOpen }: { plan: Plan; trackId?: string; onOpen: (it: PlanItem, t: PlanTerm) => void }) {
+/** Find a goal's first placement, to open it. */
+export function findItem(plan: Plan, goalId: string): { it: PlanItem; t: PlanTerm } | null {
+  for (const t of plan.terms) { const it = t.items.find((i) => i.goalId === goalId); if (it) return { it, t }; }
+  return null;
+}
+
+/**
+ * Where you're headed (design/DESIGN.md §7.4 #1): the outcome in one line, then the confluence map of the milestones
+ * only (up to five), and "See the full map", which switches to the Map tab. The outcome is the heading above the map,
+ * so the map itself leaves it off.
+ */
+export function GoalPath({ plan, trackId, done, onOpen, onFullMap }: {
+  plan: Plan; trackId?: string; done: string[]; onOpen: (it: PlanItem, t: PlanTerm) => void; onFullMap: () => void;
+}) {
   const ms = milestones(plan);
-  const find = (goalId: string) => {
-    for (const t of plan.terms) { const it = t.items.find((i) => i.goalId === goalId); if (it) return { it, t }; }
-    return null;
-  };
+  const model = useMemo(() => mapModel(plan, "", new Set(ms.map((m) => m.goalId))), [plan, ms]);
   return (
-    <section aria-labelledby="goal-h" className="border border-blue bg-sage p-5">
-      <h2 id="goal-h" className="text-small text-blue">Where you're headed</h2>
-      <p className="mt-1 flex items-start gap-2 text-h2 text-blue">
-        <Flag size={20} aria-hidden="true" className="mt-1 shrink-0 text-blue" />{outcomeText(trackId)}
-      </p>
+    <section aria-labelledby="goal-h">
+      <h2 id="goal-h" className="text-h2">Where you're headed</h2>
+      <p className="mt-1 max-w-[18em] text-h1 leading-[1.12]">{outcomeText(trackId)}</p>
       {ms.length > 0 && (
-        <ol aria-label="Milestones" className="mt-4 flex flex-col gap-0 sm:flex-row sm:gap-2">
-          {ms.map((m, i) => {
-            const hit = find(m.goalId);
-            return (
-              <li key={m.goalId} className="relative flex flex-1 gap-3 pb-4 sm:flex-col sm:gap-2 sm:pb-0">
-                <span aria-hidden="true" className="flex items-center sm:w-full">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full border-2 border-blue bg-sage font-mono text-fact text-blue">{i + 1}</span>
-                  {i < ms.length - 1 && <span className="ml-2 hidden h-0.5 flex-1 bg-blue sm:block" />}
-                </span>
-                <span className="min-w-0">
-                  {hit ? (
-                    <button type="button" onClick={() => onOpen(hit.it, hit.t)} className="text-left text-small text-blue hover:text-blue hover:underline">{m.title}</button>
-                  ) : <span className="text-small text-blue">{m.title}</span>}
-                  <span className="block text-small text-blue">{m.termLabel}{m.mustDo ? " · must-do" : ""}</span>
-                </span>
-              </li>
-            );
-          })}
-        </ol>
+        <div className="mt-5">
+          <ConfluenceMap model={model} done={done} label="Your milestones, in order, joining one river"
+            termOf={(id) => ms.find((m) => m.goalId === id)?.termLabel}
+            onOpen={(id) => { const hit = findItem(plan, id); if (hit) onOpen(hit.it, hit.t); }} />
+        </div>
       )}
+      <button type="button" className="btn mt-[18px]" onClick={onFullMap}>See the full map</button>
     </section>
   );
 }

@@ -348,19 +348,19 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 4. **This semester:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
    Notices ("good to know") sit under it.
 5. **Coming up:** the next two semesters in full, later ones folded, and "When you have more time" (kind `next`, first three, "Start any of them whenever you like") right there instead of at the bottom.
-6. The full map (chart or list, plus the skills picture) and all resources are their own views, one click away, with "Back to your plan". No tabs inside the plan.
+6. Three tabs under the header (design/DESIGN.md §7.4a): **Plan** (all of the above, in this order), **Map** (the confluence map of every goal, plus the skills picture) and **Resources** (every resource as a box, grouped, with filters). "See the full map" under the milestone map switches to the Map tab. The choice of tab is not saved.
 
 The PDF follows the same order.
 
-### Flow map layout
+### The map (confluence)
 
-- **Columns** = `plan.terms` (left to right).
-- **Rows (lanes)** = goal categories in this order: foundation, presence, skills, experience, network, credentials, academics, applications.
-- **Nodes** = `PlanItem`s. Show title, hours, a "must-do" badge for gates, and a "continues" marker for partial items.
-- **Edges** = `plan.edges` drawn as arrows. A goal split across terms shows as one node per term, joined by a thin continuation line.
-- **Summer blocks** render as a wide bar across the summer column.
-- **Side panel:** `ongoing` habits, warnings, and a competency radar (current vs. target).
-- **Node click** opens a card with `why[]`, resources (with status notes and "last verified"), and a check-off button.
+Drawn by `layoutConfluence()` in `src/app/map/confluence-map.js` (design/DESIGN.md §7.5), on the page and in the PDF.
+
+- **Rows** = `plan.terms`, top to bottom, each starting at a dotted shoreline with the term's name.
+- **Streams** = `PlanItem`s in work order (priority first). Each goal joins the river once, in the term it starts, and runs to the outcome at the bottom; a goal split across terms is not drawn again.
+- A must-do has a solid dot and a heavier line; a finished goal is green and reads "done". The fact line under a name is kind, hours, `must-do`, `continues`.
+- Two-sided from 560px wide, one-sided below. Given a height limit (the PDF), the fullest terms drop their last rows first and say how many are left out.
+- Each name is a button that opens the goal drawer (`why[]`, steps, done when, resources with status notes and "last checked", and "Mark as done").
 
 ### Interactions
 

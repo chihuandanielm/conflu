@@ -1,42 +1,39 @@
-import { Check, ArrowRight } from "lucide-react";
 import type { Plan, PlanItem, PlanTerm } from "../../engine/types.ts";
 import type { Answers } from "../intake/model.ts";
 import { haves, needs } from "./summary.ts";
 
 const SHOWN = 8;
 
-/** Strengths first (the student's own answers), then the few things that matter most for the goal. */
+/** What you have (green dots: things done) and what you need (open dots, with when). Two columns, one on a phone. */
 export function HaveNeed({ plan, answers, onOpen }: { plan: Plan; answers: Answers; onOpen: (it: PlanItem, t: PlanTerm) => void }) {
   const have = haves(answers);
   const need = needs(plan);
   const termOf = (code: string) => plan.terms.find((t) => t.code === code)!;
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      <section aria-labelledby="have-h" className="border border-blue p-5">
-        <h2 id="have-h" className="text-lead">What you have</h2>
+    <div className="grid gap-x-12 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
+      <section aria-labelledby="have-h">
+        <h2 id="have-h" className="text-h2">What you have</h2>
         {have.length ? (
-          <ul className="mt-3 flex flex-wrap gap-2">
+          <ul className="mt-3">
             {have.slice(0, SHOWN).map((h) => (
-              <li key={h} className="inline-flex items-center gap-1.5 bg-sage px-3 py-1 text-small text-blue">
-                <Check size={14} strokeWidth={2.5} aria-hidden="true" className="text-green" />{h}
-              </li>
+              <li key={h} className="flex items-baseline gap-3 py-[7px]"><span aria-hidden="true" className="dot dot--done translate-y-px" />{h}</li>
             ))}
-            {have.length > SHOWN && <li className="px-1 py-1 text-small text-blue">and {have.length - SHOWN} more</li>}
+            {have.length > SHOWN && <li className="py-[7px] text-small">and {have.length - SHOWN} more</li>}
           </ul>
         ) : (
-          <p className="mt-2 text-small text-blue">Nothing yet, and that's normal. Every plan starts with a first step.</p>
+          <p className="mt-3">Nothing yet, and that's normal. Every plan starts with a first step.</p>
         )}
       </section>
-      <section aria-labelledby="need-h" className="border border-blue p-5">
-        <h2 id="need-h" className="text-lead">What you need</h2>
-        <ul className="mt-3 flex flex-col gap-2">
+      <section aria-labelledby="need-h">
+        <h2 id="need-h" className="text-h2">What you need</h2>
+        <ul className="mt-3">
           {need.map((n) => (
             <li key={n.label}>
-              <button type="button" onClick={() => onOpen(n.item, termOf(n.term))} className="group flex w-full items-start gap-2 text-left">
-                <ArrowRight size={16} aria-hidden="true" className="mt-1 shrink-0 text-blue" />
+              <button type="button" onClick={() => onOpen(n.item, termOf(n.term))} className="group flex w-full items-baseline gap-3 py-[7px] text-left">
+                <span aria-hidden="true" className="dot translate-y-px" />
                 <span>
-                  <span className="block text-small text-blue group-hover:text-blue group-hover:underline">{n.label}</span>
-                  <span className="block text-small text-blue">{n.detail}</span>
+                  <span className="block underline-offset-4 group-hover:underline">{n.label}</span>
+                  <span className="block text-small">{n.detail}</span>
                 </span>
               </button>
             </li>
