@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { asciiFrame, createRiver, PALETTE, SCENES, waterInk, WATER_RAMP, type SceneName } from "./river.js";
+import { currentFor } from "./RiverProvider.tsx";
 
 describe("river: asciiFrame", () => {
   it("is deterministic: the same input draws the same frame", () => {
@@ -87,5 +88,26 @@ describe("river: reduced motion", () => {
     expect(raf).toHaveBeenCalled();
     river.destroy();
     raf.mockRestore();
+  });
+});
+
+describe("river: current per scene", () => {
+  /** Share of water cells whose glyph changes per second of the scene's own current (a 1440x900 screen). */
+  const busy = (scene: SceneName) => {
+    const cell: [number, number] = [7.2, 14], cols = 200, rows = 64, dt = currentFor(scene) / 30;
+    let changed = 0, water = 0;
+    for (let k = 0; k < 10; k++) {
+      const a = asciiFrame(scene, cols, rows, { cell, t: k * dt }), b = asciiFrame(scene, cols, rows, { cell, t: (k + 1) * dt });
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        if (a[r].blue[c] === " " && b[r].blue[c] === " ") continue;
+        water++; if (a[r].blue[c] !== b[r].blue[c]) changed++;
+      }
+    }
+    return (changed / water) * 30;
+  };
+  it("runs the questions' water slowly enough not to flicker (each glyph changes at most a few times a second)", () => {
+    expect(currentFor("ask")).toBeLessThan(1);
+    expect(currentFor("landing")).toBe(1);
+    expect(busy("ask")).toBeLessThan(4);
   });
 });
