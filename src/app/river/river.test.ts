@@ -111,3 +111,43 @@ describe("river: current per scene", () => {
     expect(busy("ask")).toBeLessThan(4);
   });
 });
+
+describe("river: clip (the results page)", () => {
+  it("never leaves a wiped (black) canvas on screen, and scrolling never reallocates it", () => {
+    const raf = vi.spyOn(globalThis, "requestAnimationFrame").mockImplementation(() => 1); // the loop is "running" but no frame comes
+    let heightSets = 0, paintedSinceResize = true, h = 0;
+    const ctx = new Proxy({} as Record<string, unknown>, {
+      get: (o, k) => k === "measureText" ? (s: string) => ({ width: s.length * 12 })
+        : k === "fillRect" ? () => { paintedSinceResize = true; }
+        : k in o ? o[k as string] : () => {},
+      set: (o, k, v) => { o[k as string] = v; return true; },
+    });
+    const canvas = {
+      getContext: () => ctx, getBoundingClientRect: () => ({ width: 800, height: 600 }), width: 0, style: {} as Record<string, string>,
+      get height() { return h; }, set height(v: number) { h = v; heightSets++; paintedSinceResize = false; },
+    } as unknown as HTMLCanvasElement;
+    const river = createRiver(canvas, { still: false, scene: "results" });
+    const resizes = () => river.stats.resizes;
+    const start = resizes();
+
+    river.setClip(300); // arriving: the band appears, the bitmap shrinks to it, and is painted straight away
+    expect(resizes()).toBe(start + 1);
+    expect(paintedSinceResize).toBe(true);
+    expect((canvas as unknown as { style: { height: string } }).style.height).toBe("320px");
+
+    const sets = heightSets;
+    for (const b of [280, 200, 120, 40, 0, 90, 250, 300]) river.setClip(b); // scrolling down and back up within the band
+    expect(resizes()).toBe(start + 1);
+    expect(heightSets).toBe(sets);
+
+    river.setClip(420); // the band grows past the bitmap (a window resize, say): resized and painted at once
+    expect(resizes()).toBe(start + 2);
+    expect(paintedSinceResize).toBe(true);
+    river.setClip(null); // leaving the results: the whole screen again, painted at once
+    expect(resizes()).toBe(start + 3);
+    expect(paintedSinceResize).toBe(true);
+    expect((canvas as unknown as { style: { height: string } }).style.height).toBe("");
+    river.destroy();
+    raf.mockRestore();
+  });
+});
