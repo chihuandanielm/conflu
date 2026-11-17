@@ -5,6 +5,8 @@ import { goals } from "../data/dataset.ts";
 import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
 import { mapModel } from "../map/facts.ts";
+import { OnTrack } from "../requirements/OnTrack.tsx";
+import { requirementsFor } from "../requirements/requirements.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { tailoredResources } from "../resources/tailor.ts";
 import { useRiver } from "../river/RiverProvider.tsx";
@@ -269,6 +271,11 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                   </div>
                   <hr className="shore" />
                   <div className="py-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
+                  {/* Outside the map: the courses the major requires, by year, from the official Rutgers page. */}
+                  {requirementsFor(answers.majorId, answers.school) && <>
+                    <hr className="shore" />
+                    <div className="py-10"><OnTrack answers={answers} /></div>
+                  </>}
                   {(saved.completedGoals.length > 0 || plan.ongoing.length > 0 || plan.skipped.length > 0) && (
                     <>
                       <hr className="shore" />

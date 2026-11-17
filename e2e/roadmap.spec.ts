@@ -114,6 +114,12 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
   await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
 
+  // On track to graduate: the major's courses by year, linked to the official page, tickable.
+  const onTrack = page.getByRole("heading", { name: "On track to graduate" }).locator("xpath=..");
+  await expect(onTrack.getByRole("link", { name: /Official requirements for your major/ })).toHaveAttribute("href", /catalogs\.rutgers\.edu/);
+  await onTrack.getByRole("checkbox").first().check();
+  await expect(onTrack.getByText(/1 of \d+ requirements from earlier years ticked/)).toBeVisible();
+
   // The draft map (engine 0.9.0): the banner says it can be edited; cross a goal out, undo it, then finalize.
   await expect(page.getByRole("heading", { name: "This is your draft map" })).toBeVisible();
   await page.getByRole("button", { name: "Edit your map" }).click();

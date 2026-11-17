@@ -152,6 +152,34 @@ for (const m of majors) {
 for (const c of campusIds) if (!vocab.campuses.includes(c)) errors.push(`campuses: ${c} missing from vocab.campuses`);
 const campusSchools = JSON.parse(readFileSync(join(root, "data/campuses.json"), "utf8")).campuses.map((c) => c.school);
 for (const s of campusSchools) if (!ui.school.options.some((o) => o.id === s)) errors.push(`ui/intake › school options are missing campus ${s}`);
+// ---- major requirements (data/requirements.json): one entry per major at each campus that offers it ----
+const reqs = JSON.parse(readFileSync(join(root, "data/requirements.json"), "utf8")).requirements;
+const reqKeys = new Set();
+for (const e of reqs) {
+  const at = `requirements › ${e.campus}/${e.majorId}`;
+  const key = `${e.campus}/${e.majorId}`;
+  if (reqKeys.has(key)) errors.push(`${at}: duplicate entry`);
+  reqKeys.add(key);
+  if (!majorIds.has(e.majorId)) errors.push(`${at}: unknown major`);
+  else if (!(e.campus in majors.find((m) => m.id === e.majorId).offeredAt)) errors.push(`${at}: major not offered at this campus`);
+  for (const k of ["degree", "catalog", "pageUrl", "sequence"]) if (!e[k]) errors.push(`${at}: missing ${k}`);
+  if (!["official", "prerequisites"].includes(e.sequence)) errors.push(`${at}: sequence must be official or prerequisites`);
+  for (const u of [e.pageUrl, ...(e.sources ?? [])]) if (!/^https:\/\/\S+$/.test(u ?? "")) errors.push(`${at}: url must start with https:// (${u})`);
+  if (!e.sources?.length) errors.push(`${at}: needs sources`);
+  const ids = new Set();
+  for (const i of e.items ?? []) {
+    if (ids.has(i.id)) errors.push(`${at}: duplicate item ${i.id}`);
+    ids.add(i.id);
+    if (i.year !== null && !(Number.isInteger(i.year) && i.year >= 1 && i.year <= 6)) errors.push(`${at}: ${i.id}: year must be 1-6 or null`);
+    if (i.kind === "course") {
+      if (!i.options?.length) errors.push(`${at}: ${i.id}: a course needs options`);
+      for (const o of i.options ?? []) if (!o.title) errors.push(`${at}: ${i.id}: option ${o.code} has no title`);
+    } else if (i.kind !== "elective" || !i.text) errors.push(`${at}: ${i.id}: an elective needs text`);
+  }
+  if (!(e.items ?? []).some((i) => i.kind === "course")) errors.push(`${at}: no courses`);
+}
+for (const m of majors) for (const c of Object.keys(m.offeredAt)) if (!reqKeys.has(`${c}/${m.id}`)) errors.push(`requirements: missing ${c}/${m.id}`);
+
 const uncovered = [...majorIds].filter((m) => !tracks.some((t) => t.suggestedMajors.includes(m)));
 if (uncovered.length) errors.push(`tracks: majors with no suggested track: ${uncovered.join(", ")}`);
 
@@ -160,5 +188,5 @@ if (errors.length) {
   console.error(`\n${errors.length} problem(s) in ${total} resources.`);
   process.exit(1);
 }
-console.log(`OK: ${total} resources, ${majors.length} majors, ${campusIds.length} campuses, ${goals.length} goals, ${tracks.length} tracks.`);
+console.log(`OK: ${total} resources, ${majors.length} majors, ${campusIds.length} campuses, ${goals.length} goals, ${tracks.length} tracks, ${reqs.length} major requirement pages.`);
 console.log("Resources reachable per major:", perMajor);
