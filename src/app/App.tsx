@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { IntakeFlow, INTAKE_KEY } from "./intake/IntakeFlow.tsx";
 import type { Answers } from "./intake/model.ts";
 import { ResultsPage } from "./results/ResultsPage.tsx";
+import { RiverProvider, useRiver } from "./river/RiverProvider.tsx";
 import { clearSaved, createSaved, isOutdated, loadSaved, persist, refresh, type SavedPlan } from "./state/plan.ts";
 import { remove } from "./state/storage.ts";
 import { parseShareHash } from "./state/share.ts";
@@ -18,10 +19,21 @@ function initialView(): View {
 }
 const BUILD_MS = 500; // the engine is instant; this is only a short, honest transition
 
+/** One river for the whole session, mounted once behind every view (design/RIVER.md §3). */
 export function App() {
+  return <RiverProvider scene="landing"><Views /></RiverProvider>;
+}
+
+function Views() {
   const [view, setView] = useState<View>(initialView);
   const [saved, setSaved] = useState<SavedPlan | null>(loadSaved);
   const reduce = useReducedMotion();
+  const river = useRiver();
+  // Results look downstream; building the plan is a burst of hops (the full camera move comes in a later step).
+  useEffect(() => {
+    if (view.name === "building") river.celebrate(1.8);
+    if (view.name === "results") void river.goTo("results", { ms: 2600 });
+  }, [view.name, river]);
 
   const update = useCallback((s: SavedPlan) => { setSaved(s); persist(s); }, []);
   useEffect(() => {

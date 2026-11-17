@@ -15,6 +15,7 @@ import { RankedChips } from "./controls/RankedChips.tsx";
 import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
 import { YearTermPicker } from "./controls/YearTermPicker.tsx";
+import { useRiver } from "../river/RiverProvider.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isMulti, isSummerBreak, majorOfferedAt, OPTIONAL, screenOf, screensFor, stepsFor,
   type Answers, type Enrollment, type School, type ScreenId, type StepId,
@@ -100,6 +101,13 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const hasProgress = useRef(!!load<IntakeState>(INTAKE_KEY)?.answers?.seen?.length).current;
   const timer = useRef<number | undefined>(undefined);
   const reduce = useReducedMotion();
+  const river = useRiver();
+  // The landing looks upstream over the confluence; every question sits at the water's edge. (Exact timing: next step.)
+  const atIntro = step === "intro";
+  useEffect(() => {
+    if (atIntro) { if (river.scene !== "landing") void river.goTo("landing", { ms: 1200 }); }
+    else if (river.scene !== "ask") void river.goTo("ask", { ms: 3200, along: river.scene === "landing" });
+  }, [atIntro, river]);
 
   // Save on every change (except the intro screen, so "Continue where you left off" keeps the real step).
   useEffect(() => { if (step !== "intro") save(INTAKE_KEY, state); }, [state, step]);
