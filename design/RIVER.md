@@ -65,6 +65,7 @@ Everything is a number in `river.js`. The ones worth knowing:
 | What | Where | Now | Effect of raising it |
 |---|---|---|---|
 | Speed of the current | second column of `TRAINS` | 3.1 to 10.3 units a second | Water moves faster |
+| Current per scene | `CURRENT` in `src/app/river/RiverProvider.tsx` (`setCurrent`) | 1, and 0.1 for `ask` | Faster water in that scene. The `ask` camera sits at the water's edge, so at 1 each water glyph changed about 15 times a second and read as flicker; at 0.1 it is about 2.5 times (the landing is about 1). The river eases between currents over about a second. |
 | Water darkness overall | `0.14 + 0.32 * mid + ...` in `waterInk` | 0.14 base | Darker, denser water everywhere |
 | Wave contrast | `0.42 * n` in `waterInk` | 0.42 | Stronger light and dark bands |
 | Pools | `0.24 * slow * mid` | 0.24 | Bigger dark patches drifting down |

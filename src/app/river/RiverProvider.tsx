@@ -23,6 +23,15 @@ export interface RiverApi {
 
 const Ctx = createContext<RiverApi | null>(null);
 
+/**
+ * How fast the water runs in each scene (1 = the river's own current). The questions sit right at the water's edge, so
+ * the same current crosses the screen several times faster there than from the landing's height: at full speed each
+ * water glyph changed about 15 times a second, which reads as flicker. At 0.1 it is about 2.5 times a second, a calm
+ * shimmer. The river eases between currents over about a second, so a camera move never jolts the flow.
+ */
+export const CURRENT: Partial<Record<SceneName, number>> = { ask: 0.1 };
+export const currentFor = (scene: SceneName) => CURRENT[scene] ?? 1;
+
 /** A real 2D canvas is needed; jsdom (unit tests) has none. */
 const canDraw = () => typeof navigator !== "undefined" && !/jsdom/i.test(navigator.userAgent);
 
@@ -35,6 +44,7 @@ export function RiverProvider({ scene = "landing", children }: { scene?: SceneNa
   const attach = useCallback((canvas: HTMLCanvasElement | null) => {
     if (!canvas || !canDraw() || river.current) return;
     const r = createRiver(canvas, { scene });
+    r.setCurrent(currentFor(scene));
     river.current = r;
     target.current = scene;
     // Only for scripts/check-smoothness.cjs: with ?measure in the address, frame timing can be read from the page.
@@ -45,8 +55,8 @@ export function RiverProvider({ scene = "landing", children }: { scene?: SceneNa
   }, [scene]);
 
   const api = useMemo<RiverApi>(() => ({
-    goTo: (name, opt) => { target.current = name; return river.current ? river.current.goTo(name, opt) : Promise.resolve(); },
-    setScene: (name) => { target.current = name; river.current?.setScene(name); },
+    goTo: (name, opt) => { target.current = name; river.current?.setCurrent(currentFor(name)); return river.current ? river.current.goTo(name, opt) : Promise.resolve(); },
+    setScene: (name) => { target.current = name; river.current?.setCurrent(currentFor(name)); river.current?.setScene(name); },
     setHints: (h) => river.current?.setHints(h),
     setMasks: (rects, opt) => river.current?.setMasks(rects, opt),
     setClip: (b) => river.current?.setClip(b),
