@@ -383,7 +383,7 @@ export function createRiver(canvas, opt = {}) {
   let raf = 0, last = 0, running = false, destroyed = false;
   let speed = 1, speedTarget = 1, flowT = 0, clock = 0;
   let quality = 1, base = 1, dprCap = 2, gap = 16, sinceCheck = 0; // glyph scale: set from the screen size, raised if this device runs slow
-  const stats = { frames: 0, slow: 0, worstMs: 0, avgMs: 0, cells: 0 };
+  const stats = { frames: 0, slow: 0, worstMs: 0, avgMs: 0, cells: 0, resizes: 0 };
 
   // Rows of glyphs. Rows get taller toward the viewer, so the picture has depth.
   let rowsN = 0, cap = 0;
@@ -459,7 +459,10 @@ export function createRiver(canvas, opt = {}) {
     if (Math.abs(next.sx - world.sx) > 1) { world = next; view = makeView(world); }
     if (move) move.to = SCENES[move.name](W, H, hints); else cam = SCENES[sceneName](W, H, hints);
     dirty = true;
-    if (reduce || !running) draw(now());
+    stats.resizes++;
+    // Resizing a canvas wipes it, and this one has no alpha, so a wiped canvas is black. Draw straight away, even while
+    // the loop is running: otherwise the browser can show the black canvas until the next frame (a flash on scroll).
+    draw(now());
   }
 
   // ---- fish: a few, each on its own clock, so hops never line up and never visibly loop.
@@ -666,10 +669,13 @@ export function createRiver(canvas, opt = {}) {
       if (next === clipBottom) return;
       clipBottom = next; dirty = true;
       const band = next === Infinity ? Infinity : Math.max(64, Math.ceil(next / 64) * 64);
-      if (band !== bandH) {
+      // Resize the bitmap only when the band first appears, has to grow, or goes away. A band that shrinks (the page
+      // scrolling up over the river) keeps the bitmap and simply stops drawing the rows the page now covers, so
+      // scrolling never reallocates the canvas.
+      if (band === Infinity ? bandH !== Infinity : bandH === Infinity || band > bandH) {
         bandH = band;
         if (canvas.style) canvas.style.height = band === Infinity ? "" : `${band}px`;
-        resize(); // keeps the framing (full-screen height), shrinks or restores the bitmap
+        resize(); // keeps the framing (full-screen height), resizes the bitmap, and redraws at once
       } else if (reduce || !running) draw(now());
     },
     setHints(h) { hints = { ...hints, ...h }; if (move) move.to = SCENES[move.name](W, H, hints); else { cam = SCENES[sceneName](W, H, hints); dirty = true; if (reduce) draw(now()); } },

@@ -7,7 +7,7 @@ export type Scene = (W: number, H: number, hints: SceneHints) => Camera;
 export interface Rect { x: number; y: number; w: number; h: number }
 /** A water cell, as `waterInk` reads it. */
 export interface WaterCell { s: number; cross: number; edge: number; ori: number; fog: number; thin: number; fl: number; ch?: string }
-export interface RiverStats { frames: number; slow: number; worstMs: number; avgMs: number; cells: number; quality: number }
+export interface RiverStats { frames: number; slow: number; worstMs: number; avgMs: number; cells: number; resizes: number; quality: number }
 
 export interface River {
   setScene(name: SceneName): void;
