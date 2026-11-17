@@ -6,4 +6,4 @@
 - Never add AI/LLM calls, analytics, trackers, cookies, or third-party scripts. Never ask users for a name or contact info.
 - Never invent resources or programs. Everything shown comes from `data/`.
 - Before committing: `npm run validate` and `npm test` must pass.
-- Design: white background, navy text, calm blue/green accents, IBM Plex Sans, no gradients/emoji/glassmorphism, motion ≤ 250ms, respect prefers-reduced-motion.
+- Design: follow design/DESIGN.md. Four colours only (#E0E7DA, #456894, #00A37D, #E6B989), Quantico and IBM Plex Mono, no shadows, gradients, emoji or icons-as-decoration. One river (src/app/river/) for the whole session; screens change by moving its camera. Respect prefers-reduced-motion.

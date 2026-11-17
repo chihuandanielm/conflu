@@ -1,6 +1,7 @@
-// Converts the self-hosted IBM Plex WOFF files from @fontsource into TTF for the PDF renderer,
-// which can't parse WOFF in the browser build. WOFF 1 is TrueType with zlib-compressed tables,
-// so this only needs node:zlib. Output: public/fonts/*.ttf (IBM Plex is under the SIL Open Font License).
+// Converts the self-hosted WOFF files from @fontsource (Quantico and IBM Plex Mono, the two families of the design)
+// into TTF for the PDF renderer, which can't parse WOFF in the browser build. WOFF 1 is TrueType with zlib-compressed
+// tables, so this only needs node:zlib. Output: public/fonts/*.ttf, plus each family's licence (both are under the
+// SIL Open Font License, which asks for the licence to travel with the fonts).
 // Run: node scripts/woff-to-ttf.mjs   (also runs before every build)
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from "node:fs";
 import { inflateSync } from "node:zlib";
@@ -10,9 +11,13 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const out = join(root, "public/fonts");
 const FONTS = [
-  ["@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff", "ibm-plex-sans-400.ttf"],
-  ["@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff", "ibm-plex-sans-600.ttf"],
+  ["@fontsource/quantico/files/quantico-latin-400-normal.woff", "quantico-400.ttf"],
+  ["@fontsource/quantico/files/quantico-latin-700-normal.woff", "quantico-700.ttf"],
   ["@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff", "ibm-plex-mono-400.ttf"],
+];
+const LICENSES = [
+  ["@fontsource/ibm-plex-mono/LICENSE", "OFL-LICENSE.txt"],
+  ["@fontsource/quantico/LICENSE", "OFL-LICENSE-Quantico.txt"],
 ];
 
 export function woffToSfnt(woff) {
@@ -45,7 +50,9 @@ export function woffToSfnt(woff) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   mkdirSync(out, { recursive: true });
   for (const [src, name] of FONTS) writeFileSync(join(out, name), woffToSfnt(readFileSync(join(root, "node_modules", src))));
-  const license = join(root, "node_modules/@fontsource/ibm-plex-sans/LICENSE");
-  if (existsSync(license)) copyFileSync(license, join(out, "OFL-LICENSE.txt"));
+  for (const [src, name] of LICENSES) {
+    const license = join(root, "node_modules", src);
+    if (existsSync(license)) copyFileSync(license, join(out, name));
+  }
   console.log(`Wrote ${FONTS.length} TTF files to public/fonts`);
 }

@@ -18,7 +18,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -57,9 +57,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-16",
-        "note": "Confirmed by search; automated check was refused (bot wall).",
+        "state": "link-checked",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -95,7 +94,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -138,7 +137,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -176,7 +175,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -219,7 +218,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [],
@@ -254,7 +253,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "note": "Confirmed by search; automated check was refused (bot wall).",
         "httpStatus": 200
       },
@@ -295,7 +294,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200,
         "finalUrl": "https://lwtsquad.com/lwtsummit-2027/"
       },

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useReducer, useRef, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { AlertTriangle, Info } from "lucide-react";
 import { intake, uiIntake } from "../data/dataset.ts";
 import { load, save } from "../state/storage.ts";
 import { todayISO } from "../today.ts";
 import { COPY, MISSING, PART_HELP, PART_TITLE, SCREEN_COPY, type StepCopy } from "./copy.ts";
 import { Intro } from "./Intro.tsx";
 import { QuestionShell } from "./QuestionShell.tsx";
+import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { Review } from "./Review.tsx";
 import { ChipList } from "./controls/ChipChecklist.tsx";
 import { MajorPicker } from "./controls/MajorPicker.tsx";
@@ -15,6 +15,7 @@ import { RankedChips } from "./controls/RankedChips.tsx";
 import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
 import { YearTermPicker } from "./controls/YearTermPicker.tsx";
+import { useRiver } from "../river/RiverProvider.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isMulti, isSummerBreak, majorOfferedAt, OPTIONAL, screenOf, screensFor, stepsFor,
   type Answers, type Enrollment, type School, type ScreenId, type StepId,
@@ -100,6 +101,19 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const hasProgress = useRef(!!load<IntakeState>(INTAKE_KEY)?.answers?.seen?.length).current;
   const timer = useRef<number | undefined>(undefined);
   const reduce = useReducedMotion();
+  const river = useRiver();
+  // Leaving the landing: the words go, the river is freed from under them, and the camera follows the stem round the
+  // bend down to the water's edge (3.2s). The questions fade in near the end of the move (design/DESIGN.md §7.2).
+  // The intro moves the camera itself (Intro.tsx).
+  const group = step === "intro" ? "intro" : "ask";
+  const prevGroup = useRef(group);
+  const arriving = prevGroup.current === "intro" && group === "ask";
+  useEffect(() => { prevGroup.current = group; }, [group]);
+  useEffect(() => {
+    if (group !== "ask" || river.scene === "ask") return;
+    river.setMasks([], { fadeMs: 500 });
+    void river.goTo("ask", { ms: 3200, along: river.scene === "landing" || river.scene === "low" });
+  }, [group, river]);
 
   // Save on every change (except the intro screen, so "Continue where you left off" keeps the real step).
   useEffect(() => { if (step !== "intro") save(INTAKE_KEY, state); }, [state, step]);
@@ -160,20 +174,19 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
     const numbered = parts.filter((p) => !isMulti(p) && p !== "major").length === 1;
     const anyAbout = !!(answers.location || answers.citizenship || answers.gender || answers.identity.length);
     screen = (
-      <QuestionShell focusHeading copy={copy} headingId={headingId} step={qIndex + 1} total={screens.length}
+      <QuestionShell focusHeading copy={copy} headingId={headingId}
         onBack={back} onContinue={next} keyHint={numbered}
         continueLabel={state.returnToReview ? "Back to review"
           : step === "experience" && !answers.experience.length ? "None yet, continue"
           : step === "about" && !anyAbout ? "Skip these" : "Continue"}
         notice={missing.length > 0 && (
-          <p role="alert" className="mt-6 flex items-center gap-2 text-sm font-semibold text-amber-strong">
-            <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />
+          <p role="alert" className="notice mt-6">
             {missing.length === 1 ? "1 question on this page still needs an answer." : `${missing.length} questions on this page still need an answer.`}
           </p>
         )}>
-        <div className="flex flex-col gap-8">
-          {parts.map((p) => (
-            <Part key={p} part={p} single={single} message={p === "year" && answers.year && !answers.semester ? "Pick fall or spring to continue." : MISSING[p]} headingId={single ? headingId : partHeadingId(p)} missing={missing.includes(p)}>
+        <div className="flex flex-col gap-6">
+          {parts.map((p, i) => (
+            <Part key={p} first={i === 0} part={p} single={single} message={p === "year" && answers.year && !answers.semester ? "Pick fall or spring to continue." : MISSING[p]} headingId={single ? headingId : partHeadingId(p)} missing={missing.includes(p)}>
               {renderPart(p, answers, single ? headingId : partHeadingId(p), missing.includes(p), numbered, choose, toggle)}
             </Part>
           ))}
@@ -185,15 +198,39 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const announce = qIndex >= 0 ? `Step ${qIndex + 1} of ${screens.length}. ${(parts.length === 1 ? COPY[parts[0] as keyof typeof COPY] : SCREEN_COPY[step]!).question}`
     : step === "review" ? "Check your answers." : "";
 
+  // A whole screen fades over 520ms while the river moves; between questions only the sheet moves: 18px left and out,
+  // the next in from 18px right (260ms). With reduced motion nothing moves.
+  const ease = [0.22, 0.61, 0.36, 1] as const;
   return (
     <>
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announce}</p>
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div key={step}
-          initial={{ opacity: 0, x: reduce ? 0 : 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reduce ? 0 : -16 }}
-          transition={{ duration: reduce ? 0.01 : 0.2, ease: "easeOut" }}>
-          {screen}
-        </motion.div>
+        {group === "intro" ? (
+          <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.52, ease }}>
+            {screen}
+          </motion.div>
+        ) : (
+          // Only as wide as the sheet: a fading layer the width of the screen, over a canvas that changes every frame, is
+          // what costs the most on large screens.
+          <motion.div key="ask" className="mx-auto flex min-h-dvh w-full max-w-[672px] flex-col items-center px-4 pt-[18px]"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.52, ease, delay: arriving && !reduce ? 1.78 : 0 }}>
+            <header className="w-full max-w-[640px]">
+              <ProgressBar label="Intake progress" max={screens.length}
+                value={step === "review" ? screens.length : qIndex + 1} caption={step === "review" ? "Review" : undefined} />
+            </header>
+            {/* Bottom margin equals the river's band, so the last control always ends above the water. */}
+            <div className="mt-[clamp(16px,5vh,56px)] mb-[calc(34dvh+24px)] w-full max-w-[640px]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div key={step} initial={{ opacity: 0, x: reduce ? 0 : 18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reduce ? 0 : -18 }}
+                  transition={{ duration: reduce ? 0 : 0.26, ease }}>
+                  {screen}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );
@@ -206,35 +243,32 @@ const missingId = (p: StepId) => `missing-${p}`;
  * One question on a screen. On a shared screen it has its own heading, help, and "why". A missing required answer is
  * tinted amber with a colored line saying what to pick.
  */
-function Part({ part, single, headingId, missing, message, children }: {
-  part: StepId; single: boolean; headingId: string; missing: boolean; message?: string; children: ReactNode;
+function Part({ part, single, first, headingId, missing, message, children }: {
+  part: StepId; single: boolean; first: boolean; headingId: string; missing: boolean; message?: string; children: ReactNode;
 }) {
   const c = COPY[part as keyof typeof COPY];
   const help = PART_HELP[part] ?? c.help;
   return (
-    <section aria-labelledby={single ? undefined : headingId}
-      className={`-mx-3 rounded-md border px-3 py-3 transition-colors duration-150 ${missing ? "border-amber/60 bg-amber-tint" : "border-transparent"}`}>
-      {!single && (
-        <div className="mb-4">
-          <h2 id={headingId} tabIndex={-1} className="text-lg font-semibold text-ink outline-none">
-            {PART_TITLE[part] ?? c.question}
-            {part === "credentials" && <span className="ml-2 rounded-sm bg-surface px-1.5 py-0.5 align-middle text-xs font-normal text-muted">Optional</span>}
-          </h2>
-          {help && <p className="mt-1 text-sm text-muted">{help}</p>}
-          {c.why && (
-            <p className="mt-2 flex items-start gap-2 text-sm text-muted">
-              <Info size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-blue" /><span>{c.why}</span>
-            </p>
-          )}
-        </div>
-      )}
-      {missing && (
-        <p id={missingId(part)} className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-strong">
-          <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />{message}
-        </p>
-      )}
-      {children}
-    </section>
+    <>
+      {/* Questions that share a sheet are parted by a shore. */}
+      {!single && !first && <hr className="shore" />}
+      {/* A missing required answer: the sand bar beside the question, and a line saying what to pick. */}
+      <section aria-labelledby={single ? undefined : headingId}
+        className={`border-l-[3px] ${missing ? "border-sand pl-4" : "border-transparent"} ${single ? "" : "-ml-[3px]"}`}>
+        {!single && (
+          <div className="mb-4">
+            <h2 id={headingId} tabIndex={-1} className="text-lead">
+              {PART_TITLE[part] ?? c.question}
+              {part === "credentials" && <span className="fact ml-3 align-middle">optional</span>}
+            </h2>
+            {help && <p className="mt-1 text-small">{help}</p>}
+            {c.why && <p className="mt-2 text-small">{c.why}</p>}
+          </div>
+        )}
+        {missing && <p id={missingId(part)} className="mb-3">{message}</p>}
+        {children}
+      </section>
+    </>
   );
 }
 
@@ -257,11 +291,11 @@ function renderPart(part: StepId, a: Answers, labelledBy: string, missing: boole
     case "major":
       return a.school
         ? <MajorPicker labelledBy={labelledBy} school={a.school} value={a.majorId} onSelect={(id) => choose({ majorId: id }, "major")} {...invalid} />
-        : <p className="text-sm text-muted">Pick your campus first.</p>;
+        : <p className="text-small text-blue">Pick your campus first.</p>;
     case "year":
       return (
         <>
-          {isSummerBreak(todayISO()) && <p className="mb-4 rounded-md bg-blue-tint px-4 py-3 text-sm text-ink">{uiIntake.year.summerHint}</p>}
+          {isSummerBreak(todayISO()) && <p className="mb-4 bg-sage px-4 py-3 text-small text-blue">{uiIntake.year.summerHint}</p>}
           <YearTermPicker a={a} onPick={(p) => choose(p, "year")} {...invalid} />
         </>
       );

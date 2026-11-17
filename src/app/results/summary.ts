@@ -2,10 +2,16 @@
 // need. Pure functions over the plan and answers, so the page and the PDF say the same thing.
 import type { Plan, PlanItem, Track } from "../../engine/types.ts";
 import { competencyNames, goals, intake, tracks } from "../data/dataset.ts";
-import type { Answers } from "../intake/model.ts";
+import { campusName, majorName, trackName, yearTermLabel, type Answers } from "../intake/model.ts";
 
 const goalById = new Map(goals.map((g) => [g.id, g]));
 const base = (key: string) => key.split("@")[0];
+
+/** The summary line under "Your plan", on the page and in the PDF. */
+export function planSummary(a: Answers): string {
+  const when = yearTermLabel(a) ?? `Year ${a.year}`;
+  return `${trackName(a.trackId)} · ${majorName(a.majorId)} · ${when}${a.enrollment === "part-time" ? " (part-time)" : ""} · ${campusName(a.school)} · ${a.weeklyHours} free hours a week`;
+}
 
 /** One sentence for the goal card. */
 export function outcomeText(trackId: string | undefined): string {

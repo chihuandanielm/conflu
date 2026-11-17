@@ -4,6 +4,7 @@ import { emptyAnswers, type Answers } from "../intake/model.ts";
 import { createSaved, type SavedPlan } from "../state/plan.ts";
 import { dataset } from "../data/dataset.ts";
 import { noticeTone } from "./Notices.tsx";
+import { howTo } from "../state/steps.ts";
 import { ResultsPage } from "./ResultsPage.tsx";
 
 const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
@@ -27,7 +28,9 @@ describe("results page", () => {
     expect(screen.getByText("Land your first role in software engineering")).toBeInTheDocument();
     const have = screen.getByRole("heading", { name: "What you have" }).closest("section")!;
     expect(within(have).getByText("I have a resume")).toBeInTheDocument();
-    expect(screen.queryByRole("tab")).toBeNull(); // no tabs inside the plan
+    // Three tabs under the header (design/DESIGN.md §7.4a); a returning student lands on Plan.
+    expect(screen.getAllByRole("tab").map((t) => t.textContent?.replace(/\d+/g, "").trim())).toEqual(["Plan", "Map", "Resources"]);
+    expect(screen.getByRole("tab", { name: "Plan" })).toHaveAttribute("aria-selected", "true");
     expect(screen.queryByText(/hours a week would|hours of goals/)).toBeNull();
   });
 
@@ -61,15 +64,15 @@ describe("results page", () => {
     const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
     const first = within(sem).getAllByRole("listitem")[0];
     const item = get().plan.terms[0].items.find((i) => first.textContent!.startsWith(i.title))!;
-    const goal = dataset.goals.find((g) => g.id === item.goalId.split("@")[0])!;
-    expect(first.textContent).toContain(`Step 1 of ${goal.steps!.length}:`);
+    const steps = howTo(item).steps;
+    expect(first.textContent).toContain(`Next: ${steps[0]}`);
     fireEvent.click(within(first).getByRole("button", { name: new RegExp(item.title.replace(/[()]/g, ".")) }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).getByRole("heading", { name: "What to do" })).toBeInTheDocument();
     fireEvent.click(within(dialog).getAllByRole("checkbox")[0]);
-    expect(within(dialog).getByText(`1 of ${goal.steps!.length} done`)).toBeInTheDocument();
+    expect(within(dialog).getByText(`1 of ${steps.length} done`)).toBeInTheDocument();
     expect(JSON.parse(localStorage.getItem("cpm.steps.v1")!)[item.goalId]).toEqual([0]);
-    expect(first.textContent).toContain(`Step 2 of ${goal.steps!.length}:`);
+    expect(first.textContent).toContain(`Next: ${steps[1]}`);
   });
 
   it("closes the drawer with Escape", async () => {
@@ -96,22 +99,46 @@ describe("results page", () => {
     expect(w).toBeDefined();
   });
 
-  it("opens all resources and the full map as their own views, with a way back", async () => {
+  it("reaches all resources and the full map by tabs, and 'See the full map' switches to the Map tab", async () => {
     setup();
-    fireEvent.click(screen.getByRole("button", { name: "All resources" }));
+    fireEvent.click(screen.getByRole("tab", { name: /^Resources/ }));
     await act(async () => {});
+    expect(screen.getByRole("tab", { name: /^Resources/ })).toHaveAttribute("aria-selected", "true");
     expect(screen.getByRole("heading", { name: "All resources for your plan" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "This semester" })).toBeNull();
     expect(screen.getByText(/^Showing \d+ of \d+ resources\.$/)).toBeInTheDocument();
     expect(screen.getByLabelText("For students like me")).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: "Back to your plan" }));
+    fireEvent.click(screen.getByRole("tab", { name: "Plan" }));
     await act(async () => {});
     fireEvent.click(screen.getByRole("button", { name: "See the full map" }));
     await act(async () => {});
+    expect(screen.getByRole("tab", { name: /^Map/ })).toHaveAttribute("aria-selected", "true");
     expect(screen.getByRole("heading", { name: "Your full map" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Your plan as a confluence/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Your skills picture" })).toBeInTheDocument();
   });
 
-  it("uses amber only for real problems", () => {
+  it("moves between tabs with the arrow keys, and every goal on the map is a button that opens it", async () => {
+    const { get } = setup();
+    const plan = screen.getByRole("tab", { name: "Plan" });
+    plan.focus();
+    fireEvent.keyDown(plan, { key: "ArrowRight" });
+    await act(async () => {});
+    expect(screen.getByRole("tab", { name: /^Map/ })).toHaveAttribute("aria-selected", "true");
+    fireEvent.keyDown(screen.getByRole("tab", { name: /^Map/ }), { key: "ArrowLeft" });
+    await act(async () => {});
+    expect(screen.getByRole("tab", { name: "Plan" })).toHaveAttribute("aria-selected", "true");
+    fireEvent.keyDown(screen.getByRole("tab", { name: "Plan" }), { key: "End" });
+    await act(async () => {});
+    expect(screen.getByRole("tab", { name: /^Resources/ })).toHaveAttribute("aria-selected", "true");
+    fireEvent.click(screen.getByRole("tab", { name: /^Map/ }));
+    await act(async () => {});
+    const first = get().plan.terms[0].items[0];
+    fireEvent.click(screen.getByRole("button", { name: new RegExp(`^${first.title.replace(/[()]/g, ".")}\\s?, `) }));
+    expect(within(screen.getByRole("dialog")).getByRole("heading", { name: first.title })).toBeInTheDocument();
+  });
+
+  it("flags only real problems as warnings", () => {
     expect(noticeTone('"Take the MCAT" is required for Medicine, but its window has passed. Talk to an advisor about alternatives.')).toBe("warn");
     expect(noticeTone('"Log 150+ hours of patient-care experience" is essential for Medicine and is next in line.')).toBe("info");
     expect(noticeTone("Recruiting timeline: Big tech opens junior-summer internships July–September.")).toBe("info");

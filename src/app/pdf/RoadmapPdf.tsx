@@ -1,14 +1,20 @@
-// The downloadable roadmap: real, selectable text laid out with @react-pdf/renderer (never a screenshot).
-// Loaded only when a student clicks Download PDF.
-import { Document, Font, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
-import type { Plan, PlanInput } from "../../engine/types.ts";
-import { contactParts } from "../resources/format.ts";
+// The downloadable roadmap (design/DESIGN.md §7.6, design/prototypes/pdf.html): real, selectable text laid out with
+// @react-pdf/renderer (never a screenshot), in the four colours, Quantico and IBM Plex Mono. Loaded only when a student
+// clicks Download PDF. Page 1 is the confluence map, fitted to the page; then where you stand; then every semester, each
+// goal drawn as a piece of its stream with its steps as boxes to tick with a pen; then the resources, as boxes.
+import { Circle, Document, Font, Line, Link, Page, Path, StyleSheet, Svg, Text, View } from "@react-pdf/renderer";
+import type { Plan, PlanInput, PlanItem } from "../../engine/types.ts";
+import { factLine, mapModel } from "../map/facts.ts";
+import { layoutConfluence, type MapLayout } from "../map/confluence-map.js";
+import { asciiFrame, PALETTE } from "../river/river.js";
+import { audience, contactParts, shortUrl } from "../resources/format.ts";
+import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
+import { lastChecked } from "../data/resources.ts";
 import { howTo } from "../state/steps.ts";
 import { inWorkOrder } from "../results/order.ts";
-import { milestones, moreTime, needs, outcomeText } from "../results/summary.ts";
-import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
+import { moreTime, needs, outcomeText } from "../results/summary.ts";
 
-export interface FontFiles { regular: string; semibold: string; mono: string }
+export interface FontFiles { regular: string; bold: string; mono: string }
 
 /** Hyphenation callback: whole words, except long URLs, which get break points after each slash. */
 export function urlBreaks(word: string): string[] {
@@ -19,7 +25,7 @@ export function urlBreaks(word: string): string[] {
 let registered = false;
 export function registerFonts(f: FontFiles) {
   if (registered) return;
-  Font.register({ family: "Plex", fonts: [{ src: f.regular, fontWeight: 400 }, { src: f.semibold, fontWeight: 600 }] });
+  Font.register({ family: "Quantico", fonts: [{ src: f.regular, fontWeight: 400 }, { src: f.bold, fontWeight: 700 }] });
   Font.register({ family: "PlexMono", src: f.mono });
   // Never hyphenate words. Long URLs may wrap after a slash: an empty "syllable" between parts becomes a
   // zero-width break point in react-pdf's line breaker, so no hyphen is drawn and the printed URL stays exact.
@@ -27,187 +33,347 @@ export function registerFonts(f: FontFiles) {
   registered = true;
 }
 
-const C = { ink: "#13293D", muted: "#5B6B7B", blue: "#1F5F99", green: "#1F7A63", border: "#E2E8EE", surface: "#F6F8FA", amber: "#9A6A12" };
+const C = PALETTE; // sage, blue, green, sand: the only four colours
+// US Letter is 612 x 792 pt; 40pt side margins (54px in the prototype).
+const PAGE = { w: 612, h: 792, side: 40, top: 33, bottom: 52 };
+const W = PAGE.w - PAGE.side * 2;
+const BANNER = { cols: 175, rows: 13, size: 5.25, line: 6 };
+const MAP_FONT = 7.5; // goal names on the map (10px in the prototype)
+/** The core of the PDF (the map, where you stand, this semester and next in full, later semesters in brief, and the
+ *  resources to start with) fits in 10 pages; everything else follows as an appendix. */
+const FULL_TERMS = 2, KEY_RESOURCES = 12;
+const HALF = (W - 16) / 2;
+
 const s = StyleSheet.create({
-  page: { fontFamily: "Plex", fontSize: 10, color: C.ink, paddingTop: 48, paddingBottom: 64, paddingHorizontal: 52 },
-  // No lineHeight on the page or a wrapper: in @react-pdf/renderer 4.9 a page-level lineHeight breaks the
-  // page-number footer ("unsupported number"), and an inherited one double-spaces smaller text. Set it per style.
-  body: {},
-  footer: { position: "absolute", bottom: 28, left: 52, right: 52, flexDirection: "row", justifyContent: "space-between", fontSize: 8, color: C.muted, borderTopWidth: 1, borderTopColor: C.border, paddingTop: 6 },
-  eyebrow: { fontFamily: "PlexMono", fontSize: 8, color: C.muted },
-  h1: { fontSize: 24, fontWeight: 600, marginTop: 8 },
-  h2: { fontSize: 15, fontWeight: 600, color: C.ink, marginBottom: 8, paddingBottom: 4, borderBottomWidth: 1, borderBottomColor: C.border },
-  h3: { fontSize: 12, fontWeight: 600, marginTop: 10, marginBottom: 4, color: C.blue },
-  item: { marginBottom: 7, paddingLeft: 8, borderLeftWidth: 2, borderLeftColor: C.green },
-  why: { fontSize: 9, lineHeight: 1.3, marginTop: 1 },
-  cols: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" },
-  col: { width: "48.5%", marginBottom: 8 },
-  itemTitle: { fontWeight: 600 },
-  meta: { fontFamily: "PlexMono", fontSize: 8, color: C.muted },
-  small: { fontSize: 9, lineHeight: 1.3, color: C.muted },
-  bullet: { flexDirection: "row", marginTop: 1 },
-  link: { color: C.blue, textDecoration: "none", fontSize: 8 },
-  row: { flexDirection: "row", marginBottom: 3 },
-  label: { width: 110, color: C.muted },
-  note: { marginTop: 18, padding: 10, backgroundColor: C.surface, borderRadius: 4 },
-  res: { marginBottom: 8 },
+  // No lineHeight on the page or a wrapper: in @react-pdf/renderer 4.9 a page-level lineHeight breaks the page-number
+  // footer, and an inherited one double-spaces smaller text. Set it per style.
+  page: { fontFamily: "Quantico", fontSize: 9.5, color: C.blue, backgroundColor: C.sage, paddingTop: PAGE.top, paddingBottom: PAGE.bottom, paddingHorizontal: PAGE.side },
+  fact: { fontFamily: "PlexMono", fontSize: 7.5, letterSpacing: 0.2 },
+  title: { fontSize: 26, marginTop: 6 },
+  summary: { fontSize: 9.5, marginTop: 3, lineHeight: 1.3 },
+  outcome: { fontSize: 16.5, marginTop: 12, lineHeight: 1.15 },
+  h2: { fontSize: 14 },
+  body: { fontSize: 9, lineHeight: 1.35 },
+  small: { fontSize: 8.5, lineHeight: 1.35 },
+  footer: { position: "absolute", bottom: 19.5, left: PAGE.side, right: PAGE.side, flexDirection: "row", justifyContent: "space-between",
+    paddingTop: 6, borderTopWidth: 1.5, borderTopStyle: "dotted", borderTopColor: C.sand, fontFamily: "PlexMono", fontSize: 7 },
+  term: { flexDirection: "row", alignItems: "baseline", gap: 9, marginTop: 16, paddingTop: 7.5, borderTopWidth: 1.5, borderTopStyle: "dotted", borderTopColor: C.sand },
+  notice: { marginTop: 7.5, paddingLeft: 9, borderLeftWidth: 3, borderLeftColor: C.sand, fontSize: 9, lineHeight: 1.35 },
+  link: { color: C.blue, textDecoration: "none" },
 });
 
-const Bullet = ({ children }: { children: string }) => (
-  <View style={s.bullet}><Text style={{ width: 10, color: C.muted }}>•</Text><Text style={{ flex: 1 }}>{children}</Text></View>
+/** The mark beside a goal: an open ring, solid for a must-do, green once done. */
+const Dot = ({ gate = false, done = false, size = 6.75, style = {} }: { gate?: boolean; done?: boolean; size?: number; style?: object }) => (
+  <View style={{ width: size, height: size, borderRadius: size / 2, borderWidth: 1.5, borderColor: done ? C.green : C.blue,
+    backgroundColor: done ? C.green : gate ? C.blue : C.sage, ...style }} />
+);
+const Marks = ({ items }: { items: { text: string; small?: string; done?: boolean }[] }) => (
+  <View>
+    {items.map((m) => (
+      <View key={m.text + (m.small ?? "")} style={{ flexDirection: "row", gap: 7, paddingVertical: 2.25 }} wrap={false}>
+        <Dot done={m.done} style={{ marginTop: 2.5 }} />
+        <View style={{ flex: 1 }}>
+          <Text style={s.body}>{m.text}</Text>
+          {m.small && <Text style={s.small}>{m.small}</Text>}
+        </View>
+      </View>
+    ))}
+  </View>
 );
 
-export interface PdfProps {
-  plan: Plan; input: PlanInput; resources: Tailored[]; date: string;
-  summary: { track: string; trackId?: string; campus: string; major: string; year: number; yearLabel?: string; horizon: string; hours: number; have?: string[] };
-}
-
-export function RoadmapPdf({ plan, input, summary, resources, date }: PdfProps) {
-  const now = plan.terms[0];
-  // This term's goals in priority order; the first step of the first one is the "Start here".
-  const nextMoves = now ? inWorkOrder(now.items, plan.edges) : [];
-  const start = nextMoves.find((it) => howTo(it).steps.length);
-  const upNext = moreTime(plan);
-  const ms = milestones(plan), need = needs(plan);
-  const footer = (
-    <View style={s.footer} fixed>
-      <Text>Generated by Career Pathway Mapper · {date}</Text>
-      <Text render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`} />
+/** The confluence map as react-pdf drawing primitives: exactly what layoutConfluence returns, as mapSvg draws it. */
+function PdfMap({ L, k }: { L: MapLayout; k: number }) {
+  const fs = L.fontSize, mf = L.metaSize;
+  /** Top of a line of text whose SVG baseline is at `y`. */
+  const topOf = (y: number, size: number) => (y - size * 0.82) * k;
+  return (
+    <View style={{ position: "relative", width: L.width * k, height: L.height * k, alignSelf: "center", marginTop: 8 }}>
+      <Svg width={L.width * k} height={L.height * k} viewBox={`0 0 ${L.width} ${L.height}`}>
+        {L.terms.map((t) => (
+          <Line key={t.code} x1={0} x2={L.width} y1={t.y + fs * 0.4} y2={t.y + fs * 0.4} stroke={C.sand} strokeWidth={1.5} strokeDasharray="1.5 5" strokeLinecap="round" />
+        ))}
+        {L.strands.map((st) => <Path key={st.id} d={st.d} fill="none" stroke={st.done ? C.green : C.blue} strokeWidth={st.gate ? 2.4 : 1.1} strokeLinejoin="round" />)}
+        <Path d={L.own.d} fill="none" stroke={C.blue} strokeWidth={2.4} />
+        {L.dots.map((d) => <Circle key={d.id} cx={d.x} cy={d.y} r={d.r} fill={d.done ? C.green : d.gate ? C.blue : C.sage} stroke={d.done ? C.green : C.blue} strokeWidth={1.5} />)}
+        <Circle cx={L.source.x} cy={L.source.y} r={L.source.r * 1.9} fill={C.sage} stroke={C.blue} strokeWidth={1.5} />
+        <Circle cx={L.source.x} cy={L.source.y} r={L.source.r * 0.8} fill={C.green} />
+        <Line x1={L.mouth.x0 - 4} x2={L.mouth.x1 + 4} y1={L.mouth.y} y2={L.mouth.y} stroke={C.blue} strokeWidth={2.4} strokeLinecap="square" />
+        <Line x1={L.mouth.cx} x2={L.mouth.cx} y1={L.mouth.y} y2={L.mouth.dotY} stroke={C.blue} strokeWidth={2.4} />
+        <Circle cx={L.mouth.cx} cy={L.mouth.dotY} r={L.mouth.r} fill={C.blue} />
+      </Svg>
+      {L.terms.map((t) => (
+        <Text key={t.code} style={[s.fact, { position: "absolute", fontSize: mf * k, left: (L.sides === 2 ? 0 : L.rightEdge - fs * 0.4) * k, top: topOf(t.y + fs * 1.75, mf) }]}>
+          {t.label.toLowerCase()}{t.more ? `  (+${t.more} more in the list)` : ""}
+        </Text>
+      ))}
+      <Text style={[s.fact, { position: "absolute", fontSize: mf * k, left: L.source.textX * k, top: topOf(L.source.textY + mf * 0.35, mf) }]}>{L.source.label.toLowerCase()}</Text>
+      {L.labels.map((l) => (
+        <View key={l.id} style={{ position: "absolute", top: l.y * k, left: (l.align === "right" ? l.x - l.w : l.x) * k, width: l.w * k }}>
+          {l.lines.map((ln, i) => (
+            <Text key={i} style={{ fontSize: fs * k, lineHeight: L.lineHeight / fs, textAlign: l.align }}>{ln}</Text>
+          ))}
+          <Text style={[s.fact, { fontSize: mf * k, lineHeight: 1.5, textAlign: l.align }]}>{l.done ? "done" : l.meta}</Text>
+        </View>
+      ))}
+      {L.mouth.lines.map((ln, i) => (
+        <Text key={i} style={{ position: "absolute", fontWeight: 700, fontSize: L.mouth.fs * k, top: topOf(L.mouth.textY + i * L.mouth.fs * 1.25, L.mouth.fs),
+          ...(L.mouth.align === "middle" ? { left: 0, width: L.width * k, textAlign: "center" as const } : { left: L.mouth.textX * k }) }}>{ln}</Text>
+      ))}
     </View>
   );
+}
+
+/** One goal, as a piece of its stream: a line down the left (heavier for a must-do), a dot on it, and what to do. */
+function GoalBlock({ it, again }: { it: PlanItem; again: boolean }) {
+  const how = howTo(it);
+  return (
+    <View style={{ position: "relative", paddingLeft: 19.5, paddingVertical: 6.75 }} wrap={false}>
+      <View style={{ position: "absolute", left: it.gate ? 2.4 : 3, top: 0, bottom: 0, borderLeftWidth: it.gate ? 3 : 1.5, borderLeftColor: C.blue }} />
+      <Dot gate={it.gate} style={{ position: "absolute", left: 0, top: 9.75 }} />
+      <Text style={{ fontSize: 10.5, lineHeight: 1.2 }}>{it.title}</Text>
+      <Text style={s.fact}>{factLine(it)}{again ? "  keep going" : ""}</Text>
+      {!again && (
+        <>
+          {it.why.length > 0 && <Text style={[s.small, { marginTop: 2 }]}>{it.why[it.why.length - 1]}</Text>}
+          {how.steps.length > 0 && (
+            <View style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 3.5, columnGap: 16 }}>
+              {how.steps.map((st, i) => (
+                <View key={i} style={{ width: (W - 19.5 - 16) / 2, flexDirection: "row", gap: 5, paddingVertical: 1.5 }} wrap={false}>
+                  <View style={{ width: 7.5, height: 7.5, marginTop: 2, borderWidth: 1.5, borderColor: C.blue }} />
+                  <Text style={[s.small, { flex: 1 }]}>{st}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+          {how.doneWhen && <Text style={[s.small, { marginTop: 3 }]}>Done when: {how.doneWhen}</Text>}
+          {it.resources.length > 0 && (
+            <Text style={[s.fact, { marginTop: 3 }]}>
+              {it.resources.slice(0, 3).map((r, i) => <Text key={r.id}>{i ? "  /  " : ""}<Link src={r.url} style={s.link}>{r.name}</Link></Text>)}
+            </Text>
+          )}
+        </>
+      )}
+    </View>
+  );
+}
+
+/** A later semester's goal in brief: its dot, title and fact line, half a column wide. */
+function LaterRow({ it, again }: { it: PlanItem; again: boolean }) {
+  return (
+    <View style={{ width: HALF, flexDirection: "row", gap: 6, paddingVertical: 2 }} wrap={false}>
+      <Dot gate={it.gate} style={{ marginTop: 2.5 }} />
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontSize: 9, lineHeight: 1.25 }}>{it.title}</Text>
+        <Text style={[s.fact, { fontSize: 7 }]}>{factLine(it)}{again ? "  keep going" : ""}</Text>
+      </View>
+    </View>
+  );
+}
+
+/** A resource box (design/DESIGN.md §7.4b), for print: the address is written out in full under the name, and is still a live link. */
+function ResourceBox({ t }: { t: Tailored }) {
+  const r = t.resource;
+  const facts = [payLabel(r.pay), seasonLabel(r.season), r.typicalDeadline ? `Typical deadline: ${r.typicalDeadline}` : null].filter(Boolean).join("  ");
+  const contact = contactParts(r);
+  const checked = lastChecked(r);
+  return (
+    <View style={{ width: (W - 9) / 2, borderWidth: 1.5, borderColor: C.blue, padding: 9, marginBottom: 9, gap: 2.5 }} wrap={false}>
+      <Text style={{ fontSize: 10.5, lineHeight: 1.2 }}>{r.name}{t.forYou ? "  (for students like you)" : ""}</Text>
+      {[r.url, ...(r.applyUrl && r.applyUrl !== r.url ? [r.applyUrl] : [])].map((u, i) => (
+        <Link key={u} src={u} style={[s.fact, s.link]}>{i ? "Apply: " : ""}{shortUrl(u)}</Link>
+      ))}
+      <Text style={s.fact}>{whereLabel(r).toLowerCase()}  {r.type.replace(/[_-]+/g, " ")}</Text>
+      {r.summary && <Text style={s.small}>{r.summary}</Text>}
+      <Text style={s.small}>{audience(r)}</Text>
+      {facts && <Text style={s.fact}>{facts}</Text>}
+      {t.goals.length > 0 && <Text style={s.small}>Helps with: {t.goals.join("; ")}</Text>}
+      {contact.length > 0 && <Text style={s.small}>{contact.map((c) => (c.label === "How" ? c.value : `${c.label}: ${c.value}`)).join("  ")}</Text>}
+      {checked && <Text style={s.fact}>Link last checked {checked}</Text>}
+      {r.status !== "active" && <Text style={[s.notice, { fontSize: 8.5 }]}>{r.statusNote ?? `Status: ${r.status}`}</Text>}
+    </View>
+  );
+}
+
+export interface PdfProps {
+  plan: Plan; input: PlanInput; resources: Tailored[]; date: string; done?: string[];
+  summary: { track: string; trackId?: string; campus: string; major: string; year: number; yearLabel?: string; horizon: string; hours: number; have?: string[]; line?: string };
+}
+
+/** Rough height of wrapped text, for fitting the map to what is left of page 1 (react-pdf can't measure ahead). */
+const textHeight = (text: string, size: number, lh: number) => Math.max(1, Math.ceil((text.length * size * 0.52) / W)) * size * lh;
+
+export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }: PdfProps) {
+  const now = plan.terms[0];
+  const first = now ? inWorkOrder(now.items, plan.edges).find((it) => howTo(it).steps.length) : undefined;
+  const line = summary.line ?? `${summary.track} · ${summary.major} · ${summary.yearLabel ?? `Year ${summary.year}`} · ${summary.campus} · ${summary.hours} free hours a week`;
+  const outcome = outcomeText(summary.trackId);
+  const need = needs(plan);
+  const more = moreTime(plan);
+  // Where to start: the resources this semester's and next semester's goals point to, in the plan's order, at most
+  // KEY_RESOURCES; then every other resource in the appendix after the core pages.
+  const byId = new Map(resources.map((t) => [t.resource.id, t]));
+  const key: Tailored[] = [];
+  for (const t of plan.terms.slice(0, FULL_TERMS)) for (const it of inWorkOrder(t.items, plan.edges))
+    for (const r of it.resources) { const hit = byId.get(r.id); if (hit && !key.includes(hit) && key.length < KEY_RESOURCES) key.push(hit); }
+  const rest = resources.filter((t) => !key.includes(t));
+
+  // Page 1: the banner, the title, then the confluence map in whatever height is left. The fullest semesters give up
+  // their last rows until it fits, and say how many they left out; if it is still too tall (very many semesters), the
+  // whole drawing is scaled down.
+  const room = PAGE.h - PAGE.top - PAGE.bottom - (BANNER.rows * BANNER.line - 10) - (26 * 1.25 + 6)
+    - (textHeight(line, 9.5, 1.3) + 3) - (textHeight(outcome, 16.5, 1.15) + 12) - 8 - 10;
+  // Always two-sided in print: the layout's 560 threshold is in screen pixels, and the page is 532pt wide.
+  const L = layoutConfluence(mapModel(plan, outcome), { width: W, sides: 2, fontSize: MAP_FONT, maxHeight: room, done });
+  const k = Math.min(1, room / L.height);
+  const banner = asciiFrame("banner", BANNER.cols, BANNER.rows, { cell: [4.2, 8] });
+  const bannerText = (key: "sand" | "blue") => banner.map((r) => r[key]).join("\n");
+
+  const told = new Set<string>(); // a goal that continues is described once, then named again with "keep going"
+  const footer = (
+    <View style={s.footer} fixed>
+      <Text>Career Pathway Mapper  a general trajectory, not a blueprint</Text>
+      <Text render={({ pageNumber, totalPages }) => `dataset ${plan.meta.dataVersion}  engine ${plan.meta.engineVersion}  page ${pageNumber} of ${totalPages}`} />
+    </View>
+  );
+
   return (
     <Document title={`Career roadmap: ${summary.track}`} author="Career Pathway Mapper" subject="Semester-by-semester career roadmap" creator="Career Pathway Mapper" producer="Career Pathway Mapper" language="en-US">
       <Page size="LETTER" style={s.page}>
-        <View style={s.body}>
-        <Text style={s.eyebrow}>Career Pathway Mapper</Text>
-        <Text style={s.h1}>Your plan</Text>
-        <View style={{ marginTop: 14 }}>
-          {[["Goal", summary.track], ["Major", summary.major], ["Year and semester", summary.yearLabel ?? `Year ${summary.year}`], ["Campus", summary.campus],
-            ["Free time", `${summary.hours} hours a week outside class`]]
-            .map(([k, v]) => <View key={k} style={s.row}><Text style={s.label}>{k}</Text><Text style={{ flex: 1 }}>{v}</Text></View>)}
+        {/* The banner: a still of the river, two overlaid text blocks (sand, then blue). Decoration made of text;
+            react-pdf has no way to mark it as an artifact, so it stays in the text layer. */}
+        <View style={{ position: "relative", height: BANNER.rows * BANNER.line, marginTop: -10, marginHorizontal: -10 }}>
+          {(["sand", "blue"] as const).map((key) => (
+            <Text key={key} style={{ position: "absolute", top: 0, left: 0, fontFamily: "PlexMono", fontSize: BANNER.size, lineHeight: BANNER.line / BANNER.size, color: C[key] }}>
+              {bannerText(key)}
+            </Text>
+          ))}
         </View>
-        <Text style={[s.h2, { marginTop: 16 }]}>Where you're headed</Text>
-        <Text style={s.itemTitle}>{outcomeText(summary.trackId)}</Text>
-        {ms.map((m, i) => <Text key={m.goalId} style={{ fontSize: 9.5, marginTop: 2 }}>{i + 1}. {m.title} <Text style={s.meta}>· {m.termLabel}{m.mustDo ? " · must-do" : ""}</Text></Text>)}
-        <View style={[s.cols, { marginTop: 12 }]}>
-          <View style={s.col}>
-            <Text style={s.h3}>What you have</Text>
-            {(summary.have ?? []).length ? (summary.have ?? []).map((h) => <Bullet key={h}>{h}</Bullet>) : <Text style={s.small}>Nothing yet, and that's normal. Every plan starts with a first step.</Text>}
-          </View>
-          <View style={s.col}>
-            <Text style={s.h3}>What you need</Text>
-            {need.map((n) => <Bullet key={n.label}>{`${n.label}: ${n.detail}`}</Bullet>)}
-          </View>
-        </View>
-        {plan.warnings.length > 0 && (
-          <View style={{ marginTop: 12 }}>
-            <Text style={s.h3}>Good to know</Text>
-            {plan.warnings.map((w) => <Bullet key={w}>{w}</Bullet>)}
-          </View>
-        )}
-        <Text style={[s.small, { marginTop: 14 }]}>A starting point, not a rulebook. Built from your answers in your own browser; nothing you entered was sent anywhere. Dataset {plan.meta.dataVersion}, engine {plan.meta.engineVersion}, {date}.</Text>
-        </View>
+        <Text style={s.title}>Your plan</Text>
+        <Text style={s.summary}>{line}</Text>
+        <Text style={s.outcome}>{outcome}</Text>
+        <PdfMap L={L} k={k} />
         {footer}
       </Page>
 
       <Page size="LETTER" style={s.page}>
-        <View style={s.body}>
-        {start && (
-          <View style={{ borderWidth: 1, borderColor: C.blue, borderRadius: 4, padding: 10, marginBottom: 12 }} wrap={false}>
-            <Text style={[s.h3, { marginTop: 0, color: C.blue }]}>Start here</Text>
-            <Text style={s.itemTitle}>{howTo(start).steps[0]}</Text>
-            <Text style={s.small}>Step 1 of {howTo(start).steps.length} for “{start.title}”. One step at a time is enough.</Text>
+        {/* Where you stand. */}
+        <View style={{ flexDirection: "row", gap: 21 }}>
+          <View style={{ flex: 1 }}>
+            <Text style={[s.h2, { marginBottom: 6 }]}>What you have</Text>
+            {(summary.have ?? []).length
+              ? <Marks items={(summary.have ?? []).map((h) => ({ text: h, done: true }))} />
+              : <Text style={s.body}>Nothing yet, and that's normal. Every plan starts with a first step.</Text>}
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[s.h2, { marginBottom: 6 }]}>What you need</Text>
+            <Marks items={need.map((n) => ({ text: n.label, small: n.detail }))} />
+          </View>
+        </View>
+        {first && (
+          <View style={{ marginTop: 15, backgroundColor: C.blue, color: C.sage, padding: 13 }} wrap={false}>
+            <Text style={[s.fact, { color: C.sage }]}>Start here</Text>
+            <Text style={{ fontSize: 13, lineHeight: 1.25, marginTop: 3 }}>{howTo(first).steps[0]}</Text>
+            <Text style={[s.small, { marginTop: 4 }]}>Part of: {first.title}</Text>
           </View>
         )}
-        <Text style={s.h2}>This semester{now ? ` · ${now.label}` : ""}</Text>
-        <Text style={[s.small, { marginBottom: 4 }]}>Fits your {summary.hours} free hours a week. Take them in order.</Text>
-        {nextMoves.length === 0 && <Text style={s.small}>Nothing is scheduled for this term.</Text>}
-        {nextMoves.map((it) => (
-          <View key={it.goalId} style={s.item} wrap={false}>
-            <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h this term{it.gate ? " · Must-do" : ""}</Text></Text>
-            <Text style={s.why}>{it.why[0]}</Text>
-            {howTo(it).steps.map((st, i) => <Text key={st} style={{ fontSize: 9, marginTop: 1 }}>{i + 1}. {st}</Text>)}
-            {howTo(it).doneWhen && <Text style={[s.small, { marginTop: 2 }]}>Done when: {howTo(it).doneWhen}</Text>}
-            {it.resources[0] && <Text style={{ marginTop: 2 }}>Start with: {it.resources[0].name} <Link src={it.resources[0].url} style={s.link}>{it.resources[0].url}</Link></Text>}
+        {plan.warnings.length > 0 && (
+          <View style={{ marginTop: 9 }}>
+            {plan.warnings.map((w) => <Text key={w} style={s.notice}>{w}</Text>)}
+          </View>
+        )}
+
+        {/* This semester and next, in full: each goal a piece of its stream, its steps as boxes to tick. */}
+        {plan.terms.slice(0, FULL_TERMS).map((t, i) => (
+          <View key={t.code}>
+            <View style={s.term} minPresenceAhead={110}>
+              <Text style={s.h2}>{i ? t.label : "This semester"}</Text>
+              <Text style={s.fact}>{i ? `${t.items.length} ${t.items.length === 1 ? "goal" : "goals"}` : `${t.label.toLowerCase()}  sized to your ${summary.hours} free hours a week`}</Text>
+            </View>
+            {t.items.length === 0 && <Text style={[s.small, { marginTop: 4 }]}>{t.capacityHours === 0 ? "A break: no plan this term." : "Nothing scheduled."}</Text>}
+            {inWorkOrder(t.items, plan.edges).map((it) => {
+              const again = told.has(it.goalId);
+              told.add(it.goalId);
+              return <GoalBlock key={it.goalId} it={it} again={again} />;
+            })}
           </View>
         ))}
 
-        <Text style={[s.h2, { marginTop: 18 }]} break>Coming up</Text>
-        {plan.terms.slice(1).map((t) => (
-          <View key={t.code}>
-            <Text style={s.h3} minPresenceAhead={60}>{t.label} <Text style={s.meta}>· {t.code} · {t.usedHours} of {t.capacityHours} h planned</Text></Text>
-            {t.items.length === 0 && <Text style={s.small}>Nothing scheduled.</Text>}
-            {t.items.map((it) => (
-              <View key={it.goalId} style={s.item} wrap={false}>
-                <Text><Text style={s.itemTitle}>{it.title}</Text><Text style={s.meta}>   {it.hours} h{it.gate ? " · Must-do" : ""}{it.partial ? " · continues next term" : ""}</Text></Text>
-                <Text style={s.why}>{it.why.join(" ")}</Text>
-                {howTo(it).steps[0] && <Text style={{ fontSize: 9 }}>First step: {howTo(it).steps[0]}</Text>}
-                {it.resources.map((r) => (
-                  <Text key={r.id} style={{ fontSize: 8.5 }}>{r.name}{r.note ? ` (${r.note})` : ""}: <Link src={r.url} style={s.link}>{r.url}</Link></Text>
-                ))}
+        {/* Later semesters, one line per goal (two columns): the steps are on the site and come into this PDF as the
+            semester gets close. */}
+        {plan.terms.length > FULL_TERMS && (
+          <View>
+            <View style={s.term} minPresenceAhead={90}>
+              <Text style={s.h2}>Later semesters</Text>
+              <Text style={s.fact}>each goal in brief</Text>
+            </View>
+            {plan.terms.slice(FULL_TERMS).map((t) => (
+              <View key={t.code} style={{ marginTop: 7 }} wrap={false}>
+                <Text style={[s.fact, { marginBottom: 2 }]}>{t.label.toLowerCase()}  {t.items.length ? `${t.items.length} ${t.items.length === 1 ? "goal" : "goals"}` : t.capacityHours === 0 ? "a break" : "open"}</Text>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
+                  {inWorkOrder(t.items, plan.edges).map((it) => {
+                    const again = told.has(it.goalId);
+                    told.add(it.goalId);
+                    return <LaterRow key={it.goalId} it={it} again={again} />;
+                  })}
+                </View>
               </View>
             ))}
           </View>
-        ))}
-        </View>
-        {footer}
-      </Page>
+        )}
 
-      <Page size="LETTER" style={s.page}>
-        <View style={s.body}>
-        {plan.ongoing.length > 0 && (
+        {more.length > 0 && (
           <View>
-            <Text style={s.h2}>Habits to keep</Text>
-            <View style={s.cols}>
-              {plan.ongoing.map((o) => (
-                <View key={o.goalId} style={s.col} wrap={false}><Text style={s.itemTitle}>{o.title}</Text><Text style={s.why}>{o.why}</Text></View>
-              ))}
+            <View style={s.term} minPresenceAhead={70}>
+              <Text style={s.h2}>When you have more time</Text>
+              <Text style={s.fact}>start any of them whenever you like</Text>
+            </View>
+            <View style={{ marginTop: 4, flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
+              {more.map((m) => <View key={m.goalId} style={{ width: HALF }}><Marks items={[{ text: m.title }]} /></View>)}
             </View>
           </View>
         )}
-        {upNext.length > 0 && (
+        {plan.ongoing.length > 0 && (
           <View>
-            <Text style={[s.h2, { marginTop: 14 }]}>When you have more time</Text>
-            <Text style={[s.small, { marginBottom: 4 }]}>Done early, or have a free week? These come next. Start any of them whenever you like.</Text>
-            {upNext.map((b, i) => (
-              <Text key={b.goalId} style={{ fontSize: 9, marginTop: 2 }} wrap={false}>
-                <Text style={s.meta}>{i + 1}.  </Text><Text style={{ fontFamily: "Plex", fontWeight: 600 }}>{b.title}</Text>{/^Comes after/.test(b.reason) && <Text style={s.small}>  {b.reason}</Text>}
-              </Text>
+            <View style={s.term} minPresenceAhead={70}><Text style={s.h2}>Habits to keep</Text></View>
+            <View style={{ marginTop: 4 }}><Marks items={plan.ongoing.map((o) => ({ text: o.title, small: o.why }))} /></View>
+          </View>
+        )}
+
+        {/* The few resources that matter most now: the ones this semester's and next semester's goals point to, in the
+            plan's own order. The same boxes as the site, two to a row. */}
+        {key.length > 0 && (
+          <View>
+            <View style={s.term} minPresenceAhead={160}>
+              <Text style={s.h2}>Where to start</Text>
+              <Text style={s.fact}>for this semester's and next semester's goals</Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 9, marginTop: 7.5 }}>
+              {key.map((t) => <ResourceBox key={t.resource.id} t={t} />)}
+            </View>
+          </View>
+        )}
+        <Text style={[s.small, { marginTop: 14 }]}>A starting point, not a rulebook. Built from your answers in your own browser on {date}; nothing you entered was sent anywhere.</Text>
+
+        {/* Everything else, after the core pages: grouped the same way as the site's Resources tab. */}
+        {rest.length > 0 && (
+          <View break>
+            <Text style={[s.h2, { fontSize: 18 }]}>All resources</Text>
+            <Text style={[s.body, { marginTop: 3 }]}>
+              The rest of the resources tied to your plan, plus everything for year {input.year} students in your major. Check each program's site for current dates and eligibility.
+            </Text>
+            {byGroup(rest).map((g) => (
+              <View key={g.id}>
+                <View style={[s.term, { marginBottom: 7.5 }]} minPresenceAhead={120}>
+                  <Text style={s.h2}>{g.label}</Text>
+                  <Text style={s.fact}>{g.items.length}</Text>
+                </View>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 9 }}>
+                  {g.items.map((t) => <ResourceBox key={t.resource.id} t={t} />)}
+                </View>
+              </View>
             ))}
           </View>
         )}
-        </View>
-        {footer}
-      </Page>
-
-      <Page size="LETTER" style={s.page}>
-        <View style={s.body}>
-        <Text style={s.h2}>Resources for you</Text>
-        <Text style={[s.small, { marginBottom: 6 }]}>
-          Tied to your plan, plus everything for year {input.year} students in your major. Check each program's site for current dates and eligibility.
-        </Text>
-        {byGroup(resources).map((g) => (
-          <View key={g.id}>
-            <Text style={s.h3} minPresenceAhead={60}>{g.label}</Text>
-            <View style={s.cols}>
-            {g.items.map(({ resource: r }) => {
-              const facts = [whereLabel(r), payLabel(r.pay), seasonLabel(r.season), r.typicalDeadline ? `Deadline: ${r.typicalDeadline}` : null].filter(Boolean).join(" · ");
-              const contact = contactParts(r).map((c) => (c.label === "How" ? c.value : `${c.value}`)).join(" · ");
-              return (
-                <View key={r.id} style={s.col} wrap={false}>
-                  <Text style={[s.itemTitle, { fontSize: 9.5 }]}>{r.name}</Text>
-                  <Text style={s.meta}>{facts}</Text>
-                  <Text style={{ fontSize: 8.5 }}>{r.summary}</Text>
-                  {r.status !== "active" && <Text style={{ color: C.amber, fontSize: 8.5 }}>{r.statusNote ?? r.status}</Text>}
-                  <Link src={r.url} style={s.link}>{r.url}</Link>
-                  {contact && <Text style={{ fontSize: 8, color: C.muted }}>{contact}</Text>}
-                </View>
-              );
-            })}
-            </View>
-          </View>
-        ))}
-        </View>
         {footer}
       </Page>
     </Document>

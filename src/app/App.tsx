@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { IntakeFlow, INTAKE_KEY } from "./intake/IntakeFlow.tsx";
 import type { Answers } from "./intake/model.ts";
 import { ResultsPage } from "./results/ResultsPage.tsx";
+import { RiverProvider, useRiver } from "./river/RiverProvider.tsx";
 import { clearSaved, createSaved, isOutdated, loadSaved, persist, refresh, type SavedPlan } from "./state/plan.ts";
 import { remove } from "./state/storage.ts";
 import { parseShareHash } from "./state/share.ts";
@@ -16,27 +17,41 @@ function initialView(): View {
   if (window.location.hash) history.replaceState(null, "", window.location.pathname + window.location.search);
   return shared ? { name: "intake", startAt: "review", key: 0, shared } : { name: "intake", key: 0 };
 }
-const BUILD_MS = 500; // the engine is instant; this is only a short, honest transition
+const BUILD_MS = 900; // the burst of hops before the camera turns (design/DESIGN.md §7.3)
 
+/** One river for the whole session, mounted once behind every view (design/RIVER.md §3). */
 export function App() {
+  // The camera starts where the first screen is: low over the water for the landing's intro, or at the water's edge
+  // when a shared link opens the review.
+  const [first] = useState(() => (parseShareHash(window.location.hash) ? "ask" : "low") as "ask" | "low");
+  return <RiverProvider scene={first}><Views /></RiverProvider>;
+}
+
+function Views() {
   const [view, setView] = useState<View>(initialView);
   const [saved, setSaved] = useState<SavedPlan | null>(loadSaved);
-  const reduce = useReducedMotion();
+  const river = useRiver();
+  const reduce = useReducedMotion() || river.reducedMotion;
 
   const update = useCallback((s: SavedPlan) => { setSaved(s); persist(s); }, []);
+  // Building the plan (design/DESIGN.md §7.3): there is no separate screen. The questions fade out and the fish hop
+  // faster for about a second; then the results page takes over and the camera turns to face downstream. The engine is
+  // instant; the move is the transition. With reduced motion it all happens at once.
   useEffect(() => {
     if (view.name !== "building") return;
+    river.celebrate(1.8);
     const t = window.setTimeout(() => setView({ name: "results" }), reduce ? 0 : BUILD_MS);
     return () => window.clearTimeout(t);
-  }, [view, reduce]);
+  }, [view, reduce, river]);
 
   const startOver = useCallback(() => {
     remove(INTAKE_KEY); clearSaved(); setSaved(null);
     setView((v) => ({ name: "intake", key: (v.name === "intake" ? v.key : 0) + 1 }));
   }, []);
 
+  let screen: ReactNode;
   if (view.name === "intake") {
-    return (
+    screen = (
       <IntakeFlow key={view.key} startAt={view.startAt} initialAnswers={view.shared}
         onBuild={(a: Answers) => { update(createSaved(a, todayISO(), saved)); setView({ name: "building" }); }}
         onContinuePlan={saved ? () => {
@@ -46,19 +61,23 @@ export function App() {
         } : undefined}
         onStartOver={startOver} />
     );
-  }
-  if (view.name === "building" || !saved) {
-    return (
-      <main className="flex min-h-dvh items-center justify-center px-4">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduce ? 0.01 : 0.2 }} role="status" className="text-lg text-muted">
-          Building your plan
-        </motion.p>
-      </main>
+  } else if (view.name === "building" || !saved) {
+    // Only for screen readers: the picture is the river's camera move.
+    screen = <p role="status" className="sr-only">Building your plan</p>;
+  } else {
+    screen = (
+      <ResultsPage saved={saved} onChange={update}
+        onEdit={() => setView({ name: "intake", startAt: "review", key: Date.now() })}
+        onStartOver={startOver} />
     );
   }
+  // A whole screen fades out (520ms) before the next one takes over; the river keeps flowing behind.
+  const key = view.name === "intake" ? `intake-${view.key}` : view.name;
   return (
-    <ResultsPage saved={saved} onChange={update}
-      onEdit={() => setView({ name: "intake", startAt: "review", key: Date.now() })}
-      onStartOver={startOver} />
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div key={key} initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.52, ease: [0.22, 0.61, 0.36, 1] }}>
+        {screen}
+      </motion.div>
+    </AnimatePresence>
   );
 }

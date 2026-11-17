@@ -23,6 +23,9 @@ export function audience(r: Resource): string {
 }
 const capital = (s: string) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 
+/** The address a link goes to, shown in mono so the student sees where it leads before clicking. */
+export const shortUrl = (u: string) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+
 export function contactParts(r: Resource): { label: string; value: string; href?: string }[] {
   const c = r.contact ?? { how: "" };
   const out: { label: string; value: string; href?: string }[] = [];

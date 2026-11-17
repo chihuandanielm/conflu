@@ -1,17 +1,37 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
-/** Thin progress bar that fills smoothly. The visible count sits next to it. */
-export function ProgressBar({ value, max, label }: { value: number; max: number; label: string }) {
-  const reduce = useReducedMotion();
-  const pct = max ? Math.min(100, (value / max) * 100) : 0;
+const FISH = "><>";
+const WATER = "~-~~-";
+/** Plex Mono advance at 13px (0.6 em). */
+const CHAR = 13 * 0.6;
+
+/**
+ * The fish gauge (design/DESIGN.md §7.2): one mono line, water behind the fish, a green fish at the current position,
+ * dots ahead. The number of positions follows whatever the step count is; the caption says it in words.
+ */
+export function ProgressBar({ value, max, label, caption }: { value: number; max: number; label: string; caption?: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [cols, setCols] = useState(60);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const measure = () => setCols(Math.max(12, Math.floor(el.getBoundingClientRect().width / CHAR) || 60));
+    measure();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(measure) : null;
+    ro?.observe(el);
+    return () => ro?.disconnect();
+  }, []);
+  const at = Math.max(FISH.length, Math.round((cols - FISH.length) * (max ? value / max : 0)) + FISH.length);
+  let behind = "", ahead = "";
+  for (let i = 0; i < at - FISH.length; i++) behind += WATER[i % WATER.length];
+  for (let i = at; i < cols; i++) ahead += (i - at) % 2 ? "." : " ";
   return (
-    <div className="flex items-center gap-4">
-      <div role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={value}
-        className="h-1 flex-1 overflow-hidden rounded-full bg-border">
-        <motion.div className="h-full rounded-full bg-green" initial={false}
-          animate={{ width: `${pct}%` }} transition={{ duration: reduce ? 0 : 0.25, ease: "easeOut" }} />
-      </div>
-      <span className="font-mono text-xs text-muted tabular-nums">{value} of {max}</span>
+    <div ref={box} className="w-full">
+      <p role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={value}
+        className="m-0 overflow-hidden font-mono text-fact leading-[1.2] whitespace-pre">
+        <span aria-hidden="true">{behind}<b aria-hidden="true" className="font-semibold text-green">{FISH}</b>{ahead}</span>
+      </p>
+      <p className="mt-1 text-small">{caption ?? `Step ${value} of ${max}`}</p>
     </div>
   );
 }

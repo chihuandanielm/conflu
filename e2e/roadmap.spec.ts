@@ -14,7 +14,7 @@ const heading = (page: Page) => page.getByRole("heading", { level: 1 });
 test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
   const seen = watch(page);
   await page.goto("./");
-  await expect(heading(page)).toContainText("semester-by-semester career plan");
+  await expect(heading(page)).toHaveText("Many streams, one plan.");
   await expect(page.getByText(/general trajectory, not a blueprint/)).toBeVisible();
 
   // The CSP (a meta tag, since GitHub Pages can't send headers) is active: an injected inline script must not run.
@@ -28,7 +28,12 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(ran).toBe(false);
   seen.violations.length = 0; // that probe's own violation is expected
 
-  await page.getByRole("button", { name: "I'm a college student, start" }).click();
+  // One river for the whole session: remember the canvas, and check it is the same one on every screen.
+  await page.evaluate(() => { (window as unknown as { __river?: Element }).__river = document.querySelector("canvas[data-river]")!; });
+  const sameRiver = () => page.evaluate(() => document.querySelectorAll("canvas").length === 1
+    && document.querySelector("canvas[data-river]") === (window as unknown as { __river?: Element }).__river);
+  expect(await sameRiver()).toBe(true);
+  await page.getByRole("button", { name: "Start", exact: true }).click();
 
   // Campus and major share a screen; picking the major moves on.
   await expect(heading(page)).toHaveText("What do you study?");
@@ -69,6 +74,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("button", { name: "Continue" }).click();
 
   await expect(heading(page)).toHaveText("Check your answers");
+  expect(await sameRiver()).toBe(true);
   await expect(page.getByText("Computer Science", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Build my plan" }).click();
 
@@ -78,30 +84,33 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
     await expect(page.getByRole("heading", { name })).toBeVisible();
   }
 
-  // Open a goal from the full map's chart and mark it done.
+  expect(await sameRiver()).toBe(true);
+
+  // Open a goal from the full map (the Map tab) and mark it done.
   await page.getByRole("button", { name: "See the full map" }).click();
+  await expect(page.getByRole("tab", { name: /^Map/ })).toHaveAttribute("aria-selected", "true");
   await expect(page.getByRole("heading", { name: "Your full map" })).toBeVisible();
-  const card = page.locator(".react-flow__node-item button").first();
+  const card = page.getByRole("tabpanel").locator("ol button").first();
   await expect(card).toBeVisible();
   const title = (await card.locator("span").first().textContent())!.trim();
-  const goal = (await card.getAttribute("data-goal"))!;
-  const sameTitle = page.locator(`.react-flow__node-item button[data-goal^="${goal.split("@")[0]}"]`);
+  const escaped = title.replace(/[()[\]?*+.]/g, "\\$&");
+  const sameTitle = page.getByRole("tabpanel").getByRole("button", { name: new RegExp(`^${escaped}\\s?, `) });
   const before = await sameTitle.count();
   await card.click();
   const drawer = page.getByRole("dialog");
   await expect(drawer.getByRole("heading", { name: title })).toBeVisible();
-  await expect(drawer.getByText("Why it's in your plan")).toBeVisible();
+  await expect(drawer.getByRole("heading", { name: "Why it's here" })).toBeVisible();
   await expect(drawer.getByRole("heading", { name: "What to do" })).toBeVisible();
   await drawer.getByRole("checkbox").first().check();
   await expect(drawer.getByText(/^1 of \d+ done$/)).toBeVisible();
   await drawer.getByRole("button", { name: "Mark as done" }).click();
   await expect(drawer).toBeHidden();
 
-  // The plan updates: the card leaves the chart (a yearly goal like FAFSA keeps its later-year cards),
-  // and back on the plan the goal is under "Checked off".
+  // The plan updates: the goal leaves the map (a yearly goal like FAFSA keeps its later-year streams),
+  // and back on the Plan tab the goal is under "Checked off".
   await expect(sameTitle).toHaveCount(before - 1);
   await expect(page.getByText(/Plan updated/)).toBeAttached();
-  await page.getByRole("button", { name: "Back to your plan" }).click();
+  await page.getByRole("tab", { name: "Plan" }).click();
   await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
   await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
 
@@ -116,7 +125,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(seen.offsite).toEqual([]);
 });
 
-test("phone: a Newark student gets a timeline, a bottom-sheet drawer, and Newark offices @phone", async ({ page }) => {
+test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and Newark offices @phone", async ({ page }) => {
   const seen = watch(page);
   // Start from a shared link to skip the intake (identity and citizenship are never in it).
   const share = { v: 1, m: "nursing", y: 3, q: "3F", t: "nursing-clinical", h: "graduation", s: "rutgers-newark", w: 10, u: "full", l: "nj", e: ["resume"], k: [], r: [] };
@@ -127,16 +136,16 @@ test("phone: a Newark student gets a timeline, a bottom-sheet drawer, and Newark
   await page.getByRole("button", { name: "Build my plan" }).click();
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText(/Nursing · Third year, fall semester · Rutgers–Newark ·/)).toBeVisible();
-  await expect(page.locator(".react-flow")).toHaveCount(0);
   await page.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
   await page.locator("section[aria-labelledby=next-h] li button").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   // Resources name Newark's offices, and never New Brunswick's.
-  await page.getByRole("button", { name: "All resources" }).click();
-  await expect(page.getByText("Rutgers–Newark", { exact: true }).first()).toBeVisible();
-  await expect(page.getByText("Rutgers–New Brunswick", { exact: true })).toHaveCount(0);
+  await page.getByRole("tab", { name: /^Resources/ }).click();
+  await expect(page.getByText(/^rutgers–newark /).first()).toBeVisible();
+  // A New Brunswick-only office would read "rutgers–new brunswick  <kind>"; shared ones name both campuses.
+  await expect(page.getByText(/^rutgers–new brunswick {2}/)).toHaveCount(0);
   expect(seen.violations).toEqual([]);
   expect(seen.offsite).toEqual([]);
 });
