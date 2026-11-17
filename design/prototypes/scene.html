@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>River scene viewer</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  html, body { height: 100%; } body { overflow: hidden; }
+  #river { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  nav { position: fixed; left: 12px; top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  nav button { font: 13px var(--font-mono); color: var(--blue); background: var(--sage); border: 1.5px solid var(--blue); padding: 6px 10px; cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="river" aria-hidden="true"></canvas>
+<nav id="nav"></nav>
+<script type="module">
+// Scene viewer: every camera preset, and the glide between them. Add ?scene=ask to open on one, ?bare to hide the buttons.
+import { createRiver, SCENES } from "../river/river.js";
+const q = new URLSearchParams(location.search);
+await document.fonts.load('13px "IBM Plex Mono"'); await document.fonts.load('600 13px "IBM Plex Mono"');
+const river = createRiver(document.getElementById("river"), { scene: q.get("scene") ?? "landing" });
+window.river = river;
+if (!q.has("bare")) for (const name of Object.keys(SCENES)) {
+  const b = document.createElement("button"); b.textContent = name;
+  b.onclick = () => river.goTo(name, { ms: 2400, along: name === "ask" });
+  document.getElementById("nav").append(b);
+}
+</script>
+</body>
+</html>
