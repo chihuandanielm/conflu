@@ -11,6 +11,11 @@
         "economics"
       ],
       "description": "Building software products at tech companies, banks, and startups.",
+      "recruiterFocus": "Recruiters screen for internships and projects you built, then test data structures and algorithms in technical interviews.",
+      "recruiterSources": [
+        "https://careerdesign.dartmouth.edu/blog/2023/07/26/what-are-software-engineering-recruiters-looking-for-on-applications/",
+        "https://www.dice.com/career-advice/your-first-resume-and-portfolio-what-tech-hiring-managers-really-want-to-see"
+      ],
       "competencyTarget": {
         "tech": 0.9,
         "crit": 0.8,
@@ -62,6 +67,11 @@
         "marketing"
       ],
       "description": "Turning data into decisions in business, health, and government.",
+      "recruiterFocus": "Entry-level analyst postings ask for SQL and Excel most often, then a visualisation tool; Python is a plus that sets you apart.",
+      "recruiterSources": [
+        "https://www.dataquest.io/blog/10-data-analysis-tools-for-entry-level-analysts",
+        "https://dev.to/gnana_6392e836fd500a957dc/data-analyst-skills-companies-want-in-2026-2500-posting-analysis-2518"
+      ],
       "competencyTarget": {
         "tech": 0.8,
         "crit": 0.85,
@@ -73,9 +83,9 @@
         "equity": 0.3
       },
       "boosts": {
-        "s-python": 0.95,
+        "s-python": 0.8,
         "s-sql": 0.95,
-        "s-excel-core": 0.85,
+        "s-excel-core": 0.9,
         "s-data-viz": 0.9,
         "p-kaggle": 0.75,
         "s-r-stats": 0.6,
@@ -85,8 +95,7 @@
         "c-google-cert": 0.5
       },
       "gates": [
-        "s-sql",
-        "s-python"
+        "s-sql"
       ],
       "suppress": [],
       "recruitingNote": null,
@@ -101,6 +110,11 @@
         "information-technology"
       ],
       "description": "Defending systems in government, finance, and security firms.",
+      "recruiterFocus": "Employers want hands-on practice (labs, capture-the-flag) and an entry certificate such as Security+, which many government roles require.",
+      "recruiterSources": [
+        "https://www.caecommunity.org/_files/ugd/fd9f4b_19a1b71b81a74c70a7bd59ff24b8361f.pdf",
+        "https://www.infosecinstitute.com/resources/securityplus/security-job-outlook-opportunities/"
+      ],
       "competencyTarget": {
         "tech": 0.9,
         "crit": 0.8,
@@ -139,6 +153,11 @@
         "computer-science"
       ],
       "description": "Researching users and designing digital products.",
+      "recruiterFocus": "Hiring managers judge a UX candidate mainly by the portfolio: case studies that show your process, not just final screens.",
+      "recruiterSources": [
+        "https://nngroup.com/articles/ux-design-portfolios/",
+        "https://www.uxdesigninstitute.com/blog/hiring-managers-ux-portfolio/"
+      ],
       "competencyTarget": {
         "tech": 0.6,
         "comm": 0.8,
@@ -173,6 +192,11 @@
         "packaging-engineering"
       ],
       "description": "Designing and building products in automotive, aerospace, energy, and manufacturing.",
+      "recruiterFocus": "Engineering employers hire heavily from their own interns and co-ops; CAD skill and design-team projects are what get you that first internship.",
+      "recruiterSources": [
+        "https://coe.gatech.edu/academics/work-experience-through-co-op-and-internships",
+        "https://naceweb.org/job-market/trends-and-predictions/hiring-projections-level-off-for-the-college-class-of-2025"
+      ],
       "competencyTarget": {
         "tech": 0.85,
         "crit": 0.8,
@@ -188,11 +212,12 @@
         "e-design-team": 0.9,
         "c-cswa": 0.6,
         "s-matlab": 0.6,
-        "e-coop": 0.75,
+        "e-coop": 0.85,
         "c-fe": 0.5,
         "c-lean": 0.45,
         "p-portfolio-site": 0.55,
-        "n-professional-society": 0.65
+        "n-professional-society": 0.65,
+        "ap-internship-target": 0.95
       },
       "gates": [
         "s-cad"
@@ -212,6 +237,11 @@
         "packaging-engineering"
       ],
       "description": "R&D, quality, and manufacturing roles in devices and biotech, a major NJ industry.",
+      "recruiterFocus": "Device and biotech employers look for internships or co-ops, lab or design experience, and comfort with regulated quality processes.",
+      "recruiterSources": [
+        "https://capd.mit.edu/resources/career-profile-biotechnology-pharmaceuticals-medical-devices/",
+        "https://www.biospace.com/no-ph-d-no-problem-life-science-industry-welcomes-candidates-with-only-a-bachelor-s-degree"
+      ],
       "competencyTarget": {
         "tech": 0.8,
         "crit": 0.8,
@@ -248,6 +278,11 @@
         "packaging-engineering"
       ],
       "description": "Research, regulatory, medical affairs, and operations roles at drug companies.",
+      "recruiterFocus": "Pharma hiring for bachelor's graduates starts from hands-on lab skills, then internships or co-ops and research experience.",
+      "recruiterSources": [
+        "https://www.biospace.com/no-ph-d-no-problem-life-science-industry-welcomes-candidates-with-only-a-bachelor-s-degree",
+        "https://capd.mit.edu/resources/career-profile-biotechnology-pharmaceuticals-medical-devices/"
+      ],
       "competencyTarget": {
         "tech": 0.7,
         "crit": 0.8,
@@ -261,7 +296,7 @@
       "boosts": {
         "e-coop": 0.8,
         "e-research-assistant": 0.7,
-        "s-lab-techniques": 0.65,
+        "s-lab-techniques": 0.8,
         "a-residency-plan": 0.6,
         "n-info-interviews": 0.8,
         "ap-internship-target": 1
@@ -283,6 +318,11 @@
         "economics"
       ],
       "description": "Academic or industry research careers that start with a PhD.",
+      "recruiterFocus": "PhD committees weigh research experience and strong letters from faculty who saw your research above grades and test scores.",
+      "recruiterSources": [
+        "https://gs.ucdenver.edu/fobgapt2/workshops/General/Hall_et_al_2017.pdf",
+        "https://par.nsf.gov/servlets/purl/10061360"
+      ],
       "competencyTarget": {
         "crit": 0.95,
         "tech": 0.7,
@@ -330,6 +370,11 @@
         "public-health"
       ],
       "description": "MD or DO programs: clinical experience, research, service, and the MCAT.",
+      "recruiterFocus": "Medical schools look at the MCAT and GPA first, then clinical experience, shadowing, service and letters that show you know what the work is.",
+      "recruiterSources": [
+        "https://www.aamc.org/media/23336/download",
+        "https://students-residents.aamc.org/choosing-medical-career/article/five-ways-gain-experience-without-shadowing/"
+      ],
       "competencyTarget": {
         "crit": 0.85,
         "comm": 0.8,
@@ -384,6 +429,11 @@
         "public-health"
       ],
       "description": "DPT, PA, OT, and athletic training programs, which require observation and patient-care hours.",
+      "recruiterFocus": "PA and PT programs require logged patient-care or observation hours, often hundreds or more, alongside prerequisites and letters.",
+      "recruiterSources": [
+        "https://www.thepalife.com/patient-contact-hours/",
+        "https://pacificu.edu/node/22702"
+      ],
       "competencyTarget": {
         "comm": 0.8,
         "prof": 0.8,
@@ -423,6 +473,11 @@
         "nursing"
       ],
       "description": "Registered nursing in hospitals and community settings.",
+      "recruiterFocus": "Hospitals hiring new nurses look for a passed NCLEX, clinical externship experience on a unit, and a current BLS card.",
+      "recruiterSources": [
+        "https://www.myamericannurse.com/?p=24295",
+        "https://www.sumnercollege.edu/blog/what-employers-look-for-in-new-nursing-graduates-in-oregon/"
+      ],
       "competencyTarget": {
         "comm": 0.8,
         "prof": 0.9,
@@ -461,6 +516,11 @@
         "pharmacy"
       ],
       "description": "Patient-facing pharmacy practice, with or without residency.",
+      "recruiterFocus": "Residency directors weigh pharmacy work experience, rotations and formal leadership roles, then letters and research.",
+      "recruiterSources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4336015",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7405295"
+      ],
       "competencyTarget": {
         "prof": 0.9,
         "comm": 0.8,
@@ -476,7 +536,7 @@
         "c-pharm-tech": 0.7,
         "a-residency-plan": 0.95,
         "n-professional-society": 0.7,
-        "e-org-leadership": 0.7,
+        "e-org-leadership": 0.85,
         "c-bls": 0.7
       },
       "gates": [
@@ -500,6 +560,11 @@
         "biological-sciences"
       ],
       "description": "Health departments, nonprofits, and health systems working on population health.",
+      "recruiterFocus": "Public health employers want practical experience from an internship or practicum and clear written and spoken communication, which nearly all entry-level ads ask for.",
+      "recruiterSources": [
+        "https://frontiersin.org/journals/public-health/articles/10.3389/fpubh.2023.1218509/pdf",
+        "https://sph.umich.edu/careers/employer-engagement/internships-projects-jobs.html"
+      ],
       "competencyTarget": {
         "comm": 0.8,
         "equity": 0.8,
@@ -517,7 +582,7 @@
         "s-data-viz": 0.55,
         "c-ches": 0.5,
         "e-government-internship": 0.6,
-        "s-professional-writing": 0.65,
+        "s-professional-writing": 0.8,
         "ap-internship-target": 0.9
       },
       "gates": [],
@@ -534,6 +599,11 @@
         "social-work"
       ],
       "description": "Counseling, therapy, and clinical research; usually needs a master's or doctorate.",
+      "recruiterFocus": "Clinical psychology programs rank research experience first, then letters from research mentors and relevant clinical exposure.",
+      "recruiterSources": [
+        "https://www.usf.edu/arts-sciences/departments/psychology/graduate/clinical/prospective-graduate-students/index.aspx",
+        "https://psychsciences.case.edu/?p=4711"
+      ],
       "competencyTarget": {
         "comm": 0.85,
         "equity": 0.8,
@@ -546,12 +616,12 @@
       },
       "boosts": {
         "c-rbt": 0.7,
-        "e-research-assistant": 0.85,
+        "e-research-assistant": 0.95,
         "e-volunteer": 0.75,
         "c-citi": 0.6,
         "s-r-stats": 0.65,
         "n-faculty-relationships": 0.85,
-        "a-letters": 0.85,
+        "a-letters": 0.9,
         "ap-grad-apps": 0.85,
         "a-test-prep": 0.5
       },
@@ -572,6 +642,11 @@
         "psychology"
       ],
       "description": "Case management, child welfare, school and clinical social work.",
+      "recruiterFocus": "MSW programs look for related human-service experience, paid or volunteer, and supervised field work.",
+      "recruiterSources": [
+        "https://socialwelfare.berkeley.edu/node/62",
+        "https://socialwork.uw.edu/admissions/apply-to-msw/msw-admissions-faq/"
+      ],
       "competencyTarget": {
         "equity": 0.9,
         "comm": 0.85,
@@ -584,7 +659,7 @@
       },
       "boosts": {
         "e-field-placement": 1,
-        "e-volunteer": 0.85,
+        "e-volunteer": 0.9,
         "c-rbt": 0.4,
         "n-professional-society": 0.6,
         "ap-grad-apps": 0.6
@@ -610,6 +685,11 @@
         "accounting"
       ],
       "description": "Banking, sales and trading, and asset management.",
+      "recruiterFocus": "Banks hire full-time analysts from their summer interns; networking, technical modelling questions and early programs decide who gets those internships.",
+      "recruiterSources": [
+        "https://www.kenan-flagler.unc.edu/news/conquering-investment-banking-recruiting/",
+        "https://mergersandinquisitions.com/investment-banking-summer-internship-recruiting/"
+      ],
       "competencyTarget": {
         "crit": 0.85,
         "tech": 0.6,
@@ -649,6 +729,11 @@
         "economics"
       ],
       "description": "Planning, analysis, and treasury roles inside companies.",
+      "recruiterFocus": "Finance and FP&A hiring managers want strong Excel and modelling shown through an internship or project, and clear communication.",
+      "recruiterSources": [
+        "https://www.financialprofessionals.org/training-resources/resources/articles/Details/how-to-stand-out-for-entry-level-fp-a-jobs-15-leaders-share-advice",
+        "https://www.roberthalf.com/us/en/insights/career-development/how-to-become-a-financial-analyst"
+      ],
       "competencyTarget": {
         "crit": 0.8,
         "tech": 0.65,
@@ -661,7 +746,7 @@
       },
       "boosts": {
         "s-excel-core": 0.95,
-        "s-excel-modeling": 0.75,
+        "s-excel-modeling": 0.85,
         "c-excel-mos": 0.5,
         "s-data-viz": 0.5,
         "ap-internship-target": 1
@@ -679,6 +764,11 @@
         "accounting"
       ],
       "description": "Big 4 and regional CPA firms; leads to the CPA license.",
+      "recruiterFocus": "Accounting firms recruit from their own internship and early leadership programs and want a clear path to the 150 credit hours for the CPA.",
+      "recruiterSources": [
+        "https://www.creighton.edu/student-success/careercenter/explore-career-paths/accounting-careers",
+        "https://careers.kogod.american.edu/channels/accounting/"
+      ],
       "competencyTarget": {
         "prof": 0.85,
         "crit": 0.75,
@@ -714,6 +804,11 @@
         "communication"
       ],
       "description": "Brand management, digital marketing, advertising, and social media.",
+      "recruiterFocus": "Marketing hiring managers look for real experience first (internships, campaigns you ran), with analytics skills next; a portfolio matters less.",
+      "recruiterSources": [
+        "https://www.marketingprofs.com/charts/2016/29540/what-marketers-look-for-in-entry-level-candidates",
+        "https://www.recruitingnewsnetwork.com/posts/18-tips-for-employers-hiring-early-career-candidates-for-advertising-and-marketing-roles"
+      ],
       "competencyTarget": {
         "comm": 0.85,
         "crit": 0.7,
@@ -726,7 +821,7 @@
       },
       "boosts": {
         "s-digital-marketing": 0.9,
-        "p-portfolio-site": 0.75,
+        "p-portfolio-site": 0.6,
         "p-linkedin-active": 0.7,
         "e-case-competition": 0.6,
         "s-data-viz": 0.45,
@@ -749,6 +844,11 @@
         "packaging-engineering"
       ],
       "description": "Planning, procurement, logistics, and operations at manufacturers and retailers.",
+      "recruiterFocus": "Supply chain employers look for internships or co-ops, strong Excel, and process-improvement exposure such as Lean.",
+      "recruiterSources": [
+        "https://coursecareers.com/blog-posts/what-employers-look-for-when-hiring-entry-level-supply-chain-coordinators",
+        "https://www.extern.com/post/supply-chain-internships-guide"
+      ],
       "competencyTarget": {
         "crit": 0.8,
         "tech": 0.6,
@@ -786,6 +886,11 @@
         "political-science"
       ],
       "description": "Solving business problems for clients; case interviews are the gate.",
+      "recruiterFocus": "Consulting firms screen on grades, leadership and networking, then decide on case interviews, so case practice matters most.",
+      "recruiterSources": [
+        "https://managementconsulted.com/land-an-offer-at-mckinsey-bain-bcg-or-deloitte/",
+        "https://nazariancareers.csun.edu/blog/2025/02/11/how-to-get-into-consulting-5-steps-and-expert-tips/"
+      ],
       "competencyTarget": {
         "crit": 0.9,
         "comm": 0.85,
@@ -822,6 +927,11 @@
         "psychology"
       ],
       "description": "Recruiting, HR business partner, compensation, and people analytics.",
+      "recruiterFocus": "Entry-level HR hiring looks for an HR internship, comfort with HR systems and Excel, and often an early credential such as the aPHR.",
+      "recruiterSources": [
+        "https://www.aihr.com/hr-career-map/hr-coordinator/",
+        "https://www.coursera.org/articles/human-resources-coordinator"
+      ],
       "competencyTarget": {
         "comm": 0.8,
         "equity": 0.75,
@@ -854,6 +964,11 @@
         "marketing"
       ],
       "description": "Public relations, newsrooms, broadcasting, and content.",
+      "recruiterFocus": "PR employers ask for writing samples and media experience first, usually through internships and student media.",
+      "recruiterSources": [
+        "https://www.5wpr.com/new/pr-entry-level-job-guide/",
+        "https://www.mediabistro.com/be-inspired/advice-from-the-pros/the-pr-job-you-want-exists-its-just-not-called-public-relations"
+      ],
       "competencyTarget": {
         "comm": 0.95,
         "crit": 0.65,
@@ -891,6 +1006,11 @@
         "communication"
       ],
       "description": "Legislative offices, agencies, think tanks, and campaigns.",
+      "recruiterFocus": "Government and policy employers value internships in public offices and strong writing; federal student roles come through Pathways on USAJOBS.",
+      "recruiterSources": [
+        "https://www.opm.gov/policy-data-oversight/hiring-information/students-recent-graduates/",
+        "https://help.usajobs.gov/faq/application/documents/resume/what-to-include"
+      ],
       "competencyTarget": {
         "comm": 0.85,
         "crit": 0.8,
@@ -926,6 +1046,11 @@
         "communication"
       ],
       "description": "JD programs and legal careers; LSAT and GPA drive admissions.",
+      "recruiterFocus": "Law schools weigh the LSAT and undergraduate GPA most, then the personal statement and letters.",
+      "recruiterSources": [
+        "https://www.princetonreview.com/law-school-advice/gpa-for-law-school",
+        "https://lawhub.lsac.org"
+      ],
       "competencyTarget": {
         "crit": 0.9,
         "comm": 0.9,
@@ -967,6 +1092,11 @@
         "accounting"
       ],
       "description": "FBI, DEA, Marshals, state police, and investigative roles.",
+      "recruiterFocus": "Federal agencies screen on a minimum GPA (3.0 for the FBI Honors Internship), a clean background, and relevant experience.",
+      "recruiterSources": [
+        "https://www.usajobs.gov/job/857040400",
+        "https://fbijobs.gov"
+      ],
       "competencyTarget": {
         "prof": 0.9,
         "crit": 0.75,
@@ -982,7 +1112,7 @@
         "e-justice-exposure": 0.8,
         "s-language": 0.5,
         "e-volunteer": 0.5,
-        "f-gpa-floor": 0.7
+        "f-gpa-floor": 0.85
       },
       "gates": [],
       "suppress": [],
@@ -999,6 +1129,11 @@
         "supply-chain"
       ],
       "description": "Designing, testing, and launching packages for food, consumer, and pharmaceutical products.",
+      "recruiterFocus": "Packaging employers strongly prefer co-op or internship experience, plus CAD and hands-on design or competition work.",
+      "recruiterSources": [
+        "https://www.uwstout.edu/node/8081",
+        "https://packaging.rutgers.edu/node/258"
+      ],
       "competencyTarget": {
         "tech": 0.8,
         "crit": 0.8,
@@ -1032,6 +1167,10 @@
       "name": "Still exploring",
       "suggestedMajors": [],
       "description": "No target yet. The plan front-loads exploration and transferable skills.",
+      "recruiterFocus": "Across fields, employers rank internship experience as the top tiebreaker between candidates, so early exploration should lead to one.",
+      "recruiterSources": [
+        "https://naceweb.org/job-market/trends-and-predictions/hiring-projections-level-off-for-the-college-class-of-2025"
+      ],
       "competencyTarget": {
         "csd": 0.8,
         "comm": 0.7,

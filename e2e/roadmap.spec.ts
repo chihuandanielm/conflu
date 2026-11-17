@@ -114,6 +114,19 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
   await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
 
+  // The draft map (engine 0.9.0): the banner says it can be edited; cross a goal out, undo it, then finalize.
+  await expect(page.getByRole("heading", { name: "This is your draft map" })).toBeVisible();
+  await page.getByRole("button", { name: "Edit your map" }).click();
+  await expect(page.getByRole("heading", { name: "Edit your map" })).toBeFocused();
+  await expect(page.getByText("Essential must-do").first()).toBeVisible();
+  await page.getByRole("button", { name: /^Not for me: / }).nth(1).click();
+  await expect(page.getByRole("heading", { name: "Not for me" })).toBeVisible();
+  await page.getByRole("button", { name: /^Undo: / }).click();
+  await expect(page.getByRole("heading", { name: "Not for me" })).toBeHidden();
+  await page.getByRole("tab", { name: "Plan" }).click();
+  await page.getByRole("button", { name: "Finalize my map" }).click();
+  await expect(page.getByRole("heading", { name: "Your final map" })).toBeVisible();
+
   // Download the PDF.
   const [download] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Download PDF" }).click()]);
   expect(download.suggestedFilename()).toMatch(/^career-roadmap-software-engineering-\d{4}-\d{2}-\d{2}\.pdf$/);

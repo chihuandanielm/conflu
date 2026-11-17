@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.8.1";
+export const ENGINE_VERSION = "0.9.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -39,6 +39,10 @@ export const K = {
   goalCapMin: 3,
   goalCapMax: 6,
   sameTermPrereqHours: 6,   // a prerequisite this small finished earlier in a term unlocks its dependent that term
+  draftCapScale: 2,         // engine 0.9.0: the draft map adds options up to this many times the goal cap per term,
+  draftCapMax: 10,          //   at most this many (plus must-dos), so the student sees more to choose from
+  importanceHigh: 0.85,     // weight at or above which an item is "high" importance for the career path
+  importanceMedium: 0.65,   // ... "medium"; below is "low"
 };
 
 const COMP_NAMES: Record<Competency, string> = {
@@ -111,6 +115,8 @@ interface Node {
   win: { e: number; a: number; b: number; l: number }; strength: number; remaining: number; perTerm: number;
   mode: "flex" | "block" | "integrated"; blockNeed: number; placedAt: number[]; completeAt: number | null;
   staticScore: number; coverage: number; eligibility: number; satisfiedBy?: string;
+  /** Draft map only (engine 0.9.0): below the priority threshold, so never scheduled; it can only be shown as an option. */
+  extra?: boolean;
 }
 
 export function buildPlan(input: PlanInput, data: Dataset): Plan {
@@ -153,6 +159,10 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     for (const c of options.find((o) => o.id === oid)?.completes ?? []) credit(c.goal, c.strength);
   }
   for (const gid of input.completedGoals ?? []) credit(gid, 1);
+  // Engine 0.9.0: goals crossed out as "Not for me". They leave the plan and the queue and never hold back what depends on them.
+  const skippedIds = new Set(input.skippedGoals ?? []);
+  const isSkipped = (key: string) => skippedIds.has(key) || skippedIds.has(key.split("@")[0]);
+  const skipped: Plan["skipped"] = [];
   for (const [gid, s] of [...strength]) for (const sub of goals.get(gid.split("@")[0])?.satisfies ?? []) if (s >= 1) credit(sub, 1);
 
   // 3. Competency gap --------------------------------------------------------
@@ -178,6 +188,13 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   // professional school applications for tracks that lead there.
   const finalGoal = track.outcome === "grad-school" ? "ap-grad-apps" : "ap-fulltime";
   if (yearOfIdx(idx(currentTerm(input.year, input.today, input.semester).code)) >= 4 && !(track.suppress ?? []).includes(finalGoal)) gates.add(finalGoal);
+  for (const key of [...skippedIds].sort()) {
+    const g = goals.get(key.split("@")[0]);
+    if (!g) continue;
+    const y = key.split("@Y")[1];
+    skipped.push({ goalId: key, title: y ? `${g.title} (year ${y})` : g.title, essential: gates.has(g.id) });
+    if (gates.has(g.id)) warnings.push(`"${g.title}" is a must-do for ${track.name}, and you crossed it out. Most ${track.name} recruiters expect it; undo if you change your mind.`);
+  }
   const runway = (endIdx - nowIdx + 1) / Math.max(1, gradIdx - nowIdx + 1);
   const threshold = K.thresholdBase + K.thresholdSqueeze * (1 - Math.min(1, runway));
 
@@ -204,7 +221,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   for (const g of data.goals) {
     const boosted = g.id in track.boosts;
     const weight = gates.has(g.id) ? Math.max(K.gateWeight, track.boosts[g.id] ?? g.baseWeight) : (track.boosts[g.id] ?? g.baseWeight);
-    if (suppressed.has(g.id)) continue;
+    if (suppressed.has(g.id) || skippedIds.has(g.id)) continue;
     if (g.majors && !g.majors.includes(input.majorId) && !boosted && !gates.has(g.id)) continue;
     if (!meetsRequirements(g, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "Not available with the citizenship status you entered.", kind: "not-now" }); continue; }
     if (citizenshipBlocked(g, resources, input)) { backlog.push({ goalId: g.id, title: g.title, reason: "The programs here require U.S. citizenship.", kind: "not-now" }); continue; }
@@ -226,12 +243,14 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       continue;
     }
     for (const inst of instances) {
+      if (isSkipped(inst.key)) continue;
       const n = makeNode(g, inst.key, inst.win, weight);
       if (n.strength >= 1) continue;
       if (inst.win.e > endIdx) { backlog.push({ goalId: n.key, title: g.title, reason: "Starts after your time frame.", kind: "not-now" }); continue; }
       if (inst.win.l < nowIdx && !g.lateOk) {
         backlog.push({ goalId: n.key, title: g.title, reason: "Its usual time has passed for your year.", kind: "past" }); continue;
       }
+      if (!n.gate && weight < threshold && input.draft) { n.extra = true; nodes.set(n.key, n); rank.set(n.key, weight); continue; }
       if (!n.gate && weight < threshold) { backlog.push({ goalId: n.key, title: titleNow(g, inst.win, n.key), reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); rank.set(n.key, weight); continue; }
       nodes.set(n.key, n);
     }
@@ -242,10 +261,14 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   while (changed) {
     changed = false;
     for (const n of [...nodes.values()]) {
+      if (n.extra) continue;
       for (const pid of n.goal.prereqs) {
-        if ((strength.get(pid) ?? 0) >= 0.5) continue;
+        if ((strength.get(pid) ?? 0) >= 0.5 || isSkipped(pid)) continue;
         const existing = nodes.get(pid);
         const inherited = n.weight * K.prereqInherit;
+        if (existing?.extra) { // needed by a planned goal after all: plan it, as without the draft
+          existing.extra = false; existing.weight = Math.max(existing.goal.baseWeight, inherited); changed = true;
+        }
         if (existing) {
           if (inherited > existing.weight) { existing.weight = inherited; changed = true; }
           if (!existing.addedAsPrereq.includes(n.key)) existing.addedAsPrereq.push(n.key);
@@ -296,13 +319,13 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     return n.addedAsPrereq.length ? 1.2 : K.pastLatest; // overdue but blocking something: still urgent
   };
   const prereqsReady = (n: Node, t: number) => n.goal.prereqs.every((pid) => {
-    if ((strength.get(pid) ?? 0) >= 0.5) return true;
+    if ((strength.get(pid) ?? 0) >= 0.5 || isSkipped(pid)) return true;
     const p = nodes.get(pid);
     return !!p && p.completeAt !== null && p.completeAt < t;
   });
   // Same-term readiness: quick prerequisites (a few hours) finished earlier in this term count.
   const sameTermReady = (n: Node, t: number) => n.goal.prereqs.every((pid) => {
-    if ((strength.get(pid) ?? 0) >= 0.5) return true;
+    if ((strength.get(pid) ?? 0) >= 0.5 || isSkipped(pid)) return true;
     const p = nodes.get(pid);
     if (!p || p.completeAt === null) return false;
     return p.completeAt < t || (p.completeAt === t && p.mode === "flex" && p.goal.hours <= K.sameTermPrereqHours);
@@ -349,7 +372,9 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const d = nodes.get(k);
     return !!d && d.completeAt === null && d.win.a <= t + 1 && protectedAt(d, t, depth + 1);
   }));
-  const goalCap = Math.min(K.goalCapMax, Math.max(K.goalCapMin, Math.round(K.goalCapBase + weekly / K.goalCapPerHours)));
+  const finalCap = Math.min(K.goalCapMax, Math.max(K.goalCapMin, Math.round(K.goalCapBase + weekly / K.goalCapPerHours)));
+  // The draft map (engine 0.9.0) shows more options per term for the student to cross out or keep.
+  const goalCap = finalCap;
   for (let t = nowIdx; t <= endIdx; t++) {
     const cap = termCap[t];
     const termItems = new Map<string, PlanItem>();
@@ -366,7 +391,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     for (const phase of [1, 2]) {
     const tried = new Set<string>();
     for (;;) {
-    const batch = [...nodes.values()].filter((n) => n.completeAt === null && !termItems.has(n.key) && !tried.has(n.key) && sameTermReady(n, t) && urgency(n, t) > 0
+    const batch = [...nodes.values()].filter((n) => !n.extra && n.completeAt === null && !termItems.has(n.key) && !tried.has(n.key) && sameTermReady(n, t) && urgency(n, t) > 0
       && !(n.mode === "block" && n.placedAt.length > 0) && !(n.mode === "integrated" && n.placedAt.length > 0)
       && (phase === 2 || tier(n) < 2));
     if (!batch.length) break;
@@ -416,7 +441,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
         else partial = true;
       }
       const it = item(n, t, hours, partial, sc);
-      if (!n.gate && protectedKeys.has(n.key)) it.essential = true;
+      if (!n.gate && protectedKeys.has(n.key)) { it.essential = true; it.importance = "must"; }
       termItems.set(n.key, it);
       pushItem(placements, t, it);
     }
@@ -437,11 +462,44 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     }
   }
 
+  // 7b. The draft map (engine 0.9.0): the plan above, unchanged, plus more options in each term, highest score first, up
+  // to draftCapScale x the goal cap. Options take no hours: the student crosses out what they don't want, and finalizing
+  // returns the time-sized plan. Each option goes in its first ideal term, or later if that term is full.
+  const optionKeys = new Set<string>();
+  if (input.draft) {
+    const draftCap = Math.min(K.draftCapMax, finalCap * K.draftCapScale);
+    const free = [...nodes.values()].filter((n) => n.completeAt === null && !n.placedAt.length);
+    const fits = (n: Node, t: number) => t <= n.win.l && urgency(n, t) > 0 && prereqsReady(n, t) && (n.mode !== "block"
+      || termCap[t].block - termCap[t].usedBlock >= n.blockNeed);
+    // Each option's term: the first one inside its ideal window (urgency peaks at the last chance, which is too late to
+    // suggest), else the first term it can happen at all.
+    const best = new Map<string, number>();
+    for (const n of free) {
+      let bt = -1;
+      for (let t = nowIdx; t <= endIdx && bt < 0; t++) if (fits(n, t) && urgency(n, t) >= 1) bt = t;
+      for (let t = nowIdx; t <= endIdx && bt < 0; t++) if (fits(n, t)) bt = t;
+      if (bt >= 0) best.set(n.key, bt);
+    }
+    for (let t = nowIdx; t <= endIdx; t++) {
+      const slots = draftCap - (placements.get(t) ?? []).filter((x) => !x.gate && !x.essential).length;
+      if (slots <= 0) continue;
+      const pool = free.filter((n) => !optionKeys.has(n.key) && best.has(n.key) && best.get(n.key)! <= t && fits(n, t))
+        .sort((x, y) => scoreAt(y, t).total - scoreAt(x, t).total || x.key.localeCompare(y.key));
+      for (const n of pool.slice(0, slots)) {
+        const it = item(n, t, n.mode === "integrated" ? 0 : Math.min(n.remaining, n.perTerm), false, scoreAt(n, t));
+        it.option = true;
+        pushItem(placements, t, it);
+        optionKeys.add(n.key);
+      }
+    }
+  }
+
   // 8. Leftovers join the queue: what comes next when the student finishes a goal or has more time ----------
   for (const n of nodes.values()) {
-    if (n.completeAt !== null) continue;
+    if (n.completeAt !== null || optionKeys.has(n.key)) continue;
+    if (n.extra) { backlog.push({ goalId: n.key, title: titleNow(n.goal, n.win, n.key), reason: "Lower priority for your time frame; add it if you have time.", kind: "optional" }); continue; }
     // Waiting on a prerequisite that isn't done before the plan's last term (it may finish right at the end).
-    const blocked = n.goal.prereqs.find((pid) => (strength.get(pid) ?? 0) < 0.5 && (nodes.get(pid)?.completeAt == null || nodes.get(pid)!.completeAt! >= endIdx));
+    const blocked = n.goal.prereqs.find((pid) => (strength.get(pid) ?? 0) < 0.5 && !isSkipped(pid) && (nodes.get(pid)?.completeAt == null || nodes.get(pid)!.completeAt! >= endIdx));
     const summerOnly = n.mode === "block" && summer !== "full";
     const late = n.win.e > endIdx;
     // Only goals that could still happen before the plan ends are "next in line" (a senior has no junior summer left).
@@ -494,6 +552,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     competencies: { current, target, gap },
     terms, ongoing, edges, backlog,
     done: [...strength].filter(([, s]) => s >= 1).map(([g]) => g).sort(),
+    skipped,
     warnings,
   };
 
@@ -502,7 +561,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const score: ScoreBreakdown = { weight: round(n.weight), coverage: round(n.coverage), urgency: round(sc.u), eligibility: round(n.eligibility), stability: round(sc.stab), total: round(sc.total) };
     const late = t > n.win.b && !!n.goal.late; // early-college goal done later: wording for where the student is now
     return { goalId: n.key, title: late && n.goal.late!.title ? n.goal.late!.title : n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate,
-      score, why: explain(n, t, sc.u), resources: rankResources(n.goal, t), ...(late ? { late: true } : {}) };
+      score, why: explain(n, t, sc.u), resources: rankResources(n.goal, t), ...(late ? { late: true } : {}),
+      importance: n.gate ? "must" : n.weight >= K.importanceHigh ? "high" : n.weight >= K.importanceMedium ? "medium" : "low" };
   }
 
   function explain(n: Node, t: number, u: number): string[] {

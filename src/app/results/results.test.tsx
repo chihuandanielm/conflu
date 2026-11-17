@@ -144,4 +144,81 @@ describe("results page", () => {
     expect(noticeTone("Recruiting timeline: Big tech opens junior-summer internships July–September.")).toBe("info");
     expect(noticeTone("International students need CPT or OPT authorization before any internship.")).toBe("info");
   });
+
+  it("a new plan is a draft: the banner says it can be edited, and the Map tab lists every option to cross out or mark done", async () => {
+    const { get } = setup();
+    expect(screen.getByRole("heading", { name: "This is your draft map" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Finalize my map" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("tab", { name: /Map/ }));
+    await act(async () => {});
+    const edit = screen.getByRole("heading", { name: "Edit your map" }).closest("section")!;
+    // Ranked by what this path's recruiters look for, with the sources.
+    expect(within(edit).getByText(/software engineering recruiters look for/)).toBeInTheDocument();
+    expect(within(edit).getAllByRole("link").length).toBeGreaterThan(0);
+    // Must-dos are marked, and listed first in their semester.
+    const must = within(edit).getAllByText("Essential must-do");
+    expect(must.length).toBeGreaterThan(0);
+    const first = within(edit).getAllByRole("list")[0];
+    const labels = within(first).getAllByText(/Essential must-do|High priority|Worth doing|If you have time/).map((e) => e.textContent);
+    const rank = ["Essential must-do", "High priority", "Worth doing", "If you have time"];
+    for (let i = 1; i < labels.length; i++) expect(rank.indexOf(labels[i]!)).toBeGreaterThanOrEqual(rank.indexOf(labels[i - 1]!));
+    // More options than the time-sized plan.
+    const options = get().plan.terms.flatMap((t) => t.items.filter((i) => i.option));
+    expect(options.length).toBeGreaterThan(0);
+    expect(within(edit).getByRole("button", { name: `Not for me: ${options[0].title}` })).toBeInTheDocument();
+  });
+
+  it("crosses a goal out, lists it under Not for me, and Undo brings it back", async () => {
+    const { get } = setup();
+    fireEvent.click(screen.getByRole("tab", { name: /Map/ }));
+    await act(async () => {});
+    const target = get().plan.terms[0].items.find((i) => i.importance !== "must")!;
+    fireEvent.click(screen.getByRole("button", { name: `Not for me: ${target.title}` }));
+    await act(async () => {});
+    expect(get().skipped).toEqual([target.goalId]);
+    const list = screen.getByRole("heading", { name: "Not for me" }).closest("section")!;
+    const shown = get().plan.skipped[0].title;
+    expect(within(list).getByText(shown, { selector: ".line-through" })).toBeInTheDocument();
+    fireEvent.click(within(list).getByRole("button", { name: `Undo: ${shown}` }));
+    await act(async () => {});
+    expect(get().skipped).toEqual([]);
+    expect(screen.queryByRole("heading", { name: "Not for me" })).toBeNull();
+  });
+
+  it("crossing out a must-do keeps it marked as essential and warns", async () => {
+    const { get } = setup();
+    fireEvent.click(screen.getByRole("tab", { name: /Map/ }));
+    await act(async () => {});
+    const gate = get().plan.terms.flatMap((t) => t.items).find((i) => i.gate)!;
+    fireEvent.click(screen.getAllByRole("button", { name: `Not for me: ${gate.title}` })[0]);
+    await act(async () => {});
+    const list = screen.getByRole("heading", { name: "Not for me" }).closest("section")!;
+    expect(within(list).getByText("Essential must-do")).toBeInTheDocument();
+    expect(get().plan.warnings.some((w) => w.includes(gate.title) && /must-do/.test(w))).toBe(true);
+  });
+
+  it("finalizes the draft to a plan sized to the student's time, and can go back", async () => {
+    const { get } = setup();
+    fireEvent.click(screen.getByRole("button", { name: "Finalize my map" }));
+    await act(async () => {});
+    expect(get().finalized).toBe(true);
+    expect(get().plan.terms.flatMap((t) => t.items).some((i) => i.option)).toBe(false);
+    expect(screen.getByRole("heading", { name: "Your final map" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Back to the draft" }));
+    await act(async () => {});
+    expect(get().finalized).toBe(false);
+  });
+
+  it("the goal drawer offers Not for me and says how important the goal is", async () => {
+    const { get } = setup();
+    const first = get().plan.terms[0].items.find((i) => !i.option)!;
+    const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
+    fireEvent.click(within(sem).getAllByRole("button")[0]);
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).getByText(/^(Essential must-do|High priority|Worth doing|If you have time)$/)).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("button", { name: /Not for me/ }));
+    await act(async () => {});
+    expect(get().skipped.length).toBe(1);
+    void first;
+  });
 });

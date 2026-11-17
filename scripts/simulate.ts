@@ -135,6 +135,37 @@ function check(input: PlanInput, p: Plan, label: string) {
   if (!campus) for (const t of p.terms) for (const it of t.items) for (const r of it.resources) if (res.get(r.id)!.scope === "rutgers") add("R12 Rutgers office for another school", r.id);
 }
 
+// Engine 0.9.0: the draft map and crossed-out goals, for the same student (no extra random picks, so cases stay the same).
+function checkDraftAndSkip(input: PlanInput, final: Plan, label: string) {
+  const add = (rule: string, detail: string) => issues.push({ rule, detail, case: label });
+  const draft = buildPlan({ ...input, draft: true }, data);
+  final.terms.forEach((t, i) => {
+    const mine = draft.terms[i].items.filter((x) => !x.option).map((x) => `${x.goalId}:${x.hours}`).join(" ");
+    if (mine !== t.items.map((x) => `${x.goalId}:${x.hours}`).join(" ")) add("R24 draft changes the plan", t.code);
+    if (draft.terms[i].usedHours !== t.usedHours) add("R24 draft changes the plan", `${t.code} hours`);
+  });
+  const opts = draft.terms.flatMap((t) => t.items.filter((x) => x.option).map((x) => x.goalId));
+  if (new Set(opts).size !== opts.length) add("R25 option repeated", opts.join(" "));
+  for (const k of opts) if (draft.backlog.some((b) => b.goalId === k)) add("R25 option also queued", k);
+  for (const t of draft.terms) {
+    const shown = t.items.filter((x) => !x.gate && !x.essential).length;
+    if (shown > 10) add("R25 too many options", `${t.code}: ${shown}`);
+    for (const x of t.items) if (x.importance === undefined) add("R25 no importance", x.goalId);
+  }
+  // Cross out the first ordinary goal and the first must-do in the plan.
+  const items = final.terms.flatMap((t) => t.items);
+  const skip = [items.find((x) => !x.gate && !x.essential)?.goalId, items.find((x) => x.gate)?.goalId].filter((x): x is string => !!x);
+  if (!skip.length) return;
+  const p = buildPlan({ ...input, skippedGoals: skip }, data);
+  for (const k of skip) {
+    if (p.terms.some((t) => t.items.some((x) => x.goalId === k))) add("R26 crossed-out goal still planned", k);
+    if (p.backlog.some((b) => b.goalId === k)) add("R26 crossed-out goal still queued", k);
+    const title = data.goals.find((g) => g.id === k.split("@")[0])!.title;
+    if (p.backlog.some((b) => b.reason.includes(`"${title}"`))) add("R26 waits on a crossed-out goal", k);
+  }
+  if (p.skipped.map((x) => x.goalId).sort().join() !== [...skip].sort().join()) add("R26 skipped list wrong", p.skipped.map((x) => x.goalId).join());
+}
+
 let n = 0;
 for (const [campus, school] of SCHOOLS) {
   for (const m of majors.filter((x) => (campus ? campus in x.offeredAt : true))) {
@@ -151,7 +182,7 @@ for (const [campus, school] of SCHOOLS) {
         skills: some(intake.skills.map((s: { id: string }) => s.id), 3), credentials: [], openToCoop: pick([true, false]),
       };
       const label = `${school} · ${m.id} · y${year}${input.semester ? "/s" + input.semester : ""} · ${trackId} · ${input.today} · ${input.weeklyHours}h · ${input.horizon} · summer ${input.summer}`;
-      try { check(input, buildPlan(input, data), label); } catch (e) { issues.push({ rule: "R0 crash", detail: String(e), case: label }); }
+      try { const p = buildPlan(input, data); check(input, p, label); checkDraftAndSkip(input, p, label); } catch (e) { issues.push({ rule: "R0 crash", detail: String(e), case: label }); }
       n++;
     }
   }

@@ -8,7 +8,7 @@ import { mapModel } from "../map/facts.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { tailoredResources } from "../resources/tailor.ts";
 import { useRiver } from "../river/RiverProvider.tsx";
-import { diff, isOutdated, markDone, refresh, undoDone, type SavedPlan } from "../state/plan.ts";
+import { diff, finalize, isOutdated, markDone, refresh, reopenDraft, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
 import { shareHash } from "../state/share.ts";
 import { loadSteps, toggleStep } from "../state/steps.ts";
 import { isStaleBuildError, ReloadNotice } from "../staleBuild.tsx";
@@ -16,6 +16,7 @@ import { todayISO } from "../today.ts";
 import { Button } from "../ui/Button.tsx";
 import { ComingUp } from "./ComingUp.tsx";
 import { Competencies } from "./Competencies.tsx";
+import { DraftBanner, EditMap, NotForMe, withoutOptions } from "./EditMap.tsx";
 import { GoalDrawer } from "./GoalDrawer.tsx";
 import { findItem, GoalPath } from "./GoalPath.tsx";
 import { HaveNeed } from "./HaveNeed.tsx";
@@ -119,6 +120,12 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
     setOpen(null);
     replan(markDone(saved, goalId, todayISO()), (n) => `Marked “${goalTitle(goalId)}” done. Plan updated${n ? `; ${n} ${n === 1 ? "goal" : "goals"} moved` : ""}.`);
   }, [saved, replan]);
+  const skip = useCallback((goalId: string) => {
+    setOpen(null);
+    const must = saved.plan.terms.some((t) => t.items.some((i) => i.goalId === goalId && i.importance === "must"));
+    replan(skipGoal(saved, goalId, todayISO()), () => `Crossed out “${goalTitle(goalId)}”${must ? ", an essential must-do" : ""}. Undo it under Not for me.`);
+  }, [saved, replan]);
+  const unskip = useCallback((goalId: string) => replan(undoSkip(saved, goalId, todayISO()), () => `“${goalTitle(goalId)}” is back on your map.`), [saved, replan]);
   const openItem = useCallback((item: PlanItem, term: PlanTerm) => setOpen({ item, term }), []);
   const openGoal = useCallback((goalId: string) => { const hit = findItem(plan, goalId); if (hit) setOpen({ item: hit.it, term: hit.t }); }, [plan]);
 
@@ -152,6 +159,17 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
     // Counting resources runs the eligibility rules over every resource: part of the staged update.
     resources: settled ? tailoredResources(plan, input).length : null,
   }), [plan, input, settled]);
+  // The Plan tab reads as what the student's time fits; the draft's extra options are on the Map tab, to cross out or keep.
+  const core = useMemo(() => withoutOptions(plan), [plan]);
+  const finalized = saved.finalized ?? true;
+  const [toEditMap, setToEditMap] = useState(false);
+  const arrived = useCallback(() => setToEditMap(false), []);
+  const toEdit = () => { setToEditMap(true); choose("map"); };
+  const banner = (onEdit?: () => void) => (
+    <DraftBanner plan={plan} finalized={finalized} weeklyHours={answers.weeklyHours} onEdit={onEdit}
+      onFinalize={() => replan(finalize(saved, todayISO()), () => "Map finalized: sized to your time.")}
+      onReopen={() => replan(reopenDraft(saved, todayISO()), () => "Back to the draft map, with more options.")} />
+  );
   const fullModel = useMemo(() => mapModel(plan, outcomeText(answers.trackId)), [plan, answers.trackId]);
   const termOf = useCallback((id: string) => findItem(plan, id)?.t.label, [plan]);
 
@@ -187,7 +205,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           <p className="mt-2 text-small">{planSummary(answers)}</p>
         </div>
         <div>
-          <div ref={actionsBox} className="mt-4 flex flex-wrap gap-2">
+          {/* As wide as the buttons (not the header): the river is cleared from under exactly this box. */}
+          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
@@ -238,18 +257,19 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                       <Button variant="outline" small onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>Refresh plan</Button>
                     </div>
                   )}
-                  <div className="py-10"><GoalPath plan={plan} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} /></div>
+                  <div className="pt-10">{banner(toEdit)}</div>
+                  <div className="py-10"><GoalPath plan={core} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} /></div>
                   {settled && <>
                   <hr className="shore" />
-                  <div className="py-10"><HaveNeed plan={plan} answers={answers} onOpen={openItem} /></div>
-                  <div className="pb-10"><StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} /></div>
+                  <div className="py-10"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
+                  <div className="pb-10"><StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} /></div>
                   <div className="pb-10">
-                    <NextMoves term={plan.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
+                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
                     <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
                   </div>
                   <hr className="shore" />
-                  <div className="py-10"><ComingUp plan={plan} done={saved.completedGoals} onOpen={openItem} /></div>
-                  {(saved.completedGoals.length > 0 || plan.ongoing.length > 0) && (
+                  <div className="py-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
+                  {(saved.completedGoals.length > 0 || plan.ongoing.length > 0 || plan.skipped.length > 0) && (
                     <>
                       <hr className="shore" />
                       <div className="flex flex-col gap-10 py-10">
@@ -270,6 +290,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                             </ul>
                           </section>
                         )}
+                        {plan.skipped.length > 0 && <NotForMe plan={plan} onUndo={unskip} />}
                         {plan.ongoing.length > 0 && (
                           <section aria-labelledby="ongoing-h">
                             <h2 id="ongoing-h" className="text-h2">Habits to keep</h2>
@@ -292,6 +313,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
 
               {tab === "map" && (
                 <>
+                  <div className="pt-10">{banner()}</div>
                   <section aria-labelledby="map-h" className="py-10">
                     <h2 id="map-h" className="text-h2">Your full map</h2>
                     <p className="mt-2 max-w-[40em]">Every goal is a stream. It joins the river in the semester you start it and stays in it to the end.</p>
@@ -300,6 +322,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                         termOf={termOf} onOpen={openGoal} />
                     </div>
                   </section>
+                  <hr className="shore" />
+                  <div className="py-10"><EditMap plan={plan} trackId={answers.trackId} onOpen={openItem} onDone={done} onSkip={skip} onUndoSkip={unskip} arrive={toEditMap} onArrived={arrived} /></div>
                   <hr className="shore" />
                   <div className="py-10"><Competencies c={plan.competencies} /></div>
                 </>
@@ -319,7 +343,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
       </div>
 
       <AnimatePresence>
-        {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done}
+        {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done} onSkip={skip}
           progress={progress} onToggleStep={onToggleStep} />}
       </AnimatePresence>
     </div>
