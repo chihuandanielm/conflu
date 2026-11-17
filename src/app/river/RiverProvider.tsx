@@ -35,6 +35,8 @@ export function RiverProvider({ scene = "landing", children }: { scene?: SceneNa
     const r = createRiver(canvas, { scene });
     river.current = r;
     target.current = scene;
+    // Only for scripts/check-smoothness.cjs: with ?measure in the address, frame timing can be read from the page.
+    if (/[?&]measure\b/.test(window.location.search)) (window as unknown as { __river?: River }).__river = r;
     // Glyph widths are measured from the mono font; measure again once the self-hosted font has loaded.
     document.fonts?.ready.then(() => river.current?.resize()).catch(() => {});
     return () => { r.destroy(); if (river.current === r) river.current = null; };

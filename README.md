@@ -2,9 +2,10 @@
 
 A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It covers Rutgers undergraduates at New Brunswick, Newark, and Camden, in 21 majors (each campus sees only the majors it offers and its own campus offices).
 
+- **The look:** follows `design/DESIGN.md` (Confluence): four colours, Quantico and IBM Plex Mono, and one animated ASCII river behind every screen.
 - **A short intake:** 8 screens of related questions, goal first and personal questions last (`docs/INTAKE_ORDER.md`). It works by keyboard or touch, saves as you go, and marks any missing answer in color instead of greying out the button.
 - **Every goal says what to do:** 3–6 concrete steps you can check off, a "done when" line, and how-to guides, so a plan is a path, not only a list of reasons. The results open on one "Start here" step.
-- **A plan sized to your time:** the results open on where you're headed (your outcome and milestones), what you have, and what you need, then one "Start here" step, this semester's few goals (capped by your free hours), and "Coming up" with "when you have more time" built in. The full map and all resources are one click away. Also a roadmap chart (a vertical timeline on phones), notices, a skills picture, and a drawer for each goal with its reasons, resources, and a "Mark as done" button that re-plans around it.
+- **A plan sized to your time:** the results open on where you're headed (your outcome and milestones), what you have, and what you need, then one "Start here" step, this semester's few goals (capped by your free hours), and "Coming up" with "when you have more time" built in. Three tabs: Plan, Map (the plan as a confluence: every goal a stream that joins one river, plus a skills picture) and Resources (every resource as a box with what it is, who it is for, and where to click). A drawer for each goal has its steps, reasons, resources, and a "Mark as done" button that re-plans around it.
 - **Your resources:** every eligible program tied to the plan, plus everything for the student's major and year, with filters.
 - **A PDF** with real text, generated in the browser.
 - **Private by default:** no accounts, no names, no analytics, no cookies, no third-party requests, no AI. Everything runs in the browser from the JSON data in this repo, and answers stay in `localStorage`.
@@ -32,9 +33,10 @@ The dev server prints a local URL. Other commands:
 | `npm run validate` | Data integrity: references, vocabularies, UI groupings |
 | `npm test` | Engine invariants and link-checker tests (Node's built-in runner) |
 | `npm run simulate` | 260 varied students across every major and school, checked against 21 rules; CI fails on any issue |
-| `npm run test:ui` | Vitest and Testing Library: components, intake, results, chart layout, resources, PDF, contrast |
+| `npm run test:ui` | Vitest and Testing Library: components, intake, results, the confluence map layout, the river, resources, PDF, contrast |
 | `npm run e2e` | Playwright: builds for `/conflu/`, serves it like GitHub Pages, runs the full flow on desktop and phone |
 | `npm run samples` | Regenerates `docs/sample-plans.md` |
+| `node scripts/check-smoothness.cjs` | After a build: measures every camera move of the river at three screen sizes and three CPU speeds |
 | `npm run check-links` | Visits every resource URL (needs internet; CI runs it weekly) |
 
 The first `npm run e2e` on a new machine needs a browser: `npx playwright install chromium`.
@@ -63,9 +65,10 @@ To use a custom domain, set it under **Settings → Pages** and change `BASE_PAT
 src/engine/            planning engine: pure, deterministic, no DOM (see docs/ALGORITHM.md)
 src/app/
   data/                builds the engine's Dataset from the JSON in the browser
-  intake/              one-question-at-a-time intake, review screen, model (steps, branching, relevance ranking)
-  results/             results page, next moves, notices, timeline, goal drawer, skills picture
-  chart/               desktop roadmap chart (React Flow, lazy-loaded) and its pure layout function
+  intake/              grouped question screens, review screen, model (steps, branching, relevance ranking)
+  river/               the ASCII river (one canvas for the whole session; screens move its camera) and useRiver()
+  map/                 the confluence map: a pure layout function, and its drawing on the page
+  results/             results page and tabs, this semester, notices, coming up, goal drawer, skills picture
   resources/           "Your resources" tab: tailoring (reuses the engine's eligibility), filters, cards
   pdf/                 PDF document and download (lazy-loaded on click)
   state/               localStorage, saved plan and re-planning, share links
@@ -75,7 +78,7 @@ test/                  engine and link-checker tests
 e2e/                   Playwright end-to-end tests
 ```
 
-Saved state lives only in the browser: `cpm.intake.v1` (answers in progress), `cpm.plan.v1` (answers, check-offs, last placements, engine and data versions), and `cpm.roadmap-view` (chart or list). A share link puts the answers in the URL hash, which browsers never send to a server. It never includes identity or citizenship answers.
+Saved state lives only in the browser: `cpm.intake.v1` (answers in progress), `cpm.plan.v1` (answers, check-offs, last placements, engine and data versions), and `cpm.steps.v1` (ticked steps). A share link puts the answers in the URL hash, which browsers never send to a server. It never includes identity or citizenship answers.
 
 ## The data
 
