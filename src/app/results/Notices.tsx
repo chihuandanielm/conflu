@@ -17,11 +17,11 @@ export function Notices({ warnings, dismissed, onDismiss }: { warnings: string[]
         const Icon = warn ? AlertTriangle : Info;
         return (
           <div key={w} role={warn ? "alert" : "note"}
-            className={`flex items-start gap-3 rounded-md border px-4 py-3 text-sm ${warn ? "border-amber/30 bg-amber-tint" : "border-blue/20 bg-blue-tint"}`}>
-            <Icon size={18} aria-hidden="true" className={`mt-0.5 shrink-0 ${warn ? "text-amber" : "text-blue"}`} />
-            <p className="flex-1 text-ink">{w}</p>
+            className={`flex items-start gap-3 border px-4 py-3 text-small ${warn ? "border-blue bg-sage" : "border-blue bg-sage"}`}>
+            <Icon size={18} aria-hidden="true" className={`mt-0.5 shrink-0 ${warn ? "text-blue" : "text-blue"}`} />
+            <p className="flex-1 text-blue">{w}</p>
             <button type="button" onClick={() => onDismiss(w)} aria-label="Dismiss notice"
-              className="-m-1 rounded-sm p-1 text-muted hover:bg-bg hover:text-ink">
+              className="-m-1 p-1 text-blue hover:bg-sage hover:text-blue">
               <X size={16} aria-hidden="true" />
             </button>
           </div>

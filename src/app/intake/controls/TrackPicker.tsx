@@ -19,7 +19,7 @@ export function TrackPicker({ majorId, value, onSelect, labelledBy, invalid, des
       <SingleChoice labelledBy={labelledBy} invalid={invalid} describedBy={describedBy} value={value} onSelect={onSelect} choices={choices} />
       {!showAll && others.length > 0 && (
         <button type="button" aria-expanded={false} onClick={() => setShowAll(true)}
-          className="inline-flex items-center gap-1 self-start rounded-md px-2 py-1 font-semibold text-blue hover:bg-blue-tint">
+          className="inline-flex items-center gap-1 self-start px-2 py-1 text-blue hover:bg-sage">
           See all paths ({others.length} more) <ChevronDown size={16} aria-hidden="true" />
         </button>
       )}

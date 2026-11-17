@@ -46,9 +46,9 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
         return (
           <li key={id}>
             <button type="button" aria-pressed={on} data-chip={id} onClick={() => onToggle(id)}
-              className={`inline-flex min-h-12 items-center gap-2.5 rounded-full border px-4 py-2 text-left text-base text-ink transition-colors duration-150 motion-reduce:transition-none
-                ${on ? "border-green bg-green-tint" : "border-border-strong bg-bg hover:border-blue hover:bg-blue-tint"}`}>
-              {on ? <Check size={18} strokeWidth={2.5} className="shrink-0 text-green" aria-hidden="true" />
+              className={`inline-flex min-h-12 items-center gap-2.5 border px-4 py-2 text-left text-body text-blue transition-colors duration-150 motion-reduce:transition-none
+                ${on ? "border-blue bg-blue text-sage" : "border-blue bg-sage hover:border-blue hover:bg-sage"}`}>
+              {on ? <Check size={18} strokeWidth={2.5} className="shrink-0" aria-hidden="true" />
                 : <Plus size={18} strokeWidth={2.5} className="shrink-0 text-blue" aria-hidden="true" />}
               {experienceOption(id)?.label}
             </button>
@@ -62,22 +62,22 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
     <div className="flex flex-col gap-8">
       <div className="relative">
         <label htmlFor="exp-search" className="sr-only">Search what you've done</label>
-        <Search size={20} aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted" />
+        <Search size={20} aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-blue" />
         <input id="exp-search" type="search" autoComplete="off" value={q} onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") e.preventDefault(); }}
           placeholder="Search: intern, club, EMT…" aria-describedby="exp-search-count"
-          className="min-h-12 w-full rounded-full border border-border-strong bg-bg pr-4 pl-11 text-base placeholder:text-muted" />
+          className="min-h-12 w-full rounded-full border border-blue bg-sage pr-4 pl-11 text-body placeholder:text-blue" />
         <p id="exp-search-count" className="sr-only" aria-live="polite">{searching ? countText : ""}</p>
       </div>
 
       {searching ? (
         <section aria-labelledby="exp-results" className="flex flex-col gap-4">
           <div className="flex flex-wrap items-baseline gap-3">
-            <h2 id="exp-results" className="text-lg font-semibold">{countText}</h2>
-            <button type="button" onClick={() => setQ("")} className="min-h-11 px-1 text-blue underline underline-offset-2 hover:text-blue-hover">Clear search</button>
+            <h2 id="exp-results" className="text-lead">{countText}</h2>
+            <button type="button" onClick={() => setQ("")} className="min-h-11 px-1 text-blue underline underline-offset-2 hover:text-blue">Clear search</button>
           </div>
           {results.length ? chips(results, "matches")
-            : <p className="text-muted">Nothing matches that word. Clear the search to see everything.</p>}
+            : <p className="text-blue">Nothing matches that word. Clear the search to see everything.</p>}
         </section>
       ) : (
         <section aria-label="Options by group" className="flex flex-col gap-5">
@@ -87,12 +87,12 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
               const on = t.id === current.id;
               return (
                 <button key={t.id} type="button" aria-pressed={on} onClick={() => { setTab(t.id); setFocusId(null); }}
-                  className={`inline-flex min-h-11 items-center gap-2 rounded-md px-4 py-2 text-[15px] font-semibold whitespace-nowrap transition-colors duration-150 motion-reduce:transition-none
-                    ${on ? "bg-ink text-bg" : "bg-surface text-ink hover:bg-blue-tint"}`}>
+                  className={`inline-flex min-h-11 items-center gap-2 px-4 py-2 text-small whitespace-nowrap transition-colors duration-150 motion-reduce:transition-none
+                    ${on ? "bg-blue text-sage" : "bg-sage text-blue hover:bg-sage"}`}>
                   {t.label}
                   {n > 0 && (
                     <>
-                      <span aria-hidden="true" className={`inline-flex h-[22px] min-w-[22px] items-center justify-center rounded-full px-1.5 text-[13px] ${on ? "bg-bg text-ink" : "bg-green text-bg"}`}>{n}</span>
+                      <span aria-hidden="true" className={`inline-flex h-[22px] min-w-[22px] items-center justify-center px-1.5 text-fact ${on ? "bg-sage text-blue" : "bg-blue text-sage"}`}>{n}</span>
                       <span className="sr-only">, {n} picked</span>
                     </>
                   )}
@@ -100,7 +100,7 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
               );
             })}
           </div>
-          <p className="text-[15px] text-muted">{current.hint}</p>
+          <p className="text-small text-blue">{current.hint}</p>
           {chips(shown, current.label)}
           {hidden.length > 0 && (
             <div>
@@ -109,7 +109,7 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
                   setShowOther((s) => { const n = new Set(s); if (otherOpen) n.delete(current.id); else n.add(current.id); return n; });
                   setFocusId(otherOpen ? null : hidden[0]);
                 }}
-                className="min-h-11 px-1 text-[15px] text-blue underline underline-offset-2 hover:text-blue-hover">
+                className="min-h-11 px-1 text-small text-blue underline underline-offset-2 hover:text-blue">
                 {otherOpen ? "Hide the less common ones" : `Show ${hidden.length} more, less common for ${major ?? "your major"}`}
               </button>
             </div>
@@ -118,16 +118,16 @@ export function ExperiencePicker({ majorId, selected, onToggle }: { majorId?: st
       )}
 
       {selected.length > 0 && (
-        <section aria-labelledby="exp-picks" className="flex flex-col gap-2 border-t border-border pt-5">
-          <h2 id="exp-picks" className="text-sm font-semibold">Your picks ({selected.length})</h2>
+        <section aria-labelledby="exp-picks" className="flex flex-col gap-2 border-t border-blue pt-5">
+          <h2 id="exp-picks" className="text-small">Your picks ({selected.length})</h2>
           <ul aria-label="Your picks" className="flex flex-wrap gap-2">
             {selected.map((id) => {
               const label = experienceOption(id)?.label ?? id;
               return (
-                <li key={id} className="inline-flex items-center gap-0.5 rounded-full border border-green bg-green-tint py-0.5 pr-1 pl-3 text-sm">
+                <li key={id} className="inline-flex items-center gap-0.5 border border-blue bg-sage py-0.5 pr-1 pl-3 text-small">
                   {label}
                   <button type="button" aria-label={`Remove ${label}`} onClick={() => onToggle(id)}
-                    className="inline-flex size-8 items-center justify-center rounded-full hover:bg-bg">
+                    className="inline-flex size-8 items-center justify-center rounded-full hover:bg-sage">
                     <X size={14} strokeWidth={2.5} aria-hidden="true" />
                   </button>
                 </li>

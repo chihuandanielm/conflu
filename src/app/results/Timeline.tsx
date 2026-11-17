@@ -17,30 +17,30 @@ export function Timeline({ plan, onOpen, changed }: {
       {plan.terms.map((t, ti) => (
         <li key={t.code}>
           <section aria-labelledby={`term-${t.code}`}>
-            <header className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2">
-              <h3 id={`term-${t.code}`} className="text-lg font-semibold">
-                {t.label}{ti === 0 && <span className="ml-2 text-sm font-normal text-muted">(now)</span>}
+            <header className="flex flex-wrap items-baseline justify-between gap-2 border-b border-blue pb-2">
+              <h3 id={`term-${t.code}`} className="text-lead">
+                {t.label}{ti === 0 && <span className="ml-2 text-small font-normal text-blue">(now)</span>}
               </h3>
-              <span className="font-mono text-xs text-muted">
+              <span className="font-mono text-fact text-blue">
                 <span className="sr-only">Hours planned: </span>{t.usedHours} of {t.capacityHours} h
               </span>
             </header>
             {t.items.length === 0 ? (
-              <p className="py-3 text-sm text-muted">{t.capacityHours === 0 ? "No free time planned this term." : "Nothing scheduled. Room for something from “Up next”."}</p>
+              <p className="py-3 text-small text-blue">{t.capacityHours === 0 ? "No free time planned this term." : "Nothing scheduled. Room for something from “Up next”."}</p>
             ) : (
-              <ul className="divide-y divide-border">
+              <ul className="divide-y divide-blue">
                 <AnimatePresence initial={false}>
                   {t.items.map((it) => (
                     <motion.li key={`${t.code}-${it.goalId}`} layout={!reduce}
                       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                       transition={{ duration: reduce ? 0.01 : 0.22, ease: "easeOut" }}>
                       <button type="button" onClick={() => onOpen(it, t)}
-                        className={`group flex w-full items-center gap-3 rounded-sm px-2 py-3 text-left transition-colors duration-150 hover:bg-surface
-                          ${changed.has(it.goalId) ? "bg-blue-tint" : ""}`}>
-                        <span aria-hidden="true" className="h-8 w-1.5 shrink-0 rounded-full" style={{ background: laneTint(it.lane), boxShadow: "inset 0 0 0 1px var(--border-strong)" }} />
+                        className={`group flex w-full items-center gap-3 px-2 py-3 text-left transition-colors duration-150 hover:bg-sage
+                          ${changed.has(it.goalId) ? "bg-sage" : ""}`}>
+                        <span aria-hidden="true" className="h-8 w-1.5 shrink-0 rounded-full" style={{ background: laneTint(it.lane), boxShadow: "inset 0 0 0 1px var(--blue)" }} />
                         <span className="flex-1">
-                          <span className="block text-xs text-muted">{LANE_LABEL[it.lane]}</span>
-                          <span className="block font-semibold text-ink group-hover:text-blue">{it.title}</span>
+                          <span className="block text-small text-blue">{LANE_LABEL[it.lane]}</span>
+                          <span className="block text-blue group-hover:text-blue">{it.title}</span>
                           <span className="mt-1 flex flex-wrap gap-2">
                             {it.gate && <Tag tone="gate">Must-do</Tag>}
                             {it.partial && <Tag tone="partial">Continues</Tag>}
@@ -48,8 +48,8 @@ export function Timeline({ plan, onOpen, changed }: {
                             {changed.has(it.goalId) && <Tag tone="moved">Updated</Tag>}
                           </span>
                         </span>
-                        <span className="font-mono text-xs text-muted">{it.hours} h</span>
-                        <ChevronRight size={18} aria-hidden="true" className="text-muted" />
+                        <span className="font-mono text-fact text-blue">{it.hours} h</span>
+                        <ChevronRight size={18} aria-hidden="true" className="text-blue" />
                       </button>
                     </motion.li>
                   ))}

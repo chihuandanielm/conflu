@@ -33,25 +33,25 @@ export function SingleChoice<V extends string | number>({ choices, value, onSele
         const showSection = c.section && c.section !== choices[i - 1]?.section;
         return (
           <div key={String(c.value)} className="contents">
-            {showSection && <p className="mt-4 text-sm font-semibold text-muted first:mt-0">{c.section}</p>}
+            {showSection && <p className="mt-4 text-small text-blue first:mt-0">{c.section}</p>}
             <button
               type="button" role="radio" aria-checked={selected} disabled={c.disabled}
               onClick={() => onSelect(c.value)}
-              className={`group flex w-full items-start gap-3 rounded-md border px-4 py-3 text-left transition-colors duration-150
-                ${selected ? "border-blue bg-blue-tint" : "border-border bg-bg hover:border-border-strong hover:bg-surface"}
-                disabled:cursor-not-allowed disabled:border-border disabled:bg-surface disabled:hover:bg-surface`}
+              className={`group flex w-full items-start gap-3 border px-4 py-3 text-left transition-colors duration-150
+                ${selected ? "border-blue bg-blue text-sage" : "border-blue bg-sage text-blue"}
+                disabled:cursor-not-allowed disabled:border-blue disabled:bg-sage disabled:hover:bg-sage`}
             >
               {numberKeys && i < 9 && (
-                <span aria-hidden="true" className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded border font-mono text-xs
-                  ${selected ? "border-blue bg-blue text-white" : "border-border-strong text-muted"}`}>
+                <span aria-hidden="true" className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border font-mono text-fact
+                  ${selected ? "border-sage" : "border-blue"}`}>
                   {selected ? <Check size={14} strokeWidth={2.5} /> : i + 1}
                 </span>
               )}
               <span className="flex-1">
-                <span className={`block font-semibold ${c.disabled ? "text-muted" : "text-ink"}`}>{c.label}</span>
-                {c.description && <span className="mt-1 block text-sm text-muted">{c.description}</span>}
+                <span className="block">{c.label}</span>
+                {c.description && <span className="mt-1 block text-small">{c.description}</span>}
               </span>
-              {c.note && <span className="mt-0.5 shrink-0 rounded-sm bg-surface px-2 py-0.5 text-xs text-ink">{c.note}</span>}
+              {c.note && <span className="mt-0.5 shrink-0 px-2 py-0.5 font-mono text-fact">{c.note}</span>}
             </button>
           </div>
         );

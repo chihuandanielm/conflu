@@ -17,11 +17,11 @@ export function MajorPicker({ value, onSelect, labelledBy, school, invalid, desc
     <div className="flex flex-col gap-4">
       <div className="relative">
         <label htmlFor={inputId} className="sr-only">Search majors</label>
-        <Search size={18} aria-hidden="true" className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted" />
+        <Search size={18} aria-hidden="true" className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-blue" />
         <input id={inputId} type="search" autoFocus aria-describedby={labelledBy} value={q} autoComplete="off" placeholder="Search majors"
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && matches[0]) { e.preventDefault(); e.stopPropagation(); onSelect(matches[0].id); } }}
-          className="min-h-11 w-full rounded-md border border-border-strong bg-bg pr-3 pl-10 text-base placeholder:text-muted" />
+          className="min-h-11 w-full border border-blue bg-sage pr-3 pl-10 text-body placeholder:text-blue" />
       </div>
       <p className="sr-only" aria-live="polite">{matches.length} majors match</p>
       <div className="max-h-[50vh] overflow-y-auto pr-1">
@@ -29,7 +29,7 @@ export function MajorPicker({ value, onSelect, labelledBy, school, invalid, desc
           <SingleChoice labelledBy={labelledBy} numberKeys={false} invalid={invalid} describedBy={describedBy} value={value} onSelect={onSelect}
             choices={matches.map((m) => ({ value: m.id, label: m.name }))} />
         ) : (
-          <p className="text-muted">
+          <p className="text-blue">
             No majors match. This version covers {sorted.length} majors{campus ? ` offered at ${campus.name}` : " offered at Rutgers"}.
           </p>
         )}

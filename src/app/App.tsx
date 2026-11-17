@@ -50,7 +50,7 @@ export function App() {
   if (view.name === "building" || !saved) {
     return (
       <main className="flex min-h-dvh items-center justify-center px-4">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduce ? 0.01 : 0.2 }} role="status" className="text-lg text-muted">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduce ? 0.01 : 0.2 }} role="status" className="text-lead text-blue">
           Building your plan
         </motion.p>
       </main>

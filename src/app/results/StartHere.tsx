@@ -15,17 +15,17 @@ export function StartHere({ term, progress, onOpen, edges = [] }: {
   const { it, step } = pick;
   const link = howTo(it).guides[0] ?? it.resources[0];
   return (
-    <section aria-labelledby="start-h" className="rounded-md border border-blue/30 bg-blue-tint p-5">
-      <h2 id="start-h" className="text-sm font-semibold text-blue">Start here</h2>
-      <p className="mt-2 text-lg font-semibold text-ink">{step!.text}</p>
-      <p className="mt-1 text-sm text-muted">Step {step!.n} of {step!.total} for “{it.title}”.</p>
+    <section aria-labelledby="start-h" className="border border-blue bg-sage p-5">
+      <h2 id="start-h" className="text-small text-blue">Start here</h2>
+      <p className="mt-2 text-lead text-blue">{step!.text}</p>
+      <p className="mt-1 text-small text-blue">Step {step!.n} of {step!.total} for “{it.title}”.</p>
       <div className="mt-4 flex flex-wrap items-center gap-4">
         <button type="button" onClick={() => onOpen(it, term)}
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-md bg-blue px-4 font-semibold text-white hover:bg-blue-hover">
+          className="inline-flex min-h-11 items-center gap-1.5 bg-blue px-4 text-sage hover:bg-blue">
           See all steps <ArrowRight size={16} aria-hidden="true" />
         </button>
         {link && (
-          <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-semibold text-blue underline-offset-2 hover:underline">
+          <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-small text-blue underline-offset-2 hover:underline">
             {link.name}<ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only"> (opens in a new tab)</span>
           </a>
         )}

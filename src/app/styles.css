@@ -1,95 +1,140 @@
 @import "tailwindcss";
+/* Only the app is scanned for class names (not the design prototypes or docs). */
+@source not "../../design";
+@source not "../../docs";
+@source not "../../scripts";
 
-/* Self-hosted IBM Plex (latin subset, weights 400 and 600). */
-@import "@fontsource/ibm-plex-sans/latin-400.css";
-@import "@fontsource/ibm-plex-sans/latin-600.css";
+/* Self-hosted fonts (design/DESIGN.md §3): Quantico for everything read, IBM Plex Mono for the river and short facts. */
+@import "@fontsource/quantico/latin-400.css";
+@import "@fontsource/quantico/latin-700.css";
 @import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
 
+/* Confluence tokens (design/tokens.css). Three inks on sage paper; each ink has one job:
+     blue   everything read or pressed: all text, all rules and borders, the one solid block per screen
+     sand   ground: the dotted "shore" rule between parts of a page, the bar beside a notice
+     green  life: the fish, "you are here", and anything the student has done. Never a background or a border.
+   No other colours, no opacity tints, no gradients, no shadows. */
 :root {
-  --bg: #ffffff;
-  --surface: #f6f8fa;
-  --border: #e2e8ee;
-  --border-strong: #c9d3dd;
-  --ink: #13293d;
-  --muted: #5b6b7b;
-  --blue: #1f5f99;
-  --blue-hover: #184c7b;
-  --blue-tint: #eaf2fa;
-  --green: #1f7a63;
-  --green-tint: #e8f4f0;
-  --amber: #9a6a12;
-  --amber-tint: #fbf4e6;
-  /* Text that marks a missing answer: readable on white and on the amber tint (>= 6:1). */
-  --amber-strong: #80520a;
+  --sage: #E0E7DA;
+  --blue: #466995;
+  --green: #00A37D;
+  --sand: #E6B989;
 
-  /* Chart lanes: quiet tints in the blue–green range. Ink on each passes AA (>= 12:1). */
-  --lane-foundation: #eaf2fa;
-  --lane-presence: #e6eff8;
-  --lane-skills: #e4f1f5;
-  --lane-experience: #e3f2ef;
-  --lane-network: #e8f4f0;
-  --lane-credentials: #edf3f7;
-  --lane-academics: #e7eef4;
-  --lane-applications: #e2eef3;
+  --line: 1.5px;   /* every rule and border */
+  --heavy: 3px;    /* a must-do, the bar beside a notice */
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-press: 140ms;
+  --t-ui: 260ms;     /* a panel, a question, a row */
+  --t-screen: 520ms; /* a whole screen fading while the river moves */
 }
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
-  --color-blue: var(--blue);
-  --color-blue-hover: var(--blue-hover);
-  --color-blue-tint: var(--blue-tint);
-  --color-green: var(--green);
-  --color-green-tint: var(--green-tint);
-  --color-amber: var(--amber);
-  --color-amber-tint: var(--amber-tint);
-  --color-amber-strong: var(--amber-strong);
+@theme {
+  /* Only the four colours exist: Tailwind's default palette is switched off. */
+  --color-*: initial;
+  --color-sage: #E0E7DA;
+  --color-blue: #466995;
+  --color-green: #00A37D;
+  --color-sand: #E6B989;
+  --color-transparent: transparent;
 
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-*: initial;
+  --font-sans: "Quantico", system-ui, sans-serif;
+  --font-text: "Quantico", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Type scale (1.2 ratio from 16px). */
-  --text-xs: 0.75rem;
-  --text-xs--line-height: 1rem;
-  --text-sm: 0.875rem;
-  --text-sm--line-height: 1.25rem;
-  --text-base: 1rem;
-  --text-base--line-height: 1.5rem;
-  --text-lg: 1.1875rem;
-  --text-lg--line-height: 1.75rem;
-  --text-xl: 1.4375rem;
-  --text-xl--line-height: 2rem;
-  --text-2xl: 1.75rem;
-  --text-2xl--line-height: 2.25rem;
+  /* Type scale. Body never goes under 17px (blue on sage is 4.47:1); 13px is for mono facts only. */
+  --text-*: initial;
+  --text-fact: 0.8125rem;
+  --text-fact--line-height: 1.35;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.45;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.5;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.3;
+  --text-h2: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  --text-h2--line-height: 1.15;
+  --text-h1: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --text-h1--line-height: 1.15;
+  --text-hero: clamp(2.25rem, 1.3rem + 4.4vw, 4rem);
+  --text-hero--line-height: 1.05;
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
+  /* Square corners and no shadows anywhere; only dots are round (rounded-full). */
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+
+  --ease-confluence: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-html { color-scheme: light; }
+html { color-scheme: light; -webkit-text-size-adjust: 100%; }
 body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 1rem;
+  margin: 0;
+  background: var(--sage);
+  color: var(--blue);
+  font-family: var(--font-text);
+  font-size: var(--text-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+h1, h2, h3 { font-weight: 400; line-height: 1.15; text-wrap: balance; }
+a { color: inherit; }
 
-:focus-visible:not([tabindex="-1"]) {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-  border-radius: 4px;
+:focus-visible { outline: var(--line) solid var(--blue); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
+
+@layer components {
+  /* Small facts: hours, terms, kinds of goal, counts. Never sentences. */
+  .fact { font-family: var(--font-mono); font-size: var(--text-fact); letter-spacing: 0.02em; }
+
+  /* A shore: the dotted sand rule between parts of a page. */
+  .shore { border: 0; height: 0; margin: 0; border-top: var(--line) dotted var(--sand); }
+
+  /* Buttons. Square, flat, one weight of line. A screen has at most one solid blue button. */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; padding: 0 22px; border: var(--line) solid var(--blue); border-radius: 0;
+    background: var(--sage); color: var(--blue); font: inherit; font-size: var(--text-body); cursor: pointer; text-decoration: none;
+    transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), border-color var(--t-press) var(--ease), transform var(--t-press) var(--ease);
+  }
+  .btn:hover { background: var(--blue); color: var(--sage); }
+  .btn:active { transform: translateY(1px); }
+  .btn--solid { background: var(--blue); color: var(--sage); font-weight: 700; }
+  .btn--solid:hover { background: var(--sage); color: var(--blue); }
+  .btn--text { border-color: transparent; padding: 0 8px; text-decoration: underline; text-underline-offset: 4px; }
+  .btn--text:hover { background: var(--sage); color: var(--blue); border-color: var(--blue); }
+  .btn--small { min-height: 42px; padding: 0 16px; }
+  .btn[disabled] { border-style: dashed; background: var(--sage); color: var(--blue); font-weight: 400; cursor: not-allowed; transform: none; }
+  /* On a solid blue block the roles swap. */
+  .on-blue .btn { border-color: var(--sage); background: var(--blue); color: var(--sage); }
+  .on-blue .btn:hover { background: var(--sage); color: var(--blue); }
+
+  /* Drafting corners: four small marks that frame the question sheet without boxing it in.
+     Drawn as single-colour background layers (each "gradient" is one flat colour, used only to place a 1.5px line). */
+  .corners { position: relative; }
+  .corners::before, .corners::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(var(--blue), var(--blue)) left top / 14px var(--line) no-repeat, linear-gradient(var(--blue), var(--blue)) left top / var(--line) 14px no-repeat,
+      linear-gradient(var(--blue), var(--blue)) right top / 14px var(--line) no-repeat, linear-gradient(var(--blue), var(--blue)) right top / var(--line) 14px no-repeat; }
+  .corners::after { transform: scaleY(-1); }
+
+  /* The mark beside a goal: an open ring, a solid dot for a must-do, a green dot once done. */
+  .dot { flex: none; display: inline-block; width: 11px; height: 11px; border: var(--line) solid var(--blue); border-radius: 50%; background: var(--sage); }
+  .dot--must { background: var(--blue); }
+  .dot--done { background: var(--green); border-color: var(--green); }
+
+  /* A notice: a paragraph with a 3px sand bar on its left. Also marks a missing answer. */
+  .notice { border-left: var(--heavy) solid var(--sand); padding-left: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
-/* React Flow's attribution link: readable contrast and a 24px touch target (WCAG 2.2 target size). */
-.react-flow__attribution { background: var(--bg) !important; padding: 0 !important; }
-.react-flow__attribution a { color: var(--muted) !important; display: inline-block; min-height: 24px; min-width: 24px; padding: 4px 8px; font-size: 11px; line-height: 16px; box-sizing: border-box; }
+/* React Flow (removed in M4): keep its attribution readable meanwhile. */
+.react-flow__attribution { background: var(--sage) !important; padding: 0 !important; }
+.react-flow__attribution a { color: var(--blue) !important; display: inline-block; min-height: 24px; min-width: 24px; padding: 4px 8px; font-size: 13px; line-height: 16px; box-sizing: border-box; }

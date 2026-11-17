@@ -24,9 +24,9 @@ export function ChipList({ chips, selected, onToggle, label, more, focusId }: {
         return (
           <li key={c.id}>
             <button type="button" aria-pressed={on} onClick={() => onToggle(c.id)} data-chip={c.id}
-              className={`inline-flex min-h-10 items-center gap-1.5 rounded-md border px-3 py-1.5 text-left text-sm transition-colors duration-150
-                ${on ? "border-green bg-green-tint text-ink" : "border-border bg-bg text-ink hover:border-border-strong hover:bg-surface"}`}>
-              {on && <Check size={14} strokeWidth={2.5} className="text-green" aria-hidden="true" />}
+              className={`inline-flex min-h-10 items-center gap-1.5 border px-3 py-1.5 text-left text-small transition-colors duration-150
+                ${on ? "border-blue bg-blue text-sage" : "border-blue bg-sage text-blue hover:border-blue hover:bg-sage"}`}>
+              {on && <Check size={14} strokeWidth={2.5} aria-hidden="true" />}
               {c.label}
             </button>
           </li>
@@ -36,7 +36,7 @@ export function ChipList({ chips, selected, onToggle, label, more, focusId }: {
         <li>
           <button type="button" aria-expanded={false} onClick={more.onExpand}
             aria-label={`Show ${more.count} more ${more.label.toLowerCase()} options`} title={`${more.count} more`}
-            className="inline-flex min-h-10 items-center gap-1 rounded-md border border-dashed border-border-strong bg-bg px-3 py-1.5 text-sm font-semibold text-blue transition-colors duration-150 hover:border-blue hover:bg-blue-tint">
+            className="inline-flex min-h-10 items-center gap-1 border border-dashed border-blue bg-sage px-3 py-1.5 text-small text-blue transition-colors duration-150 hover:border-blue hover:bg-sage">
             <Plus size={14} strokeWidth={2.5} aria-hidden="true" />
             <span aria-hidden="true">{more.count}</span>
           </button>

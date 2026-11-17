@@ -7,5 +7,5 @@ export const LANE_LABEL: Record<Lane, string> = {
   foundation: "Foundation", presence: "Online presence", skills: "Skills", experience: "Experience",
   network: "Networking", credentials: "Credentials", academics: "Academics", applications: "Applications",
 };
-/** Quiet blue–green tint per lane (CSS variables in styles.css), plus a slightly stronger accent for the lane marker. */
-export const laneTint = (l: Lane) => `var(--lane-${l})`;
+/** Kinds of goal are no longer told apart by colour (design/DESIGN.md §6: a glyph and a word). Paper for every lane. */
+export const laneTint = (_l: Lane) => "var(--sage)";

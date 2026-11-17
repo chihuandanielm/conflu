@@ -7,11 +7,11 @@ export function ProgressBar({ value, max, label }: { value: number; max: number;
   return (
     <div className="flex items-center gap-4">
       <div role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={value}
-        className="h-1 flex-1 overflow-hidden rounded-full bg-border">
+        className="h-1 flex-1 overflow-hidden rounded-full bg-sage">
         <motion.div className="h-full rounded-full bg-green" initial={false}
           animate={{ width: `${pct}%` }} transition={{ duration: reduce ? 0 : 0.25, ease: "easeOut" }} />
       </div>
-      <span className="font-mono text-xs text-muted tabular-nums">{value} of {max}</span>
+      <span className="font-mono text-fact text-blue tabular-nums">{value} of {max}</span>
     </div>
   );
 }

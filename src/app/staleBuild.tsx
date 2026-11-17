@@ -14,10 +14,10 @@ export const STALE_MESSAGE = "The site was updated after you opened this page. R
 
 export function ReloadNotice({ id, children = STALE_MESSAGE }: { id?: string; children?: ReactNode }) {
   return (
-    <div id={id} role="alert" className="flex flex-wrap items-center gap-3 text-sm text-amber">
+    <div id={id} role="alert" className="flex flex-wrap items-center gap-3 text-small text-blue">
       <span>{children}</span>
       <button type="button" onClick={() => window.location.reload()}
-        className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border-strong bg-bg px-3 font-semibold text-ink hover:bg-surface">
+        className="inline-flex min-h-10 items-center gap-1.5 border border-blue bg-sage px-3 text-blue hover:bg-sage">
         <RefreshCw size={14} aria-hidden="true" /> Reload page
       </button>
     </div>
@@ -32,7 +32,7 @@ export class ChunkBoundary extends Component<{ children: ReactNode; fallback: Re
   render() {
     if (!this.state.error) return this.props.children;
     return isStaleBuildError(this.state.error)
-      ? <div className="rounded-md border border-border bg-surface p-6"><ReloadNotice /></div>
+      ? <div className="border border-blue bg-sage p-6"><ReloadNotice /></div>
       : this.props.fallback;
   }
 }

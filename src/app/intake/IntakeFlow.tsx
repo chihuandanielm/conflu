@@ -166,7 +166,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
           : step === "experience" && !answers.experience.length ? "None yet, continue"
           : step === "about" && !anyAbout ? "Skip these" : "Continue"}
         notice={missing.length > 0 && (
-          <p role="alert" className="mt-6 flex items-center gap-2 text-sm font-semibold text-amber-strong">
+          <p role="alert" className="mt-6 flex items-center gap-2 text-small text-blue">
             <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />
             {missing.length === 1 ? "1 question on this page still needs an answer." : `${missing.length} questions on this page still need an answer.`}
           </p>
@@ -213,23 +213,23 @@ function Part({ part, single, headingId, missing, message, children }: {
   const help = PART_HELP[part] ?? c.help;
   return (
     <section aria-labelledby={single ? undefined : headingId}
-      className={`-mx-3 rounded-md border px-3 py-3 transition-colors duration-150 ${missing ? "border-amber/60 bg-amber-tint" : "border-transparent"}`}>
+      className={`border-l-[3px] py-1 pl-4 ${missing ? "border-sand" : "border-transparent"}`}>
       {!single && (
         <div className="mb-4">
-          <h2 id={headingId} tabIndex={-1} className="text-lg font-semibold text-ink outline-none">
+          <h2 id={headingId} tabIndex={-1} className="text-lead text-blue outline-none">
             {PART_TITLE[part] ?? c.question}
-            {part === "credentials" && <span className="ml-2 rounded-sm bg-surface px-1.5 py-0.5 align-middle text-xs font-normal text-muted">Optional</span>}
+            {part === "credentials" && <span className="ml-2 bg-sage px-1.5 py-0.5 align-middle text-small font-normal text-blue">Optional</span>}
           </h2>
-          {help && <p className="mt-1 text-sm text-muted">{help}</p>}
+          {help && <p className="mt-1 text-small text-blue">{help}</p>}
           {c.why && (
-            <p className="mt-2 flex items-start gap-2 text-sm text-muted">
+            <p className="mt-2 flex items-start gap-2 text-small text-blue">
               <Info size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-blue" /><span>{c.why}</span>
             </p>
           )}
         </div>
       )}
       {missing && (
-        <p id={missingId(part)} className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-strong">
+        <p id={missingId(part)} className="mb-3 flex items-center gap-2 text-small text-blue">
           <AlertTriangle size={16} aria-hidden="true" className="shrink-0" />{message}
         </p>
       )}
@@ -257,11 +257,11 @@ function renderPart(part: StepId, a: Answers, labelledBy: string, missing: boole
     case "major":
       return a.school
         ? <MajorPicker labelledBy={labelledBy} school={a.school} value={a.majorId} onSelect={(id) => choose({ majorId: id }, "major")} {...invalid} />
-        : <p className="text-sm text-muted">Pick your campus first.</p>;
+        : <p className="text-small text-blue">Pick your campus first.</p>;
     case "year":
       return (
         <>
-          {isSummerBreak(todayISO()) && <p className="mb-4 rounded-md bg-blue-tint px-4 py-3 text-sm text-ink">{uiIntake.year.summerHint}</p>}
+          {isSummerBreak(todayISO()) && <p className="mb-4 bg-sage px-4 py-3 text-small text-blue">{uiIntake.year.summerHint}</p>}
           <YearTermPicker a={a} onPick={(p) => choose(p, "year")} {...invalid} />
         </>
       );

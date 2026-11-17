@@ -22,10 +22,10 @@ export function QuestionShell({ copy, headingId, step, total, children, onBack, 
         <ProgressBar value={step} max={total} label="Intake progress" />
       </header>
       <main className="mx-auto flex w-full max-w-[640px] flex-1 flex-col justify-center px-4 py-10 sm:px-6">
-        <h1 id={headingId} ref={h1} tabIndex={-1} className="text-2xl font-semibold text-ink outline-none">{copy.question}</h1>
-        {copy.help && <p className="mt-2 text-base text-muted">{copy.help}</p>}
+        <h1 id={headingId} ref={h1} tabIndex={-1} className="text-h1 text-blue outline-none">{copy.question}</h1>
+        {copy.help && <p className="mt-2 text-body text-blue">{copy.help}</p>}
         {copy.why && (
-          <p className="mt-3 flex items-start gap-2 text-sm text-muted">
+          <p className="mt-3 flex items-start gap-2 text-small text-blue">
             <Info size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-blue" />
             <span>{copy.why}</span>
           </p>
@@ -33,13 +33,13 @@ export function QuestionShell({ copy, headingId, step, total, children, onBack, 
         <div className="mt-8">{children}</div>
         {notice}
         <nav aria-label="Question navigation" className="mt-10 flex flex-wrap items-center gap-3">
-          <Button variant="secondary" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
+          <Button variant="outline" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
           <span className="flex-1" />
           {secondary}
-          {onSkip && <Button variant="ghost" onClick={onSkip}>Skip</Button>}
+          {onSkip && <Button variant="text" onClick={onSkip}>Skip</Button>}
           {showContinue && <Button onClick={onContinue}>{continueLabel}</Button>}
         </nav>
-        <p className="mt-6 hidden text-xs text-muted sm:block">
+        <p className="mt-6 hidden text-small text-blue sm:block">
           {keyHint ? "Keyboard: number keys pick an option, Enter continues, Escape goes back." : "Keyboard: Enter continues, Escape goes back."}
         </p>
       </main>

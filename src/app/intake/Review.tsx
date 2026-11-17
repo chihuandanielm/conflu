@@ -59,20 +59,20 @@ export function Review({ answers, onEdit, onBack, onBuild }: {
         <ProgressBar value={steps.length} max={steps.length} label="Intake progress" />
       </header>
       <main className="mx-auto w-full max-w-[640px] flex-1 px-4 py-10 sm:px-6">
-        <h1 ref={h1} tabIndex={-1} className="text-2xl font-semibold outline-none">Check your answers</h1>
-        <p className="mt-2 text-muted">Edit anything that's off, then build your plan.</p>
+        <h1 ref={h1} tabIndex={-1} className="text-h1 outline-none">Check your answers</h1>
+        <p className="mt-2 text-blue">Edit anything that's off, then build your plan.</p>
         {missing.length > 0 && (
-          <div role="alert" className="mt-6 flex gap-3 rounded-md border border-amber/40 bg-amber-tint px-4 py-3 text-sm text-ink">
-            <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-amber" />
+          <div role="alert" className="notice mt-6 flex gap-3 py-2 text-small">
+            <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-blue" />
             <div>
-              <p className="font-semibold">
+              <p className="">
                 {missing.length === 1 ? "1 answer is still needed before we can build your plan." : `${missing.length} answers are still needed before we can build your plan.`}
               </p>
               <ul className="mt-2 flex flex-wrap gap-2">
                 {missing.map((s) => (
                   <li key={s}>
                     <button type="button" onClick={() => onEdit(s)} aria-label={`Answer: ${SHORT[s]}`}
-                      className="min-h-10 rounded-md border border-amber/50 bg-bg px-3 font-semibold text-ink hover:bg-surface">
+                      className="min-h-10 border border-blue bg-sage px-3 text-blue hover:bg-sage">
                       {SHORT[s]}
                     </button>
                   </li>
@@ -81,19 +81,19 @@ export function Review({ answers, onEdit, onBack, onBuild }: {
             </div>
           </div>
         )}
-        <dl className="mt-8 divide-y divide-border rounded-md border border-border">
+        <dl className="mt-8 divide-y divide-blue border border-blue">
           {steps.map((s) => {
             const needed = missing.includes(s);
             return (
-              <div key={s} className={`flex items-start gap-4 px-4 py-3 ${needed ? "bg-amber-tint" : ""}`}>
-                <dt className={`w-32 shrink-0 text-sm ${needed ? "font-semibold text-ink" : "text-muted"}`}>{SHORT[s]}</dt>
-                <dd className="flex-1 text-sm text-ink">
-                  {needed ? <span className="inline-flex items-center gap-1 font-semibold text-ink"><AlertTriangle size={14} aria-hidden="true" className="text-amber" />Needed</span> : answerText(s, answers)}
+              <div key={s} className={`flex items-start gap-4 border-l-[3px] px-4 py-3 ${needed ? "border-sand" : "border-transparent"}`}>
+                <dt className="w-32 shrink-0 text-small">{SHORT[s]}</dt>
+                <dd className="flex-1 text-small text-blue">
+                  {needed ? <span className="inline-flex items-center gap-1 text-blue"><AlertTriangle size={14} aria-hidden="true" className="text-blue" />Needed</span> : answerText(s, answers)}
                 </dd>
                 <dd>
                   <button type="button" onClick={() => onEdit(s)}
                     aria-label={`${needed ? "Answer" : "Edit"} ${SHORT[s]?.toLowerCase()}: ${COPY[s as keyof typeof COPY].question}`}
-                    className="inline-flex items-center gap-1 rounded-sm px-1 text-sm font-semibold text-blue hover:underline">
+                    className="inline-flex items-center gap-1 px-1 text-small text-blue hover:underline">
                     <Pencil size={14} aria-hidden="true" /> {needed ? "Answer" : "Edit"}
                   </button>
                 </dd>
@@ -102,7 +102,7 @@ export function Review({ answers, onEdit, onBack, onBuild }: {
           })}
         </dl>
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Button variant="secondary" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
+          <Button variant="outline" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back</Button>
           <span className="flex-1" />
           <Button onClick={() => (missing.length ? onEdit(missing[0]) : onBuild())}>
             {missing.length ? "Answer the missing question first" : "Build my plan"}

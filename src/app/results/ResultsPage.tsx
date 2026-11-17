@@ -101,40 +101,40 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   const backToPlan = () => { setView("plan"); window.scrollTo({ top: 0 }); };
   const viewHeader = (title: string) => (
     <div className="flex flex-wrap items-center gap-3">
-      <Button variant="secondary" onClick={backToPlan}><ArrowLeft size={16} aria-hidden="true" /> Back to your plan</Button>
-      <h2 className="text-xl font-semibold">{title}</h2>
+      <Button variant="outline" onClick={backToPlan}><ArrowLeft size={16} aria-hidden="true" /> Back to your plan</Button>
+      <h2 className="text-h2">{title}</h2>
     </div>
   );
 
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
-      <header className="border-b border-border bg-bg" inert={!!open}>
+      <header className="border-b border-blue bg-sage" inert={!!open}>
         <div className="mx-auto flex max-w-5xl flex-wrap items-end gap-4 px-4 py-6 sm:px-8">
           <div className="w-full min-w-0 sm:w-auto sm:flex-1">
-            <h1 ref={h1} tabIndex={-1} className="text-2xl font-semibold outline-none">Your plan</h1>
-            <p className="mt-1 text-sm text-muted">{planSummary(answers)}</p>
+            <h1 ref={h1} tabIndex={-1} className="text-h1 outline-none">Your plan</h1>
+            <p className="mt-1 text-small text-blue">{planSummary(answers)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button onClick={() => void downloadPdf()} disabled={pdfState === "working"} aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               <Download size={16} aria-hidden="true" /> {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
-            <Button variant="secondary" onClick={() => void share()}><Link2 size={16} aria-hidden="true" /> Share link</Button>
-            <Button variant="secondary" onClick={onEdit}><Pencil size={16} aria-hidden="true" /> Edit answers</Button>
-            <Button variant="ghost" onClick={onStartOver}><RotateCcw size={16} aria-hidden="true" /> Start over</Button>
+            <Button variant="outline" onClick={() => void share()}><Link2 size={16} aria-hidden="true" /> Share link</Button>
+            <Button variant="outline" onClick={onEdit}><Pencil size={16} aria-hidden="true" /> Edit answers</Button>
+            <Button variant="text" onClick={onStartOver}><RotateCcw size={16} aria-hidden="true" /> Start over</Button>
           </div>
         </div>
         {shareUrl && (
           <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8">
-            <label className="block text-sm text-muted" htmlFor="share-url">
+            <label className="block text-small text-blue" htmlFor="share-url">
               Share link (copied). It opens your answers for review; it never includes your answers about identity, gender, or citizenship.
             </label>
             <input id="share-url" readOnly value={shareUrl} onFocus={(e) => e.currentTarget.select()}
-              className="mt-1 min-h-10 w-full rounded-md border border-border-strong bg-surface px-3 font-mono text-xs text-ink" />
+              className="mt-1 min-h-10 w-full border border-blue bg-sage px-3 font-mono text-fact text-blue" />
           </div>
         )}
         {pdfState === "error" && (
-          <p id="pdf-error" role="alert" className="mx-auto max-w-5xl px-4 pb-4 text-sm text-amber sm:px-8">The PDF couldn't be created. Try again, or use your browser's print option.</p>
+          <p id="pdf-error" role="alert" className="mx-auto max-w-5xl px-4 pb-4 text-small text-blue sm:px-8">The PDF couldn't be created. Try again, or use your browser's print option.</p>
         )}
         {pdfState === "stale" && (
           <div className="mx-auto max-w-5xl px-4 pb-4 sm:px-8"><ReloadNotice id="pdf-error" /></div>
@@ -153,18 +153,18 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
           <>
             {viewHeader("Your full map")}
             {desktop && (
-              <div role="group" aria-label="Map view" className="inline-flex self-start overflow-hidden rounded-md border border-border-strong">
+              <div role="group" aria-label="Map view" className="inline-flex self-start overflow-hidden border border-blue">
                 {([["chart", "Chart", Network], ["list", "List", List]] as const).map(([m, label, Icon]) => (
                   <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold ${mode === m ? "bg-blue-tint text-ink" : "bg-bg text-muted hover:bg-surface"}`}>
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-small ${mode === m ? "bg-sage text-blue" : "bg-sage text-blue hover:bg-sage"}`}>
                     <Icon size={14} aria-hidden="true" />{label}
                   </button>
                 ))}
               </div>
             )}
             {desktop && mode === "chart" ? (
-              <ChunkBoundary fallback={<p className="rounded-md border border-border bg-surface p-6 text-sm text-muted">The chart couldn't load. Switch to the list view to see your plan.</p>}>
-              <Suspense fallback={<div className="flex h-[68vh] min-h-[520px] items-center justify-center rounded-md border border-border bg-surface text-sm text-muted">Loading the chart</div>}>
+              <ChunkBoundary fallback={<p className="border border-blue bg-sage p-6 text-small text-blue">The chart couldn't load. Switch to the list view to see your plan.</p>}>
+              <Suspense fallback={<div className="flex h-[68vh] min-h-[520px] items-center justify-center border border-blue bg-sage text-small text-blue">Loading the chart</div>}>
                 <RoadmapChart plan={plan} changed={changed} selectedGoal={open?.item.goalId ?? null} onOpen={openItem} />
               </Suspense>
               </ChunkBoundary>
@@ -178,9 +178,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
         {view === "plan" && (
           <>
             {outdated && (
-              <div className="flex flex-wrap items-center gap-3 rounded-md border border-blue/20 bg-blue-tint px-4 py-3 text-sm">
+              <div className="flex flex-wrap items-center gap-3 border border-blue bg-sage px-4 py-3 text-small">
                 <p className="flex-1">Your plan was built on older data. Refresh it.</p>
-                <Button variant="secondary" onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>
+                <Button variant="outline" onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>
                   <RefreshCw size={16} aria-hidden="true" /> Refresh plan
                 </Button>
               </div>
@@ -200,12 +200,12 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
 
             {saved.completedGoals.length > 0 && (
               <section aria-labelledby="done-h">
-                <h2 id="done-h" className="text-xl font-semibold">Checked off</h2>
+                <h2 id="done-h" className="text-h2">Checked off</h2>
                 <ul className="mt-4 flex flex-col gap-2">
                   {saved.completedGoals.map((g) => (
-                    <li key={g} className="flex items-center gap-3 rounded-md bg-green-tint px-4 py-2 text-sm">
+                    <li key={g} className="flex items-center gap-3 bg-sage px-4 py-2 text-small">
                       <span className="flex-1">{goalTitle(g)}</span>
-                      <button type="button" className="inline-flex items-center gap-1 font-semibold text-blue hover:underline"
+                      <button type="button" className="inline-flex items-center gap-1 text-blue hover:underline"
                         onClick={() => replan(undoDone(saved, g, todayISO()), () => `“${goalTitle(g)}” is back in your plan.`)}>
                         <Undo2 size={14} aria-hidden="true" /> Undo<span className="sr-only"> {goalTitle(g)}</span>
                       </button>
@@ -217,21 +217,21 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
 
             {ongoing.length > 0 && (
               <section aria-labelledby="ongoing-h">
-                <h2 id="ongoing-h" className="text-lg font-semibold">Habits to keep</h2>
+                <h2 id="ongoing-h" className="text-lead">Habits to keep</h2>
                 <ul className="mt-3 flex flex-col gap-2">
-                  {ongoing.map((o) => <li key={o.goalId} className="text-sm"><span className="font-semibold">{o.title}.</span> <span className="text-muted">{o.why}</span></li>)}
+                  {ongoing.map((o) => <li key={o.goalId} className="text-small"><span className="">{o.title}.</span> <span className="text-blue">{o.why}</span></li>)}
                 </ul>
               </section>
             )}
 
-            <nav aria-label="More views" className="flex flex-wrap gap-3 border-t border-border pt-6">
-              <Button variant="secondary" onClick={() => { setView("map"); window.scrollTo({ top: 0 }); }}><Network size={16} aria-hidden="true" /> See the full map</Button>
-              <Button variant="secondary" onClick={() => { setView("resources"); window.scrollTo({ top: 0 }); }}><BookOpen size={16} aria-hidden="true" /> All resources</Button>
+            <nav aria-label="More views" className="flex flex-wrap gap-3 border-t border-blue pt-6">
+              <Button variant="outline" onClick={() => { setView("map"); window.scrollTo({ top: 0 }); }}><Network size={16} aria-hidden="true" /> See the full map</Button>
+              <Button variant="outline" onClick={() => { setView("resources"); window.scrollTo({ top: 0 }); }}><BookOpen size={16} aria-hidden="true" /> All resources</Button>
             </nav>
           </>
         )}
 
-        <footer className="border-t border-border pt-6 text-xs text-muted">
+        <footer className="border-t border-blue pt-6 text-small text-blue">
           A starting point, not a rulebook: adjust it as you learn what fits. Built in your browser from dataset
           <span className="font-mono"> {plan.meta.dataVersion}</span> and planning engine <span className="font-mono">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
         </footer>

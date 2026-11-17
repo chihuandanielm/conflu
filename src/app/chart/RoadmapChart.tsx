@@ -49,13 +49,13 @@ function Chart({ plan, changed, selectedGoal, onOpen }: RoadmapChartProps) {
 
   const edges: Edge[] = useMemo(() => layout.edges.map((e) => {
     const on = !lit || (lit.has(e.from) && lit.has(e.to));
-    const stroke = lit && on ? "var(--blue)" : "var(--border-strong)";
+    const stroke = lit && on ? "var(--blue)" : "var(--blue)";
     return e.kind === "prereq"
       ? { id: e.id, source: e.source, target: e.target, type: "smoothstep", zIndex: 1, focusable: false,
           style: { stroke, strokeWidth: lit && on ? 1.5 : 1, opacity: on ? 1 : 0.15 },
-          markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: lit && on ? "#1f5f99" : "#c9d3dd" } }
+          markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: lit && on ? "var(--blue)" : "var(--blue)" } }
       : { id: e.id, source: e.source, target: e.target, type: "straight", zIndex: 1, focusable: false,
-          style: { stroke: "var(--muted)", strokeWidth: 1, strokeDasharray: "3 4", opacity: on ? 0.9 : 0.15 } };
+          style: { stroke: "var(--blue)", strokeWidth: 1, strokeDasharray: "3 4", opacity: on ? 0.9 : 0.15 } };
   }), [layout, lit]);
 
   /**
@@ -77,13 +77,13 @@ function Chart({ plan, changed, selectedGoal, onOpen }: RoadmapChartProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="mr-1 text-sm text-muted" id="lane-filter-label">Lanes:</span>
+        <span className="mr-1 text-small text-blue" id="lane-filter-label">Lanes:</span>
         <div role="group" aria-labelledby="lane-filter-label" className="flex flex-wrap gap-2">
           {presentLanes.map((l) => {
             const on = !hiddenLanes.has(l);
             return (
               <button key={l} type="button" aria-pressed={on} onClick={() => toggleLane(l)}
-                className={`rounded-md border px-2.5 py-1 text-sm transition-colors duration-150 ${on ? "border-blue bg-blue-tint text-ink" : "border-border bg-bg text-muted hover:bg-surface"}`}>
+                className={`border px-2.5 py-1 text-small transition-colors duration-150 ${on ? "border-blue bg-sage text-blue" : "border-blue bg-sage text-blue hover:bg-sage"}`}>
                 {LANE_LABEL[l]}
               </button>
             );
@@ -91,25 +91,25 @@ function Chart({ plan, changed, selectedGoal, onOpen }: RoadmapChartProps) {
         </div>
         <span className="flex-1" />
         <button type="button" aria-pressed={full} onClick={() => setFull((f) => !f)}
-          className="inline-flex items-center gap-1.5 rounded-md border border-border-strong px-3 py-1.5 text-sm font-semibold text-ink hover:bg-surface">
+          className="inline-flex items-center gap-1.5 border border-blue px-3 py-1.5 text-small text-blue hover:bg-sage">
           <Maximize2 size={14} aria-hidden="true" /> {full ? "Show the next three terms" : "Show full timeline"}
         </button>
       </div>
 
-      <div ref={box} className="relative h-[68vh] min-h-[520px] overflow-hidden rounded-md border border-border bg-surface">
+      <div ref={box} className="relative h-[68vh] min-h-[520px] overflow-hidden border border-blue bg-sage">
         <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
           nodesDraggable={false} nodesConnectable={false} elementsSelectable={false} nodesFocusable={false} edgesFocusable={false}
           minZoom={0.2} maxZoom={1.6} onInit={() => fit(full, 0)} panOnScroll zoomOnScroll={false} zoomOnPinch zoomOnDoubleClick={false}
           proOptions={{ hideAttribution: false }} aria-label="Roadmap chart. Use the list view for a text version."
           onPaneClick={() => setHovered(null)}>
         </ReactFlow>
-        <div className="absolute right-3 bottom-3 flex flex-col overflow-hidden rounded-md border border-border-strong bg-bg">
-          <button type="button" aria-label="Zoom in" onClick={() => void rf.zoomIn({ duration: 150 })} className="p-2 text-ink hover:bg-surface"><Plus size={16} aria-hidden="true" /></button>
-          <button type="button" aria-label="Zoom out" onClick={() => void rf.zoomOut({ duration: 150 })} className="border-t border-border p-2 text-ink hover:bg-surface"><Minus size={16} aria-hidden="true" /></button>
-          <button type="button" aria-label="Fit to view" onClick={() => fit(full)} className="border-t border-border p-2 text-ink hover:bg-surface"><Scan size={16} aria-hidden="true" /></button>
+        <div className="absolute right-3 bottom-3 flex flex-col overflow-hidden border border-blue bg-sage">
+          <button type="button" aria-label="Zoom in" onClick={() => void rf.zoomIn({ duration: 150 })} className="p-2 text-blue hover:bg-sage"><Plus size={16} aria-hidden="true" /></button>
+          <button type="button" aria-label="Zoom out" onClick={() => void rf.zoomOut({ duration: 150 })} className="border-t border-blue p-2 text-blue hover:bg-sage"><Minus size={16} aria-hidden="true" /></button>
+          <button type="button" aria-label="Fit to view" onClick={() => fit(full)} className="border-t border-blue p-2 text-blue hover:bg-sage"><Scan size={16} aria-hidden="true" /></button>
         </div>
       </div>
-      <p className="text-xs text-muted">Drag or scroll to move around; pinch or use the buttons to zoom. Hover or focus a goal to see what it depends on and what it unlocks.</p>
+      <p className="text-small text-blue">Drag or scroll to move around; pinch or use the buttons to zoom. Hover or focus a goal to see what it depends on and what it unlocks.</p>
     </div>
   );
 }

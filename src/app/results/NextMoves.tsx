@@ -15,9 +15,9 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
   const [all, setAll] = useState(false);
   if (!term || term.items.length === 0) {
     return (
-      <section aria-labelledby="next-h" className="rounded-md border border-border p-6">
-        <h2 id="next-h" className="text-xl font-semibold">This semester</h2>
-        <p className="mt-2 text-muted">Nothing is scheduled for this term. Check the notices below, or add hours to fit more in.</p>
+      <section aria-labelledby="next-h" className="border border-blue p-6">
+        <h2 id="next-h" className="text-h2">This semester</h2>
+        <p className="mt-2 text-blue">Nothing is scheduled for this term. Check the notices below, or add hours to fit more in.</p>
       </section>
     );
   }
@@ -26,13 +26,13 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
   return (
     <section aria-labelledby="next-h">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="next-h" className="text-xl font-semibold">This semester</h2>
-        <p className="text-sm text-muted">{term.label} <span className="font-mono text-xs">{term.code}</span></p>
+        <h2 id="next-h" className="text-h2">This semester</h2>
+        <p className="text-small text-blue">{term.label} <span className="font-mono text-fact">{term.code}</span></p>
       </div>
-      <p className="mt-1 text-sm text-muted">
+      <p className="mt-1 text-small text-blue">
         Fits {weeklyHours ? `your ${weeklyHours} free hours a week` : "the time you have"}. Take them in order.
       </p>
-      <ol className="mt-4 divide-y divide-border rounded-md border border-border">
+      <ol className="mt-4 divide-y divide-blue border border-blue">
         {items.map((it) => {
           const top = it.resources[0];
           const step = nextStep(it, progress);
@@ -41,27 +41,27 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
             <li key={it.goalId} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:gap-6">
               <div className="flex-1">
                 <button type="button" onClick={() => onOpen(it, term)}
-                  className="group inline-flex items-start gap-1 text-left font-semibold text-ink hover:text-blue">
+                  className="group inline-flex items-start gap-1 text-left text-blue hover:text-blue">
                   <span>{it.title}</span>
-                  <ChevronRight size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-muted group-hover:text-blue" />
+                  <ChevronRight size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-blue group-hover:text-blue" />
                 </button>
                 {step ? (
-                  <p className="mt-1 text-sm text-ink">
-                    <span className="font-semibold">Step {step.n} of {step.total}: </span>{step.text}
-                    {step.done > 0 && <span className="text-muted"> ({step.done} done)</span>}
+                  <p className="mt-1 text-small text-blue">
+                    <span className="">Step {step.n} of {step.total}: </span>{step.text}
+                    {step.done > 0 && <span className="text-blue"> ({step.done} done)</span>}
                   </p>
                 ) : total > 0 ? (
-                  <p className="mt-1 text-sm text-green">Every step is checked. Open it to mark it as done.</p>
+                  <p className="mt-1 text-small text-blue">Every step is checked. Open it to mark it as done.</p>
                 ) : (
-                  <p className="mt-1 text-sm text-muted">{it.why[0]}</p>
+                  <p className="mt-1 text-small text-blue">{it.why[0]}</p>
                 )}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {it.gate && <Tag tone="gate">Must-do</Tag>}
                   {it.partial && <Tag tone="partial">Continues next term</Tag>}
                 </div>
               </div>
-              <div className="flex shrink-0 flex-col gap-1 text-sm sm:w-56 sm:items-end sm:text-right">
-                <span className="font-mono text-xs text-muted">{it.hours} h this term</span>
+              <div className="flex shrink-0 flex-col gap-1 text-small sm:w-56 sm:items-end sm:text-right">
+                <span className="font-mono text-fact text-blue">{it.hours} h this term</span>
                 {top && (
                   <a href={top.url} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-blue underline-offset-2 hover:underline">
@@ -76,7 +76,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
       </ol>
       {sorted.length > FIRST && (
         <button type="button" aria-expanded={all} onClick={() => setAll((x) => !x)}
-          className="mt-2 min-h-11 px-1 text-sm text-blue underline underline-offset-2 hover:text-blue-hover">
+          className="mt-2 min-h-11 px-1 text-small text-blue underline underline-offset-2 hover:text-blue">
           {all ? "Show fewer" : `Show ${sorted.length - FIRST} more this term`}
         </button>
       )}

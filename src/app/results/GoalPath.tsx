@@ -10,10 +10,10 @@ export function GoalPath({ plan, trackId, onOpen }: { plan: Plan; trackId?: stri
     return null;
   };
   return (
-    <section aria-labelledby="goal-h" className="rounded-md border border-border bg-surface p-5">
-      <h2 id="goal-h" className="text-sm font-semibold text-muted">Where you're headed</h2>
-      <p className="mt-1 flex items-start gap-2 text-xl font-semibold text-ink">
-        <Flag size={20} aria-hidden="true" className="mt-1 shrink-0 text-green" />{outcomeText(trackId)}
+    <section aria-labelledby="goal-h" className="border border-blue bg-sage p-5">
+      <h2 id="goal-h" className="text-small text-blue">Where you're headed</h2>
+      <p className="mt-1 flex items-start gap-2 text-h2 text-blue">
+        <Flag size={20} aria-hidden="true" className="mt-1 shrink-0 text-blue" />{outcomeText(trackId)}
       </p>
       {ms.length > 0 && (
         <ol aria-label="Milestones" className="mt-4 flex flex-col gap-0 sm:flex-row sm:gap-2">
@@ -22,14 +22,14 @@ export function GoalPath({ plan, trackId, onOpen }: { plan: Plan; trackId?: stri
             return (
               <li key={m.goalId} className="relative flex flex-1 gap-3 pb-4 sm:flex-col sm:gap-2 sm:pb-0">
                 <span aria-hidden="true" className="flex items-center sm:w-full">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full border-2 border-blue bg-bg font-mono text-xs text-blue">{i + 1}</span>
-                  {i < ms.length - 1 && <span className="ml-2 hidden h-0.5 flex-1 bg-border-strong sm:block" />}
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full border-2 border-blue bg-sage font-mono text-fact text-blue">{i + 1}</span>
+                  {i < ms.length - 1 && <span className="ml-2 hidden h-0.5 flex-1 bg-blue sm:block" />}
                 </span>
                 <span className="min-w-0">
                   {hit ? (
-                    <button type="button" onClick={() => onOpen(hit.it, hit.t)} className="text-left text-sm font-semibold text-ink hover:text-blue hover:underline">{m.title}</button>
-                  ) : <span className="text-sm font-semibold text-ink">{m.title}</span>}
-                  <span className="block text-xs text-muted">{m.termLabel}{m.mustDo ? " · must-do" : ""}</span>
+                    <button type="button" onClick={() => onOpen(hit.it, hit.t)} className="text-left text-small text-blue hover:text-blue hover:underline">{m.title}</button>
+                  ) : <span className="text-small text-blue">{m.title}</span>}
+                  <span className="block text-small text-blue">{m.termLabel}{m.mustDo ? " · must-do" : ""}</span>
                 </span>
               </li>
             );

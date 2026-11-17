@@ -1,18 +1,9 @@
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
-const styles: Record<Variant, string> = {
-  primary: "bg-blue text-white hover:bg-blue-hover disabled:bg-border-strong disabled:text-white",
-  secondary: "border border-border-strong bg-bg text-ink hover:bg-surface",
-  ghost: "text-blue hover:bg-blue-tint",
-};
+/** design/tokens.css: solid (the one call to action per screen), outline, and text (an underlined link-like button). */
+export type Variant = "solid" | "outline" | "text";
+const styles: Record<Variant, string> = { solid: "btn btn--solid", outline: "btn", text: "btn btn--text" };
 
-export function Button({ variant = "primary", className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
-  return (
-    <button
-      type="button"
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 text-base font-semibold transition-colors duration-150 disabled:cursor-not-allowed ${styles[variant]} ${className}`}
-      {...props}
-    />
-  );
+export function Button({ variant = "solid", small = false, className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; small?: boolean }) {
+  return <button type="button" className={`${styles[variant]}${small ? " btn--small" : ""} ${className}`.trim()} {...props} />;
 }
