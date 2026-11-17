@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confluence prototype</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  html, body { min-height: 100%; }
+  #river { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  .screen { position: relative; opacity: 0; transition: opacity var(--t-screen) var(--ease); }
+  .screen[hidden] { display: none !important; }
+  .screen.is-in { opacity: 1; }
+  .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- landing: the words sit in the sky, the river owns the rest ---------- */
+  #landing { min-height: 100dvh; }
+  .hero { max-width: 600px; padding: clamp(24px, 6vh, 56px) 20px 0; margin-left: max(0px, calc((100vw - 1040px) / 2)); }
+  .hero .name { font-size: var(--text-small); }
+  .hero h1 { font-size: var(--text-hero); margin-top: 10px; }
+  .hero .what { margin-top: 16px; max-width: 34em; }
+  .hero .facts { margin-top: 10px; font-size: var(--text-small); max-width: 36em; }
+  .hero .go { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 22px; }
+  .hero .go .btn--solid { min-width: 200px; min-height: 54px; font-size: var(--text-lead); }
+  #skip { position: fixed; right: 12px; top: 12px; z-index: 3; background: var(--sage); border: 0; padding: 8px 10px; color: var(--blue); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- questions: one sheet, the same for every question ---------- */
+  #intake { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; padding: 18px 16px 0; }
+  .gauge { width: 100%; max-width: 640px; }
+  .gauge pre { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.2; white-space: pre; overflow: hidden; }
+  .gauge pre b { color: var(--green); font-weight: 600; }
+  .gauge p { margin-top: 4px; font-size: var(--text-small); }
+  .sheet { width: 100%; max-width: 640px; margin: clamp(16px, 5vh, 56px) 0 calc(var(--band, 28vh) + 24px); padding: 26px clamp(16px, 4vw, 30px) 22px; background: var(--sage);
+    transition: opacity var(--t-ui) var(--ease), transform var(--t-ui) var(--ease); }
+  .sheet.is-out { opacity: 0; transform: translateX(-18px); }
+  .sheet.is-pre { opacity: 0; transform: translateX(18px); transition: none; }
+  .sheet h1 { font-size: var(--text-h1); }
+  .sheet .help { margin-top: 10px; }
+  .sheet .why { margin-top: 10px; font-size: var(--text-small); }
+  .opts { margin-top: 20px; border-top: var(--line) solid var(--blue); }
+  .opt { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 54px; padding: 8px 12px; text-align: left; border: 0; border-bottom: var(--line) solid var(--blue);
+    background: var(--sage); color: var(--blue); font: inherit; cursor: pointer; transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), padding-left var(--t-press) var(--ease); }
+  .opt kbd { flex: none; width: 24px; height: 24px; display: grid; place-items: center; border: var(--line) solid currentColor; font-family: var(--font-mono); font-size: 12px; }
+  .opt:hover { padding-left: 20px; }
+  .opt[aria-checked="true"] { background: var(--blue); color: var(--sage); }
+  .opt small { display: block; font-size: var(--text-small); }
+  .nav { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+  .nav .spacer { flex: 1; }
+  .keys { margin-top: 16px; }
+  @media (max-width: 599px) { .keys { display: none; } }
+
+  /* ---------- results ---------- */
+  #results { --head: 300px; }
+  .rhead { min-height: var(--head); padding-top: 22px; }
+  .rhead .title { display: inline-block; max-width: 440px; }
+  .rhead h1 { font-size: var(--text-h1); }
+  .rhead .sum { margin-top: 8px; font-size: var(--text-small); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .actions .btn { min-height: 42px; padding: 0 14px; font-size: var(--text-small); }
+  @media (max-width: 759px) { #results { --head: 380px; } .rhead .title { max-width: none; } .actions { margin-top: calc(var(--head) - var(--titleh, 150px) - 40px); background: var(--sage); padding: 10px 0; } }
+  .page { background: var(--sage); padding: 8px 0 40px; }
+  .page section { padding: 40px 0; }
+  .page h2 { font-size: var(--text-h2); }
+  .page h2 + .fact, .page h2 + p { margin-top: 6px; }
+  .outcome { font-size: var(--text-h1); line-height: 1.12; margin-top: 4px; max-width: 18em; }
+  .mapbox { margin-top: 20px; overflow: hidden; }
+  .mapbox svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+  .two { display: grid; gap: 32px 48px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .marks li { display: flex; gap: 12px; align-items: baseline; padding: 7px 0; }
+  .marks .dot { transform: translateY(1px); }
+  .marks small { display: block; font-size: var(--text-small); }
+  .start { background: var(--blue); color: var(--sage); padding: clamp(20px, 4vw, 36px); display: grid; gap: 14px; }
+  .start .step { font-size: var(--text-h2); line-height: 1.25; max-width: 26em; }
+  .start .btn { justify-self: start; }
+  .goals { margin-top: 16px; border-top: var(--line) solid var(--blue); }
+  .goal { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 14px; align-items: baseline; width: 100%; padding: 16px 4px; text-align: left; border: 0; border-bottom: var(--line) solid var(--blue);
+    background: var(--sage); color: var(--blue); font: inherit; cursor: pointer; transition: padding-left var(--t-press) var(--ease); }
+  .goal:hover { padding-left: 12px; }
+  .goal .t { font-size: var(--text-lead); line-height: 1.25; }
+  .goal .fact, .goal .next { grid-column: 2; }
+  .goal .next { font-size: var(--text-small); }
+  .goal .go { font-family: var(--font-mono); grid-row: 1; grid-column: 3; }
+  .goal--small { padding: 10px 4px; } .goal--small .t { font-size: var(--text-body); }
+  .notice { margin-top: 14px; padding: 2px 0 2px 16px; border-left: var(--heavy) solid var(--sand); max-width: 44em; }
+  .term { margin-top: 26px; }
+  .term > summary, .term > h3 { font-size: var(--text-lead); cursor: pointer; list-style: none; display: flex; gap: 12px; align-items: baseline; }
+  .term > summary::-webkit-details-marker { display: none; }
+  .term > summary::before { content: "+"; font-family: var(--font-mono); width: 14px; } .term[open] > summary::before { content: "-"; }
+  .doors { display: flex; flex-wrap: wrap; gap: 12px; }
+  footer { padding: 24px 0 8px; font-size: var(--text-small); max-width: 46em; }
+
+  /* The goal drawer: a side sheet on wide screens, a bottom sheet on a phone. */
+  .scrim { position: fixed; inset: 0; z-index: 5; background: transparent; }
+  .drawer { position: fixed; z-index: 6; right: 0; top: 0; bottom: 0; width: min(480px, 100%); overflow: auto; background: var(--sage); border-left: var(--line) solid var(--blue);
+    padding: 22px clamp(16px, 4vw, 28px) 28px; transform: translateX(100%); transition: transform var(--t-ui) var(--ease); }
+  .drawer.is-in { transform: none; }
+  @media (max-width: 599px) { .drawer { top: 12dvh; width: 100%; border-left: 0; border-top: var(--line) solid var(--blue); transform: translateY(100%); } }
+  .drawer h2 { font-size: var(--text-h2); margin-top: 6px; }
+  .drawer h3 { font-size: var(--text-body); font-weight: 700; margin-top: 22px; }
+  .drawer li { padding: 6px 0; }
+  .steps li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+  .steps input { appearance: none; width: 18px; height: 18px; margin: 4px 0 0; border: var(--line) solid var(--blue); background: var(--sage); cursor: pointer; display: grid; place-items: center; }
+  .steps input:checked { background: var(--green); border-color: var(--green); }
+  .steps input:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--sage); border-bottom: 2px solid var(--sage); transform: translateY(-1px) rotate(-45deg); }
+  .drawer .close { position: sticky; top: 0; float: right; min-height: 36px; padding: 0 10px; }
+</style>
+</head>
+<body>
+<canvas id="river" aria-hidden="true"></canvas>
+<button id="skip" hidden>Skip intro</button>
+
+<main id="landing" class="screen" hidden>
+  <div class="hero" id="hero">
+    <p class="name">Career Pathway Mapper</p>
+    <h1>Many streams, one plan.</h1>
+    <p class="what">Tell it your major, your year, and what you've already done. It lays out what to do each semester to get where you want to go, with the Rutgers, New Jersey, and national programs you can use.</p>
+    <p class="facts">It takes about 3 minutes. There's no account, and your answers stay in this browser. What you get is a general trajectory, not a blueprint.</p>
+    <div class="go"><button class="btn btn--solid" id="start">Start</button></div>
+  </div>
+</main>
+
+<main id="intake" class="screen" hidden>
+  <div class="gauge">
+    <pre id="gauge" role="progressbar" aria-label="Intake progress" aria-valuemin="0"></pre>
+    <p id="count"></p>
+  </div>
+  <section class="sheet corners" id="sheet">
+    <h1 id="qh" tabindex="-1"></h1>
+    <p class="help" id="qhelp"></p>
+    <p class="why" id="qwhy"></p>
+    <div class="opts" id="qopts" role="radiogroup" aria-labelledby="qh"></div>
+    <nav class="nav" aria-label="Question navigation">
+      <button class="btn" id="back">Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn--solid" id="next" disabled>Continue</button>
+    </nav>
+    <p class="fact keys">Number keys pick an option, Enter continues, Escape goes back.</p>
+  </section>
+</main>
+
+<div id="results" class="screen" hidden>
+  <header class="rhead wrap">
+    <div class="title" id="rtitle">
+      <h1 id="rh" tabindex="-1">Your plan</h1>
+      <p class="sum" id="rsum"></p>
+    </div>
+    <div class="actions" id="ractions">
+      <a class="btn" href="pdf.html" target="_blank" rel="noopener">Download PDF</a>
+      <button class="btn">Share link</button>
+      <button class="btn">Edit answers</button>
+      <button class="btn btn--text" id="again">Start over</button>
+    </div>
+  </header>
+  <main class="page"><div class="wrap" id="rbody"></div></main>
+</div>
+
+<script type="module">
+import { createRiver } from "../river/river.js";
+import { layoutConfluence, mapSvg, LANE_GLYPH, LANE_NAME } from "../map/confluence-map.js";
+import PLAN from "./sample/cs-sophomore.js";
+
+// Real question copy (src/app/intake/copy.ts, data/). Three of the sixteen: enough to show that every question uses one shell.
+const TOTAL = 16;
+const QUESTIONS = [
+  { n: 2, q: "Which Rutgers campus are you at?", help: "Your campus decides which majors, offices, and programs show up in your plan.",
+    why: "Each campus has its own career center, research office, and programs, and offers different majors.",
+    opts: ["Rutgers–New Brunswick", "Rutgers–Newark", "Rutgers–Camden", "Another school"] },
+  { n: 5, q: "Are you a full-time or part-time student?", why: "The plan spaces goals at a full-time pace; part-time students get a note on what to adjust.",
+    opts: [["Full-time", "12 or more credits a term"], ["Part-time", "Fewer than 12 credits a term"]] },
+  { n: 12, q: "What about summers?", help: "Many internships and research programs are full-time in summer.",
+    opts: ["Free for a full-time summer role", "Part of the summer", "Not available in summer"], last: true },
+];
+
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+await document.fonts.load('13px "IBM Plex Mono"'); await document.fonts.load('600 13px "IBM Plex Mono"'); await document.fonts.load('17px "Quantico"');
+const params = new URLSearchParams(location.search);
+const river = createRiver($("river"), { scene: "low" });
+window.river = river;
+const wait = (ms) => new Promise((r) => setTimeout(r, river.reducedMotion ? 0 : ms));
+
+function show(id) {
+  for (const s of document.querySelectorAll(".screen")) if (s.id !== id) { s.classList.remove("is-in"); s.hidden = true; }
+  if (!id) return;
+  const e = $(id); e.hidden = false; void e.offsetWidth; e.classList.add("is-in");
+}
+const rectOf = (e, pad = 12) => { const r = e.getBoundingClientRect(); return { x: r.left - pad, y: r.top - pad, w: r.width + pad * 2, h: r.height + pad * 2 }; };
+
+// ---------- landing: low over the water, then the camera rises and the confluence opens up ----------
+let state = "intro";
+async function intro(fast = false) {
+  state = "intro"; show(null); scrollTo(0, 0); river.resume(); river.setMasks([]); river.setHints({ sky: 0 }); river.setScene("low");
+  $("skip").hidden = river.reducedMotion;
+  if (!fast) await wait(2300);
+  if (state !== "intro") return;
+  const landing = $("landing"); landing.hidden = false; // laid out, still transparent, so the text can be measured
+  river.setHints({ sky: $("hero").getBoundingClientRect().bottom });
+  river.setMasks([rectOf($("hero"))], { fadeMs: 1400 });
+  const arrive = river.goTo("landing", { ms: fast ? 1200 : 2800 });
+  await wait(fast ? 400 : 1700);
+  if (state !== "intro") return;
+  landing.classList.add("is-in"); $("skip").hidden = true;
+  await arrive; if (state === "intro") state = "landing";
+}
+$("skip").onclick = () => { if (state === "intro") { state = "skip"; state = "intro"; intro(true); } };
+addEventListener("resize", () => {
+  if (state === "landing") { river.setHints({ sky: $("hero").getBoundingClientRect().bottom }); river.setMasks([rectOf($("hero"))]); }
+});
+
+// ---------- start: follow the stem downstream, round the bend, down to the water's edge ----------
+$("start").onclick = async () => {
+  if (state !== "landing") return;
+  state = "moving"; $("landing").classList.remove("is-in");
+  river.setMasks([], { fadeMs: 500 });
+  const arrive = river.goTo("ask", { ms: 3200, along: true });
+  await wait(2300);
+  document.documentElement.style.setProperty("--band", Math.round(innerHeight * 0.34) + "px");
+  qi = 0; render(); show("intake"); state = "intake";
+  await arrive; $("qh").focus({ preventScroll: true });
+};
+
+// ---------- questions ----------
+let qi = 0; const answers = [];
+function gauge(n) {
+  const pre = $("gauge"), cols = Math.floor(Math.min(640, innerWidth - 32) / 7.83);
+  const at = Math.max(3, Math.round((cols - 3) * n / TOTAL));
+  let behind = ""; for (let i = 0; i < at - 3; i++) behind += "~-~~-"[i % 5];
+  let ahead = ""; for (let i = at; i < cols; i++) ahead += (i - at) % 2 ? "." : " ";
+  pre.innerHTML = behind + "<b>&gt;&lt;&gt;</b>" + ahead;
+  pre.setAttribute("aria-valuemax", TOTAL); pre.setAttribute("aria-valuenow", n);
+  $("count").textContent = `Question ${n} of ${TOTAL}`;
+}
+function render() {
+  const Q = QUESTIONS[qi];
+  gauge(Q.n);
+  $("qh").textContent = Q.q;
+  $("qhelp").textContent = Q.help ?? ""; $("qhelp").hidden = !Q.help;
+  $("qwhy").textContent = Q.why ?? ""; $("qwhy").hidden = !Q.why;
+  $("qopts").innerHTML = "";
+  Q.opts.forEach((o, i) => {
+    const [label, small] = Array.isArray(o) ? o : [o];
+    const b = el("button", "opt", `<kbd>${i + 1}</kbd><span>${esc(label)}${small ? `<small>${esc(small)}</small>` : ""}</span>`);
+    b.type = "button"; b.setAttribute("role", "radio"); b.setAttribute("aria-checked", answers[qi] === i);
+    b.onclick = () => { answers[qi] = i; render(); };
+    $("qopts").append(b);
+  });
+  $("next").textContent = Q.last ? "Build my plan" : "Continue";
+  $("next").disabled = answers[qi] === undefined;
+}
+async function turn(d) {
+  const s = $("sheet");
+  s.classList.add("is-out"); await wait(240);
+  qi += d; render();
+  s.classList.remove("is-out"); s.classList.add("is-pre"); void s.offsetWidth; s.classList.remove("is-pre");
+  $("qh").focus({ preventScroll: true });
+}
+$("next").onclick = () => { if (QUESTIONS[qi].last) build(); else turn(1); };
+$("back").onclick = () => { if (qi > 0) turn(-1); };
+addEventListener("keydown", (e) => {
+  if (state !== "intake") return;
+  const n = Number(e.key);
+  if (n >= 1 && n <= QUESTIONS[qi].opts.length) { answers[qi] = n - 1; render(); }
+  else if (e.key === "Enter" && !$("next").disabled && document.activeElement?.tagName !== "BUTTON") $("next").click();
+  else if (e.key === "Escape") $("back").click();
+});
+addEventListener("resize", () => { if (state === "intake") gauge(QUESTIONS[qi].n); });
+
+// ---------- build: a burst of fish, the camera turns to face downstream, the page arrives ----------
+async function build() {
+  state = "moving"; $("intake").classList.remove("is-in");
+  river.celebrate(1.8);
+  await wait(900);
+  $("intake").hidden = true; scrollTo(0, 0);
+  const res = $("results"); res.hidden = false; renderResults();
+  const title = $("rtitle").getBoundingClientRect();
+  res.style.setProperty("--titleh", Math.round(title.bottom) + "px");
+  river.setHints({ sky: title.bottom });
+  const arrive = river.goTo("results", { ms: 2600 });
+  await wait(1500);
+  river.setMasks([rectOf($("rtitle"), 10), rectOf($("ractions"), 8)], { fadeMs: 700 });
+  res.classList.add("is-in");
+  await arrive; state = "results"; $("rh").focus({ preventScroll: true });
+}
+$("again").onclick = () => { answers.length = 0; intro(); };
+// The river is only visible at the top of the results page. Stop drawing once it has scrolled away.
+addEventListener("scroll", () => { if (state === "results") (scrollY > innerHeight * 0.7 ? river.pause : river.resume)(); }, { passive: true });
+
+// ---------- results page, drawn from the sample plan ----------
+const fact = (it) => [`${LANE_GLYPH[it.lane]} ${LANE_NAME[it.lane]}`, `${it.hours} h`, it.gate ? "must-do" : "", it.partial ? "continues" : ""].filter(Boolean).join("  ");
+function goalRow(it, small = false) {
+  const b = el("button", "goal" + (small ? " goal--small" : ""), `<span class="dot${it.gate ? " dot--must" : ""}"></span><span class="t">${esc(it.title)}</span><span class="go" aria-hidden="true">-&gt;</span>
+    <span class="fact">${esc(fact(it))}</span>${small ? "" : `<span class="next">Next: ${esc(it.steps[0] ?? "")}</span>`}`);
+  b.type = "button"; b.onclick = () => openGoal(it);
+  return b;
+}
+function renderResults() {
+  const P = PLAN, body = $("rbody"); body.innerHTML = "";
+  $("rsum").textContent = P.summary;
+  const sec = (html) => { const s = el("section", "", html); body.append(s); return s; };
+  const shore = () => body.append(el("hr", "shore"));
+  const wide = innerWidth >= 700, mapW = Math.min(1000, innerWidth - 40);
+
+  // 1. Where you're headed: the milestones as streams joining one river.
+  const ms = new Set(P.milestones.map((m) => m.goalId)), seen = new Set();
+  const mTerms = P.terms.map((t) => ({ ...t, items: t.items.filter((i) => ms.has(i.goalId) && !seen.has(i.goalId) && seen.add(i.goalId)) })).filter((t) => t.items.length);
+  const s1 = sec(`<h2>Where you're headed</h2><p class="outcome">${esc(P.outcome)}</p><div class="mapbox" id="mini"></div><p style="margin-top:18px"><button class="btn" id="tomap">See the full map</button></p>`);
+  s1.querySelector("#mini").innerHTML = mapSvg(layoutConfluence({ terms: mTerms, outcome: "" }, { width: mapW, fontSize: wide ? 15 : 14 }), { title: "Your milestones, in order, joining one river" });
+  shore();
+
+  // 2. What you have, what you need.
+  const s2 = sec(`<div class="two"><div><h2>What you have</h2><ul class="marks" id="have"></ul></div><div><h2>What you need</h2><ul class="marks" id="need"></ul></div></div>`);
+  for (const h of P.haves) s2.querySelector("#have").append(el("li", "", `<span class="dot dot--done"></span><span>${esc(h)}</span>`));
+  for (const n of P.needs) s2.querySelector("#need").append(el("li", "", `<span class="dot"></span><span>${esc(n.label)}<small>${esc(n.detail)}</small></span>`));
+
+  // 3. Start here: the one solid blue block on the page.
+  const first = P.terms[0].items[0];
+  const s3 = sec(`<div class="start on-blue"><p class="fact">Start here</p><p class="step">${esc(first.steps[0])}</p><p>Part of: ${esc(first.title)}</p><button class="btn" id="openfirst">Open this goal</button></div>`);
+  s3.style.paddingTop = "8px";
+  s3.querySelector("#openfirst").onclick = () => openGoal(first);
+
+  // 4. This semester.
+  const now = P.terms[0];
+  const s4 = sec(`<h2>This semester</h2><p class="fact">${esc(now.label.toLowerCase())}  sized to your ${P.weeklyHours} free hours a week</p><div class="goals" id="now"></div><div id="notices"></div>`);
+  s4.style.paddingTop = "8px";
+  for (const it of now.items) s4.querySelector("#now").append(goalRow(it));
+  if (P.warnings.length) {
+    s4.querySelector("#notices").append(el("h3", "", "Good to know"));
+    s4.querySelector("#notices").style.marginTop = "28px";
+    for (const w of P.warnings) s4.querySelector("#notices").append(el("p", "notice", esc(w)));
+  }
+  shore();
+
+  // 5. Coming up: the next two semesters open, later ones folded.
+  const s5 = sec(`<h2>Coming up</h2><div id="later"></div>`);
+  P.terms.slice(1).forEach((t, i) => {
+    const d = el("details", "term"); d.open = i < 2;
+    d.append(el("summary", "", `${esc(t.label)} <span class="fact">${t.items.length} goals</span>`));
+    const g = el("div", "goals"); for (const it of t.items) g.append(goalRow(it, true)); d.append(g);
+    s5.querySelector("#later").append(d);
+  });
+  if (P.more.length) {
+    const m = el("div", "term", `<h3>When you have more time</h3><p style="margin-top:6px;font-size:var(--text-small)">Start any of them whenever you like.</p>`);
+    const ul = el("ul", "marks"); for (const x of P.more) ul.append(el("li", "", `<span class="dot"></span><span>${esc(x.title)}</span>`)); m.append(ul);
+    s5.querySelector("#later").append(m);
+  }
+  shore();
+
+  // 6. Habits, then the doors to the other two views.
+  if (P.ongoing.length) { const s6 = sec(`<h2>Habits to keep</h2><ul class="marks" id="hab"></ul>`); for (const o of P.ongoing) s6.querySelector("#hab").append(el("li", "", `<span class="dot"></span><span>${esc(o.title)}<small>${esc(o.why)}</small></span>`)); shore(); }
+  sec(`<div class="doors"><button class="btn" id="tomap2">See the full map</button><button class="btn">All resources</button></div>
+    <footer>A starting point, not a rulebook: adjust it as you learn what fits. Built in your browser from dataset <span class="fact">${esc(P.meta.dataVersion)}</span> and planning engine <span class="fact">${esc(P.meta.engineVersion)}</span>. Nothing you entered left this device.</footer>`);
+  for (const id of ["tomap", "tomap2"]) $(id).onclick = fullMap;
+}
+function fullMap() {
+  const body = $("rbody"); body.innerHTML = ""; scrollTo(0, 0);
+  const s = el("section", "", `<p><button class="btn" id="backplan">&lt;- Back to your plan</button></p><h2 style="margin-top:22px">Your full map</h2>
+    <p style="margin-top:6px;max-width:40em">Every goal is a stream. It joins the river in the semester you start it and stays in it to the end.</p><div class="mapbox" id="full"></div>`);
+  body.append(s);
+  s.querySelector("#full").innerHTML = mapSvg(layoutConfluence(PLAN, { width: Math.min(1000, innerWidth - 40), fontSize: innerWidth >= 700 ? 14 : 13 }));
+  $("backplan").onclick = () => { renderResults(); scrollTo(0, 0); };
+}
+
+// ---------- goal drawer ----------
+function openGoal(it) {
+  const scrim = el("div", "scrim"), d = el("aside", "drawer");
+  d.setAttribute("role", "dialog"); d.setAttribute("aria-modal", "true"); d.setAttribute("aria-label", it.title);
+  d.innerHTML = `<button class="btn close">Close</button><p class="fact">${esc(fact(it))}</p><h2>${esc(it.title)}</h2>
+    <h3>What to do</h3><ol class="steps">${it.steps.map((s, i) => `<li><input type="checkbox" id="st${i}" aria-labelledby="sl${i}"><label id="sl${i}" for="st${i}">${esc(s)}</label></li>`).join("")}</ol>
+    ${it.doneWhen ? `<h3>Done when</h3><p>${esc(it.doneWhen)}</p>` : ""}
+    <h3>Why it's here</h3><ul>${it.why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+    ${it.resources.length ? `<h3>Where to go</h3><ul>${it.resources.map((r) => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.name)}</a></li>`).join("")}</ul>` : ""}
+    <p style="margin-top:26px"><button class="btn btn--solid">Mark as done</button></p>`;
+  const close = () => { d.classList.remove("is-in"); setTimeout(() => { d.remove(); scrim.remove(); }, 280); };
+  scrim.onclick = close; d.querySelector(".close").onclick = close;
+  d.addEventListener("keydown", (e) => e.key === "Escape" && close());
+  document.body.append(scrim, d); void d.offsetWidth; d.classList.add("is-in"); d.querySelector(".close").focus();
+}
+
+// Open straight on one screen for review: ?at=landing, ?at=ask, ?at=results, ?at=map
+const at = params.get("at");
+if (at === "landing") { state = "intro"; intro(true); }
+else if (at === "ask") { river.setScene("ask"); document.documentElement.style.setProperty("--band", Math.round(innerHeight * 0.34) + "px"); render(); show("intake"); state = "intake"; }
+else if (at === "results" || at === "map") {
+  const res = $("results"); res.hidden = false; renderResults();
+  const title = $("rtitle").getBoundingClientRect(); res.style.setProperty("--titleh", Math.round(title.bottom) + "px");
+  river.setHints({ sky: title.bottom }); river.setScene("results");
+  river.setMasks([rectOf($("rtitle"), 10), rectOf($("ractions"), 8)]); res.classList.add("is-in"); state = "results";
+  if (at === "map") fullMap();
+} else intro();
+</script>
+</body>
+</html>
