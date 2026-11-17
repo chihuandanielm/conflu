@@ -13,6 +13,8 @@ export interface River {
   setScene(name: SceneName): void;
   goTo(name: SceneName, opt?: { ms?: number; along?: boolean }): Promise<void>;
   setMasks(rects: Rect[], opt?: { fadeMs?: number }): void;
+  /** Draw only the band from the top down to `bottom` px (an opaque page covers the rest); null for the whole screen. */
+  setClip(bottom: number | null): void;
   setHints(h: SceneHints): void;
   setCurrent(v: number): void;
   celebrate(seconds?: number): void;

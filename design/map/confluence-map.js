@@ -145,7 +145,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
  * Reference renderer: the layout as an SVG string. `text: false` draws only the river (lay real HTML
  * buttons over it using layout.labels); `text: true` draws names too (print, PDF prototype).
  */
-export function mapSvg(L, { text = true, palette = { sage: "#E0E7DA", blue: "#466995", green: "#00A37D", sand: "#E6B989" },
+export function mapSvg(L, { text = true, palette = { sage: "#E0E7DA", blue: "#456894", green: "#00A37D", sand: "#E6B989" },
   display = "Quantico, sans-serif", mono = '"IBM Plex Mono", monospace', title = "Your plan as a confluence" } = {}) {
   const P = palette, fs = L.fontSize, o = [];
   o.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r(L.width)} ${r(L.height)}" width="${r(L.width)}" height="${r(L.height)}" role="img" aria-label="${esc(title)}">`);

@@ -63,7 +63,8 @@ export function Intro({ onStart, hasProgress, onResume, onStartOver, onContinueP
   }, [shown, frame]);
 
   return (
-    <main className="min-h-dvh">
+    // As wide as the words (not the screen), so the fade at Start blends a small layer over the moving river.
+    <main className="min-h-dvh w-fit max-w-full">
       {skippable && (
         <button type="button" onClick={() => rise(true)}
           className="fixed top-3 right-3 z-10 min-h-12 bg-sage px-2.5 underline underline-offset-[3px]">

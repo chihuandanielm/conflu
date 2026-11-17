@@ -211,7 +211,9 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
             {screen}
           </motion.div>
         ) : (
-          <motion.div key="ask" className="flex min-h-dvh flex-col items-center px-4 pt-[18px]"
+          // Only as wide as the sheet: a fading layer the width of the screen, over a canvas that changes every frame, is
+          // what costs the most on large screens.
+          <motion.div key="ask" className="mx-auto flex min-h-dvh w-full max-w-[672px] flex-col items-center px-4 pt-[18px]"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.52, ease, delay: arriving && !reduce ? 1.78 : 0 }}>
             <header className="w-full max-w-[640px]">

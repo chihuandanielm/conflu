@@ -19,7 +19,7 @@
    No other colours, no opacity tints, no gradients, no shadows. */
 :root {
   --sage: #E0E7DA;
-  --blue: #466995;
+  --blue: #456894;
   --green: #00A37D;
   --sand: #E6B989;
 
@@ -36,7 +36,7 @@
   /* Only the four colours exist: Tailwind's default palette is switched off. */
   --color-*: initial;
   --color-sage: #E0E7DA;
-  --color-blue: #466995;
+  --color-blue: #456894;
   --color-green: #00A37D;
   --color-sand: #E6B989;
   --color-transparent: transparent;
@@ -46,7 +46,7 @@
   --font-text: "Quantico", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Type scale. Body never goes under 17px (blue on sage is 4.47:1); 13px is for mono facts only. */
+  /* Type scale. Body never goes under 17px; 13px is for mono facts only. Blue on sage is 4.54:1 (WCAG AA). */
   --text-*: initial;
   --text-fact: 0.8125rem;
   --text-fact--line-height: 1.35;

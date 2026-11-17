@@ -47,6 +47,7 @@ await river.goTo("ask", { ms: 3200, along: true });     // along: follow the ste
 river.celebrate(1.8);                                   // a burst of hops
 await river.goTo("results", { ms: 2600 });
 river.pause(); river.resume();                          // when scrolled out of view
+river.setClip(bandBottomPx);                            // only the band above an opaque page is visible; null = all
 river.destroy();
 ```
 
@@ -83,11 +84,12 @@ Change one number, look at all four scenes on a desktop and a phone, then run th
 
 The work per frame is one pass over the glyph cells. When the camera is still, each cell's place in the world is cached and only the ink is recomputed (about 1 to 4 ms). While the camera moves, every cell is re-placed each frame (about 2 to 9 ms).
 
-Three things keep the frame rate up on any device:
+Four things keep the frame rate up on any device (the last was added when the app measured the results page on very large screens: the browser copies and composites the whole canvas every frame, so its size in pixels matters as much as the glyphs drawn):
 
 1. **Glyph size follows screen size.** A 2560 by 1440 monitor gets proportionally larger glyphs than a 1440 by 900 one, so both draw roughly the same number.
 2. **It watches itself.** It tracks the real time between frames. If that falls under about 50 a second, it enlarges the glyphs by a quarter (fewer to draw), up to 2.3 times. If that is not enough it lowers the canvas resolution. It only ever steps one way, a handful of times, so the picture does not flicker between sizes.
 3. **Everything is time-based**, so a slow frame costs smoothness for that frame only; the move still ends on time.
+4. **A clip.** When an opaque page covers all but a band at the top (the results page), `setClip(bottom)` shrinks the canvas element and its bitmap to that band, rounded up to 64px. The framing still uses the full screen height, so the picture never moves. Cleared before the page leaves.
 
 `node design/check-smoothness.cjs` runs the real flow at three screen sizes with the CPU at full speed, slowed 4 times and slowed 6 times, and records every frame of each camera move. Last run (headless Chromium, software rendering, no GPU):
 

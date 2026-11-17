@@ -12,7 +12,7 @@
 
 :root {
   --sage: #E0E7DA;
-  --blue: #466995;
+  --blue: #456894;
   --green: #00A37D;
   --sand: #E6B989;
 
@@ -21,7 +21,7 @@
 
   --text-fact: 0.8125rem;  /* 13px, mono only */
   --text-small: 0.9375rem; /* 15px */
-  --text-body: 1.0625rem;  /* 17px: blue on sage is 4.47:1, so body text never goes smaller than this */
+  --text-body: 1.0625rem;  /* 17px: body text never goes smaller than this (blue on sage is 4.54:1) */
   --text-lead: 1.25rem;
   --text-h2: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
   --text-h1: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);

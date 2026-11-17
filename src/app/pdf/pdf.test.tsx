@@ -48,7 +48,7 @@ describe("PDF", () => {
     if (!hasPdftotext) return; // text checks need poppler; CI images usually have it
     const all = text(buf);
     for (const str of ["Your plan", "What you have", "What you need", "Start here", "This semester", "Done when:",
-      "When you have more time", "Habits to keep", "Resources", "Rutgers–Newark", "a general trajectory, not a blueprint", "page 1 of", "studentaid.gov"]) {
+      "When you have more time", "Habits to keep", "Later semesters", "Where to start", "All resources", "Rutgers–Newark", "a general trajectory, not a blueprint", "page 1 of", "studentaid.gov"]) {
       expect(all, str).toContain(str);
     }
     expect(all).not.toMatch(/\/-\n/); // no hyphen inserted into wrapped URLs
@@ -59,6 +59,21 @@ describe("PDF", () => {
     expect(one).toMatch(/year 2 · fall/);
     expect(one).not.toContain("What you have");
   }, 60_000);
+
+  it("keeps the core (map, where you stand, the semesters, and the resources to start with) within 10 pages", async () => {
+    for (const inp of [input, { ...input, year: 1 as const, semester: 1 as const, weeklyHours: 15 }]) {
+      const { buf } = await render(inp);
+      if (!hasPdftotext) return;
+      const pages = Number(execFileSync("pdfinfo", ["-"], { input: buf }).toString().match(/Pages:\s+(\d+)/)![1]);
+      const pageOf = (str: string) => { for (let n = 1; n <= pages; n++) if (text(buf, n).includes(str)) return n; return -1; };
+      const start = pageOf("Where to start"), appendix = pageOf("All resources");
+      expect(start, "Where to start").toBeGreaterThan(1);
+      expect(start, "Where to start").toBeLessThanOrEqual(10);
+      // The appendix starts on a fresh page right after the core, so the core is everything before it.
+      expect(appendix - 1, "core pages").toBeLessThanOrEqual(10);
+      expect(text(buf, appendix - 1)).not.toContain("All resources");
+    }
+  }, 240_000);
 
   it("fits the longest plan's map on page 1 (trimmed, with counts) and draws the shortest in full", async () => {
     const long = await render({ ...input, year: 1, semester: 1, weeklyHours: 15 });

@@ -78,7 +78,7 @@ Rules: never reorder or re-space what the function returns, never draw a strand 
 
 `CLAUDE.md` still describes the old look. Replace its design line with:
 
-> Design: follow `design/DESIGN.md`. Four colours only (`#E0E7DA`, `#466995`, `#00A37D`, `#E6B989`), Quantico and IBM Plex Mono, no shadows, gradients, emoji or icons-as-decoration. One river (`src/app/river/`) for the whole session; screens change by moving its camera. Respect prefers-reduced-motion.
+> Design: follow `design/DESIGN.md`. Four colours only (`#E0E7DA`, `#456894`, `#00A37D`, `#E6B989`), Quantico and IBM Plex Mono, no shadows, gradients, emoji or icons-as-decoration. One river (`src/app/river/`) for the whole session; screens change by moving its camera. Respect prefers-reduced-motion.
 
 Show me that edit before making it; it is my file.
 

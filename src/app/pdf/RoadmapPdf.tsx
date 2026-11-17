@@ -39,6 +39,10 @@ const PAGE = { w: 612, h: 792, side: 40, top: 33, bottom: 52 };
 const W = PAGE.w - PAGE.side * 2;
 const BANNER = { cols: 175, rows: 13, size: 5.25, line: 6 };
 const MAP_FONT = 7.5; // goal names on the map (10px in the prototype)
+/** The core of the PDF (the map, where you stand, this semester and next in full, later semesters in brief, and the
+ *  resources to start with) fits in 10 pages; everything else follows as an appendix. */
+const FULL_TERMS = 2, KEY_RESOURCES = 12;
+const HALF = (W - 16) / 2;
 
 const s = StyleSheet.create({
   // No lineHeight on the page or a wrapper: in @react-pdf/renderer 4.9 a page-level lineHeight breaks the page-number
@@ -153,6 +157,19 @@ function GoalBlock({ it, again }: { it: PlanItem; again: boolean }) {
   );
 }
 
+/** A later semester's goal in brief: its dot, title and fact line, half a column wide. */
+function LaterRow({ it, again }: { it: PlanItem; again: boolean }) {
+  return (
+    <View style={{ width: HALF, flexDirection: "row", gap: 6, paddingVertical: 2 }} wrap={false}>
+      <Dot gate={it.gate} style={{ marginTop: 2.5 }} />
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontSize: 9, lineHeight: 1.25 }}>{it.title}</Text>
+        <Text style={[s.fact, { fontSize: 7 }]}>{factLine(it)}{again ? "  keep going" : ""}</Text>
+      </View>
+    </View>
+  );
+}
+
 /** A resource box (design/DESIGN.md §7.4b), for print: the address is written out in full under the name, and is still a live link. */
 function ResourceBox({ t }: { t: Tailored }) {
   const r = t.resource;
@@ -192,6 +209,13 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
   const outcome = outcomeText(summary.trackId);
   const need = needs(plan);
   const more = moreTime(plan);
+  // Where to start: the resources this semester's and next semester's goals point to, in the plan's order, at most
+  // KEY_RESOURCES; then every other resource in the appendix after the core pages.
+  const byId = new Map(resources.map((t) => [t.resource.id, t]));
+  const key: Tailored[] = [];
+  for (const t of plan.terms.slice(0, FULL_TERMS)) for (const it of inWorkOrder(t.items, plan.edges))
+    for (const r of it.resources) { const hit = byId.get(r.id); if (hit && !key.includes(hit) && key.length < KEY_RESOURCES) key.push(hit); }
+  const rest = resources.filter((t) => !key.includes(t));
 
   // Page 1: the banner, the title, then the confluence map in whatever height is left. The fullest semesters give up
   // their last rows until it fits, and say how many they left out; if it is still too tall (very many semesters), the
@@ -258,8 +282,8 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
           </View>
         )}
 
-        {/* Every semester: each goal a piece of its stream, its steps as boxes to tick. */}
-        {plan.terms.map((t, i) => (
+        {/* This semester and next, in full: each goal a piece of its stream, its steps as boxes to tick. */}
+        {plan.terms.slice(0, FULL_TERMS).map((t, i) => (
           <View key={t.code}>
             <View style={s.term} minPresenceAhead={110}>
               <Text style={s.h2}>{i ? t.label : "This semester"}</Text>
@@ -274,13 +298,38 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
           </View>
         ))}
 
+        {/* Later semesters, one line per goal (two columns): the steps are on the site and come into this PDF as the
+            semester gets close. */}
+        {plan.terms.length > FULL_TERMS && (
+          <View>
+            <View style={s.term} minPresenceAhead={90}>
+              <Text style={s.h2}>Later semesters</Text>
+              <Text style={s.fact}>each goal in brief</Text>
+            </View>
+            {plan.terms.slice(FULL_TERMS).map((t) => (
+              <View key={t.code} style={{ marginTop: 7 }} wrap={false}>
+                <Text style={[s.fact, { marginBottom: 2 }]}>{t.label.toLowerCase()}  {t.items.length ? `${t.items.length} ${t.items.length === 1 ? "goal" : "goals"}` : t.capacityHours === 0 ? "a break" : "open"}</Text>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
+                  {inWorkOrder(t.items, plan.edges).map((it) => {
+                    const again = told.has(it.goalId);
+                    told.add(it.goalId);
+                    return <LaterRow key={it.goalId} it={it} again={again} />;
+                  })}
+                </View>
+              </View>
+            ))}
+          </View>
+        )}
+
         {more.length > 0 && (
           <View>
             <View style={s.term} minPresenceAhead={70}>
               <Text style={s.h2}>When you have more time</Text>
               <Text style={s.fact}>start any of them whenever you like</Text>
             </View>
-            <View style={{ marginTop: 4 }}><Marks items={more.map((m) => ({ text: m.title }))} /></View>
+            <View style={{ marginTop: 4, flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
+              {more.map((m) => <View key={m.goalId} style={{ width: HALF }}><Marks items={[{ text: m.title }]} /></View>)}
+            </View>
           </View>
         )}
         {plan.ongoing.length > 0 && (
@@ -290,14 +339,29 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
           </View>
         )}
 
-        {/* Resources: the same boxes as the site, two to a row, grouped the same way. */}
-        {resources.length > 0 && (
+        {/* The few resources that matter most now: the ones this semester's and next semester's goals point to, in the
+            plan's own order. The same boxes as the site, two to a row. */}
+        {key.length > 0 && (
+          <View>
+            <View style={s.term} minPresenceAhead={160}>
+              <Text style={s.h2}>Where to start</Text>
+              <Text style={s.fact}>for this semester's and next semester's goals</Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 9, marginTop: 7.5 }}>
+              {key.map((t) => <ResourceBox key={t.resource.id} t={t} />)}
+            </View>
+          </View>
+        )}
+        <Text style={[s.small, { marginTop: 14 }]}>A starting point, not a rulebook. Built from your answers in your own browser on {date}; nothing you entered was sent anywhere.</Text>
+
+        {/* Everything else, after the core pages: grouped the same way as the site's Resources tab. */}
+        {rest.length > 0 && (
           <View break>
-            <Text style={[s.h2, { fontSize: 18 }]}>Resources</Text>
+            <Text style={[s.h2, { fontSize: 18 }]}>All resources</Text>
             <Text style={[s.body, { marginTop: 3 }]}>
-              Tied to your plan, plus everything for year {input.year} students in your major. Check each program's site for current dates and eligibility.
+              The rest of the resources tied to your plan, plus everything for year {input.year} students in your major. Check each program's site for current dates and eligibility.
             </Text>
-            {byGroup(resources).map((g) => (
+            {byGroup(rest).map((g) => (
               <View key={g.id}>
                 <View style={[s.term, { marginBottom: 7.5 }]} minPresenceAhead={120}>
                   <Text style={s.h2}>{g.label}</Text>
@@ -310,7 +374,6 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
             ))}
           </View>
         )}
-        <Text style={[s.small, { marginTop: 14 }]}>A starting point, not a rulebook. Built from your answers in your own browser on {date}; nothing you entered was sent anywhere.</Text>
         {footer}
       </Page>
     </Document>

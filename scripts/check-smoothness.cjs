@@ -20,8 +20,12 @@ const share = Buffer.from(JSON.stringify({ v: 1, m: "computer-science", y: 2, q:
   const browser = await chromium.launch();
   const rows = [];
   try {
+    // Optional filters: node scripts/check-smoothness.cjs [device word] [cpu slowdown], e.g. "large 6".
+    const [onlyDevice, onlySlow] = process.argv.slice(2);
     for (const [device, vp] of [["desktop 1440x900", { width: 1440, height: 900 }], ["phone 390x844", { width: 390, height: 844 }], ["large 2560x1440", { width: 2560, height: 1440 }]]) {
+      if (onlyDevice && !device.startsWith(onlyDevice)) continue;
       for (const slow of [1, 4, 6]) {
+        if (onlySlow && String(slow) !== onlySlow) continue;
         const page = await browser.newPage({ viewport: vp, deviceScaleFactor: device.startsWith("phone") ? 3 : 1 });
         const cdp = await page.context().newCDPSession(page);
         const ready = async () => {

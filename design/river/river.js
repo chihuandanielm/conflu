@@ -8,9 +8,9 @@
 // The picture is never seen from straight above. Glyphs get larger toward the viewer, water is shaded
 // with a ten-step density ramp, land is drawn in sand, and the only green thing is the fish.
 //
-// See design/RIVER.md for how it works and how to tune it.
+// See design/RIVER.md for how it works and how to tune it. The app uses the copy in src/app/river/.
 
-export const PALETTE = { sage: "#E0E7DA", blue: "#466995", green: "#00A37D", sand: "#E6B989" };
+export const PALETTE = { sage: "#E0E7DA", blue: "#456894", green: "#00A37D", sand: "#E6B989" };
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -319,7 +319,9 @@ export function waterInk(c, t) {
   let ink = 0.14 + 0.32 * mid + 0.42 * n + 0.24 * slow * mid;
   if (c.edge > 0.9) ink = Math.min(ink, 0.16 + 0.12 * n); // pale shallows along each bank
   ink = lerp(ink, 0.3 + 0.12 * n, c.fog * c.fog); // far water flattens to a light shimmer
-  return lerp(ink, 0.34 + 0.1 * n + 0.08 * slow, c.thin); // thin channels are one calm tone
+  // Thin channels are one calm tone. Clamped to the documented 0..1: the glyph index was already clamped, so the
+  // picture is unchanged (near banks the sum dips below 0, which always drew the blank glyph).
+  return clamp(lerp(ink, 0.34 + 0.1 * n + 0.08 * slow, c.thin), 0, 1);
 }
 // Wave trains: [wavenumber (rad per world unit), speed (units per second), weight, slant across the channel, phase, wobble].
 // Wavelengths run from about 17 units down to 0.5, so there is detail to resolve at every zoom.
@@ -370,6 +372,13 @@ export function createRiver(canvas, opt = {}) {
   let world = buildWorld(1.6), view = makeView(world);
   let cam = SCENES[opt.scene ?? "landing"](1440, 900), sceneName = opt.scene ?? "landing";
   let move = null, dirty = true, hints = {};
+  // Only the band from the top of the screen down to `clipBottom` is visible (the rest is covered by an opaque page):
+  // rows below it are neither laid out nor drawn. The camera and its framing still use the full screen, so changing the
+  // clip never moves the picture. Infinity = the whole screen.
+  let clipBottom = Infinity;
+  // Under a clip the canvas element and its bitmap are only as tall as the band (rounded up to 64px, so scrolling does not
+  // reallocate every frame): the browser copies the whole bitmap every frame, so a smaller one is the real saving.
+  let bandH = Infinity;
   let masks = [], maskAlpha = 1, maskFrom = 1, maskTo = 1, maskStart = 0, maskMs = 0;
   let raf = 0, last = 0, running = false, destroyed = false;
   let speed = 1, speedTarget = 1, flowT = 0, clock = 0;
@@ -388,6 +397,7 @@ export function createRiver(canvas, opt = {}) {
     const yh = view.yh, RH = view.ridgeHeight();
     rowsN = 0; let total = 0;
     const push = (y, fs) => {
+      if (y - fs > clipBottom) return; // under the opaque page: nothing to see
       const q = Math.round(fs * 2) / 2, cw = q * adv, i = rowsN++;
       rowY[i] = y; rowFs[i] = q; rowCw[i] = cw; rowCols[i] = Math.ceil(W / cw) + 1; rowOff[i] = total;
       rowFont[i] = `400 ${q}px ${font}`;
@@ -434,12 +444,14 @@ export function createRiver(canvas, opt = {}) {
 
   function resize() {
     const r = canvas.getBoundingClientRect();
-    W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
+    // With a clip the element is only the band, but the picture is still framed for the whole screen.
+    W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(bandH < Infinity ? (globalThis.innerHeight || r.height) : r.height));
     dpr = Math.min(dprCap, globalThis.devicePixelRatio || 1);
     // Bigger screens get proportionally bigger glyphs, so the amount of work per frame is about the same everywhere.
     const b = clamp(Math.sqrt((W * H) / 1.3e6), 1, 2.2);
     if (b !== base) { quality = Math.max(quality / base, 1) * b; base = b; }
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(Math.min(H, bandH) * dpr);
+    seen = `${Math.round(r.width)}x${Math.round(bandH < Infinity ? bandH : r.height)}`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.font = `400 20px ${font}`;
     adv = ctx.measureText("M".repeat(40)).width / 800;
@@ -461,7 +473,7 @@ export function createRiver(canvas, opt = {}) {
       const sp = world.spots[Math.floor(hash(i + 1, cycle, k + 11) * world.spots.length)];
       if (!view.project(sp.x, sp.y)) continue;
       if (view.sk < 3.4 || view.sk > 260) continue; // too far to see, or in your face
-      if (view.sx < 40 || view.sx > W - 40 || view.sy < view.yh + 24 || view.sy > H - 8) continue;
+      if (view.sx < 40 || view.sx > W - 40 || view.sy < view.yh + 24 || view.sy > Math.min(H, clipBottom) - 8) continue;
       if (inMask(view.sx, view.sy) || inMask(view.sx, view.sy - 40)) continue;
       return sp;
     }
@@ -556,7 +568,7 @@ export function createRiver(canvas, opt = {}) {
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = PALETTE.sage;
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillRect(0, 0, W, Math.min(H, clipBottom));
     ctx.textBaseline = "middle"; ctx.textAlign = "left";
     for (let pass = 0; pass < 2; pass++) {
       ctx.fillStyle = pass ? PALETTE.blue : PALETTE.sand;
@@ -606,7 +618,12 @@ export function createRiver(canvas, opt = {}) {
   }
   function stop() { running = false; cancelAnimationFrame(raf); }
   const onVis = () => (document.hidden ? stop() : start());
-  const ro = typeof ResizeObserver === "function" ? new ResizeObserver(() => resize()) : null;
+  // Our own clip changes the element's height and has already resized; only react to real changes of the viewport.
+  let seen = "";
+  const ro = typeof ResizeObserver === "function" ? new ResizeObserver(() => {
+    const r = canvas.getBoundingClientRect(), key = `${Math.round(r.width)}x${Math.round(r.height)}`;
+    if (key !== seen) { seen = key; resize(); }
+  }) : null;
   ro?.observe(canvas);
   document.addEventListener("visibilitychange", onVis);
   resize();
@@ -640,6 +657,21 @@ export function createRiver(canvas, opt = {}) {
      * Layout hints passed to every scene (for example { sky: 320 }: the text above the river is 320px tall).
      * The current scene re-frames at once; a move in progress re-aims.
      */
+    /**
+     * Draw only the band from the top down to `bottom` (CSS px), because an opaque page covers the rest; null for the
+     * whole screen. The framing does not change, so the picture never jumps; only the hidden part stops costing time.
+     */
+    setClip(bottom) {
+      const next = bottom == null ? Infinity : Math.max(0, bottom);
+      if (next === clipBottom) return;
+      clipBottom = next; dirty = true;
+      const band = next === Infinity ? Infinity : Math.max(64, Math.ceil(next / 64) * 64);
+      if (band !== bandH) {
+        bandH = band;
+        if (canvas.style) canvas.style.height = band === Infinity ? "" : `${band}px`;
+        resize(); // keeps the framing (full-screen height), shrinks or restores the bitmap
+      } else if (reduce || !running) draw(now());
+    },
     setHints(h) { hints = { ...hints, ...h }; if (move) move.to = SCENES[move.name](W, H, hints); else { cam = SCENES[sceneName](W, H, hints); dirty = true; if (reduce) draw(now()); } },
     /** 1 is the normal current. Raise it briefly for emphasis; it eases there and back. */
     setCurrent(v) { speedTarget = v; },

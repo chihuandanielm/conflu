@@ -1,6 +1,6 @@
 // Colour and contrast rules (design/DESIGN.md §2), read from the tokens in styles.css and the class names in the app.
-// Four colours exist. Only blue on sage and sage on blue may carry text, at 4.4:1 or better (blue on sage is 4.47:1;
-// the design keeps sentences at 17px or larger and facts at 13px mono because of it).
+// Four colours exist. Only blue on sage and sage on blue may carry text, at WCAG AA (4.5:1) or better: blue on sage is
+// 4.54:1. Sentences stay at 17px or larger and facts at 13px mono.
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -13,8 +13,8 @@ const lum = (hex: string) => {
 };
 const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
 
-const FOUR = { sage: "#E0E7DA", blue: "#466995", green: "#00A37D", sand: "#E6B989" };
-const FLOOR = 4.4;
+const FOUR = { sage: "#E0E7DA", blue: "#456894", green: "#00A37D", sand: "#E6B989" };
+const FLOOR = 4.5; // WCAG AA for small text
 
 const files = (dir: string): string[] => readdirSync(dir).flatMap((f) => {
   const p = join(dir, f);
@@ -35,7 +35,7 @@ describe("colour (DESIGN.md §2)", () => {
     expect(css).not.toMatch(/rgba?\(|hsla?\(|oklch\(|box-shadow/);
   });
 
-  it.each([["blue", "sage"], ["sage", "blue"]])("%s text on %s is at least 4.4:1", (fg, bg) => {
+  it.each([["blue", "sage"], ["sage", "blue"]])("%s text on %s is at least 4.5:1 (WCAG AA)", (fg, bg) => {
     expect(ratio(token(fg), token(bg))).toBeGreaterThanOrEqual(FLOOR);
   });
 

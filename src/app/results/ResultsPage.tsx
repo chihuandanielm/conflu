@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { startTransition, useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals } from "../data/dataset.ts";
@@ -61,6 +61,18 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   // Arrival: the camera turns to face downstream and rises; the page fades in during the last second of the move, and
   // the river dissolves out from under the title and the buttons. Coming back to results needs no move.
   const [shown, setShown] = useState(() => reduce || river.scene === "results");
+  // Staged mount: the header, the tabs and "Where you're headed" render at once, so the camera move starts without a
+  // stall; the rest renders as an interruptible update just after, while the page is still invisible, so it is ready
+  // before the page fades in. (Without a river, as in unit tests, or with reduced motion, everything renders at once.)
+  const [settled, setSettled] = useState(() => reduce || river.scene === "results" || river.scene === null);
+  const leaving = useRef(false);
+  /** Draw only the river the student can see: the band above the tabs (the page below is opaque sage). */
+  const clip = useCallback(() => {
+    if (leaving.current) return;
+    const top = tablist.current?.getBoundingClientRect().top ?? 0;
+    if (top <= 0) { river.pause(); river.setClip(0); return; }
+    river.resume(); river.setClip(top);
+  }, [river]);
   const frame = useCallback((fadeMs = 0) => {
     const pad = (el: HTMLElement | null, p: number) => {
       const r = el?.getBoundingClientRect();
@@ -71,27 +83,31 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   useEffect(() => {
     h1.current?.focus({ preventScroll: true });
     river.setHints({ sky: titleBox.current?.getBoundingClientRect().bottom ?? 0 });
-    if (river.scene === "results" || reduce) { river.setScene("results"); frame(); setShown(true); return; }
+    if (river.scene === "results" || reduce) { river.setScene("results"); frame(); setShown(true); clip(); return; }
     void river.goTo("results", { ms: ARRIVE_MS });
+    const raf = requestAnimationFrame(() => startTransition(() => setSettled(true)));
     const t = window.setTimeout(() => { frame(700); setShown(true); }, WORDS_AT);
-    return () => window.clearTimeout(t);
+    // Once the page has faded in and covers everything below the tabs, stop drawing the river there.
+    const c = window.setTimeout(clip, WORDS_AT + 600);
+    return () => { cancelAnimationFrame(raf); window.clearTimeout(t); window.clearTimeout(c); };
     // Once, on arrival.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // The river is only seen at the top: stop drawing once it has scrolled away, and keep it clear of the header's words.
+  // The river is only seen above the tabs: draw just that band, follow it as the page scrolls, pause once it has
+  // scrolled away, and keep the header's words clear. Leaving the results gives the river the whole screen back.
   useEffect(() => {
     let raf = 0;
     const on = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        if (window.scrollY > window.innerHeight * 0.7) river.pause();
-        else { river.resume(); frame(); }
-      });
+      raf = requestAnimationFrame(() => { if (!shown) return; clip(); frame(); });
     };
     window.addEventListener("scroll", on, { passive: true });
     window.addEventListener("resize", on);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", on); window.removeEventListener("resize", on); river.resume(); };
-  }, [river, frame]);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", on); window.removeEventListener("resize", on); };
+  }, [river, frame, clip, shown]);
+  useEffect(() => () => { river.setClip(null); river.resume(); }, [river]);
+  /** Before leaving (the page fades out over the river), give the river the whole screen again. */
+  const leave = (go: () => void) => () => { leaving.current = true; river.setClip(null); river.resume(); go(); };
 
   const replan = useCallback((next: SavedPlan, message: (moved: number) => string) => {
     const d = diff(saved.plan, next.plan);
@@ -133,8 +149,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   const input = useMemo(() => toPlanInput(answers, plan.meta.generatedFor, { completedGoals: saved.completedGoals }), [answers, plan, saved.completedGoals]);
   const counts = useMemo(() => ({
     map: new Set(plan.terms.flatMap((t) => t.items.map((it) => it.goalId))).size,
-    resources: tailoredResources(plan, input).length,
-  }), [plan, input]);
+    // Counting resources runs the eligibility rules over every resource: part of the staged update.
+    resources: settled ? tailoredResources(plan, input).length : null,
+  }), [plan, input, settled]);
   const fullModel = useMemo(() => mapModel(plan, outcomeText(answers.trackId)), [plan, answers.trackId]);
   const termOf = useCallback((id: string) => findItem(plan, id)?.t.label, [plan]);
 
@@ -176,8 +193,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
             <Button variant="outline" small onClick={() => void share()}>Share link</Button>
-            <Button variant="outline" small onClick={onEdit}>Edit answers</Button>
-            <Button variant="text" small onClick={onStartOver}>Start over</Button>
+            <Button variant="outline" small onClick={leave(onEdit)}>Edit answers</Button>
+            <Button variant="text" small onClick={leave(onStartOver)}>Start over</Button>
           </div>
           {shareUrl && (
             <div className="mt-3 max-w-[640px] bg-sage">
@@ -203,7 +220,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                 className={`min-h-12 flex-1 px-5 transition-colors duration-[140ms] ease-confluence min-[600px]:flex-none
                   ${tab === t.id ? "bg-blue text-sage" : "bg-sage text-blue hover:bg-blue hover:text-sage"}`}>
                 {t.label}
-                {t.id !== "plan" && <span className="fact ml-2">{counts[t.id]}</span>}
+                {t.id !== "plan" && counts[t.id] !== null && <span className="fact ml-2">{counts[t.id]}</span>}
               </button>
             ))}
           </div>
@@ -222,6 +239,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                     </div>
                   )}
                   <div className="py-10"><GoalPath plan={plan} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} /></div>
+                  {settled && <>
                   <hr className="shore" />
                   <div className="py-10"><HaveNeed plan={plan} answers={answers} onOpen={openItem} /></div>
                   <div className="pb-10"><StartHere term={plan.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} /></div>
@@ -268,6 +286,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                       </div>
                     </>
                   )}
+                  </>}
                 </>
               )}
 

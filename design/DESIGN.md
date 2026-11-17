@@ -27,13 +27,13 @@ Four colours exist. Nothing else: no white, no black, no tints made with opacity
 | Token | Hex | Job | Share of a screen |
 |---|---|---|---|
 | `--sage` | `#E0E7DA` | Paper. Every background. | most of it |
-| `--blue` | `#466995` | Key ink. Everything read or pressed: all text, all rules and borders, water, the one solid block per screen. | about a tenth |
+| `--blue` | `#456894` | Key ink. Everything read or pressed: all text, all rules and borders, water, the one solid block per screen. | about a tenth |
 | `--sand` | `#E6B989` | Land ink. Ground in the river picture, the dotted "shore" rule between parts of a page, the bar beside a notice. | a little |
 | `--green` | `#00A37D` | Life ink. The fish, "you are here", and anything the student has done. | almost none |
 
 Rules that follow from the jobs:
 
-1. **Text is blue on sage, or sage on blue. Never anything else.** Blue on sage is 4.47:1. Sand and green are too faint on sage to carry words (1.42:1 and 2.54:1), so they never do.
+1. **Text is blue on sage, or sage on blue. Never anything else.** Blue on sage is 4.54:1. Sand and green are too faint on sage to carry words (1.42:1 and 2.54:1), so they never do.
 2. **Green is never a background, a border or a shadow.** If something is green, it is alive (a fish), it is the student (the "you are here" dot, the fish on the progress line), or it is finished (a done dot, a done stream, a ticked box). One glance at a page should show where you are and what you've finished, and nothing else should compete for that.
 3. **Sand never means "selected" or "important".** It is ground. In the interface it only separates (the dotted shore rule) or sits beside a notice.
 4. **Selected is solid blue with sage text.** No green edge, no offset block, no glow.
@@ -41,7 +41,7 @@ Rules that follow from the jobs:
 6. **Meaning never rests on colour alone.** A must-do has a filled dot and the word "must-do". A done goal has a green dot and the word "done". The eight kinds of goal are told apart by a glyph and a word (section 6), not by eight colours.
 7. Tone comes from **density and weight**: more or darker glyphs in the river, a 3px line for a must-do against 1.5px for the rest.
 
-Contrast, plainly: 4.47:1 is just under the 4.5:1 that WCAG AA asks for small text and well over the 3:1 it asks for large text and controls. So body text is never smaller than 17px, the only smaller text is 13px mono for short facts (hours, terms, kinds), and nothing is ever lighter than full blue. `src/app/contrast.test.ts` must be rewritten for the four tokens with 4.4 as the floor for blue on sage, and it should fail if any other text pair appears.
+Contrast, plainly: blue on sage is 4.54:1, which passes the 4.5:1 that WCAG AA asks for small text. (The first handoff used `#466995`, 4.47:1, just under that line; the blue was taken one step darker, `#456894`, which looks the same and passes.) Body text is still never smaller than 17px, the only smaller text is 13px mono for short facts (hours, terms, kinds), and nothing is ever lighter than full blue. `src/app/contrast.test.ts` checks the four tokens with 4.5 as the floor for blue on sage, and fails if any other text pair appears.
 
 ## 3. Type
 
@@ -237,8 +237,10 @@ US Letter, sage background on every page, 54px (40pt) side margins. `prototypes/
 |---|---|
 | **1. The map** | A still ASCII banner of the river across the top (`asciiFrame("banner", ...)`, two overlaid mono text blocks, sand then blue, 7px). "Your plan", the summary line, the outcome. Then the confluence map, two-sided, fitted to the rest of the page with `maxHeight`. This page alone should tell a student where they are going and in what order. |
 | **2. Where you stand** | What you have / What you need in two columns. The "Start here" block, solid blue. Notices with the sand bar. Then "This semester" begins. |
-| **2 onward. Every semester** | A semester heading on a dotted sand rule. Each goal is drawn as a piece of its stream: a vertical line down the left (3px for a must-do), a dot on it, and to the right the title, the fact line, one sentence of why, **the steps as empty boxes to tick with a pen** in two columns, "Done when", and up to three links. A goal that continues from an earlier semester is named again with "keep going", not repeated in full. A goal block never splits across pages. |
-| **Last** | "When you have more time", "Habits to keep". Then **Resources**: the same boxes as the site (7.4b), two to a row, grouped the same way. In print the address is written out in full in mono under the name, because a printed link cannot be clicked; it is still a live link in the file. A box never splits across pages. |
+| **2 onward. This semester and next** | A semester heading on a dotted sand rule. Each goal is drawn as a piece of its stream: a vertical line down the left (3px for a must-do), a dot on it, and to the right the title, the fact line, one sentence of why, **the steps as empty boxes to tick with a pen** in two columns, "Done when", and up to three links. A goal that continues from an earlier semester is named again with "keep going", not repeated in full. A goal block never splits across pages. |
+| **Then. Later semesters** | One heading, "Later semesters", then each later semester as a mono label and its goals in brief, two columns: dot, title, fact line ("keep going" for one that continues). Their steps come into the PDF as the semester gets close. |
+| **Then** | "When you have more time" (two columns), "Habits to keep". Then **Where to start**: the resources this semester's and next semester's goals point to, in the plan's order, at most 12, as the same boxes as the site (7.4b), two to a row. In print the address is written out in full in mono under the name, because a printed link cannot be clicked; it is still a live link in the file. A box never splits across pages. **Everything up to here (the core) is at most 10 pages**, even for the longest plan (a first-year "by graduation" plan is 9); `pdf.test.tsx` checks it. |
+| **Appendix** | On a new page after the core: **All resources**, every other resource tied to the plan or open to the student's year and major, grouped the same way as the site's Resources tab. It can run long; it never pushes the core past 10 pages. |
 | **Every page** | A footer on a dotted sand rule: "Career Pathway Mapper  a general trajectory, not a blueprint" on the left; dataset, engine and "page 2 of 11" on the right, in mono. |
 
 Type in the PDF: Quantico for everything read, Plex Mono for facts and the banner. Sizes: title 26pt, outcome 16.5pt, section headings 14pt, goal titles 10.5pt, body 8.5 to 9.5pt, facts 7.5pt, banner 5.25pt. All real, selectable text. The banner is decoration made of text: keep it out of the reading order if the renderer allows (see the handoff notes).

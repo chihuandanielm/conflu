@@ -46,7 +46,7 @@ describe("river: waterInk", () => {
   });
   it("has ten glyphs per direction and only the four colours", () => {
     for (const ramp of WATER_RAMP) expect(ramp).toHaveLength(10);
-    expect(PALETTE).toEqual({ sage: "#E0E7DA", blue: "#466995", green: "#00A37D", sand: "#E6B989" });
+    expect(PALETTE).toEqual({ sage: "#E0E7DA", blue: "#456894", green: "#00A37D", sand: "#E6B989" });
   });
 });
 

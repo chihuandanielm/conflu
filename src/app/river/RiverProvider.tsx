@@ -11,6 +11,8 @@ export interface RiverApi {
   setScene(name: SceneName): void;
   setHints(h: SceneHints): void;
   setMasks(rects: Rect[], opt?: { fadeMs?: number }): void;
+  /** Draw only the band from the top down to `bottom` px, because an opaque page covers the rest; null for all of it. */
+  setClip(bottom: number | null): void;
   celebrate(seconds?: number): void;
   pause(): void;
   resume(): void;
@@ -47,6 +49,7 @@ export function RiverProvider({ scene = "landing", children }: { scene?: SceneNa
     setScene: (name) => { target.current = name; river.current?.setScene(name); },
     setHints: (h) => river.current?.setHints(h),
     setMasks: (rects, opt) => river.current?.setMasks(rects, opt),
+    setClip: (b) => river.current?.setClip(b),
     celebrate: (s) => river.current?.celebrate(s),
     pause: () => river.current?.pause(),
     resume: () => river.current?.resume(),
@@ -64,7 +67,7 @@ export function RiverProvider({ scene = "landing", children }: { scene?: SceneNa
 
 /** Outside a provider (a component rendered on its own in a test), the river is simply not there. */
 const NONE: RiverApi = {
-  goTo: () => Promise.resolve(), setScene: () => {}, setHints: () => {}, setMasks: () => {}, celebrate: () => {}, pause: () => {}, resume: () => {},
+  goTo: () => Promise.resolve(), setScene: () => {}, setHints: () => {}, setMasks: () => {}, setClip: () => {}, celebrate: () => {}, pause: () => {}, resume: () => {},
   scene: null, reducedMotion: false,
 };
 
