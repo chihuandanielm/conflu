@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.8 design (engine 0.8.1: goals that need semesters left close before the final semester, and late goals explain themselves for now; 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.9 design (engine 0.9.0: goals can be crossed out as "Not for me" without holding back what depends on them, a draft map shows more ranked options per term before the student finalizes, and every item has an importance tier from recruiter-backed weights; 0.8.1: goals that need semesters left close before the final semester, and late goals explain themselves for now; 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -122,6 +122,8 @@ Each experience, skill, or credential answer lists `completes: [{goal, strength}
 | `identity` | Optional multi-select | [] |
 | `experience`, `skills`, `credentials` | Checklists | [] |
 | `completedGoals` | Goals checked off on the map | [] |
+| `skippedGoals` | Goals crossed out as "Not for me" on the map (0.9.0). A goal id drops every yearly round; `id@Y2` drops one round | [] |
+| `draft` | The draft map (0.9.0): the plan plus more options per term, before the student finalizes | false |
 | `previousPlan` | Last plan's goal → term map | {} |
 
 ---
@@ -176,6 +178,10 @@ For every goal:
 **Final year (engine 0.8.0).** The track's `outcome` (`job` or `grad-school`) makes `ap-fulltime` or `ap-grad-apps` a must-do once the student is in year 4, and a "by graduation" plan also covers G1–G2, where only goals that run past graduation (and the steps they need) can go.
 
 **Horizon squeeze.** `runway = termsInHorizon / termsUntilGraduation`. `threshold = 0.45 + 0.35 × (1 − runway)`. A shorter horizon raises the bar, so a 1-year plan contains fewer, higher-impact goals instead of a compressed 4-year list.
+
+### Step 4b — Not for me (0.9.0)
+
+A goal in `skippedGoals` (or one round of it, `id@Y2`) never becomes a candidate. It isn't pulled in as a prerequisite, and it never holds back a goal that lists it as one: the student has decided the path doesn't run through it, so its dependents are ready without it (crossing out Python leaves Data structures in the plan). The plan's `skipped` list names each crossed-out goal, with `essential: true` for the track's must-dos, so the site can show it with Undo. Crossing out a must-do is allowed, with a warning that most recruiters for the track expect it. Undo is removing it from `skippedGoals`; the plan is then exactly what it was.
 
 ### Step 5 — Prerequisite closure
 
@@ -237,6 +243,12 @@ For each term from now to the horizon:
   - `pace` = remaining hours ÷ terms left in the ideal window, which spreads 100 coding problems across four terms instead of front-loading them.
 
   If it doesn't fit, a splittable goal takes what's left (at least 4 hours); otherwise it waits for a later term. Remainders under 1 hour are rounded to done.
+
+### Step 7b — The draft map (0.9.0)
+
+With `draft`, Steps 1–7 run unchanged, so the time-sized plan inside the draft is exactly the final plan. Goals below the priority threshold become candidates too, though they are never scheduled. Then each term gets extra options, up to `draftCapScale` × the goal cap (at most `draftCapMax`, not counting must-dos), highest score first. Each option goes in the first term inside its ideal window, or later if that term is full. It must be ready by then (its prerequisites done, planned earlier, or crossed out) and not overdue. Options carry `option: true` and take no hours. They leave the queue, so nothing is listed twice. The student crosses out what they don't want and marks done what they've done; finalizing re-plans without `draft`.
+
+**Importance (0.9.0).** Every item has `importance`: `must` (a track must-do, or an essential step it needs now), `high` (weight ≥ 0.85), `medium` (≥ 0.65), or `low`. Weights come from what the track's recruiters look for (docs/RECRUITER_PRIORITIES.md), so the map can list the most important options first.
 
 ### Step 8 — Backlog (the "up next" queue)
 
@@ -337,6 +349,8 @@ From the goal's `resources`:
 | staleTerms | 3 | How long past its ideal window a goal counts as a stale catch-up |
 | staleDiscount | 0.6 | Share of score stale catch-ups keep (lower puts an upper-year student's own goals further ahead) |
 | blockingBoost | 1.4 | Priority for prerequisites of goals due now or next term |
+| draftCapScale / draftCapMax | 2 / 10 | More options per term on the draft map (0.9.0) |
+| importanceHigh / importanceMedium | 0.85 / 0.65 | Weight needed for "high" and "medium" importance |
 
 Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example students, adjust, and repeat. Bump `ENGINE_VERSION` when behavior changes.
 
@@ -436,8 +450,10 @@ Drawn by `layoutConfluence()` in `src/app/map/confluence-map.js` (design/DESIGN.
 25. Nothing impossible before graduation is "next in line" for a senior (junior-summer internships, co-ops).
 26. First-year-only goals (first career fair, joining organizations, design teams) stay out of upper-year plans.
 28. Engine 0.8.0 (`test/engine.test.ts`): the semester decides the starting term; no term exceeds the goal cap (must-dos and essential steps aside); the queue never repeats the plan, hides past stages, and names yearly rounds; notices are true for the student; gender answers only add programs for that gender.
+31. Engine 0.9.0 (`test/draft.test.ts`): a crossed-out goal leaves the plan and the queue, is listed for Undo, and never holds back what depends on it; crossing out a must-do warns; one yearly round can be crossed out; the draft map is the final plan unchanged plus ranked, non-repeating, timely options; every item has the right importance tier.
+32. `test/recruiter.test.ts`: every track names what its recruiters look for, with https sources, and its weights follow docs/RECRUITER_PRIORITIES.md.
 30. Engine 0.8.1: nothing that needs semesters left (advisor planning, career research, a minor or certificate, an officer term, aid eligibility, starting research, study abroad, fellowship advising) starts in the final semester; a goal done late never explains itself as "early".
-29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 23 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome). Must report 0 issues.
+29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 26 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome; 0.9.0: the draft never changes the plan, options never repeat, crossed-out goals never linger or hold anything back). Must report 0 issues.
 27. New Brunswick plans match `test/fixtures/nb-plans-baseline.json`, recorded with the current engine by `scripts/nb-baseline.ts`; re-record only for intended planning changes.
 
 Add a test for every bug found in review.

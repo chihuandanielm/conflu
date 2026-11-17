@@ -99,6 +99,10 @@ export interface PlanInput {
   skills?: string[];
   credentials?: string[];
   completedGoals?: string[];           // goals checked off on the map
+  /** Goals crossed out as "Not for me" (engine 0.9.0): a goal id drops every yearly round, "id@Y2" drops one. */
+  skippedGoals?: string[];
+  /** The draft map (engine 0.9.0): more options per term, for the student to cross out or mark done before finalizing. */
+  draft?: boolean;
   previousPlan?: Record<string, TermCode>; // goalId -> term, for plan stability
 }
 
@@ -111,6 +115,11 @@ export interface PlanItem {
   late?: boolean;
   /** A quick, time-critical step placed on top of the goal cap (engine 0.8.0): it unlocks a must-do this term, or it has a deadline now. */
   essential?: boolean;
+  /** How much this matters for the career path (engine 0.9.0): must = a must-do or essential step; high = weight >= 0.85;
+   *  medium = weight >= 0.65; low = the rest. */
+  importance: "must" | "high" | "medium" | "low";
+  /** Draft map only (engine 0.9.0): an extra option beyond the time-sized plan. Takes no hours; finalizing drops it. */
+  option?: boolean;
 }
 
 export interface PlanTerm { code: TermCode; label: string; capacityHours: number; usedHours: number; summerBlock: boolean; items: PlanItem[] }
@@ -129,5 +138,7 @@ export interface Plan {
    */
   backlog: { goalId: string; title: string; reason: string; kind: "continues" | "next" | "optional" | "not-now" | "past" }[];
   done: string[];
+  /** Goals the student crossed out (engine 0.9.0), so the site can list them with Undo. essential = a must-do for the track. */
+  skipped: { goalId: string; title: string; essential: boolean }[];
   warnings: string[];
 }
