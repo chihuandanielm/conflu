@@ -1,0 +1,93 @@
+/* Confluence design tokens.
+   Three inks on sage paper. Each ink has one job, and nothing borrows another's:
+     blue   the key plate: everything you read, every line, every control
+     sand   the land plate: ground in the river picture, and dotted "shore" rules between parts of a page
+     green  the life plate: the fish, where you are, what you have done. Never a background, never a border.
+   No other colours, no opacity tints, no gradients, no shadows. Tone comes from glyph density and line weight. */
+
+@font-face { font-family: "Quantico"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/quantico-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Quantico"; font-weight: 700; font-display: swap; src: url("./prototypes/fonts/quantico-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-display: swap; src: url("./prototypes/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); }
+
+:root {
+  --sage: #E0E7DA;
+  --blue: #466995;
+  --green: #00A37D;
+  --sand: #E6B989;
+
+  --font-text: "Quantico", system-ui, sans-serif;        /* everything meant to be read */
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace; /* the river, small facts (hours, terms, kinds), key hints */
+
+  --text-fact: 0.8125rem;  /* 13px, mono only */
+  --text-small: 0.9375rem; /* 15px */
+  --text-body: 1.0625rem;  /* 17px: blue on sage is 4.47:1, so body text never goes smaller than this */
+  --text-lead: 1.25rem;
+  --text-h2: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  --text-h1: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --text-hero: clamp(2.25rem, 1.3rem + 4.4vw, 4rem);
+
+  --line: 1.5px;   /* every rule and border */
+  --heavy: 3px;    /* a must-do, the current term */
+  --u: 8px;        /* spacing steps: 8, 16, 24, 40, 64, 96 */
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-press: 140ms;
+  --t-ui: 260ms;     /* a panel, a question, a row */
+  --t-screen: 520ms; /* a whole screen fading while the river moves */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--sage); color: var(--blue);
+  font-family: var(--font-text); font-size: var(--text-body); line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, ol { margin: 0; }
+h1, h2, h3 { font-weight: 400; line-height: 1.15; text-wrap: balance; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+:focus-visible { outline: var(--line) solid var(--blue); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
+
+/* Small facts: hours, terms, kinds of goal, counts. */
+.fact { font-family: var(--font-mono); font-size: var(--text-fact); letter-spacing: 0.02em; }
+
+/* A shore: the dotted sand rule between parts of a page. */
+.shore { border: 0; height: 0; margin: 0; border-top: var(--line) dotted var(--sand); }
+
+/* Buttons. Square, flat, one weight of line. A screen has at most one solid blue button. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border: var(--line) solid var(--blue); border-radius: 0;
+  background: var(--sage); color: var(--blue); font: inherit; font-size: var(--text-body); cursor: pointer; text-decoration: none;
+  transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), transform var(--t-press) var(--ease);
+}
+.btn:hover { background: var(--blue); color: var(--sage); }
+.btn:active { transform: translateY(1px); }
+.btn--solid { background: var(--blue); color: var(--sage); font-weight: 700; }
+.btn--solid:hover { background: var(--sage); color: var(--blue); }
+.btn--text { border-color: transparent; padding: 0 8px; text-decoration: underline; text-underline-offset: 4px; }
+.btn--text:hover { background: var(--sage); color: var(--blue); border-color: var(--blue); }
+.btn[disabled] { border-style: dashed; background: var(--sage); color: var(--blue); font-weight: 400; cursor: not-allowed; transform: none; }
+/* On a solid blue block the roles swap. */
+.on-blue .btn { border-color: var(--sage); background: var(--blue); color: var(--sage); }
+.on-blue .btn:hover { background: var(--sage); color: var(--blue); }
+
+/* Drafting corners: four small marks that frame a block without boxing it in. */
+.corners { position: relative; }
+.corners::before, .corners::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(var(--blue), var(--blue)) left top / 14px var(--line) no-repeat, linear-gradient(var(--blue), var(--blue)) left top / var(--line) 14px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) right top / 14px var(--line) no-repeat, linear-gradient(var(--blue), var(--blue)) right top / var(--line) 14px no-repeat; }
+.corners::after { transform: scaleY(-1); }
+
+/* The mark beside a goal: an open ring, a solid dot for a must-do, a green dot once done. */
+.dot { flex: none; width: 11px; height: 11px; border: var(--line) solid var(--blue); border-radius: 50%; background: var(--sage); }
+.dot--must { background: var(--blue); }
+.dot--done { background: var(--green); border-color: var(--green); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

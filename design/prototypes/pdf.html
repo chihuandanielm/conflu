@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confluence prototype: the PDF</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  /* A reference for the PDF layout, at US Letter size (816 x 1056 CSS px = 612 x 792 pt). The real PDF is built with
+     @react-pdf/renderer from the same data and the same layout function; this page shows what it must look like. */
+  @page { size: 8.5in 11in; margin: 0; }
+  body { background: var(--sage); font-size: 13px; line-height: 1.4; }
+  .sheet { position: relative; width: 816px; height: 1056px; margin: 24px auto; padding: 44px 54px 62px; background: var(--sage); outline: 1.5px solid var(--blue); overflow: hidden; page-break-after: always; }
+  @media print { .sheet { margin: 0; outline: 0; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  .foot { position: absolute; left: 54px; right: 54px; bottom: 26px; display: flex; justify-content: space-between; padding-top: 8px; border-top: 1.5px dotted var(--sand); font-family: var(--font-mono); font-size: 9.5px; }
+  .banner { position: relative; height: 104px; margin: -14px -14px 0; overflow: hidden; }
+  .banner pre { position: absolute; inset: 0; margin: 0; font-family: var(--font-mono); font-size: 7px; line-height: 8px; white-space: pre; }
+  .banner .s { color: var(--sand); } .banner .b { color: var(--blue); }
+  h1 { font-size: 34px; margin-top: 10px; }
+  .sum { margin-top: 4px; font-size: 12px; }
+  .outcome { font-size: 22px; line-height: 1.15; margin-top: 16px; max-width: 22em; }
+  .lead { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.03em; }
+  .map { margin-top: 10px; } .map svg { display: block; margin: 0 auto; }
+  h2 { font-size: 19px; margin: 0 0 8px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .marks li { display: flex; gap: 9px; align-items: baseline; padding: 3px 0; }
+  .marks small { display: block; font-size: 11px; }
+  .dot { width: 9px; height: 9px; }
+  .start { margin-top: 20px; background: var(--blue); color: var(--sage); padding: 16px 18px; }
+  .start .step { font-size: 17px; line-height: 1.25; margin-top: 4px; }
+  .term { display: flex; align-items: baseline; gap: 12px; margin: 22px 0 4px; padding-top: 10px; border-top: 1.5px dotted var(--sand); }
+  .term:first-child { margin-top: 0; }
+  .term h2 { margin: 0; }
+  /* One goal: its stream on the left (a line and a dot), what to do on the right. */
+  .goal { position: relative; padding: 9px 0 9px 26px; break-inside: avoid; }
+  .goal::before { content: ""; position: absolute; left: 4px; top: 0; bottom: 0; border-left: 1.5px solid var(--blue); }
+  .goal--must::before { border-left-width: 3px; left: 3.2px; }
+  .goal .dot { position: absolute; left: 0; top: 13px; }
+  .goal h3 { font-size: 14px; line-height: 1.2; }
+  .goal .why { margin-top: 3px; font-size: 11.5px; }
+  .steps { margin-top: 5px; columns: 2; column-gap: 22px; }
+  .steps li { display: grid; grid-template-columns: 13px 1fr; gap: 7px; padding: 2px 0; font-size: 11.5px; break-inside: avoid; }
+  .steps li::before { content: ""; width: 10px; height: 10px; margin-top: 3px; border: 1.5px solid var(--blue); }
+  .done, .links { margin-top: 4px; font-size: 11px; }
+  .links a { text-decoration: none; }
+  .notice { margin-top: 10px; padding-left: 12px; border-left: 3px solid var(--sand); font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="pages"></div>
+<script type="module">
+import { asciiFrame } from "../river/river.js";
+import { layoutConfluence, mapSvg, LANE_GLYPH, LANE_NAME } from "../map/confluence-map.js";
+
+const which = new URLSearchParams(location.search).get("plan") ?? "cs-sophomore"; // or ?plan=polisci-senior
+const P = (await import(`./sample/${which}.js`)).default;
+await document.fonts.load('13px "Quantico"'); await document.fonts.load('7px "IBM Plex Mono"');
+
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const fact = (it) => [`${LANE_GLYPH[it.lane]} ${LANE_NAME[it.lane]}`, `${it.hours} h`, it.gate ? "must-do" : "", it.partial ? "continues" : ""].filter(Boolean).join("  ");
+const pages = document.getElementById("pages");
+const sheets = [];
+function sheet() {
+  const s = el("section", "sheet"), body = el("div"); s.append(body);
+  s.append(el("div", "foot", `<span>Career Pathway Mapper  a general trajectory, not a blueprint</span><span class="n"></span>`));
+  pages.append(s); sheets.push(s); return body;
+}
+const room = (body) => 1056 - 62 - 44 - body.scrollHeight - 20; // px left on the page
+
+// ---------- page 1: the confluence ----------
+let body = sheet();
+const frame = asciiFrame("banner", 175, 13, { cell: [4.2, 8] });
+body.append(el("div", "banner", `<pre class="s" aria-hidden="true">${esc(frame.map((r) => r.sand).join("\n"))}</pre><pre class="b" aria-hidden="true">${esc(frame.map((r) => r.blue).join("\n"))}</pre>`));
+body.append(el("h1", "", "Your plan"), el("p", "sum", esc(P.summary)));
+body.append(el("p", "outcome", esc(P.outcome)));
+const mapBox = el("div", "map"); body.append(mapBox);
+// The map takes whatever height is left; if the plan is too full to fit, each semester shows its top goals and counts the rest.
+const L = layoutConfluence(P, { width: 708, fontSize: 10, maxHeight: room(body) - 6 });
+mapBox.innerHTML = mapSvg(L);
+// A plan with very many semesters can still be taller than the page with one row each: scale it down to fit.
+const over = L.height / (room(body) + L.height - 6);
+if (over > 1) { const svg = mapBox.firstElementChild; svg.setAttribute("width", L.width / over); svg.setAttribute("height", L.height / over); }
+
+// ---------- page 2: where you stand, and this semester in full ----------
+body = sheet();
+const first = P.terms[0].items[0];
+body.append(el("div", "two", `<div><h2>What you have</h2><ul class="marks">${P.haves.map((h) => `<li><span class="dot dot--done"></span><span>${esc(h)}</span></li>`).join("")}</ul></div>
+  <div><h2>What you need</h2><ul class="marks">${P.needs.map((n) => `<li><span class="dot"></span><span>${esc(n.label)}<small>${esc(n.detail)}</small></span></li>`).join("")}</ul></div>`));
+body.append(el("div", "start", `<p class="lead">Start here</p><p class="step">${esc(first.steps[0])}</p><p style="margin-top:6px;font-size:12px">Part of: ${esc(first.title)}</p>`));
+if (P.warnings.length) for (const w of P.warnings) body.append(el("p", "notice", esc(w)));
+body.append(el("div", "", "&nbsp;"));
+
+// ---------- every semester, every goal, with the steps as boxes to tick ----------
+function goalBlock(it) {
+  return el("article", "goal" + (it.gate ? " goal--must" : ""), `<span class="dot${it.gate ? " dot--must" : ""}"></span>
+    <h3>${esc(it.title)}</h3><p class="lead">${esc(fact(it))}</p>
+    <p class="why">${esc(it.why.slice(-1)[0] ?? "")}</p>
+    <ul class="steps">${it.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+    ${it.doneWhen ? `<p class="done"><b>Done when:</b> ${esc(it.doneWhen)}</p>` : ""}
+    ${it.resources.length ? `<p class="links lead">${it.resources.slice(0, 3).map((r) => `<a href="${esc(r.url)}">${esc(r.name)}</a>`).join("  /  ")}</p>` : ""}`);
+}
+const told = new Set(); // a goal that continues is described once, then named
+function place(node, keepWithNext = 0) {
+  body.append(node);
+  if (room(body) < keepWithNext) { node.remove(); body = sheet(); body.append(node); }
+}
+P.terms.forEach((t, i) => {
+  place(el("div", "term", `<h2>${esc(i ? t.label : "This semester")}</h2><span class="lead">${esc(i ? `${t.items.length} goals` : `${t.label.toLowerCase()}  sized to your ${P.weeklyHours} free hours a week`)}</span>`), 150);
+  for (const it of t.items) {
+    const again = told.has(it.goalId); told.add(it.goalId);
+    place(again ? el("article", "goal" + (it.gate ? " goal--must" : ""), `<span class="dot${it.gate ? " dot--must" : ""}"></span><h3>${esc(it.title)}</h3><p class="lead">${esc(fact(it))}  keep going</p>`) : goalBlock(it));
+  }
+});
+if (P.more.length) {
+  place(el("div", "term", `<h2>When you have more time</h2><span class="lead">start any of them whenever you like</span>`), 90);
+  place(el("ul", "marks", P.more.map((m) => `<li><span class="dot"></span><span>${esc(m.title)}</span></li>`).join("")));
+}
+if (P.ongoing.length) {
+  place(el("div", "term", `<h2>Habits to keep</h2>`), 70);
+  place(el("ul", "marks", P.ongoing.map((o) => `<li><span class="dot"></span><span>${esc(o.title)}<small>${esc(o.why)}</small></span></li>`).join("")));
+}
+sheets.forEach((s, i) => { s.querySelector(".n").textContent = `dataset ${P.meta.dataVersion}  engine ${P.meta.engineVersion}  page ${i + 1} of ${sheets.length}`; });
+document.documentElement.dataset.ready = "1";
+</script>
+</body>
+</html>
