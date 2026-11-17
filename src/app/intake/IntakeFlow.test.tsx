@@ -13,11 +13,11 @@ describe("IntakeFlow", () => {
   beforeEach(() => { localStorage.clear(); vi.useFakeTimers(); });
   afterEach(() => { vi.useRealTimers(); });
 
-  it("starts on the intro, which is also where a student says they're in college", async () => {
+  it("starts on the landing, and Start records that the student is in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
+    expect(screen.getByRole("heading", { level: 1, name: "Many streams, one plan." })).toBeInTheDocument();
     expect(screen.getByText(/general trajectory, not a blueprint/)).toBeInTheDocument();
-    expect(screen.getByText(/for current college students/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "I'm a college student, start" })); await act(async () => {});
+    fireEvent.click(screen.getByRole("button", { name: "Start" })); await act(async () => {});
     expect(heading()).toBe("What do you study?");
     expect(saved().status).toBe("college-student");
   });
@@ -133,7 +133,7 @@ describe("IntakeFlow", () => {
 
   it("edits a question from the review on the screen that asks it", async () => {
     render(<IntakeFlow onBuild={() => {}} initialAnswers={full} />);
-    fireEvent.click(screen.getByRole("button", { name: /^Edit enrollment/ })); await act(async () => {});
+    fireEvent.click(screen.getByRole("button", { name: /^Change enrollment/ })); await act(async () => {});
     expect(heading()).toBe("Where are you in school?");
     expect(screen.getByRole("button", { name: "Back to review" })).toBeInTheDocument();
   });
@@ -142,7 +142,7 @@ describe("IntakeFlow", () => {
     render(<IntakeFlow onBuild={() => {}} startAt="skills" initialAnswers={full} />);
     expect(screen.getByRole("heading", { level: 2, name: "Which skills are you comfortable with?" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /Do you have any of these certifications\?/ })).toBeInTheDocument();
-    expect(screen.getByText("Optional")).toBeInTheDocument();
+    expect(screen.getByText("optional")).toBeInTheDocument();
   });
 
   it("puts every optional, personal question on one last screen that can be skipped in one tap", async () => {

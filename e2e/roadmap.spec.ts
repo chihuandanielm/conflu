@@ -14,7 +14,7 @@ const heading = (page: Page) => page.getByRole("heading", { level: 1 });
 test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
   const seen = watch(page);
   await page.goto("./");
-  await expect(heading(page)).toContainText("semester-by-semester career plan");
+  await expect(heading(page)).toHaveText("Many streams, one plan.");
   await expect(page.getByText(/general trajectory, not a blueprint/)).toBeVisible();
 
   // The CSP (a meta tag, since GitHub Pages can't send headers) is active: an injected inline script must not run.
@@ -28,7 +28,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(ran).toBe(false);
   seen.violations.length = 0; // that probe's own violation is expected
 
-  await page.getByRole("button", { name: "I'm a college student, start" }).click();
+  await page.getByRole("button", { name: "Start", exact: true }).click();
 
   // Campus and major share a screen; picking the major moves on.
   await expect(heading(page)).toHaveText("What do you study?");

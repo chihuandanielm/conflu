@@ -1,5 +1,4 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { Check } from "lucide-react";
 import { intake } from "../../data/dataset.ts";
 import type { Answers } from "../model.ts";
 import { SingleChoice } from "./SingleChoice.tsx";
@@ -44,7 +43,7 @@ export function YearTermPicker({ a, onPick, invalid, describedBy }: {
   if (editing || !year) {
     return (
       <div className="flex flex-col gap-2">
-        <p id={yearsId} className="text-small text-blue">Which year are you in?</p>
+        <p id={yearsId} className="text-small">Which year are you in?</p>
         <SingleChoice labelledBy={yearsId} numberKeys={false} value={yearValue} onSelect={pickYear}
           choices={YEARS} invalid={invalid && !yearValue} describedBy={!yearValue ? describedBy : undefined} />
       </div>
@@ -52,17 +51,14 @@ export function YearTermPicker({ a, onPick, invalid, describedBy }: {
   }
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-3 border border-blue bg-sage px-4 py-3">
-        <Check size={18} strokeWidth={2.5} aria-hidden="true" className="shrink-0 text-blue" />
-        <span className="flex-1 text-blue">{year.label}</span>
-        <button type="button" onClick={() => setEditing(true)}
-          className="min-h-11 px-2 text-small text-blue underline underline-offset-2 hover:text-blue">
-          Change year
-        </button>
+      {/* The picked year, kept as a selected (solid blue) row; "Change year" brings the list back. */}
+      <div className="on-blue flex min-h-[54px] items-center gap-3 border-y-[1.5px] border-blue bg-blue px-3 py-1 text-sage">
+        <span className="flex-1">{year.label}</span>
+        <button type="button" onClick={() => setEditing(true)} className="btn btn--text">Change year</button>
       </div>
       {terms.length > 0 && (
         <div ref={semGroup} className="flex flex-col gap-2">
-          <p id={semId} className="text-small text-blue">Which semester of your {year.label.toLowerCase()}?</p>
+          <p id={semId} className="text-small">Which semester of your {year.label.toLowerCase()}?</p>
           <SingleChoice labelledBy={semId} numberKeys={false} value={a.yearTerm ?? terms.find((t) => t.semester === a.semester)?.id}
             onSelect={(id) => { const t = terms.find((x) => x.id === id)!; onPick({ yearTerm: t.id, year: t.year as 1 | 2 | 3 | 4, semester: t.semester as 1 | 2 }); }}
             choices={terms.map((t) => ({ value: t.id, label: split(t)[1] }))} invalid={invalid} describedBy={describedBy} />

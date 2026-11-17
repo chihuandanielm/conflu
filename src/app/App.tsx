@@ -21,7 +21,10 @@ const BUILD_MS = 500; // the engine is instant; this is only a short, honest tra
 
 /** One river for the whole session, mounted once behind every view (design/RIVER.md §3). */
 export function App() {
-  return <RiverProvider scene="landing"><Views /></RiverProvider>;
+  // The camera starts where the first screen is: low over the water for the landing's intro, or at the water's edge
+  // when a shared link opens the review.
+  const [first] = useState(() => (parseShareHash(window.location.hash) ? "ask" : "low") as "ask" | "low");
+  return <RiverProvider scene={first}><Views /></RiverProvider>;
 }
 
 function Views() {

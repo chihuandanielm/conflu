@@ -112,6 +112,8 @@ a { color: inherit; }
   /* On a solid blue block the roles swap. */
   .on-blue .btn { border-color: var(--sage); background: var(--blue); color: var(--sage); }
   .on-blue .btn:hover { background: var(--sage); color: var(--blue); }
+  .on-blue .btn--text { border-color: transparent; }
+  .on-blue .btn--text:hover { border-color: var(--sage); background: var(--blue); color: var(--sage); }
 
   /* Drafting corners: four small marks that frame the question sheet without boxing it in.
      Drawn as single-colour background layers (each "gradient" is one flat colour, used only to place a 1.5px line). */

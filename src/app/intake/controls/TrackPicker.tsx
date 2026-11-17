@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { tracksForMajor } from "../model.ts";
 import { SingleChoice, type Choice } from "./SingleChoice.tsx";
 
@@ -19,8 +18,8 @@ export function TrackPicker({ majorId, value, onSelect, labelledBy, invalid, des
       <SingleChoice labelledBy={labelledBy} invalid={invalid} describedBy={describedBy} value={value} onSelect={onSelect} choices={choices} />
       {!showAll && others.length > 0 && (
         <button type="button" aria-expanded={false} onClick={() => setShowAll(true)}
-          className="inline-flex items-center gap-1 self-start px-2 py-1 text-blue hover:bg-sage">
-          See all paths ({others.length} more) <ChevronDown size={16} aria-hidden="true" />
+          className="btn btn--text self-start">
+          See all paths ({others.length} more)
         </button>
       )}
     </div>

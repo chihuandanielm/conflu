@@ -48,8 +48,8 @@ describe("colour (DESIGN.md §2)", () => {
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 
-  it("uses no opacity tints, arbitrary colours, or shadows in class names", () => {
-    const bad = tags.filter(({ tag }) => /(?<![\w-])(bg|text|border|fill|stroke)-(sage|blue|green|sand)\/\d+|(?<![\w-])(bg|text|border)-\[#|(?<![\w-])shadow-|opacity-\d/.test(tag));
+  it("uses no opacity tints, arbitrary colours, or shadows in class names (fading fully in or out is motion, and allowed)", () => {
+    const bad = tags.filter(({ tag }) => /(?<![\w-])(bg|text|border|fill|stroke)-(sage|blue|green|sand)\/\d+|(?<![\w-])(bg|text|border)-\[#|(?<![\w-])shadow-|(?<![\w-])opacity-(?!0\b|100\b)\d/.test(tag));
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 
