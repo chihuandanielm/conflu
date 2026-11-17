@@ -34,7 +34,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -71,7 +71,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -106,7 +106,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -141,7 +141,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -181,7 +181,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -219,7 +219,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -256,7 +256,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -292,7 +292,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": []
@@ -334,7 +334,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -377,7 +377,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -418,7 +418,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -459,7 +459,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -500,7 +500,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -543,7 +543,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -584,7 +584,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -626,7 +626,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -669,7 +669,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
@@ -711,7 +711,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -752,7 +752,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-16",
+        "checkedOn": "2026-11-17",
         "httpStatus": 200
       },
       "tags": [
