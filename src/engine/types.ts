@@ -40,6 +40,10 @@ export interface Track {
   name: string;
   suggestedMajors: string[];
   description: string;
+  /** What this field's recruiters or admissions committees weigh most, in one sentence (data 2026.11.17-1). */
+  recruiterFocus?: string;
+  /** Where recruiterFocus and the weights come from (docs/RECRUITER_PRIORITIES.md). */
+  recruiterSources?: string[];
   competencyTarget: CompVector;
   boosts: Record<string, number>;
   gates: string[];

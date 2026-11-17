@@ -125,6 +125,10 @@ for (const [m, ids] of Object.entries(ui.experienceSuggested ?? {})) {
 for (const y of intake.yearTerms ?? []) if (![1, 2, 3, 4].includes(y.year) || ![1, 2].includes(y.semester)) errors.push(`intake › yearTerms ${y.id}: bad year or semester`);
 if (new Set((intake.yearTerms ?? []).map((y) => y.id)).size !== (intake.yearTerms ?? []).length) errors.push("intake › yearTerms ids must be unique");
 for (const o of intake.gender?.options ?? []) for (const t of o.tags) if (!vocab.identity.includes(t)) errors.push(`intake › gender ${o.id}: unknown identity tag ${t}`);
+for (const t of tracks) {
+  if (typeof t.recruiterFocus !== "string" || !t.recruiterFocus.endsWith(".")) errors.push(`tracks › ${t.id}: recruiterFocus must be one sentence`);
+  if (!Array.isArray(t.recruiterSources) || !t.recruiterSources.length || t.recruiterSources.some((u) => !/^https:\/\/\S+$/.test(u))) errors.push(`tracks › ${t.id}: recruiterSources must be https links`);
+}
 for (const t of tracks) if (t.recruitingNoteUntil && !goalsFile.terms.includes(t.recruitingNoteUntil)) errors.push(`tracks › ${t.id}: recruitingNoteUntil ${t.recruitingNoteUntil} is not a term`);
 for (const t of intake.optionalIdentity.tags) if (!ui.identityLabels?.[t]) errors.push(`ui/intake › identity tag ${t} has no label`);
 for (const m of ui.coop.majors) if (!majorIds.has(m)) errors.push(`ui/intake › co-op: unknown major ${m}`);

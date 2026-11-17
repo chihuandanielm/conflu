@@ -92,6 +92,10 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `suppress` | Goals hidden for this path (pre-med hides the junior-summer corporate internship) |
 | `windowOverrides` | Retimes goals for this path (pre-med applies the summer after junior year) |
 | `recruitingNote` | Timeline warning shown with the plan |
+| `recruiterFocus` | One sentence: what this field's recruiters or admissions committees weigh most (data 2026.11.17-1) |
+| `recruiterSources` | The https sources behind `recruiterFocus` and the track's weights |
+
+The weights in `boosts` and `gates` are set from what recruiters and admissions committees in each field say they look for; `docs/RECRUITER_PRIORITIES.md` records the evidence for each track, and `test/recruiter.test.ts` pins the orderings the evidence supports (for example, data analytics gates on SQL, not Python). Change a weight only with a source.
 
 ### 2.4 Intake mapping
 
