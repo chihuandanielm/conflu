@@ -385,13 +385,16 @@ Drawn by `layoutConfluence()` in `src/app/map/confluence-map.js` (design/DESIGN.
 | Action | Engine call |
 |---|---|
 | Check off a goal | Add to `completedGoals`, re-run with `previousPlan` = current placements |
+| "Not for me" (0.9.0) | Add to `skippedGoals`, re-run; listed under "Not for me" with Undo (removes it again). A must-do stays marked "Essential must-do" there |
+| A new plan (0.9.0) | Built with `draft: true`: the draft map, with a banner saying it can be edited. "Edit your map" (Map tab) lists every semester's goals by importance, each with "Mark as done" and "Not for me" |
+| "Finalize my map" / "Back to the draft" (0.9.0) | Re-run without / with `draft`. Not finalizing is fine: the draft is the map, and the PDF lists its extra options briefly |
 | Change hours, horizon, or track | Re-run with `previousPlan` |
 | "Add from backlog" | v2: a `forcedGoals` input that bypasses threshold |
 | New semester starts | `today` moves the current term forward; past terms collapse into a "done" column |
 
 ### Persistence
 
-- `localStorage` holds `{ input, previousPlan, engineVersion, dataVersion }`.
+- `localStorage` holds `{ input, previousPlan, engineVersion, dataVersion }`, plus `skipped` and `finalized` (0.9.0; plans saved before then open as final, with nothing crossed out). Draft options are never stored as placements.
 - A shareable link encodes only non-identity inputs.
 - If the saved `dataVersion` is older than the current data, show "Your plan was built on older data — refresh it."
 

@@ -9,6 +9,7 @@ import { ResourceCard } from "../resources/ResourceCard.tsx";
 import { groupOf, type Tailored } from "../resources/tailor.ts";
 import { howTo, type StepProgress } from "../state/steps.ts";
 import { Button } from "../ui/Button.tsx";
+import { IMPORTANCE } from "./EditMap.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -21,8 +22,10 @@ const ONE_SCROLL = 3;
  * Close, the fact line, the title, What to do (tick boxes), Done when, Why it's here, Where to go (resource boxes),
  * and "Mark as done". It slides in over 260ms. Traps focus; Escape closes.
  */
-export function GoalDrawer({ item, term, identity, onClose, onDone, progress = {}, onToggleStep = () => {} }: {
+export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, progress = {}, onToggleStep = () => {} }: {
   item: PlanItem; term: PlanTerm; identity: string[]; onClose: () => void; onDone: (goalId: string) => void;
+  /** "Not for me" (engine 0.9.0): cross the goal out and re-plan without it. */
+  onSkip?: (goalId: string) => void;
   progress?: StepProgress; onToggleStep?: (goalId: string, i: number) => void;
 }) {
   const wide = useMediaQuery("(min-width: 600px)");
@@ -121,6 +124,10 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, progress = {
         <button ref={closeBtn} type="button" onClick={onClose} aria-label="Close details" className="btn btn--small sticky top-0 float-right ml-3">Close</button>
         <p className="fact">{factLine(item)}{"  "}{term.label.toLowerCase()}</p>
         <h2 id="drawer-title" className="mt-1.5 text-h2">{item.title}</h2>
+        {item.importance && (
+          <p className="mt-2"><span className={`fact px-1.5 ${item.importance === "must" ? "bg-blue text-sage" : "border-[1.5px] border-blue"}`}>
+            {IMPORTANCE[item.importance].label}</span>{item.option && <span className="fact ml-3">an extra option on your draft map</span>}</p>
+        )}
         {split ? (
           <>
             <div role="tablist" aria-label="Goal details" className="mt-5 flex border-b-[1.5px] border-blue"
@@ -139,7 +146,10 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, progress = {
         ) : (
           <>{todo}{go}</>
         )}
-        <p className="mt-[26px]"><Button onClick={() => onDone(item.goalId)}>Mark as done</Button></p>
+        <p className="mt-[26px] flex flex-wrap gap-2">
+          <Button onClick={() => onDone(item.goalId)}>Mark as done</Button>
+          {onSkip && <Button variant="outline" onClick={() => onSkip(item.goalId)}><span aria-hidden="true" className="mr-1.5 font-mono">x</span>Not for me</Button>}
+        </p>
       </motion.div>
     </div>
   );

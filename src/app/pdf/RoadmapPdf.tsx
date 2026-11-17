@@ -12,6 +12,7 @@ import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../re
 import { lastChecked } from "../data/resources.ts";
 import { howTo } from "../state/steps.ts";
 import { inWorkOrder } from "../results/order.ts";
+import { byImportance } from "../results/EditMap.tsx";
 import { moreTime, needs, outcomeText } from "../results/summary.ts";
 
 export interface FontFiles { regular: string; bold: string; mono: string }
@@ -164,7 +165,7 @@ function LaterRow({ it, again }: { it: PlanItem; again: boolean }) {
       <Dot gate={it.gate} style={{ marginTop: 2.5 }} />
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 9, lineHeight: 1.25 }}>{it.title}</Text>
-        <Text style={[s.fact, { fontSize: 7 }]}>{factLine(it)}{again ? "  keep going" : ""}</Text>
+        <Text style={[s.fact, { fontSize: 7 }]}>{factLine(it)}{again ? "  keep going" : ""}{it.option ? "  option" : ""}</Text>
       </View>
     </View>
   );
@@ -203,8 +204,13 @@ export interface PdfProps {
 const textHeight = (text: string, size: number, lh: number) => Math.max(1, Math.ceil((text.length * size * 0.52) / W)) * size * lh;
 
 export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }: PdfProps) {
+  // The draft map (engine 0.9.0): the map shows every option; the semesters describe in full only what the student's
+  // time fits, and list the extra options briefly, so the core stays within 10 pages.
+  const mine = (t: Plan["terms"][number]) => inWorkOrder(t.items.filter((i) => !i.option), plan.edges);
+  const extras = (t: Plan["terms"][number]) => byImportance(t.items.filter((i) => i.option));
+  const draft = plan.terms.some((t) => t.items.some((i) => i.option));
   const now = plan.terms[0];
-  const first = now ? inWorkOrder(now.items, plan.edges).find((it) => howTo(it).steps.length) : undefined;
+  const first = now ? mine(now).find((it) => howTo(it).steps.length) : undefined;
   const line = summary.line ?? `${summary.track} · ${summary.major} · ${summary.yearLabel ?? `Year ${summary.year}`} · ${summary.campus} · ${summary.hours} free hours a week`;
   const outcome = outcomeText(summary.trackId);
   const need = needs(plan);
@@ -213,7 +219,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
   // KEY_RESOURCES; then every other resource in the appendix after the core pages.
   const byId = new Map(resources.map((t) => [t.resource.id, t]));
   const key: Tailored[] = [];
-  for (const t of plan.terms.slice(0, FULL_TERMS)) for (const it of inWorkOrder(t.items, plan.edges))
+  for (const t of plan.terms.slice(0, FULL_TERMS)) for (const it of mine(t))
     for (const r of it.resources) { const hit = byId.get(r.id); if (hit && !key.includes(hit) && key.length < KEY_RESOURCES) key.push(hit); }
   const rest = resources.filter((t) => !key.includes(t));
 
@@ -248,7 +254,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
             </Text>
           ))}
         </View>
-        <Text style={s.title}>Your plan</Text>
+        <Text style={s.title}>{draft ? "Your draft plan" : "Your plan"}</Text>
         <Text style={s.summary}>{line}</Text>
         <Text style={s.outcome}>{outcome}</Text>
         <PdfMap L={L} k={k} />
@@ -290,11 +296,19 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
               <Text style={s.fact}>{i ? `${t.items.length} ${t.items.length === 1 ? "goal" : "goals"}` : `${t.label.toLowerCase()}  sized to your ${summary.hours} free hours a week`}</Text>
             </View>
             {t.items.length === 0 && <Text style={[s.small, { marginTop: 4 }]}>{t.capacityHours === 0 ? "A break: no plan this term." : "Nothing scheduled."}</Text>}
-            {inWorkOrder(t.items, plan.edges).map((it) => {
+            {mine(t).map((it) => {
               const again = told.has(it.goalId);
               told.add(it.goalId);
               return <GoalBlock key={it.goalId} it={it} again={again} />;
             })}
+            {extras(t).length > 0 && (
+              <View style={{ marginTop: 6 }} wrap={false}>
+                <Text style={[s.fact, { marginBottom: 2 }]}>more options on your draft map, most important first</Text>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
+                  {extras(t).map((it) => { told.add(it.goalId); return <LaterRow key={it.goalId} it={it} again={false} />; })}
+                </View>
+              </View>
+            )}
           </View>
         ))}
 

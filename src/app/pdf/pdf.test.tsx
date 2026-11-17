@@ -61,7 +61,8 @@ describe("PDF", () => {
   }, 60_000);
 
   it("keeps the core (map, where you stand, the semesters, and the resources to start with) within 10 pages", async () => {
-    for (const inp of [input, { ...input, year: 1 as const, semester: 1 as const, weeklyHours: 15 }]) {
+    // Engine 0.9.0: the draft map (more options) too; its options are listed briefly, so the core still fits.
+    for (const inp of [input, { ...input, year: 1 as const, semester: 1 as const, weeklyHours: 15 }, { ...input, draft: true }, { ...input, year: 1 as const, semester: 1 as const, weeklyHours: 15, draft: true }]) {
       const { buf } = await render(inp);
       if (!hasPdftotext) return;
       const pages = Number(execFileSync("pdfinfo", ["-"], { input: buf }).toString().match(/Pages:\s+(\d+)/)![1]);
@@ -72,8 +73,9 @@ describe("PDF", () => {
       // The appendix starts on a fresh page right after the core, so the core is everything before it.
       expect(appendix - 1, "core pages").toBeLessThanOrEqual(10);
       expect(text(buf, appendix - 1)).not.toContain("All resources");
+      if (inp.draft) { const all = text(buf); expect(all).toContain("Your draft plan"); expect(all).toContain("more options on your draft map"); }
     }
-  }, 240_000);
+  }, 480_000);
 
   it("fits the longest plan's map on page 1 (trimmed, with counts) and draws the shortest in full", async () => {
     const long = await render({ ...input, year: 1, semester: 1, weeklyHours: 15 });
