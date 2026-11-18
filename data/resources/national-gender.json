@@ -293,10 +293,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-17",
-        "httpStatus": 200,
-        "finalUrl": "https://lwtsquad.com/lwtsummit-2027/"
+        "httpStatus": 202,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": [],
       "id": "lesbians-who-tech",

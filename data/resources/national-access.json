@@ -384,9 +384,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-17",
-        "httpStatus": 200
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -750,9 +751,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-17",
-        "httpStatus": 200
+        "httpStatus": 202,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -825,7 +827,7 @@
       "verification": {
         "state": "blocked",
         "checkedOn": "2026-11-17",
-        "httpStatus": 200,
+        "httpStatus": 202,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
@@ -1207,9 +1209,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-17",
-        "httpStatus": 200
+        "httpStatus": 202,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
