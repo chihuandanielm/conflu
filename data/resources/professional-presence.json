@@ -811,9 +811,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-23",
-        "httpStatus": 200
+        "httpStatus": null,
+        "note": "Site refused the automated check (timed out); open it by hand."
       },
       "tags": []
     },
