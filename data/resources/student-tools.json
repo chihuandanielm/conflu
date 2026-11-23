@@ -29,8 +29,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "finalUrl": "https://ithelp.rutgers.edu/sp?id=kb_article&sysparm_article=KB0012583"
       },
       "tags": [
         "skills",
@@ -370,7 +372,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "sql",
@@ -550,8 +554,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "how-to",
@@ -805,7 +810,9 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "checkedOn": "2026-11-23",
+        "httpStatus": 403,
+        "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
       "tags": [
         "how-to",
