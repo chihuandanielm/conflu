@@ -90,7 +90,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
         transition={{ duration: reduce ? 0 : WORDS_OUT_S, delay: !leaving && !first && !reduce ? 0.8 : 0, ease: EASE }}
         inert={leaving}>
         <div className="mx-auto max-w-[1160px] border-x border-blue">
-          <nav className="flex items-center px-5 py-4 min-[760px]:px-14">
+          <nav className="flex h-[62px] items-center px-5 min-[760px]:h-auto min-[760px]:px-14 min-[760px]:py-4">
             <span className="flex items-center gap-2.5 font-display text-[1.625rem] leading-none font-bold">
               <svg width="30" height="34" viewBox="0 0 44 52" aria-hidden="true">
                 <path d="M7 3C7 15 22 17 22 29M22 3V29M37 3C37 15 22 17 22 29" fill="none" stroke="currentColor" strokeWidth="2.4" />
@@ -101,15 +101,15 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             </span>
           </nav>
 
-          {/* The painted confluence, with the headline on its dark sky. */}
-          <section className="relative min-h-[760px] overflow-hidden border-t border-blue min-[760px]:min-h-[880px]">
-            <canvas ref={canvas} aria-hidden="true" className="absolute inset-0 h-full w-full" />
-            <div className={`relative max-w-[940px] px-5 pt-11 min-[760px]:px-14 min-[760px]:pt-[72px] ${paints ? "landing-words" : ""}`}>
-              <h1 ref={h1} tabIndex={-1} className="text-[3.375rem] leading-[0.95] text-sage min-[760px]:text-[5.25rem]">
+          {/* The painted confluence. On a phone the words sit above the painting and the two fill the screen; from
+              760px wide the words sit on the painting's dark sky. */}
+          <section className="relative flex min-h-[calc(100svh-63px)] flex-col overflow-hidden border-t border-blue min-[760px]:block min-[760px]:min-h-[880px]">
+            <div className={`relative z-[1] max-w-[940px] px-5 pt-7 min-[760px]:px-14 min-[760px]:pt-[72px] ${paints ? "landing-words" : ""}`}>
+              <h1 ref={h1} tabIndex={-1} className="text-[2.75rem] leading-[0.95] text-sage min-[760px]:text-[5.25rem]">
                 Know what to do <span className="text-sand">this semester.</span>
               </h1>
-              <p className="mt-6 text-[1.1875rem]">A semester-by-semester plan for the job you want. Free, about 3 minutes, no account.</p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <p className="mt-4 text-[1.0625rem] leading-[1.45] min-[760px]:mt-6 min-[760px]:text-[1.1875rem]">A semester-by-semester plan for the job you want. Free, about 3 minutes, no account.</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3 min-[760px]:mt-8">
                 {cta(primary.label, primary.go)}
                 {(onContinuePlan || hasProgress) && (
                   <button type="button" onClick={leave(onStartOver)} className="min-h-[52px] border-[1.5px] border-sage px-5 text-sage transition-colors duration-[140ms] hover:bg-sage hover:text-ink">
@@ -117,6 +117,9 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
                   </button>
                 )}
               </div>
+            </div>
+            <div className="relative min-h-[300px] flex-1 min-[760px]:absolute min-[760px]:inset-0 min-[760px]:min-h-0">
+              <canvas ref={canvas} aria-hidden="true" className="absolute inset-0 h-full w-full" />
             </div>
           </section>
 
@@ -172,8 +175,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             {cta(primary.label, primary.go, true)}
           </section>
 
-          <p aria-hidden="true" className="overflow-hidden border-t border-blue px-4 pt-8 font-display text-[clamp(120px,23vw,320px)] leading-[0.8] font-bold whitespace-nowrap text-sage min-[760px]:px-10 min-[760px]:pt-11">conflu</p>
-          <footer className="border-t border-blue px-5 pt-4 pb-6 font-mono text-fact min-[760px]:px-14">nothing leaves your browser</footer>
+          <p aria-hidden="true" className="overflow-hidden border-t border-blue px-4 pt-8 font-display text-[clamp(120px,23vw,320px)] leading-[0.8] font-bold whitespace-nowrap text-sage min-[760px]:px-10 min-[760px]:pt-11 pb-2">conflu</p>
         </div>
       </motion.div>
     </div>
