@@ -82,7 +82,8 @@
         ],
         "doneWhen": "You have a plan for the semesters ahead, made with an advisor, and a follow-up date on your calendar.",
         "why": "An advisor can point you to what matters most from here, and to campus programs you might miss."
-      }
+      },
+      "minTermsLeft": 2
     },
     {
       "id": "f-handshake-profile",
@@ -295,6 +296,11 @@
       "doneWhen": "You've written a short comparison of 3 careers (tasks, pay, outlook, path in) and know which to explore next.",
       "guides": [
         "mynextmove"
+      ],
+      "minTermsLeft": 2,
+      "supersededBy": [
+        "ap-fulltime",
+        "ap-grad-apps"
       ]
     },
     {
@@ -396,7 +402,8 @@
       "doneWhen": "You know which state and campus aid programs you qualify for and what you must do each year to keep them.",
       "guides": [
         "studentaid-scams"
-      ]
+      ],
+      "minTermsLeft": 2
     },
     {
       "id": "f-elevator-pitch",
@@ -1946,7 +1953,8 @@
       "doneWhen": "You can run the lab's core techniques on your own and record them properly.",
       "guides": [
         "illinois-emailing-professors"
-      ]
+      ],
+      "minTermsLeft": 2
     },
     {
       "id": "s-security-practice",
@@ -2083,7 +2091,8 @@
         "Volunteer for one small task, like an event or a committee, in your first month."
       ],
       "doneWhen": "You're a regular member of 1–2 organizations and have helped with at least one event or project.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2
     },
     {
       "id": "e-org-leadership",
@@ -2130,7 +2139,8 @@
         "Set one measurable goal for your term, such as members, events, or funds raised, so you have a result to talk about."
       ],
       "doneWhen": "You hold an officer or project-lead role and have a concrete result from it.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2
     },
     {
       "id": "e-part-time-job",
@@ -2269,7 +2279,8 @@
       "doneWhen": "You have a research position with a professor or lab.",
       "guides": [
         "illinois-emailing-professors"
-      ]
+      ],
+      "minTermsLeft": 2
     },
     {
       "id": "e-summer-research",
@@ -2375,7 +2386,55 @@
         "Meet your advisor regularly and present your results at a campus symposium."
       ],
       "doneWhen": "You've completed and submitted or defended your thesis or independent project.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2,
+      "alternative": "e-research-project"
+    },
+    {
+      "id": "e-research-project",
+      "title": "Do a one-semester research project with a professor",
+      "category": "experience",
+      "competencies": {
+        "crit": 0.6,
+        "comm": 0.4
+      },
+      "baseWeight": 0.3,
+      "hours": 45,
+      "spanTerms": 1,
+      "window": {
+        "earliest": "2F",
+        "ideal": [
+          "3F",
+          "4S"
+        ],
+        "latest": "4S"
+      },
+      "prereqs": [],
+      "season": null,
+      "deadline": null,
+      "repeat": null,
+      "majors": null,
+      "resources": [
+        "aresty-funding",
+        "rutgers-camden-research-grants",
+        "rutgers-newark-honors-college",
+        "rutgers-camden-honors-college"
+      ],
+      "splittable": false,
+      "lateOk": false,
+      "integrated": false,
+      "satisfies": [],
+      "why": "A focused project you can finish this semester still gives you research to talk about and a professor who knows your work.",
+      "steps": [
+        "Ask a professor whose class or lab you know whether they have a small project you could finish this semester, for independent-study credit or as a volunteer.",
+        "Agree on one question, what you'll produce (a short paper, poster, or dataset), and a weekly check-in.",
+        "Keep notes each week on what you did and what you found.",
+        "Present your results to the group or at a campus symposium if the timing works.",
+        "Ask the professor for a recommendation letter while your work is fresh."
+      ],
+      "doneWhen": "You've finished the project, shared what you found with the professor, and asked for a letter if you need one.",
+      "guides": [],
+      "onlyAsAlternative": true
     },
     {
       "id": "e-personal-project",
@@ -2526,7 +2585,8 @@
         "Take ownership of one part or system so you have a concrete contribution to describe."
       ],
       "doneWhen": "You're an active team member responsible for a specific part or system.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2
     },
     {
       "id": "e-case-competition",
@@ -2947,7 +3007,8 @@
       "doneWhen": "You've completed a nursing externship.",
       "guides": [
         "mit-star-interview"
-      ]
+      ],
+      "majorRule": "only"
     },
     {
       "id": "e-pharmacy-intern",
@@ -2992,7 +3053,8 @@
         "Track your intern hours the way your program requires."
       ],
       "doneWhen": "You're registered and working as a pharmacy intern.",
-      "guides": []
+      "guides": [],
+      "majorRule": "only"
     },
     {
       "id": "e-field-placement",
@@ -3037,7 +3099,9 @@
         "Complete the required hours and supervision, and keep your field log current."
       ],
       "doneWhen": "You've completed your BSW field placement hours.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2,
+      "majorRule": "only"
     },
     {
       "id": "e-student-media",
@@ -3233,7 +3297,8 @@
         "Submit your program application and passport paperwork on time."
       ],
       "doneWhen": "You've studied or interned abroad.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2
     },
     {
       "id": "e-entrepreneurship",
@@ -3321,7 +3386,8 @@
       "doneWhen": "You're working as a tutor or teaching assistant.",
       "guides": [
         "uci-faculty-connections"
-      ]
+      ],
+      "minTermsLeft": 2
     },
     {
       "id": "n-career-fair-first",
@@ -3370,6 +3436,12 @@
       "guides": [
         "mit-career-fair",
         "mit-elevator-pitch"
+      ],
+      "minTermsLeft": 3,
+      "supersededBy": [
+        "n-career-fair-target",
+        "e-internship-target",
+        "ap-fulltime"
       ]
     },
     {
@@ -3515,7 +3587,8 @@
       "doneWhen": "Two professors know you by name, know your goals, and could write you a letter.",
       "guides": [
         "uci-faculty-connections"
-      ]
+      ],
+      "minTermsLeft": 1
     },
     {
       "id": "n-mentor",
@@ -4259,7 +4332,8 @@
         "Take the exam, then apply for Engineer in Training status once you pass."
       ],
       "doneWhen": "You've taken the FE exam.",
-      "guides": []
+      "guides": [],
+      "majorRule": "only"
     },
     {
       "id": "c-lean",
@@ -4491,7 +4565,8 @@
         "Declare it and put its courses into your semester plan."
       ],
       "doneWhen": "The minor or certificate is declared and its courses are in your semester plan.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 3
     },
     {
       "id": "a-eagleton",
@@ -4584,7 +4659,8 @@
         "Leave with a timeline for any award you'll apply to."
       ],
       "doneWhen": "You've met your fellowships office and have a timeline for at least one award.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 2
     },
     {
       "id": "a-fellowship-apps",
@@ -4880,7 +4956,8 @@
         "As graduation nears, apply to the New Jersey Board of Nursing and register for the exam with Pearson VUE."
       ],
       "doneWhen": "You've applied to the board, registered for the NCLEX, and your practice results show you're ready.",
-      "guides": []
+      "guides": [],
+      "majorRule": "only"
     },
     {
       "id": "a-residency-plan",
@@ -4924,7 +5001,8 @@
         "Decide by the fall of your next-to-last year so you can plan rotations and applications."
       ],
       "doneWhen": "You've chosen a path and planned your rotations and applications around it.",
-      "guides": []
+      "guides": [],
+      "majorRule": "only"
     },
     {
       "id": "ap-scholarships",
@@ -5032,6 +5110,9 @@
       "doneWhen": "You've applied to at least 3 early-career programs.",
       "guides": [
         "mit-internship-search"
+      ],
+      "supersededBy": [
+        "e-internship-target"
       ]
     },
     {
@@ -5137,6 +5218,9 @@
       "guides": [
         "mit-internship-search",
         "linkedin-job-alerts"
+      ],
+      "supersededBy": [
+        "e-internship-target"
       ]
     },
     {
@@ -5496,7 +5580,8 @@
         "Confirm with the packaging program how to declare the certificate."
       ],
       "doneWhen": "You've completed or scheduled all four packaging courses and declared the certificate.",
-      "guides": []
+      "guides": [],
+      "minTermsLeft": 3
     }
   ]
 }

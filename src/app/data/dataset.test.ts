@@ -6,7 +6,7 @@ describe("browser dataset", () => {
   it("loads every data file", () => {
     expect(majors).toHaveLength(21);
     expect(campuses.map((c) => c.school)).toEqual(["rutgers-nb", "rutgers-newark", "rutgers-camden"]);
-    expect(dataset.goals).toHaveLength(111);
+    expect(dataset.goals).toHaveLength(112);
     expect(dataset.tracks).toHaveLength(28);
     expect(resources).toHaveLength(407); // every file in data/resources, including student-tools.json
     expect(new Set(resources.map((r) => r.id)).size).toBe(resources.length);

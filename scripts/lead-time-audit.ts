@@ -100,7 +100,9 @@ function check(p: Plan, input: PlanInput, student: string) {
     // L3: needs enrollment, planned after graduation (or a part of it spills past graduation).
     if (STUDENT_ONLY.has(id) && terms.some((t) => t > GRAD)) add("L3 needs you to be a student, planned after graduation", id, terms.find((t) => t > GRAD)!, T.filter((_, i) => terms.includes(i)).join("+"));
     // L4: practice or groundwork placed with or after the thing it prepares for (or once that is done).
-    for (const target of PREPARES_FOR[id] ?? []) {
+    // A career path that boosts the groundwork keeps it ("still exploring" researches careers alongside the job search).
+    const keeps = id in (data.tracks.find((x) => x.id === input.trackId)?.boosts ?? {});
+    for (const target of keeps ? [] : PREPARES_FOR[id] ?? []) {
       const tt = placed.get(target);
       if (done.has(target) || (tt && Math.min(...tt) <= start)) { add("L4 groundwork with or after what it prepares for", id, start, `${target} ${done.has(target) ? "is done" : `starts ${T[Math.min(...tt!)]}`}`); break; }
     }
@@ -113,12 +115,11 @@ function check(p: Plan, input: PlanInput, student: string) {
     // pre-graduation goal (window latest <= 4S) that still has work after graduation.
     if (ix(g.window.latest) <= GRAD && terms.some((t) => t > GRAD) && !STUDENT_ONLY.has(id)) add("L5 runs past graduation", id, terms.find((t) => t > GRAD)!, T.filter((_, i) => terms.includes(i)).join("+"));
   }
-  // L6: "Up next" promises a goal that can't start in time any more.
+  // L6: "Up next" promises a goal that can't start in time any more. "Next in line" means it can join the plan as the
+  // student finishes goals, this term or later, so it must still be startable now.
   for (const b of p.backlog.filter((x) => x.kind === "next")) {
     const id = b.goalId.split("@")[0], need = MIN_TERMS_LEFT[id];
-    const nextTerm = now + 1;
-    if (need && schoolTermsLeft(Math.min(nextTerm, GRAD)) < need[0]) add("L6 queued as next but can't start in time", id, now, `next term has ${schoolTermsLeft(Math.min(nextTerm, GRAD))} of ${need[0]} semesters left`);
-    if (APPLIES_FOR_NEXT_SUMMER.has(id) && nextTerm > ix("3S")) add("L6 queued as next but can't start in time", id, now, "the summer it applies for would come after graduation");
+    if (need && schoolTermsLeft(Math.min(now, GRAD)) < need[0]) add("L6 queued as next but can't start in time", id, now, `${schoolTermsLeft(Math.min(now, GRAD))} of ${need[0]} semesters left`);
   }
 }
 

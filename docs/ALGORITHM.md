@@ -1,6 +1,6 @@
 # Career Pathway Mapper: planning engine design
 
-Status: v0.9 design (engine 0.9.0: goals can be crossed out as "Not for me" without holding back what depends on them, a draft map shows more ranked options per term before the student finalizes, and every item has an importance tier from recruiter-backed weights; 0.8.1: goals that need semesters left close before the final semester, and late goals explain themselves for now; 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
+Status: v0.10 design (engine 0.10.0: a goal starts only with enough semesters left to finish it and for it to pay off (`minTermsLeft`), groundwork drops once what it prepares for is done or underway (`supersededBy`), goals that need a degree program stay in it (`majorRule`), a goal that can't start in time offers its shorter `alternative` (a one-semester research project for the honors thesis), and the final-year outcome and its quick steps go first in every final-year term; 0.9.0: goals can be crossed out as "Not for me" without holding back what depends on them, a draft map shows more ranked options per term before the student finalizes, and every item has an importance tier from recruiter-backed weights; 0.8.1: goals that need semesters left close before the final semester, and late goals explain themselves for now; 0.8.0: semester input, a goal cap per term (baby steps), the final year's outcome as a must-do, continues/past queue kinds, only true and forward-looking notices; 0.7.0: upper-year plans put the student's own year first: stale catch-ups discounted, one-at-a-time placement so prerequisites unlock dependents in the same term, no final-year FAFSA, late wording, nothing impossible queued as next; 0.6.0: leftover goals become an ordered "up next" queue and the hours-shortfall warning is gone; 0.5.0: enrollment question, part-time note, campus-specific international office; 0.4.0: three Rutgers campuses, each student sees only the Rutgers offices of their own campus; 0.3.0: calendar-based current term, only loaded or confirmed links earn the ranking bonus), with a working reference implementation in `src/engine/` and passing invariant tests in `test/`.
 Audience: Claude Code and any engineer building the site.
 
 ---
@@ -34,7 +34,7 @@ All files live in `data/`. `scripts/validate.mjs` enforces every cross-reference
 |---|---|---|
 | `campuses.json` | Rutgers campuses (New Brunswick, Newark, Camden) and the `PlanInput.school` value for each | 3 |
 | `majors.json` | Majors with CIP codes; `offeredAt` maps each campus that offers it to the school and program URL | 21 |
-| `goals.json` | Milestones the engine schedules | 111 |
+| `goals.json` | Milestones the engine schedules | 112 |
 | `tracks.json` | Career targets ("end goals") that reweight goals | 28 |
 | `intake.json` | Intake questions and how each answer maps to goals | 44 experience, 18 skills, 15 credentials |
 | `resources/*.json` | Programs, orgs, tools, and offices attached to goals. Every `scope: "rutgers"` resource lists the `campuses` whose students can use it (`nb`, `newark`, `camden`, or `all`). `guides.json` holds 30 how-to guides | 369 |
@@ -78,6 +78,10 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `late` | Optional `{ title?, steps?, doneWhen?, why? }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan the semesters ahead", not "sketch a 4-year plan"), and the job search reads right after graduation |
 | `forNextYear` | Yearly goals that pay off the following school year (FAFSA, outside scholarships): no round in the final year |
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
+| `minTermsLeft` | 0.10.0: fall and spring terms that must remain before graduation, counting the start term, for the goal to finish and pay off (thesis 2, minor or certificate 3, research assistant 2, officer role 2, faculty relationships 1). It never starts with fewer, and never runs past graduation |
+| `supersededBy` | 0.10.0: goals that make this one pointless: once one is done, or planned and in its ideal window, this one isn't started (a practice career fair after a target internship; researching careers once the job search starts). A track that boosts the goal keeps it in the second case ("still exploring") |
+| `majorRule` | 0.10.0: `"only"` = needs enrollment in one of `majors` (BSW field placement, NCLEX, pharmacy internship, FE exam, residency planning). A track's weights never pull it into another major's plan; the plan's notice names it instead |
+| `alternative` | 0.10.0: a goal (marked `onlyAsAlternative`) planned in this one's place, with its weight and must-do status, when this one can't start anywhere in the plan |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
 
 **Time words in text (data 2026.11.23-3).** A goal's text is shown in whatever term the engine places it, so it names no year, stage, or month that could have passed by then: "the summer before your last year", "most close in winter", "the semesters ahead", not "junior summer", "December to February", or "your remaining semesters". A stage word is allowed only where the goal's window means it can't be shown after that stage. `test/timing.test.ts` enforces this over every major, suggested path, year, and season (rules T1, T2, T4, T6 in `docs/TIMING_AUDIT.md`), and `npm run audit:timing` gives the full report.
@@ -185,6 +189,14 @@ For every goal:
 
 A goal in `skippedGoals` (or one round of it, `id@Y2`) never becomes a candidate. It isn't pulled in as a prerequisite, and it never holds back a goal that lists it as one: the student has decided the path doesn't run through it, so its dependents are ready without it (crossing out Python leaves Data structures in the plan). The plan's `skipped` list names each crossed-out goal, with `essential: true` for the track's must-dos, so the site can show it with Undo. Crossing out a must-do is allowed, with a warning that most recruiters for the track expect it. Undo is removing it from `skippedGoals`; the plan is then exactly what it was.
 
+### Step 4c — Lead time, purpose, and programs (0.10.0)
+
+- A goal with `majorRule: "only"` and a `majors` list without the student's major is never a candidate, even when the track boosts or gates it. If the track expects it, one notice names it: "Social work practice usually includes "Complete your BSW field placement", which is only open to students in that degree program. An advisor can tell you whether a change of major makes sense."
+- A goal whose `supersededBy` goal is already done (strength 1) goes to the hidden `past` queue: "What it prepares for is already done."
+- A zero-hour ongoing goal (a minor) with fewer than `minTermsLeft` school terms left goes to `past`.
+- A plan that reaches the final year always has its outcome (`ap-fulltime`, or `ap-grad-apps` for grad-school tracks) as a candidate, even when the track doesn't weight it above the threshold, so a junior's research plan ends in applications.
+- A goal with an `alternative` that can't start in any term of the plan before graduation (its window and `minTermsLeft`) goes to `past`, and the alternative becomes a candidate with its weight and must-do status. A senior in their last spring on the research path gets "Do a one-semester research project with a professor" instead of an honors thesis.
+
 ### Step 5 — Prerequisite closure
 
 Any selected goal pulls in its unfinished prerequisites (strength under 0.5) even if they were below threshold. Each prerequisite inherits `max(ownWeight, 0.9 × dependentWeight)`. This repeats until stable. The prerequisite records which goal pulled it in, which feeds the "Needed before…" explanation.
@@ -216,6 +228,8 @@ For each term from now to the horizon:
 | after `l` | 0 if not `lateOk`; 1.2 if it blocks another planned goal; else 0.5 |
 | summer-only goal in a non-summer term | 0 |
 | after-graduation term, goal's `latest` ≤ 4S | 0 (student-only goals never spill past graduation) |
+| not yet started and fewer than `minTermsLeft` school terms left, or superseded (0.10.0) | 0 |
+| after graduation, goal has `minTermsLeft` (0.10.0) | 0 (needs enrollment) |
 
 **Term score** = `static × U × stability × pin × blocking`
 - `stability` = 1.1 if the goal was in this same term in `previousPlan` (prevents churn when a student re-plans).
@@ -227,9 +241,11 @@ For each term from now to the horizon:
 **Goal cap (baby steps, engine 0.8.0).** A term holds at most `round(2 + weeklyHours / 4)` goals, between 3 and 6 (2 h/week: 3; 10: 5; 20: 6). Must-dos are never crowded out, and neither are quick steps (≤ 6 hours) that unlock a must-do this term or have a deadline now (FAFSA); these are flagged `essential`. Everything else waits in the queue. A prerequisite ranks at least 0.99× the goal it unlocks when that goal is due now or next term, and a prerequisite of up to 6 hours finished earlier in a term unlocks its dependent that term. A closed prerequisite reopens only for a goal that runs past graduation.
 
 **Placement order inside a term**
-1. **Phase 1** places only tier 0 and tier 1 goals:
-   - tier 0: last-chance goals (not `lateOk` and this is their `latest` term)
-   - (quick-win priority was removed in 0.8.0: under the goal cap, slots are scarce, so priority decides)
+1. **Phase 1** places only tier 0–2 goals (engine 0.10.0):
+   - tier 0: in a final-year term, the track's outcome (`ap-fulltime`, or `ap-grad-apps` for grad-school tracks) and the quick steps (≤ 6 hours) it needs now or next term. This holds in every plan, not only for students who are seniors now, so a sophomore's plan starts the job search in senior fall
+   - tier 1: other must-dos and the quick steps they need now (the protected goals above)
+   - tier 2: last-chance goals: not `lateOk` and this is their `latest` term, or (0.10.0) the last term they can start with `minTermsLeft` semesters left (senior fall for a thesis), so a thesis competes with other last-chance goals instead of losing to all of them
+   - Before 0.10.0, last-chance goals came first, so an optional last-chance task (aid check, fellowship advising) or a long skill must-do could take the hours a senior's job search needed.
 
 2. **Phase 2** places everything else by tier, then term score, then id (deterministic tie-break).
 
@@ -462,6 +478,8 @@ Drawn by `layoutConfluence()` in `src/app/map/confluence-map.js` (design/DESIGN.
 32. `test/recruiter.test.ts`: every track names what its recruiters look for, with https sources, and its weights follow docs/RECRUITER_PRIORITIES.md.
 30. Engine 0.8.1: nothing that needs semesters left (advisor planning, career research, a minor or certificate, an officer term, aid eligibility, starting research, study abroad, fellowship advising) starts in the final semester; a goal done late never explains itself as "early".
 29. `scripts/simulate.ts` (CI, `npm run simulate`): 260 varied students across every major at every school, checked against 26 rules (wrong-year wording, missed-goal lists, goal cap, repeats, notices, campus, major, must-dos, seniors' outcome; 0.9.0: the draft never changes the plan, options never repeat, crossed-out goals never linger or hold anything back). Must report 0 issues.
+33. Engine 0.10.0 (`test/leadtime.test.ts`): a senior in their last spring is never told to start an honors thesis and gets the research project instead; a junior's thesis starts with two semesters left; no goal starts with fewer than its `minTermsLeft`, across every major, path, year, and season; groundwork drops once what it prepares for is done; researching careers stops when the job search starts unless the student is still exploring; program-only goals never cross majors and the notice names them; "Up next" only lists goals that can still start. `npm run audit:lead-time` reports the rest (docs/TIMING_AUDIT.md §7).
+34. `test/timing.test.ts` (data 2026.11.23-3): no text names a year, stage, or month that has passed by the term it's shown in.
 27. New Brunswick plans match `test/fixtures/nb-plans-baseline.json`, recorded with the current engine by `scripts/nb-baseline.ts`; re-record only for intended planning changes.
 
 Add a test for every bug found in review.
