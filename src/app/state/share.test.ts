@@ -37,6 +37,12 @@ describe("share link", () => {
     expect(parseShareHash(old)!.enrollment).toBe("full-time");
   });
 
+  it("carries when a grad-school applicant will apply (engine 0.11.0)", () => {
+    const phd = { ...a, majorId: "biological-sciences", trackId: "research-phd", gradApps: "this-cycle" as const };
+    expect(parseShareHash(shareHash(phd))!.gradApps).toBe("this-cycle");
+    expect(parseShareHash(shareHash({ ...phd, gradApps: undefined }))!.gradApps).toBeUndefined();
+  });
+
   it("rejects malformed or unknown values", () => {
     expect(parseShareHash("#plan=not-json")).toBeNull();
     expect(parseShareHash("#other=1")).toBeNull();

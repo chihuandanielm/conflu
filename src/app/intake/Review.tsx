@@ -20,6 +20,7 @@ export function answerText(s: StepId, a: Answers): string {
     case "school": return optionLabel(uiIntake.school.options, a.school) ?? skipped;
     case "track": return trackName(a.trackId) ?? skipped;
     case "horizon": return optionLabel(intake.horizons, a.horizon) ?? skipped;
+    case "gradApps": return optionLabel(intake.gradApps, a.gradApps) ?? skipped;
     case "experience": return a.experience.length ? list(a.experience, intake.experience) : "None yet";
     case "skills": return a.skills.length ? list(a.skills, intake.skills) : "None picked";
     case "credentials": return a.credentials.length ? list(a.credentials, intake.credentials) : a.seen.includes("credentials") ? "None" : skipped;
@@ -35,7 +36,7 @@ export function answerText(s: StepId, a: Answers): string {
 }
 
 const SHORT: Partial<Record<StepId, string>> = {
-  status: "Status", major: "Major", year: "Year and semester", gender: "Gender", school: "Campus", track: "Goal", horizon: "Time frame", experience: "Experience",
+  status: "Status", major: "Major", year: "Year and semester", gender: "Gender", school: "Campus", track: "Goal", horizon: "Time frame", gradApps: "Applying", experience: "Experience",
   skills: "Skills", credentials: "Certifications", hours: "Free hours a week", enrollment: "Enrollment", summer: "Summers", coop: "Co-op",
   location: "Based in", citizenship: "Citizenship", identity: "About you",
 };

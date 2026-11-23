@@ -11,6 +11,7 @@ export type Location = NonNullable<PlanInput["location"]>;
 export type Citizenship = NonNullable<PlanInput["citizenship"]>;
 export type School = NonNullable<PlanInput["school"]>;
 export type Enrollment = NonNullable<PlanInput["enrollment"]>;
+export type GradApps = NonNullable<PlanInput["gradApps"]>;
 export const SCHOOLS: readonly School[] = ["rutgers-nb", "rutgers-newark", "rutgers-camden", "other"];
 
 /**
@@ -34,6 +35,8 @@ export interface Answers {
   /** Optional gender answer id (data/intake.json gender.options); its tags join identity only in the plan input. */
   gender?: string;
   enrollment?: Enrollment;
+  /** Grad-school paths only (engine 0.11.0): apply this coming cycle, after a gap year, or not sure yet. */
+  gradApps?: GradApps;
   school?: School;
   trackId?: string;
   horizon?: Horizon;
@@ -55,10 +58,12 @@ export const emptyAnswers = (): Answers => ({
 });
 
 export type StepId =
-  | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "experience" | "skills" | "credentials"
+  | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "gradApps" | "experience" | "skills" | "credentials"
   | "hours" | "summer" | "coop" | "location" | "citizenship" | "gender" | "identity" | "review";
 
 export const coopMajors = new Set(uiIntake.coop.majors);
+/** A career path that leads to grad or professional school, where the plan asks when the student will apply. */
+export const isGradTrack = (trackId: string | undefined) => tracks.find((t) => t.id === trackId)?.outcome === "grad-school";
 
 /**
  * Screens, in order (docs/INTAKE_ORDER.md). Small related questions share a screen; the goal comes right after the
@@ -73,7 +78,7 @@ export function screensFor(a: Answers): Screen[] {
   return [
     { id: "study", parts: ["school", "major"] },
     { id: "track", parts: ["track"] },
-    { id: "horizon", parts: ["horizon"] },
+    { id: "horizon", parts: isGradTrack(a.trackId) ? ["horizon", "gradApps"] : ["horizon"] },
     { id: "year", parts: ["year", "enrollment"] },
     { id: "experience", parts: ["experience"] },
     { id: "skills", parts: ["skills", "credentials"] },
@@ -108,6 +113,7 @@ export function isAnswered(s: StepId, a: Answers): boolean {
     case "year": return !!a.year && !!a.semester;
     case "gender": return !!a.gender;
     case "enrollment": return !!a.enrollment;
+    case "gradApps": return !!a.gradApps;
     case "school": return !!a.school;
     case "track": return !!a.trackId;
     case "horizon": return !!a.horizon;
@@ -153,6 +159,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     ...(coopMajors.has(a.majorId) && a.openToCoop !== undefined ? { openToCoop: a.openToCoop } : {}),
     school: a.school ?? "rutgers-nb",
     enrollment: a.enrollment ?? "full-time",
+    ...(isGradTrack(a.trackId) && a.gradApps ? { gradApps: a.gradApps } : {}),
     ...(a.location ? { location: a.location } : {}),
     ...(a.citizenship ? { citizenship: a.citizenship } : {}),
     identity: [...new Set([...a.identity, ...genderTags(a.gender)])],

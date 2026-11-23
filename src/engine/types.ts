@@ -46,6 +46,12 @@ export interface Goal {
   alternative?: string;
   /** Engine 0.10.0: only ever planned as another goal's alternative. */
   onlyAsAlternative?: boolean;
+  /** Engine 0.11.0: the months an application round is open (1–12; wraps past December, so 9–1 is September to
+   *  January). The goal is only started in a term that overlaps the round, and its timing line says when it opens or closes. */
+  cycle?: { opens: number; closes: number };
+  /** Engine 0.11.0: part of applying to grad or professional school, timed by `PlanInput.gradApps`: "apply" is the
+   *  applications, "prep" is what they need (program list, statement, letters, test prep). */
+  gradStep?: "prep" | "apply";
 }
 
 export interface Track {
@@ -116,6 +122,9 @@ export interface PlanInput {
   skippedGoals?: string[];
   /** The draft map (engine 0.9.0): more options per term, for the student to cross out or mark done before finalizing. */
   draft?: boolean;
+  /** Engine 0.11.0, grad-school tracks: apply in the final year ("this-cycle": what applications need finishes first, and
+   *  applications happen before graduation), or the fall after graduation ("after-gap"). Missing or "not-sure": as before. */
+  gradApps?: "this-cycle" | "after-gap" | "not-sure";
   previousPlan?: Record<string, TermCode>; // goalId -> term, for plan stability
 }
 
@@ -133,6 +142,8 @@ export interface PlanItem {
   importance: "must" | "high" | "medium" | "low";
   /** Draft map only (engine 0.9.0): an extra option beyond the time-sized plan. Takes no hours; finalizing drops it. */
   option?: boolean;
+  /** Engine 0.11.0: for goals with an application round, whether it's open in this term or opens later in it. */
+  cycle?: { status: "open" | "opens-this-term"; label: string };
 }
 
 export interface PlanTerm { code: TermCode; label: string; capacityHours: number; usedHours: number; summerBlock: boolean; items: PlanItem[] }

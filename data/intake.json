@@ -1097,5 +1097,21 @@
         }
       ]
     }
+  ],
+  "gradApps": [
+    {
+      "id": "this-cycle",
+      "label": "This coming cycle",
+      "note": "Apply in your final year, to start right after you graduate"
+    },
+    {
+      "id": "after-gap",
+      "label": "After a gap year",
+      "note": "Apply the fall after you graduate, to start a year later"
+    },
+    {
+      "id": "not-sure",
+      "label": "Not sure yet"
+    }
   ]
 }

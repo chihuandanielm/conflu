@@ -350,7 +350,11 @@
       "guides": [
         "fafsa-student-steps"
       ],
-      "forNextYear": true
+      "forNextYear": true,
+      "cycle": {
+        "opens": 10,
+        "closes": 5
+      }
     },
     {
       "id": "f-aid-check",
@@ -4616,7 +4620,11 @@
       "doneWhen": "Your application is submitted before the deadline.",
       "guides": [
         "pitt-rec-letters"
-      ]
+      ],
+      "cycle": {
+        "opens": 9,
+        "closes": 10
+      }
     },
     {
       "id": "a-fellowship-advising",
@@ -4759,7 +4767,8 @@
       "guides": [
         "aamc-mcat-free",
         "ets-gre-prepare"
-      ]
+      ],
+      "gradStep": "prep"
     },
     {
       "id": "a-letters",
@@ -4810,7 +4819,8 @@
       "doneWhen": "Three recommenders have agreed and have everything they need, with deadlines confirmed.",
       "guides": [
         "pitt-rec-letters"
-      ]
+      ],
+      "gradStep": "prep"
     },
     {
       "id": "a-grad-list",
@@ -4857,7 +4867,8 @@
       "doneWhen": "You have a balanced, budgeted list of programs with their deadlines.",
       "guides": [
         "mit-grad-school"
-      ]
+      ],
+      "gradStep": "prep"
     },
     {
       "id": "a-personal-statement",
@@ -4912,7 +4923,8 @@
       ],
       "late": {
         "why": "It takes several drafts, so give yourself a few weeks before your first deadline."
-      }
+      },
+      "gradStep": "prep"
     },
     {
       "id": "a-nclex-prep",
@@ -5165,7 +5177,11 @@
       "doneWhen": "You've applied to at least 5 summer research programs.",
       "guides": [
         "pitt-rec-letters"
-      ]
+      ],
+      "cycle": {
+        "opens": 10,
+        "closes": 2
+      }
     },
     {
       "id": "ap-internship-early",
@@ -5221,7 +5237,11 @@
       ],
       "supersededBy": [
         "e-internship-target"
-      ]
+      ],
+      "cycle": {
+        "opens": 9,
+        "closes": 3
+      }
     },
     {
       "id": "ap-internship-target",
@@ -5278,7 +5298,11 @@
         "mit-star-interview",
         "tufts-info-interview",
         "mit-finding-jobs"
-      ]
+      ],
+      "cycle": {
+        "opens": 8,
+        "closes": 4
+      }
     },
     {
       "id": "ap-federal",
@@ -5437,7 +5461,12 @@
       "guides": [
         "mit-grad-school",
         "owl-personal-statement"
-      ]
+      ],
+      "cycle": {
+        "opens": 9,
+        "closes": 1
+      },
+      "gradStep": "apply"
     },
     {
       "id": "ap-negotiate",
