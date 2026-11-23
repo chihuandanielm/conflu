@@ -27,7 +27,7 @@ describe("results page", () => {
     for (let i = 1; i < order.length; i++) expect(order[i - 1].compareDocumentPosition(order[i]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     // The destination is in the header, and again in the big picture.
     expect(screen.getAllByText("Land your first role in software engineering").length).toBeGreaterThanOrEqual(2);
-    expect(screen.getByText("headed for")).toBeInTheDocument();
+    expect(screen.queryByText("headed for")).toBeNull();
     const have = screen.getByRole("heading", { name: "What you have" }).closest("section")!;
     expect(within(have).getByText("I have a resume")).toBeInTheDocument();
     // Four tabs under the header (design/DESIGN.md §7.4a); a returning student lands on Plan.

@@ -4,7 +4,8 @@ import { intake, uiIntake } from "../data/dataset.ts";
 import { load, save } from "../state/storage.ts";
 import { todayISO } from "../today.ts";
 import { COPY, MISSING, PART_HELP, PART_TITLE, SCREEN_COPY, type StepCopy } from "./copy.ts";
-import { Intro } from "./Intro.tsx";
+import { Landing } from "../landing/Landing.tsx";
+import { toTop } from "../ui/scroll.ts";
 import { QuestionShell } from "./QuestionShell.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { Review } from "./Review.tsx";
@@ -15,7 +16,6 @@ import { RankedChips } from "./controls/RankedChips.tsx";
 import { SingleChoice, type Choice } from "./controls/SingleChoice.tsx";
 import { TrackPicker } from "./controls/TrackPicker.tsx";
 import { YearTermPicker } from "./controls/YearTermPicker.tsx";
-import { useRiver } from "../river/RiverProvider.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isMulti, isSummerBreak, majorOfferedAt, OPTIONAL, screenOf, screensFor, stepsFor,
   type Answers, type Enrollment, type School, type ScreenId, type StepId,
@@ -101,19 +101,11 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const hasProgress = useRef(!!load<IntakeState>(INTAKE_KEY)?.answers?.seen?.length).current;
   const timer = useRef<number | undefined>(undefined);
   const reduce = useReducedMotion();
-  const river = useRiver();
-  // Leaving the landing: the words go, the river is freed from under them, and the camera follows the stem round the
-  // bend down to the water's edge (3.2s). The questions fade in near the end of the move (design/DESIGN.md §7.2).
-  // The intro moves the camera itself (Intro.tsx).
+  // The landing is its own screen ("intro"); the questions and the review are "ask". The landing runs its own exit
+  // (its words fade, then its navy fades to sage), so the questions only fade in once it has gone.
   const group = step === "intro" ? "intro" : "ask";
-  const prevGroup = useRef(group);
-  const arriving = prevGroup.current === "intro" && group === "ask";
-  useEffect(() => { prevGroup.current = group; }, [group]);
-  useEffect(() => {
-    if (group !== "ask" || river.scene === "ask") return;
-    river.setMasks([], { fadeMs: 500 });
-    void river.goTo("ask", { ms: 3200, along: river.scene === "landing" || river.scene === "low" });
-  }, [group, river]);
+  // Arriving at the questions or the review from another screen: start at the top (nothing shows yet).
+  useEffect(() => { if (group === "ask") toTop(); }, [group]);
 
   // Save on every change (except the intro screen, so "Continue where you left off" keeps the real step).
   useEffect(() => { if (step !== "intro") save(INTAKE_KEY, state); }, [state, step]);
@@ -161,7 +153,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const headingId = `q-${step}`;
   let screen: ReactNode;
   if (step === "intro") {
-    screen = <Intro hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
+    screen = <Landing hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
       onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
@@ -199,30 +191,26 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   const announce = qIndex >= 0 ? `Step ${qIndex + 1} of ${screens.length}. ${(parts.length === 1 ? COPY[parts[0] as keyof typeof COPY] : SCREEN_COPY[step]!).question}`
     : step === "review" ? "Check your answers." : "";
 
-  // A whole screen fades over 520ms while the river moves; between questions only the sheet moves: 18px left and out,
-  // the next in from 18px right (260ms). With reduced motion nothing moves.
+  // The landing manages its own fade; the questions fade in over 350ms on the sage it leaves behind. Going back to the
+  // landing, its navy fades in under it (Landing.tsx). Between questions only the sheet moves: 18px left and out, the next in from 18px
+  // right (260ms). With reduced motion nothing moves.
   const ease = [0.22, 0.61, 0.36, 1] as const;
   return (
     <>
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announce}</p>
-      <AnimatePresence mode="wait" initial={false}>
-        {group === "intro" ? (
-          <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.52, ease }}>
-            {screen}
-          </motion.div>
-        ) : (
-          // Only as wide as the sheet: a fading layer the width of the screen, over a canvas that changes every frame, is
-          // what costs the most on large screens.
-          <motion.div key="ask" className="mx-auto flex min-h-dvh w-full max-w-[672px] flex-col items-center px-4 pt-[18px]"
+      {group === "intro" ? (
+        // The landing fades itself out before handing over, so nothing here waits on an exit animation.
+        screen
+      ) : (
+        <AnimatePresence>
+          <motion.div key="ask" className="mx-auto flex min-h-dvh w-full max-w-[672px] flex-col items-center px-4 pt-[18px] pb-12"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.52, ease, delay: arriving && !reduce ? 1.78 : 0 }}>
+            transition={{ duration: reduce ? 0 : 0.35, ease }}>
             <header className="w-full max-w-[640px]">
               <ProgressBar label="Intake progress" max={screens.length}
                 value={step === "review" ? screens.length : qIndex + 1} caption={step === "review" ? "Review" : undefined} />
             </header>
-            {/* Bottom margin equals the river's band, so the last control always ends above the water. */}
-            <div className="mt-[clamp(16px,5vh,56px)] mb-[calc(34dvh+24px)] w-full max-w-[640px]">
+            <div className="mt-[clamp(16px,5vh,56px)] w-full max-w-[640px]">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div key={step} initial={{ opacity: 0, x: reduce ? 0 : 18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reduce ? 0 : -18 }}
                   transition={{ duration: reduce ? 0 : 0.26, ease }}>
@@ -231,8 +219,8 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
               </AnimatePresence>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </>
   );
 }

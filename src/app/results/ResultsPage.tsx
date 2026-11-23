@@ -1,4 +1,4 @@
-import { startTransition, useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
 import { goals, intake } from "../data/dataset.ts";
@@ -9,12 +9,12 @@ import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { tailoredResources } from "../resources/tailor.ts";
-import { useRiver } from "../river/RiverProvider.tsx";
 import { diff, finalize, isOutdated, markDone, refresh, reopenDraft, setHours, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
 import { shareHash } from "../state/share.ts";
 import { loadSteps, toggleStep } from "../state/steps.ts";
 import { isStaleBuildError, ReloadNotice } from "../staleBuild.tsx";
 import { todayISO } from "../today.ts";
+import { toTop } from "../ui/scroll.ts";
 import { Button } from "../ui/Button.tsx";
 import { ComingUp } from "./ComingUp.tsx";
 import { Competencies } from "./Competencies.tsx";
@@ -42,13 +42,10 @@ type Tab = "plan" | "map" | "resources" | "courses";
 const ALL_TABS: { id: Tab; label: string }[] = [
   { id: "plan", label: "Plan" }, { id: "map", label: "Map" }, { id: "resources", label: "Resources" }, { id: "courses", label: "Courses" },
 ];
-/** When the page arrives with a camera move, the words fade in during the last second of it (design/DESIGN.md §7.3). */
-const ARRIVE_MS = 2600, WORDS_AT = 1500;
 
 /**
- * The results page (design/DESIGN.md §7.4): a header over the river (facing downstream), then tabs (Plan, Map,
- * Resources, and Courses for a Rutgers major) that stick to the top once the header has scrolled away, on solid sage
- * that scrolls over the river. The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
+ * The results page (design/DESIGN.md §7.4): a plain header on sage, then tabs (Plan, Map, Resources, and Courses for a
+ * Rutgers major) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
 export function ResultsPage({ saved, onChange, onEdit }: {
@@ -57,67 +54,15 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   onStartOver?: () => void;
 }) {
   const { plan, answers } = saved;
-  const river = useRiver();
-  const reduce = useReducedMotion() || river.reducedMotion;
+  const reduce = useReducedMotion();
   const [open, setOpen] = useState<{ item: PlanItem; term: PlanTerm } | null>(null);
   const [progress, setProgress] = useState(loadSteps);
   const onToggleStep = useCallback((goalId: string, i: number) => setProgress((p) => toggleStep(p, goalId, i)), []);
   const [announcement, setAnnouncement] = useState("");
   const h1 = useRef<HTMLHeadingElement>(null);
-  const titleBox = useRef<HTMLDivElement>(null);
-  const actionsBox = useRef<HTMLDivElement>(null);
   const tablist = useRef<HTMLDivElement>(null);
-
-  // Arrival: the camera turns to face downstream and rises; the page fades in during the last second of the move, and
-  // the river dissolves out from under the title and the buttons. Coming back to results needs no move.
-  const [shown, setShown] = useState(() => reduce || river.scene === "results");
-  // Staged mount: the header, the tabs and "Where you're headed" render at once, so the camera move starts without a
-  // stall; the rest renders as an interruptible update just after, while the page is still invisible, so it is ready
-  // before the page fades in. (Without a river, as in unit tests, or with reduced motion, everything renders at once.)
-  const [settled, setSettled] = useState(() => reduce || river.scene === "results" || river.scene === null);
-  const leaving = useRef(false);
-  /** Draw only the river the student can see: the band above the tabs (the page below is opaque sage). */
-  const clip = useCallback(() => {
-    if (leaving.current) return;
-    const top = tablist.current?.getBoundingClientRect().top ?? 0;
-    if (top <= 0) { river.pause(); river.setClip(0); return; }
-    river.resume(); river.setClip(top);
-  }, [river]);
-  const frame = useCallback((fadeMs = 0) => {
-    const pad = (el: HTMLElement | null, p: number) => {
-      const r = el?.getBoundingClientRect();
-      return r ? [{ x: r.left - p, y: r.top - p, w: r.width + p * 2, h: r.height + p * 2 }] : [];
-    };
-    river.setMasks([...pad(titleBox.current, 10), ...pad(actionsBox.current, 8)], { fadeMs });
-  }, [river]);
-  useEffect(() => {
-    h1.current?.focus({ preventScroll: true });
-    river.setHints({ sky: titleBox.current?.getBoundingClientRect().bottom ?? 0 });
-    if (river.scene === "results" || reduce) { river.setScene("results"); frame(); setShown(true); clip(); return; }
-    void river.goTo("results", { ms: ARRIVE_MS });
-    const raf = requestAnimationFrame(() => startTransition(() => setSettled(true)));
-    const t = window.setTimeout(() => { frame(700); setShown(true); }, WORDS_AT);
-    // Once the page has faded in and covers everything below the tabs, stop drawing the river there.
-    const c = window.setTimeout(clip, WORDS_AT + 600);
-    return () => { cancelAnimationFrame(raf); window.clearTimeout(t); window.clearTimeout(c); };
-    // Once, on arrival.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  // The river is only seen above the tabs: draw just that band, follow it as the page scrolls, pause once it has
-  // scrolled away, and keep the header's words clear. Leaving the results gives the river the whole screen back.
-  useEffect(() => {
-    let raf = 0;
-    const on = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => { if (!shown) return; clip(); frame(); });
-    };
-    window.addEventListener("scroll", on, { passive: true });
-    window.addEventListener("resize", on);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", on); window.removeEventListener("resize", on); };
-  }, [river, frame, clip, shown]);
-  useEffect(() => () => { river.setClip(null); river.resume(); }, [river]);
-  /** Before leaving (the page fades out over the river), give the river the whole screen again. */
-  const leave = (go: () => void) => () => { leaving.current = true; river.setClip(null); river.resume(); go(); };
+  // Arriving (the previous screen has faded out): start at the top, then focus the title.
+  useEffect(() => { toTop(); h1.current?.focus({ preventScroll: true }); }, []);
 
   const replan = useCallback((next: SavedPlan, message: (moved: number) => string) => {
     const d = diff(saved.plan, next.plan);
@@ -169,8 +114,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
     plan: null, courses: null,
     map: new Set(plan.terms.flatMap((t) => t.items.map((it) => it.goalId))).size,
     // Counting resources runs the eligibility rules over every resource: part of the staged update.
-    resources: settled ? tailoredResources(plan, input).length : null,
-  }), [plan, input, settled]);
+    resources: tailoredResources(plan, input).length,
+  }), [plan, input]);
   // The Plan tab reads as what the student's time fits; the draft's extra options are on the Map tab, to cross out or keep.
   const core = useMemo(() => withoutOptions(plan), [plan]);
   const finalized = saved.finalized ?? true;
@@ -207,28 +152,25 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   };
 
   const outdated = isOutdated(saved);
-  const fade = `transition-opacity duration-[520ms] ease-confluence ${shown ? "opacity-100" : "opacity-0"}`;
 
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
-      {/* 0. Header, over the river. On a phone the river sits between the title and the buttons. */}
-      <header inert={!!open} className={`mx-auto flex min-h-[250px] max-w-[1040px] flex-col justify-between px-5 pt-[22px] pb-5 min-[760px]:block min-[760px]:min-h-[300px] ${fade}`}>
-        <div ref={titleBox} className="max-w-[440px]">
+      {/* 0. Header: title, destination, summary, actions. */}
+      <header inert={!!open} className="mx-auto max-w-[1040px] px-5 pt-8 pb-7 min-[760px]:pt-12 min-[760px]:pb-9">
+        <div className="max-w-[640px]">
           <h1 ref={h1} tabIndex={-1} className="text-h1">Your plan</h1>
-          <p className="mt-2.5"><span className="fact block text-ink">headed for</span>
-            <span className="label text-[1.3125rem] leading-[1.2]">{outcomeText(answers.trackId)}</span></p>
+          <p className="label mt-2.5 text-[1.3125rem] leading-[1.2]">{outcomeText(answers.trackId)}</p>
           <p className="mt-2 text-small">{planSummary(answers)}</p>
         </div>
         <div>
-          {/* As wide as the buttons (not the header): the river is cleared from under exactly this box. */}
-          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap min-[380px]:flex-nowrap min-[600px]:flex-wrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
+          <div className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap min-[380px]:flex-nowrap min-[600px]:flex-wrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
             <Button variant="outline" small onClick={() => void share()}>Share link</Button>
-            <Button variant="outline" small onClick={leave(onEdit)}>Edit answers</Button>
+            <Button variant="outline" small onClick={onEdit}>Edit answers</Button>
           </div>
           {shareUrl && (
             <div className="mt-3 max-w-[640px] bg-sage">
@@ -244,8 +186,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
         </div>
       </header>
 
-      {/* The page: solid sage, scrolling over the river. */}
-      <div className={`min-h-dvh bg-sage ${fade}`}>
+      {/* The page under the sticky tabs. */}
+      <div className={`min-h-dvh bg-sage`}>
         <nav ref={tablist} inert={!!open} aria-label="Plan, map and resources" className="sticky top-0 z-20 bg-sage">
           <div role="tablist" aria-label="Your plan" onKeyDown={onTabKey} className="mx-auto flex max-w-[1000px] border-b-[1.5px] border-blue min-[600px]:mx-5 min-[1040px]:mx-auto">
             {TABS.map((t) => (
@@ -284,7 +226,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
                     <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
                     <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
                   </div>
-                  {settled && <>
+                  {<>
                   {/* 3. Coming up. */}
                   <div className="pt-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
                   {/* 4. The big picture: where you're headed, what you have and need. */}

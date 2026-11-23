@@ -14,8 +14,10 @@ const heading = (page: Page) => page.getByRole("heading", { level: 1 });
 test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
   const seen = watch(page);
   await page.goto("./");
-  await expect(heading(page)).toHaveText("Many streams, one plan.");
-  await expect(page.getByText(/general trajectory, not a blueprint/)).toBeVisible();
+  await expect(heading(page)).toHaveText("Know what to do this semester.");
+  // The landing's painted scene is a canvas; the old session river is gone everywhere.
+  await expect(page.locator("canvas")).toHaveCount(1);
+  await expect(page.locator("canvas[data-river]")).toHaveCount(0);
 
   // The CSP (a meta tag, since GitHub Pages can't send headers) is active: an injected inline script must not run.
   const ran = await page.evaluate(() => new Promise<boolean>((resolve) => {
@@ -28,12 +30,8 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   expect(ran).toBe(false);
   seen.violations.length = 0; // that probe's own violation is expected
 
-  // One river for the whole session: remember the canvas, and check it is the same one on every screen.
-  await page.evaluate(() => { (window as unknown as { __river?: Element }).__river = document.querySelector("canvas[data-river]")!; });
-  const sameRiver = () => page.evaluate(() => document.querySelectorAll("canvas").length === 1
-    && document.querySelector("canvas[data-river]") === (window as unknown as { __river?: Element }).__river);
-  expect(await sameRiver()).toBe(true);
-  await page.getByRole("button", { name: "Start", exact: true }).click();
+  // Build my plan: the landing fades to the sage of the questions, which have no canvas behind them.
+  await page.getByRole("button", { name: /^Build my plan/ }).first().click();
 
   // Campus and major share a screen; picking the major moves on.
   await expect(heading(page)).toHaveText("What do you study?");
@@ -74,7 +72,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await page.getByRole("button", { name: "Continue" }).click();
 
   await expect(heading(page)).toHaveText("Check your answers");
-  expect(await sameRiver()).toBe(true);
+  await expect(page.locator("canvas")).toHaveCount(0);
   await expect(page.getByText("Computer Science", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Build my plan" }).click();
 
@@ -84,7 +82,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
     await expect(page.getByRole("heading", { name })).toBeVisible();
   }
 
-  expect(await sameRiver()).toBe(true);
+  await expect(page.locator("canvas")).toHaveCount(0);
 
   // Open a goal from the full map (the Map tab) and mark it done.
   await page.getByRole("button", { name: "See the full map" }).click();

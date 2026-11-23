@@ -1,5 +1,7 @@
 # The river: how it works and how to change it
 
+> **Retired from the app on 2026-11-23** (docs/LANDING_REDESIGN.md). The session river no longer runs behind the site; the landing uses a painted scene (`src/app/landing/scene.ts`) and the other screens sit on plain sage. This file and `design/river/river.js` stay as the design prototype's reference.
+
 `design/river/river.js` is one file with no dependencies. It draws the ASCII river on a `<canvas>`. Open `prototypes/scene.html` (through a local server) to see each camera preset and the glide between them.
 
 ## 1. The model
