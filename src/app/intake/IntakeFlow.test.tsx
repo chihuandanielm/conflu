@@ -21,6 +21,9 @@ describe("IntakeFlow", () => {
     // A real plan from the engine, and the numbers behind the site.
     expect(screen.getByRole("heading", { name: "A real plan" })).toBeInTheDocument();
     expect(screen.getByText("checked resources")).toBeInTheDocument();
+    // One button at the top (the hero), one at the bottom (the closing panel); none in the nav beside the hero's.
+    expect(within(screen.getByRole("navigation")).queryByRole("button")).toBeNull();
+    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(2);
     fireEvent.click(screen.getAllByRole("button", { name: /^Build my plan/ })[0]); await act(async () => {});
     // The words fade, then the navy fades to sage (1.45 s in all) before the questions take over.
     expect(heading()).toBe("Know what to do this semester.");

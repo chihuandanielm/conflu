@@ -120,7 +120,7 @@ The fact line under any goal is always in this order: kind, hours, `must-do` if 
 
 The one navy screen (`--navy` `#2F3F6E`). Text is sage (8.1:1) with sand for the accent words and numbers (5.7:1).
 
-- **Nav:** the conflu mark and name, and the primary button.
+- **Nav:** the conflu mark and name only. The primary button appears once on screen at a time: in the hero, and again in the closing panel at the bottom.
 - **Hero:** the painted scene fills the section (760px tall on a phone, 880px wide). On its dark upper sky: "Know what to do **this semester.**" (sage, the last two words sand), one line under it, and the primary button (sand with ink text). A returning visitor sees "Continue your plan" or "Continue where you left off", with "Start over" as an outline button beside it.
 - **The paint-in (first visit in a browser session):** back to front over about 2.6 s. The sky hatching sweeps down and across (0–0.7 s), the sun blooms outward (0.3–0.9 s), the peaks resolve from the horizon up with each cell flickering through random glyphs for 0.18 s (0.5–1.5 s), the tree line, meadow and pines fill in (1.1–1.8 s), and the river is traced last, from the three streams at the bottom up to the vanishing point (1.5–2.6 s). The headline rises in at 0.8 s. The button works from the first frame. Afterwards only the water shimmers (30 fps). Coming back shows the finished painting. Reduced motion: the finished painting, still.
 - **Then:** How it works (three numbered cells), A real plan (built by the engine for a computer science sophomore, five semesters, must-dos solid), four numbers from the data, a sand closing panel with the button, the large wordmark, a one-line footer.

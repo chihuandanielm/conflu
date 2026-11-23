@@ -90,7 +90,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
         transition={{ duration: reduce ? 0 : WORDS_OUT_S, delay: !leaving && !first && !reduce ? 0.8 : 0, ease: EASE }}
         inert={leaving}>
         <div className="mx-auto max-w-[1160px] border-x border-blue">
-          <nav className="flex items-center justify-between px-5 py-4 min-[760px]:px-14">
+          <nav className="flex items-center px-5 py-4 min-[760px]:px-14">
             <span className="flex items-center gap-2.5 font-display text-[1.625rem] leading-none font-bold">
               <svg width="30" height="34" viewBox="0 0 44 52" aria-hidden="true">
                 <path d="M7 3C7 15 22 17 22 29M22 3V29M37 3C37 15 22 17 22 29" fill="none" stroke="currentColor" strokeWidth="2.4" />
@@ -99,7 +99,6 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
               </svg>
               conflu
             </span>
-            {cta(primary.label, primary.go)}
           </nav>
 
           {/* The painted confluence, with the headline on its dark sky. */}
