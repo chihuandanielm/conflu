@@ -42,7 +42,7 @@
       "id": "linkedin-alumni-tool",
       "name": "LinkedIn Rutgers alumni tool",
       "type": "tool",
-      "scope": "national",
+      "scope": "rutgers",
       "majors": [
         "all"
       ],
@@ -73,7 +73,10 @@
         "httpStatus": 999,
         "note": "Site refused the automated check (HTTP 999); open it by hand."
       },
-      "tags": []
+      "tags": [],
+      "campuses": [
+        "all"
+      ]
     },
     {
       "id": "linkedin-learning",

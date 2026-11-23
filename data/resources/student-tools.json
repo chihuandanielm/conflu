@@ -1,0 +1,978 @@
+{
+  "_about": "Free and student-priced tools, apps and how-to guides (researched 2026-11-23). Each skill tool pairs with a guide to getting access or an account.",
+  "resources": [
+    {
+      "id": "rutgers-linkedin-learning",
+      "name": "LinkedIn Learning (free with your Rutgers NetID)",
+      "type": "tool",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Thousands of video courses, from Excel, SQL and Python to public speaking, design and marketing, free for Rutgers students, with certificates you can add to LinkedIn.",
+      "url": "https://it.rutgers.edu/guides/linkedin-learning/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign in with your NetID through the Rutgers IT guide, then search for the skill you need."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "skills",
+        "free-through-rutgers"
+      ],
+      "campuses": [
+        "all"
+      ]
+    },
+    {
+      "id": "rutgers-microsoft-office",
+      "name": "Microsoft Office for Rutgers students (free Excel, Word, PowerPoint)",
+      "type": "tool",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Current students get Excel, Word, PowerPoint and more free on up to five devices while enrolled.",
+      "url": "https://it.rutgers.edu/microsoft-office/microsoft-office-for-students/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Follow Rutgers IT's install steps on this page with your Rutgers account."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "excel",
+        "free-through-rutgers"
+      ],
+      "campuses": [
+        "all"
+      ]
+    },
+    {
+      "id": "rutgers-software-portal",
+      "name": "Rutgers University Software Portal (MATLAB, SPSS, Adobe and more)",
+      "type": "tool",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free and discounted software for students, including MATLAB, SPSS, Adobe Creative Cloud and Office. Sign in with your NetID.",
+      "url": "https://it.rutgers.edu/software-portal/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign in with your NetID and download what your courses need."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "software",
+        "free-through-rutgers"
+      ],
+      "campuses": [
+        "all"
+      ]
+    },
+    {
+      "id": "rutgers-big-interview",
+      "name": "Big Interview (practice interviews and AI resume review)",
+      "type": "tool",
+      "scope": "rutgers",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Record practice interviews tailored to your major and get instant resume feedback, free through Rutgers career services.",
+      "url": "https://success.rutgers.edu/resource/big-interview-resume-ai",
+      "applyUrl": null,
+      "contact": {
+        "how": "Open it from the Rutgers page (it's linked in Handshake too), then pick a practice set for your field."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "interview",
+        "resume"
+      ],
+      "campuses": [
+        "nb"
+      ]
+    },
+    {
+      "id": "codedex",
+      "name": "Codédex (learn Python, SQL, Git and more by doing)",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Beginner-friendly, game-style coding courses with a free tier, including Python and SQL. Sign up with Google, email or GitHub.",
+      "url": "https://www.codedex.io",
+      "applyUrl": null,
+      "contact": {
+        "how": "Create a free account with your school email or GitHub, then start Python or SQL."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "python",
+        "sql",
+        "beginner"
+      ]
+    },
+    {
+      "id": "codedex-github-students",
+      "name": "How to get Codédex Club free with the GitHub Student Developer Pack",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Codédex's page for students: verify through GitHub Education to unlock the paid Club tier at no cost.",
+      "url": "https://www.codedex.io/github-students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Get the GitHub Student Developer Pack first, then follow this page."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "how-to",
+        "account"
+      ]
+    },
+    {
+      "id": "github-education-apply",
+      "name": "GitHub Docs: Apply to GitHub Education as a student",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Step-by-step: verify you're a student to unlock the Student Developer Pack (free Copilot, cloud credits, Codédex Club, domains and more).",
+      "url": "https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student",
+      "applyUrl": null,
+      "contact": {
+        "how": "Have your school email and proof of enrollment ready (a class schedule or enrollment letter works)."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "how-to",
+        "account",
+        "github"
+      ]
+    },
+    {
+      "id": "cs50p",
+      "name": "CS50P: Introduction to Programming with Python (Harvard, free)",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Harvard's free, self-paced Python course with lectures and problem sets; a free certificate if you finish.",
+      "url": "https://cs50.harvard.edu/python/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Watch lecture 0 and do problem set 0 in the browser."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "python"
+      ]
+    },
+    {
+      "id": "kaggle-learn-sql",
+      "name": "Kaggle Learn: Intro to SQL",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A free, short hands-on SQL course on real datasets, with a certificate when you finish.",
+      "url": "https://www.kaggle.com/learn/intro-to-sql",
+      "applyUrl": null,
+      "contact": {
+        "how": "Create a free Kaggle account and run the first lesson's notebook."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "sql"
+      ]
+    },
+    {
+      "id": "khan-sql",
+      "name": "Khan Academy: Intro to SQL",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free in-browser SQL lessons with practice challenges; no setup needed.",
+      "url": "https://www.khanacademy.org/computing/computer-programming/sql",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with the first lesson; no account needed to try it."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "sql"
+      ]
+    },
+    {
+      "id": "mode-sql",
+      "name": "Mode SQL Tutorial (SQL for data analysis)",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A free tutorial that teaches SQL the way analysts use it, from basic queries to joins and window functions.",
+      "url": "https://mode.com/sql-tutorial",
+      "applyUrl": null,
+      "contact": {
+        "how": "Work through the basic and intermediate sections after an intro course."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "sql",
+        "analytics"
+      ]
+    },
+    {
+      "id": "neetcode",
+      "name": "NeetCode roadmap (free)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A free, ordered roadmap of the data structures and algorithms problems most asked in interviews, with video explanations.",
+      "url": "https://neetcode.io/roadmap",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start with the Arrays and Hashing problems; aim for a few a week."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "dsa",
+        "interview"
+      ]
+    },
+    {
+      "id": "powerbi-learn",
+      "name": "Microsoft Learn: Power BI training",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free official Power BI learning paths, from your first report to a full dashboard.",
+      "url": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start the 'Get started with Power BI' path."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "viz"
+      ]
+    },
+    {
+      "id": "r4ds",
+      "name": "R for Data Science (2nd edition, free online)",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The standard free book for learning R for data analysis: import, clean, visualize and model data.",
+      "url": "https://r4ds.hadley.nz/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read the Whole game chapters and run the code as you go."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "r"
+      ]
+    },
+    {
+      "id": "posit-cloud",
+      "name": "Posit Cloud (RStudio in your browser)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Run R and RStudio in a browser with no install; a free plan covers individual practice.",
+      "url": "https://posit.cloud",
+      "applyUrl": null,
+      "contact": {
+        "how": "Create a free account and start a new RStudio project."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "r"
+      ]
+    },
+    {
+      "id": "figma-education-apply",
+      "name": "Figma Education: apply for the free student plan",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Apply with your school email to get Figma's education plan free. Verification is handled by SheerID.",
+      "url": "https://www.figma.com/education/apply",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign in with your school email, choose Higher ed, and keep proof of enrollment handy."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "how-to",
+        "account",
+        "design"
+      ]
+    },
+    {
+      "id": "autodesk-fusion-education",
+      "name": "Autodesk Fusion free for students",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free one-year renewable access to Fusion (CAD, CAM and simulation) for students, verified with your school email.",
+      "url": "https://www.autodesk.com/education/edu-software/fusion",
+      "applyUrl": null,
+      "contact": {
+        "how": "Choose the student plan and verify with your school email."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "cad"
+      ]
+    },
+    {
+      "id": "azure-for-students",
+      "name": "Azure for Students (free cloud credit, no credit card)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Microsoft cloud credit for full-time students, verified with your school email, renewable each year you're a student.",
+      "url": "https://azure.microsoft.com/en-us/free/students/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Sign up with your school email; no credit card needed."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "cloud"
+      ]
+    },
+    {
+      "id": "google-cloud-students",
+      "name": "Google Cloud for Students (free Skills Boost credits)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Request free Google Cloud Skills Boost credits for hands-on cloud labs and courses.",
+      "url": "https://cloud.google.com/edu/students",
+      "applyUrl": null,
+      "contact": {
+        "how": "Use the student request form with your school email."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "cloud"
+      ]
+    },
+    {
+      "id": "professor-messer-security-plus",
+      "name": "Professor Messer: free Security+ (SY0-701) video course",
+      "type": "course",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The full Security+ course as free videos organized by the exam objectives.",
+      "url": "https://www.professormesser.com/sy0-701-certification-course/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Watch a section a week and take notes against the exam objectives."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "security"
+      ]
+    },
+    {
+      "id": "overthewire",
+      "name": "OverTheWire wargames (free security practice)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Free hands-on security games that teach the Linux command line and common vulnerabilities; start with Bandit.",
+      "url": "https://overthewire.org/wargames/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Start the Bandit game and keep notes on each level."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "security"
+      ]
+    },
+    {
+      "id": "handshake",
+      "name": "Handshake (jobs, internships and career fairs)",
+      "type": "job_board",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The job and internship platform most colleges use, with employer events and virtual career fairs.",
+      "url": "https://joinhandshake.com/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check whether your school already made you an account; if not, sign up with your school email."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "jobs",
+        "career-fair"
+      ]
+    },
+    {
+      "id": "handshake-account-help",
+      "name": "Handshake Help: creating an account and logging in",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Handshake's own steps for creating a student account or logging in, including if your school isn't on Handshake.",
+      "url": "https://support.joinhandshake.com/hc/en-us/articles/33030361149463-Creating-an-Account-and-Logging-In-to-Handshake",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check for an existing school account first so you don't make a duplicate."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "unverified"
+      },
+      "tags": [
+        "how-to",
+        "account"
+      ]
+    },
+    {
+      "id": "mit-handshake-first-years",
+      "name": "MIT CAPD: Helpful Handshake links for first-years",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Short guide to setting up Handshake and using it to find events and first opportunities.",
+      "url": "https://capd.mit.edu/resources/helpful-handshake-links-for-first-years/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it, then finish your profile and follow 10 employers."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "how-to"
+      ]
+    },
+    {
+      "id": "interfolio-dossier",
+      "name": "Interfolio Dossier (store recommendation letters free)",
+      "type": "tool",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        3,
+        4,
+        "grad"
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Ask recommenders to upload confidential letters once and reuse them; requesting and storing letters is free.",
+      "url": "https://www.interfolio.com/dossier/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Create a free account and send each recommender a request with your deadline."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "letters",
+        "grad-school"
+      ]
+    },
+    {
+      "id": "aamc-msar",
+      "name": "AAMC Medical School Admission Requirements (MSAR)",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "biological-sciences",
+        "exercise-science",
+        "psychology",
+        "public-health",
+        "nursing",
+        "biomedical-engineering",
+        "pharmacy"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The AAMC's database of U.S. and Canadian MD programs: requirements, MCAT and GPA ranges, and mission. Basic profiles are free.",
+      "url": "https://students-residents.aamc.org/medical-school-admission-requirements/medical-school-admission-requirements-msar-applicants",
+      "applyUrl": null,
+      "contact": {
+        "how": "Compare 15–25 schools across reach, target and likely."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "grad-school",
+        "medicine"
+      ]
+    },
+    {
+      "id": "aba-required-disclosures",
+      "name": "ABA Required Disclosures (law school admissions and outcomes data)",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "political-science",
+        "criminal-justice",
+        "economics",
+        "communication",
+        "psychology",
+        "finance",
+        "accounting",
+        "social-work"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Every ABA-approved law school's admissions (LSAT and GPA ranges), costs, scholarships and job outcomes.",
+      "url": "https://www.americanbar.org/groups/legal_education/resources/statistics/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Look up each school's 509 report to build a balanced list."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
+      },
+      "tags": [
+        "grad-school",
+        "law"
+      ]
+    }
+  ]
+}
