@@ -6,7 +6,7 @@ import { Circle, Document, Font, Line, Link, Page, Path, StyleSheet, Svg, Text, 
 import type { Plan, PlanInput, PlanItem } from "../../engine/types.ts";
 import { factLine, mapModel } from "../map/facts.ts";
 import { layoutConfluence, type MapLayout } from "../map/confluence-map.js";
-import { PALETTE } from "../river/river.js";
+import { PALETTE } from "../palette.ts";
 import { audience, contactParts, shortUrl } from "../resources/format.ts";
 import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
 import { lastChecked } from "../data/resources.ts";

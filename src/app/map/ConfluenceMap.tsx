@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { PALETTE } from "../river/river.js";
+import { PALETTE } from "../palette.ts";
 import { layoutConfluence, type MapModel } from "./confluence-map.js";
 
 const MONO = '"IBM Plex Mono", ui-monospace, monospace';

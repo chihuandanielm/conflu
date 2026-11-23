@@ -1,6 +1,6 @@
 # Confluence: design logic for Career Pathway Mapper
 
-Read this before changing anything visual. It holds the rules; the prototypes in `preview/` show them applied; `river/river.js` and `map/confluence-map.js` are working code to reuse, not sketches.
+Read this before changing anything visual. It holds the rules; the prototypes in `preview/` show them applied; `map/confluence-map.js` is working code to reuse (`river/river.js` is the retired session river, kept for reference), not sketches.
 
 The content of the site (questions, goals, tracks, resources, wording that comes from `data/`) will change. These rules should not need to. Every rule below is written so it holds for any number of questions, terms, goals or words.
 
@@ -10,15 +10,15 @@ The content of the site (questions, goals, tracks, resources, wording that comes
 
 A student's plan is a river. Things they have done and things they will do are streams. They join one at a time, the river gets wider, and it runs to one place: the outcome they chose.
 
-That one picture is used three ways, and nowhere else is decorated:
+That one picture is used in three places, and nowhere else is decorated (2026-11-23, docs/LANDING_REDESIGN.md):
 
 | Where | What the picture is |
 |---|---|
-| Landing, questions, top of results | An animated ASCII river in perspective (`river/river.js`). One world, one camera. The camera moves; the picture never cuts. |
+| Landing | A painted ASCII landscape on navy (`src/app/landing/scene.ts`): three streams in the foreground join one river that runs to a vanishing point under a low sun. It paints itself in once per visit; then only the water moves. |
 | Results page and PDF | The confluence map (`map/confluence-map.js`): every goal is a line that joins the river in its semester and stays in it to the end. |
 | Small places | A fish on the progress line. A dot beside a goal. A dotted sand rule between parts of a page. |
 
-The river is never seen from straight above. It always has a horizon.
+The animated river that used to run behind every screen (and the camera moves between screens) is gone: the questions and the results sit on plain sage, and screens change by fading.
 
 ## 2. Colour: sage paper, three inks, and ink for words
 
@@ -118,18 +118,22 @@ The fact line under any goal is always in this order: kind, hours, `must-do` if 
 
 ### 7.1 Landing
 
-- The canvas fills the viewport, fixed, behind everything.
-- **Intro (about 5 seconds, skippable):** the camera starts low over the water, looking upstream. Fish hop close by. After about 2.3s it rises for 2.8s and the tributaries open up, running down from the ridge and joining in front of you. The words fade in during the last second of the rise. "Skip intro" sits top right as a text link. A returning visitor (saved answers or a saved plan) gets the short version: no hold, a 1.2s rise.
-- **Words** sit top left, left-aligned, in a column no wider than 600px. On screens 900px and wider the river takes the right two thirds and the words sit over the land on the left; the river dissolves out from under them (`setMasks`). On narrower screens the words sit in the sky and the horizon is placed below them (`setHints({ sky })`), so longer copy pushes the river down instead of colliding with it.
-- **Buttons** are stacked under the words, left-aligned. "Start" is solid. A returning visitor sees "Continue your plan" (solid) or "Continue where you left off" (solid) with "Start over" as an outline button under it.
+The one navy screen (`--navy` `#2F3F6E`). Text is sage (8.1:1) with sand for the accent words and numbers (5.7:1).
+
+- **Nav:** the conflu mark and name only. The primary button appears once on screen at a time: in the hero, and again in the closing panel at the bottom.
+- **Hero:** the painted scene fills the section (760px tall on a phone, 880px wide). On its dark upper sky: "Know what to do **this semester.**" (sage, the last two words sand), one line under it, and the primary button (sand with ink text). A returning visitor sees "Continue your plan" or "Continue where you left off", with "Start over" as an outline button beside it.
+- **The paint-in (first visit in a browser session):** back to front over about 2.6 s. The sky hatching sweeps down and across (0–0.7 s), the sun blooms outward (0.3–0.9 s), the peaks resolve from the horizon up with each cell flickering through random glyphs for 0.18 s (0.5–1.5 s), the tree line, meadow and pines fill in (1.1–1.8 s), and the river is traced last, from the three streams at the bottom up to the vanishing point (1.5–2.6 s). The headline rises in at 0.8 s. The button works from the first frame. Afterwards only the water shimmers (30 fps). Coming back shows the finished painting. Reduced motion: the finished painting, still.
+- **Then:** How it works (three numbered cells), A real plan (built by the engine for a computer science sophomore, five semesters, must-dos solid), four numbers from the data, a sand closing panel with the button, the large wordmark, a one-line footer.
+- **The painting's colours** are seven muted tones in `scene.ts` (navy-on-navy to pale sand). They are the one exception to the colour tokens, and they only ever appear in the painting. Its glyphs are 6px: the painting is an image made of characters, not text to read.
+- **Leaving:** every button runs the same exit. The words fade (0.35 s); the page jumps to the top while nothing shows; the navy fades out over 1.1 s to the sage underneath; then the next screen fades in (0.35 s). Coming back from the first question, the navy fades in (0.9 s) and the words follow.
 
 ### 7.2 Questions
 
 Every question uses one shell. Changing, adding or removing questions never touches layout.
 
-- **Background:** the `ask` scene. You are at the water's edge on the reach; the river is the bottom fifth of the screen, the far bank and the ridge sit just above it, fish hop.
+- **Background:** plain sage. No picture behind the questions.
 - **Progress** (top, 640px column): one mono line. Water behind the fish, a green fish at the current position, dots ahead. Under it, "Question 2 of 16" in words. `role="progressbar"`. The fish count comes from the number of question steps, whatever that is.
-- **The sheet** (640px column, drafting corners, solid sage so it covers the river when a long question scrolls over it):
+- **The sheet** (640px column, drafting corners):
   1. the question (`--text-h1`)
   2. help, if any (body)
   3. why we ask, if any (`--text-small`)
@@ -137,23 +141,16 @@ Every question uses one shell. Changing, adding or removing questions never touc
   5. Back (outline, left) ... Skip (text button, when optional) and Continue (solid, right)
   6. the keyboard hint in mono, hidden under 600px
 - **Controls, all the same language:**
-  - *One choice:* ruled rows, 54px tall, a mono key number in a small square, the label, an optional second line. Hover indents the row 8px. Selected is solid blue.
+  - *One choice:* ruled rows, 54px tall, a mono key number in a small square, the label, an optional second line. Hover underlines the label. Selected is solid blue.
   - *Many choices (experience, skills, identity):* the same ruled rows with an open square instead of a key number; selected rows are solid blue with a tick in the square. Groups get a `--text-lead` heading and a shore rule between them. Search is a ruled input (bottom line only).
   - *Pickers with long lists (major, track):* suggested rows first, then "Show all" as a text button that opens the rest in the same list.
   - *Hours:* five rows like any single choice. No slider.
 - **Review screen:** the same sheet. Each answer is a ruled row: the question in `--text-small`, the answer in body, "Change" as a text button on the right. "Build my plan" is the solid button.
-- **Between questions:** the sheet slides 18px left and fades out (260ms), the next comes in from 18px right. The river does not react.
-- Bottom padding of the page equals the river's height, so the last control always ends above the water.
+- **Between questions:** the sheet slides 18px left and fades out (260ms), the next comes in from 18px right.
 
 ### 7.3 Building the plan
 
-There is no separate "Building your plan" screen. Pressing "Build my plan":
-
-1. the questions fade out and the fish hop faster for about a second (`celebrate`);
-2. the camera turns to face downstream and rises (2.6s): the reach now winds away toward the horizon across the top of the page;
-3. the results page fades in during the last second.
-
-The engine is instant; the move is the transition. With reduced motion all three steps happen at once.
+There is no separate screen and no camera move. "Build my plan" fades the review out and the results in (300 ms each), and the results page starts at the top. The engine is instant.
 
 ### 7.4 Results
 
@@ -162,7 +159,7 @@ the big picture comes after the work.
 
 | # | Part | Design |
 |---|---|---|
-| 0 | **Header** (300px; 250px on a phone) | The river, facing downstream, behind. "Your plan" (`--text-h1`, bold), then "headed for" in mono and the destination in Barlow 600, then the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers. "Start over" is on the Edit answers screen. The page below is solid sage and scrolls over the river. |
+| 0 | **Header** | Plain sage, no picture. "Your plan" (`--text-h1`, bold), the destination in Barlow 600, the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers. "Start over" is on the Edit answers screen. |
 | 1 | **Where you stand + Do this now** | A sand status strip: the term in bold, "4 goals · 1 must-do · 0 done" in mono, "Uses about 4 of your 5 free hours a week.", and a "Free hours a week" control that re-plans at once. Under it the one solid blue block: "Do this now" with a rule after it, the step in bold Barlow, "Part of (goal) · step 1 of 5 · must-do", a framed "go to (place) ->" link, and "Open the full goal" as a text button. |
 | 2 | **This semester** | Section head with the goal count. Ruled rows: dot, title in Barlow 600, a priority tag (must-do solid, others outlined) and the time in words, "Next: (first unticked step)", and "Go to:" with the best one or two places, linked. Three shown, "Show all N". Then **Good to know**: quiet notes with a 3px sand bar (never a sand fill, so a tip never looks as urgent as the status strip). Then "Why this order" as a text button. |
 | 3 | **Coming up** | Section head with the semester count. Each semester is a band: an open one solid blue with sage text, a folded one outlined; "+"/"-", the term in Barlow 600, the count in mono. The next two are open, with smaller rows. Then "When you have more time". |
@@ -253,22 +250,20 @@ Type in the PDF: Quantico for everything read, Plex Mono for facts and the banne
 
 | What | How long | Easing | Notes |
 |---|---|---|---|
-| Hover, press, select | 140ms | `--ease` | Colour swap; a pressed button moves down 1px |
+| Hover, press, select | 140ms | `--ease` | Colour swap only; nothing moves |
 | A sheet, a drawer, a question | 260ms | `--ease` | Opacity and transform only |
-| A whole screen fading during a camera move | 520ms | `--ease` | Opacity only |
-| Camera: intro rise | 2.8s (1.2s short) | quintic in-out | |
-| Camera: landing to questions | 3.2s | quintic in-out | Follows the stem round the bend (`along: true`) |
-| Camera: questions to results | 2.6s | quintic in-out | Turns 90 degrees |
-| The river itself | always | none | Never pauses, never loops visibly, never reacts to clicks |
+| Questions to results, results to questions | 300ms out, 300ms in | `--ease` | Opacity only; the new screen starts at the top |
+| Landing paint-in | about 2.6s, once per session | per cell | See 7.1 |
+| Landing to questions | 0.35s words, 1.1s navy to sage, 0.35s sheet in | ease in-out | The colour never changes all at once |
+| Questions back to landing | 0.35s sheet out, 0.9s navy in, words at 0.8s | ease in-out | The painting shows finished |
+| Landing water | always, 30 fps | none | Pauses off screen and when the tab is hidden |
 
 Rules:
 
-- **Nothing is cut.** Every change of screen is a camera move through the same world. If a new screen is ever added, add a scene (a camera preset) and move to it.
-- **Everything is time-based**, not frame-based, so it runs at the same speed on a 60Hz phone and a 144Hz monitor.
-- Interface motion uses only `opacity` and `transform`.
-- The river draws on every animation frame. It holds its frame rate by adjusting how many glyphs it draws (section 5 of `RIVER.md`), never by skipping frames.
-- **Reduced motion:** the river is one still frame per scene, there are no fish, camera moves are instant, and interface transitions are off. Nothing is lost: every screen still has its picture.
-- The river pauses when the tab is hidden and when it has scrolled out of view.
+- **Screens change by fading**, never by cutting. A colour change between screens (navy to sage) is a slow fade of the navy layer, after the words have gone.
+- **Everything is time-based**, not frame-based, so it runs at the same speed at 60Hz and 144Hz.
+- Interface motion uses only `opacity` and `transform`. The paint-in draws on every animation frame from cells computed once.
+- **Reduced motion:** the painting is finished and still, every fade is instant.
 
 ## 9. Accessibility
 

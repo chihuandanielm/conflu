@@ -2,7 +2,7 @@
 
 A free website that turns a college student's answers into a semester-by-semester career roadmap, with the programs and resources that fit them. It covers Rutgers undergraduates at New Brunswick, Newark, and Camden, in 21 majors (each campus sees only the majors it offers and its own campus offices).
 
-- **The look:** follows `design/DESIGN.md` (Confluence): four colours, Quantico and IBM Plex Mono, and one animated ASCII river behind every screen.
+- **The look:** follows `design/DESIGN.md` (Confluence): a navy landing with a painted ASCII landscape that paints itself in, then calm sage screens for the questions and the plan; Barlow Semi Condensed, Quantico and IBM Plex Mono.
 - **A short intake:** 8 screens of related questions, goal first and personal questions last (`docs/INTAKE_ORDER.md`). It works by keyboard or touch, saves as you go, and marks any missing answer in color instead of greying out the button.
 - **Every goal says what to do:** 3–6 concrete steps you can check off, a "done when" line, and how-to guides, so a plan is a path, not only a list of reasons. The results open on one "Do this now" step, with the place to go linked.
 - **A plan sized to your time:** the results open on where you stand (goals, must-dos, and how much of your free hours this semester uses, with a control to change them) and what to do now: one "Do this now" step and this semester's few goals (capped by your free hours), each naming its best places, linked, and "Why this order" with the recruiter sources. Below: where you're headed (your outcome and milestones), what you have, what you need, and "Coming up" with "when you have more time" built in. Four tabs: Plan, Map (the plan as a confluence: every goal a stream that joins one river, plus a skills picture), Resources (every resource as a box with what it is, who it is for, and where to click) and Courses (your major's courses by year from the newest Rutgers catalog, dated and linked). A drawer for each goal has its steps (with the places they name linked), where to go, reasons, and a "Mark as done" button that re-plans around it.
@@ -33,10 +33,9 @@ The dev server prints a local URL. Other commands:
 | `npm run validate` | Data integrity: references, vocabularies, UI groupings |
 | `npm test` | Engine invariants and link-checker tests (Node's built-in runner) |
 | `npm run simulate` | 260 varied students across every major and school, checked against 21 rules; CI fails on any issue |
-| `npm run test:ui` | Vitest and Testing Library: components, intake, results, the confluence map layout, the river, resources, PDF, contrast |
+| `npm run test:ui` | Vitest and Testing Library: components, intake, results, the confluence map layout, resources, PDF, contrast |
 | `npm run e2e` | Playwright: builds for `/conflu/`, serves it like GitHub Pages, runs the full flow on desktop and phone |
 | `npm run samples` | Regenerates `docs/sample-plans.md` |
-| `node scripts/check-smoothness.cjs` | After a build: measures every camera move of the river at three screen sizes and three CPU speeds |
 | `npm run check-links` | Visits every resource URL (needs internet; CI runs it weekly) |
 
 The first `npm run e2e` on a new machine needs a browser: `npx playwright install chromium`.
@@ -66,7 +65,7 @@ src/engine/            planning engine: pure, deterministic, no DOM (see docs/AL
 src/app/
   data/                builds the engine's Dataset from the JSON in the browser
   intake/              grouped question screens, review screen, model (steps, branching, relevance ranking)
-  river/               the ASCII river (one canvas for the whole session; screens move its camera) and useRiver()
+  landing/             the landing page and its painted ASCII scene (scene.ts)
   map/                 the confluence map: a pure layout function, and its drawing on the page
   results/             results page and tabs, this semester, notices, coming up, goal drawer, skills picture
   resources/           "Your resources" tab: tailoring (reuses the engine's eligibility), filters, cards

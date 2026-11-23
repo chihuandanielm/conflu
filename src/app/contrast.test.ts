@@ -14,7 +14,7 @@ const lum = (hex: string) => {
 };
 const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
 
-const FIVE = { sage: "#E0E7DA", ink: "#1A1F24", blue: "#456894", green: "#00A37D", sand: "#E6B989" };
+const FIVE = { sage: "#E0E7DA", navy: "#2F3F6E", ink: "#1A1F24", blue: "#456894", green: "#00A37D", sand: "#E6B989" };
 const AAA = 7, AA = 4.5;
 
 const files = (dir: string): string[] => readdirSync(dir).flatMap((f) => {
@@ -28,7 +28,7 @@ const tags = source.flatMap(({ p, s }) => [...s.matchAll(/<[A-Za-z][\w.]*\s[^<>]
 describe("colour (DESIGN.md §2)", () => {
   it("scans the whole app", () => { expect(tags.length).toBeGreaterThan(100); });
 
-  it("defines exactly the five colours, in :root and in the Tailwind theme", () => {
+  it("defines exactly the five colours plus the landing's navy, in :root and in the Tailwind theme", () => {
     for (const [name, hex] of Object.entries(FIVE)) expect(token(name).toUpperCase()).toBe(hex);
     const hexes = new Set([...css.matchAll(/#[0-9a-fA-F]{6}\b/g)].map((m) => m[0].toUpperCase()));
     expect([...hexes].sort()).toEqual(Object.values(FIVE).sort());
@@ -42,6 +42,11 @@ describe("colour (DESIGN.md §2)", () => {
     expect(ratio(token("ink"), token("sand"))).toBeGreaterThanOrEqual(AAA);
   });
 
+  it("on the landing's navy, sage words reach 7:1 and sand ones 4.5:1", () => {
+    expect(ratio(token("sage"), token("navy"))).toBeGreaterThanOrEqual(AAA);
+    expect(ratio(token("sand"), token("navy"))).toBeGreaterThanOrEqual(AA);
+  });
+
   it.each([["blue", "sage"], ["sage", "blue"], ["ink", "green"]])("%s on %s (headings, links, buttons, done labels) is at least 4.5:1", (fg, bg) => {
     expect(ratio(token(fg), token(bg))).toBeGreaterThanOrEqual(AA);
   });
@@ -50,8 +55,8 @@ describe("colour (DESIGN.md §2)", () => {
     for (const [fg, bg] of [["sand", "sage"], ["green", "sage"], ["sand", "blue"], ["green", "blue"]]) expect(ratio(token(fg), token(bg))).toBeLessThan(AA);
   });
 
-  it("never sets words in sand or green: green and sand classes only on decorative marks", () => {
-    const bad = tags.filter(({ tag }) => /(?<![\w-])text-(sand|green)\b/.test(tag) && !/aria-hidden/.test(tag));
+  it("never sets words in sand or green on sage: green and sand classes only on decorative marks (sand words only on the landing's navy)", () => {
+    const bad = tags.filter(({ p, tag }) => /(?<![\w-])text-(sand|green)\b/.test(tag) && !/aria-hidden/.test(tag) && !(/landing/.test(p) && /text-sand\b/.test(tag)));
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 

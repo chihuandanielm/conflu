@@ -24,6 +24,7 @@
    No other colours, no opacity tints, no gradients, no shadows. */
 :root {
   --sage: #E0E7DA;
+  --navy: #2F3F6E;  /* the landing's ground (sage on navy 8.1:1, sand on navy 5.7:1) */
   --ink: #1A1F24;
   --blue: #456894;
   --green: #00A37D;
@@ -42,6 +43,7 @@
   /* Only these five colours exist: Tailwind's default palette is switched off. */
   --color-*: initial;
   --color-sage: #E0E7DA;
+  --color-navy: #2F3F6E;
   --color-ink: #1A1F24;
   --color-blue: #456894;
   --color-green: #00A37D;
@@ -81,6 +83,8 @@
   --ease-confluence: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+/* Element defaults sit in the base layer, so a utility class (text-sage on a heading, leading-[0.95]) can override them. */
+@layer base {
 html { color-scheme: light; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -100,6 +104,7 @@ a { color: var(--blue); }
 
 :focus-visible { outline: var(--line) solid var(--blue); outline-offset: 3px; }
 [tabindex="-1"]:focus { outline: none; }
+}
 
 @layer components {
   /* Small facts: hours, terms, kinds of goal, counts, dates. Never sentences. 15px, like the smallest text. */
@@ -152,6 +157,10 @@ a { color: var(--blue); }
   .notice .btn--text { background: transparent; color: var(--ink); }
   .notice .btn--text:hover { background: var(--sand); color: var(--ink); border-color: var(--ink); }
 }
+
+/* The landing's headline arrives during the paint-in (docs/LANDING_REDESIGN.md). */
+@keyframes landing-words-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.landing-words { animation: landing-words-in 700ms var(--ease) 800ms both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }

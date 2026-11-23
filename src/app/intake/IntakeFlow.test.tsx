@@ -5,6 +5,8 @@ import { emptyAnswers, type Answers } from "./model.ts";
 
 const heading = () => screen.getByRole("heading", { level: 1 }).textContent;
 const advance = () => act(() => { vi.advanceTimersByTime(300); });
+/** The landing's exit: its words fade, then its navy fades (1.45 s), then the next screen comes in. */
+const leaveLanding = async () => { for (let i = 0; i < 4; i++) { act(() => { vi.advanceTimersByTime(500); }); await act(async () => {}); } };
 const saved = () => JSON.parse(localStorage.getItem(INTAKE_KEY)!).answers as Answers;
 const nb: Answers = { ...emptyAnswers(), status: "college-student", school: "rutgers-nb", majorId: "computer-science" };
 const full: Answers = { ...nb, year: 2, semester: 1, yearTerm: "2F", enrollment: "full-time", trackId: "software-engineering", horizon: "graduation", summer: "full" };
@@ -13,11 +15,19 @@ describe("IntakeFlow", () => {
   beforeEach(() => { localStorage.clear(); vi.useFakeTimers(); });
   afterEach(() => { vi.useRealTimers(); });
 
-  it("starts on the landing, and Start records that the student is in college", async () => {
+  it("starts on the landing, and Build my plan fades it out, then records that the student is in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
-    expect(screen.getByRole("heading", { level: 1, name: "Many streams, one plan." })).toBeInTheDocument();
-    expect(screen.getByText(/general trajectory, not a blueprint/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Start" })); await act(async () => {});
+    expect(screen.getByRole("heading", { level: 1, name: "Know what to do this semester." })).toBeInTheDocument();
+    // A real plan from the engine, and the numbers behind the site.
+    expect(screen.getByRole("heading", { name: "A real plan" })).toBeInTheDocument();
+    expect(screen.getByText("checked resources")).toBeInTheDocument();
+    // One button at the top (the hero), one at the bottom (the closing panel); none in the nav beside the hero's.
+    expect(within(screen.getByRole("navigation")).queryByRole("button")).toBeNull();
+    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(2);
+    fireEvent.click(screen.getAllByRole("button", { name: /^Build my plan/ })[0]); await act(async () => {});
+    // The words fade, then the navy fades to sage (1.45 s in all) before the questions take over.
+    expect(heading()).toBe("Know what to do this semester.");
+    await leaveLanding();
     expect(heading()).toBe("What do you study?");
     expect(saved().status).toBe("college-student");
   });
@@ -165,7 +175,8 @@ describe("IntakeFlow", () => {
   it("goes back with Escape and resumes old saved steps on the right screen", async () => {
     localStorage.setItem(INTAKE_KEY, JSON.stringify({ answers: { ...nb, seen: ["status", "school", "major", "year"] }, step: "enrollment", returnToReview: false }));
     render(<IntakeFlow onBuild={() => {}} />);
-    fireEvent.click(screen.getByRole("button", { name: "Continue where you left off" })); await act(async () => {});
+    fireEvent.click(screen.getAllByRole("button", { name: /^Continue where you left off/ })[0]); await act(async () => {});
+    await leaveLanding();
     expect(heading()).toBe("Where are you in school?");
     fireEvent.keyDown(window, { key: "Escape" }); await act(async () => {});
     expect(heading()).toBe("How soon do you want to get there?");

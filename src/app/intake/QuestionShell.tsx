@@ -3,8 +3,8 @@ import { Button } from "../ui/Button.tsx";
 import type { StepCopy } from "./copy.ts";
 
 /**
- * The question sheet (design/DESIGN.md §7.2): solid sage with drafting corners, so it covers the river when a long
- * question scrolls over it. The question, help, why we ask, the control, then Back ... Skip and Continue, then the
+ * The question sheet (design/DESIGN.md §7.2): solid sage with drafting corners on the sage page. The question, help,
+ * why we ask, the control, then Back ... Skip and Continue, then the
  * keyboard hint. Continue is never disabled: pressing it with a required answer missing marks that question instead
  * (see `notice`). The progress gauge sits above the sheet, outside it, so it stays still while sheets change.
  */
