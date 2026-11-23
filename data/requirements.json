@@ -1,15 +1,16 @@
 {
- "_about": "Major requirements by year, transcribed from official Rutgers catalog and school pages (sources on each entry). sequence 'official': years follow the school's published curriculum; 'prerequisites': years follow course level (100-level in year 1, 200 in year 2, 300 in year 3, 400 in year 4), since the school publishes no year-by-year plan.",
+ "_about": "Major requirements by year, transcribed from official Rutgers catalog and school pages (sources on each entry). sequence 'official': years follow the school's published curriculum; 'prerequisites': years follow course level (100-level in year 1, 200 in year 2, 300 in year 3, 400 in year 4), since the school publishes no year-by-year plan. Each entry names the catalog edition it was transcribed from and the date it was last checked against that catalog; lists follow the newest (2026–2027) catalogs, and students who entered earlier follow the catalog for their entry year.",
  "requirements": [
   {
    "majorId": "computer-science",
    "campus": "nb",
    "degree": "B.S. in Computer Science",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg162.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/VSbgggHtgjolUCQloHSE",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg162.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg161.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/VSbgggHtgjolUCQloHSE"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -47,7 +48,7 @@
      "options": [
       {
        "code": "01:640:151",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus I for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -59,7 +60,7 @@
      "options": [
       {
        "code": "01:640:152",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus II for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -124,7 +125,7 @@
       },
       {
        "code": "01:160:159 + 01:160:160 + 01:160:171",
-       "title": "General Chemistry for Engineers; Introduction to Experimentation",
+       "title": "General Chemistry for Engineers I; General Chemistry for Engineers II; Introduction to Experimentation",
        "credits": "7"
       }
      ]
@@ -158,10 +159,12 @@
    "majorId": "information-technology",
    "campus": "nb",
    "degree": "B.S. in Information Technology and Informatics",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1235.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/sci/undergraduate-programs-of-study#information-technology-and-informatics-547",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1235.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/sci/undergraduate-programs-of-study#information-technology-and-informatics-547"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -240,7 +243,7 @@
      "options": [
       {
        "code": "04:547:210",
-       "title": "Management of Technological Organizations",
+       "title": "Designing Human-Centered Technology Solutions",
        "credits": "3"
       }
      ]
@@ -261,11 +264,12 @@
    "majorId": "mechanical-engineering",
    "campus": "nb",
    "degree": "B.S. in Mechanical Engineering",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1330.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/FXMGpUzNN7OR6VNCQbMX",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1330.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1299.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/FXMGpUzNN7OR6VNCQbMX"
    ],
    "sequence": "official",
    "credits": {
@@ -279,19 +283,7 @@
      "options": [
       {
        "code": "01:160:159",
-       "title": "General Chemistry for Engineers",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:160:160",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:160:160",
-       "title": "General Chemistry for Engineers",
+       "title": "General Chemistry for Engineers I",
        "credits": "3"
       }
      ]
@@ -321,25 +313,13 @@
      ]
     },
     {
-     "id": "14:440:127",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "14:440:127",
-       "title": "Introduction to Computers for Engineers",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "01:640:151",
      "year": 1,
      "kind": "course",
      "options": [
       {
        "code": "01:640:151",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus I for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -351,7 +331,7 @@
      "options": [
       {
        "code": "01:640:152",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus II for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -363,7 +343,7 @@
      "options": [
       {
        "code": "01:750:123",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IA",
        "credits": "2"
       }
      ]
@@ -375,20 +355,32 @@
      "options": [
       {
        "code": "01:750:124",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IB",
        "credits": "2"
       }
      ]
     },
     {
-     "id": "14:440:100",
+     "id": "14:440:101",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "14:440:100",
-       "title": "Engineering Orientation Lectures",
-       "credits": "1"
+       "code": "14:440:101",
+       "title": "Introduction to Data-Driven Design for Engineering Applications",
+       "credits": "2"
+      }
+     ]
+    },
+    {
+     "id": "14:440:102",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "14:440:102",
+       "title": "Integrated Data-Driven Design for Engineering Applications",
+       "credits": "2"
       }
      ]
     },
@@ -405,7 +397,7 @@
      ]
     },
     {
-     "id": "e11",
+     "id": "e10",
      "year": 1,
      "kind": "elective",
      "text": "Two humanities/social sciences electives (they don't have to be in the first year)"
@@ -441,7 +433,7 @@
      "options": [
       {
        "code": "14:650:388",
-       "title": "Computer-Aided Design in MAE",
+       "title": "Computer-Aided Design in Mechanical and Aerospace Engineering",
        "credits": "3"
       }
      ]
@@ -477,7 +469,7 @@
      "options": [
       {
        "code": "14:650:289",
-       "title": "Professional and Leadership Development in Mechanical Engineering",
+       "title": "Professional Development and Leadership in MAE",
        "credits": "1"
       }
      ]
@@ -519,6 +511,18 @@
      ]
     },
     {
+     "id": "14:650:351",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "14:650:351",
+       "title": "Thermodynamics",
+       "credits": "3"
+      }
+     ]
+    },
+    {
      "id": "01:750:228",
      "year": 2,
      "kind": "course",
@@ -539,24 +543,6 @@
        "code": "01:750:230",
        "title": "Analytical Physics II Laboratory",
        "credits": "1"
-      }
-     ]
-    },
-    {
-     "id": "e23",
-     "year": 2,
-     "kind": "elective",
-     "text": "One technical elective"
-    },
-    {
-     "id": "14:650:351",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "14:650:351",
-       "title": "Thermodynamics",
-       "credits": "3"
       }
      ]
     },
@@ -591,8 +577,20 @@
      "options": [
       {
        "code": "14:650:350",
-       "title": "MAE Measurements with Lab",
+       "title": "Mechanical Engineering Measurements with Lab",
        "credits": "4"
+      }
+     ]
+    },
+    {
+     "id": "14:650:401",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "14:650:401",
+       "title": "Dynamic Systems and Controls",
+       "credits": "3"
       }
      ]
     },
@@ -645,10 +643,10 @@
      ]
     },
     {
-     "id": "e32",
+     "id": "e31",
      "year": 3,
      "kind": "elective",
-     "text": "Two humanities/social sciences electives"
+     "text": "One technical elective and two humanities/social sciences electives"
     },
     {
      "id": "14:650:431",
@@ -687,18 +685,6 @@
      ]
     },
     {
-     "id": "14:650:401",
-     "year": 4,
-     "kind": "course",
-     "options": [
-      {
-       "code": "14:650:401",
-       "title": "Dynamic Systems and Controls",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "14:650:432|14:650:433|14:650:435",
      "year": 4,
      "kind": "course",
@@ -711,7 +697,7 @@
       {
        "code": "14:650:433",
        "title": "Aerospace Engineering Laboratory",
-       "credits": "2"
+       "credits": "3"
       },
       {
        "code": "14:650:435",
@@ -733,32 +719,35 @@
      ]
     },
     {
-     "id": "e39",
+     "id": "e37",
      "year": 4,
      "kind": "elective",
      "text": "Three MAE department, aerospace, or energy electives"
     },
     {
-     "id": "e40",
+     "id": "e38",
      "year": 4,
      "kind": "elective",
-     "text": "Two technical electives and one general elective"
+     "text": "One technical elective and one general elective"
     }
    ],
-   "rules": [],
+   "rules": [
+    "From the class of 2030 (entering fall 2026), mechanical engineering no longer requires 01:160:160 General Chemistry for Engineers II."
+   ],
    "notes": [
-    "Sophomore- and junior-year courses marked in the catalog may be taken in either semester of that year."
+    "Courses marked in the catalog may be taken in either semester of their year."
    ]
   },
   {
    "majorId": "biomedical-engineering",
    "campus": "nb",
    "degree": "B.S. in Biomedical Engineering",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1309.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/bqrmKSXWF0pJo8C0E1Cb",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1309.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1299.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/bqrmKSXWF0pJo8C0E1Cb"
    ],
    "sequence": "official",
    "credits": {
@@ -772,7 +761,7 @@
      "options": [
       {
        "code": "01:160:159",
-       "title": "General Chemistry for Engineers",
+       "title": "General Chemistry for Engineers I",
        "credits": "3"
       }
      ]
@@ -784,7 +773,7 @@
      "options": [
       {
        "code": "01:160:160",
-       "title": "General Chemistry for Engineers",
+       "title": "General Chemistry for Engineers II",
        "credits": "3"
       }
      ]
@@ -814,25 +803,13 @@
      ]
     },
     {
-     "id": "14:440:127",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "14:440:127",
-       "title": "Introduction to Computers for Engineers",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "01:640:151",
      "year": 1,
      "kind": "course",
      "options": [
       {
        "code": "01:640:151",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus I for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -844,7 +821,7 @@
      "options": [
       {
        "code": "01:640:152",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus II for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -856,7 +833,7 @@
      "options": [
       {
        "code": "01:750:123",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IA",
        "credits": "2"
       }
      ]
@@ -868,20 +845,32 @@
      "options": [
       {
        "code": "01:750:124",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IB",
        "credits": "2"
       }
      ]
     },
     {
-     "id": "14:440:100",
+     "id": "14:440:101",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "14:440:100",
-       "title": "Engineering Orientation Lectures",
-       "credits": "1"
+       "code": "14:440:101",
+       "title": "Introduction to Data-Driven Design for Engineering Applications",
+       "credits": "2"
+      }
+     ]
+    },
+    {
+     "id": "14:440:102",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "14:440:102",
+       "title": "Integrated Data-Driven Design for Engineering Applications",
+       "credits": "2"
       }
      ]
     },
@@ -1030,7 +1019,7 @@
      "options": [
       {
        "code": "14:125:255",
-       "title": "BME System Physiology",
+       "title": "BME Systems Physiology",
        "credits": "3"
       }
      ]
@@ -1150,7 +1139,7 @@
      "options": [
       {
        "code": "14:125:401",
-       "title": "Biomedical Engineering Senior Design I, II Projects",
+       "title": "Biomedical Engineering Senior Design I",
        "credits": "1"
       }
      ]
@@ -1162,7 +1151,7 @@
      "options": [
       {
        "code": "14:125:421",
-       "title": "Biomedical Engineering Senior Design I, II Projects",
+       "title": "Biomedical Engineering Senior Design Projects I",
        "credits": "2"
       }
      ]
@@ -1174,7 +1163,7 @@
      "options": [
       {
        "code": "14:125:402",
-       "title": "Biomedical Engineering Senior Design I, II Projects",
+       "title": "Biomedical Engineering Senior Design II",
        "credits": "1"
       }
      ]
@@ -1186,7 +1175,7 @@
      "options": [
       {
        "code": "14:125:422",
-       "title": "Biomedical Engineering Senior Design I, II Projects",
+       "title": "Biomedical Engineering Senior Design Projects II",
        "credits": "2"
       }
      ]
@@ -1213,11 +1202,12 @@
    "majorId": "packaging-engineering",
    "campus": "nb",
    "degree": "B.S. in Applied Sciences in Engineering, Packaging Engineering concentration",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1306.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/ccKjnI4098dZwY3R4jG2",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1306.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1299.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/ccKjnI4098dZwY3R4jG2"
    ],
    "sequence": "official",
    "credits": {
@@ -1231,7 +1221,7 @@
      "options": [
       {
        "code": "01:160:159",
-       "title": "General Chemistry for Engineers",
+       "title": "General Chemistry for Engineers I",
        "credits": "3"
       }
      ]
@@ -1243,7 +1233,7 @@
      "options": [
       {
        "code": "01:160:160",
-       "title": "General Chemistry for Engineers",
+       "title": "General Chemistry for Engineers II",
        "credits": "3"
       }
      ]
@@ -1273,25 +1263,13 @@
      ]
     },
     {
-     "id": "14:440:127",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "14:440:127",
-       "title": "Introduction to Computers for Engineers",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "01:640:151",
      "year": 1,
      "kind": "course",
      "options": [
       {
        "code": "01:640:151",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus I for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -1303,7 +1281,7 @@
      "options": [
       {
        "code": "01:640:152",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus II for Mathematical & Physical Science",
        "credits": "4"
       }
      ]
@@ -1315,7 +1293,7 @@
      "options": [
       {
        "code": "01:750:123",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IA",
        "credits": "2"
       }
      ]
@@ -1327,20 +1305,32 @@
      "options": [
       {
        "code": "01:750:124",
-       "title": "Analytical Physics I",
+       "title": "Analytical Physics IB",
        "credits": "2"
       }
      ]
     },
     {
-     "id": "14:440:100",
+     "id": "14:440:101",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "14:440:100",
-       "title": "Engineering Orientation Lectures",
-       "credits": "1"
+       "code": "14:440:101",
+       "title": "Introduction to Data-Driven Design for Engineering Applications",
+       "credits": "2"
+      }
+     ]
+    },
+    {
+     "id": "14:440:102",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "14:440:102",
+       "title": "Integrated Data-Driven Design for Engineering Applications",
+       "credits": "2"
       }
      ]
     },
@@ -1465,7 +1455,7 @@
      "options": [
       {
        "code": "14:440:302",
-       "title": "Computer-Aided Design for Packaging Engineering",
+       "title": "Computer-Aided Design (CAD) for Packaging Engineering",
        "credits": "3"
       }
      ]
@@ -1622,7 +1612,7 @@
      "options": [
       {
        "code": "14:440:373",
-       "title": "Packaging Manufacturing I",
+       "title": "Packaging Manufacturing Methods",
        "credits": "3"
       }
      ]
@@ -1658,11 +1648,12 @@
    "majorId": "biological-sciences",
    "campus": "nb",
    "degree": "B.A./B.S. in Biological Sciences",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg413.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/abluiYZ6SA3rioUu0YGe",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg413.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg409.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/abluiYZ6SA3rioUu0YGe"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -1712,7 +1703,7 @@
      "options": [
       {
        "code": "01:160:161 + 01:160:162",
-       "title": "General Chemistry; General Chemistry II",
+       "title": "General Chemistry I; General Chemistry II",
        "credits": "8"
       },
       {
@@ -1746,12 +1737,12 @@
      "options": [
       {
        "code": "01:640:135 + 01:640:136",
-       "title": "Calculus for the Life and Social Sciences",
+       "title": "Calculus I; Calculus II",
        "credits": "8"
       },
       {
        "code": "01:640:151 + 01:640:152",
-       "title": "Calculus for Mathematical and Physical Sciences",
+       "title": "Calculus I for Mathematical & Physical Science; Calculus II for Mathematical & Physical Science",
        "credits": "8"
       }
      ]
@@ -1773,7 +1764,7 @@
       },
       {
        "code": "01:750:193 + 01:750:194",
-       "title": "Physics for the Sciences and Physics for the Sciences Laboratory",
+       "title": "Physics for the Sciences",
        "credits": "8"
       }
      ]
@@ -1838,10 +1829,12 @@
    "majorId": "psychology",
    "campus": "nb",
    "degree": "B.A. in Psychology",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg588.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/f1mcjttpZ6Uie8vJzkZY",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg588.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/f1mcjttpZ6Uie8vJzkZY"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -1852,7 +1845,7 @@
      "options": [
       {
        "code": "01:830:101",
-       "title": "General Psychology",
+       "title": "Introduction to Psychology",
        "credits": "3"
       }
      ]
@@ -1881,7 +1874,7 @@
       },
       {
        "code": "01:830:311",
-       "title": "Learning Processes",
+       "title": "Conditioning and Learning",
        "credits": "3"
       },
       {
@@ -1947,7 +1940,7 @@
       },
       {
        "code": "01:830:351",
-       "title": "Psychology of Language",
+       "title": "Psychology of Language I",
        "credits": "3"
       }
      ],
@@ -2009,10 +2002,12 @@
    "majorId": "economics",
    "campus": "nb",
    "degree": "B.A. in Economics",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg184.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/KJhYP0xnNSfUIuQVE1Hd",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg184.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/KJhYP0xnNSfUIuQVE1Hd"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -2047,7 +2042,7 @@
      "options": [
       {
        "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
+       "title": "Calculus I",
        "credits": "4"
       }
      ]
@@ -2121,10 +2116,12 @@
    "majorId": "political-science",
    "campus": "nb",
    "degree": "B.A. in Political Science",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg570.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/ynUq3QFcA7oYr9vlEryG",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg570.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/ynUq3QFcA7oYr9vlEryG"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -2252,7 +2249,7 @@
       },
       {
        "code": "01:790:392",
-       "title": "Qualitative Research Methods",
+       "title": "Applied Research Methods",
        "credits": "3"
       }
      ],
@@ -2297,10 +2294,12 @@
    "majorId": "criminal-justice",
    "campus": "nb",
    "degree": "B.A. in Criminal Justice",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg168.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/nMkUrsSM8UfoAU6mGNjh",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg168.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/nMkUrsSM8UfoAU6mGNjh"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -2394,7 +2393,7 @@
       },
       {
        "code": "01:920:311",
-       "title": "Social Research Methods",
+       "title": "Introduction to Social Research",
        "credits": "4"
       },
       {
@@ -2430,10 +2429,12 @@
    "majorId": "exercise-science",
    "campus": "nb",
    "degree": "B.S. in Exercise Science",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg237.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/e2AHx3Qj1T1oyeWfWEO4",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg237.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/e2AHx3Qj1T1oyeWfWEO4"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -2480,7 +2481,7 @@
      "options": [
       {
        "code": "01:160:161",
-       "title": "General Chemistry",
+       "title": "General Chemistry I",
        "credits": "4"
       }
      ]
@@ -2528,7 +2529,7 @@
      "options": [
       {
        "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
+       "title": "Calculus I",
        "credits": "4"
       }
      ]
@@ -2540,7 +2541,7 @@
      "options": [
       {
        "code": "01:750:193",
-       "title": "Physics for the Sciences and Physics for the Sciences Laboratory",
+       "title": "Physics for the Sciences",
        "credits": "4"
       }
      ]
@@ -2552,7 +2553,7 @@
      "options": [
       {
        "code": "01:750:194",
-       "title": "Physics for the Sciences and Physics for the Sciences Laboratory",
+       "title": "Physics for the Sciences",
        "credits": "4"
       }
      ]
@@ -2564,7 +2565,7 @@
      "options": [
       {
        "code": "01:830:101",
-       "title": "General Psychology",
+       "title": "Introduction to Psychology",
        "credits": "3"
       }
      ]
@@ -2689,7 +2690,7 @@
      "options": [
       {
        "code": "01:377:371",
-       "title": "Exercise Physiology Laboratory",
+       "title": "Exercise Physiology Lab",
        "credits": "1"
       }
      ]
@@ -2714,7 +2715,7 @@
       {
        "code": "01:377:410",
        "title": "Exercise Testing and Prescription",
-       "credits": "4"
+       "credits": "3"
       }
      ]
     },
@@ -2725,7 +2726,7 @@
      "options": [
       {
        "code": "01:377:493",
-       "title": "Internship in Exercise Science, 3 credit",
+       "title": "Internship in Exercise Science",
        "credits": "3"
       }
      ]
@@ -2746,10 +2747,12 @@
    "majorId": "social-work",
    "campus": "nb",
    "degree": "B.A. in Social Work (BASW)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg618.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/cNFocxpqUabPbU5Le4eE",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg618.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/cNFocxpqUabPbU5Le4eE"
    ],
    "sequence": "official",
    "items": [
@@ -2788,7 +2791,7 @@
      "options": [
       {
        "code": "01:830:101",
-       "title": "General Psychology",
+       "title": "Introduction to Psychology",
        "credits": "3"
       }
      ]
@@ -2911,7 +2914,7 @@
      "options": [
       {
        "code": "09:910:403",
-       "title": "Human Behavior in the Social Environment II",
+       "title": "Human Behavior and the Social Environment II",
        "credits": "3"
       }
      ]
@@ -3016,11 +3019,12 @@
    "majorId": "public-health",
    "campus": "nb",
    "degree": "B.S. in Public Health",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://bloustein.rutgers.edu/undergraduate/publichealth/",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/DQcSAJnrfKdtnTTDGH56",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1377.html",
-    "https://bloustein.rutgers.edu/undergraduate/publichealth/"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/DQcSAJnrfKdtnTTDGH56"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -3028,66 +3032,8 @@
    },
    "items": [
     {
-     "id": "355:101",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "355:101",
-       "title": "Expository Writing",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "e1",
-     "year": 1,
-     "kind": "elective",
-     "text": "One human biology course"
-    },
-    {
-     "id": "160:127|160:128|160:161|160:162",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "160:127",
-       "title": "Impact of Chemistry",
-       "credits": "3"
-      },
-      {
-       "code": "160:128",
-       "title": "Chemistry of Life",
-       "credits": "3"
-      },
-      {
-       "code": "160:161",
-       "title": "General Chemistry",
-       "credits": "4"
-      },
-      {
-       "code": "160:162",
-       "title": "General Chemistry II",
-       "credits": "4"
-      }
-     ],
-     "label": "One chemistry course"
-    },
-    {
-     "id": "775:205",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "775:205",
-       "title": "Basic Statistical Methods",
-       "credits": "4"
-      }
-     ]
-    },
-    {
      "id": "10:832:201",
-     "year": 2,
+     "year": 1,
      "kind": "course",
      "options": [
       {
@@ -3098,13 +3044,37 @@
      ]
     },
     {
+     "id": "10:775:205",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "10:775:205",
+       "title": "Basic Statistical Methods",
+       "credits": "4"
+      }
+     ]
+    },
+    {
+     "id": "e2",
+     "year": 1,
+     "kind": "elective",
+     "text": "One Biological Sciences Foundation course (approved list in Degree Navigator)"
+    },
+    {
+     "id": "e3",
+     "year": 2,
+     "kind": "elective",
+     "text": "One Public Health Science Foundation course (approved list in Degree Navigator)"
+    },
+    {
      "id": "10:832:212",
      "year": 2,
      "kind": "course",
      "options": [
       {
        "code": "10:832:212",
-       "title": "Introduction to Health Disparities",
+       "title": "Health Disparities",
        "credits": "3"
       }
      ]
@@ -3122,39 +3092,6 @@
      ]
     },
     {
-     "id": "10:775:300|10:832:339|01:335:302|01:335:315|01:355:303",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "10:775:300",
-       "title": "Writing for Professionals",
-       "credits": "3"
-      },
-      {
-       "code": "10:832:339",
-       "title": "Public Health Literature",
-       "credits": "3"
-      },
-      {
-       "code": "01:335:302",
-       "title": "Scientific and Technical Writing",
-       "credits": "3"
-      },
-      {
-       "code": "01:335:315",
-       "title": "Writing Grant Proposals",
-       "credits": "3"
-      },
-      {
-       "code": "01:355:303",
-       "title": "Writing for Business and the Professions",
-       "credits": "3"
-      }
-     ],
-     "label": "Writing-intensive course"
-    },
-    {
      "id": "10:832:335",
      "year": 3,
      "kind": "course",
@@ -3167,13 +3104,37 @@
      ]
     },
     {
+     "id": "10:832:338",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "10:832:338",
+       "title": "Health and Public Policy",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "10:832:339",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "10:832:339",
+       "title": "Public Health Literature",
+       "credits": "3"
+      }
+     ]
+    },
+    {
      "id": "10:832:356",
      "year": 3,
      "kind": "course",
      "options": [
       {
        "code": "10:832:356",
-       "title": "Public Health Law and Ethics",
+       "title": "Public Health Law & Ethics",
        "credits": "3"
       }
      ]
@@ -3218,22 +3179,28 @@
      "id": "e13",
      "year": 3,
      "kind": "elective",
-     "text": "15 credits of 832 electives (9 at the 300 level or higher)"
+     "text": "15 credits of 832 electives (9 at the 300 level or higher; up to 6 from other Bloustein programs)"
     }
    ],
    "rules": [
-    "Students in SAS or SEBS apply to the major; declare by the first semester of junior year.",
-    "Prerequisites need a C or better; only courses with a C or better count toward the major."
+    "SAS and SEBS students apply in one of the cycles on the Bloustein website, with a C or better in each prerequisite (10:832:201 and statistics) and at least a 2.0 GPA. Declare by the first semester of junior year.",
+    "Only courses with a C or better count toward the major.",
+    "10:775:450 needs at least 85 credits; 10:775:499 needs 100 credits."
+   ],
+   "notes": [
+    "These are the requirements for students applying to the major in fall 2026 or later (52 credits)."
    ]
   },
   {
    "majorId": "pharmacy",
    "campus": "nb",
    "degree": "Pharm.D. (six-year program)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1129.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/JMeJG2a2NMVzrl0SvFPD",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1129.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/JMeJG2a2NMVzrl0SvFPD"
    ],
    "sequence": "official",
    "items": [
@@ -3280,7 +3247,7 @@
      "options": [
       {
        "code": "01:160:161",
-       "title": "General Chemistry",
+       "title": "General Chemistry I",
        "credits": "4"
       }
      ]
@@ -3328,7 +3295,7 @@
      "options": [
       {
        "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
+       "title": "Calculus I",
        "credits": "4"
       }
      ]
@@ -3556,8 +3523,8 @@
      "options": [
       {
        "code": "30:725:321",
-       "title": "Integrated Pharmacotherapy Assessment Skills Series I",
-       "credits": "2"
+       "title": "Integrated Pharmacy Assessment Skills Series (iPASS) I",
+       "credits": "1"
       }
      ]
     },
@@ -3568,7 +3535,7 @@
      "options": [
       {
        "code": "30:725:330",
-       "title": "Introductory Pharmacy Practice Community Experience",
+       "title": "Introductory Practice Community Experience",
        "credits": "2"
       }
      ]
@@ -3646,7 +3613,7 @@
      "options": [
       {
        "code": "30:725:432",
-       "title": "Integrated Pharmacotherapy Assessment Skills Series II",
+       "title": "iPASS II",
        "credits": "2"
       }
      ]
@@ -3682,7 +3649,7 @@
      "options": [
       {
        "code": "30:720:446",
-       "title": "Infectious Diseases Pharmacotherapy",
+       "title": "Infectious Disease Pharmacotherapy",
        "credits": "4"
       }
      ]
@@ -3718,7 +3685,7 @@
      "options": [
       {
        "code": "30:725:433",
-       "title": "Integrated Pharmacotherapy Assessment Skills Series III",
+       "title": "iPASS III",
        "credits": "2"
       }
      ]
@@ -3754,7 +3721,7 @@
      "options": [
       {
        "code": "31:720:541",
-       "title": "Gastrointestinal, Hepatic, and Nutritional Pharmacotherapy",
+       "title": "Gastrointestinal, Hepatic, and Nutrition Pharmacotherapy",
        "credits": "2"
       }
      ]
@@ -3778,7 +3745,7 @@
      "options": [
       {
        "code": "31:725:550",
-       "title": "Self-Care and Home Care",
+       "title": "Self Care and Home Care",
        "credits": "3"
       }
      ]
@@ -3802,7 +3769,7 @@
      "options": [
       {
        "code": "31:725:534",
-       "title": "Integrated Pharmacotherapy Assessment Skills Series IV",
+       "title": "iPASS IV",
        "credits": "2"
       }
      ]
@@ -3851,7 +3818,7 @@
       {
        "code": "31:720:547",
        "title": "Immunology, Ocular, and Dermatology Pharmacotherapy",
-       "credits": "2"
+       "credits": "1"
       }
      ]
     },
@@ -3874,7 +3841,7 @@
      "options": [
       {
        "code": "31:725:535",
-       "title": "Integrated Pharmacotherapy Assessment Skills Series V",
+       "title": "iPASS V",
        "credits": "2"
       }
      ]
@@ -3969,12 +3936,12 @@
    "majorId": "human-resource-management",
    "campus": "nb",
    "degree": "B.A. in Human Resource Management",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://smlr.rutgers.edu/academic-programs/undergraduate-programs/bachelors-degree-human-resource-management/new-hrm-program",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/vL6spobaXwxMJyJXK6SR",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1446.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1448.html",
-    "https://smlr.rutgers.edu/academic-programs/undergraduate-programs/bachelors-degree-human-resource-management/new-hrm-program"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/vL6spobaXwxMJyJXK6SR"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -4016,80 +3983,27 @@
     "A C or better in 37:533:301 before declaring the major, and a C or better in every course for the major."
    ],
    "notes": [
-    "The exact core list is on SMLR's HRM major checklist (linked from the page above)."
+    "The exact core list is on SMLR's HRM major checklist (on the SMLR website)."
    ]
   },
   {
    "majorId": "finance",
    "campus": "nb",
    "degree": "B.S. in Finance (Rutgers Business School)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1182.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/finance",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1182.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1179.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/finance"
    ],
    "sequence": "prerequisites",
    "items": [
     {
-     "id": "01:198:170",
+     "id": "e0",
      "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:198:170",
-       "title": "Computer Applications for Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:102",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:102",
-       "title": "Introduction to Microeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:103",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:103",
-       "title": "Introduction to Macroeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:640:135",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
-       "credits": "4"
-      }
-     ]
-    },
-    {
-     "id": "01:960:285",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:960:285",
-       "title": "Introductory Statistics for Business",
-       "credits": "3"
-      }
-     ]
+     "kind": "elective",
+     "text": "Foundational courses: Introduction to Microeconomics, Introduction to Macroeconomics, Calculus, and Introductory Statistics (finish in your first three semesters, four at most)"
     },
     {
      "id": "33:010:272",
@@ -4099,18 +4013,6 @@
       {
        "code": "33:010:272",
        "title": "Introduction to Financial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:010:275",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:010:275",
-       "title": "Introduction to Managerial Accounting",
        "credits": "3"
       }
      ]
@@ -4152,64 +4054,6 @@
      ]
     },
     {
-     "id": "33:136:370|33:010:458",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:370",
-       "title": "Management Information Systems",
-       "credits": "3"
-      },
-      {
-       "code": "33:010:458",
-       "title": "Accounting Information Systems",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:385",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:385",
-       "title": "Statistical Methods in Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:386",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:386",
-       "title": "Operations Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:140:320|33:522:334",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:140:320",
-       "title": "Business Law I",
-       "credits": "3"
-      },
-      {
-       "code": "33:522:334",
-       "title": "Business Ethics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:390:300",
      "year": 3,
      "kind": "course",
@@ -4222,18 +4066,6 @@
      ]
     },
     {
-     "id": "33:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:620:301",
-       "title": "Introduction to Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:620:302",
      "year": 3,
      "kind": "course",
@@ -4241,6 +4073,30 @@
       {
        "code": "33:620:302",
        "title": "Management Skills",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:136:385",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:385",
+       "title": "Statistical Methods",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:620:369",
+       "title": "International Business",
        "credits": "3"
       }
      ]
@@ -4280,6 +4136,60 @@
        "credits": "3"
       }
      ]
+    },
+    {
+     "id": "33:136:370|33:010:458",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:370",
+       "title": "Management Information Systems",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:458",
+       "title": "Accounting Information Systems",
+       "credits": "3"
+      }
+     ],
+     "label": "Information systems"
+    },
+    {
+     "id": "33:522:335|33:140:320",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:522:335",
+       "title": "Business Ethics",
+       "credits": "3"
+      },
+      {
+       "code": "33:140:320",
+       "title": "Business Law I",
+       "credits": "3"
+      }
+     ],
+     "label": "Ethics or law"
+    },
+    {
+     "id": "33:136:386|33:010:275",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:386",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:275",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Analytics or managerial accounting"
     },
     {
      "id": "33:390:380",
@@ -4318,97 +4228,44 @@
      ]
     },
     {
-     "id": "e23",
+     "id": "e18",
      "year": 4,
      "kind": "elective",
      "text": "Four finance electives"
     },
     {
-     "id": "e24",
+     "id": "e19",
      "year": null,
      "kind": "elective",
-     "text": "Liberal arts core: two Contemporary Challenges, six Areas of Inquiry, five Cognitive Skills and Processes courses"
+     "text": "Rutgers Core: two Contemporary Challenges, six Areas of Inquiry, and five Cognitive Skills and Processes courses"
     }
    ],
    "rules": [
-    "Finish the six prerequisite courses in the first three (at most four) semesters.",
-    "A B or better in 33:390:300 to take further finance courses."
+    "A B or better in 33:390:300 to take further finance courses.",
+    "All business core and major courses need a C or better."
    ],
    "notes": [
-    "Business core shown is for students who entered RBS in fall 2024 or later."
+    "Business core shown is for students who entered RBS in fall 2026. If you entered earlier, follow the requirements in effect when you were admitted to your major."
    ]
   },
   {
    "majorId": "accounting",
    "campus": "nb",
    "degree": "B.S. in Accounting (Rutgers Business School)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1180.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/accounting",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1180.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1179.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/accounting"
    ],
    "sequence": "prerequisites",
    "items": [
     {
-     "id": "01:198:170",
+     "id": "e0",
      "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:198:170",
-       "title": "Computer Applications for Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:102",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:102",
-       "title": "Introduction to Microeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:103",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:103",
-       "title": "Introduction to Macroeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:640:135",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
-       "credits": "4"
-      }
-     ]
-    },
-    {
-     "id": "01:960:285",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:960:285",
-       "title": "Introductory Statistics for Business",
-       "credits": "3"
-      }
-     ]
+     "kind": "elective",
+     "text": "Foundational courses: Introduction to Microeconomics, Introduction to Macroeconomics, Calculus, and Introductory Statistics (finish in your first three semesters, four at most)"
     },
     {
      "id": "33:010:272",
@@ -4418,18 +4275,6 @@
       {
        "code": "33:010:272",
        "title": "Introduction to Financial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:010:275",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:010:275",
-       "title": "Introduction to Managerial Accounting",
        "credits": "3"
       }
      ]
@@ -4471,54 +4316,6 @@
      ]
     },
     {
-     "id": "33:010:458",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:010:458",
-       "title": "Accounting Information Systems",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:385",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:385",
-       "title": "Statistical Methods in Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:386",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:386",
-       "title": "Operations Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:140:320",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:140:320",
-       "title": "Business Law I",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:390:300",
      "year": 3,
      "kind": "course",
@@ -4531,18 +4328,6 @@
      ]
     },
     {
-     "id": "33:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:620:301",
-       "title": "Introduction to Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:620:302",
      "year": 3,
      "kind": "course",
@@ -4550,6 +4335,30 @@
       {
        "code": "33:620:302",
        "title": "Management Skills",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:136:385",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:385",
+       "title": "Statistical Methods",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:620:369",
+       "title": "International Business",
        "credits": "3"
       }
      ]
@@ -4586,6 +4395,42 @@
       {
        "code": "33:620:492",
        "title": "Business Policy and Strategy",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:010:275",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:010:275",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:010:458",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:010:458",
+       "title": "Accounting Information Systems",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:140:320",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:140:320",
+       "title": "Business Law I",
        "credits": "3"
       }
      ]
@@ -4687,91 +4532,38 @@
      ]
     },
     {
-     "id": "e28",
+     "id": "e23",
      "year": null,
      "kind": "elective",
-     "text": "Liberal arts core: two Contemporary Challenges, six Areas of Inquiry, five Cognitive Skills and Processes courses"
+     "text": "Rutgers Core: two Contemporary Challenges, six Areas of Inquiry, and five Cognitive Skills and Processes courses"
     }
    ],
    "rules": [
     "A B or better in 33:010:272 to declare accounting.",
-    "Accounting majors take 33:010:458 and 33:140:320 in the business core."
+    "All business core and major courses need a C or better."
    ],
    "notes": [
-    "Business core shown is for students who entered RBS in fall 2024 or later."
+    "Business core shown is for students who entered RBS in fall 2026. If you entered earlier, follow the requirements in effect when you were admitted to your major."
    ]
   },
   {
    "majorId": "marketing",
    "campus": "nb",
    "degree": "B.S. in Marketing (Rutgers Business School)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1184.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/marketing",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1184.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1179.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/marketing"
    ],
    "sequence": "prerequisites",
    "items": [
     {
-     "id": "01:198:170",
+     "id": "e0",
      "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:198:170",
-       "title": "Computer Applications for Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:102",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:102",
-       "title": "Introduction to Microeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:103",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:103",
-       "title": "Introduction to Macroeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:640:135",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
-       "credits": "4"
-      }
-     ]
-    },
-    {
-     "id": "01:960:285",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:960:285",
-       "title": "Introductory Statistics for Business",
-       "credits": "3"
-      }
-     ]
+     "kind": "elective",
+     "text": "Foundational courses: Introduction to Microeconomics, Introduction to Macroeconomics, Calculus, and Introductory Statistics (finish in your first three semesters, four at most)"
     },
     {
      "id": "33:010:272",
@@ -4781,18 +4573,6 @@
       {
        "code": "33:010:272",
        "title": "Introduction to Financial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:010:275",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:010:275",
-       "title": "Introduction to Managerial Accounting",
        "credits": "3"
       }
      ]
@@ -4834,64 +4614,6 @@
      ]
     },
     {
-     "id": "33:136:370|33:010:458",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:370",
-       "title": "Management Information Systems",
-       "credits": "3"
-      },
-      {
-       "code": "33:010:458",
-       "title": "Accounting Information Systems",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:385",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:385",
-       "title": "Statistical Methods in Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:386",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:386",
-       "title": "Operations Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:140:320|33:522:334",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:140:320",
-       "title": "Business Law I",
-       "credits": "3"
-      },
-      {
-       "code": "33:522:334",
-       "title": "Business Ethics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:390:300",
      "year": 3,
      "kind": "course",
@@ -4904,18 +4626,6 @@
      ]
     },
     {
-     "id": "33:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:620:301",
-       "title": "Introduction to Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:620:302",
      "year": 3,
      "kind": "course",
@@ -4923,6 +4633,30 @@
       {
        "code": "33:620:302",
        "title": "Management Skills",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:136:385",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:385",
+       "title": "Statistical Methods",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:620:369",
+       "title": "International Business",
        "credits": "3"
       }
      ]
@@ -4962,6 +4696,60 @@
        "credits": "3"
       }
      ]
+    },
+    {
+     "id": "33:136:370|33:010:458",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:370",
+       "title": "Management Information Systems",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:458",
+       "title": "Accounting Information Systems",
+       "credits": "3"
+      }
+     ],
+     "label": "Information systems"
+    },
+    {
+     "id": "33:522:335|33:140:320",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:522:335",
+       "title": "Business Ethics",
+       "credits": "3"
+      },
+      {
+       "code": "33:140:320",
+       "title": "Business Law I",
+       "credits": "3"
+      }
+     ],
+     "label": "Ethics or law"
+    },
+    {
+     "id": "33:136:386|33:010:275",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:386",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:275",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Analytics or managerial accounting"
     },
     {
      "id": "33:630:385",
@@ -4994,102 +4782,50 @@
      "options": [
       {
        "code": "33:630:452",
-       "title": "Marketing Strategy",
+       "title": "Marketing Strategy and Decision-Making",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "e23",
+     "id": "e18",
      "year": 4,
      "kind": "elective",
      "text": "Four marketing electives"
     },
     {
-     "id": "e24",
+     "id": "e19",
      "year": null,
      "kind": "elective",
-     "text": "Liberal arts core: two Contemporary Challenges, six Areas of Inquiry, five Cognitive Skills and Processes courses"
+     "text": "Rutgers Core: two Contemporary Challenges, six Areas of Inquiry, and five Cognitive Skills and Processes courses"
     }
    ],
    "rules": [
-    "Finish the six prerequisite courses in the first three (at most four) semesters."
+    "33:630:452 is for seniors and needs 33:630:385.",
+    "All business core and major courses need a C or better."
    ],
    "notes": [
-    "Business core shown is for students who entered RBS in fall 2024 or later."
+    "Business core shown is for students who entered RBS in fall 2026. If you entered earlier, follow the requirements in effect when you were admitted to your major."
    ]
   },
   {
    "majorId": "supply-chain",
    "campus": "nb",
    "degree": "B.S. in Supply Chain Management (Rutgers Business School)",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1185.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/supply-chain-management",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1185.html",
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1179.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/rbsnb/degree-requirements/programs-majors-minors/supply-chain-management"
    ],
    "sequence": "prerequisites",
    "items": [
     {
-     "id": "01:198:170",
+     "id": "e0",
      "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:198:170",
-       "title": "Computer Applications for Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:102",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:102",
-       "title": "Introduction to Microeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:220:103",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:220:103",
-       "title": "Introduction to Macroeconomics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "01:640:135",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:640:135",
-       "title": "Calculus for the Life and Social Sciences",
-       "credits": "4"
-      }
-     ]
-    },
-    {
-     "id": "01:960:285",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "01:960:285",
-       "title": "Introductory Statistics for Business",
-       "credits": "3"
-      }
-     ]
+     "kind": "elective",
+     "text": "Foundational courses: Introduction to Microeconomics, Introduction to Macroeconomics, Calculus, and Introductory Statistics (finish in your first three semesters, four at most)"
     },
     {
      "id": "33:010:272",
@@ -5099,18 +4835,6 @@
       {
        "code": "33:010:272",
        "title": "Introduction to Financial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:010:275",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:010:275",
-       "title": "Introduction to Managerial Accounting",
        "credits": "3"
       }
      ]
@@ -5152,64 +4876,6 @@
      ]
     },
     {
-     "id": "33:136:370|33:010:458",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:370",
-       "title": "Management Information Systems",
-       "credits": "3"
-      },
-      {
-       "code": "33:010:458",
-       "title": "Accounting Information Systems",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:385",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:385",
-       "title": "Statistical Methods in Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:136:386",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:136:386",
-       "title": "Operations Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "33:140:320|33:522:334",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:140:320",
-       "title": "Business Law I",
-       "credits": "3"
-      },
-      {
-       "code": "33:522:334",
-       "title": "Business Ethics",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:390:300",
      "year": 3,
      "kind": "course",
@@ -5222,18 +4888,6 @@
      ]
     },
     {
-     "id": "33:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "33:620:301",
-       "title": "Introduction to Management",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "33:620:302",
      "year": 3,
      "kind": "course",
@@ -5241,6 +4895,30 @@
       {
        "code": "33:620:302",
        "title": "Management Skills",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:136:385",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:385",
+       "title": "Statistical Methods",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "33:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:620:369",
+       "title": "International Business",
        "credits": "3"
       }
      ]
@@ -5282,13 +4960,67 @@
      ]
     },
     {
+     "id": "33:136:370|33:010:458",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:370",
+       "title": "Management Information Systems",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:458",
+       "title": "Accounting Information Systems",
+       "credits": "3"
+      }
+     ],
+     "label": "Information systems"
+    },
+    {
+     "id": "33:522:335|33:140:320",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:522:335",
+       "title": "Business Ethics",
+       "credits": "3"
+      },
+      {
+       "code": "33:140:320",
+       "title": "Business Law I",
+       "credits": "3"
+      }
+     ],
+     "label": "Ethics or law"
+    },
+    {
+     "id": "33:136:386|33:010:275",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "33:136:386",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "33:010:275",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Analytics or managerial accounting"
+    },
+    {
      "id": "33:799:305",
      "year": 3,
      "kind": "course",
      "options": [
       {
        "code": "33:799:305",
-       "title": "Procurement and Global Sourcing Strategy",
+       "title": "Global Procurement and Sourcing Strategies",
        "credits": "3"
       }
      ]
@@ -5353,33 +5085,36 @@
      "label": "Experiential course"
     },
     {
-     "id": "e25",
+     "id": "e20",
      "year": 4,
      "kind": "elective",
      "text": "Three supply chain electives"
     },
     {
-     "id": "e26",
+     "id": "e21",
      "year": null,
      "kind": "elective",
-     "text": "Liberal arts core: two Contemporary Challenges, six Areas of Inquiry, five Cognitive Skills and Processes courses"
+     "text": "Rutgers Core: two Contemporary Challenges, six Areas of Inquiry, and five Cognitive Skills and Processes courses"
     }
    ],
    "rules": [
-    "Only one experiential course (internship, co-op, or client projects) counts toward the SCM requirements."
+    "Only one experiential course (internship, co-op, or client projects) counts toward the SCM requirements; the internship and co-op are by application through the department.",
+    "All business core and major courses need a C or better."
    ],
    "notes": [
-    "Business core shown is for students who entered RBS in fall 2024 or later."
+    "Business core shown is for students who entered RBS in fall 2026. If you entered earlier, follow the requirements in effect when you were admitted to your major."
    ]
   },
   {
    "majorId": "communication",
    "campus": "nb",
    "degree": "B.A. in Communication",
-   "catalog": "New Brunswick Undergraduate Catalog 2024–2026",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1234.html",
+   "catalog": "2026–2027 New Brunswick Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/sci/undergraduate-programs-of-study#communication-192",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nb-ug_2425/pg1234.html"
+    "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/schools/sci/undergraduate-programs-of-study#communication-192"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -5503,6 +5238,7 @@
    "campus": "nb",
    "degree": "B.S. in Nursing (traditional, New Brunswick)",
    "catalog": "Rutgers School of Nursing sample curriculum, fall 2026 to present (New Brunswick)",
+   "checked": "2026-11-23",
    "pageUrl": "https://nursing.rutgers.edu/academics-admissions/bachelors/bs/curriculum/",
    "sources": [
     "https://nursing.rutgers.edu/academics-admissions/bachelors/bs/curriculum/"
@@ -5864,10 +5600,12 @@
    "majorId": "computer-science",
    "campus": "newark",
    "degree": "B.A./B.S. in Computer Science",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg202.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg202.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "official",
    "credits": {
@@ -5999,7 +5737,7 @@
      "options": [
       {
        "code": "21:198:288",
-       "title": "Intensive Programming in Linux",
+       "title": "Linux System Programming",
        "credits": "3"
       }
      ]
@@ -6101,17 +5839,20 @@
    ],
    "rules": [],
    "notes": [
-    "Calculus-based physics (21:750:213, 214 with labs 215, 216) is recommended but not required."
+    "Calculus-based physics (21:750:213, 214 with labs 215, 216) is recommended but not required.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "biological-sciences",
    "campus": "newark",
    "degree": "B.A. in Biology",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg171.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg171.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -6125,7 +5866,7 @@
      "options": [
       {
        "code": "21:120:200",
-       "title": "Concepts in Biology",
+       "title": "Concepts in Biology I",
        "credits": "4"
       }
      ]
@@ -6161,7 +5902,7 @@
      "options": [
       {
        "code": "21:160:113",
-       "title": "General Chemistry Laboratory I",
+       "title": "General Chemistry I Laboratory",
        "credits": "1"
       }
      ]
@@ -6173,7 +5914,7 @@
      "options": [
       {
        "code": "21:160:114",
-       "title": "General Chemistry Laboratory II",
+       "title": "General Chemistry II Lab",
        "credits": "1"
       }
      ]
@@ -6197,7 +5938,7 @@
      "options": [
       {
        "code": "21:120:201",
-       "title": "Foundations of Biology: Cell and Molecular Biology",
+       "title": "Foundation in Cell and Molecular Biology",
        "credits": "3"
       }
      ]
@@ -6209,7 +5950,7 @@
      "options": [
       {
        "code": "21:120:202",
-       "title": "Foundations of Biology: Cell and Molecular Biology Lab",
+       "title": "Foundation in Cell and Molecular Biology Laboratory",
        "credits": "1"
       }
      ]
@@ -6245,7 +5986,7 @@
      "options": [
       {
        "code": "21:750:203 + 21:750:204 + 21:750:205 + 21:750:206",
-       "title": "Algebra-Based Introductory Physics I; Algebra-Based Introductory Physics II; Algebra-Based Introductory Physics Laboratory I; Algebra-Based Introductory Physics Laboratory II",
+       "title": "Algebra-Based Introductory Physics I, II and Laboratory I, II",
        "credits": "10"
       },
       {
@@ -6284,13 +6025,13 @@
      "label": "Ecological and evolutionary framework"
     },
     {
-     "id": "21:120:230|21:120:330|21:120:335|21:120:340|21:120:342 + 21:120:343",
+     "id": "21:120:230|21:120:330|21:120:335|21:120:340|21:120:342 + 21:120:343|21:120:344",
      "year": 3,
      "kind": "course",
      "options": [
       {
        "code": "21:120:230",
-       "title": "Biology of Seed Plants",
+       "title": "Biology of Plants",
        "credits": "4"
       },
       {
@@ -6305,12 +6046,17 @@
       },
       {
        "code": "21:120:340",
-       "title": "Mammalian Physiology",
+       "title": "Human Physiology",
        "credits": "4"
       },
       {
        "code": "21:120:342 + 21:120:343",
        "title": "Developmental Biology Lecture and Laboratory",
+       "credits": "4"
+      },
+      {
+       "code": "21:120:344",
+       "title": "Human Anatomy",
        "credits": "4"
       }
      ],
@@ -6398,17 +6144,20 @@
     "A C or better in every biology and cognate course."
    ],
    "notes": [
-    "Offered jointly with NJIT through the Federated Department of Biological Sciences. A B.S. track is also available."
+    "Offered jointly with NJIT through the Federated Department of Biological Sciences. A B.S. track is also available.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "psychology",
    "campus": "newark",
    "degree": "B.A. in Psychology",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg344.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg344.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -6497,10 +6246,15 @@
      "label": "Multicultural area"
     },
     {
-     "id": "21:830:304|21:830:330|21:830:411|21:830:484#1",
+     "id": "21:830:210|21:830:304|21:830:330|21:830:411|21:830:484#1",
      "year": 3,
      "kind": "course",
      "options": [
+      {
+       "code": "21:830:210",
+       "title": "Introduction to Neuroscience",
+       "credits": "3"
+      },
       {
        "code": "21:830:304",
        "title": "Cognitive Processes",
@@ -6525,10 +6279,15 @@
      "label": "Cognition/neuroscience area, course 1 of 2"
     },
     {
-     "id": "21:830:304|21:830:330|21:830:411|21:830:484#2",
+     "id": "21:830:210|21:830:304|21:830:330|21:830:411|21:830:484#2",
      "year": 3,
      "kind": "course",
      "options": [
+      {
+       "code": "21:830:210",
+       "title": "Introduction to Neuroscience",
+       "credits": "3"
+      },
       {
        "code": "21:830:304",
        "title": "Cognitive Processes",
@@ -6569,7 +6328,7 @@
       },
       {
        "code": "21:830:363",
-       "title": "Abnormal Psychology",
+       "title": "Psychopathology",
        "credits": "3"
       },
       {
@@ -6602,7 +6361,7 @@
       },
       {
        "code": "21:830:363",
-       "title": "Abnormal Psychology",
+       "title": "Psychopathology",
        "credits": "3"
       },
       {
@@ -6629,17 +6388,20 @@
     "A GPA of 2.5 or better in the major."
    ],
    "notes": [
-    "The catalog suggests Principles of Psychology in the first or second year, and Statistical and Research Methods in the second or third."
+    "The catalog suggests Principles of Psychology in the first or second year, and Statistical and Research Methods in the second or third.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "economics",
    "campus": "newark",
    "degree": "B.A. in Economics",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg212.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg212.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -6736,28 +6498,13 @@
      ]
     },
     {
-     "id": "21:220:402|21:220:406|21:220:407|21:220:408",
+     "id": "21:220:406",
      "year": 4,
      "kind": "course",
      "options": [
       {
-       "code": "21:220:402",
-       "title": "Analysis of Current Economic Conditions",
-       "credits": "3"
-      },
-      {
        "code": "21:220:406",
        "title": "Seminar in Applied Economics",
-       "credits": "3"
-      },
-      {
-       "code": "21:220:407",
-       "title": "Labor Seminar",
-       "credits": "3"
-      },
-      {
-       "code": "21:220:408",
-       "title": "Labor Seminar",
        "credits": "3"
       }
      ]
@@ -6766,21 +6513,27 @@
      "id": "e8",
      "year": 3,
      "kind": "elective",
-     "text": "18 elective credits in economics (up to three listed RBS finance courses may count)"
+     "text": "18 elective credits in economics (up to three of 29:390:315, 329, 330, 386 from RBS may count)"
     }
    ],
    "rules": [
     "A C or better in every course for the major; at least half the credits at Rutgers–Newark."
+   ],
+   "notes": [
+    "29:390:300 Financial Econometrics can count toward 21:220:303 Introduction to Econometrics.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "political-science",
    "campus": "newark",
    "degree": "B.A. in Political Science",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg330.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg330.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -6861,16 +6614,21 @@
    ],
    "rules": [
     "Only courses with a C or better count toward the major."
+   ],
+   "notes": [
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "criminal-justice",
    "campus": "newark",
    "degree": "B.S. in Criminal Justice",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg502.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg502.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -6932,19 +6690,20 @@
     "Only grades of C or better count toward the major."
    ],
    "notes": [
-    "Take 102 and 103 before other criminal justice courses. 302 also needs a math course (640:106, 107, 108 or 109)."
+    "Take 102 and 103 before other criminal justice courses. 302 also needs a math course (640:106, 107, 108 or 109).",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "finance",
    "campus": "newark",
    "degree": "B.S. in Finance (Rutgers Business School–Newark)",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg425.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg425.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg421.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg422.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -6984,7 +6743,7 @@
       },
       {
        "code": "21:640:211",
-       "title": "Statistics",
+       "title": "Statistics I",
        "credits": "3"
       }
      ]
@@ -7043,18 +6802,6 @@
      ]
     },
     {
-     "id": "29:010:204",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:010:204",
-       "title": "Introduction to Managerial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:623:220",
      "year": 2,
      "kind": "course",
@@ -7103,23 +6850,6 @@
      ]
     },
     {
-     "id": "29:522:334|29:010:319",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:522:334",
-       "title": "Ethics in Business",
-       "credits": "3"
-      },
-      {
-       "code": "29:010:319",
-       "title": "Business Law I",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:390:329",
      "year": 3,
      "kind": "course",
@@ -7127,18 +6857,6 @@
       {
        "code": "29:390:329",
        "title": "Finance",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:620:301",
-       "title": "Introduction to Management",
        "credits": "3"
       }
      ]
@@ -7163,18 +6881,6 @@
       {
        "code": "29:620:368",
        "title": "International Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:623:311",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:623:311",
-       "title": "Product and Operations Management",
        "credits": "3"
       }
      ]
@@ -7226,6 +6932,42 @@
        "credits": "3"
       }
      ]
+    },
+    {
+     "id": "29:522:334|29:010:319",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:522:334",
+       "title": "Ethics in Business",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:319",
+       "title": "Business Law I: Introduction to Business Law and Government Regulation",
+       "credits": "3"
+      }
+     ],
+     "label": "Society and governance"
+    },
+    {
+     "id": "29:623:311|29:010:204",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:623:311",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:204",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Quantitative analysis"
     },
     {
      "id": "29:390:300",
@@ -7276,30 +7018,34 @@
      ]
     },
     {
-     "id": "e26",
+     "id": "e24",
      "year": 4,
      "kind": "elective",
      "text": "Four finance electives from the department's list"
     }
    ],
    "rules": [
-    "Finish the prerequisite core with a C or better within the first year of admission to RBS.",
-    "A cumulative GPA of 2.50 for finance majors."
+    "A cumulative GPA of 2.50 for finance majors.",
+    "Finish the Business Foundations courses (the six year-1 courses above, not 29:010:203) with a C or better within your first year in RBS.",
+    "Every business core, professional development, and flexible core course needs a C or better.",
+    "A B or better in 29:390:329 Finance to stay in the major (from fall 2024).",
+    "29:390:329 Finance lists 29:010:204 Managerial Accounting as a prerequisite."
    ],
    "notes": [
-    "Shown: the Financial Management and Capital Markets track. A Real Estate track is also offered."
+    "Shown: the Financial Management and Capital Markets track. A Real Estate track is also offered.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "accounting",
    "campus": "newark",
    "degree": "B.S. in Accounting (Rutgers Business School–Newark)",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg424.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg424.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg421.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg422.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -7339,7 +7085,7 @@
       },
       {
        "code": "21:640:211",
-       "title": "Statistics",
+       "title": "Statistics I",
        "credits": "3"
       }
      ]
@@ -7398,18 +7144,6 @@
      ]
     },
     {
-     "id": "29:010:204",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:010:204",
-       "title": "Introduction to Managerial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:623:220",
      "year": 2,
      "kind": "course",
@@ -7458,18 +7192,6 @@
      ]
     },
     {
-     "id": "29:010:319",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:010:319",
-       "title": "Business Law I",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:390:329",
      "year": 3,
      "kind": "course",
@@ -7477,18 +7199,6 @@
       {
        "code": "29:390:329",
        "title": "Finance",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:620:301",
-       "title": "Introduction to Management",
        "credits": "3"
       }
      ]
@@ -7513,18 +7223,6 @@
       {
        "code": "29:620:368",
        "title": "International Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:623:311",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:623:311",
-       "title": "Product and Operations Management",
        "credits": "3"
       }
      ]
@@ -7573,6 +7271,30 @@
       {
        "code": "29:620:418",
        "title": "Business Policy and Strategy",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "29:010:319",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:010:319",
+       "title": "Business Law I: Introduction to Business Law and Government Regulation",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "29:010:204",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:010:204",
+       "title": "Introduction to Managerial Accounting",
        "credits": "3"
       }
      ]
@@ -7620,7 +7342,7 @@
      "options": [
       {
        "code": "29:010:413",
-       "title": "Federal Tax I: Fundamentals of Federal Income Taxation",
+       "title": "Federal Income Tax I: Fundamentals of Federal Income Taxation",
        "credits": "3"
       }
      ]
@@ -7632,7 +7354,7 @@
      "options": [
       {
        "code": "29:010:414",
-       "title": "Federal Tax II",
+       "title": "Federal Tax II: Advanced Corporate Issues",
        "credits": "3"
       }
      ]
@@ -7668,7 +7390,7 @@
      "options": [
       {
        "code": "29:010:460",
-       "title": "Audit Analytics",
+       "title": "Auditing Analytics",
        "credits": "3"
       }
      ]
@@ -7680,30 +7402,33 @@
      "options": [
       {
        "code": "29:010:485",
-       "title": "Accounting and Information Systems",
+       "title": "Accounting Information Systems",
        "credits": "3"
       }
      ]
     }
    ],
    "rules": [
-    "Finish the prerequisite core with a C or better within the first year of admission to RBS.",
-    "A cumulative GPA of 2.50 for accounting majors."
+    "A cumulative GPA of 2.50 for accounting majors.",
+    "Finish the Business Foundations courses (the six year-1 courses above, not 29:010:203) with a C or better within your first year in RBS.",
+    "Every business core, professional development, and flexible core course needs a C or better.",
+    "A B or better in 29:010:203 or 29:010:204 to stay in the major (from fall 2024)."
    ],
    "notes": [
-    "Shown: requirements for students who declared accounting in fall 2022 or later. The CPA needs 150 credits."
+    "Shown: requirements for students who declared accounting in fall 2022 or later. The CPA needs 150 credits.",
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "marketing",
    "campus": "newark",
    "degree": "B.S. in Marketing (Rutgers Business School–Newark)",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg428.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg428.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg421.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg422.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -7743,7 +7468,7 @@
       },
       {
        "code": "21:640:211",
-       "title": "Statistics",
+       "title": "Statistics I",
        "credits": "3"
       }
      ]
@@ -7802,18 +7527,6 @@
      ]
     },
     {
-     "id": "29:010:204",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:010:204",
-       "title": "Introduction to Managerial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:623:220",
      "year": 2,
      "kind": "course",
@@ -7862,23 +7575,6 @@
      ]
     },
     {
-     "id": "29:522:334|29:010:319",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:522:334",
-       "title": "Ethics in Business",
-       "credits": "3"
-      },
-      {
-       "code": "29:010:319",
-       "title": "Business Law I",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:390:329",
      "year": 3,
      "kind": "course",
@@ -7886,18 +7582,6 @@
       {
        "code": "29:390:329",
        "title": "Finance",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:620:301",
-       "title": "Introduction to Management",
        "credits": "3"
       }
      ]
@@ -7922,18 +7606,6 @@
       {
        "code": "29:620:368",
        "title": "International Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:623:311",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:623:311",
-       "title": "Product and Operations Management",
        "credits": "3"
       }
      ]
@@ -7985,6 +7657,42 @@
        "credits": "3"
       }
      ]
+    },
+    {
+     "id": "29:522:334|29:010:319",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:522:334",
+       "title": "Ethics in Business",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:319",
+       "title": "Business Law I: Introduction to Business Law and Government Regulation",
+       "credits": "3"
+      }
+     ],
+     "label": "Society and governance"
+    },
+    {
+     "id": "29:623:311|29:010:204",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:623:311",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:204",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Quantitative analysis"
     },
     {
      "id": "29:630:374",
@@ -8023,26 +7731,30 @@
      ]
     },
     {
-     "id": "e25",
+     "id": "e23",
      "year": 4,
      "kind": "elective",
      "text": "Three marketing electives from the department's list"
     }
    ],
    "rules": [
-    "Finish the prerequisite core with a C or better within the first year of admission to RBS."
+    "Finish the Business Foundations courses (the six year-1 courses above, not 29:010:203) with a C or better within your first year in RBS.",
+    "Every business core, professional development, and flexible core course needs a C or better."
+   ],
+   "notes": [
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
    "majorId": "supply-chain",
    "campus": "newark",
    "degree": "B.S. in Supply Chain Management (Rutgers Business School–Newark)",
-   "catalog": "Newark Undergraduate Catalog 2022–2024",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg429.html",
+   "catalog": "2026–2027 Newark Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://newark-undergrad-26-27.catalogs.rutgers.edu/",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg429.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg421.html",
-    "https://catalogs.rutgers.edu/generated/nwk-ug_2225/pg422.html"
+    "https://newark-undergrad-26-27.catalogs.rutgers.edu/"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -8082,7 +7794,7 @@
       },
       {
        "code": "21:640:211",
-       "title": "Statistics",
+       "title": "Statistics I",
        "credits": "3"
       }
      ]
@@ -8141,18 +7853,6 @@
      ]
     },
     {
-     "id": "29:010:204",
-     "year": 1,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:010:204",
-       "title": "Introduction to Managerial Accounting",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:623:220",
      "year": 2,
      "kind": "course",
@@ -8201,23 +7901,6 @@
      ]
     },
     {
-     "id": "29:522:334|29:010:319",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:522:334",
-       "title": "Ethics in Business",
-       "credits": "3"
-      },
-      {
-       "code": "29:010:319",
-       "title": "Business Law I",
-       "credits": "3"
-      }
-     ]
-    },
-    {
      "id": "29:390:329",
      "year": 3,
      "kind": "course",
@@ -8225,18 +7908,6 @@
       {
        "code": "29:390:329",
        "title": "Finance",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:620:301",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:620:301",
-       "title": "Introduction to Management",
        "credits": "3"
       }
      ]
@@ -8261,18 +7932,6 @@
       {
        "code": "29:620:368",
        "title": "International Business",
-       "credits": "3"
-      }
-     ]
-    },
-    {
-     "id": "29:623:311",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "29:623:311",
-       "title": "Product and Operations Management",
        "credits": "3"
       }
      ]
@@ -8324,6 +7983,42 @@
        "credits": "3"
       }
      ]
+    },
+    {
+     "id": "29:522:334|29:010:319",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:522:334",
+       "title": "Ethics in Business",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:319",
+       "title": "Business Law I: Introduction to Business Law and Government Regulation",
+       "credits": "3"
+      }
+     ],
+     "label": "Society and governance"
+    },
+    {
+     "id": "29:623:311|29:010:204",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "29:623:311",
+       "title": "Business Operations Analytics",
+       "credits": "3"
+      },
+      {
+       "code": "29:010:204",
+       "title": "Introduction to Managerial Accounting",
+       "credits": "3"
+      }
+     ],
+     "label": "Quantitative analysis"
     },
     {
      "id": "29:799:330",
@@ -8368,7 +8063,7 @@
      "options": [
       {
        "code": "29:799:380",
-       "title": "Introduction to Project Management",
+       "title": "Project Management",
        "credits": "3"
       }
      ]
@@ -8397,15 +8092,19 @@
      "label": "Experiential course"
     },
     {
-     "id": "e27",
+     "id": "e25",
      "year": 4,
      "kind": "elective",
      "text": "9 credits of supply chain management electives"
     }
    ],
    "rules": [
-    "Finish the prerequisite core with a C or better within the first year of admission to RBS.",
-    "Only one of internship, co-op, or industry client projects counts as the required experiential course."
+    "Only one of internship, co-op, or industry client projects counts as the required experiential course.",
+    "Finish the Business Foundations courses (the six year-1 courses above, not 29:010:203) with a C or better within your first year in RBS.",
+    "Every business core, professional development, and flexible core course needs a C or better."
+   ],
+   "notes": [
+    "The Newark catalog website has no page of its own for each major: on the catalog home, choose Download Catalog as PDF and find this major's section."
    ]
   },
   {
@@ -8413,6 +8112,7 @@
    "campus": "newark",
    "degree": "B.S. in Nursing (traditional, Newark)",
    "catalog": "Rutgers School of Nursing sample curriculum, Newark (fall 2027)",
+   "checked": "2026-11-23",
    "pageUrl": "https://nursing.rutgers.edu/academics-admissions/bachelors/bs/curriculum/",
    "sources": [
     "https://nursing.rutgers.edu/academics-admissions/bachelors/bs/curriculum/"
@@ -8769,10 +8469,12 @@
    "majorId": "computer-science",
    "campus": "camden",
    "degree": "B.S. in Computer Science",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg121.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/CNk7kSsTKRmmf1UmUwex",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg121.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/CNk7kSsTKRmmf1UmUwex"
    ],
    "sequence": "prerequisites",
    "items": [
@@ -8783,7 +8485,7 @@
      "options": [
       {
        "code": "50:198:111",
-       "title": "Programming Fundamentals",
+       "title": "Programming Fundamentals and Software Lab",
        "credits": "4"
       }
      ]
@@ -8807,7 +8509,7 @@
      "options": [
       {
        "code": "50:198:171",
-       "title": "Mathematical Foundations of Computer Science",
+       "title": "Math Foundation of Computer Science",
        "credits": "3"
       }
      ]
@@ -8819,7 +8521,7 @@
      "options": [
       {
        "code": "50:640:121 + 50:640:122",
-       "title": "Unified Calculus I; Unified Calculus II",
+       "title": "Calculus I; Unified Calculus II",
        "credits": "8"
       },
       {
@@ -8836,7 +8538,7 @@
      "options": [
       {
        "code": "50:750:131 + 50:750:132 + 50:750:133 + 50:750:134",
-       "title": "Elements of Physics I; Elements of Physics II; Elements of Physics Laboratory I; Elements of Physics Laboratory II",
+       "title": "Elements of Physics I; Elements of Physics II; Introductory Physics Laboratory I; Introductory Physics Laboratory II",
        "credits": "8"
       }
      ]
@@ -8945,48 +8647,60 @@
    "majorId": "biological-sciences",
    "campus": "camden",
    "degree": "B.A./B.S. in Biology",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg84.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/TcoB5ZVVBlg3nPZW2KhJ",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg84.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/TcoB5ZVVBlg3nPZW2KhJ"
    ],
    "sequence": "prerequisites",
    "items": [
     {
-     "id": "50:120:101 + 50:120:107",
+     "id": "50:120:101 + 50:120:107 + 50:120:111",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "50:120:101 + 50:120:107",
-       "title": "General Biology I and Laboratory",
-       "credits": "4"
+       "code": "50:120:101 + 50:120:107 + 50:120:111",
+       "title": "General Biology I, Laboratory and Recitation",
+       "credits": "5"
       }
      ]
     },
     {
-     "id": "50:120:102 + 50:120:108",
+     "id": "50:120:102 + 50:120:108 + 50:120:112",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "50:120:102 + 50:120:108",
-       "title": "General Biology II and Laboratory",
-       "credits": "4"
+       "code": "50:120:102 + 50:120:108 + 50:120:112",
+       "title": "General Biology II, Laboratory and Recitation",
+       "credits": "5"
       }
      ]
     },
     {
-     "id": "50:640:121",
+     "id": "50:640:115|50:640:121|50:640:123",
      "year": 1,
      "kind": "course",
      "options": [
+      {
+       "code": "50:640:115",
+       "title": "Pre-Calculus",
+       "credits": "4"
+      },
       {
        "code": "50:640:121",
-       "title": "Unified Calculus I",
+       "title": "Calculus I",
        "credits": "4"
+      },
+      {
+       "code": "50:640:123",
+       "title": "Active Calculus I"
       }
-     ]
+     ],
+     "label": "Math (B.A.: Pre-Calculus or Calculus I; B.S.: Calculus I or Active Calculus I)"
     },
     {
      "id": "50:160:115 + 50:160:125",
@@ -9046,7 +8760,8 @@
        "title": "General Physics II and Laboratory",
        "credits": "4"
       }
-     ]
+     ],
+     "label": "B.S. only"
     },
     {
      "id": "50:160:335 + 50:160:336",
@@ -9058,13 +8773,14 @@
        "title": "Organic Chemistry I and Laboratory",
        "credits": "5"
       }
-     ]
+     ],
+     "label": "B.S. only"
     },
     {
      "id": "e9",
      "year": 3,
      "kind": "elective",
-     "text": "Seven 300/400-level biology or biochemistry electives (four with a lab), at least one each in molecular, cellular, organismal, and ecology/evolution biology"
+     "text": "Seven 300/400-level biology electives, at least one each in molecular, cellular, organismal, and ecology/evolution biology (B.A. students take four more elective lectures, eleven in all)"
     },
     {
      "id": "50:120:399",
@@ -9079,16 +8795,21 @@
      ]
     }
    ],
-   "rules": []
+   "rules": [],
+   "notes": [
+    "Up to three of General Biochemistry I and II, Genome Informatics I, and Essentials of Biophysics can count as electives."
+   ]
   },
   {
    "majorId": "psychology",
    "campus": "camden",
    "degree": "B.A. in Psychology",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg274.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/njybXubukM75heQHWnzK",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg274.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/njybXubukM75heQHWnzK"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -9140,7 +8861,7 @@
      ]
     },
     {
-     "id": "50:830:381 + 50:830:380",
+     "id": "50:830:381 + 50:830:380|50:830:398",
      "year": 3,
      "kind": "course",
      "options": [
@@ -9148,17 +8869,47 @@
        "code": "50:830:381 + 50:830:380",
        "title": "Experimental Psychology; Laboratory in Experimental Psychology",
        "credits": "4"
+      },
+      {
+       "code": "50:830:398",
+       "title": "Independent Study Capstone (4 credits, department approval)"
       }
-     ]
+     ],
+     "label": "Experimental psychology or capstone"
     },
     {
      "id": "e4",
      "year": 3,
      "kind": "elective",
-     "text": "27 credits of psychology electives"
+     "text": "Brain, Mind, Biological Perspectives area course (e.g. 50:830:312, 360, 484)"
+    },
+    {
+     "id": "e5",
+     "year": 3,
+     "kind": "elective",
+     "text": "Development and Life Course Perspectives area course (e.g. 50:830:226, 326, 328)"
+    },
+    {
+     "id": "e6",
+     "year": 3,
+     "kind": "elective",
+     "text": "Social, Health, and Clinical Perspectives area course (e.g. 50:830:335, 340, 348)"
+    },
+    {
+     "id": "e7",
+     "year": 3,
+     "kind": "elective",
+     "text": "Diverse Perspective area course (e.g. 50:830:365, 410, 303)"
+    },
+    {
+     "id": "e8",
+     "year": 3,
+     "kind": "elective",
+     "text": "15 credits of psychology electives"
     }
    ],
    "rules": [
+    "The four area courses must be taken at Rutgers–Camden.",
     "A GPA of 2.5 or better in courses for the major, with no more than two grades below C."
    ],
    "notes": [
@@ -9169,10 +8920,12 @@
    "majorId": "economics",
    "campus": "camden",
    "degree": "B.A. in Economics",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg135.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/c3ry8bC64CzUt2gYIq5e",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg135.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/c3ry8bC64CzUt2gYIq5e"
    ],
    "sequence": "official",
    "items": [
@@ -9183,7 +8936,7 @@
      "options": [
       {
        "code": "50:220:102",
-       "title": "Principles ofMicroeconomics",
+       "title": "Principles of Microeconomics",
        "credits": "3"
       }
      ]
@@ -9195,7 +8948,7 @@
      "options": [
       {
        "code": "50:220:103",
-       "title": "Principles ofMacroeconomics",
+       "title": "Principles of Macroeconomics",
        "credits": "3"
       }
      ]
@@ -9212,7 +8965,7 @@
       },
       {
        "code": "50:640:121",
-       "title": "Unified Calculus I",
+       "title": "Calculus I",
        "credits": "4"
       }
      ]
@@ -9284,6 +9037,8 @@
    "campus": "camden",
    "degree": "B.A. in Political Science",
    "catalog": "Camden Undergraduate Catalog 2023–2025",
+   "edition": "2023–2025",
+   "checked": "2026-11-23",
    "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg247.html",
    "sources": [
     "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg247.html"
@@ -9330,16 +9085,21 @@
    ],
    "rules": [
     "Only grades of C or better count; at least 15 credits at Rutgers."
+   ],
+   "notes": [
+    "The 2026–2027 Camden catalog's Political Science page has no requirements list, so this list is from the 2023–2025 catalog. Confirm it with the department or your degree audit."
    ]
   },
   {
    "majorId": "criminal-justice",
    "campus": "camden",
    "degree": "B.A. in Criminal Justice",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg290.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/gPnmOLilF7NpcFZCyjTl",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg290.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/gPnmOLilF7NpcFZCyjTl"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -9491,10 +9251,12 @@
    "majorId": "social-work",
    "campus": "camden",
    "degree": "B.A. in Social Work (BASW)",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg285.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/fUSrXcdGHefWpkoJgMDB",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg285.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/fUSrXcdGHefWpkoJgMDB"
    ],
    "sequence": "official",
    "items": [
@@ -9667,11 +9429,12 @@
    "majorId": "accounting",
    "campus": "camden",
    "degree": "B.S. in Accounting (School of Business–Camden)",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg378.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/IwSmkiV2l39BKOkIFvPP",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg378.html",
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg377.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/IwSmkiV2l39BKOkIFvPP"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -9685,7 +9448,7 @@
      "options": [
       {
        "code": "50:220:102",
-       "title": "Principles ofMicroeconomics",
+       "title": "Principles of Microeconomics",
        "credits": "3"
       }
      ]
@@ -9697,16 +9460,38 @@
      "options": [
       {
        "code": "50:220:103",
-       "title": "Principles ofMacroeconomics",
+       "title": "Principles of Macroeconomics",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "e2",
+     "id": "50:640:113|50:640:115|50:640:118|50:640:121",
      "year": 1,
-     "kind": "elective",
-     "text": "RSBC quantitative literacy requirement (a 50:640 mathematics course)"
+     "kind": "course",
+     "options": [
+      {
+       "code": "50:640:113",
+       "title": "Mathematics for Business",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:115",
+       "title": "Pre-Calculus",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:118",
+       "title": "Calculus for Business and Economics",
+       "credits": "3"
+      },
+      {
+       "code": "50:640:121",
+       "title": "Calculus I",
+       "credits": "4"
+      }
+     ],
+     "label": "RSBC quantitative literacy"
     },
     {
      "id": "52:010:101",
@@ -9716,6 +9501,18 @@
       {
        "code": "52:010:101",
        "title": "Fundamentals of Financial Accounting",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:101",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:101",
+       "title": "Introduction to Business",
        "credits": "3"
       }
      ]
@@ -9739,16 +9536,10 @@
      "options": [
       {
        "code": "52:140:101",
-       "title": "Business Law I: Legal Environment",
+       "title": "Business Law I Legal Environment",
        "credits": "3"
       }
      ]
-    },
-    {
-     "id": "e6",
-     "year": 1,
-     "kind": "elective",
-     "text": "Introduction to Business (first year)"
     },
     {
      "id": "50:989:101",
@@ -9801,20 +9592,20 @@
      "options": [
       {
        "code": "52:010:202",
-       "title": "Fundamentals of Mangerial Accounting",
+       "title": "Fundamentals of Managerial Accounting",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "52:135:206",
+     "id": "52:135:203",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "52:135:206",
-       "title": "Professional Development Strategies",
-       "credits": "2"
+       "code": "52:135:203",
+       "title": "Professional Skills Forum II",
+       "credits": "1"
       }
      ]
     },
@@ -9866,6 +9657,18 @@
      ]
     },
     {
+     "id": "52:135:204",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:204",
+       "title": "Career Development Strategies",
+       "credits": "1"
+      }
+     ]
+    },
+    {
      "id": "52:390:301",
      "year": 3,
      "kind": "course",
@@ -9884,7 +9687,7 @@
      "options": [
       {
        "code": "52:620:301",
-       "title": "Cororate Social Responsibility: Ethics & Sustainability",
+       "title": "Corporate Social Responsibility: Ethics & Sustainability",
        "credits": "3"
       }
      ]
@@ -9926,6 +9729,18 @@
      ]
     },
     {
+     "id": "52:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:620:369",
+       "title": "International Business",
+       "credits": "3"
+      }
+     ]
+    },
+    {
      "id": "52:623:302",
      "year": 3,
      "kind": "course",
@@ -9944,7 +9759,7 @@
      "options": [
       {
        "code": "52:620:450",
-       "title": "Strategic management",
+       "title": "Strategic Management",
        "credits": "3"
       }
      ]
@@ -10009,7 +9824,7 @@
       },
       {
        "code": "52:010:384",
-       "title": "Taxation of Business Entities",
+       "title": "Business Entity Taxation",
        "credits": "3"
       }
      ]
@@ -10027,13 +9842,13 @@
      ]
     },
     {
-     "id": "e30",
+     "id": "e32",
      "year": 4,
      "kind": "elective",
      "text": "Two 300+ accounting or business electives, two business electives, and three free electives"
     },
     {
-     "id": "e31",
+     "id": "e33",
      "year": null,
      "kind": "elective",
      "text": "General education: Arts and Aesthetics, Heritages and Civilizations, Physical and Life Sciences, United States in the World"
@@ -10045,11 +9860,12 @@
    "majorId": "finance",
    "campus": "camden",
    "degree": "B.S. in Finance (School of Business–Camden)",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg379.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/vNDpbXWUqCXlHWV5op1I",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg379.html",
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg377.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/vNDpbXWUqCXlHWV5op1I"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -10063,7 +9879,7 @@
      "options": [
       {
        "code": "50:220:102",
-       "title": "Principles ofMicroeconomics",
+       "title": "Principles of Microeconomics",
        "credits": "3"
       }
      ]
@@ -10075,16 +9891,38 @@
      "options": [
       {
        "code": "50:220:103",
-       "title": "Principles ofMacroeconomics",
+       "title": "Principles of Macroeconomics",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "e2",
+     "id": "50:640:113|50:640:115|50:640:118|50:640:121",
      "year": 1,
-     "kind": "elective",
-     "text": "RSBC quantitative literacy requirement (a 50:640 mathematics course)"
+     "kind": "course",
+     "options": [
+      {
+       "code": "50:640:113",
+       "title": "Mathematics for Business",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:115",
+       "title": "Pre-Calculus",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:118",
+       "title": "Calculus for Business and Economics",
+       "credits": "3"
+      },
+      {
+       "code": "50:640:121",
+       "title": "Calculus I",
+       "credits": "4"
+      }
+     ],
+     "label": "RSBC quantitative literacy"
     },
     {
      "id": "52:010:101",
@@ -10094,6 +9932,18 @@
       {
        "code": "52:010:101",
        "title": "Fundamentals of Financial Accounting",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:101",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:101",
+       "title": "Introduction to Business",
        "credits": "3"
       }
      ]
@@ -10117,16 +9967,10 @@
      "options": [
       {
        "code": "52:140:101",
-       "title": "Business Law I: Legal Environment",
+       "title": "Business Law I Legal Environment",
        "credits": "3"
       }
      ]
-    },
-    {
-     "id": "e6",
-     "year": 1,
-     "kind": "elective",
-     "text": "Introduction to Business (first year)"
     },
     {
      "id": "50:989:101",
@@ -10179,20 +10023,20 @@
      "options": [
       {
        "code": "52:010:202",
-       "title": "Fundamentals of Mangerial Accounting",
+       "title": "Fundamentals of Managerial Accounting",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "52:135:206",
+     "id": "52:135:203",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "52:135:206",
-       "title": "Professional Development Strategies",
-       "credits": "2"
+       "code": "52:135:203",
+       "title": "Professional Skills Forum II",
+       "credits": "1"
       }
      ]
     },
@@ -10244,6 +10088,18 @@
      ]
     },
     {
+     "id": "52:135:204",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:204",
+       "title": "Career Development Strategies",
+       "credits": "1"
+      }
+     ]
+    },
+    {
      "id": "52:390:301",
      "year": 3,
      "kind": "course",
@@ -10262,7 +10118,7 @@
      "options": [
       {
        "code": "52:620:301",
-       "title": "Cororate Social Responsibility: Ethics & Sustainability",
+       "title": "Corporate Social Responsibility: Ethics & Sustainability",
        "credits": "3"
       }
      ]
@@ -10304,6 +10160,18 @@
      ]
     },
     {
+     "id": "52:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:620:369",
+       "title": "International Business",
+       "credits": "3"
+      }
+     ]
+    },
+    {
      "id": "52:623:302",
      "year": 3,
      "kind": "course",
@@ -10322,7 +10190,7 @@
      "options": [
       {
        "code": "52:620:450",
-       "title": "Strategic management",
+       "title": "Strategic Management",
        "credits": "3"
       }
      ]
@@ -10364,13 +10232,13 @@
      ]
     },
     {
-     "id": "e27",
+     "id": "e29",
      "year": 4,
      "kind": "elective",
      "text": "Three finance electives or concentration courses (52:390:300+), two business electives, and five free electives"
     },
     {
-     "id": "e28",
+     "id": "e30",
      "year": null,
      "kind": "elective",
      "text": "General education: Arts and Aesthetics, Heritages and Civilizations, Physical and Life Sciences, United States in the World"
@@ -10382,11 +10250,12 @@
    "majorId": "marketing",
    "campus": "camden",
    "degree": "B.S. in Marketing (School of Business–Camden)",
-   "catalog": "Camden Undergraduate Catalog 2023–2025",
-   "pageUrl": "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg381.html",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/cygCM3X2jaZxTsHdfN54",
    "sources": [
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg381.html",
-    "https://catalogs.rutgers.edu/generated/cam-ug_2325/pg377.html"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/pages/cygCM3X2jaZxTsHdfN54"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -10400,7 +10269,7 @@
      "options": [
       {
        "code": "50:220:102",
-       "title": "Principles ofMicroeconomics",
+       "title": "Principles of Microeconomics",
        "credits": "3"
       }
      ]
@@ -10412,16 +10281,38 @@
      "options": [
       {
        "code": "50:220:103",
-       "title": "Principles ofMacroeconomics",
+       "title": "Principles of Macroeconomics",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "e2",
+     "id": "50:640:113|50:640:115|50:640:118|50:640:121",
      "year": 1,
-     "kind": "elective",
-     "text": "RSBC quantitative literacy requirement (a 50:640 mathematics course)"
+     "kind": "course",
+     "options": [
+      {
+       "code": "50:640:113",
+       "title": "Mathematics for Business",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:115",
+       "title": "Pre-Calculus",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:118",
+       "title": "Calculus for Business and Economics",
+       "credits": "3"
+      },
+      {
+       "code": "50:640:121",
+       "title": "Calculus I",
+       "credits": "4"
+      }
+     ],
+     "label": "RSBC quantitative literacy"
     },
     {
      "id": "52:010:101",
@@ -10431,6 +10322,18 @@
       {
        "code": "52:010:101",
        "title": "Fundamentals of Financial Accounting",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:101",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:101",
+       "title": "Introduction to Business",
        "credits": "3"
       }
      ]
@@ -10454,16 +10357,10 @@
      "options": [
       {
        "code": "52:140:101",
-       "title": "Business Law I: Legal Environment",
+       "title": "Business Law I Legal Environment",
        "credits": "3"
       }
      ]
-    },
-    {
-     "id": "e6",
-     "year": 1,
-     "kind": "elective",
-     "text": "Introduction to Business (first year)"
     },
     {
      "id": "50:989:101",
@@ -10516,20 +10413,20 @@
      "options": [
       {
        "code": "52:010:202",
-       "title": "Fundamentals of Mangerial Accounting",
+       "title": "Fundamentals of Managerial Accounting",
        "credits": "3"
       }
      ]
     },
     {
-     "id": "52:135:206",
+     "id": "52:135:203",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "52:135:206",
-       "title": "Professional Development Strategies",
-       "credits": "2"
+       "code": "52:135:203",
+       "title": "Professional Skills Forum II",
+       "credits": "1"
       }
      ]
     },
@@ -10581,6 +10478,18 @@
      ]
     },
     {
+     "id": "52:135:204",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:204",
+       "title": "Career Development Strategies",
+       "credits": "1"
+      }
+     ]
+    },
+    {
      "id": "52:390:301",
      "year": 3,
      "kind": "course",
@@ -10599,7 +10508,7 @@
      "options": [
       {
        "code": "52:620:301",
-       "title": "Cororate Social Responsibility: Ethics & Sustainability",
+       "title": "Corporate Social Responsibility: Ethics & Sustainability",
        "credits": "3"
       }
      ]
@@ -10641,6 +10550,18 @@
      ]
     },
     {
+     "id": "52:620:369",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:620:369",
+       "title": "International Business",
+       "credits": "3"
+      }
+     ]
+    },
+    {
      "id": "52:623:302",
      "year": 3,
      "kind": "course",
@@ -10659,7 +10580,7 @@
      "options": [
       {
        "code": "52:620:450",
-       "title": "Strategic management",
+       "title": "Strategic Management",
        "credits": "3"
       }
      ]
@@ -10701,13 +10622,13 @@
      ]
     },
     {
-     "id": "e27",
+     "id": "e29",
      "year": 4,
      "kind": "elective",
      "text": "Three marketing electives or concentration courses (52:630:300+), two business electives, and five free electives"
     },
     {
-     "id": "e28",
+     "id": "e30",
      "year": null,
      "kind": "elective",
      "text": "General education: Arts and Aesthetics, Heritages and Civilizations, Physical and Life Sciences, United States in the World"
@@ -10719,10 +10640,12 @@
    "majorId": "human-resource-management",
    "campus": "camden",
    "degree": "B.S. in Human Resource Management (School of Business–Camden)",
-   "catalog": "Rutgers School of Business–Camden, B.S. in Human Resource Management",
-   "pageUrl": "https://business.camden.rutgers.edu/programs-academics/undergraduate/bachelor-of-science-programs/bs-human-resource-management",
+   "catalog": "2026–2027 Camden Undergraduate Catalog",
+   "edition": "2026–2027",
+   "checked": "2026-11-23",
+   "pageUrl": "https://camden-undergrad-26-27.catalogs.rutgers.edu/schools/rutgers-school-of-business-camden/school-of-business-camden/degree-programs/bachelor-of-science/bachelor-of-science-in-human-resource-management",
    "sources": [
-    "https://business.camden.rutgers.edu/programs-academics/undergraduate/bachelor-of-science-programs/bs-human-resource-management"
+    "https://camden-undergrad-26-27.catalogs.rutgers.edu/schools/rutgers-school-of-business-camden/school-of-business-camden/degree-programs/bachelor-of-science/bachelor-of-science-in-human-resource-management"
    ],
    "sequence": "prerequisites",
    "credits": {
@@ -10730,330 +10653,373 @@
    },
    "items": [
     {
-     "id": "Microeconomic Principles",
+     "id": "50:220:102",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Microeconomic Principles"
+       "code": "50:220:102",
+       "title": "Principles of Microeconomics",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Macroeconomic Principles",
+     "id": "50:220:103",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Macroeconomic Principles"
+       "code": "50:220:103",
+       "title": "Principles of Macroeconomics",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "e2",
-     "year": 1,
-     "kind": "elective",
-     "text": "RSBC quantitative literacy requirement"
-    },
-    {
-     "id": "Fundamentals of Financial Accounting",
+     "id": "50:640:113|50:640:115|50:640:118|50:640:121",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Fundamentals of Financial Accounting"
+       "code": "50:640:113",
+       "title": "Mathematics for Business",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:115",
+       "title": "Pre-Calculus",
+       "credits": "4"
+      },
+      {
+       "code": "50:640:118",
+       "title": "Calculus for Business and Economics",
+       "credits": "3"
+      },
+      {
+       "code": "50:640:121",
+       "title": "Calculus I",
+       "credits": "4"
+      }
+     ],
+     "label": "RSBC quantitative literacy"
+    },
+    {
+     "id": "52:010:101",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:010:101",
+       "title": "Fundamentals of Financial Accounting",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Professional Skills Forum I",
+     "id": "52:135:101",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "52:135:101",
+       "title": "Introduction to Business",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:202",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:202",
        "title": "Professional Skills Forum I",
        "credits": "1"
       }
      ]
     },
     {
-     "id": "English Composition I",
+     "id": "52:140:101",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "52:140:101",
+       "title": "Business Law I Legal Environment",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "50:989:101",
+     "year": 1,
+     "kind": "course",
+     "options": [
+      {
+       "code": "50:989:101",
        "title": "English Composition I"
       }
      ]
     },
     {
-     "id": "English Composition II",
+     "id": "50:989:102",
      "year": 1,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "50:989:102",
        "title": "English Composition II"
       }
      ]
     },
     {
-     "id": "e7",
-     "year": 1,
-     "kind": "elective",
-     "text": "Introduction to Business (first year)"
-    },
-    {
-     "id": "Introduction to Statistics I",
+     "id": "50:960:283",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "50:960:283",
        "title": "Introduction to Statistics I"
       }
      ]
     },
     {
-     "id": "Introduction to Statistics II",
+     "id": "50:960:284",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "50:960:284",
        "title": "Introduction to Statistics II"
       }
      ]
     },
     {
-     "id": "Fundamentals of Managerial Accounting",
+     "id": "52:010:202",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Fundamentals of Managerial Accounting"
+       "code": "52:010:202",
+       "title": "Fundamentals of Managerial Accounting",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Professional Skills Forum II",
+     "id": "52:135:203",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "52:135:203",
        "title": "Professional Skills Forum II",
        "credits": "1"
       }
      ]
     },
     {
-     "id": "Career Development Strategies",
+     "id": "52:620:210",
      "year": 2,
      "kind": "course",
      "options": [
       {
-       "code": "",
+       "code": "52:620:210",
+       "title": "Introduction to Data Analysis with Excel",
+       "credits": "1"
+      }
+     ]
+    },
+    {
+     "id": "52:623:201",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:623:201",
+       "title": "Introduction to Information Technology",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:250",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:250",
+       "title": "Business Communication"
+      }
+     ]
+    },
+    {
+     "id": "52:630:201",
+     "year": 2,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:630:201",
+       "title": "Principles of Marketing",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:135:204",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:135:204",
        "title": "Career Development Strategies",
        "credits": "1"
       }
      ]
     },
     {
-     "id": "Business Law I|Business Law II",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Business Law I"
-      },
-      {
-       "code": "",
-       "title": "Business Law II"
-      }
-     ]
-    },
-    {
-     "id": "Introduction to Data Analysis w/ Excel",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Introduction to Data Analysis w/ Excel",
-       "credits": "1"
-      }
-     ]
-    },
-    {
-     "id": "Introduction to Information Technology",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Introduction to Information Technology"
-      }
-     ]
-    },
-    {
-     "id": "Business Communications",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Business Communications"
-      }
-     ]
-    },
-    {
-     "id": "Principles of Marketing",
-     "year": 2,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Principles of Marketing"
-      }
-     ]
-    },
-    {
-     "id": "Principles of Finance",
+     "id": "52:390:301",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Principles of Finance"
+       "code": "52:390:301",
+       "title": "Principles of Finance",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Corporate Social Responsibility",
+     "id": "52:620:301",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Corporate Social Responsibility"
+       "code": "52:620:301",
+       "title": "Corporate Social Responsibility: Ethics & Sustainability",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Organizational Behavior",
+     "id": "52:620:303",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Organizational Behavior"
+       "code": "52:620:303",
+       "title": "Organizational Behavior",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Optimization & Spreadsheet Modeling",
+     "id": "52:620:321",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Optimization & Spreadsheet Modeling"
+       "code": "52:620:321",
+       "title": "Optimization and Spreadsheet Modeling",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Operations Management",
+     "id": "52:620:325",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Operations Management"
+       "code": "52:620:325",
+       "title": "Operations Management",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "International Business",
+     "id": "52:620:369",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "International Business"
+       "code": "52:620:369",
+       "title": "International Business",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "IT & Project Management",
+     "id": "52:623:302",
      "year": 3,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "IT & Project Management"
+       "code": "52:623:302",
+       "title": "IT and Project Management",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Fundamentals of Human Resource Management",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Fundamentals of Human Resource Management"
-      }
-     ]
-    },
-    {
-     "id": "Compensation and Benefits",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Compensation and Benefits"
-      }
-     ]
-    },
-    {
-     "id": "Talent Management",
-     "year": 3,
-     "kind": "course",
-     "options": [
-      {
-       "code": "",
-       "title": "Talent Management"
-      }
-     ]
-    },
-    {
-     "id": "Strategic HRM Capstone",
+     "id": "52:620:450",
      "year": 4,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Strategic HRM Capstone"
+       "code": "52:620:450",
+       "title": "Strategic Management",
+       "credits": "3"
       }
      ]
     },
     {
-     "id": "Strategic Management",
+     "id": "52:533:365",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:533:365",
+       "title": "Fundamentals of Human Resource Management",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:533:461",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:533:461",
+       "title": "Compensation and Benefits",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:533:463",
+     "year": 3,
+     "kind": "course",
+     "options": [
+      {
+       "code": "52:533:463",
+       "title": "Talent Management: Attracting, Developing, and Retaining Employees",
+       "credits": "3"
+      }
+     ]
+    },
+    {
+     "id": "52:533:480",
      "year": 4,
      "kind": "course",
      "options": [
       {
-       "code": "",
-       "title": "Strategic Management"
+       "code": "52:533:480",
+       "title": "Strategic HR Management Capstone",
+       "credits": "3"
       }
      ]
     },
@@ -11061,7 +11027,7 @@
      "id": "e30",
      "year": 4,
      "kind": "elective",
-     "text": "Two HRM (533) electives, two business electives, and five free electives"
+     "text": "Two HRM (52:533) electives, two business electives, and five free electives"
     },
     {
      "id": "e31",
@@ -11070,16 +11036,14 @@
      "text": "General education: Arts and Aesthetics, Heritages and Civilizations, Physical and Life Sciences, United States in the World"
     }
    ],
-   "rules": [],
-   "notes": [
-    "The school's page lists course titles; the curriculum worksheet on the same site has course numbers."
-   ]
+   "rules": []
   },
   {
    "majorId": "nursing",
    "campus": "camden",
    "degree": "B.S. in Nursing (traditional, Camden)",
    "catalog": "Rutgers School of Nursing–Camden, Traditional BSN Curriculum (2026)",
+   "checked": "2026-11-23",
    "pageUrl": "https://nursing.camden.rutgers.edu/find-your-program/undergraduate-students/bachelor-science-nursing",
    "sources": [
     "https://nursing.camden.rutgers.edu/find-your-program/undergraduate-students/bachelor-science-nursing"

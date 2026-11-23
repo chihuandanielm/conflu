@@ -162,7 +162,8 @@ for (const e of reqs) {
   reqKeys.add(key);
   if (!majorIds.has(e.majorId)) errors.push(`${at}: unknown major`);
   else if (!(e.campus in majors.find((m) => m.id === e.majorId).offeredAt)) errors.push(`${at}: major not offered at this campus`);
-  for (const k of ["degree", "catalog", "pageUrl", "sequence"]) if (!e[k]) errors.push(`${at}: missing ${k}`);
+  for (const k of ["degree", "catalog", "pageUrl", "sequence", "checked"]) if (!e[k]) errors.push(`${at}: missing ${k}`);
+  if (e.checked && !/^\d{4}-\d{2}-\d{2}$/.test(e.checked)) errors.push(`${at}: checked must be a YYYY-MM-DD date`);
   if (!["official", "prerequisites"].includes(e.sequence)) errors.push(`${at}: sequence must be official or prerequisites`);
   for (const u of [e.pageUrl, ...(e.sources ?? [])]) if (!/^https:\/\/\S+$/.test(u ?? "")) errors.push(`${at}: url must start with https:// (${u})`);
   if (!e.sources?.length) errors.push(`${at}: needs sources`);

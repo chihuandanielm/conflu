@@ -9,6 +9,9 @@ const DUE_LABEL: Record<Due, string> = {
 /** The student's year for requirements: a fifth-year (or later) answer counts as year 5, so every year through 4 is due. */
 export const studentYearOf = (a: Pick<Answers, "year" | "yearTerm">) => (a.yearTerm === "5+" ? 5 : a.year ?? 1);
 
+const checkedOn = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+
 const optionText = (o: { code: string; title: string; credits?: string }) =>
   `${o.code ? `${o.code} ` : ""}${o.title}${o.credits ? ` (${o.credits})` : ""}`;
 
@@ -35,8 +38,12 @@ export function OnTrack({ answers }: { answers: Answers }) {
       <h2 id="ontrack-h" className="text-h2">On track to graduate</h2>
       <p className="fact mt-1.5">{r.degree.toLowerCase()}{r.credits?.major ? `  ${r.credits.major} credits in the major` : ""}{r.credits?.total ? `  ${r.credits.total} credits in all` : ""}</p>
       <p className="mt-2 max-w-[44em]">
-        The courses your major requires, by the year students usually take them, from {r.catalog}. Tick what you've
-        completed; your ticks stay in this browser. Always confirm with your adviser and the official page.
+        The courses your major requires, by the year students usually take them, from the {r.catalog}
+        {" "}(last checked {checkedOn(r.checked)}). Tick what you've completed; your ticks stay in this browser.
+      </p>
+      <p className="mt-2 max-w-[44em]">
+        You follow the catalog for the year you entered Rutgers (or entered your major or school). If you started before
+        fall 2026, check your degree audit or the catalog for your year, and confirm with your adviser.
       </p>
       <p className="mt-2">
         <a href={r.pageUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">

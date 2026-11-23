@@ -11,6 +11,10 @@ export type RequirementItem =
   | { id: string; year: number | null; kind: "elective"; text: string };
 export interface MajorRequirements {
   majorId: string; campus: "nb" | "newark" | "camden"; degree: string; catalog: string; pageUrl: string; sources: string[];
+  /** The catalog edition the list was transcribed from (e.g. "2026–2027"); absent for school pages that aren't a catalog. */
+  edition?: string;
+  /** When the list was last checked against its source (YYYY-MM-DD). */
+  checked: string;
   /** official: the school's published year-by-year curriculum; prerequisites: years follow course level. */
   sequence: "official" | "prerequisites";
   credits?: { major?: string; total?: string };

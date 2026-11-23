@@ -15,6 +15,21 @@ describe("major requirements", () => {
     }
   });
 
+  it("says which catalog edition each list comes from and when it was last checked", () => {
+    for (const m of majors) for (const campus of Object.keys(m.offeredAt)) {
+      const school = campus === "nb" ? "rutgers-nb" : campus === "newark" ? "rutgers-newark" : "rutgers-camden";
+      const r = requirementsFor(m.id, school)!;
+      expect(r.checked, `${campus}/${m.id}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      if (r.edition === "2026–2027") expect(r.pageUrl, `${campus}/${m.id}`).toMatch(/-26-27[.-]/);
+    }
+    // The newest catalogs: engineering's first year has the 14:440:101/102 design sequence, not 14:440:127.
+    const me = requirementsFor("mechanical-engineering", "rutgers-nb")!;
+    const codes = me.items.flatMap((i) => (i.kind === "course" ? i.options.map((o) => o.code) : []));
+    expect(me.edition).toBe("2026–2027");
+    expect(codes).toContain("14:440:101");
+    expect(codes).not.toContain("14:440:127");
+  });
+
   it("has nothing for a school outside Rutgers or a major the campus doesn't offer", () => {
     expect(requirementsFor("computer-science", "other")).toBeNull();
     expect(requirementsFor("packaging-engineering", "rutgers-camden")).toBeNull();
