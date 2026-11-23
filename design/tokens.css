@@ -12,6 +12,7 @@
 
 :root {
   --sage: #E0E7DA;
+  --ink: #1A1F24;   /* words: every sentence, label and fact (13.1:1 on sage, 9.2:1 on sand) */
   --blue: #456894;
   --green: #00A37D;
   --sand: #E6B989;
@@ -19,9 +20,9 @@
   --font-text: "Quantico", system-ui, sans-serif;        /* everything meant to be read */
   --font-mono: "IBM Plex Mono", ui-monospace, monospace; /* the river, small facts (hours, terms, kinds), key hints */
 
-  --text-fact: 0.8125rem;  /* 13px, mono only */
+  --text-fact: 0.9375rem;  /* 15px, mono, numbers, codes and dates only */
   --text-small: 0.9375rem; /* 15px */
-  --text-body: 1.0625rem;  /* 17px: body text never goes smaller than this (blue on sage is 4.54:1) */
+  --text-body: 1.0625rem;  /* 17px; nothing on screen is under 15px */
   --text-lead: 1.25rem;
   --text-h2: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
   --text-h1: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);

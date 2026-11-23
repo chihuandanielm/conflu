@@ -34,7 +34,8 @@ export function registerFonts(f: FontFiles) {
   registered = true;
 }
 
-const C = PALETTE; // sage, blue, green, sand: the only four colours
+// sage, blue, green, sand, plus ink for sentences (design/DESIGN.md §2): headings and links stay blue.
+const C = { ...PALETTE, ink: "#1A1F24" };
 // US Letter is 612 x 792 pt; 40pt side margins (54px in the prototype).
 const PAGE = { w: 612, h: 792, side: 40, top: 33, bottom: 52 };
 const W = PAGE.w - PAGE.side * 2;
@@ -48,12 +49,12 @@ const HALF = (W - 16) / 2;
 const s = StyleSheet.create({
   // No lineHeight on the page or a wrapper: in @react-pdf/renderer 4.9 a page-level lineHeight breaks the page-number
   // footer, and an inherited one double-spaces smaller text. Set it per style.
-  page: { fontFamily: "Quantico", fontSize: 9.5, color: C.blue, backgroundColor: C.sage, paddingTop: PAGE.top, paddingBottom: PAGE.bottom, paddingHorizontal: PAGE.side },
+  page: { fontFamily: "Quantico", fontSize: 9.5, color: C.ink, backgroundColor: C.sage, paddingTop: PAGE.top, paddingBottom: PAGE.bottom, paddingHorizontal: PAGE.side },
   fact: { fontFamily: "PlexMono", fontSize: 7.5, letterSpacing: 0.2 },
-  title: { fontSize: 26, marginTop: 6 },
+  title: { fontSize: 26, marginTop: 6, color: C.blue },
   summary: { fontSize: 9.5, marginTop: 3, lineHeight: 1.3 },
-  outcome: { fontSize: 16.5, marginTop: 12, lineHeight: 1.15 },
-  h2: { fontSize: 14 },
+  outcome: { fontSize: 16.5, marginTop: 12, lineHeight: 1.15, color: C.blue },
+  h2: { fontSize: 14, color: C.blue },
   body: { fontSize: 9, lineHeight: 1.35 },
   small: { fontSize: 8.5, lineHeight: 1.35 },
   footer: { position: "absolute", bottom: 19.5, left: PAGE.side, right: PAGE.side, flexDirection: "row", justifyContent: "space-between",

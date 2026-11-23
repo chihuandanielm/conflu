@@ -12,13 +12,15 @@
 @import "@fontsource/ibm-plex-mono/latin-400.css";
 @import "@fontsource/ibm-plex-mono/latin-600.css";
 
-/* Confluence tokens (design/tokens.css). Three inks on sage paper; each ink has one job:
-     blue   everything read or pressed: all text, all rules and borders, the one solid block per screen
-     sand   ground: the dotted "shore" rule between parts of a page, the bar beside a notice
-     green  life: the fish, "you are here", and anything the student has done. Never a background or a border.
+/* Confluence tokens (design/tokens.css). Sage paper, three inks and one text colour; each has one job:
+     ink    sentences: body text, labels, facts (13.1:1 on sage, 9.2:1 on sand)
+     blue   what you can act on, and structure: headings, links, buttons, tabs, rules and borders, the one solid block
+     sand   ground and attention: the dotted "shore" rule, and the panel behind a notice or "where you stand" (ink text)
+     green  life and done: the fish, "you are here", done marks, ticks, the on-track counter (ink text on a green fill)
    No other colours, no opacity tints, no gradients, no shadows. */
 :root {
   --sage: #E0E7DA;
+  --ink: #1A1F24;
   --blue: #456894;
   --green: #00A37D;
   --sand: #E6B989;
@@ -33,9 +35,10 @@
 }
 
 @theme {
-  /* Only the four colours exist: Tailwind's default palette is switched off. */
+  /* Only these five colours exist: Tailwind's default palette is switched off. */
   --color-*: initial;
   --color-sage: #E0E7DA;
+  --color-ink: #1A1F24;
   --color-blue: #456894;
   --color-green: #00A37D;
   --color-sand: #E6B989;
@@ -46,10 +49,10 @@
   --font-text: "Quantico", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Type scale. Body never goes under 17px; 13px is for mono facts only. Blue on sage is 4.54:1 (WCAG AA). */
+  /* Type scale. Nothing goes under 15px. Sentences are ink (13.1:1); blue (4.54:1) is for headings, links and buttons. */
   --text-*: initial;
-  --text-fact: 0.8125rem;
-  --text-fact--line-height: 1.35;
+  --text-fact: 0.9375rem;
+  --text-fact--line-height: 1.4;
   --text-small: 0.9375rem;
   --text-small--line-height: 1.45;
   --text-body: 1.0625rem;
@@ -77,21 +80,23 @@ html { color-scheme: light; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--sage);
-  color: var(--blue);
+  color: var(--ink);
   font-family: var(--font-text);
   font-size: var(--text-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-weight: 400; line-height: 1.15; text-wrap: balance; }
-a { color: inherit; }
+h1, h2, h3 { font-weight: 400; line-height: 1.15; text-wrap: balance; color: var(--blue); }
+a { color: var(--blue); }
+/* On a solid blue or green block, headings and links take the block's text colour. */
+.text-sage h1, .text-sage h2, .text-sage h3, .text-sage a, .text-ink h1, .text-ink h2, .text-ink h3, .text-ink a { color: inherit; }
 
 :focus-visible { outline: var(--line) solid var(--blue); outline-offset: 3px; }
 [tabindex="-1"]:focus { outline: none; }
 
 @layer components {
-  /* Small facts: hours, terms, kinds of goal, counts. Never sentences. */
-  .fact { font-family: var(--font-mono); font-size: var(--text-fact); letter-spacing: 0.02em; }
+  /* Small facts: hours, terms, kinds of goal, counts, dates. Never sentences. 15px, like the smallest text. */
+  .fact { font-family: var(--font-mono); font-size: var(--text-fact); letter-spacing: 0; }
 
   /* A shore: the dotted sand rule between parts of a page. */
   .shore { border: 0; height: 0; margin: 0; border-top: var(--line) dotted var(--sand); }
@@ -101,16 +106,15 @@ a { color: inherit; }
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     min-height: 48px; padding: 0 22px; border: var(--line) solid var(--blue); border-radius: 0;
     background: var(--sage); color: var(--blue); font: inherit; font-size: var(--text-body); cursor: pointer; text-decoration: none;
-    transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), border-color var(--t-press) var(--ease), transform var(--t-press) var(--ease);
+    transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), border-color var(--t-press) var(--ease);
   }
   .btn:hover { background: var(--blue); color: var(--sage); }
-  .btn:active { transform: translateY(1px); }
   .btn--solid { background: var(--blue); color: var(--sage); font-weight: 700; }
   .btn--solid:hover { background: var(--sage); color: var(--blue); }
   .btn--text { border-color: transparent; padding: 0 8px; text-decoration: underline; text-underline-offset: 4px; }
   .btn--text:hover { background: var(--sage); color: var(--blue); border-color: var(--blue); }
   .btn--small { min-height: 42px; padding: 0 16px; }
-  .btn[disabled] { border-style: dashed; background: var(--sage); color: var(--blue); font-weight: 400; cursor: not-allowed; transform: none; }
+  .btn[disabled] { border-style: dashed; background: var(--sage); color: var(--blue); font-weight: 400; cursor: not-allowed; }
   /* On a solid blue block the roles swap. */
   .on-blue .btn { border-color: var(--sage); background: var(--blue); color: var(--sage); }
   .on-blue .btn:hover { background: var(--sage); color: var(--blue); }
@@ -136,8 +140,10 @@ a { color: inherit; }
   .tick:checked { background: var(--green); border-color: var(--green); }
   .tick:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--sage); border-bottom: 2px solid var(--sage); transform: translateY(-1px) rotate(-45deg); }
 
-  /* A notice: a paragraph with a 3px sand bar on its left. Also marks a missing answer. */
-  .notice { border-left: var(--heavy) solid var(--sand); padding-left: 16px; }
+  /* Attention: a sand panel with ink text (9.2:1). Notices, "where you stand", a missing answer. */
+  .notice { background: var(--sand); color: var(--ink); padding: 12px 16px; }
+  .notice .btn--text { background: transparent; color: var(--ink); }
+  .notice .btn--text:hover { background: var(--sand); color: var(--ink); border-color: var(--ink); }
 }
 
 @media (prefers-reduced-motion: reduce) {

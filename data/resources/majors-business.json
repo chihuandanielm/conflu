@@ -71,10 +71,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "finalUrl": "https://professional.bloomberg.com/products/bloomberg-terminal/education/"
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": []
     },
@@ -425,10 +425,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },

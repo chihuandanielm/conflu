@@ -83,15 +83,8 @@ export function EditMap({ plan, trackId, onOpen, onDone, onSkip, onUndoSkip, arr
       <h2 ref={heading} id="edit-h" tabIndex={-1} className="scroll-mt-16 text-h2">Edit your map</h2>
       <p className="mt-2 max-w-[44em]">
         Each semester lists the most important goals first{track ? `, ranked by what ${track.name.toLowerCase()} recruiters look for` : ""}.
-        {track?.recruiterFocus && <> {track.recruiterFocus}</>}
+        {" "}The reasons and their sources are under "Why this order" on the Plan tab.
       </p>
-      {track?.recruiterSources?.length ? (
-        <p className="fact mt-1.5">sources:{" "}
-          {track.recruiterSources.map((u, i) => (
-            <span key={u}>{i > 0 && ", "}<a href={u} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{new URL(u).hostname.replace(/^www\./, "")}</a></span>
-          ))}
-        </p>
-      ) : null}
       {plan.terms.filter((t) => t.items.length).map((t) => (
         <section key={t.code} aria-labelledby={`edit-${t.code}`} className="mt-8">
           <h3 id={`edit-${t.code}`} className="fact uppercase">{t.label}</h3>

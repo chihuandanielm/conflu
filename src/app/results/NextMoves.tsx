@@ -2,13 +2,15 @@ import { useState } from "react";
 import type { Plan, PlanItem, PlanTerm } from "../../engine/types.ts";
 import { nextStep, type StepProgress } from "../state/steps.ts";
 import { GoalRow } from "./GoalRow.tsx";
+import { PlaceLinks } from "./Places.tsx";
 import { inWorkOrder } from "./order.ts";
 
 const FIRST = 3;
 
 /**
  * This semester (design/DESIGN.md §7.4 #4): a fact line with the term and the hours it is sized to, then a ruled list
- * of the term's goals in work order, each with its next step. Three shown; "Show all N" for the rest.
+ * of the term's goals in work order, each with its next step and its best one or two places, linked. Three shown;
+ * "Show all N" for the rest.
  */
 export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = [] }: {
   term: PlanTerm | undefined; onOpen: (it: PlanItem, t: PlanTerm) => void; progress?: StepProgress; weeklyHours?: number; edges?: Plan["edges"];
@@ -33,7 +35,12 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
           const step = nextStep(it, progress);
           const total = (progress[it.goalId] ?? []).length;
           const next = step ? `Next: ${step.text}` : total > 0 ? "Every step is checked. Open it to mark it as done." : it.why[0];
-          return <li key={it.goalId}><GoalRow it={it} next={next} onOpen={() => onOpen(it, term)} /></li>;
+          return (
+            <li key={it.goalId} className="border-b-[1.5px] border-blue">
+              <GoalRow it={it} next={next} ruled={false} onOpen={() => onOpen(it, term)} />
+              <PlaceLinks it={it} className="-mt-2 pb-4 pl-[calc(11px+0.875rem+0.25rem)] pr-8" />
+            </li>
+          );
         })}
       </ol>
       {sorted.length > FIRST && (

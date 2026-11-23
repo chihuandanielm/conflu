@@ -33,4 +33,14 @@ describe("review screen", () => {
     fireEvent.click(within(alert).getByRole("button", { name: "Answer: Year and semester" }));
     expect(onEdit).toHaveBeenLastCalledWith("year");
   });
+
+  it("offers Start over when editing an existing plan, and only then", () => {
+    const onStartOver = vi.fn();
+    const { unmount } = render(<Review answers={full} onEdit={() => {}} onBack={() => {}} onBuild={() => {}} onStartOver={onStartOver} />);
+    fireEvent.click(screen.getByRole("button", { name: "Start over" }));
+    expect(onStartOver).toHaveBeenCalled();
+    unmount();
+    render(<Review answers={full} onEdit={() => {}} onBack={() => {}} onBuild={() => {}} />);
+    expect(screen.queryByRole("button", { name: "Start over" })).toBeNull();
+  });
 });
