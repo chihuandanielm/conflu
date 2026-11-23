@@ -25,6 +25,7 @@ import { HaveNeed } from "./HaveNeed.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
 import { StartHere } from "./StartHere.tsx";
+import { WhyOrder } from "./WhyOrder.tsx";
 import { outcomeText, planSummary } from "./summary.ts";
 
 export { planSummary } from "./summary.ts";
@@ -35,19 +36,23 @@ const goalTitle = (key: string) => {
   return y ? `${t} (year ${y.slice(1)})` : t;
 };
 
-type Tab = "plan" | "map" | "resources";
-const TABS: { id: Tab; label: string }[] = [{ id: "plan", label: "Plan" }, { id: "map", label: "Map" }, { id: "resources", label: "Resources" }];
+type Tab = "plan" | "map" | "resources" | "courses";
+const ALL_TABS: { id: Tab; label: string }[] = [
+  { id: "plan", label: "Plan" }, { id: "map", label: "Map" }, { id: "resources", label: "Resources" }, { id: "courses", label: "Courses" },
+];
 /** When the page arrives with a camera move, the words fade in during the last second of it (design/DESIGN.md §7.3). */
 const ARRIVE_MS = 2600, WORDS_AT = 1500;
 
 /**
- * The results page (design/DESIGN.md §7.4): a header over the river (facing downstream), then three tabs (Plan, Map,
- * Resources) that stick to the top once the header has scrolled away, on solid sage that scrolls over the river.
- * The Plan tab keeps the product's order: where you're headed, what you have and need, start here, this semester and
- * good to know, coming up, checked off and habits.
+ * The results page (design/DESIGN.md §7.4): a header over the river (facing downstream), then tabs (Plan, Map,
+ * Resources, and Courses for a Rutgers major) that stick to the top once the header has scrolled away, on solid sage
+ * that scrolls over the river. The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
+ * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
-export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
-  saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void; onStartOver: () => void;
+export function ResultsPage({ saved, onChange, onEdit }: {
+  saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void;
+  /** Unused here: "Start over" moved to the Edit answers screen (design/DESIGN.md §7.4 #0). */
+  onStartOver?: () => void;
 }) {
   const { plan, answers } = saved;
   const river = useRiver();
@@ -133,7 +138,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
 
   // Tabs (design/DESIGN.md §7.4a): a real tablist; arrow keys move between tabs; the choice is not saved.
   const [tab, setTab] = useState<Tab>("plan");
-  const tabIds = { plan: useId(), map: useId(), resources: useId() };
+  const tabIds = { plan: useId(), map: useId(), resources: useId(), courses: useId() };
+  const hasCourses = !!requirementsFor(answers.majorId, answers.school);
+  const TABS = ALL_TABS.filter((t) => t.id !== "courses" || hasCourses);
   const panelId = useId();
   /** Back to the top of the panel, once the new one is in (the tabs stay stuck at the top of the window). */
   const toPanelTop = useCallback(() => {
@@ -156,7 +163,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
   };
 
   const input = useMemo(() => toPlanInput(answers, plan.meta.generatedFor, { completedGoals: saved.completedGoals }), [answers, plan, saved.completedGoals]);
-  const counts = useMemo(() => ({
+  const counts: Record<Tab, number | null> = useMemo(() => ({
+    plan: null, courses: null,
     map: new Set(plan.terms.flatMap((t) => t.items.map((it) => it.goalId))).size,
     // Counting resources runs the eligibility rules over every resource: part of the staged update.
     resources: settled ? tailoredResources(plan, input).length : null,
@@ -201,21 +209,20 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
       {/* 0. Header, over the river. On a phone the river sits between the title and the buttons. */}
-      <header inert={!!open} className={`mx-auto flex min-h-[380px] max-w-[1040px] flex-col justify-between px-5 pt-[22px] pb-6 min-[760px]:block min-[760px]:min-h-[300px] ${fade}`}>
+      <header inert={!!open} className={`mx-auto flex min-h-[250px] max-w-[1040px] flex-col justify-between px-5 pt-[22px] pb-5 min-[760px]:block min-[760px]:min-h-[300px] ${fade}`}>
         <div ref={titleBox} className="max-w-[440px]">
           <h1 ref={h1} tabIndex={-1} className="text-h1">Your plan</h1>
           <p className="mt-2 text-small">{planSummary(answers)}</p>
         </div>
         <div>
           {/* As wide as the buttons (not the header): the river is cleared from under exactly this box. */}
-          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2">
+          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
             </Button>
             <Button variant="outline" small onClick={() => void share()}>Share link</Button>
             <Button variant="outline" small onClick={leave(onEdit)}>Edit answers</Button>
-            <Button variant="text" small onClick={leave(onStartOver)}>Start over</Button>
           </div>
           {shareUrl && (
             <div className="mt-3 max-w-[640px] bg-sage">
@@ -238,10 +245,10 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
             {TABS.map((t) => (
               <button key={t.id} type="button" role="tab" id={tabIds[t.id]} aria-selected={tab === t.id} aria-controls={panelId}
                 tabIndex={tab === t.id ? 0 : -1} onClick={() => choose(t.id)}
-                className={`min-h-12 flex-1 px-5 transition-colors duration-[140ms] ease-confluence min-[600px]:flex-none
+                className={`min-h-12 flex-auto px-1.5 text-small whitespace-nowrap transition-colors duration-[140ms] ease-confluence min-[600px]:flex-none min-[600px]:px-5 min-[600px]:text-body
                   ${tab === t.id ? "bg-blue text-sage" : "bg-sage text-blue hover:bg-blue hover:text-sage"}`}>
                 {t.label}
-                {t.id !== "plan" && counts[t.id] !== null && <span className="fact ml-2">{counts[t.id]}</span>}
+                {counts[t.id] !== null && <span className="fact ml-1.5 min-[600px]:ml-2">{counts[t.id]}</span>}
               </button>
             ))}
           </div>
@@ -259,23 +266,21 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
                       <Button variant="outline" small onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>Refresh plan</Button>
                     </div>
                   )}
+                  {/* 1. Do this now, this semester, and why this order: the first screen. */}
+                  <div className="pt-8"><StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} doneCount={saved.completedGoals.length} /></div>
+                  <div className="pt-10">
+                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
+                    <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
+                    <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
+                  </div>
+                  <hr className="shore mt-10" />
                   <div className="pt-10">{banner(toEdit)}</div>
                   <div className="py-10"><GoalPath plan={core} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} /></div>
                   {settled && <>
                   <hr className="shore" />
                   <div className="py-10"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
-                  <div className="pb-10"><StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} /></div>
-                  <div className="pb-10">
-                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
-                    <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
-                  </div>
                   <hr className="shore" />
                   <div className="py-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
-                  {/* Outside the map: the courses the major requires, by year, from the official Rutgers page. */}
-                  {requirementsFor(answers.majorId, answers.school) && <>
-                    <hr className="shore" />
-                    <div className="py-10"><OnTrack answers={answers} /></div>
-                  </>}
                   {(saved.completedGoals.length > 0 || plan.ongoing.length > 0 || plan.skipped.length > 0) && (
                     <>
                       <hr className="shore" />
@@ -337,6 +342,9 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver }: {
               )}
 
               {tab === "resources" && <div className="py-10"><ResourcesTab plan={plan} input={input} /></div>}
+
+              {/* The courses the major requires, by year, from the official Rutgers catalog (dated and linked). */}
+              {tab === "courses" && hasCourses && <div className="py-10"><OnTrack answers={answers} /></div>}
             </motion.div>
           </AnimatePresence>
 

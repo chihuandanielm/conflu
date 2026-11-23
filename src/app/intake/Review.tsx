@@ -46,8 +46,10 @@ const SHORT: Partial<Record<StepId, string>> = {
  * and marked in place with the sand bar, and the main button is never disabled: with something missing, it takes the
  * student straight to the first missing question.
  */
-export function Review({ answers, onEdit, onBack, onBuild }: {
+export function Review({ answers, onEdit, onBack, onBuild, onStartOver }: {
   answers: Answers; onEdit: (s: StepId) => void; onBack: () => void; onBuild: () => void;
+  /** Editing an existing plan: "Start over" clears it and the answers (it moved here from the results header). */
+  onStartOver?: () => void;
 }) {
   const missing = missingSteps(answers);
   const h1 = useRef<HTMLHeadingElement>(null);
@@ -88,6 +90,7 @@ export function Review({ answers, onEdit, onBack, onBuild }: {
       </dl>
       <nav aria-label="Review navigation" className="mt-6 flex flex-wrap items-center gap-3">
         <Button variant="outline" onClick={onBack}>Back</Button>
+        {onStartOver && <Button variant="text" onClick={onStartOver}>Start over</Button>}
         <span className="flex-1" />
         <Button onClick={() => (missing.length ? onEdit(missing[0]) : onBuild())}>
           {missing.length ? "Answer the missing question first" : "Build my plan"}

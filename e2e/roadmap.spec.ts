@@ -80,7 +80,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 10 free hours a week")).toBeVisible();
-  for (const name of ["Where you're headed", "What you have", "What you need", "Start here", "This semester", "Coming up"]) {
+  for (const name of ["Do this now", "This semester", "Where you're headed", "What you have", "What you need", "Coming up"]) {
     await expect(page.getByRole("heading", { name })).toBeVisible();
   }
 
@@ -114,11 +114,14 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByRole("heading", { name: "Checked off" })).toBeVisible();
   await expect(page.getByRole("button", { name: new RegExp(`^Undo ${title.replace(/[()]/g, "\\$&")}`) })).toBeVisible();
 
-  // On track to graduate: the major's courses by year, linked to the official page, tickable.
+  // Courses tab: the major's courses by year, dated, linked to the official 2026–27 catalog page, tickable.
+  await page.getByRole("tab", { name: /^Courses/ }).click();
   const onTrack = page.getByRole("heading", { name: "On track to graduate" }).locator("xpath=..");
   await expect(onTrack.getByRole("link", { name: /Official requirements for your major/ })).toHaveAttribute("href", /catalogs\.rutgers\.edu/);
+  await expect(onTrack.getByText(/2026–2027 New Brunswick Undergraduate Catalog \(last checked/)).toBeVisible();
   await onTrack.getByRole("checkbox").first().check();
   await expect(onTrack.getByText(/1 of \d+ requirements from earlier years ticked/)).toBeVisible();
+  await page.getByRole("tab", { name: "Plan" }).click();
 
   // The draft map (engine 0.9.0): the banner says it can be edited; cross a goal out, undo it, then finalize.
   await expect(page.getByRole("heading", { name: "This is your draft map" })).toBeVisible();
@@ -155,6 +158,18 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
   await page.getByRole("button", { name: "Build my plan" }).click();
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText(/Nursing · Third year, fall semester · Rutgers–Newark ·/)).toBeVisible();
+  // The first screen on a phone: the header's actions in one row, the tabs, and "Do this now" with this semester.
+  const vh = page.viewportSize()!.height;
+  const now = (await page.getByRole("heading", { name: "Do this now" }).boundingBox())!;
+  expect(now.y + now.height).toBeLessThan(vh);
+  await expect(page.getByRole("heading", { name: "Do this now" }).locator("xpath=ancestor::section[1]").getByText(/^This semester: /)).toBeInViewport();
+  const tops = await Promise.all(["Download PDF", "Share link", "Edit answers"].map(async (n) => (await page.getByRole("button", { name: n }).boundingBox())!.y));
+  expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(4);
+  // Every tab label fits.
+  for (const t of await page.getByRole("tab").all()) {
+    const box = (await t.boundingBox())!;
+    expect(box.x + box.width).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
+  }
   await page.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
   await page.locator("section[aria-labelledby=next-h] li button").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();

@@ -147,7 +147,7 @@ Check: an automated contrast test fails on any text pair under 7:1 (under 4.5:1 
 
 ## Suggested order
 
-1. **Phase 3 + 2.1–2.3 (one PR):** readability and visible links. This is the biggest felt change, and mostly CSS and layout.
+1. **Phase 3 + 2.1–2.3 (one PR):** readability and visible links. This is the biggest felt change, and mostly CSS and layout. **Done 2026-11-23**, with Courses as its own tab (decision 2). Item 3.5's "where you stand" line is a plain count for now; Phase 1 makes it the blunt, first-things-first message (decision 4).
 2. **Phase 1:** timing honesty. Engine work, test-first, engine 0.10.0.
 3. **Phase 4:** a shorter page, built on the new design rules.
 4. **Phases 2.4–2.6 + 6:** filling resource gaps and the non-Rutgers path. Research-heavy, like the requirements work.

@@ -20,28 +20,31 @@ That one picture is used three ways, and nowhere else is decorated:
 
 The river is never seen from straight above. It always has a horizon.
 
-## 2. Colour: three inks on sage paper
+## 2. Colour: sage paper, three inks, and ink for words
 
-Four colours exist. Nothing else: no white, no black, no tints made with opacity, no gradients, no shadows.
+Five colours exist. Nothing else: no white, no tints made with opacity, no gradients, no shadows. (Ink was added on
+2026-11-23 after student simulations found blue sentences hard to read; it is the "and black" the palette allowed.)
 
 | Token | Hex | Job | Share of a screen |
 |---|---|---|---|
 | `--sage` | `#E0E7DA` | Paper. Every background. | most of it |
-| `--blue` | `#456894` | Key ink. Everything read or pressed: all text, all rules and borders, water, the one solid block per screen. | about a tenth |
-| `--sand` | `#E6B989` | Land ink. Ground in the river picture, the dotted "shore" rule between parts of a page, the bar beside a notice. | a little |
-| `--green` | `#00A37D` | Life ink. The fish, "you are here", and anything the student has done. | almost none |
+| `--ink` | `#1A1F24` | Words. Every sentence, label and fact: body text, step text, facts in mono. | the text |
+| `--blue` | `#456894` | What you can act on, and structure: headings, links, buttons, tabs, every rule and border, water, the one solid block per screen. **Blue means "you can act on this".** | about a tenth |
+| `--sand` | `#E6B989` | Ground and attention. Ground in the river picture, the dotted "shore" rule, and the **attention panel**: a sand fill with ink text behind a notice, "where you stand", or a missing answer. | a little |
+| `--green` | `#00A37D` | Life and done. The fish, "you are here", done dots and streams, ticked boxes, and the on-track counter (a green fill with ink text). | almost none |
 
 Rules that follow from the jobs:
 
-1. **Text is blue on sage, or sage on blue. Never anything else.** Blue on sage is 4.54:1. Sand and green are too faint on sage to carry words (1.42:1 and 2.54:1), so they never do.
-2. **Green is never a background, a border or a shadow.** If something is green, it is alive (a fish), it is the student (the "you are here" dot, the fish on the progress line), or it is finished (a done dot, a done stream, a ticked box). One glance at a page should show where you are and what you've finished, and nothing else should compete for that.
-3. **Sand never means "selected" or "important".** It is ground. In the interface it only separates (the dotted shore rule) or sits beside a notice.
+1. **Sentences are ink on sage or ink on sand.** Ink on sage is 13.1:1 and ink on sand 9.2:1, both past the 7:1 of WCAG AAA. Headings, links, buttons and tabs are blue on sage (4.54:1) or sage on blue. Ink on a green fill (5.2:1) is only for a short done or on-track label. Sand and green never carry words on sage (1.42:1 and 2.54:1).
+2. **Green means alive, you, or done.** It is never a border. As a fill it only sits behind a done or on-track label, the progress gauge, or a mark.
+3. **Sand never means "selected".** It is ground, and it asks for attention: the shore rule separates; the sand panel says "read this".
 4. **Selected is solid blue with sage text.** No green edge, no offset block, no glow.
-5. **One solid blue call to action per screen**, at most: the Start button, the Continue button, the "Start here" block. If two actions are solid blue, one of them is wrong. A selected state (an answer, the current tab, an active filter) is also solid blue; that is a state, not an action, and does not count.
+5. **One solid blue block per screen**, at most: the Start button, the Continue button, the "Do this now" card. A selected state (an answer, the current tab, an active filter) is also solid blue; that is a state, not an action, and does not count.
 6. **Meaning never rests on colour alone.** A must-do has a filled dot and the word "must-do". A done goal has a green dot and the word "done". The eight kinds of goal are told apart by a glyph and a word (section 6), not by eight colours.
 7. Tone comes from **density and weight**: more or darker glyphs in the river, a 3px line for a must-do against 1.5px for the rest.
+8. **Nothing moves when pressed or hovered.** Hover underlines a row's title or fills a button; rows never shift sideways and buttons never drop (on a phone a shifted row looks indented).
 
-Contrast, plainly: blue on sage is 4.54:1, which passes the 4.5:1 that WCAG AA asks for small text. (The first handoff used `#466995`, 4.47:1, just under that line; the blue was taken one step darker, `#456894`, which looks the same and passes.) Body text is still never smaller than 17px, the only smaller text is 13px mono for short facts (hours, terms, kinds), and nothing is ever lighter than full blue. `src/app/contrast.test.ts` checks the four tokens with 4.5 as the floor for blue on sage, and fails if any other text pair appears.
+`src/app/contrast.test.ts` reads the five tokens: it fails if ink on sage or ink on sand falls under 7:1, if blue on sage, sage on blue or ink on green falls under 4.5:1, if any other colour appears, if words are set in sand or green, or if a sand fill carries anything but ink.
 
 ## 3. Type
 
@@ -50,17 +53,17 @@ Two families, both self-hosted through `@fontsource` (no third-party requests).
 | Family | Used for |
 |---|---|
 | **Quantico** 400 | Everything meant to be read: headings, questions, options, body, buttons. 700 only on the one solid button of a screen and the outcome line at the foot of the map. |
-| **IBM Plex Mono** 400 (600 for the fish) | The river. Short facts: hours, term names on the map, kinds of goal, dataset and engine versions, key hints. |
+| **IBM Plex Mono** 400 (600 for the fish) | The river. Numbers, codes and dates: hours, term names, kinds of goal, course codes, dataset and engine versions, key hints. Never a sentence. |
 
 | Token | Size | Use |
 |---|---|---|
 | `--text-hero` | 36 to 64px, fluid | Landing headline only |
 | `--text-h1` | 28 to 40px | The question; "Your plan"; the outcome |
-| `--text-h2` | 22 to 28px | Section headings; the step in "Start here" |
+| `--text-h2` | 22 to 28px | Section headings; the step in "Do this now" |
 | `--text-lead` | 20px | A goal's title in a list |
-| `--text-body` | 17px | Body. The floor for sentences. |
-| `--text-small` | 15px | Supporting sentences under a title |
-| `--text-fact` | 13px mono | Facts only, never sentences |
+| `--text-body` | 17px | Body. |
+| `--text-small` | 15px | Supporting sentences under a title. **The floor: nothing on screen is smaller than 15px.** |
+| `--text-fact` | 15px mono | Numbers, codes and dates only |
 
 Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows, no decorative underlines, no highlight bars behind words. The only underline is on a text link.
 
@@ -153,25 +156,27 @@ The engine is instant; the move is the transition. With reduced motion all three
 
 ### 7.4 Results
 
-Top to bottom. The order is the product's (engine 0.8 redesign) and does not change; this is how each part looks.
+Top to bottom. The first screen answers "what do I do now?"; everything else is below it. This is how each part looks.
 
 | # | Part | Design |
 |---|---|---|
-| 0 | **Header** (300px; 380px on a phone) | The river, facing downstream, behind. "Your plan" (`--text-h1`), the summary line (`--text-small`), then outline buttons: Download PDF, Share link, Edit answers, and Start over as a text button. On wide screens the river sits to the right of the title; on a phone it sits between the title and the buttons. The page below is solid sage and scrolls over the river; the river stops drawing once it is off screen. |
-| 1 | **Where you're headed** | The outcome as one line in `--text-h1`. Under it the confluence map of the milestones only (up to five). "See the full map" outline button. |
+| 0 | **Header** (300px; 250px on a phone) | The river, facing downstream, behind. "Your plan" (`--text-h1`), the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers (15px with 12px side padding on a phone). "Start over" is on the Edit answers screen, not here. On wide screens the river sits to the right of the title; on a phone it is a thin band between the title and the buttons. The page below is solid sage and scrolls over the river; the river stops drawing once it is off screen. |
+| 1 | **Do this now** | A sand attention panel with where the student stands in one line, then the one solid blue block on the page: "Do this now", "This semester: (term)" in mono, the step itself in `--text-h2`, "Part of: ..." with the step count, "Go to:" with the place to go, linked, and "Open this goal" as an outline button in sage. It picks this term's first must-do in work order that has a step left, or else the first goal. |
+| 2 | **This semester** | Heading, then a fact line (`year 2 · fall  sized to your 8 free hours a week`). A ruled list of goals: dot, title in `--text-lead`, the fact line, "Next: (the first unticked step)", and `->` at the right; under each row "Go to:" with its best one or two places, linked, so the student can act without opening the goal. Three shown, "Show all N" as a text button if there are more. |
+| | Good to know | Under the list. Each notice is a sand attention panel with ink text. "Dismiss" as a text button. |
+| | Why this order | A text button. Open, it says the goals are ranked by what recruiters on this path look for, the path's recruiter focus sentence, and its sources, linked. |
 | | shore | |
-| 2 | **What you have / What you need** | Two columns (one on a phone). Have: green dots. Need: open dots, with when in `--text-small`. |
-| 3 | **Start here** | The one solid blue block on the page. "Start here" in mono, the step itself in `--text-h2`, "Part of: ..." under it, and "Open this goal" as an outline button in sage. |
-| 4 | **This semester** | Heading, then a fact line (`year 2 · fall  sized to your 8 free hours a week`). A ruled list of goals: dot, title in `--text-lead`, the fact line, "Next: (the first unticked step)", and `->` at the right. Three shown, "Show all N" as a text button if there are more. |
-| | Good to know | Under the list. Each notice is a paragraph with a 3px sand bar on its left. "Dismiss" as a text button. |
+| 3 | **Where you're headed** | The draft or final map banner, the outcome as one line in `--text-h1`, the confluence map of the milestones only (up to five), and a "See the full map" outline button. |
+| | shore | |
+| 4 | **What you have / What you need** | Two columns (one on a phone). Have: green dots. Need: open dots, with when in `--text-small`. |
 | | shore | |
 | 5 | **Coming up** | One fold per semester (`+` / `-` in mono, the semester in `--text-lead`, the count in mono). The next two are open. Inside, the same ruled rows, smaller, without the "Next:" line. Then "When you have more time": a short list with open dots. |
 | | shore | |
 | 6 | Checked off, Habits to keep | Checked off: rows with green dots and "Undo" as a text button. Habits: open dots, the reason in `--text-small`. |
 | | shore | |
-| 7 | Footer | The footer sentence with dataset and engine versions in mono. The map and the resources are reached from the tabs (7.4a), and "See the full map" under the milestone map switches to the Map tab. |
+| 7 | Footer | The footer sentence with dataset and engine versions in mono. |
 
-**The goal drawer** opens from any goal, anywhere. A side sheet on the right (480px, 1.5px blue left edge) on wide screens; a bottom sheet under 600px. No dimming behind it (there is no fifth colour to dim with); the page behind is inert. Order inside: Close, the fact line, the title, **What to do** (steps as tick boxes; a ticked box is green), **Done when**, **Why it's here**, **Where to go** (resources as text links), then "Mark as done" as the solid button. It slides in over 260ms.
+**The goal drawer** opens from any goal, anywhere. A side sheet on the right (480px, 1.5px blue left edge) on wide screens; a bottom sheet under 600px. No dimming behind it; the page behind is inert. One scroll, in this order: Close, the fact line, the title, **What to do** (steps as tick boxes; a ticked box is green; a step that names one of the goal's places, or "your career center" when one of them is a career office, links it), **Where to go** (resource boxes) right under the steps, **Done when**, **Why it's here**, then "Mark as done" as the solid button. It slides in over 260ms.
 
 **The full map** is the Map tab. It is the confluence map with every goal. Each name is a real button that opens the drawer. Under the map, the skills picture: one row per competency, a 1.5px line from 0 to 1 with a green dot at "now" and an open blue ring at "target", the name on the left. This view replaces the React Flow chart and the chart/list switch: the map is already a list in document order, and it is one-sided on a phone.
 
@@ -179,16 +184,16 @@ Top to bottom. The order is the product's (engine 0.8 redesign) and does not cha
 
 ### 7.4a Tabs
 
-The results page has three tabs, directly under the header: **Plan**, **Map**, **Resources**. (The prototype still shows the earlier "doors" at the foot of the page; tabs replace them.)
+The results page has up to four tabs, directly under the header: **Plan**, **Map**, **Resources**, and **Courses** (for a Rutgers major: the courses the major requires by year, from the newest catalog, with the catalog's name, the date it was last checked, and a link to the official page).
 
-- A row of three text tabs sitting on a 1.5px blue line that runs the width of the content. Each tab is at least 48px tall with 20px side padding, `--text-body`.
+- A row of text tabs sitting on a 1.5px blue line that runs the width of the content. Each tab is at least 48px tall; 20px side padding and `--text-body` on wide screens, 6px and `--text-small` on a phone, sized to its label so every label fits.
 - The current tab is solid blue with sage text. The others are plain blue text; hover fills them the same way a button does.
 - A count in mono follows the label where it helps: `Map  28`, `Resources  41`.
 - The tab row sticks to the top of the window once the header has scrolled away, on a solid sage background with the blue line under it, so the student can switch from anywhere on the page.
-- On a phone the three tabs share the width equally. There are only ever a few tabs; if a fourth is added it still fits. Do not turn them into a menu.
+- There are only ever a few tabs. Do not turn them into a menu.
 - Real tabs: `role="tablist"`, `role="tab"` with `aria-selected`, `role="tabpanel"`; left and right arrow keys move between them; the choice is not saved (a returning student lands on Plan).
 - Switching tabs fades the panel (260ms, opacity only) and scrolls to the top of the panel. The river in the header does not react.
-- The goal drawer may also use two tabs when a goal has many resources: **What to do** (steps, done when, why) and **Where to go** (resource boxes). With three or fewer resources, keep one scroll.
+- The goal drawer has no tabs: it is one scroll (7.4).
 
 ### 7.4b Resource boxes
 
@@ -236,7 +241,7 @@ US Letter, sage background on every page, 54px (40pt) side margins. `prototypes/
 | Page | Contents |
 |---|---|
 | **1. The map** | A still ASCII banner of the river across the top (`asciiFrame("banner", ...)`, two overlaid mono text blocks, sand then blue, 7px). "Your plan", the summary line, the outcome. Then the confluence map, two-sided, fitted to the rest of the page with `maxHeight`. This page alone should tell a student where they are going and in what order. |
-| **2. Where you stand** | What you have / What you need in two columns. The "Start here" block, solid blue. Notices with the sand bar. Then "This semester" begins. |
+| **2. Where you stand** | What you have / What you need in two columns. The "Start here" block, solid blue. Notices with the sand bar. Then "This semester" begins. (The PDF keeps this order; sentences are ink, headings blue.) |
 | **2 onward. This semester and next** | A semester heading on a dotted sand rule. Each goal is drawn as a piece of its stream: a vertical line down the left (3px for a must-do), a dot on it, and to the right the title, the fact line, one sentence of why, **the steps as empty boxes to tick with a pen** in two columns, "Done when", and up to three links. A goal that continues from an earlier semester is named again with "keep going", not repeated in full. A goal block never splits across pages. |
 | **Then. Later semesters** | One heading, "Later semesters", then each later semester as a mono label and its goals in brief, two columns: dot, title, fact line ("keep going" for one that continues). Their steps come into the PDF as the semester gets close. |
 | **Then** | "When you have more time" (two columns), "Habits to keep". Then **Where to start**: the resources this semester's and next semester's goals point to, in the plan's order, at most 12, as the same boxes as the site (7.4b), two to a row. In print the address is written out in full in mono under the name, because a printed link cannot be clicked; it is still a live link in the file. A box never splits across pages. **Everything up to here (the core) is at most 10 pages**, even for the longest plan (a first-year "by graduation" plan is 9); `pdf.test.tsx` checks it. |

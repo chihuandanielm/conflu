@@ -166,6 +166,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} onBack={back}
+      onStartOver={onContinuePlan ? () => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); } : undefined}
       onEdit={(s) => dispatch({ type: "go", step: s, returnToReview: true })} onBuild={() => onBuild(answers)} />;
   } else {
     const single = parts.length === 1;

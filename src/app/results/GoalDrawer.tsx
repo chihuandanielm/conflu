@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { LEGAL } from "../../engine/engine.ts";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
@@ -13,14 +13,36 @@ import { IMPORTANCE } from "./EditMap.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-/** With more than this many resources, the drawer splits into "What to do" and "Where to go". */
-const ONE_SCROLL = 3;
+/** Words in a step that mean "your career office": they link to the career office among the goal's places. */
+const CAREER_OFFICE = /\b(?:your |the )?(?:campus )?career (?:center|centre|office|services)\b/i;
+
+/**
+ * A step with the place it names linked: a place whose name appears in the step, or "your career center" when one of
+ * the goal's places is a career office. The step stays plain text when it names no place.
+ */
+export function linkStep(step: string, places: Resource[]): ReactNode {
+  const named = places.map((r) => ({ r, at: step.toLowerCase().indexOf(r.name.toLowerCase()), len: r.name.length })).find((x) => x.at >= 0);
+  const career = !named && places.find((r) => /career/i.test(r.name) && r.type === "campus_office");
+  const m = career ? CAREER_OFFICE.exec(step) : null;
+  const hit = named ?? (career && m ? { r: career, at: m.index, len: m[0].length } : null);
+  if (!hit) return step;
+  return (
+    <>
+      {step.slice(0, hit.at)}
+      <a href={hit.r.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+        {step.slice(hit.at, hit.at + hit.len)}<span className="sr-only"> ({hit.r.name}, opens in a new tab)</span>
+      </a>
+      {step.slice(hit.at + hit.len)}
+    </>
+  );
+}
 
 /**
  * The goal drawer (design/DESIGN.md §7.4): a side sheet on the right (480px, a 1.5px blue left edge) on wide screens,
  * a bottom sheet under 600px. No dimming (there is no fifth colour to dim with); the page behind is inert. Inside:
- * Close, the fact line, the title, What to do (tick boxes), Done when, Why it's here, Where to go (resource boxes),
- * and "Mark as done". It slides in over 260ms. Traps focus; Escape closes.
+ * Close, the fact line, the title, then one scroll: What to do (tick boxes, with the places they name linked), Where to
+ * go (resource boxes) right under it, Done when, Why it's here, and "Mark as done". It slides in over 260ms. Traps
+ * focus; Escape closes.
  */
 export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, progress = {}, onToggleStep = () => {} }: {
   item: PlanItem; term: PlanTerm; identity: string[]; onClose: () => void; onDone: (goalId: string) => void;
@@ -32,8 +54,6 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
   const reduce = useReducedMotion();
   const panel = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
-  const tabIds = { todo: useId(), go: useId() };
-  const [tab, setTab] = useState<"todo" | "go">("todo");
 
   useEffect(() => {
     const opener = document.activeElement as HTMLElement | null;
@@ -65,7 +85,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
   const boxes: Tailored[] = [...new Map([...item.resources.map((r) => resourceById.get(r.id)), ...how.guides]
     .filter((r): r is Resource => !!r).map((r) => [r.id, r])).values()]
     .map((r) => ({ resource: r, group: groupOf(r), forYou: r.identity.some((x) => !LEGAL.has(x) && identity.includes(x)), goals: [], score: 0 }));
-  const split = boxes.length > ONE_SCROLL;
+  const places = boxes.map((b) => b.resource);
 
   const todo: ReactNode = (
     <>
@@ -81,7 +101,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
               return (
                 <li key={id} className="grid grid-cols-[22px_1fr] items-start gap-2.5 py-1.5">
                   <input id={id} type="checkbox" className="tick" checked={checked.includes(i)} onChange={() => onToggleStep(item.goalId, i)} />
-                  <label htmlFor={id} className="cursor-pointer"><span className="sr-only">Step {i + 1}: </span>{step}</label>
+                  <label htmlFor={id} className="cursor-pointer"><span className="sr-only">Step {i + 1}: </span>{linkStep(step, places)}</label>
                 </li>
               );
             })}
@@ -89,6 +109,10 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
           {allChecked && <p className="mt-2 text-small">Every step is checked. Mark it as done below to update your plan.</p>}
         </section>
       )}
+    </>
+  );
+  const more: ReactNode = (
+    <>
       {how.doneWhen && (
         <section aria-labelledby="donewhen-h" className="mt-6">
           <h3 id="donewhen-h" className="text-lead">Done when</h3>
@@ -128,24 +152,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
           <p className="mt-2"><span className={`fact px-1.5 ${item.importance === "must" ? "bg-blue text-sage" : "border-[1.5px] border-blue"}`}>
             {IMPORTANCE[item.importance].label}</span>{item.option && <span className="fact ml-3">an extra option on your draft map</span>}</p>
         )}
-        {split ? (
-          <>
-            <div role="tablist" aria-label="Goal details" className="mt-5 flex border-b-[1.5px] border-blue"
-              onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); setTab((x) => (x === "todo" ? "go" : "todo")); } }}>
-              {([["todo", "What to do"], ["go", "Where to go"]] as const).map(([k, name]) => (
-                <button key={k} type="button" role="tab" id={tabIds[k]} aria-selected={tab === k} tabIndex={tab === k ? 0 : -1}
-                  ref={(el) => { if (el && tab === k && panel.current?.contains(document.activeElement) && document.activeElement?.getAttribute("role") === "tab") el.focus(); }}
-                  onClick={() => setTab(k)}
-                  className={`min-h-12 flex-1 px-5 transition-colors duration-[140ms] ${tab === k ? "bg-blue text-sage" : "bg-sage text-blue hover:bg-blue hover:text-sage"}`}>
-                  {name}{k === "go" && <span className="fact ml-2">{boxes.length}</span>}
-                </button>
-              ))}
-            </div>
-            <div role="tabpanel" aria-labelledby={tabIds[tab]}>{tab === "todo" ? todo : go}</div>
-          </>
-        ) : (
-          <>{todo}{go}</>
-        )}
+        {todo}{go}{more}
         <p className="mt-[26px] flex flex-wrap gap-2">
           <Button onClick={() => onDone(item.goalId)}>Mark as done</Button>
           {onSkip && <Button variant="outline" onClick={() => onSkip(item.goalId)}><span aria-hidden="true" className="mr-1.5 font-mono">x</span>Not for me</Button>}

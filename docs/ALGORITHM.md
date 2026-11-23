@@ -80,7 +80,7 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
 
-`steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "This term" and the "Start here" card, and the steps in the PDF), so a plan says what to do, not only why.
+`steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "This semester" and the "Do this now" card, and the steps in the PDF), so a plan says what to do, not only why.
 
 ### 2.3 Track (career target)
 
@@ -358,15 +358,15 @@ Tune with `docs/sample-plans.md`: run `npm run samples`, read the four example s
 
 ## 7. How the site uses the plan
 
-### Results page order (engine 0.8.0 redesign; see docs/REDESIGN_PLAN.md)
+### Results page order (engine 0.8.0 redesign; reordered 2026-11-23, see docs/IMPROVEMENT_PLAN.md Phase 3)
 
-1. **Where you're headed:** the track's outcome in one sentence and up to five milestones (must-dos and the biggest applications and experiences) in order.
-2. **What you have / What you need:** the student's own answers as strengths; up to four needs (unfinished must-dos, then the biggest skill gaps with the goal that builds each).
-3. **Start here:** the first unchecked step of this term's highest-scoring goal, with its first guide. One action, nothing else.
-4. **This semester:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
-   Notices ("good to know") sit under it.
+1. **Do this now:** one line on where the student stands this semester (goals, must-dos, goals done), then the next unchecked step of this term's first must-do in work order (or the first goal when no must-do has a step left), what it is part of, and the place to go, linked (the goal's first resource, or its first guide). One action, nothing else.
+2. **This semester:** the term's goals in work order (by score, but a goal's prerequisites in the same term come right before it), three shown (more on request), each with its next step and its best one or two places, linked. "Sized to your N free hours a week." Goals scheduled after their ideal window show their `late` title and steps.
+   Notices ("good to know") sit under it, then "Why this order": the track's recruiter focus and its sources.
+3. **Where you're headed:** the track's outcome in one sentence and up to five milestones (must-dos and the biggest applications and experiences) in order.
+4. **What you have / What you need:** the student's own answers as strengths; up to four needs (unfinished must-dos, then the biggest skill gaps with the goal that builds each).
 5. **Coming up:** the next two semesters in full, later ones folded, and "When you have more time" (kind `next`, first three, "Start any of them whenever you like") right there instead of at the bottom.
-6. **On track to graduate** (data 2026.11.17-2): outside the map and the engine. The courses the student's major requires at their campus, by typical year, from `data/requirements.json` (one entry for each of the 44 major–campus pairs, transcribed from the official Rutgers catalog or school page, linked as "Official requirements for your major"). Since data 2026.11.23-2 every entry carries its catalog edition and the date it was last checked; the section names both ("from the 2026–2027 New Brunswick Undergraduate Catalog (last checked November 23, 2026)") and tells students who started before fall 2026 to follow their degree audit or the catalog for their entry year. See docs/MAJOR_REQUIREMENTS.md. Earlier years are marked "should be done by now", the current year "this year". Each course or open requirement has a tick box saved only in this browser (`cpm.courses.v1`); a line counts how many earlier-year requirements are ticked. Years follow the school's published curriculum where one exists (`sequence: "official"`), otherwise course level (100-level in year 1, and so on), and the page says which. Students at a school outside Rutgers don't see it. Ticks never change the plan.
+6. **On track to graduate** (data 2026.11.17-2; its own **Courses** tab since 2026-11-23): outside the map and the engine. The courses the student's major requires at their campus, by typical year, from `data/requirements.json` (one entry for each of the 44 major–campus pairs, transcribed from the official Rutgers catalog or school page, linked as "Official requirements for your major"). Since data 2026.11.23-2 every entry carries its catalog edition and the date it was last checked; the section names both ("from the 2026–2027 New Brunswick Undergraduate Catalog (last checked November 23, 2026)") and tells students who started before fall 2026 to follow their degree audit or the catalog for their entry year. See docs/MAJOR_REQUIREMENTS.md. Earlier years are marked "should be done by now", the current year "this year". Each course or open requirement has a tick box saved only in this browser (`cpm.courses.v1`); a line counts how many earlier-year requirements are ticked. Years follow the school's published curriculum where one exists (`sequence: "official"`), otherwise course level (100-level in year 1, and so on), and the page says which. Students at a school outside Rutgers don't see it. Ticks never change the plan.
 7. Three tabs under the header (design/DESIGN.md §7.4a): **Plan** (all of the above, in this order), **Map** (the confluence map of every goal, plus the skills picture) and **Resources** (every resource as a box, grouped, with filters). "See the full map" under the milestone map switches to the Map tab. The choice of tab is not saved.
 
 The PDF follows the same order.

@@ -56,7 +56,7 @@ export function OnTrack({ answers }: { answers: Answers }) {
           ? "Years follow the school's published curriculum."
           : "The school doesn't publish a year-by-year plan for this major, so courses are grouped by level (100-level in year 1, 200 in year 2, and so on). Check the order with your adviser."}
       </p>
-      <p className="mt-3 font-bold" aria-live="polite">
+      <p className={`mt-3 w-fit font-bold ${p.due > 0 && p.done === p.due ? "bg-green px-2 text-ink" : ""}`} aria-live="polite">
         {p.due > 0
           ? `${p.done} of ${p.due} requirements from earlier years ticked${p.done === p.due ? ": you're on track." : "."}`
           : "You're in your first year: start with the year 1 courses below."}
