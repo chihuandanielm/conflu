@@ -216,7 +216,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
         </div>
         <div>
           {/* As wide as the buttons (not the header): the river is cleared from under exactly this box. */}
-          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
+          <div ref={actionsBox} className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap min-[380px]:flex-nowrap min-[600px]:flex-wrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}

@@ -159,6 +159,8 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText(/Nursing · Third year, fall semester · Rutgers–Newark ·/)).toBeVisible();
   // The first screen on a phone: the header's actions in one row, the tabs, and "Do this now" with this semester.
+  // Measure once the self-hosted fonts are in (a fallback font is wider and would skew the layout).
+  await page.evaluate(() => document.fonts.ready);
   const vh = page.viewportSize()!.height;
   const now = (await page.getByRole("heading", { name: "Do this now" }).boundingBox())!;
   expect(now.y + now.height).toBeLessThan(vh);
@@ -170,6 +172,11 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
     const box = (await t.boundingBox())!;
     expect(box.x + box.width).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
   }
+  // A narrower phone (360px): the actions may wrap, but nothing scrolls sideways.
+  const size = page.viewportSize()!;
+  await page.setViewportSize({ width: 360, height: size.height });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.setViewportSize(size);
   await page.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
   await page.locator("section[aria-labelledby=next-h] li button").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();

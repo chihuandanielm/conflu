@@ -6,7 +6,7 @@ import { Circle, Document, Font, Line, Link, Page, Path, StyleSheet, Svg, Text, 
 import type { Plan, PlanInput, PlanItem } from "../../engine/types.ts";
 import { factLine, mapModel } from "../map/facts.ts";
 import { layoutConfluence, type MapLayout } from "../map/confluence-map.js";
-import { asciiFrame, PALETTE } from "../river/river.js";
+import { PALETTE } from "../river/river.js";
 import { audience, contactParts, shortUrl } from "../resources/format.ts";
 import { byGroup, payLabel, seasonLabel, whereLabel, type Tailored } from "../resources/tailor.ts";
 import { lastChecked } from "../data/resources.ts";
@@ -39,7 +39,8 @@ const C = { ...PALETTE, ink: "#1A1F24" };
 // US Letter is 612 x 792 pt; 40pt side margins (54px in the prototype).
 const PAGE = { w: 612, h: 792, side: 40, top: 33, bottom: 52 };
 const W = PAGE.w - PAGE.side * 2;
-const BANNER = { cols: 175, rows: 13, size: 5.25, line: 6 };
+/** The centered masthead on page 1: the conflu mark, the name, and a drafting rule. Its height in points. */
+const MAST = 124;
 const MAP_FONT = 7.5; // goal names on the map (10px in the prototype)
 /** The core of the PDF (the map, where you stand, this semester and next in full, later semesters in brief, and the
  *  resources to start with) fits in 10 pages; everything else follows as an appendix. */
@@ -63,6 +64,36 @@ const s = StyleSheet.create({
   notice: { marginTop: 7.5, paddingLeft: 9, borderLeftWidth: 3, borderLeftColor: C.sand, fontSize: 9, lineHeight: 1.35 },
   link: { color: C.blue, textDecoration: "none" },
 });
+
+/**
+ * The masthead (design/DESIGN.md §7.6): centered, calm. The conflu mark (the favicon's confluence drawn out: three
+ * parallel streams that join at a green dot and run on to a ring with a small dot beside it), the name in Quantico,
+ * and a faint drafting rule with ticks that ends in a dot at each side.
+ */
+const Masthead = () => {
+  const rule = 168, ticks = Array.from({ length: 15 }, (_, i) => 6 + i * 11.14);
+  return (
+    <View style={{ height: MAST, alignItems: "center" }}>
+      <Svg width={58} height={68} viewBox="0 0 44 52">
+        <Path d="M7 3 C7 15 22 17 22 29" fill="none" stroke={C.blue} strokeWidth={1.5} />
+        <Path d="M22 3 L22 29" fill="none" stroke={C.blue} strokeWidth={1.5} />
+        <Path d="M37 3 C37 15 22 17 22 29" fill="none" stroke={C.blue} strokeWidth={1.5} />
+        <Line x1={22} y1={29} x2={22} y2={42.5} stroke={C.blue} strokeWidth={2.4} />
+        <Circle cx={22} cy={29} r={3.4} fill={C.green} />
+        <Circle cx={22} cy={46} r={3.4} fill={C.sage} stroke={C.blue} strokeWidth={1.5} />
+        <Circle cx={30} cy={46} r={1.3} fill={C.blue} />
+      </Svg>
+      <Text style={{ fontSize: 22, color: C.blue, marginTop: 6, letterSpacing: 1.5 }}>conflu</Text>
+      <Svg width={rule} height={9} viewBox={`0 0 ${rule} 9`} style={{ marginTop: 5 }}>
+        <Line x1={4} y1={4.5} x2={rule - 4} y2={4.5} stroke={C.blue} strokeWidth={0.75} />
+        {ticks.map((x, i) => <Line key={x} x1={x} y1={i % 7 === 0 ? 1.5 : 3} x2={x} y2={4.5} stroke={C.sand} strokeWidth={0.75} />)}
+        <Circle cx={3} cy={4.5} r={2} fill={C.blue} />
+        <Circle cx={rule - 3} cy={4.5} r={2} fill={C.sage} stroke={C.blue} strokeWidth={0.75} />
+      </Svg>
+      <Text style={[s.fact, { marginTop: 4, color: C.ink }]}>career pathway mapper</Text>
+    </View>
+  );
+};
 
 /** The mark beside a goal: an open ring, solid for a must-do, green once done. */
 const Dot = ({ gate = false, done = false, size = 6.75, style = {} }: { gate?: boolean; done?: boolean; size?: number; style?: object }) => (
@@ -227,13 +258,11 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
   // Page 1: the banner, the title, then the confluence map in whatever height is left. The fullest semesters give up
   // their last rows until it fits, and say how many they left out; if it is still too tall (very many semesters), the
   // whole drawing is scaled down.
-  const room = PAGE.h - PAGE.top - PAGE.bottom - (BANNER.rows * BANNER.line - 10) - (26 * 1.25 + 6)
+  const room = PAGE.h - PAGE.top - PAGE.bottom - MAST - (26 * 1.25 + 6)
     - (textHeight(line, 9.5, 1.3) + 3) - (textHeight(outcome, 16.5, 1.15) + 12) - 8 - 10;
   // Always two-sided in print: the layout's 560 threshold is in screen pixels, and the page is 532pt wide.
   const L = layoutConfluence(mapModel(plan, outcome), { width: W, sides: 2, fontSize: MAP_FONT, maxHeight: room, done });
   const k = Math.min(1, room / L.height);
-  const banner = asciiFrame("banner", BANNER.cols, BANNER.rows, { cell: [4.2, 8] });
-  const bannerText = (key: "sand" | "blue") => banner.map((r) => r[key]).join("\n");
 
   const told = new Set<string>(); // a goal that continues is described once, then named again with "keep going"
   const footer = (
@@ -246,15 +275,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
   return (
     <Document title={`Career roadmap: ${summary.track}`} author="Career Pathway Mapper" subject="Semester-by-semester career roadmap" creator="Career Pathway Mapper" producer="Career Pathway Mapper" language="en-US">
       <Page size="LETTER" style={s.page}>
-        {/* The banner: a still of the river, two overlaid text blocks (sand, then blue). Decoration made of text;
-            react-pdf has no way to mark it as an artifact, so it stays in the text layer. */}
-        <View style={{ position: "relative", height: BANNER.rows * BANNER.line, marginTop: -10, marginHorizontal: -10 }}>
-          {(["sand", "blue"] as const).map((key) => (
-            <Text key={key} style={{ position: "absolute", top: 0, left: 0, fontFamily: "PlexMono", fontSize: BANNER.size, lineHeight: BANNER.line / BANNER.size, color: C[key] }}>
-              {bannerText(key)}
-            </Text>
-          ))}
-        </View>
+        <Masthead />
         <Text style={s.title}>{draft ? "Your draft plan" : "Your plan"}</Text>
         <Text style={s.summary}>{line}</Text>
         <Text style={s.outcome}>{outcome}</Text>

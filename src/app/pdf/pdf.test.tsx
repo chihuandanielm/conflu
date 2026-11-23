@@ -88,4 +88,14 @@ describe("PDF", () => {
     expect(sOne).not.toMatch(/more in the list/);
     for (const it of short.plan.terms.flatMap((t) => t.items)) expect(sOne.replace(/\s+/g, " ")).toContain(it.title.slice(0, 20));
   }, 120_000);
+
+  it.skipIf(!hasPdftotext)("opens on a centered conflu masthead, not an ASCII banner", async () => {
+    const { buf } = await render(input, "Rutgers–New Brunswick");
+    if (process.env.PDF_PREVIEW) writeFileSync(process.env.PDF_PREVIEW, buf);
+    const first = text(buf, 1);
+    const head = first.split("\n").filter((l) => l.trim()).slice(0, 4).map((l) => l.trim());
+    expect(head[0]).toBe("conflu");
+    expect(head[1]).toBe("career pathway mapper");
+    expect(first).not.toMatch(/[\\/:#*+~]{6,}/); // no runs of river glyphs
+  });
 });
