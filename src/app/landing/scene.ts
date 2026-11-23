@@ -123,11 +123,16 @@ interface Cells {
   water: { i: number; x: number; y: number; L: number; p: number }[];
 }
 
+/** On a phone the painting sits below the words, so the empty top of the sky is cropped and the land fills the space. */
+const PHONE_W = 760, PHONE_CROP = 0.22;
+
 function compute(W: number, H: number, cw: number): Cells {
-  const cols = Math.ceil(W / cw), rows = Math.ceil(H / LH), n = cols * rows, aspect = W / H;
+  const top = W < PHONE_W ? PHONE_CROP : 0;
+  // The painting is laid out on a taller virtual canvas whose top is cut off, so `aspect` uses that height.
+  const cols = Math.ceil(W / cw), rows = Math.ceil(H / LH), n = cols * rows, aspect = (W / H) * (1 - top);
   const c: Cells = { cols, rows, cw, ch: new Uint16Array(n), tone: new Uint8Array(n), at: new Float32Array(n), scramble: new Uint8Array(n), water: [] };
   for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-    const i = y * cols + x, u = (x + 0.5) / cols, v = (y + 0.5) / rows;
+    const i = y * cols + x, u = (x + 0.5) / cols, v = top + ((y + 0.5) / rows) * (1 - top);
     const s = sample(u, v, aspect);
     c.at[i] = revealAt(s, u, v, x, y);
     if (s.kind === "water") { c.water.push({ i, x, y, L: s.L, p: s.p ?? 0 }); continue; }
@@ -270,6 +275,9 @@ export function createScene(canvas: HTMLCanvasElement, opt: { reducedMotion: boo
   const onResize = () => {
     window.clearTimeout(resizeT);
     resizeT = window.setTimeout(() => {
+      // A phone's address bar showing or hiding fires resize without changing the canvas: ignore it.
+      const r = canvas.getBoundingClientRect();
+      if (Math.abs(r.width - W) < 1 && Math.abs(r.height - H) < 1) return;
       // A resize mid-way finishes the paint-in at once rather than repainting half a scene.
       if (start >= 0 && performance.now() / 1000 - start < PAINT_SECONDS) start = performance.now() / 1000 - PAINT_SECONDS;
       size(); cancelAnimationFrame(raf); raf = 0; frame(performance.now());
