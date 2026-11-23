@@ -29,8 +29,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "finalUrl": "https://it.rutgers.edu/technology-guide/staff-tech-guide/"
       },
       "tags": [
         "skills",
@@ -68,8 +70,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "excel",
@@ -107,8 +110,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "software",
@@ -146,8 +150,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "finalUrl": "https://success.rutgers.edu/resources"
       },
       "tags": [
         "interview",
@@ -185,8 +191,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "python",
@@ -222,8 +229,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "how-to",
@@ -258,8 +266,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "how-to",
@@ -295,7 +304,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "python"
@@ -329,7 +340,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "blocked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": [
         "sql"
@@ -363,7 +377,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "sql"
@@ -397,7 +413,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "finalUrl": "https://www.thoughtspot.com/sql-tutorial"
       },
       "tags": [
         "sql",
@@ -432,8 +451,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "dsa",
@@ -468,7 +488,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "viz"
@@ -502,8 +524,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "r"
@@ -537,7 +560,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "r"
@@ -571,8 +596,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200,
+        "finalUrl": "https://www.figma.com/login"
       },
       "tags": [
         "how-to",
@@ -609,7 +636,9 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "checkedOn": "2026-11-23",
+        "httpStatus": 403,
+        "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
       "tags": [
         "cad"
@@ -643,8 +672,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "cloud"
@@ -678,8 +708,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "cloud"
@@ -712,8 +743,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "security"
@@ -747,7 +779,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "security"
@@ -781,7 +815,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "jobs",
@@ -816,7 +852,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "unverified"
+        "state": "blocked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": [
         "how-to",
@@ -849,8 +888,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "how-to"
@@ -883,8 +923,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "letters",
@@ -924,8 +965,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "state": "link-checked",
+        "checkedOn": "2026-11-23",
+        "httpStatus": 200
       },
       "tags": [
         "grad-school",
@@ -967,7 +1009,9 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-23"
+        "checkedOn": "2026-11-23",
+        "httpStatus": 403,
+        "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
       "tags": [
         "grad-school",

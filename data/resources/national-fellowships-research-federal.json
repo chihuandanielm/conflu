@@ -35,7 +35,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -68,7 +68,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -106,7 +106,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -143,7 +143,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -178,7 +178,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -211,7 +211,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (timed out).",
         "httpStatus": null
       },
@@ -249,7 +249,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -293,7 +293,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -338,7 +338,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -386,7 +386,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -424,7 +424,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -469,7 +469,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -506,7 +506,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -547,7 +547,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -584,7 +584,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -625,7 +625,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -665,7 +665,7 @@
       "statusNote": "Renamed in 2026. In April 2026 CISA canceled its CyberCorps summer internships during a DHS funding lapse. Check whether your school participates.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -701,7 +701,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -742,7 +742,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -782,7 +782,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -820,7 +820,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -862,7 +862,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -895,7 +895,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -927,7 +927,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -959,7 +959,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -999,7 +999,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -1037,7 +1037,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -1077,7 +1077,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []

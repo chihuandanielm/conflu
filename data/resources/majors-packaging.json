@@ -36,7 +36,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -74,7 +74,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -114,7 +114,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -152,7 +152,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -188,7 +188,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200,
         "finalUrl": "https://www.iopp.org/i4a/pages/index.cfm?_seoSlug=studentameristar"
       },
@@ -224,7 +224,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
@@ -261,7 +261,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (bot wall).",
         "httpStatus": 200
       },
@@ -299,7 +299,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "note": "Confirmed by search; automated check was refused (bot wall).",
         "httpStatus": 200
       },
@@ -336,7 +336,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-18",
+        "checkedOn": "2026-11-23",
         "httpStatus": 200
       },
       "tags": []
