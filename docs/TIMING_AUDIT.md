@@ -6,6 +6,28 @@ The student doesn't know whether they've already failed or the plan is wrong.
 
 This document records where that happens, why, and the plan to fix it.
 
+## Status
+
+**T1 is done** (data 2026.11.23-3):
+
+- 30 text fields in 16 goals and 4 career-path notices were rewritten.
+- The job search gained after-graduation wording.
+- Summer research now describes doing the program, not applying to it.
+- `test/timing.test.ts` fails on any line that names a passed year or month, or wrong relative time.
+
+`npm run audit:timing` before → after:
+
+| | Before | After |
+|---|---|---|
+| Problem lines shown | 38,051 | 768 |
+| Distinct texts | 49 | 3 |
+| Plans with a problem | 4,926 of 4,968 | 406 |
+| Plans with a problem in the current term | 2,382 | 56 |
+
+The 768 left are all forward-looking and read correctly. One example is "Apply to 15+ summer opportunities for after sophomore year", shown to a first-year in the summer. The audit reports them but `test/timing.test.ts` doesn't fail on them.
+
+The thesis card now reads: "Ask your department about honors thesis requirements and deadlines; most programs approve proposals a semester or more before the thesis starts." The card still lands in senior spring for the cases in §7. That is fixed by the lead-time rule in T3.
+
 ## 1. What was run
 
 `npm run audit:timing` (`scripts/timing-audit.ts`) builds a plan for every combination of:
@@ -261,7 +283,79 @@ Removes rule groups A, E and most of F with no engine change.
 |---|---|---|
 | T1 text | A, E, most of F, the LinkedIn example; about 85% of the 38,051 lines | data only, 1 PR |
 | T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.10.0, UI reads `item.text` |
-| T3 deadlines and lead time | C, D, the finance queue problem | engine 0.11.0 |
+| T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | engine 0.11.0 |
 | T4 inputs | H: blank-slate seniors, last-semester overload | intake change, research for coursework mappings |
 
 T1 is the fastest win: most of what students see is fixed without touching the engine. T2 and T3 stop the problem from coming back. T4 makes the plan fit the student.
+
+## 7. Goals started too late to finish or to matter (second audit)
+
+The thesis case generalises: a goal can be allowed by its window, but by the time it lands it can't be finished before graduation, or the thing it prepares for has already happened. `npm run audit:lead-time` (`scripts/lead-time-audit.ts`) looks for this across:
+
+- every major, campus and career path, including paths chosen from "show all";
+- years 1–4 × fall, spring and summer;
+- four experience profiles per year: none, typical for the year, typical plus random extras, typical plus research;
+- 5 h a week to "after graduation", and 15 h a week to graduation.
+
+That is **118,272 plans**.
+
+**Result:** 42,675 plans hold a goal like this, and **18,564 have one in the semester the student is in now**. Senior fall is the worst: 9,123 of 9,856.
+
+### Findings, read as the student
+
+| Rule | Goal | What the student sees | Plans (this term) |
+|---|---|---|---|
+| L1 starts too late | `e-thesis` | A sophomore's plan puts the whole thesis in senior spring; a senior with research experience gets it in their last semester | 721 (82) |
+| L1 | `e-field-placement` | "Complete your BSW field placement" starting in the last semester; the placement runs across the final year | 3,318 (784) |
+| L1 | `a-packaging-certificate` | A first-year's plan adds the certificate in senior fall: one semester for three courses | 1,067 (601) |
+| L1 | `s-lab-techniques` | "Learn core lab techniques in a research lab" in the last semester | 180 (100) |
+| L4 prepares for something already done | `n-career-fair-first`, `ap-early-programs`, `ap-internship-early` | A student who has already done a target internship is told to "Attend your first career fair (to look, not to land)" and to apply to first- and second-year programs | about 4,450 each (up to 1,752) |
+| L4 | `f-explore-careers` | "Research 3 careers on O*NET and BLS" in senior fall, next to the full-time job search for a career they've already chosen | 9,743 (4,866) |
+| L6 "Up next" that can't happen | `f-aid-check`, `a-fellowship-advising`, `f-explore-careers`, `f-ces-advisor`, `s-lab-techniques`, `e-thesis` | Senior fall: "Next in line: it moves into your plan as you finish goals". The only term it could move into is the last one, too late to pay off | 9,460 (all this term) |
+| L6 | `ap-internship-target`, `ap-research-apps` | Junior spring: applications for "junior summer" queued as next. The next term is that summer | 3,063 |
+| L7 needs a program the student isn't in | `e-field-placement` | A psychology major on the suggested social-work path is told to complete a BSW field placement, which only BSW majors can do | 288 suggested, 3,744 from "show all" |
+| L7 | `a-nclex-prep`, `e-nursing-externship`, `e-pharmacy-intern`, `c-fe`, `a-residency-plan` | A CS major who picks the nursing or pharmacy path from "show all" is told to prepare for the NCLEX or work as a licensed pharmacy intern | 16,316 from "show all" |
+| L5 after graduation | `a-grad-list`, `a-letters`, `a-personal-statement` | Grad-school groundwork placed after graduation. Fine for someone applying after a gap year, but the plan never asks, so it can't say so | 3,580 (0) |
+
+**Checked, and not a problem today:**
+
+- applications for a summer after graduation (L2);
+- student-only goals after graduation (L3);
+- co-ops that end at graduation (L8).
+
+The windows already prevent these. A co-op over junior summer and senior fall is a normal pattern, so it isn't flagged.
+
+### Why
+
+1. **A window says when a goal may start, not whether it can finish.** `latest` is the last term the goal may be placed. `lateOk` goals can go past it. Neither knows how many semesters the goal needs, or how many the student has left.
+2. **"Prepares for" isn't data.** The prerequisite graph says what must come *before* a goal, not what makes a goal *pointless* once it's done. A practice fair still shows after a real internship.
+3. **A major restriction can be overridden.** A career path's weights can pull in a goal restricted to another major. That's right for skills anyone can learn (CAD, Python), and wrong for things that need enrollment in the program (BSW placement, NCLEX, pharmacy internship).
+4. **The queue doesn't check the future.** "Next in line" doesn't ask whether the next term could still hold the goal.
+5. **No gap-year answer.** Applying to grad school this cycle or after a year changes what the final semesters should hold, and the intake doesn't ask.
+
+### Plan
+
+**New data on `Goal`:**
+
+| Field | Meaning | Example |
+|---|---|---|
+| `minTermsLeft` | Fall/spring terms that must remain, counting the start term | thesis 2, field placement 2, packaging certificate 3, research assistant 2, officer role 2, study abroad 2 |
+| `supersededBy` | Goals that make this one pointless once done or underway | practice fair and first-/second-year programs: target internship, job search; exploring careers: job search (except the "still exploring" path) |
+| `majorRule` | `"only"` (needs enrollment in the program; never overridden) or `"default"` (today's behaviour: a path may pull it in) | `e-field-placement`, `a-nclex-prep`, `e-nursing-externship`, `e-pharmacy-intern`, `c-fe`, `a-residency-plan` → `"only"` |
+| `alternative` | A goal to offer when this one can't start in time | `e-thesis` → a new one-semester "research project with a professor" goal |
+
+**New input:** `gradApps: "this-cycle" | "after-gap" | "not-sure"`. Asked only on grad-school paths, it decides whether letters and statements belong before or after graduation.
+
+**Engine (0.11.0, with the deadlines in T3):**
+
+- **Starting:** placement refuses a start where fewer than `minTermsLeft` school terms remain. The goal goes to the hidden "past" queue, and `alternative` takes its place if there is one.
+- **Superseded goals:** a goal whose `supersededBy` goal is done or placed earlier is dropped (kind "past").
+- **Major rules:** a `majorRule: "only"` goal is never pulled into another major's plan. The career-path page says the path needs that program ("Social work practice needs the BSW for the field placement").
+- **The queue:** "Up next" includes a goal only if the next term would still satisfy its window, `minTermsLeft` and its application cycle.
+- **Grad-school groundwork:** placed before graduation for "this-cycle", and after graduation with after-graduation wording for "after-gap".
+
+**Tests first:**
+
+- each L rule becomes an invariant in `test/engine.test.ts`, with the cases above as fixtures, written to fail before the engine change;
+- `audit:lead-time` joins CI with every count at 0, except L5 for "after-gap" students.
+

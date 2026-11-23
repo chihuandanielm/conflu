@@ -162,7 +162,7 @@ test("engine 0.7.0: early-college goals done late get wording for where the stud
     }
   }
   const advisor = senior().terms.flatMap((t) => t.items).find((i) => i.goalId === "f-ces-advisor");
-  if (advisor) { assert.match(advisor.title, /remaining semesters/); assert.equal(advisor.late, true); }
+  if (advisor) { assert.match(advisor.title, /semesters ahead/); assert.equal(advisor.late, true); }
 });
 
 test("engine 0.7.0: nothing impossible before graduation is 'next in line'", () => {
