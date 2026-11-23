@@ -6,6 +6,28 @@ The student doesn't know whether they've already failed or the plan is wrong.
 
 This document records where that happens, why, and the plan to fix it.
 
+## Status
+
+**T1 is done** (data 2026.11.23-3):
+
+- 30 text fields in 16 goals and 4 career-path notices were rewritten.
+- The job search gained after-graduation wording.
+- Summer research now describes doing the program, not applying to it.
+- `test/timing.test.ts` fails on any line that names a passed year or month, or wrong relative time.
+
+`npm run audit:timing` before → after:
+
+| | Before | After |
+|---|---|---|
+| Problem lines shown | 38,051 | 768 |
+| Distinct texts | 49 | 3 |
+| Plans with a problem | 4,926 of 4,968 | 406 |
+| Plans with a problem in the current term | 2,382 | 56 |
+
+The 768 left are all forward-looking and read correctly. One example is "Apply to 15+ summer opportunities for after sophomore year", shown to a first-year in the summer. The audit reports them but `test/timing.test.ts` doesn't fail on them.
+
+The thesis card now reads: "Ask your department about honors thesis requirements and deadlines; most programs approve proposals a semester or more before the thesis starts." The card still lands in senior spring for the cases in §7. That is fixed by the lead-time rule in T3.
+
 ## 1. What was run
 
 `npm run audit:timing` (`scripts/timing-audit.ts`) builds a plan for every combination of:

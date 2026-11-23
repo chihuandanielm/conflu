@@ -75,10 +75,12 @@ Every goal window and every placement uses these codes. Year of a term = `floor(
 | `resources` | Resource ids shown on the goal's card |
 | `why` | One-sentence reason always shown last |
 | `steps` | 3–6 concrete actions, in order: what the student actually does (display only) |
-| `late` | Optional `{ title?, steps?, doneWhen?, why? }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan your remaining semesters", not "sketch a 4-year plan") |
+| `late` | Optional `{ title?, steps?, doneWhen?, why? }` used when the goal is scheduled after its ideal window, so early-college goals read right for upper-year students ("Meet a career advisor and plan the semesters ahead", not "sketch a 4-year plan"), and the job search reads right after graduation |
 | `forNextYear` | Yearly goals that pay off the following school year (FAFSA, outside scholarships): no round in the final year |
 | `doneWhen` | One sentence saying how the student knows it's finished (display only) |
 | `guides` | How-to pages for the steps: `type: "guide"` resources in `resources/guides.json`, or other non-Rutgers resources, so every campus can open them. Never ranked or filtered by the engine |
+
+**Time words in text (data 2026.11.23-3).** A goal's text is shown in whatever term the engine places it, so it names no year, stage, or month that could have passed by then: "the summer before your last year", "most close in winter", "the semesters ahead", not "junior summer", "December to February", or "your remaining semesters". A stage word is allowed only where the goal's window means it can't be shown after that stage. `test/timing.test.ts` enforces this over every major, suggested path, year, and season (rules T1, T2, T4, T6 in `docs/TIMING_AUDIT.md`), and `npm run audit:timing` gives the full report.
 
 `steps`, `doneWhen`, and `guides` don't change planning. The site shows them on each goal (checkable steps in the drawer, the next unchecked step in "This semester" and the "Do this now" card, and the steps in the PDF), so a plan says what to do, not only why.
 

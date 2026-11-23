@@ -73,15 +73,15 @@
         "mit-job-search-tasks"
       ],
       "late": {
-        "title": "Meet a career advisor and plan your remaining semesters",
+        "title": "Meet a career advisor and plan the semesters ahead",
         "steps": [
           "Book a 30-minute appointment with your campus career center through Handshake.",
           "Bring your resume and the roles or programs you are aiming for after graduation.",
-          "Ask what to prioritize in the semesters you have left: applications, deadlines, and campus programs.",
+          "Ask what to prioritize in the semesters ahead: applications, deadlines, and campus programs.",
           "Leave with a short plan through graduation and the date of your next check-in."
         ],
-        "doneWhen": "You have a plan for your remaining semesters, made with an advisor, and a follow-up date on your calendar.",
-        "why": "An advisor can point you to what matters most in the time you have left, and to campus programs you might miss."
+        "doneWhen": "You have a plan for the semesters ahead, made with an advisor, and a follow-up date on your calendar.",
+        "why": "An advisor can point you to what matters most from here, and to campus programs you might miss."
       }
     },
     {
@@ -318,7 +318,7 @@
       },
       "prereqs": [],
       "season": null,
-      "deadline": "Before NJ state deadlines in spring; file as early as October",
+      "deadline": "File as early as you can: the FAFSA opens each fall, and New Jersey's state aid deadlines come in the spring",
       "repeat": "yearly",
       "majors": null,
       "resources": [
@@ -336,11 +336,11 @@
       "steps": [
         "Create your StudentAid.gov account, and have a parent create one too if you're a dependent student.",
         "Gather your Social Security number, tax information, and records of savings and income.",
-        "File the FAFSA as soon as it opens each fall and list your school; New Jersey state aid has its own deadlines.",
+        "File the FAFSA as early as you can (it opens each fall) and list your school; New Jersey state aid has its own deadlines.",
         "Watch your email for your FAFSA Submission Summary and fix anything it flags.",
         "Check your school's financial aid portal for missing documents, then accept your aid offer."
       ],
-      "doneWhen": "Your FAFSA is submitted for next year, its summary shows no open issues, and your school lists no missing documents.",
+      "doneWhen": "Your FAFSA for the coming school year is submitted, its summary shows no open issues, and your school lists no missing documents.",
       "guides": [
         "fafsa-student-steps"
       ],
@@ -624,7 +624,7 @@
       "requires": [],
       "why": "Recruiters search LinkedIn first; it's also how alumni will check you out after a chat.",
       "steps": [
-        "Add a clear headshot and a headline that says what you study and what you want, such as 'Packaging Engineering student | Seeking a co-op'.",
+        "Add a clear headshot and a headline that says what you study and what you want, in the form 'Your major student | What you're looking for'.",
         "Write a 3–4 sentence About section: what you study, what you've done, and what you want to do next.",
         "Add your education, jobs, projects, and clubs with 1–2 bullets each, matching your resume.",
         "List at least 5 skills and add relevant courses and projects.",
@@ -2318,10 +2318,11 @@
       "requires": [],
       "why": "The core experience for PhD and research-industry paths.",
       "steps": [
-        "List 5–10 programs that fit your field and note their deadlines, which are usually December to February.",
-        "Ask 2 professors for recommendation letters at least 4 weeks before the first deadline.",
-        "Write a statement about your research interests and what you hope to learn.",
-        "Submit every application on time and track them in a spreadsheet."
+        "Confirm your program's start date, housing, and stipend, and finish its paperwork before you arrive.",
+        "Meet your mentor in the first week and agree on a project question and a weekly check-in.",
+        "Keep a research notebook: what you did, what worked, and what you'd try next.",
+        "Present your results at the program's closing symposium or poster session.",
+        "Ask your mentor for a recommendation letter before you leave, while your work is fresh."
       ],
       "doneWhen": "You've accepted a paid summer research position.",
       "guides": [
@@ -2367,7 +2368,7 @@
       "requires": [],
       "why": "Top signal for grad school and research careers.",
       "steps": [
-        "Ask your department about honors thesis requirements and deadlines during junior year.",
+        "Ask your department about honors thesis requirements and deadlines; most programs approve proposals a semester or more before the thesis starts.",
         "Find a faculty advisor, usually someone whose lab or class you already know.",
         "Write a one-page proposal with your question, methods, and timeline.",
         "Apply for campus research funding if your project needs it.",
@@ -2715,7 +2716,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Junior-summer internships are the main pipeline to full-time offers.",
+      "why": "Internships the summer before your last year of college are the main pipeline to full-time offers.",
       "steps": [
         "Make a list of 20–30 employers in your target field.",
         "Set up Handshake and LinkedIn job alerts for those employers and roles.",
@@ -2938,7 +2939,7 @@
       "requires": [],
       "why": "Hospitals often hire new grads from their own extern pools.",
       "steps": [
-        "Ask your nursing school about externship timing and hospital partners; most are the summer before senior year.",
+        "Ask your nursing school about externship timing and hospital partners; most run the summer before your last year.",
         "Research hospital externship programs and their deadlines, which often fall in winter.",
         "Get your resume and references ready and keep your BLS current.",
         "Apply to several programs and prepare for interviews."
@@ -3409,7 +3410,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Fall junior-year fairs feed most junior-summer internships.",
+      "why": "Fall career fairs feed most summer internships and many full-time offers.",
       "steps": [
         "Two weeks before, rank 8–10 employers with open roles that fit you.",
         "Apply online to their postings before the fair when possible.",
@@ -4486,7 +4487,7 @@
       "steps": [
         "Name the gap you want to fill for your target career, such as data skills, writing, or a language.",
         "Look up the minors and certificates at your school that cover it and how many credits each takes.",
-        "Check with your advisor how it fits your remaining semesters without delaying graduation.",
+        "Check with your advisor how it fits the semesters ahead without delaying graduation.",
         "Declare it and put its courses into your semester plan."
       ],
       "doneWhen": "The minor or certificate is declared and its courses are in your semester plan.",
@@ -4821,7 +4822,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Takes several drafts; start before senior fall.",
+      "why": "Takes several drafts, so start a few months before your first deadline.",
       "steps": [
         "Read each program's prompt and note what it asks for (your story, your goals, your fit).",
         "Brainstorm 3–4 experiences that show why you want this path, then choose one theme that ties them together.",
@@ -5056,7 +5057,7 @@
         "f-resume-v1"
       ],
       "season": null,
-      "deadline": "December–February for the following summer",
+      "deadline": "Most programs close in winter for the following summer; check each program's date",
       "repeat": null,
       "majors": null,
       "resources": [
@@ -5075,7 +5076,7 @@
       "requires": [],
       "why": "Deadlines come months before summer.",
       "steps": [
-        "Search NSF REU listings and the other programs here for your field, and note deadlines (usually December to February).",
+        "Search NSF REU listings and the other programs here for your field, and note each deadline (most close in winter).",
         "Ask 2 professors for letters at least 4 weeks ahead.",
         "Write a research statement: what interests you, what you've done, and what you hope to learn.",
         "Apply to 5–10 programs to improve your odds."
@@ -5108,7 +5109,7 @@
         "f-resume-v1"
       ],
       "season": null,
-      "deadline": "Most summer roles fill by March",
+      "deadline": "Many summer roles fill by early spring, so apply in the fall and winter before",
       "repeat": null,
       "majors": null,
       "resources": [
@@ -5124,7 +5125,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Sophomore summer experience is what makes junior internships winnable.",
+      "why": "A summer of relevant experience early on is what makes the later, competitive internships winnable.",
       "steps": [
         "Read a first- and second-year internship search guide.",
         "Set up Handshake and LinkedIn job alerts for internships in your field that are open to sophomores.",
@@ -5140,7 +5141,7 @@
     },
     {
       "id": "ap-internship-target",
-      "title": "Apply to 30+ target internships for junior summer",
+      "title": "Apply to 30+ internships in your target field",
       "category": "applications",
       "competencies": {
         "prof": 0.5,
@@ -5162,7 +5163,7 @@
         "f-mock-interview"
       ],
       "season": null,
-      "deadline": "Many large employers recruit August–October of junior year",
+      "deadline": "Large employers open applications in late summer and early fall; many others keep hiring into spring",
       "repeat": null,
       "majors": null,
       "resources": [
@@ -5181,7 +5182,7 @@
       "requires": [],
       "why": "The main recruiting window for full-time offers.",
       "steps": [
-        "Start in late summer before junior year, when many large employers open applications.",
+        "Start as early as you can: many large employers open applications in late summer and early fall, and others keep hiring into spring.",
         "Build a list of 30+ target roles and set job alerts for each company.",
         "Ask alumni at your top companies for a conversation and, if it goes well, a referral.",
         "Apply with a tailored resume (and cover letter when asked) and prepare STAR stories for interviews.",
@@ -5280,9 +5281,9 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Many offers go out in senior fall, and hiring continues through spring and summer.",
+      "why": "Many employers make offers months before graduation, and hiring continues through spring and summer.",
       "steps": [
-        "Start in the fall of senior year (earlier in finance and consulting), and if you interned, ask about a return offer.",
+        "Start now (finance and consulting hire earliest), and if you interned, ask about a return offer.",
         "Pick 2–3 role types and make a list of target employers.",
         "Set job alerts, reach out to alumni, and apply steadily every week.",
         "Practice interviews with your career center and prepare STAR stories.",
@@ -5294,7 +5295,18 @@
         "mit-star-interview",
         "drexel-senior-search",
         "mit-finding-jobs"
-      ]
+      ],
+      "late": {
+        "title": "Keep your job search going after graduation",
+        "steps": [
+          "Keep applying every week; many employers hire new graduates all year.",
+          "If responses are slow, get your resume and target list reviewed and adjust one of them.",
+          "Reach out to alumni in the roles you want and ask for a short call.",
+          "Consider contract, temporary, or fellowship roles that build experience while you search.",
+          "Track every application and follow up."
+        ],
+        "why": "Many graduates land their first role in the months after graduation; steady weekly effort is what works."
+      }
     },
     {
       "id": "ap-grad-apps",
@@ -5329,7 +5341,7 @@
       "integrated": false,
       "satisfies": [],
       "requires": [],
-      "why": "Most deadlines fall between September and January of senior year.",
+      "why": "Most programs' deadlines fall in late fall and winter, about a year before you'd start.",
       "steps": [
         "Make a calendar of every program's deadlines and requirements.",
         "Order transcripts and send test scores early.",
@@ -5480,7 +5492,7 @@
       "why": "Four packaging courses open packaging and consumer-products roles to engineers in other majors.",
       "steps": [
         "Take Introduction to Packaging Engineering (14:440:301), the required first course.",
-        "Plan three more packaging courses into your remaining semesters with your advisor.",
+        "Plan three more packaging courses into the semesters ahead with your advisor.",
         "Confirm with the packaging program how to declare the certificate."
       ],
       "doneWhen": "You've completed or scheduled all four packaging courses and declared the certificate.",

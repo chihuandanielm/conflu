@@ -48,7 +48,7 @@
         "e-shadowing",
         "e-clinical-hours"
       ],
-      "recruitingNote": "Big tech opens junior-summer internships July–September; first/second-year programs open in early fall.",
+      "recruitingNote": "Big tech opens internship applications in mid to late summer for the following summer, about a year ahead.",
       "windowOverrides": {},
       "recruitingNoteUntil": "3F",
       "outcome": "job"
@@ -408,7 +408,7 @@
         "e-internship-target",
         "ap-negotiate"
       ],
-      "recruitingNote": "AMCAS opens in May; apply the summer after junior year if you plan no gap year.",
+      "recruitingNote": "AMCAS opens each spring; with no gap year, you apply the summer before your last year.",
       "windowOverrides": {
         "a-test-prep": "2F 3F-3S 3U",
         "a-letters": "3F 3S-3S 4F",
@@ -715,7 +715,7 @@
         "n-info-interviews"
       ],
       "suppress": [],
-      "recruitingNote": "Banks recruit for junior summer as early as sophomore winter–spring. Network in sophomore fall.",
+      "recruitingNote": "Banks recruit for the summer before your last year as early as sophomore winter and spring, so network as soon as you can.",
       "windowOverrides": {},
       "recruitingNoteUntil": "2S",
       "outcome": "job"
@@ -791,7 +791,7 @@
         "a-cpa-plan"
       ],
       "suppress": [],
-      "recruitingNote": "Firms recruit for junior-year internships in sophomore spring and junior fall.",
+      "recruitingNote": "Accounting firms recruit for internships about a year ahead, through the fall before the summer you want.",
       "windowOverrides": {},
       "recruitingNoteUntil": "3F",
       "outcome": "job"
