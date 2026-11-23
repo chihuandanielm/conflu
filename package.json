@@ -19,7 +19,8 @@
     "pretest:ui": "node scripts/woff-to-ttf.mjs",
     "serve": "node scripts/serve.mjs 4321 /",
     "simulate": "node --experimental-strip-types scripts/simulate.ts",
-    "audit:timing": "node --experimental-strip-types scripts/timing-audit.ts"
+    "audit:timing": "node --experimental-strip-types scripts/timing-audit.ts",
+    "audit:lead-time": "node --experimental-strip-types scripts/lead-time-audit.ts"
   },
   "engines": {
     "node": ">=22.6"
