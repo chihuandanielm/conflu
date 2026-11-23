@@ -33,6 +33,19 @@ export interface Goal {
   late?: { title?: string; steps?: string[]; doneWhen?: string; why?: string };
   /** Yearly goal that pays off the following school year (FAFSA, outside scholarships): no round in the final year. */
   forNextYear?: boolean;
+  /** Engine 0.10.0: fall and spring terms that must remain before graduation, counting the start term, for the goal to be
+   *  finished and to pay off (a thesis 2, a minor 3). It never starts with fewer. */
+  minTermsLeft?: number;
+  /** Engine 0.10.0: goals that make this one pointless once they're done or their ideal window has opened (a practice
+   *  career fair after a target internship). A career path that boosts this goal keeps it. */
+  supersededBy?: string[];
+  /** Engine 0.10.0: "only" = needs enrollment in one of `majors` (a BSW field placement, the NCLEX); a career path's
+   *  weights never pull it into another major's plan. Default: a path may (skills anyone can learn). */
+  majorRule?: "only";
+  /** Engine 0.10.0: a goal offered in this one's place, with its weight, when this one can't start in time. */
+  alternative?: string;
+  /** Engine 0.10.0: only ever planned as another goal's alternative. */
+  onlyAsAlternative?: boolean;
 }
 
 export interface Track {

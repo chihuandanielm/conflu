@@ -40,8 +40,10 @@ describe("tailored resources", () => {
   it("identity answers only narrow group programs to the student's groups, and flag them", () => {
     // ALGORITHM.md §5: group programs show to students who skipped identity (labeled "check eligibility");
     // once a student answers, only programs for their groups (or broad "underrepresented" ones) remain.
-    const without = run();
-    const withId = run({ identity: ["first-generation", "low-income"] });
+    // The same plan both times, so only the identity filter differs (identity also reorders the plan itself).
+    const plan = buildPlan(base, dataset);
+    const without = tailoredResources(plan, base);
+    const withId = tailoredResources(plan, { ...base, identity: ["first-generation", "low-income"] });
     const kept = new Set(withId.map((t) => t.resource.id));
     for (const t of without) if (!kept.has(t.resource.id)) {
       const groups = t.resource.identity.filter((x) => !["us-citizen", "us-citizen-or-pr", "nj-resident"].includes(x));

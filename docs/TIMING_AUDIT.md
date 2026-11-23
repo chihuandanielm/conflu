@@ -28,6 +28,32 @@ The 768 left are all forward-looking and read correctly. One example is "Apply t
 
 The thesis card now reads: "Ask your department about honors thesis requirements and deadlines; most programs approve proposals a semester or more before the thesis starts." The card still lands in senior spring for the cases in §7. That is fixed by the lead-time rule in T3.
 
+**T3, first half, is done** (engine 0.10.0, data 2026.11.23-4). It covers the lead-time part of T3 from §7: the rules from that section, plus must-dos first in final-year terms.
+
+- Goals carry `minTermsLeft` (17 goals), `supersededBy` (4), `majorRule: "only"` (6) and `alternative` (thesis → a new one-semester research project).
+- A plan that reaches the final year always considers its outcome (the job search, or grad-school applications).
+- In every final-year term, the outcome and its quick steps are placed first, then a track's other must-dos, then last-chance goals.
+- A goal's last chance includes the last term it can still start (senior fall for a thesis).
+- `test/leadtime.test.ts` covers the reported case and each rule.
+
+`npm run audit:lead-time` before → after (118,272 plans):
+
+| | Before | After |
+|---|---|---|
+| Plans with a goal started too late or for nothing | 42,675 | 9,572 (all L5, see below) |
+| … in the semester the student is in now | 18,564 | **0** |
+| L1 starts too late | 5,215 | 0 |
+| L4 groundwork after what it prepares for | 14,192 | 6 |
+| L6 "Up next" that can't start | 9,460 | 0 |
+| L7 needs a program the student isn't in | 17,245 | 0 |
+
+**Side effect of putting the outcome first:** in the 336 stored New Brunswick plans, the outcome now starts in senior fall in 222 plans, up from 110 on main. Before, an optional last-chance task (the aid check, fellowship advising) or a long skill must-do could push the job search to spring. A junior on the research path now gets the thesis across senior fall and spring, with letters the summer before. Before, five last-chance tasks pushed it out of senior year.
+
+**Still open:**
+
+- **L5, grad-school groundwork after graduation** (statement, letters, program list: 9,566 plans). It went up because research and pre-professional plans now reach the applications at all. It waits on the "this cycle or after a gap year" question, in the second half of T3, along with structured deadlines (§5 T3).
+- **Job-search practice after graduation.** A mock interview after graduation is fine for someone still searching.
+
 ## 1. What was run
 
 `npm run audit:timing` (`scripts/timing-audit.ts`) builds a plan for every combination of:
@@ -222,7 +248,7 @@ Removes rule groups A, E and most of F with no engine change.
   - `audit:timing` runs in `npm test` with zero T1, T2, T4 and T6 allowed, plus an allowlist for the cases above;
   - the validator rejects a stage word or month in steps or reasons unless the goal's window keeps it true, or a variant covers the later terms.
 
-### Phase T2: timing tiers and engine-chosen text (engine 0.10.0)
+### Phase T2: timing tiers and engine-chosen text (engine 0.11.0)
 
 **New result variables on `PlanItem`:**
 
@@ -244,7 +270,7 @@ Removes rule groups A, E and most of F with no engine change.
 - The UI and the PDF both read `item.text`, so they can't disagree.
 - After graduation, a goal that continues shows one card with `phase: "continue"`, not a copy.
 
-### Phase T3: deadlines and lead time (engine 0.11.0)
+### Phase T3: deadlines and lead time (lead time: engine 0.10.0, done; deadlines: engine 0.12.0)
 
 **New data variables:**
 
@@ -282,8 +308,8 @@ Removes rule groups A, E and most of F with no engine change.
 | Phase | Removes | Size |
 |---|---|---|
 | T1 text | A, E, most of F, the LinkedIn example; about 85% of the 38,051 lines | data only, 1 PR |
-| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.10.0, UI reads `item.text` |
-| T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | engine 0.11.0 |
+| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.11.0, UI reads `item.text` |
+| T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | lead time done (0.10.0); deadlines and the grad-school timing question next (0.12.0) |
 | T4 inputs | H: blank-slate seniors, last-semester overload | intake change, research for coursework mappings |
 
 T1 is the fastest win: most of what students see is fixed without touching the engine. T2 and T3 stop the problem from coming back. T4 makes the plan fit the student.
@@ -346,7 +372,7 @@ The windows already prevent these. A co-op over junior summer and senior fall is
 
 **New input:** `gradApps: "this-cycle" | "after-gap" | "not-sure"`. Asked only on grad-school paths, it decides whether letters and statements belong before or after graduation.
 
-**Engine (0.11.0, with the deadlines in T3):**
+**Engine (0.10.0, done; see Status):**
 
 - **Starting:** placement refuses a start where fewer than `minTermsLeft` school terms remain. The goal goes to the hidden "past" queue, and `alternative` takes its place if there is one.
 - **Superseded goals:** a goal whose `supersededBy` goal is done or placed earlier is dropped (kind "past").

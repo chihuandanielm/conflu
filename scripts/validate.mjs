@@ -96,6 +96,15 @@ for (const g of goals) {
   if (typeof g.doneWhen !== "string" || g.doneWhen.length < 15) errors.push(`goals › ${g.id}: needs a doneWhen line`);
   if (g.late && ((!g.late.title && !g.late.why) || (g.late.steps && (g.late.steps.length < 3 || g.late.steps.length > 6)))) errors.push(`goals › ${g.id}: late needs a title or a why, and 3–6 steps if it has steps`);
   if (g.forNextYear && g.repeat !== "yearly") errors.push(`goals › ${g.id}: forNextYear only applies to yearly goals`);
+  // Lead time and purpose (engine 0.10.0).
+  if (g.minTermsLeft !== undefined && !(Number.isInteger(g.minTermsLeft) && g.minTermsLeft >= 1 && g.minTermsLeft <= 4)) errors.push(`goals › ${g.id}: minTermsLeft must be 1–4`);
+  for (const s of g.supersededBy ?? []) if (s === g.id || !goals.some((x) => x.id === s)) errors.push(`goals › ${g.id}: supersededBy has unknown goal ${s}`);
+  if (g.majorRule !== undefined && (g.majorRule !== "only" || !g.majors)) errors.push(`goals › ${g.id}: majorRule "only" needs a majors list`);
+  if (g.alternative !== undefined) {
+    const alt = goals.find((x) => x.id === g.alternative);
+    if (!alt || !alt.onlyAsAlternative) errors.push(`goals › ${g.id}: alternative ${g.alternative} must exist and be onlyAsAlternative`);
+  }
+  if (g.onlyAsAlternative && !goals.some((x) => x.alternative === g.id)) errors.push(`goals › ${g.id}: onlyAsAlternative but no goal names it`);
   for (const id of g.guides ?? []) {
     const r = resById.get(id);
     if (!r) errors.push(`goals › ${g.id}: unknown guide ${id}`);
