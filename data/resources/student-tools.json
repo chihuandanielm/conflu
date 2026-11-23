@@ -21,18 +21,16 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Thousands of video courses, from Excel, SQL and Python to public speaking, design and marketing, free for Rutgers students, with certificates you can add to LinkedIn.",
-      "url": "https://it.rutgers.edu/guides/linkedin-learning/",
+      "url": "https://it.rutgers.edu/linkedin-learning/knowledgebase/logging-into-linkedin-learning",
       "applyUrl": null,
       "contact": {
-        "how": "Sign in with your NetID through the Rutgers IT guide, then search for the skill you need."
+        "how": "Sign in with your NetID@rutgers.edu address (Rutgers IT's steps on this page), then search for the skill you need."
       },
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "finalUrl": "https://it.rutgers.edu/technology-guide/staff-tech-guide/"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
       },
       "tags": [
         "skills",
@@ -120,47 +118,6 @@
       ],
       "campuses": [
         "all"
-      ]
-    },
-    {
-      "id": "rutgers-big-interview",
-      "name": "Big Interview (practice interviews and AI resume review)",
-      "type": "tool",
-      "scope": "rutgers",
-      "majors": [
-        "all"
-      ],
-      "years": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "identity": [],
-      "interests": [],
-      "pay": "free",
-      "season": null,
-      "typicalDeadline": null,
-      "summary": "Record practice interviews tailored to your major and get instant resume feedback, free through Rutgers career services.",
-      "url": "https://success.rutgers.edu/resource/big-interview-resume-ai",
-      "applyUrl": null,
-      "contact": {
-        "how": "Open it from the Rutgers page (it's linked in Handshake too), then pick a practice set for your field."
-      },
-      "status": "active",
-      "statusNote": null,
-      "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "finalUrl": "https://success.rutgers.edu/resources"
-      },
-      "tags": [
-        "interview",
-        "resume"
-      ],
-      "campuses": [
-        "nb"
       ]
     },
     {
@@ -387,7 +344,7 @@
     },
     {
       "id": "mode-sql",
-      "name": "Mode SQL Tutorial (SQL for data analysis)",
+      "name": "SQL Tutorial for data analysis (ThoughtSpot, formerly Mode)",
       "type": "course",
       "scope": "national",
       "majors": [
@@ -405,7 +362,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "A free tutorial that teaches SQL the way analysts use it, from basic queries to joins and window functions.",
-      "url": "https://mode.com/sql-tutorial",
+      "url": "https://www.thoughtspot.com/sql-tutorial",
       "applyUrl": null,
       "contact": {
         "how": "Work through the basic and intermediate sections after an intro course."
@@ -413,10 +370,7 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "finalUrl": "https://www.thoughtspot.com/sql-tutorial"
+        "state": "unverified"
       },
       "tags": [
         "sql",
@@ -570,7 +524,7 @@
     },
     {
       "id": "figma-education-apply",
-      "name": "Figma Education: apply for the free student plan",
+      "name": "Figma Help: Figma for Education (verify your student status)",
       "type": "guide",
       "scope": "national",
       "majors": [
@@ -587,8 +541,8 @@
       "pay": "free",
       "season": null,
       "typicalDeadline": null,
-      "summary": "Apply with your school email to get Figma's education plan free. Verification is handled by SheerID.",
-      "url": "https://www.figma.com/education/apply",
+      "summary": "Figma's own steps for getting the free education plan: apply with your school email, choose Higher ed, and verify through SheerID.",
+      "url": "https://help.figma.com/hc/en-us/articles/360041061214-Figma-for-Education",
       "applyUrl": null,
       "contact": {
         "how": "Sign in with your school email, choose Higher ed, and keep proof of enrollment handy."
@@ -596,10 +550,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-23",
-        "httpStatus": 200,
-        "finalUrl": "https://www.figma.com/login"
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
       },
       "tags": [
         "how-to",
@@ -844,7 +796,7 @@
       "season": null,
       "typicalDeadline": null,
       "summary": "Handshake's own steps for creating a student account or logging in, including if your school isn't on Handshake.",
-      "url": "https://support.joinhandshake.com/hc/en-us/articles/33030361149463-Creating-an-Account-and-Logging-In-to-Handshake",
+      "url": "https://support.joinhandshake.com/hc/en-us/articles/33030361149463",
       "applyUrl": null,
       "contact": {
         "how": "Check for an existing school account first so you don't make a duplicate."
@@ -852,10 +804,8 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
-        "checkedOn": "2026-11-23",
-        "httpStatus": 403,
-        "note": "Site refused the automated check (HTTP 403); open it by hand."
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-23"
       },
       "tags": [
         "how-to",

@@ -425,8 +425,7 @@
       "resources": [
         "rutgers-ces",
         "rutgers-newark-career",
-        "rutgers-camden-career",
-        "rutgers-big-interview"
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
@@ -527,8 +526,7 @@
         "rutgers-ces",
         "glassdoor",
         "rutgers-newark-career",
-        "rutgers-camden-career",
-        "rutgers-big-interview"
+        "rutgers-camden-career"
       ],
       "splittable": false,
       "lateOk": true,
