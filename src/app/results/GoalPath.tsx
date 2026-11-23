@@ -11,7 +11,7 @@ export function findItem(plan: Plan, goalId: string): { it: PlanItem; t: PlanTer
 }
 
 /**
- * Where you're headed (design/DESIGN.md §7.4 #1): the outcome in one line, then the confluence map of the milestones
+ * Where you're headed (design/DESIGN.md §7.4 #4, inside "The big picture"): the outcome in one line, then the confluence map of the milestones
  * only (up to five), and "See the full map", which switches to the Map tab. The outcome is the heading above the map,
  * so the map itself leaves it off.
  */
@@ -22,8 +22,8 @@ export function GoalPath({ plan, trackId, done, onOpen, onFullMap }: {
   const model = useMemo(() => mapModel(plan, "", new Set(ms.map((m) => m.goalId))), [plan, ms]);
   return (
     <section aria-labelledby="goal-h">
-      <h2 id="goal-h" className="text-h2">Where you're headed</h2>
-      <p className="mt-1 max-w-[18em] text-h1 leading-[1.12]">{outcomeText(trackId)}</p>
+      <h3 id="goal-h" className="fact font-normal text-ink">Where you're headed</h3>
+      <p className="label mt-1 max-w-[20em] text-[1.5rem] leading-[1.15] text-ink">{outcomeText(trackId)}</p>
       {ms.length > 0 && (
         <div className="mt-5">
           <ConfluenceMap model={model} done={done} label="Your milestones, in order, joining one river"
@@ -31,7 +31,7 @@ export function GoalPath({ plan, trackId, done, onOpen, onFullMap }: {
             onOpen={(id) => { const hit = findItem(plan, id); if (hit) onOpen(hit.it, hit.t); }} />
         </div>
       )}
-      <button type="button" className="btn mt-[18px]" onClick={onFullMap}>See the full map</button>
+      <button type="button" className="btn btn--small mt-[18px]" onClick={onFullMap}>See the full map</button>
     </section>
   );
 }

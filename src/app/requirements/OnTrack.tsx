@@ -1,5 +1,6 @@
 import { useId, useMemo, useState } from "react";
 import type { Answers } from "../intake/model.ts";
+import { SectionHead } from "../results/SectionHead.tsx";
 import { dueStatus, isTicked, loadTicks, progressFor, requirementsFor, toggleTick, type Due, type RequirementItem } from "./requirements.ts";
 
 const DUE_LABEL: Record<Due, string> = {
@@ -35,31 +36,27 @@ export function OnTrack({ answers }: { answers: Answers }) {
 
   return (
     <section aria-labelledby="ontrack-h">
-      <h2 id="ontrack-h" className="text-h2">On track to graduate</h2>
-      <p className="fact mt-1.5">{r.degree.toLowerCase()}{r.credits?.major ? `  ${r.credits.major} credits in the major` : ""}{r.credits?.total ? `  ${r.credits.total} credits in all` : ""}</p>
-      <p className="mt-2 max-w-[44em]">
-        The courses your major requires, by the year students usually take them, from the {r.catalog}
-        {" "}(last checked {checkedOn(r.checked)}). Tick what you've completed; your ticks stay in this browser.
-      </p>
-      <p className="mt-2 max-w-[44em]">
-        You follow the catalog for the year you entered Rutgers (or entered your major or school). If you started before
-        fall 2026, check your degree audit or the catalog for your year, and confirm with your adviser.
-      </p>
-      <p className="mt-2">
-        <a href={r.pageUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
-          Official requirements for your major<span className="sr-only"> (opens in a new tab)</span>
-        </a>
-        <span aria-hidden="true" className="ml-2 font-mono">-&gt;</span>
-      </p>
-      <p className="mt-3 max-w-[44em] text-small">
-        {r.sequence === "official"
-          ? "Years follow the school's published curriculum."
-          : "The school doesn't publish a year-by-year plan for this major, so courses are grouped by level (100-level in year 1, 200 in year 2, and so on). Check the order with your adviser."}
-      </p>
-      <p className={`mt-3 w-fit font-bold ${p.due > 0 && p.done === p.due ? "bg-green px-2 text-ink" : ""}`} aria-live="polite">
+      <SectionHead id="ontrack-h" title="On track to graduate" count={r.credits?.total ? `${r.credits.total} credits` : r.credits?.major ? `${r.credits.major} in the major` : undefined} />
+      {/* The progress first: it is the answer to "am I on track?". */}
+      <p className={`label mt-4 w-fit text-[1.25rem] ${p.due > 0 && p.done === p.due ? "bg-green px-2 text-ink" : p.due > 0 ? "notice" : ""}`} aria-live="polite">
         {p.due > 0
           ? `${p.done} of ${p.due} requirements from earlier years ticked${p.done === p.due ? ": you're on track." : "."}`
           : "You're in your first year: start with the year 1 courses below."}
+      </p>
+      <p className="fact mt-3">{r.degree.toLowerCase()}{r.credits?.major ? ` · ${r.credits.major} credits in the major` : ""}{r.credits?.total ? ` · ${r.credits.total} credits in all` : ""}</p>
+      <p className="mt-2 max-w-[44em]">
+        From the {r.catalog} (last checked {checkedOn(r.checked)}).{" "}
+        <a href={r.pageUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+          Official requirements for your major<span className="sr-only"> (opens in a new tab)</span>
+        </a><span aria-hidden="true" className="ml-1.5 font-mono text-blue">-&gt;</span>
+      </p>
+      <p className="mt-2 max-w-[44em] text-small">
+        Tick what you've completed; your ticks stay in this browser.{" "}
+        {r.sequence === "official"
+          ? "Years follow the school's published curriculum."
+          : "The school publishes no year-by-year plan, so courses are grouped by level (100-level in year 1, and so on)."}
+        {" "}You follow the catalog for the year you entered: if you started before fall 2026, check your degree audit or the
+        catalog for your year, and confirm with your adviser.
       </p>
 
       <div className="mt-4 border-t-[1.5px] border-blue">
@@ -69,7 +66,7 @@ export function OnTrack({ answers }: { answers: Answers }) {
           return (
             <details key={g.year ?? "any"} open={due === "done-by-now" || due === "this-year"} className="border-b-[1.5px] border-blue">
               <summary className="flex min-h-12 cursor-pointer flex-wrap items-baseline gap-x-3 py-3">
-                <span className="text-lead">{g.year === null ? "Any time" : `Year ${g.year}`}</span>
+                <span className="label text-[1.25rem] text-blue">{g.year === null ? "Any time" : `Year ${g.year}`}</span>
                 {g.year !== null && (
                   <span className={`fact px-1.5 ${due === "done-by-now" ? "bg-blue text-sage" : due === "this-year" ? "border-[1.5px] border-blue" : ""}`}>
                     {DUE_LABEL[due]}
@@ -90,7 +87,7 @@ export function OnTrack({ answers }: { answers: Answers }) {
 
       {r.rules.length > 0 && (
         <>
-          <h3 className="mt-6 text-lead">Rules to know</h3>
+          <h3 className="mt-6 text-[1.375rem]">Rules to know</h3>
           <ul className="mt-2">
             {r.rules.map((x) => <li key={x} className="flex items-baseline gap-3 py-1"><span aria-hidden="true" className="dot translate-y-px" />{x}</li>)}
           </ul>

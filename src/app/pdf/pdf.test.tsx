@@ -29,7 +29,8 @@ describe("PDF", () => {
     expect(urlBreaks("internship")).toEqual(["internship"]);
   });
 
-  const fonts = { regular: "public/fonts/quantico-400.ttf", bold: "public/fonts/quantico-700.ttf", mono: "public/fonts/ibm-plex-mono-400.ttf" };
+  const fonts = { regular: "public/fonts/quantico-400.ttf", bold: "public/fonts/quantico-700.ttf", mono: "public/fonts/ibm-plex-mono-400.ttf",
+    display: "public/fonts/barlow-semi-condensed-600.ttf", displayBold: "public/fonts/barlow-semi-condensed-700.ttf" };
   const render = async (inp: PlanInput, campus = "Rutgers–Newark") => {
     registerFonts(fonts);
     const plan = buildPlan(inp, dataset);
@@ -47,7 +48,7 @@ describe("PDF", () => {
     const { buf } = await render(input);
     if (!hasPdftotext) return; // text checks need poppler; CI images usually have it
     const all = text(buf);
-    for (const str of ["Your plan", "What you have", "What you need", "Start here", "This semester", "Done when:",
+    for (const str of ["Your plan", "What you have", "What you need", "Do this now", "This semester", "Done when:",
       "When you have more time", "Habits to keep", "Later semesters", "Where to start", "All resources", "Rutgers–Newark", "a general trajectory, not a blueprint", "page 1 of", "studentaid.gov"]) {
       expect(all, str).toContain(str);
     }

@@ -1,6 +1,7 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useId, useMemo, useState, type ReactNode } from "react";
 import type { Plan, PlanInput } from "../../engine/types.ts";
 import { campuses } from "../data/dataset.ts";
+import { SectionHead } from "../results/SectionHead.tsx";
 import { ResourceCard } from "./ResourceCard.tsx";
 import { applyFilters, byGroup, GROUPS, noFilters, scopeLabel, tailoredResources, type ResourceFilters } from "./tailor.ts";
 
@@ -26,6 +27,8 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
   const all = useMemo(() => tailoredResources(plan, input), [plan, input]);
   const [f, setF] = useState<ResourceFilters>(noFilters);
   const [open, setOpen] = useState<Set<string>>(new Set());
+  const [showFilters, setShowFilters] = useState(false);
+  const filtersId = useId();
   const shown = applyFilters(all, f);
   const groups = byGroup(shown);
   const scopes = [...new Set(all.map((t) => t.resource.scope))];
@@ -49,7 +52,12 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
         </p>
       </div>
 
-      <div className="flex flex-col gap-2">
+      {/* On a phone the filters fold behind one button, so the first resource is on the first screen; wide screens show them. */}
+      <button type="button" aria-expanded={showFilters} aria-controls={filtersId} onClick={() => setShowFilters((x) => !x)}
+        className="btn btn--small self-start min-[720px]:hidden">
+        {showFilters ? "Hide filters" : `Filter${filtered ? " (on)" : ""}`}
+      </button>
+      <div id={filtersId} className={`flex-col gap-2 min-[720px]:flex ${showFilters ? "flex" : "hidden"}`}>
         {row("Type", <>
           <Toggle on={f.group === "all"} onClick={() => setF({ ...f, group: "all" })}>All types</Toggle>
           {GROUPS.filter((g) => all.some((t) => t.group === g.id)).map((g) => (
@@ -81,8 +89,7 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
         const items = expanded ? g.items : g.items.slice(0, PER_GROUP);
         return (
           <section key={g.id} aria-labelledby={`rg-${g.id}`} className="flex flex-col gap-4">
-            <hr className="shore" />
-            <h2 id={`rg-${g.id}`} className="text-h2">{g.label} <span className="fact align-middle">{g.items.length}</span></h2>
+            <SectionHead id={`rg-${g.id}`} title={g.label} count={`${g.items.length}`} />
             <ul className="grid grid-cols-1 gap-4 min-[720px]:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]">
               {items.map((t) => <li key={t.resource.id}><ResourceCard t={t} identity={input.identity ?? []} /></li>)}
             </ul>

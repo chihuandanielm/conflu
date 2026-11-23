@@ -18,14 +18,16 @@ function setup(s = createSaved(cs, "2026-11-15")) {
 }
 
 describe("results page", () => {
-  it("reads top to bottom: do this now, this semester, why this order, then the goal, have and need, coming up", () => {
+  it("reads top to bottom: where you stand, do this now, this semester, coming up, then the big picture", () => {
     setup(createSaved({ ...cs, semester: 1, yearTerm: "2F", experience: ["resume", "club"], skills: ["python"] }, "2026-11-15"));
     expect(screen.getByRole("heading", { level: 1, name: "Your plan" })).toBeInTheDocument();
     expect(screen.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 5 free hours a week")).toBeInTheDocument();
-    const order = ["Do this now", "This semester", "Where you're headed", "What you have", "What you need", "Coming up"]
+    const order = ["Do this now", "This semester", "Coming up", "The big picture", "Where you're headed", "What you have", "What you need"]
       .map((name) => screen.getByRole("heading", { name }));
     for (let i = 1; i < order.length; i++) expect(order[i - 1].compareDocumentPosition(order[i]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(screen.getByText("Land your first role in software engineering")).toBeInTheDocument();
+    // The destination is in the header, and again in the big picture.
+    expect(screen.getAllByText("Land your first role in software engineering").length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText("headed for")).toBeInTheDocument();
     const have = screen.getByRole("heading", { name: "What you have" }).closest("section")!;
     expect(within(have).getByText("I have a resume")).toBeInTheDocument();
     // Four tabs under the header (design/DESIGN.md §7.4a); a returning student lands on Plan.
@@ -149,10 +151,13 @@ describe("results page", () => {
 
   it("a new plan is a draft: the banner says it can be edited, and the Map tab lists every option to cross out or mark done", async () => {
     const { get } = setup();
+    // On the Plan tab the draft is one line; the banner and "Finalize my map" are on the Map tab.
+    expect(screen.getByRole("heading", { name: "This is a draft map" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Finalize my map" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /Review on the Map tab/ }));
+    await act(async () => {});
     expect(screen.getByRole("heading", { name: "This is your draft map" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Finalize my map" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("tab", { name: /Map/ }));
-    await act(async () => {});
     const edit = screen.getByRole("heading", { name: "Edit your map" }).closest("section")!;
     // Ranked by what this path's recruiters look for (the sources are under "Why this order" on the Plan tab).
     expect(within(edit).getByText(/software engineering recruiters look for/)).toBeInTheDocument();
@@ -200,6 +205,8 @@ describe("results page", () => {
 
   it("finalizes the draft to a plan sized to the student's time, and can go back", async () => {
     const { get } = setup();
+    fireEvent.click(screen.getByRole("tab", { name: /^Map/ }));
+    await act(async () => {});
     fireEvent.click(screen.getByRole("button", { name: "Finalize my map" }));
     await act(async () => {});
     expect(get().finalized).toBe(true);
@@ -216,30 +223,47 @@ describe("results page", () => {
     const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
     fireEvent.click(within(sem).getAllByRole("button")[0]);
     const dialog = screen.getByRole("dialog");
-    expect(within(dialog).getByText(/^(Essential must-do|High priority|Worth doing|If you have time)$/)).toBeInTheDocument();
+    expect(within(dialog).getByText(/^(must-do|high priority|worth doing|if you have time)$/)).toBeInTheDocument();
     fireEvent.click(within(dialog).getByRole("button", { name: /Not for me/ }));
     await act(async () => {});
     expect(get().skipped.length).toBe(1);
     void first;
   });
 
-  it("do this now: one card with where you stand, this semester's first step, and the place to go, linked", () => {
+  it("do this now: where you stand in numbers, then one card with the first step and the place to go, linked", () => {
     const { get } = setup();
-    const card = screen.getByRole("heading", { name: "Do this now" }).closest("section")!;
     const term = get().plan.terms[0];
-    expect(within(card).getByText(new RegExp(`^This semester: ${term.label}`, "i"))).toBeInTheDocument();
-    expect(within(card).getByTestId("standing").textContent).toMatch(/\d+ (goal|goals) this semester/);
-    const part = within(card).getByText(/^Part of:/).textContent!;
+    const standing = screen.getByTestId("standing");
+    expect(standing.textContent).toContain(term.label);
+    expect(standing.textContent).toMatch(/\d+ goals? · \d+ must-dos? · \d+ done/);
+    expect(standing.textContent).toMatch(/Uses about \d+ of your 5 free hours a week|Nothing planned/);
+    const card = screen.getByRole("heading", { name: "Do this now" }).closest("section")!;
+    const part = within(card).getByText(/^Part of/).textContent!;
     const item = term.items.find((i) => part.includes(i.title))!;
     expect(item).toBeDefined();
-    const steps = howTo(item).steps;
-    expect(within(card).getByText(steps[0])).toBeInTheDocument();
+    expect(within(card).getByText(howTo(item).steps[0])).toBeInTheDocument();
     if (item.resources.length) {
       const link = within(card).getByRole("link", { name: new RegExp(item.resources[0].name.replace(/[()]/g, ".")) });
       expect(link).toHaveAttribute("href", item.resources[0].url);
       expect(link).toHaveAttribute("target", "_blank");
     }
-    expect(within(card).getByRole("button", { name: "Open this goal" })).toBeInTheDocument();
+    expect(within(card).getByRole("button", { name: "Open the full goal" })).toBeInTheDocument();
+  });
+
+  it("changes free hours from the plan and re-plans at once", async () => {
+    const { get } = setup();
+    fireEvent.change(screen.getByLabelText("Free hours a week:"), { target: { value: "15" } });
+    await act(async () => {});
+    expect(get().answers.weeklyHours).toBe(15);
+    expect(screen.getByTestId("standing").textContent).toMatch(/of your 15 free hours a week/);
+    expect(screen.getByText(/Re-planned for 15 free hours a week/)).toBeInTheDocument();
+  });
+
+  it("shows time in words, never a bare hours number", () => {
+    setup();
+    const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
+    expect(sem.textContent).toMatch(/hours?, once|h a week this semester|full-time/);
+    expect(sem.textContent).not.toMatch(/\d h\b(?! a week| in all)/);
   });
 
   it("this semester names the best places to go in each row, linked, without opening the goal", () => {
@@ -266,7 +290,7 @@ describe("results page", () => {
     for (const u of track.recruiterSources ?? []) expect(screen.getAllByRole("link").some((a) => a.getAttribute("href") === u)).toBe(true);
   });
 
-  it("the goal drawer is one scroll: what to do, then where to go right under it, with places in the steps linked", () => {
+  it("the goal drawer is one scroll: what to do and done when, then where to go, with places in the steps linked", () => {
     const { get } = setup();
     const busy = get().plan.terms[0].items.find((i) => i.resources.length > 3) ?? get().plan.terms[0].items[0];
     const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
@@ -277,8 +301,9 @@ describe("results page", () => {
     const todo = within(dialog).queryByRole("heading", { name: "What to do" });
     const go = within(dialog).getByRole("heading", { name: "Where to go" });
     if (todo) expect(todo.compareDocumentPosition(go) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    // Done when sits right under the steps, before where to go.
     const done = within(dialog).queryByRole("heading", { name: "Done when" });
-    if (done) expect(go.compareDocumentPosition(done) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    if (done) expect(done.compareDocumentPosition(go) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("courses have their own tab, dated and linked; the Plan tab doesn't repeat them", async () => {

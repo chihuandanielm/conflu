@@ -1,16 +1,16 @@
 import { startTransition, useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { PlanItem, PlanTerm } from "../../engine/types.ts";
-import { goals } from "../data/dataset.ts";
+import { goals, intake } from "../data/dataset.ts";
 import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
-import { mapModel } from "../map/facts.ts";
+import { mapModel, termWeeks } from "../map/facts.ts";
 import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { tailoredResources } from "../resources/tailor.ts";
 import { useRiver } from "../river/RiverProvider.tsx";
-import { diff, finalize, isOutdated, markDone, refresh, reopenDraft, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
+import { diff, finalize, isOutdated, markDone, refresh, reopenDraft, setHours, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
 import { shareHash } from "../state/share.ts";
 import { loadSteps, toggleStep } from "../state/steps.ts";
 import { isStaleBuildError, ReloadNotice } from "../staleBuild.tsx";
@@ -18,15 +18,17 @@ import { todayISO } from "../today.ts";
 import { Button } from "../ui/Button.tsx";
 import { ComingUp } from "./ComingUp.tsx";
 import { Competencies } from "./Competencies.tsx";
-import { DraftBanner, EditMap, NotForMe, withoutOptions } from "./EditMap.tsx";
+import { DraftBanner, DraftLine, EditMap, NotForMe, withoutOptions } from "./EditMap.tsx";
 import { GoalDrawer } from "./GoalDrawer.tsx";
 import { findItem, GoalPath } from "./GoalPath.tsx";
 import { HaveNeed } from "./HaveNeed.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
+import { SectionHead } from "./SectionHead.tsx";
 import { StartHere } from "./StartHere.tsx";
+import { StatusStrip } from "./StatusStrip.tsx";
 import { WhyOrder } from "./WhyOrder.tsx";
-import { outcomeText, planSummary } from "./summary.ts";
+import { milestones, outcomeText, planSummary } from "./summary.ts";
 
 export { planSummary } from "./summary.ts";
 
@@ -172,6 +174,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   // The Plan tab reads as what the student's time fits; the draft's extra options are on the Map tab, to cross out or keep.
   const core = useMemo(() => withoutOptions(plan), [plan]);
   const finalized = saved.finalized ?? true;
+  const hours = answers.weeklyHours ?? intake.defaultWeeklyHours;
+  const bigCount = useMemo(() => milestones(core).length, [core]);
   const [toEditMap, setToEditMap] = useState(false);
   const arrived = useCallback(() => setToEditMap(false), []);
   const toEdit = () => { setToEditMap(true); choose("map"); };
@@ -212,6 +216,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
       <header inert={!!open} className={`mx-auto flex min-h-[250px] max-w-[1040px] flex-col justify-between px-5 pt-[22px] pb-5 min-[760px]:block min-[760px]:min-h-[300px] ${fade}`}>
         <div ref={titleBox} className="max-w-[440px]">
           <h1 ref={h1} tabIndex={-1} className="text-h1">Your plan</h1>
+          <p className="mt-2.5"><span className="fact block text-ink">headed for</span>
+            <span className="label text-[1.3125rem] leading-[1.2]">{outcomeText(answers.trackId)}</span></p>
           <p className="mt-2 text-small">{planSummary(answers)}</p>
         </div>
         <div>
@@ -266,21 +272,31 @@ export function ResultsPage({ saved, onChange, onEdit }: {
                       <Button variant="outline" small onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>Refresh plan</Button>
                     </div>
                   )}
-                  {/* 1. Do this now, this semester, and why this order: the first screen. */}
-                  <div className="pt-8"><StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} doneCount={saved.completedGoals.length} /></div>
+                  {/* 1. Where you stand and the one action: the first screen. */}
+                  <div className="pt-8">
+                    <StatusStrip term={core.terms[0]} doneCount={saved.completedGoals.length} weeklyHours={hours}
+                      onHours={(h) => replan(setHours(saved, h, todayISO()), (n) => `Re-planned for ${h} free hours a week${n ? `; ${n} goals moved` : ""}.`)} />
+                    <StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
+                  </div>
+                  {/* 2. This semester, with notes and why this order. */}
                   <div className="pt-10">
-                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={answers.weeklyHours} edges={plan.edges} />
+                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={hours} edges={plan.edges} />
                     <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
                     <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
                   </div>
-                  <hr className="shore mt-10" />
-                  <div className="pt-10">{banner(toEdit)}</div>
-                  <div className="py-10"><GoalPath plan={core} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} /></div>
                   {settled && <>
-                  <hr className="shore" />
-                  <div className="py-10"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
-                  <hr className="shore" />
-                  <div className="py-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
+                  {/* 3. Coming up. */}
+                  <div className="pt-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
+                  {/* 4. The big picture: where you're headed, what you have and need. */}
+                  <section aria-labelledby="big-h" className="pt-10">
+                    <SectionHead id="big-h" title="The big picture" count={`${bigCount} ${bigCount === 1 ? "milestone" : "milestones"}`} />
+                    <div className="mt-5 border-[1.5px] border-blue p-[clamp(16px,3vw,24px)]">
+                      <GoalPath plan={core} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} />
+                    </div>
+                    <div className="pt-8"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
+                  </section>
+                  {/* 5. Housekeeping: the draft in one line. */}
+                  <div className="pt-10"><DraftLine plan={plan} finalized={finalized} weeklyHours={hours} onEdit={toEdit} /></div>
                   {(saved.completedGoals.length > 0 || plan.ongoing.length > 0 || plan.skipped.length > 0) && (
                     <>
                       <hr className="shore" />
@@ -359,7 +375,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
 
       <AnimatePresence>
         {open && <GoalDrawer key={open.item.goalId} item={open.item} term={open.term} identity={answers.identity} onClose={close} onDone={done} onSkip={skip}
-          progress={progress} onToggleStep={onToggleStep} />}
+          progress={progress} onToggleStep={onToggleStep} weeks={open.term.code === plan.terms[0]?.code ? termWeeks(open.term, hours) : undefined} />}
       </AnimatePresence>
     </div>
   );

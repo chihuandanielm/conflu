@@ -24,6 +24,23 @@ export function withoutOptions(plan: Plan): Plan {
 const optionCount = (plan: Plan) => plan.terms.reduce((n, t) => n + t.items.filter((i) => i.option).length, 0);
 
 /**
+ * On the Plan tab, the draft is one dashed line (design/DESIGN.md §7.4 #5): what it is and a link to the Map tab, where
+ * the full banner and its "Finalize my map" button live. One solid blue block per screen stays "Do this now".
+ */
+export function DraftLine({ plan, finalized, weeklyHours, onEdit }: { plan: Plan; finalized: boolean; weeklyHours?: number; onEdit: () => void }) {
+  const extra = optionCount(plan);
+  return (
+    <section aria-labelledby="draftline-h" className="flex flex-wrap items-center justify-between gap-3 border-[1.5px] border-dashed border-blue px-3.5 py-3">
+      <div>
+        <h2 id="draftline-h" className="text-[1.1875rem]">{finalized ? "Your final map" : "This is a draft map"}</h2>
+        <p className="text-small">{finalized ? `Sized to ${weeklyHours ? `your ${weeklyHours} free hours a week` : "your time"}.` : `${extra} extra ${extra === 1 ? "option" : "options"} to review.`}</p>
+      </div>
+      <button type="button" className="btn btn--text" onClick={onEdit}>{finalized ? "Edit it on the Map tab" : "Review on the Map tab"}<span aria-hidden="true" className="font-mono">-&gt;</span></button>
+    </section>
+  );
+}
+
+/**
  * The draft banner (engine 0.9.0): says the map can be edited, and how. A new plan is a draft with more options than the
  * student's time fits; they cross out what's not for them, mark done what they've done, and finalize. Or they keep the
  * draft as it is (it downloads as a PDF too). A final map can go back to the draft.
@@ -35,7 +52,7 @@ export function DraftBanner({ plan, finalized, weeklyHours, onFinalize, onReopen
   const extra = optionCount(plan);
   return (
     <section aria-labelledby="draft-h" className="border-l-[3px] border-blue pl-4">
-      <h2 id="draft-h" className="text-lead font-bold">{finalized ? "Your final map" : "This is your draft map"}</h2>
+      <h2 id="draft-h" className="text-[1.375rem]">{finalized ? "Your final map" : "This is your draft map"}</h2>
       {finalized ? (
         <p className="mt-1.5 max-w-[44em]">Sized to {hours}. You can still cross out goals that aren't for you, mark goals done, or go back to the draft to see more options.</p>
       ) : (
@@ -87,9 +104,9 @@ export function EditMap({ plan, trackId, onOpen, onDone, onSkip, onUndoSkip, arr
       </p>
       {plan.terms.filter((t) => t.items.length).map((t) => (
         <section key={t.code} aria-labelledby={`edit-${t.code}`} className="mt-8">
-          <h3 id={`edit-${t.code}`} className="fact uppercase">{t.label}</h3>
+          <h3 id={`edit-${t.code}`} className="text-[1.25rem]">{t.label}</h3>
           <ul className="mt-2 border-t-[1.5px] border-blue">
-            {byImportance(t.items).map((it) => <EditRow key={it.goalId} it={it} onOpen={() => onOpen(it, t)} onDone={onDone} onSkip={onSkip} />)}
+            {byImportance(t.items).map((it) => <EditRow key={it.goalId} it={it} term={t.code} onOpen={() => onOpen(it, t)} onDone={onDone} onSkip={onSkip} />)}
           </ul>
         </section>
       ))}
@@ -98,16 +115,16 @@ export function EditMap({ plan, trackId, onOpen, onDone, onSkip, onUndoSkip, arr
   );
 }
 
-function EditRow({ it, onOpen, onDone, onSkip }: { it: PlanItem; onOpen: () => void; onDone: (id: string) => void; onSkip: (id: string) => void }) {
+function EditRow({ it, term, onOpen, onDone, onSkip }: { it: PlanItem; term: string; onOpen: () => void; onDone: (id: string) => void; onSkip: (id: string) => void }) {
   const must = it.importance === "must";
   return (
     <li className={`flex flex-wrap items-center gap-x-4 gap-y-2 border-b-[1.5px] border-blue py-3 pr-1 ${must ? "border-l-[3px] pl-3" : "pl-1"}`}>
       <span aria-hidden="true" className={`dot ${must ? "dot--must" : ""}`} />
       <div className="min-w-[12em] flex-1">
-        <button type="button" onClick={onOpen} className="text-left underline-offset-4 hover:underline">{it.title}</button>
+        <button type="button" onClick={onOpen} className="title text-left text-[1.1875rem] leading-[1.2] text-blue underline-offset-4 hover:underline">{it.title}</button>
         <span className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className={`fact px-1.5 ${must ? "bg-blue text-sage" : "border-[1.5px] border-blue"}`}>{IMPORTANCE[it.importance].label}</span>
-          <span className="fact">{it.option ? `${factLine({ ...it, gate: false })}  option` : factLine({ ...it, gate: false })}</span>
+          <span className="fact">{it.option ? `${factLine({ ...it, gate: false })} · option` : factLine({ ...it, gate: false }, term)}</span>
         </span>
       </div>
       <span className="flex gap-2">

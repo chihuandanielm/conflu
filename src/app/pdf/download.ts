@@ -14,7 +14,8 @@ export async function downloadRoadmapPdf(saved: SavedPlan): Promise<void> {
   // TTF copies of the self-hosted Quantico and Plex Mono fonts (scripts/woff-to-ttf.mjs): the browser build of the
   // PDF renderer can't read WOFF.
   const base = import.meta.env.BASE_URL;
-  registerFonts({ regular: `${base}fonts/quantico-400.ttf`, bold: `${base}fonts/quantico-700.ttf`, mono: `${base}fonts/ibm-plex-mono-400.ttf` });
+  registerFonts({ regular: `${base}fonts/quantico-400.ttf`, bold: `${base}fonts/quantico-700.ttf`, mono: `${base}fonts/ibm-plex-mono-400.ttf`,
+    display: `${base}fonts/barlow-semi-condensed-600.ttf`, displayBold: `${base}fonts/barlow-semi-condensed-700.ttf` });
   const date = todayISO();
   const a = saved.answers;
   const input = toPlanInput(a, date, { completedGoals: saved.completedGoals, previousPlan: saved.previousPlan });

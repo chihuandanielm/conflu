@@ -9,7 +9,7 @@ import { ResourceCard } from "../resources/ResourceCard.tsx";
 import { groupOf, type Tailored } from "../resources/tailor.ts";
 import { howTo, type StepProgress } from "../state/steps.ts";
 import { Button } from "../ui/Button.tsx";
-import { IMPORTANCE } from "./EditMap.tsx";
+import { PriorityTag } from "./GoalRow.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -44,11 +44,13 @@ export function linkStep(step: string, places: Resource[]): ReactNode {
  * go (resource boxes) right under it, Done when, Why it's here, and "Mark as done". It slides in over 260ms. Traps
  * focus; Escape closes.
  */
-export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, progress = {}, onToggleStep = () => {} }: {
+export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, progress = {}, onToggleStep = () => {}, weeks }: {
   item: PlanItem; term: PlanTerm; identity: string[]; onClose: () => void; onDone: (goalId: string) => void;
   /** "Not for me" (engine 0.9.0): cross the goal out and re-plan without it. */
   onSkip?: (goalId: string) => void;
   progress?: StepProgress; onToggleStep?: (goalId: string, i: number) => void;
+  /** Weeks of work left in the goal's term, for "~N h a week". */
+  weeks?: number;
 }) {
   const wide = useMediaQuery("(min-width: 600px)");
   const reduce = useReducedMotion();
@@ -91,17 +93,23 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
     <>
       {how.steps.length > 0 && (
         <section aria-labelledby="todo-h" className="mt-6">
-          <div className="flex items-baseline justify-between gap-2">
-            <h3 id="todo-h" className="text-lead">What to do</h3>
+          <div className="flex items-baseline justify-between gap-2 border-t-[3px] border-blue pt-2">
+            <h3 id="todo-h" className="text-[1.3125rem]">What to do</h3>
             <p className="fact" aria-live="polite">{doneCount} of {how.steps.length} done</p>
+          </div>
+          {/* Progress: a green fill for what's done (design/DESIGN.md §2: green is done). */}
+          <div aria-hidden="true" className="mt-2 h-2 border-[1.5px] border-blue">
+            <div aria-hidden="true" className="h-full bg-green transition-[width] duration-[260ms]" style={{ width: `${(doneCount / how.steps.length) * 100}%` }} />
           </div>
           <ol className="mt-2">
             {how.steps.map((step, i) => {
               const id = `step-${item.goalId}-${i}`;
+              const on = checked.includes(i);
               return (
-                <li key={id} className="grid grid-cols-[22px_1fr] items-start gap-2.5 py-1.5">
-                  <input id={id} type="checkbox" className="tick" checked={checked.includes(i)} onChange={() => onToggleStep(item.goalId, i)} />
-                  <label htmlFor={id} className="cursor-pointer"><span className="sr-only">Step {i + 1}: </span>{linkStep(step, places)}</label>
+                <li key={id} className="grid grid-cols-[22px_1.25rem_1fr] items-start gap-2.5 border-b-[1.5px] border-blue py-2.5">
+                  <input id={id} type="checkbox" className="tick" checked={on} onChange={() => onToggleStep(item.goalId, i)} />
+                  <span aria-hidden="true" className="fact text-blue">{i + 1}</span>
+                  <label htmlFor={id} className={`cursor-pointer ${on ? "line-through decoration-green decoration-2" : ""}`}><span className="sr-only">Step {i + 1}: </span>{linkStep(step, places)}</label>
                 </li>
               );
             })}
@@ -109,25 +117,28 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
           {allChecked && <p className="mt-2 text-small">Every step is checked. Mark it as done below to update your plan.</p>}
         </section>
       )}
+      {how.doneWhen && (
+        <section aria-labelledby="donewhen-h" className="mt-5 border-l-[3px] border-green pl-3">
+          <h3 id="donewhen-h" className="text-[1.125rem] text-ink">Done when</h3>
+          <p className="text-small">{how.doneWhen}</p>
+        </section>
+      )}
     </>
   );
   const more: ReactNode = (
     <>
-      {how.doneWhen && (
-        <section aria-labelledby="donewhen-h" className="mt-6">
-          <h3 id="donewhen-h" className="text-lead">Done when</h3>
-          <p className="mt-1.5">{how.doneWhen}</p>
-        </section>
-      )}
       <section aria-labelledby="why-h" className="mt-6">
-        <h3 id="why-h" className="text-lead">Why it's here</h3>
+        <h3 id="why-h" className="text-[1.25rem]">Why it's here</h3>
         <ul className="mt-1.5">{item.why.map((w) => <li key={w} className="py-1.5">{w}</li>)}</ul>
       </section>
     </>
   );
   const go: ReactNode = (
-    <section aria-labelledby="go-h" className="mt-6">
-      <h3 id="go-h" className="text-lead">Where to go</h3>
+    <section aria-labelledby="go-h" className="mt-7">
+      <div className="flex items-baseline justify-between gap-2 border-t-[3px] border-blue pt-2">
+        <h3 id="go-h" className="text-[1.3125rem]">Where to go</h3>
+        {boxes.length > 0 && <p className="fact">{boxes.length} {boxes.length === 1 ? "place" : "places"}</p>}
+      </div>
       {boxes.length === 0 ? (
         <p className="mt-1.5">No linked programs fit your year and major for this step yet. Your career office can point you to options.</p>
       ) : (
@@ -146,12 +157,12 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
         className="absolute inset-x-0 top-[12dvh] bottom-0 overflow-y-auto border-t-[1.5px] border-blue bg-sage px-[clamp(16px,4vw,28px)] pt-[22px] pb-7
           min-[600px]:top-0 min-[600px]:right-0 min-[600px]:left-auto min-[600px]:w-[480px] min-[600px]:border-t-0 min-[600px]:border-l-[1.5px]">
         <button ref={closeBtn} type="button" onClick={onClose} aria-label="Close details" className="btn btn--small sticky top-0 float-right ml-3">Close</button>
-        <p className="fact">{factLine(item)}{"  "}{term.label.toLowerCase()}</p>
-        <h2 id="drawer-title" className="mt-1.5 text-h2">{item.title}</h2>
-        {item.importance && (
-          <p className="mt-2"><span className={`fact px-1.5 ${item.importance === "must" ? "bg-blue text-sage" : "border-[1.5px] border-blue"}`}>
-            {IMPORTANCE[item.importance].label}</span>{item.option && <span className="fact ml-3">an extra option on your draft map</span>}</p>
-        )}
+        <p className="fact">{term.label.toLowerCase()}</p>
+        <h2 id="drawer-title" className="mt-1.5 text-[1.75rem] leading-[1.1]">{item.title}</h2>
+        <p className="mt-2.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+          <PriorityTag it={item} />
+          <span className="fact">{item.option ? "an extra option on your draft map" : factLine({ ...item, gate: false }, term.code, weeks)}</span>
+        </p>
         {todo}{go}{more}
         <p className="mt-[26px] flex flex-wrap gap-2">
           <Button onClick={() => onDone(item.goalId)}>Mark as done</Button>

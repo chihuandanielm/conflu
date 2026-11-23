@@ -1,4 +1,5 @@
-// Converts the self-hosted WOFF files from @fontsource (Quantico and IBM Plex Mono, the two families of the design)
+// Converts the self-hosted WOFF files from @fontsource (Barlow Semi Condensed, Quantico and IBM Plex Mono, the design's
+// three families)
 // into TTF for the PDF renderer, which can't parse WOFF in the browser build. WOFF 1 is TrueType with zlib-compressed
 // tables, so this only needs node:zlib. Output: public/fonts/*.ttf, plus each family's licence (both are under the
 // SIL Open Font License, which asks for the licence to travel with the fonts).
@@ -14,10 +15,13 @@ const FONTS = [
   ["@fontsource/quantico/files/quantico-latin-400-normal.woff", "quantico-400.ttf"],
   ["@fontsource/quantico/files/quantico-latin-700-normal.woff", "quantico-700.ttf"],
   ["@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff", "ibm-plex-mono-400.ttf"],
+  ["@fontsource/barlow-semi-condensed/files/barlow-semi-condensed-latin-600-normal.woff", "barlow-semi-condensed-600.ttf"],
+  ["@fontsource/barlow-semi-condensed/files/barlow-semi-condensed-latin-700-normal.woff", "barlow-semi-condensed-700.ttf"],
 ];
 const LICENSES = [
   ["@fontsource/ibm-plex-mono/LICENSE", "OFL-LICENSE.txt"],
   ["@fontsource/quantico/LICENSE", "OFL-LICENSE-Quantico.txt"],
+  ["@fontsource/barlow-semi-condensed/LICENSE", "OFL-LICENSE-Barlow.txt"],
 ];
 
 export function woffToSfnt(woff) {

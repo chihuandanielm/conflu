@@ -1,6 +1,6 @@
 // Types for confluence-map.js (design/DESIGN.md §7.5). The implementation stays plain, dependency-free JavaScript.
 
-export interface MapGoal { goalId: string; title: string; lane?: string; hours?: number; gate?: boolean; done?: boolean; late?: boolean }
+export interface MapGoal { goalId: string; title: string; lane?: string; hours?: number; /** the time in words ("~2 h a week"); replaces the glyph and hours */ time?: string; gate?: boolean; done?: boolean; late?: boolean }
 export interface MapTerm { code: string; label: string; items: MapGoal[] }
 export interface MapModel { terms: MapTerm[]; outcome: string }
 export interface MapOptions {

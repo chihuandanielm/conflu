@@ -65,14 +65,23 @@ describe("colour (DESIGN.md §2)", () => {
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 
-  it("never puts green behind or around anything except a done mark, the on-track counter, or the progress gauge", () => {
-    const allowed = /ProgressBar|Competencies|OnTrack|dot/;
+  it("never puts green behind or around anything except a done mark, the on-track counter, a progress gauge, or 'Done when'", () => {
+    // GoalDrawer: the steps' progress bar and the green bar beside "Done when" (green means done, DESIGN.md §2).
+    const allowed = /ProgressBar|Competencies|OnTrack|GoalDrawer|dot/;
     const bad = tags.filter(({ p, tag }) => /(?<![\w-])(bg|border)-green\b/.test(tag) && !allowed.test(p) && !/aria-hidden/.test(tag));
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 });
 
 describe("type (DESIGN.md §3)", () => {
+  it("sets headings, titles and labels in bold Barlow Semi Condensed, self-hosted, and sentences in Quantico", () => {
+    expect(css).toMatch(/@import "@fontsource\/barlow-semi-condensed\/latin-700\.css"/);
+    expect(css).toMatch(/h1, h2, h3 \{[^}]*font-family: var\(--font-display\);[^}]*font-weight: 700/);
+    expect(css).toMatch(/\.title, \.label \{[^}]*font-family: var\(--font-display\);[^}]*font-weight: 600/);
+    expect(css).toMatch(/body \{[^}]*font-family: var\(--font-text\)/);
+    expect(css).not.toMatch(/fonts\.googleapis|fonts\.gstatic/);
+  });
+
   const rem = (name: string) => parseFloat(css.match(new RegExp(`--text-${name}:\\s*([\\d.]+)rem`))![1]) * 16;
   it("sets nothing under 15px", () => {
     for (const t of ["fact", "small", "body", "lead"]) expect(rem(t), t).toBeGreaterThanOrEqual(15);

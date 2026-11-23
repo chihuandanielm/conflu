@@ -91,8 +91,8 @@ describe("confluence map layout", () => {
     expect(roomy.shown).toBe(full.total);
   });
 
-  it("writes the fact line in the design's order: kind, hours, must-do, continues", () => {
-    expect(factLine({ lane: "skills", hours: 15, gate: true, partial: true })).toBe("# skills  15 h  must-do  continues");
-    expect(factLine({ lane: "applications", hours: 2.4, gate: false, partial: false })).toBe("-> applications  2 h");
+  it("writes the fact line in the design's order: kind, time, must-do, continues (time in words: src/app/map/time.test.ts)", () => {
+    expect(factLine({ goalId: "s-python", lane: "skills", hours: 15, gate: true, partial: true }, "1F")).toBe("skills · ~1 h a week this semester (30 h in all) · must-do · continues");
+    expect(factLine({ goalId: "f-fafsa@Y1", lane: "foundation", hours: 2, gate: false, partial: false }, "1F")).toBe("foundation · about 2 hours, once");
   });
 });

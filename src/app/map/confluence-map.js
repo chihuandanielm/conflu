@@ -110,6 +110,9 @@ export function layoutConfluence(model, opt = {}) {
 
   function metaOf(g) {
     const bits = [];
+    // With a time in words (the app passes one), the line reads "experience · ~2 h a week · must-do"; without, the
+    // older glyph form ("# skills  15 h  must-do") that the design prototypes use.
+    if (g.time) return [LANE_NAME[g.lane] ?? g.lane, g.time, g.gate ? "must-do" : ""].filter(Boolean).join(" · ");
     if (g.lane) bits.push(`${LANE_GLYPH[g.lane] ?? ""} ${LANE_NAME[g.lane] ?? g.lane}`.trim());
     if (g.hours) bits.push(`${g.hours} h`);
     if (g.gate) bits.push("must-do");

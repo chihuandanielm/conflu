@@ -12,7 +12,7 @@ export function HaveNeed({ plan, answers, onOpen }: { plan: Plan; answers: Answe
   return (
     <div className="grid gap-x-12 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
       <section aria-labelledby="have-h">
-        <h2 id="have-h" className="text-h2">What you have</h2>
+        <h3 id="have-h" className="text-[1.375rem]">What you have</h3>
         {have.length ? (
           <ul className="mt-3">
             {have.slice(0, SHOWN).map((h) => (
@@ -25,14 +25,14 @@ export function HaveNeed({ plan, answers, onOpen }: { plan: Plan; answers: Answe
         )}
       </section>
       <section aria-labelledby="need-h">
-        <h2 id="need-h" className="text-h2">What you need</h2>
+        <h3 id="need-h" className="text-[1.375rem]">What you need</h3>
         <ul className="mt-3">
           {need.map((n) => (
             <li key={n.label}>
               <button type="button" onClick={() => onOpen(n.item, termOf(n.term))} className="group flex w-full items-baseline gap-3 py-[7px] text-left">
                 <span aria-hidden="true" className="dot translate-y-px" />
                 <span>
-                  <span className="block underline-offset-4 group-hover:underline">{n.label}</span>
+                  <span className="label block text-blue underline-offset-4 group-hover:underline">{n.label}</span>
                   <span className="block text-small">{n.detail}</span>
                 </span>
               </button>

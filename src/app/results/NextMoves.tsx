@@ -3,6 +3,8 @@ import type { Plan, PlanItem, PlanTerm } from "../../engine/types.ts";
 import { nextStep, type StepProgress } from "../state/steps.ts";
 import { GoalRow } from "./GoalRow.tsx";
 import { PlaceLinks } from "./Places.tsx";
+import { SectionHead } from "./SectionHead.tsx";
+import { termWeeks } from "../map/facts.ts";
 import { inWorkOrder } from "./order.ts";
 
 const FIRST = 3;
@@ -19,7 +21,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
   if (!term || term.items.length === 0) {
     return (
       <section aria-labelledby="next-h">
-        <h2 id="next-h" className="text-h2">This semester</h2>
+        <SectionHead id="next-h" title="This semester" />
         <p className="mt-2">Nothing is scheduled for this term. Check the notices below, or add hours to fit more in.</p>
       </section>
     );
@@ -28,8 +30,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
   const items = all ? sorted : sorted.slice(0, FIRST);
   return (
     <section aria-labelledby="next-h">
-      <h2 id="next-h" className="text-h2">This semester</h2>
-      <p className="fact mt-1.5">{term.label.toLowerCase()}{"  "}sized to {weeklyHours ? `your ${weeklyHours} free hours a week` : "the time you have"}</p>
+      <SectionHead id="next-h" title="This semester" count={`${sorted.length} ${sorted.length === 1 ? "goal" : "goals"}`} />
       <ol className="mt-4 border-t-[1.5px] border-blue">
         {items.map((it) => {
           const step = nextStep(it, progress);
@@ -37,7 +38,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
           const next = step ? `Next: ${step.text}` : total > 0 ? "Every step is checked. Open it to mark it as done." : it.why[0];
           return (
             <li key={it.goalId} className="border-b-[1.5px] border-blue">
-              <GoalRow it={it} next={next} ruled={false} onOpen={() => onOpen(it, term)} />
+              <GoalRow it={it} termCode={term.code} weeks={weeklyHours ? termWeeks(term, weeklyHours) : undefined} next={next} ruled={false} onOpen={() => onOpen(it, term)} />
               <PlaceLinks it={it} className="-mt-2 pb-4 pl-[calc(11px+0.875rem+0.25rem)] pr-8" />
             </li>
           );
