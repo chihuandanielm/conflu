@@ -17,7 +17,7 @@ export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
   experience: { question: "What have you already done?", help: "Tap anything that fits and skip the rest. A rough answer is fine; you can change it later." },
   skills: { question: "Which skills are you comfortable with?", help: "Only pick ones you could use on a project today." },
   credentials: { question: "Do you have any of these certifications?", why: "Certifications you already hold come off your plan." },
-  hours: { question: "Outside of class, how many hours a week can you give your career goals?", help: "Count only the free time left after classes, studying, work, and family. A rough guess is fine; the plan fits to it." },
+  hours: { question: "How many hours a week can you give your career, outside classes?", help: "Count only the free time left after classes, studying, work, and family. It is a budget, not homework: it decides how much goes in each semester. A rough guess is fine, and you can change it on your plan anytime." },
   summer: { question: "What about summers?", help: "Many internships and research programs are full-time in summer." },
   coop: { question: uiIntake.coop.question, help: uiIntake.coop.help },
   location: { question: "Where are you based?", why: "New Jersey residents qualify for state programs, which we list first." },

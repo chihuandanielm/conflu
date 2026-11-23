@@ -15,7 +15,7 @@ import { inWorkOrder } from "../results/order.ts";
 import { byImportance } from "../results/EditMap.tsx";
 import { moreTime, needs, outcomeText } from "../results/summary.ts";
 
-export interface FontFiles { regular: string; bold: string; mono: string }
+export interface FontFiles { regular: string; bold: string; mono: string; display: string; displayBold: string }
 
 /** Hyphenation callback: whole words, except long URLs, which get break points after each slash. */
 export function urlBreaks(word: string): string[] {
@@ -28,6 +28,8 @@ export function registerFonts(f: FontFiles) {
   if (registered) return;
   Font.register({ family: "Quantico", fonts: [{ src: f.regular, fontWeight: 400 }, { src: f.bold, fontWeight: 700 }] });
   Font.register({ family: "PlexMono", src: f.mono });
+  // Headings and titles: Barlow Semi Condensed (design/DESIGN.md §3), 600 for titles, 700 for headings.
+  Font.register({ family: "Barlow", fonts: [{ src: f.display, fontWeight: 600 }, { src: f.displayBold, fontWeight: 700 }] });
   // Never hyphenate words. Long URLs may wrap after a slash: an empty "syllable" between parts becomes a
   // zero-width break point in react-pdf's line breaker, so no hyphen is drawn and the printed URL stays exact.
   Font.registerHyphenationCallback(urlBreaks);
@@ -52,10 +54,10 @@ const s = StyleSheet.create({
   // footer, and an inherited one double-spaces smaller text. Set it per style.
   page: { fontFamily: "Quantico", fontSize: 9.5, color: C.ink, backgroundColor: C.sage, paddingTop: PAGE.top, paddingBottom: PAGE.bottom, paddingHorizontal: PAGE.side },
   fact: { fontFamily: "PlexMono", fontSize: 7.5, letterSpacing: 0.2 },
-  title: { fontSize: 26, marginTop: 6, color: C.blue },
+  title: { fontFamily: "Barlow", fontWeight: 700, fontSize: 28, marginTop: 6, color: C.blue },
   summary: { fontSize: 9.5, marginTop: 3, lineHeight: 1.3 },
-  outcome: { fontSize: 16.5, marginTop: 12, lineHeight: 1.15, color: C.blue },
-  h2: { fontSize: 14, color: C.blue },
+  outcome: { fontFamily: "Barlow", fontWeight: 600, fontSize: 17, marginTop: 12, lineHeight: 1.15, color: C.ink },
+  h2: { fontFamily: "Barlow", fontWeight: 700, fontSize: 15.5, color: C.blue },
   body: { fontSize: 9, lineHeight: 1.35 },
   small: { fontSize: 8.5, lineHeight: 1.35 },
   footer: { position: "absolute", bottom: 19.5, left: PAGE.side, right: PAGE.side, flexDirection: "row", justifyContent: "space-between",
@@ -83,7 +85,7 @@ const Masthead = () => {
         <Circle cx={22} cy={46} r={3.4} fill={C.sage} stroke={C.blue} strokeWidth={1.5} />
         <Circle cx={30} cy={46} r={1.3} fill={C.blue} />
       </Svg>
-      <Text style={{ fontSize: 22, color: C.blue, marginTop: 6, letterSpacing: 1.5 }}>conflu</Text>
+      <Text style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 25, color: C.blue, marginTop: 6, letterSpacing: 1.2 }}>conflu</Text>
       <Svg width={rule} height={9} viewBox={`0 0 ${rule} 9`} style={{ marginTop: 5 }}>
         <Line x1={4} y1={4.5} x2={rule - 4} y2={4.5} stroke={C.blue} strokeWidth={0.75} />
         {ticks.map((x, i) => <Line key={x} x1={x} y1={i % 7 === 0 ? 1.5 : 3} x2={x} y2={4.5} stroke={C.sand} strokeWidth={0.75} />)}
@@ -157,14 +159,14 @@ function PdfMap({ L, k }: { L: MapLayout; k: number }) {
 }
 
 /** One goal, as a piece of its stream: a line down the left (heavier for a must-do), a dot on it, and what to do. */
-function GoalBlock({ it, again }: { it: PlanItem; again: boolean }) {
+function GoalBlock({ it, again, term }: { it: PlanItem; again: boolean; term: string }) {
   const how = howTo(it);
   return (
     <View style={{ position: "relative", paddingLeft: 19.5, paddingVertical: 6.75 }} wrap={false}>
       <View style={{ position: "absolute", left: it.gate ? 2.4 : 3, top: 0, bottom: 0, borderLeftWidth: it.gate ? 3 : 1.5, borderLeftColor: C.blue }} />
       <Dot gate={it.gate} style={{ position: "absolute", left: 0, top: 9.75 }} />
-      <Text style={{ fontSize: 10.5, lineHeight: 1.2 }}>{it.title}</Text>
-      <Text style={s.fact}>{factLine(it)}{again ? "  keep going" : ""}</Text>
+      <Text style={{ fontFamily: "Barlow", fontWeight: 600, fontSize: 11.5, lineHeight: 1.2, color: C.blue }}>{it.title}</Text>
+      <Text style={s.fact}>{factLine(it, term)}{again ? " · keep going" : ""}</Text>
       {!again && (
         <>
           {it.why.length > 0 && <Text style={[s.small, { marginTop: 2 }]}>{it.why[it.why.length - 1]}</Text>}
@@ -191,13 +193,13 @@ function GoalBlock({ it, again }: { it: PlanItem; again: boolean }) {
 }
 
 /** A later semester's goal in brief: its dot, title and fact line, half a column wide. */
-function LaterRow({ it, again }: { it: PlanItem; again: boolean }) {
+function LaterRow({ it, again, term }: { it: PlanItem; again: boolean; term: string }) {
   return (
     <View style={{ width: HALF, flexDirection: "row", gap: 6, paddingVertical: 2 }} wrap={false}>
       <Dot gate={it.gate} style={{ marginTop: 2.5 }} />
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 9, lineHeight: 1.25 }}>{it.title}</Text>
-        <Text style={[s.fact, { fontSize: 7 }]}>{factLine(it)}{again ? "  keep going" : ""}{it.option ? "  option" : ""}</Text>
+        <Text style={{ fontFamily: "Barlow", fontWeight: 600, fontSize: 10, lineHeight: 1.25, color: C.blue }}>{it.title}</Text>
+        <Text style={[s.fact, { fontSize: 7 }]}>{it.option ? factLine(it) : factLine(it, term)}{again ? " · keep going" : ""}{it.option ? " · option" : ""}</Text>
       </View>
     </View>
   );
@@ -299,7 +301,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
         </View>
         {first && (
           <View style={{ marginTop: 15, backgroundColor: C.blue, color: C.sage, padding: 13 }} wrap={false}>
-            <Text style={[s.fact, { color: C.sage }]}>Start here</Text>
+            <Text style={[s.fact, { color: C.sage }]}>Do this now</Text>
             <Text style={{ fontSize: 13, lineHeight: 1.25, marginTop: 3 }}>{howTo(first).steps[0]}</Text>
             <Text style={[s.small, { marginTop: 4 }]}>Part of: {first.title}</Text>
           </View>
@@ -321,13 +323,13 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
             {mine(t).map((it) => {
               const again = told.has(it.goalId);
               told.add(it.goalId);
-              return <GoalBlock key={it.goalId} it={it} again={again} />;
+              return <GoalBlock key={it.goalId} it={it} again={again} term={t.code} />;
             })}
             {extras(t).length > 0 && (
               <View style={{ marginTop: 6 }} wrap={false}>
                 <Text style={[s.fact, { marginBottom: 2 }]}>more options on your draft map, most important first</Text>
                 <View style={{ flexDirection: "row", flexWrap: "wrap", columnGap: 16 }}>
-                  {extras(t).map((it) => { told.add(it.goalId); return <LaterRow key={it.goalId} it={it} again={false} />; })}
+                  {extras(t).map((it) => { told.add(it.goalId); return <LaterRow key={it.goalId} it={it} again={false} term={t.code} />; })}
                 </View>
               </View>
             )}
@@ -349,7 +351,7 @@ export function RoadmapPdf({ plan, input, summary, resources, date, done = [] }:
                   {inWorkOrder(t.items, plan.edges).map((it) => {
                     const again = told.has(it.goalId);
                     told.add(it.goalId);
-                    return <LaterRow key={it.goalId} it={it} again={again} />;
+                    return <LaterRow key={it.goalId} it={it} again={again} term={t.code} />;
                   })}
                 </View>
               </View>

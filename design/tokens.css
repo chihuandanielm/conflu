@@ -17,6 +17,7 @@
   --green: #00A37D;
   --sand: #E6B989;
 
+  --font-display: "Barlow Semi Condensed", "Quantico", sans-serif; /* headings (700) and bold labels (600) */
   --font-text: "Quantico", system-ui, sans-serif;        /* everything meant to be read */
   --font-mono: "IBM Plex Mono", ui-monospace, monospace; /* the river, small facts (hours, terms, kinds), key hints */
 

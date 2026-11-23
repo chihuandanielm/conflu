@@ -80,7 +80,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 10 free hours a week")).toBeVisible();
-  for (const name of ["Do this now", "This semester", "Where you're headed", "What you have", "What you need", "Coming up"]) {
+  for (const name of ["Do this now", "This semester", "Coming up", "The big picture", "Where you're headed", "What you have", "What you need"]) {
     await expect(page.getByRole("heading", { name })).toBeVisible();
   }
 
@@ -116,23 +116,24 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   // Courses tab: the major's courses by year, dated, linked to the official 2026–27 catalog page, tickable.
   await page.getByRole("tab", { name: /^Courses/ }).click();
-  const onTrack = page.getByRole("heading", { name: "On track to graduate" }).locator("xpath=..");
+  const onTrack = page.getByRole("heading", { name: "On track to graduate" }).locator("xpath=ancestor::section[1]");
   await expect(onTrack.getByRole("link", { name: /Official requirements for your major/ })).toHaveAttribute("href", /catalogs\.rutgers\.edu/);
   await expect(onTrack.getByText(/2026–2027 New Brunswick Undergraduate Catalog \(last checked/)).toBeVisible();
   await onTrack.getByRole("checkbox").first().check();
   await expect(onTrack.getByText(/1 of \d+ requirements from earlier years ticked/)).toBeVisible();
   await page.getByRole("tab", { name: "Plan" }).click();
 
-  // The draft map (engine 0.9.0): the banner says it can be edited; cross a goal out, undo it, then finalize.
-  await expect(page.getByRole("heading", { name: "This is your draft map" })).toBeVisible();
-  await page.getByRole("button", { name: "Edit your map" }).click();
+  // The draft map (engine 0.9.0): one line on the Plan tab leads to the Map tab, where the banner says it can be
+  // edited; cross a goal out, undo it, then finalize.
+  await expect(page.getByRole("heading", { name: "This is a draft map" })).toBeVisible();
+  await page.getByRole("button", { name: /Review on the Map tab/ }).click();
   await expect(page.getByRole("heading", { name: "Edit your map" })).toBeFocused();
+  await expect(page.getByRole("heading", { name: "This is your draft map" })).toBeVisible();
   await expect(page.getByText("Essential must-do").first()).toBeVisible();
   await page.getByRole("button", { name: /^Not for me: / }).nth(1).click();
   await expect(page.getByRole("heading", { name: "Not for me" })).toBeVisible();
   await page.getByRole("button", { name: /^Undo: / }).click();
   await expect(page.getByRole("heading", { name: "Not for me" })).toBeHidden();
-  await page.getByRole("tab", { name: "Plan" }).click();
   await page.getByRole("button", { name: "Finalize my map" }).click();
   await expect(page.getByRole("heading", { name: "Your final map" })).toBeVisible();
 
@@ -158,13 +159,15 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
   await page.getByRole("button", { name: "Build my plan" }).click();
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText(/Nursing · Third year, fall semester · Rutgers–Newark ·/)).toBeVisible();
-  // The first screen on a phone: the header's actions in one row, the tabs, and "Do this now" with this semester.
+  // The first screen on a phone: the header's actions in one row, the tabs, where you stand, and "Do this now".
   // Measure once the self-hosted fonts are in (a fallback font is wider and would skew the layout).
   await page.evaluate(() => document.fonts.ready);
   const vh = page.viewportSize()!.height;
   const now = (await page.getByRole("heading", { name: "Do this now" }).boundingBox())!;
   expect(now.y + now.height).toBeLessThan(vh);
-  await expect(page.getByRole("heading", { name: "Do this now" }).locator("xpath=ancestor::section[1]").getByText(/^This semester: /)).toBeInViewport();
+  // Where you stand (the status strip, with the hours control) is on the first screen too.
+  await expect(page.getByTestId("standing")).toBeInViewport();
+  await expect(page.getByLabel("Free hours a week:")).toBeInViewport();
   const tops = await Promise.all(["Download PDF", "Share link", "Edit answers"].map(async (n) => (await page.getByRole("button", { name: n }).boundingBox())!.y));
   expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(4);
   // Every tab label fits.

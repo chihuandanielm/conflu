@@ -36,7 +36,7 @@ Five colours exist. Nothing else: no white, no tints made with opacity, no gradi
 Rules that follow from the jobs:
 
 1. **Sentences are ink on sage or ink on sand.** Ink on sage is 13.1:1 and ink on sand 9.2:1, both past the 7:1 of WCAG AAA. Headings, links, buttons and tabs are blue on sage (4.54:1) or sage on blue. Ink on a green fill (5.2:1) is only for a short done or on-track label. Sand and green never carry words on sage (1.42:1 and 2.54:1).
-2. **Green means alive, you, or done.** It is never a border. As a fill it only sits behind a done or on-track label, the progress gauge, or a mark.
+2. **Green means alive, you, or done.** As a fill it only sits behind a done or on-track label, a progress gauge (the drawer's steps bar), or a mark. As a line, only the 3px bar beside "Done when" in the goal drawer.
 3. **Sand never means "selected".** It is ground, and it asks for attention: the shore rule separates; the sand panel says "read this".
 4. **Selected is solid blue with sage text.** No green edge, no offset block, no glow.
 5. **One solid blue block per screen**, at most: the Start button, the Continue button, the "Do this now" card. A selected state (an answer, the current tab, an active filter) is also solid blue; that is a state, not an action, and does not count.
@@ -48,11 +48,12 @@ Rules that follow from the jobs:
 
 ## 3. Type
 
-Two families, both self-hosted through `@fontsource` (no third-party requests).
+Three families, all self-hosted through `@fontsource` (no third-party requests). Barlow Semi Condensed was added on 2026-11-23 so the site has real bold type for what matters; see docs/VISUAL_REFRESH.md.
 
 | Family | Used for |
 |---|---|
-| **Quantico** 400 | Everything meant to be read: headings, questions, options, body, buttons. 700 only on the one solid button of a screen and the outcome line at the foot of the map. |
+| **Barlow Semi Condensed** 700 / 600 | 700: every heading (`h1`–`h3`), the "Do this now" step, the one solid button, "conflu" in the PDF masthead. 600 (`.title`, `.label`): goal titles in lists, resource names, the term in the status strip, semester bands, "Part of", the destination line. Never a sentence. |
+| **Quantico** 400 | Everything meant to be read as sentences: body, questions, options, steps, buttons. |
 | **IBM Plex Mono** 400 (600 for the fish) | The river. Numbers, codes and dates: hours, term names, kinds of goal, course codes, dataset and engine versions, key hints. Never a sentence. |
 
 | Token | Size | Use |
@@ -69,7 +70,7 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows, no deco
 
 ## 4. Line, space, shape
 
-- One line weight, **1.5px**, for every rule and border. **3px** only for a must-do stream and the bar beside a notice.
+- One line weight, **1.5px**, for every rule and border. **3px** for a must-do stream, the bar beside a note, and the rule above every major section heading (`SectionHead`: a 3px blue rule, the bold title, a count in mono on the right). The section rule replaces the dotted shore between parts of the results page; the shore stays for semesters on the map and the PDF.
 - Corners are square. No radius except the round dots.
 - No shadows of any kind, including flat offset ones.
 - Spacing steps: 8, 16, 24, 40, 64, 96.
@@ -156,27 +157,23 @@ The engine is instant; the move is the transition. With reduced motion all three
 
 ### 7.4 Results
 
-Top to bottom. The first screen answers "what do I do now?"; everything else is below it. This is how each part looks.
+Top to bottom (2026-11-23, docs/VISUAL_REFRESH.md). The first screen answers "where do I stand and what do I do now?";
+the big picture comes after the work.
 
 | # | Part | Design |
 |---|---|---|
-| 0 | **Header** (300px; 250px on a phone) | The river, facing downstream, behind. "Your plan" (`--text-h1`), the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers (15px with 12px side padding on a phone). "Start over" is on the Edit answers screen, not here. On wide screens the river sits to the right of the title; on a phone it is a thin band between the title and the buttons. The page below is solid sage and scrolls over the river; the river stops drawing once it is off screen. |
-| 1 | **Do this now** | A sand attention panel with where the student stands in one line, then the one solid blue block on the page: "Do this now", "This semester: (term)" in mono, the step itself in `--text-h2`, "Part of: ..." with the step count, "Go to:" with the place to go, linked, and "Open this goal" as an outline button in sage. It picks this term's first must-do in work order that has a step left, or else the first goal. |
-| 2 | **This semester** | Heading, then a fact line (`year 2 · fall  sized to your 8 free hours a week`). A ruled list of goals: dot, title in `--text-lead`, the fact line, "Next: (the first unticked step)", and `->` at the right; under each row "Go to:" with its best one or two places, linked, so the student can act without opening the goal. Three shown, "Show all N" as a text button if there are more. |
-| | Good to know | Under the list. Each notice is a sand attention panel with ink text. "Dismiss" as a text button. |
-| | Why this order | A text button. Open, it says the goals are ranked by what recruiters on this path look for, the path's recruiter focus sentence, and its sources, linked. |
-| | shore | |
-| 3 | **Where you're headed** | The draft or final map banner, the outcome as one line in `--text-h1`, the confluence map of the milestones only (up to five), and a "See the full map" outline button. |
-| | shore | |
-| 4 | **What you have / What you need** | Two columns (one on a phone). Have: green dots. Need: open dots, with when in `--text-small`. |
-| | shore | |
-| 5 | **Coming up** | One fold per semester (`+` / `-` in mono, the semester in `--text-lead`, the count in mono). The next two are open. Inside, the same ruled rows, smaller, without the "Next:" line. Then "When you have more time": a short list with open dots. |
-| | shore | |
-| 6 | Checked off, Habits to keep | Checked off: rows with green dots and "Undo" as a text button. Habits: open dots, the reason in `--text-small`. |
-| | shore | |
+| 0 | **Header** (300px; 250px on a phone) | The river, facing downstream, behind. "Your plan" (`--text-h1`, bold), then "headed for" in mono and the destination in Barlow 600, then the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers. "Start over" is on the Edit answers screen. The page below is solid sage and scrolls over the river. |
+| 1 | **Where you stand + Do this now** | A sand status strip: the term in bold, "4 goals · 1 must-do · 0 done" in mono, "Uses about 4 of your 5 free hours a week.", and a "Free hours a week" control that re-plans at once. Under it the one solid blue block: "Do this now" with a rule after it, the step in bold Barlow, "Part of (goal) · step 1 of 5 · must-do", a framed "go to (place) ->" link, and "Open the full goal" as a text button. |
+| 2 | **This semester** | Section head with the goal count. Ruled rows: dot, title in Barlow 600, a priority tag (must-do solid, others outlined) and the time in words, "Next: (first unticked step)", and "Go to:" with the best one or two places, linked. Three shown, "Show all N". Then **Good to know**: quiet notes with a 3px sand bar (never a sand fill, so a tip never looks as urgent as the status strip). Then "Why this order" as a text button. |
+| 3 | **Coming up** | Section head with the semester count. Each semester is a band: an open one solid blue with sage text, a folded one outlined; "+"/"-", the term in Barlow 600, the count in mono. The next two are open, with smaller rows. Then "When you have more time". |
+| 4 | **The big picture** | Section head with the milestone count. An outlined box: "Where you're headed" in mono, the outcome in Barlow 600, the milestone map, "See the full map". Then What you have / What you need. |
+| 5 | Draft line | One dashed box: "This is a draft map · N extra options to review" and "Review on the Map tab ->". The full banner and "Finalize my map" are on the Map tab, so "Do this now" stays the one solid block. |
+| 6 | Checked off, Habits to keep | Checked off: rows with green dots and "Undo". Habits: open dots, the reason in `--text-small`. |
 | 7 | Footer | The footer sentence with dataset and engine versions in mono. |
 
-**The goal drawer** opens from any goal, anywhere. A side sheet on the right (480px, 1.5px blue left edge) on wide screens; a bottom sheet under 600px. No dimming behind it; the page behind is inert. One scroll, in this order: Close, the fact line, the title, **What to do** (steps as tick boxes; a ticked box is green; a step that names one of the goal's places, or "your career center" when one of them is a career office, links it), **Where to go** (resource boxes) right under the steps, **Done when**, **Why it's here**, then "Mark as done" as the solid button. It slides in over 260ms.
+**Time, in words** (`src/app/map/facts.ts`). A goal's time is never a bare "30 h", which reads as 30 hours a week. A short task (6 hours or less in all) reads "about 4 hours, once"; a longer one "~2 h a week this semester (30 h in all)", divided by the weeks left in the term (the current term is partly over); a full-time block "full-time, one summer"; a goal done in coursework "inside your coursework". The fact line is "kind · time · must-do · continues", with no glyphs; the map uses a short form ("~2 h a week").
+
+**The goal drawer** opens from any goal, anywhere. A side sheet on the right (480px, 1.5px blue left edge) on wide screens; a bottom sheet under 600px. No dimming behind it; the page behind is inert. One scroll, in this order: Close, the term, the title in bold Barlow, the priority tag and the time in words, **What to do** under a 3px rule (a green progress bar, then numbered steps as tick boxes; a ticked step turns green and is struck through in green; a step that names one of the goal's places, or "your career center" when one of them is a career office, links it), **Done when** with a 3px green bar, **Where to go** under a 3px rule with a place count (resource boxes), **Why it's here**, then "Mark as done" as the solid button. It slides in over 260ms.
 
 **The full map** is the Map tab. It is the confluence map with every goal. Each name is a real button that opens the drawer. Under the map, the skills picture: one row per competency, a 1.5px line from 0 to 1 with a green dot at "now" and an open blue ring at "target", the name on the left. This view replaces the React Flow chart and the chart/list switch: the map is already a list in document order, and it is one-sided on a phone.
 
@@ -203,13 +200,13 @@ The box: a 1.5px blue border, square corners, sage inside, 20px padding, no shad
 
 | Line | Content | Source | Style |
 |---|---|---|---|
-| 1 | Name | `name` | `--text-lead` |
+| 1 | Name | `name` | bold Barlow, 21px |
 | 2 | Where it is from, and the kind of thing | `whereLabel(r)`, `type` | mono fact line, for example `rutgers new brunswick  campus office` |
 | 3 | What it is | `summary` | body, in full, never cut short |
 | 4 | Who it is for | `audience(r)`; add "Check eligibility." when `needsEligibilityCheck` | `--text-small` |
-| 5 | Cost or pay, season, deadline | `payLabel`, `seasonLabel`, `typicalDeadline` | mono fact line; leave out what is empty |
+| 5 | Cost or pay, season, deadline | `payLabel`, `seasonLabel`, `typicalDeadline` | joined onto line 2's fact line with " · "; leave out what is empty |
 | 6 | Helps with | the goals from the plan that point to it (`t.goals`) | `--text-small`, "Helps with: ..." |
-| 7 | How to reach them | `contact.how`, then email, phone, place from `contactParts(r)` | `--text-small`; email and phone are links |
+| 7 | How to reach them | `contact.how`, then email, phone, place from `contactParts(r)` | `contact.how` on a sand panel (it is the thing to do), the rest `--text-small`; email and phone are links. A `how` that only says "Use the contact or apply page on the home site" is left out: the Visit site button says it |
 | 8 | Links | "Visit site ->" always; "Apply ->" when `applyUrl` exists. Under them the address itself in mono (`careers.rutgers.edu`), so the student sees where the link goes before clicking | outline buttons, 42px; the first one in a box is never solid |
 | 9 | Small print | "Link last checked 16 Nov 2026" from `lastChecked(r)`; and the status note when `status` is not `active` | mono; the status note gets the 3px sand bar on its left, like any notice |
 

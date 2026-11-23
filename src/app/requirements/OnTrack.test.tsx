@@ -14,7 +14,7 @@ describe("On track to graduate", () => {
     const s = screen.getByRole("heading", { name: "On track to graduate" }).closest("section")!;
     expect(within(s).getByRole("link", { name: /Official requirements for your major/ })).toHaveAttribute("href", "https://newbrunswick-26-27-undergrad.catalogs.rutgers.edu/pages/VSbgggHtgjolUCQloHSE");
     expect(within(s).getByText(/2026–2027 New Brunswick Undergraduate Catalog \(last checked November 23, 2026\)/)).toBeInTheDocument();
-    expect(within(s).getByText(/If you started before\s+fall 2026, check your degree audit/)).toBeInTheDocument();
+    expect(within(s).getByText(/if you started before fall 2026, check your degree audit/)).toBeInTheDocument();
     expect(within(s).getByText(/01:198:111 Introduction to Computer Science \(4\)/)).toBeInTheDocument();
     expect(within(s).getAllByText("should be done by now").length).toBe(2); // years 1 and 2 for a third-year student
     expect(within(s).getByText("this year")).toBeInTheDocument();

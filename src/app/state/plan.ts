@@ -104,3 +104,8 @@ export function diff(before: Plan, after: Plan): { moved: Set<string>; added: Se
   for (const k of Object.keys(a)) if (!(k in b)) removed.add(k);
   return { moved, added, removed };
 }
+
+/** Change the student's free hours a week from the results page and re-plan, keeping everything else. */
+export function setHours(s: SavedPlan, weeklyHours: number, today: string): SavedPlan {
+  return refresh({ ...s, answers: { ...s.answers, weeklyHours } }, today);
+}

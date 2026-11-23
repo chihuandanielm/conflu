@@ -6,7 +6,11 @@
 /* Words in comments ("an open ring") must not turn into ring or shadow utilities (they bring a white default). */
 @source not inline("{ring,shadow,inset-ring,inset-shadow}");
 
-/* Self-hosted fonts (design/DESIGN.md §3): Quantico for everything read, IBM Plex Mono for the river and short facts. */
+/* Self-hosted fonts (design/DESIGN.md §3): Barlow Semi Condensed for headings and bold labels, Quantico for sentences,
+   IBM Plex Mono for the river and for numbers, codes and dates. */
+@import "@fontsource/barlow-semi-condensed/latin-500.css";
+@import "@fontsource/barlow-semi-condensed/latin-600.css";
+@import "@fontsource/barlow-semi-condensed/latin-700.css";
 @import "@fontsource/quantico/latin-400.css";
 @import "@fontsource/quantico/latin-700.css";
 @import "@fontsource/ibm-plex-mono/latin-400.css";
@@ -48,6 +52,7 @@
   --font-sans: "Quantico", system-ui, sans-serif;
   --font-text: "Quantico", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Barlow Semi Condensed", "Quantico", system-ui, sans-serif;
 
   /* Type scale. Nothing goes under 15px. Sentences are ink (13.1:1); blue (4.54:1) is for headings, links and buttons. */
   --text-*: initial;
@@ -86,7 +91,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-weight: 400; line-height: 1.15; text-wrap: balance; color: var(--blue); }
+/* Headings are bold Barlow Semi Condensed; a title in a list (.title) and a short label (.label) are its 600. */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: 0.005em; text-wrap: balance; color: var(--blue); }
+.title, .label { font-family: var(--font-display); font-weight: 600; }
 a { color: var(--blue); }
 /* On a solid blue or green block, headings and links take the block's text colour. */
 .text-sage h1, .text-sage h2, .text-sage h3, .text-sage a, .text-ink h1, .text-ink h2, .text-ink h3, .text-ink a { color: inherit; }
@@ -109,7 +116,7 @@ a { color: var(--blue); }
     transition: background-color var(--t-press) var(--ease), color var(--t-press) var(--ease), border-color var(--t-press) var(--ease);
   }
   .btn:hover { background: var(--blue); color: var(--sage); }
-  .btn--solid { background: var(--blue); color: var(--sage); font-weight: 700; }
+  .btn--solid { background: var(--blue); color: var(--sage); font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; }
   .btn--solid:hover { background: var(--sage); color: var(--blue); }
   .btn--text { border-color: transparent; padding: 0 8px; text-decoration: underline; text-underline-offset: 4px; }
   .btn--text:hover { background: var(--sage); color: var(--blue); border-color: var(--blue); }
