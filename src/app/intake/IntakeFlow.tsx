@@ -275,7 +275,7 @@ function renderPart(part: StepId, a: Answers, labelledBy: string, missing: boole
   switch (part) {
     case "school":
       // A campus that doesn't offer the chosen major clears it (and the co-op answer that depended on it).
-      return single(uiIntake.school.options.map((o) => ({ value: o.id as School, label: o.label })), a.school,
+      return single(uiIntake.school.options.map((o) => ({ value: o.id as School, label: o.label, note: "note" in o ? o.note : undefined })), a.school,
         (v) => (majorOfferedAt(a.majorId, v) || !a.majorId ? { school: v } : { school: v, majorId: undefined, openToCoop: undefined }));
     case "major":
       return a.school

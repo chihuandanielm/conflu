@@ -485,8 +485,7 @@
       "type": "competition",
       "scope": "national",
       "majors": [
-        "mechanical-engineering",
-        "information-technology"
+        "all"
       ],
       "years": [
         1,
@@ -592,7 +591,8 @@
       "majors": [
         "mechanical-engineering",
         "supply-chain",
-        "biomedical-engineering"
+        "biomedical-engineering",
+        "packaging-engineering"
       ],
       "years": [
         3,

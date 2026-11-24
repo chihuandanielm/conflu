@@ -1010,7 +1010,9 @@
         "Put the link on your resume, LinkedIn, and GitHub."
       ],
       "doneWhen": "Your site is live with 3 project write-ups and linked from your resume.",
-      "guides": []
+      "guides": [
+        "github-pages-quickstart"
+      ]
     },
     {
       "id": "p-writing-portfolio",
@@ -1062,7 +1064,9 @@
         "Collect your best 3–5 on one page, like a portfolio site or Muck Rack profile, with a one-line description of each."
       ],
       "doneWhen": "You have 3–5 published pieces collected on one page you can link from your resume.",
-      "guides": [],
+      "guides": [
+        "muck-rack-portfolio-guide"
+      ],
       "phases": {
         "start": [
           0,
@@ -2149,7 +2153,10 @@
         "Volunteer for one small task, like an event or a committee, in your first month."
       ],
       "doneWhen": "You're a regular member of 1–2 organizations and have helped with at least one event or project.",
-      "guides": [],
+      "guides": [
+        "psu-student-orgs-guide",
+        "montana-state-get-involved"
+      ],
       "minTermsLeft": 2,
       "phases": {
         "start": [
@@ -2164,7 +2171,8 @@
           2,
           3
         ]
-      }
+      },
+      "findOnCampus": "your school's student organizations directory or student activities office"
     },
     {
       "id": "e-org-leadership",
@@ -2211,7 +2219,10 @@
         "Set one measurable goal for your term, such as members, events, or funds raised, so you have a result to talk about."
       ],
       "doneWhen": "You hold an officer or project-lead role and have a concrete result from it.",
-      "guides": [],
+      "guides": [
+        "psu-student-orgs-guide",
+        "montana-state-get-involved"
+      ],
       "minTermsLeft": 2,
       "phases": {
         "start": [
@@ -2225,7 +2236,8 @@
         "finish": [
           3
         ]
-      }
+      },
+      "findOnCampus": "your school's student activities or leadership office, which lists officer elections and leadership programs"
     },
     {
       "id": "e-part-time-job",
@@ -2299,7 +2311,11 @@
       "repeat": null,
       "majors": null,
       "resources": [
-        "rutgers-camden-community-engagement"
+        "rutgers-camden-community-engagement",
+        "rutgers-volunteer-engagement",
+        "rutgers-newark-oucp",
+        "rutgers-newark-community-engagement",
+        "idealist-volunteer"
       ],
       "splittable": true,
       "lateOk": true,
@@ -2314,7 +2330,10 @@
         "Track your hours and what you did so you can describe your impact later."
       ],
       "doneWhen": "You volunteer regularly with one organization and have logged your hours.",
-      "guides": []
+      "guides": [
+        "montana-state-get-involved"
+      ],
+      "findOnCampus": "your school's community service or civic engagement office"
     },
     {
       "id": "e-research-assistant",
@@ -2485,7 +2504,9 @@
         "Meet your advisor regularly and present your results at a campus symposium."
       ],
       "doneWhen": "You've completed and submitted or defended your thesis or independent project.",
-      "guides": [],
+      "guides": [
+        "unc-honors-thesis"
+      ],
       "minTermsLeft": 2,
       "alternative": "e-research-project",
       "phases": {
@@ -2501,7 +2522,8 @@
         "finish": [
           4
         ]
-      }
+      },
+      "findOnCampus": "your school's honors program or undergraduate research office"
     },
     {
       "id": "e-research-project",
@@ -2547,7 +2569,8 @@
       ],
       "doneWhen": "You've finished the project, shared what you found with the professor, and asked for a letter if you need one.",
       "guides": [],
-      "onlyAsAlternative": true
+      "onlyAsAlternative": true,
+      "findOnCampus": "your school's undergraduate research office, or the research pages of your department"
     },
     {
       "id": "e-personal-project",
@@ -2698,7 +2721,8 @@
         "biomedical-engineering"
       ],
       "resources": [
-        "formula-sae"
+        "formula-sae",
+        "rutgers-formula-racing"
       ],
       "splittable": true,
       "lateOk": false,
@@ -2766,7 +2790,9 @@
         "Rehearse your presentation and practice answering tough questions."
       ],
       "doneWhen": "You've competed in a case competition and presented your recommendation.",
-      "guides": []
+      "guides": [
+        "yale-case-competition-tips"
+      ]
     },
     {
       "id": "e-virtual-sim",
@@ -3312,7 +3338,8 @@
         "Save links to your published work for your portfolio."
       ],
       "doneWhen": "You've published or produced several pieces for student media.",
-      "guides": []
+      "guides": [],
+      "findOnCampus": "your school's student newspaper, radio station, or TV station"
     },
     {
       "id": "e-government-internship",
@@ -3413,7 +3440,8 @@
         "Volunteer with a reentry or legal aid organization and reflect on what you learned."
       ],
       "doneWhen": "You've done at least two of: court observation, a ride-along, and reentry volunteering.",
-      "guides": []
+      "guides": [],
+      "findOnCampus": "your criminal justice or social work department's field placement coordinator, or your local county court's public calendar"
     },
     {
       "id": "e-study-abroad",
@@ -3862,7 +3890,8 @@
         "aamn",
         "wicys",
         "awis",
-        "lesbians-who-tech"
+        "lesbians-who-tech",
+        "onet-associations"
       ],
       "splittable": false,
       "lateOk": true,
@@ -4009,7 +4038,8 @@
         "biomedical-engineering"
       ],
       "resources": [
-        "bls"
+        "bls",
+        "red-cross-bls"
       ],
       "splittable": false,
       "lateOk": true,
@@ -4763,7 +4793,8 @@
       ],
       "doneWhen": "The minor or certificate is declared and its courses are in your semester plan.",
       "guides": [],
-      "minTermsLeft": 3
+      "minTermsLeft": 3,
+      "findOnCampus": "your school's catalog listing of minors and certificates, and your academic advisor"
     },
     {
       "id": "a-eagleton",
@@ -4861,7 +4892,8 @@
       ],
       "doneWhen": "You've met your fellowships office and have a timeline for at least one award.",
       "guides": [],
-      "minTermsLeft": 2
+      "minTermsLeft": 2,
+      "findOnCampus": "your school's fellowships or national scholarships office, often part of the honors college"
     },
     {
       "id": "a-fellowship-apps",
@@ -5238,7 +5270,8 @@
       ],
       "doneWhen": "You've chosen a path and planned your rotations and applications around it.",
       "guides": [],
-      "majorRule": "only"
+      "majorRule": "only",
+      "findOnCampus": "your pharmacy school's residency and fellowship advising, or a faculty advisor who completed a residency"
     },
     {
       "id": "ap-scholarships",
@@ -5870,7 +5903,8 @@
       ],
       "doneWhen": "You've completed or scheduled all four packaging courses and declared the certificate.",
       "guides": [],
-      "minTermsLeft": 3
+      "minTermsLeft": 3,
+      "needsProgram": true
     }
   ]
 }

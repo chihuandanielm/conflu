@@ -823,9 +823,7 @@
       "type": "course",
       "scope": "national",
       "majors": [
-        "mechanical-engineering",
-        "biomedical-engineering",
-        "economics"
+        "all"
       ],
       "years": [
         1,

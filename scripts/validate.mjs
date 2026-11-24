@@ -125,6 +125,15 @@ for (const g of goals) {
     if (!r) errors.push(`goals › ${g.id}: unknown guide ${id}`);
     else if (r.scope === "rutgers") errors.push(`goals › ${g.id}: guide ${id} must be usable at every campus`);
   }
+  // Somewhere to start (engine 0.15.0, docs/IMPROVEMENT_PLAN.md 2.4 and 6.1).
+  if (g.findOnCampus !== undefined && (typeof g.findOnCampus !== "string" || g.findOnCampus.length < 15 || /[.]$/.test(g.findOnCampus))) errors.push(`goals › ${g.id}: findOnCampus must be a phrase ("your school's …"), no final period`);
+  if (g.needsProgram !== undefined && (g.needsProgram !== true || !g.resources.length)) errors.push(`goals › ${g.id}: needsProgram must be true and list the program in resources`);
+  const offCampus = [...g.resources, ...(g.guides ?? [])].some((id) => resById.get(id) && resById.get(id).scope !== "rutgers");
+  if (!offCampus && !g.findOnCampus && !g.needsProgram) errors.push(`goals › ${g.id}: needs a resource or guide outside Rutgers, a findOnCampus hint, or needsProgram`);
+  for (const c of campusIds) {
+    const here = g.resources.some((id) => { const r = resById.get(id); return r && (r.scope !== "rutgers" || r.campuses.includes("all") || r.campuses.includes(c)); });
+    if (!here && !(g.guides ?? []).length && !g.findOnCampus && !g.needsProgram) errors.push(`goals › ${g.id}: nothing usable at campus ${c} (add a resource, a guide, or findOnCampus)`);
+  }
 }
 const expIds = new Set(intake.experience.map((o) => o.id));
 for (const g of ui.experienceGroups) if (!g.label || !g.hint) errors.push(`ui/intake › experience group ${g.id} needs a label and a hint`);

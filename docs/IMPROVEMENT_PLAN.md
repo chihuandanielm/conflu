@@ -155,7 +155,23 @@ Check: an automated contrast test fails on any text pair under 7:1 (under 4.5:1 
    - **4.2:** done earlier, with the Courses tab.
    - **4.3:** the Resources tab opens on "This semester" (13–16 cards; "Whole plan" one tap away), with a "When" row visible on phones too. It was 37–42 cards and 10,500–12,000 px; now 4,500–5,000 px on desktop.
    - **4.4:** the draft notice was already one line, with "Review on the Map tab", since the visual refresh.
-4. **Phases 2.4–2.6 + 6:** filling resource gaps and the non-Rutgers path. Research-heavy, like the requirements work.
+4. **Phases 2.4–2.6 + 6:** filling resource gaps and the non-Rutgers path. **Done 2026-11-24** (engine 0.15.0, data 2026.11.24-4).
+   - **2.4:** 13 new entries, each a page that came up in web searches on 2026-11-24 (`search-confirmed`; the weekly link check confirms or flags them):
+     - volunteer offices at New Brunswick and Newark (two);
+     - Rutgers Formula Racing;
+     - Idealist volunteer search;
+     - the Department of Labor's professional association search;
+     - Red Cross BLS classes;
+     - six how-to guides: student organizations (Penn State Smeal, Montana State), honors theses (UNC), GitHub Pages, a writing portfolio, case competitions (Yale SOM).
+     Five resources were tagged for fewer majors than can use them (Formula SAE, MATLAB Onramp, Lean Six Sigma, IOPP AmeriStar, Rutgers Formula Racing) and now list them. Planned items with no link or guide went from 119 / 82 / 25 / 523 (New Brunswick / Newark / Camden / another school) to 0.
+   - **Validator rules:** every goal has a resource or guide outside Rutgers (6.1), something usable at each campus (2.4), or one of two fields:
+     - `findOnCampus`: what to look for at the student's own school, where no national page can stand in (a fellowships office, student media, a degree's field placement). The drawer and PDF say "At your school: look for …". After the new resources, it is the only help for 9 items across the 414 Rutgers plans and 35 across the 188 other-school plans.
+     - `needsProgram`: a specific program, planned only for students who can enroll. The packaging certificate no longer reaches packaging majors or students at another school.
+     `test/coverage.test.ts` checks every planned item at every school.
+   - **2.5:** the filler line was already gone (visual refresh). The card's one action now sits right under what the resource is, before who it's for.
+   - **2.6:** a goal with how-to guides says under its steps "Based on guides from MIT CAPD." (the source is the guide's name before the colon).
+   - **6.2:** the Courses tab is always there. Without a course list (another school), it is "Check your degree audit": what an audit is, three things to look for, and how to find the right catalog year. Nothing is linked, since the right pages are on the student's own school's site.
+   - **6.3:** "Another school" says under the option what changes, and the plan opens with the same note in "Good to know".
 5. **Phase 5:** experience-aware plans. **Done 2026-11-24** (engine 0.14.0, data 2026.11.24-3).
    - **5.1:** a goal the student has partly done carries `started` (its share done). The row says "started, about 60% done", and that share of its steps starts checked (the student's own ticks win), so "Do this now" moves past them.
    - **5.2:** answers now credit what they imply, as partial strengths in `data/intake.json`:

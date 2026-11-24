@@ -192,6 +192,7 @@ function GoalBlock({ it, again, term }: { it: PlanItem; again: boolean; term: st
             </View>
           )}
           {how.doneWhen && <Text style={[s.small, { marginTop: 3 }]}>Done when: {how.doneWhen}</Text>}
+          {it.findOnCampus && <Text style={[s.small, { marginTop: 3 }]}>At your school: look for {it.findOnCampus}.</Text>}
           {it.resources.length > 0 && (
             <Text style={[s.fact, { marginTop: 3 }]}>
               {it.resources.slice(0, 3).map((r, i) => <Text key={r.id}>{i ? "  /  " : ""}<Link src={r.url} style={s.link}>{r.name}</Link></Text>)}

@@ -974,6 +974,109 @@
         "grad-school",
         "law"
       ]
+    },
+    {
+      "id": "idealist-volunteer",
+      "name": "Idealist: volunteer opportunities",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "service"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "A free search of volunteer openings at nonprofits, filtered by location, cause, and remote or in person.",
+      "url": "https://www.idealist.org/en/volunteer-opportunities",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search by your town and a cause you care about, then contact one organization."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-24"
+      },
+      "tags": []
+    },
+    {
+      "id": "onet-associations",
+      "name": "O*NET Professional Associations search (U.S. Department of Labor)",
+      "type": "directory",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "The Department of Labor's searchable list of professional associations by field, with links to each association's site.",
+      "url": "https://www.onetonline.org/search/associations/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Search your field, then check each association's site for student membership rates."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-24"
+      },
+      "tags": []
+    },
+    {
+      "id": "red-cross-bls",
+      "name": "American Red Cross: BLS classes",
+      "type": "certification",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "health"
+      ],
+      "pay": "fee",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Basic Life Support classes for healthcare and public-safety roles, offered in person and in blended online and in-person formats.",
+      "url": "https://www.redcross.org/take-a-class/bls-training/bls-classes",
+      "applyUrl": null,
+      "contact": {
+        "how": "Find a class near you by zip code and book it."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-24"
+      },
+      "tags": []
     }
   ]
 }
