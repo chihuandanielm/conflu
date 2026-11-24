@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup A: Field guide</title>
+<style>
+@font-face { font-family: "Barlow SC"; src: url(/fonts/barlow-semi-condensed-700.ttf); font-weight: 700; }
+@font-face { font-family: "Barlow SC"; src: url(/fonts/barlow-semi-condensed-600.ttf); font-weight: 600; }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-400.ttf); }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-700.ttf); font-weight: 700; }
+@font-face { font-family: Plex; src: url(/fonts/ibm-plex-mono-400.ttf); }
+/* Bone paper and warm charcoal (Stripe Press, teenage engineering); slate violet is the only loud colour. */
+:root { --paper: #e8e3d7; --chrome: #dcd6c8; --ink: #34302c; --muted: #6f665d; --violet: #545684; --ochre: #96773d; --verdigris: #4e716d; --rule: #b9b0a0; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 17px/1.55 Quantico, sans-serif;
+  background-image: radial-gradient(rgba(52,48,44,.06) 1px, transparent 1px); background-size: 4px 4px; }
+.mono { font: 15px/1.4 Plex, monospace; letter-spacing: .04em; color: var(--muted); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+/* Masthead: small type in the corners, like a catalog page. */
+.mast { display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline; padding: 18px 0 14px; border-bottom: 1.5px solid var(--ink); }
+.mast b { font: 700 22px "Barlow SC"; letter-spacing: .01em; }
+.mast .r { justify-self: end; }
+/* Hero: words left, the painting in a window right. */
+.hero { display: grid; grid-template-columns: 5fr 6fr; gap: 56px; align-items: center; padding: 72px 0 88px; position: relative; }
+.kicker { display: flex; align-items: center; gap: 10px; }
+.kicker::before { content: ""; width: 56px; height: 1.5px; background: var(--ink); }
+.kicker::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); margin-left: -12px; }
+h1 { font: 700 clamp(56px, 7.2vw, 104px)/.86 "Barlow SC"; letter-spacing: -.01em; margin: 22px 0 26px; }
+h1 em { font-style: normal; display: inline-block; background: var(--violet); color: var(--paper); padding: .02em .12em .1em; margin-top: .06em; line-height: .9; }
+.lede { max-width: 30em; }
+.ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 34px; width: max-content; }
+.btn { display: inline-flex; gap: 12px; align-items: center; justify-content: space-between; min-width: 250px; padding: 14px 18px; border: 1.5px solid var(--ink); font: 700 18px Quantico; color: var(--ink); text-decoration: none; }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.ghost { font-weight: 400; }
+/* The retro window around the ASCII painting. */
+.win { border: 1.5px solid var(--ink); background: var(--paper); }
+.bar { display: grid; grid-template-columns: 14px 1fr 14px; gap: 10px; align-items: center; height: 26px; padding: 0 8px; border-bottom: 1.5px solid var(--ink);
+  background: repeating-linear-gradient(var(--chrome) 0 2px, #efe9dd 2px 4px); }
+.bar i { width: 12px; height: 12px; border: 1.5px solid var(--ink); background: var(--paper); }
+.bar span { justify-self: center; background: var(--chrome); padding: 0 10px; font: 15px Plex; }
+.art { position: relative; height: 430px; background: #2b2420; }
+.art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cap { display: flex; justify-content: space-between; padding: 8px 2px 0; }
+/* Drafting marks: crop corners and a ruler. */
+.crop { position: absolute; width: 18px; height: 18px; border-color: var(--rule); border-style: solid; }
+.crop.tl { top: 36px; left: -18px; border-width: 1.5px 0 0 1.5px; } .crop.br { bottom: 44px; right: -18px; border-width: 0 1.5px 1.5px 0; }
+.ruler { height: 12px; background: repeating-linear-gradient(90deg, var(--rule) 0 1.5px, transparent 1.5px 24px) bottom/100% 8px no-repeat,
+  repeating-linear-gradient(90deg, var(--ink) 0 1.5px, transparent 1.5px 120px) bottom/100% 12px no-repeat; }
+
+/* ---- Plan, top ---- */
+.plan { padding: 56px 0 96px; }
+.plan-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; }
+.plan-head h2 { font: 700 64px/.9 "Barlow SC"; }
+.tabs { display: flex; gap: 0; margin-top: 28px; border-bottom: 1.5px solid var(--ink); }
+.tabs a { padding: 10px 18px; color: var(--ink); text-decoration: none; }
+.tabs a.on { background: var(--ink); color: var(--paper); }
+.sheet { display: grid; grid-template-columns: 300px 1fr; gap: 48px; margin-top: 40px; }
+.side .term { font: 700 34px/1 "Barlow SC"; }
+.side p { margin-top: 10px; }
+.meter { margin-top: 18px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.meter b { height: 14px; border: 1.5px solid var(--ink); } .meter b.f { background: var(--ochre); border-color: var(--ochre); }
+.now { border: 1.5px solid var(--ink); }
+.now .bar span { background: var(--chrome); }
+.now .body { padding: 26px 28px 30px; }
+.now h3 { font: 700 34px/1.08 "Barlow SC"; max-width: 22em; margin-top: 8px; }
+.go { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.go a { border: 1.5px solid var(--ink); padding: 8px 14px; color: var(--ink); text-decoration: none; }
+.list { margin-top: 30px; }
+.row { display: grid; grid-template-columns: 28px 1fr auto; gap: 14px; padding: 16px 0; border-top: 1.5px solid var(--rule); align-items: baseline; }
+.row:last-child { border-bottom: 1.5px solid var(--rule); }
+.dot { width: 11px; height: 11px; border: 1.5px solid var(--ink); border-radius: 50%; transform: translateY(1px); }
+.dot.f { background: var(--violet); border-color: var(--violet); }
+.row .t { font: 700 20px "Barlow SC"; }
+.u { text-decoration: underline; text-decoration-color: var(--violet); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; } .mast { grid-template-columns: 1fr auto; } .mast .c { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 56px; } .art { height: 300px; } .crop { display: none; }
+  .ctas, .btn { width: 100%; } .sheet { grid-template-columns: 1fr; gap: 24px; } .plan-head h2 { font-size: 48px; } .plan-head .mono { display: none; }
+  .now .body { padding: 20px; } .now h3 { font-size: 27px; }
+}
+</style>
+</head>
+<body>
+<header class="wrap mast">
+  <b>conflu</b><span class="mono c">a career plan, one semester at a time</span><span class="mono r">free · no account</span>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <p class="mono kicker">for college students</p>
+      <h1>Know what to&nbsp;do <em>this semester.</em></h1>
+      <p class="lede">Tell it your major, your year and the job you want. You get a plan for each semester, with the offices and programs to use, in about 3 minutes.</p>
+      <div class="ctas">
+        <a class="btn solid" href="#">Build my plan <span>-&gt;</span></a>
+        <a class="btn ghost" href="#">See a sample plan <span>-&gt;</span></a>
+      </div>
+    </div>
+    <figure style="position:relative">
+      <span class="crop tl"></span><span class="crop br"></span>
+      <div class="win">
+        <div class="bar"><i></i><span>confluence.txt</span><i></i></div>
+        <div class="art"><canvas id="art"></canvas></div>
+      </div>
+      <div class="ruler" style="margin-top:10px"></div>
+      <figcaption class="cap mono"><span>three streams, one river</span><span>fig. 1</span></figcaption>
+    </figure>
+  </section>
+</main>
+
+<section class="wrap plan">
+  <div class="plan-head">
+    <div><p class="mono">your plan · software engineering · computer science · year 2</p><h2>Land your first role in software engineering</h2></div>
+    <p class="mono">rutgers–new brunswick<br>5 free hours a week</p>
+  </div>
+  <nav class="tabs"><a class="on" href="#">Plan</a><a href="#">Map <span class="mono">51</span></a><a href="#">Resources <span class="mono">208</span></a><a href="#">Courses</a></nav>
+  <div class="sheet">
+    <aside class="side">
+      <p class="mono">this semester</p>
+      <p class="term">Year 2 · Fall</p>
+      <p>Uses about <span class="u">4 of your 5</span> free hours a week. 4 goals, 2 must-dos.</p>
+      <div class="meter" aria-hidden="true"><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b><b></b></div>
+      <p class="mono" style="margin-top:8px">hours used</p>
+    </aside>
+    <div>
+      <article class="now">
+        <div class="bar"><i></i><span>do this now</span><i></i></div>
+        <div class="body">
+          <p class="mono">step 1 of 5 · build and ship a personal project · must-do</p>
+          <h3>Pick a problem you or your friends actually have, and keep the first version small.</h3>
+          <div class="go"><a href="#">CS50 (Harvard, free online) -&gt;</a><a href="#">freeCodeCamp -&gt;</a></div>
+        </div>
+      </article>
+      <div class="list">
+        <div class="row"><span class="dot f"></span><span><span class="t">Build and ship a personal project</span><br><span class="mono">must-do · ~2 h a week · continues next term</span></span><span class="mono">-&gt;</span></div>
+        <div class="row"><span class="dot"></span><span><span class="t">Set up GitHub with a profile README</span><br><span class="mono">high priority · about 2 hours, once</span></span><span class="mono">-&gt;</span></div>
+        <div class="row"><span class="dot"></span><span><span class="t">Build a complete LinkedIn profile</span><br><span class="mono">high priority · about 3 hours, once</span></span><span class="mono">-&gt;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module">
+import { createScene } from "./scene-proto.ts";
+// Warm painterly tones on umber: charcoal, umber, slate violet, dusty rose, ochre, bone.
+createScene(document.getElementById("art"), { reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, sky: false,
+  tones: ["#4a403b", "#61554d", "#6f71a3", "#9a8fb0", "#c29a96", "#d2b27a", "#efe9dd"] });
+</script>
+</body>
+</html>
