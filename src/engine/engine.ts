@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Timing, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.12.0";
+export const ENGINE_VERSION = "0.13.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -38,6 +38,7 @@ export const K = {
   goalCapPerHours: 4,       //   between goalCapMin and goalCapMax (2 h/week: 3 goals; 10: 5; 20: 6)
   goalCapMin: 3,
   goalCapMax: 6,
+  finalTermCap: 3,          // engine 0.13.0: the last semester before graduation holds at most this many (plus must-dos)
   sameTermPrereqHours: 6,   // a prerequisite this small finished earlier in a term unlocks its dependent that term
   draftCapScale: 2,         // engine 0.9.0: the draft map adds options up to this many times the goal cap per term,
   draftCapMax: 10,          //   at most this many (plus must-dos), so the student sees more to choose from
@@ -55,11 +56,13 @@ const CATEGORY_ORDER = ["foundation", "presence", "skills", "experience", "netwo
 // ---------- terms ----------
 function seasonOf(code: TermCode): "F" | "S" | "U" | "G" { return code.startsWith("G") ? "G" : (code[1] as "F" | "S" | "U"); }
 function yearOfIdx(i: number): number { return Math.floor(i / 3) + 1; } // G terms -> 5
-export function termLabel(code: TermCode): string {
+/** `yearShift` (engine 0.13.0): years added to the label, for a student graduating later than the usual four. */
+export function termLabel(code: TermCode, yearShift = 0): string {
   if (code === "G1") return "After graduation · first fall";
   if (code === "G2") return "After graduation · first spring";
   const y = code[0], s = seasonOf(code);
-  return s === "U" ? `Summer after year ${y}` : `Year ${y} · ${s === "F" ? "Fall" : "Spring"}`;
+  const yy = Number(y) + yearShift;
+  return s === "U" ? `Summer after year ${yy}` : `Year ${yy} · ${s === "F" ? "Fall" : "Spring"}`;
 }
 
 /**
@@ -129,7 +132,10 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const identity = identitySet(input);
 
   // 1. Time frame -------------------------------------------------------------
-  const now = currentTerm(input.year, input.today, input.semester);
+  // Engine 0.13.0: a student graduating a year later plans on the runway of a year earlier; labels show the real year.
+  const shift = input.graduation === "year-later" && input.year > 1 ? 1 : 0;
+  const planYear = input.year - shift;
+  const now = currentTerm(planYear, input.today, input.semester);
   const nowIdx = idx(now.code), gradIdx = idx("4S");
   const horizon = data.intake.horizons.find((h) => h.id === input.horizon)!;
   let endIdx = horizon.terms ? Math.min(nowIdx + horizon.terms - 1, T.length - 1)
@@ -208,12 +214,12 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   // Engine 0.8.0: in the final year the track's outcome is the must-do: the full-time job search, or graduate and
   // professional school applications for tracks that lead there.
   const finalGoal = track.outcome === "grad-school" ? "ap-grad-apps" : "ap-fulltime";
-  if (yearOfIdx(idx(currentTerm(input.year, input.today, input.semester).code)) >= 4 && !(track.suppress ?? []).includes(finalGoal)) gates.add(finalGoal);
+  if (yearOfIdx(idx(now.code)) >= 4 && !(track.suppress ?? []).includes(finalGoal)) gates.add(finalGoal);
   for (const key of [...skippedIds].sort()) {
     const g = goals.get(key.split("@")[0]);
     if (!g) continue;
     const y = key.split("@Y")[1];
-    skipped.push({ goalId: key, title: y ? `${g.title} (year ${y})` : g.title, essential: gates.has(g.id) });
+    skipped.push({ goalId: key, title: y ? `${g.title} (year ${Number(y) + shift})` : g.title, essential: gates.has(g.id) });
     if (gates.has(g.id)) warnings.push(`"${g.title}" is a must-do for ${track.name}, and you crossed it out. Most ${track.name} recruiters expect it; undo if you change your mind.`);
   }
   const runway = (endIdx - nowIdx + 1) / Math.max(1, gradIdx - nowIdx + 1);
@@ -232,7 +238,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const titleNow = (g: Goal, win: Node["win"], key = g.id) => {
     const t = (nowIdx > win.b ? variantFor(g, nowIdx > gradIdx ? "after-grad" : "late", nowIdx, win)?.title : undefined) ?? g.title;
     const y = key.split("@Y")[1];
-    return y ? `${t} (year ${y})` : t; // yearly rounds stay distinct in the queue
+    return y ? `${t} (year ${Number(y) + shift})` : t; // yearly rounds stay distinct in the queue, named by the real year
   };
   const baseWin = (g: Goal) => {
     const o = track.windowOverrides?.[g.id]; // tracks can retime goals (pre-med applies the summer after junior year)
@@ -493,7 +499,9 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       tried.add(n.key);
       if (!open.includes(n)) open.push(n);
       // Baby steps (engine 0.8.0): at most goalCap goals a term, plus must-dos and what they need, never crowded out.
-      if (!protectedAt(n, t) && (placements.get(t)?.filter((x) => !x.gate && !x.essential).length ?? 0) >= goalCap) continue;
+      // Engine 0.13.0: the final semester holds at most finalTermCap goals besides must-dos, next to the outcome.
+      const goalLimit = t === gradIdx ? Math.min(goalCap, K.finalTermCap) : goalCap;
+      if (!protectedAt(n, t) && (placements.get(t)?.filter((x) => !x.gate && !x.essential).length ?? 0) >= goalLimit) continue;
       if (protectedAt(n, t)) protectedKeys.add(n.key);
       if (n.completeAt !== null) continue; // satisfied by another goal earlier in this term
       const sc = scoreAt(n, t);
@@ -648,7 +656,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const terms: PlanTerm[] = [];
   for (let t = nowIdx; t <= endIdx; t++) {
     const items = (placements.get(t) ?? []).sort((a, b) => CATEGORY_ORDER.indexOf(a.lane) - CATEGORY_ORDER.indexOf(b.lane) || b.score.total - a.score.total);
-    terms.push({ code: T[t], label: termLabel(T[t]), capacityHours: Math.round(termCap[t].flex), usedHours: Math.round(termCap[t].usedFlex), summerBlock: termCap[t].usedBlock > 0, items });
+    terms.push({ code: T[t], label: termLabel(T[t], shift), capacityHours: Math.round(termCap[t].flex), usedHours: Math.round(termCap[t].usedFlex), summerBlock: termCap[t].usedBlock > 0, items });
   }
   const placedKeys = new Set([...nodes.values()].filter((n) => n.placedAt.length).map((n) => n.key));
   const edges = [...nodes.values()].filter((n) => placedKeys.has(n.key))
@@ -698,7 +706,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     if (n.goal.cycle) why.push(`Timing: ${roundStatus(n.goal, t).label}`);
     else if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
     else if (t > n.win.b && t <= gradIdx) why.push("Most students do this earlier, and it still helps now.");
-    else if (u > 1.2 && t <= n.win.b) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b]).toLowerCase()}.`);
+    else if (u > 1.2 && t <= n.win.b) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b], shift).toLowerCase()}.`);
     if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);
     if (n.eligibility > 1) why.push("Some programs here are specifically for students like you.");
     if (n.strength > 0) why.push("You've already started this.");

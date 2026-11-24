@@ -132,6 +132,9 @@ export interface PlanInput {
   /** Engine 0.11.0, grad-school tracks: apply in the final year ("this-cycle": what applications need finishes first, and
    *  applications happen before graduation), or the fall after graduation ("after-gap"). Missing or "not-sure": as before. */
   gradApps?: "this-cycle" | "after-gap" | "not-sure";
+  /** Engine 0.13.0: "year-later" = graduating a year after the usual four (fifth-year, co-op, transfer pacing). The plan
+   *  uses the runway of a year earlier and labels terms with the student's real year. Ignored in the first year. */
+  graduation?: "on-time" | "year-later";
   previousPlan?: Record<string, TermCode>; // goalId -> term, for plan stability
 }
 

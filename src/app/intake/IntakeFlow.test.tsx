@@ -67,14 +67,18 @@ describe("IntakeFlow", () => {
     expect(heading()).toBe("Where are you in school?");
   });
 
-  it("asks year and full-time/part-time together and moves on after the last one", async () => {
+  it("asks year, full-time/part-time, and graduation together, and moves on after the last one", async () => {
     render(<IntakeFlow onBuild={() => {}} startAt="year" initialAnswers={nb} />);
     expect(screen.getByText(/matches your credits so far/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole("radio", { name: "Third year" })); fireEvent.click(screen.getByRole("radio", { name: "Spring semester" }));
     advance(); await act(async () => {});
     expect(heading()).toBe("Where are you in school?");
     fireEvent.click(screen.getByRole("radio", { name: /Part-time/ })); advance(); await act(async () => {});
-    expect(saved()).toMatchObject({ year: 3, semester: 2, yearTerm: "3S", enrollment: "part-time" });
+    // Graduation (engine 0.13.0) follows, already set to the usual four years; picking "A year later" moves on.
+    expect(heading()).toBe("Where are you in school?");
+    expect(screen.getByRole("radio", { name: /At the end of my fourth year/ })).toHaveAttribute("aria-checked", "true");
+    fireEvent.click(screen.getByRole("radio", { name: /A year later/ })); advance(); await act(async () => {});
+    expect(saved()).toMatchObject({ year: 3, semester: 2, yearTerm: "3S", enrollment: "part-time", graduation: "year-later" });
     expect(heading()).toBe("What have you already done?");
   });
 

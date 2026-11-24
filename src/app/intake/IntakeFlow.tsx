@@ -18,7 +18,7 @@ import { TrackPicker } from "./controls/TrackPicker.tsx";
 import { YearTermPicker } from "./controls/YearTermPicker.tsx";
 import {
   emptyAnswers, firstIncomplete, identityLabel, isAnswered, isMulti, isSummerBreak, majorOfferedAt, OPTIONAL, screenOf, screensFor, stepsFor,
-  type Answers, type Enrollment, type GradApps, type School, type ScreenId, type StepId,
+  type Answers, type Enrollment, type GradApps, type Graduation, type School, type ScreenId, type StepId,
 } from "./model.ts";
 
 export const INTAKE_KEY = "cpm.intake.v1";
@@ -294,6 +294,8 @@ function renderPart(part: StepId, a: Answers, labelledBy: string, missing: boole
       return <TrackPicker labelledBy={labelledBy} majorId={a.majorId} value={a.trackId} onSelect={(id) => choose({ trackId: id }, "track")} {...invalid} />;
     case "horizon":
       return single(intake.horizons.map((h) => ({ value: h.id as Answers["horizon"] & string, label: h.label })), a.horizon, (v) => ({ horizon: v }));
+    case "graduation":
+      return single(intake.graduation.map((o) => ({ value: o.id as Graduation, label: o.label, note: "note" in o ? o.note : undefined })), a.graduation, (v) => ({ graduation: v }));
     case "gradApps":
       return single(intake.gradApps.map((o) => ({ value: o.id as GradApps, label: o.label, note: "note" in o ? o.note : undefined })), a.gradApps, (v) => ({ gradApps: v }));
     case "experience":

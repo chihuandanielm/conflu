@@ -5,14 +5,14 @@ import { coopMajors, emptyAnswers, majorOfferedAt, SCHOOLS, type Answers } from 
 
 const KEY = "plan";
 
-interface Shared { v: 1; m: string; y: number; q?: string; t: string; h?: string; s?: string; n?: string; g?: string; w?: number; u?: string; c?: 0 | 1; l?: string; e?: string[]; k?: string[]; r?: string[] }
+interface Shared { v: 1; m: string; y: number; q?: string; t: string; h?: string; s?: string; n?: string; g?: string; d?: 1; w?: number; u?: string; c?: 0 | 1; l?: string; e?: string[]; k?: string[]; r?: string[] }
 
 const b64url = (s: string) => btoa(String.fromCharCode(...new TextEncoder().encode(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64url = (s: string) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)));
 
 export function shareHash(a: Answers): string {
   if (!a.majorId || !a.year || !a.trackId) throw new Error("Intake is incomplete");
-  const s: Shared = { v: 1, m: a.majorId, y: a.year, t: a.trackId, h: a.horizon, s: a.school, n: a.enrollment, g: a.gradApps, q: a.yearTerm, w: a.weeklyHours, u: a.summer,
+  const s: Shared = { v: 1, m: a.majorId, y: a.year, t: a.trackId, h: a.horizon, s: a.school, n: a.enrollment, g: a.gradApps, d: a.graduation === "year-later" ? 1 : undefined, q: a.yearTerm, w: a.weeklyHours, u: a.summer,
     c: a.openToCoop === undefined ? undefined : a.openToCoop ? 1 : 0, l: a.location, e: a.experience, k: a.skills, r: a.credentials };
   return `#${KEY}=${b64url(JSON.stringify(s))}`;
 }
@@ -41,6 +41,7 @@ export function parseShareHash(hash: string): Answers | null {
     ...(() => { const yt = intake.yearTerms.find((x) => x.id === s.q && x.year === s.y); return yt ? { yearTerm: yt.id, semester: yt.semester as 1 | 2 } : {}; })(),
     // Links made before the enrollment question were planned at a full-time pace.
     enrollment: pick(s.n, intake.enrollment.map((x) => x.id as NonNullable<Answers["enrollment"]>)) ?? "full-time",
+    graduation: s.d === 1 ? "year-later" : "on-time",
     gradApps: pick(s.g, intake.gradApps.map((x) => x.id as NonNullable<Answers["gradApps"]>)),
     weeklyHours: intake.weeklyHours.includes(s.w as number) ? (s.w as number) : intake.defaultWeeklyHours,
     summer: pick(s.u, intake.summerAvailability.map((x) => x.id as NonNullable<Answers["summer"]>)),
@@ -50,6 +51,6 @@ export function parseShareHash(hash: string): Answers | null {
     skills: list(s.k, intake.skills),
     credentials: list(s.r, intake.credentials),
   };
-  a.seen = ["status", "school", "major", "year", "enrollment", "track", "horizon", "gradApps", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
+  a.seen = ["status", "school", "major", "year", "enrollment", "graduation", "track", "horizon", "gradApps", "experience", "skills", "credentials", "hours", "summer", "coop", "location"];
   return a;
 }

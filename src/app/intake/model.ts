@@ -12,6 +12,7 @@ export type Citizenship = NonNullable<PlanInput["citizenship"]>;
 export type School = NonNullable<PlanInput["school"]>;
 export type Enrollment = NonNullable<PlanInput["enrollment"]>;
 export type GradApps = NonNullable<PlanInput["gradApps"]>;
+export type Graduation = NonNullable<PlanInput["graduation"]>;
 export const SCHOOLS: readonly School[] = ["rutgers-nb", "rutgers-newark", "rutgers-camden", "other"];
 
 /**
@@ -37,6 +38,8 @@ export interface Answers {
   enrollment?: Enrollment;
   /** Grad-school paths only (engine 0.11.0): apply this coming cycle, after a gap year, or not sure yet. */
   gradApps?: GradApps;
+  /** Engine 0.13.0: graduating at the end of the fourth year (the default) or a year later. Asked from year 2 on. */
+  graduation?: Graduation;
   school?: School;
   trackId?: string;
   horizon?: Horizon;
@@ -54,14 +57,16 @@ export interface Answers {
 }
 
 export const emptyAnswers = (): Answers => ({
-  experience: [], skills: [], credentials: [], identity: [], weeklyHours: intake.defaultWeeklyHours, seen: [],
+  experience: [], skills: [], credentials: [], identity: [], weeklyHours: intake.defaultWeeklyHours, seen: [], graduation: "on-time",
 });
 
 export type StepId =
-  | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "gradApps" | "experience" | "skills" | "credentials"
+  | "intro" | "status" | "school" | "major" | "year" | "enrollment" | "track" | "horizon" | "gradApps" | "graduation" | "experience" | "skills" | "credentials"
   | "hours" | "summer" | "coop" | "location" | "citizenship" | "gender" | "identity" | "review";
 
 export const coopMajors = new Set(uiIntake.coop.majors);
+/** From the second year on (a first-year's plan already covers four years), and not for "Fifth year or later". */
+export const asksGraduation = (a: Answers) => !!a.year && a.year > 1 && a.yearTerm !== "5+";
 /** A career path that leads to grad or professional school, where the plan asks when the student will apply. */
 export const isGradTrack = (trackId: string | undefined) => tracks.find((t) => t.id === trackId)?.outcome === "grad-school";
 
@@ -79,7 +84,7 @@ export function screensFor(a: Answers): Screen[] {
     { id: "study", parts: ["school", "major"] },
     { id: "track", parts: ["track"] },
     { id: "horizon", parts: isGradTrack(a.trackId) ? ["horizon", "gradApps"] : ["horizon"] },
-    { id: "year", parts: ["year", "enrollment"] },
+    { id: "year", parts: asksGraduation(a) ? ["year", "enrollment", "graduation"] : ["year", "enrollment"] },
     { id: "experience", parts: ["experience"] },
     { id: "skills", parts: ["skills", "credentials"] },
     { id: "time", parts: a.majorId && coopMajors.has(a.majorId) ? ["hours", "summer", "coop"] : ["hours", "summer"] },
@@ -160,6 +165,7 @@ export function toPlanInput(a: Answers, today: string, extra: Pick<PlanInput, "c
     school: a.school ?? "rutgers-nb",
     enrollment: a.enrollment ?? "full-time",
     ...(isGradTrack(a.trackId) && a.gradApps ? { gradApps: a.gradApps } : {}),
+    ...(asksGraduation(a) && a.graduation === "year-later" ? { graduation: "year-later" as const } : {}),
     ...(a.location ? { location: a.location } : {}),
     ...(a.citizenship ? { citizenship: a.citizenship } : {}),
     identity: [...new Set([...a.identity, ...genderTags(a.gender)])],

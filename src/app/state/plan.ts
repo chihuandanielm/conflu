@@ -85,6 +85,12 @@ export function markDone(s: SavedPlan, goalId: string, today: string): SavedPlan
   return refresh({ ...s, completedGoals }, today);
 }
 
+/** Check several goals off at once (the "Already done?" card, engine 0.13.0): one re-plan. */
+export function markDoneMany(s: SavedPlan, goalIds: string[], today: string): SavedPlan {
+  const completedGoals = [...new Set([...s.completedGoals, ...goalIds])];
+  return refresh({ ...s, completedGoals }, today);
+}
+
 export function undoDone(s: SavedPlan, goalId: string, today: string): SavedPlan {
   return refresh({ ...s, completedGoals: s.completedGoals.filter((g) => g !== goalId) }, today);
 }

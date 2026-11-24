@@ -1,12 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { emptyAnswers, type Answers } from "../intake/model.ts";
-import { createSaved, diff, finalize, isOutdated, markDone, normalize, placements, reopenDraft, skipGoal, undoDone, undoSkip } from "./plan.ts";
+import { createSaved, diff, finalize, isOutdated, markDone, markDoneMany, normalize, placements, reopenDraft, skipGoal, undoDone, undoSkip } from "./plan.ts";
 
 const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, trackId: "software-engineering",
   horizon: "graduation", summer: "full", school: "rutgers-nb", location: "nj" };
 const today = "2026-11-15";
 
 describe("saved plan", () => {
+  it("marks several goals done in one re-plan (engine 0.13.0)", () => {
+    const s = createSaved({ ...cs, year: 4, semester: 1 }, today);
+    const ids = s.plan.terms[0].items.slice(0, 2).map((i) => i.goalId);
+    const after = markDoneMany(s, ids, today);
+    expect(after.completedGoals).toEqual(expect.arrayContaining(ids));
+    for (const id of ids) expect(placements(after.plan)[id]).toBeUndefined();
+    expect(markDoneMany(after, ids, today).completedGoals.length).toBe(after.completedGoals.length);
+  });
   it("builds a plan stamped with the current engine and data versions", () => {
     const s = createSaved(cs, today);
     expect(isOutdated(s)).toBe(false);

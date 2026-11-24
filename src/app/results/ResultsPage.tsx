@@ -9,7 +9,7 @@ import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
 import { tailoredResources } from "../resources/tailor.ts";
-import { diff, finalize, isOutdated, markDone, refresh, reopenDraft, setHours, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
+import { diff, finalize, isOutdated, markDone, markDoneMany, refresh, reopenDraft, setHours, skipGoal, undoDone, undoSkip, type SavedPlan } from "../state/plan.ts";
 import { shareHash } from "../state/share.ts";
 import { loadSteps, toggleStep } from "../state/steps.ts";
 import { isStaleBuildError, ReloadNotice } from "../staleBuild.tsx";
@@ -25,6 +25,7 @@ import { HaveNeed } from "./HaveNeed.tsx";
 import { NextMoves } from "./NextMoves.tsx";
 import { Notices } from "./Notices.tsx";
 import { SectionHead } from "./SectionHead.tsx";
+import { AlreadyDone } from "./AlreadyDone.tsx";
 import { StartHere } from "./StartHere.tsx";
 import { StatusStrip } from "./StatusStrip.tsx";
 import { WhyOrder } from "./WhyOrder.tsx";
@@ -73,6 +74,9 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   const done = useCallback((goalId: string) => {
     setOpen(null);
     replan(markDone(saved, goalId, todayISO()), (n) => `Marked “${goalTitle(goalId)}” done. Plan updated${n ? `; ${n} ${n === 1 ? "goal" : "goals"} moved` : ""}.`);
+  }, [saved, replan]);
+  const doneMany = useCallback((goalIds: string[]) => {
+    replan(markDoneMany(saved, goalIds, todayISO()), (n) => `Marked ${goalIds.length} ${goalIds.length === 1 ? "goal" : "goals"} done. Plan updated${n ? `; ${n} ${n === 1 ? "goal" : "goals"} moved` : ""}.`);
   }, [saved, replan]);
   const skip = useCallback((goalId: string) => {
     setOpen(null);
@@ -219,6 +223,9 @@ export function ResultsPage({ saved, onChange, onEdit }: {
                     <StatusStrip term={core.terms[0]} doneCount={saved.completedGoals.length} weeklyHours={hours}
                       onHours={(h) => replan(setHours(saved, h, todayISO()), (n) => `Re-planned for ${h} free hours a week${n ? `; ${n} goals moved` : ""}.`)} />
                     <StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
+                    {/* Right after the one action, so "Do this now" stays on the first screen of a phone. */}
+                    <AlreadyDone key={`${core.terms[0].code}:${saved.completedGoals.length}`} term={core.terms[0]} dismissed={saved.dismissed} onDone={doneMany}
+                      onHide={(k) => onChange({ ...saved, dismissed: [...saved.dismissed, k] })} />
                   </div>
                   {/* 2. This semester, with notes and why this order. */}
                   <div className="pt-10">

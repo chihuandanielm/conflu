@@ -14,6 +14,7 @@ export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
   school: { question: uiIntake.school.question, help: uiIntake.school.help, why: "Each campus has its own career center, research office, and programs, and offers different majors." },
   track: { question: "Where do you want to end up?", help: "Pick the path closest to what you want. Still exploring is a fine answer." },
   horizon: { question: "How soon do you want to get there?" },
+  graduation: { question: "When do you expect to graduate?", why: "Graduating a year later gives your plan a year more to work with." },
   gradApps: { question: "When do you plan to apply?", why: "Applying this cycle puts your statement, letters, and program list first, in your final year." },
   experience: { question: "What have you already done?", help: "Tap anything that fits and skip the rest. A rough answer is fine; you can change it later." },
   skills: { question: "Which skills are you comfortable with?", help: "Only pick ones you could use on a project today." },

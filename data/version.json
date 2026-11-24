@@ -1,4 +1,4 @@
 {
-  "version": "2026.11.24-1",
+  "version": "2026.11.24-2",
   "note": "Bump on every data change. Saved plans record this so the site can tell a student when their plan was built on older data."
 }

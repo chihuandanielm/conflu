@@ -18,12 +18,12 @@ describe("steps", () => {
   it("groups the questions into 8 screens: study, then the goal, then the details, personal questions last", () => {
     expect(stepsFor(cs)).toEqual(["intro", "study", "track", "horizon", "year", "experience", "skills", "time", "about", "review"]);
     expect(screensFor(cs).map((s) => s.parts)).toEqual([
-      ["school", "major"], ["track"], ["horizon"], ["year", "enrollment"], ["experience"], ["skills", "credentials"],
+      ["school", "major"], ["track"], ["horizon"], ["year", "enrollment", "graduation"], ["experience"], ["skills", "credentials"],
       ["hours", "summer"], ["location", "citizenship", "gender", "identity"],
     ]);
     // The "where are you right now" question is folded into the intro, so it isn't a question any more.
     expect(questionSteps(cs)).not.toContain("status");
-    expect(questionSteps(cs)).toHaveLength(15);
+    expect(questionSteps(cs)).toHaveLength(16);
   });
   it("asks grad-school applicants when they'll apply, on the time-frame screen, and passes it to the plan (engine 0.11.0)", () => {
     const phd: Answers = { ...cs, trackId: "research-phd" };
@@ -35,6 +35,15 @@ describe("steps", () => {
     for (const sc of [...screensFor(phd), ...screensFor({ ...cs, majorId: "mechanical-engineering" })]) if (sc.parts.length > 1) expect(SCREEN_COPY[sc.id], sc.id).toBeDefined();
     // Switching to a job path drops the answer from the plan.
     expect(toPlanInput({ ...cs, gradApps: "after-gap" }, "2026-11-15").gradApps).toBeUndefined();
+  });
+  it("asks from the second year on when the student expects to graduate, defaulting to on time (engine 0.13.0)", () => {
+    expect(screensFor(cs).find((s) => s.id === "year")!.parts).toEqual(["year", "enrollment", "graduation"]);
+    expect(screensFor({ ...cs, year: 1, yearTerm: "1F" }).find((s) => s.id === "year")!.parts).toEqual(["year", "enrollment"]);
+    expect(screensFor({ ...cs, year: 4, yearTerm: "5+" }).find((s) => s.id === "year")!.parts).toEqual(["year", "enrollment"]);
+    expect(emptyAnswers().graduation).toBe("on-time");
+    expect(toPlanInput(cs, "2026-11-15").graduation).toBeUndefined();
+    expect(toPlanInput({ ...cs, graduation: "year-later" }, "2026-11-15").graduation).toBe("year-later");
+    expect(toPlanInput({ ...cs, year: 1, yearTerm: "1F", graduation: "year-later" }, "2026-11-15").graduation).toBeUndefined();
   });
   it("maps every question, and steps saved by older versions, to the screen that asks it", () => {
     expect(screenOf("enrollment", cs)).toBe("year");

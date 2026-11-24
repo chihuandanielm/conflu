@@ -17,6 +17,34 @@ function setup(s = createSaved(cs, "2026-11-15")) {
   return { onChange, get: () => current };
 }
 
+describe("already done? (engine 0.13.0, docs/T4_PLAN.md)", () => {
+  const senior: Answers = { ...cs, year: 4, semester: 1, yearTerm: "4F" };
+  it("asks an upper-year student about the catch-ups in this semester, and marks the ones they pick done in one re-plan", () => {
+    const { onChange, get } = setup(createSaved(senior, "2026-10-01"));
+    const card = screen.getByRole("region", { name: "Already done any of these?" });
+    const catchups = get().plan.terms[0].items.filter((i) => (i.timing === "late" || i.timing === "last-chance") && !i.gate && !i.option);
+    expect(catchups.length).toBeGreaterThan(0);
+    for (const it of catchups) expect(within(card).getByRole("button", { name: it.title })).toBeInTheDocument();
+    const update = within(card).getByRole("button", { name: "Update my plan" });
+    expect(update).toBeDisabled();
+    fireEvent.click(within(card).getByRole("button", { name: catchups[0].title }));
+    expect(within(card).getByRole("button", { name: catchups[0].title })).toHaveAttribute("aria-pressed", "true");
+    act(() => { fireEvent.click(update); });
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(get().completedGoals).toContain(catchups[0].goalId);
+  });
+  it("isn't shown when nothing in this semester is a catch-up", () => {
+    setup(createSaved({ ...cs, year: 1, semester: 1, yearTerm: "1F" }, "2026-10-01"));
+    expect(screen.queryByRole("region", { name: "Already done any of these?" })).toBeNull();
+  });
+  it("can be hidden", () => {
+    const { get } = setup(createSaved(senior, "2026-10-01"));
+    act(() => { fireEvent.click(screen.getByRole("button", { name: "Hide" })); });
+    expect(screen.queryByRole("region", { name: "Already done any of these?" })).toBeNull();
+    expect(get().dismissed.some((d) => d.startsWith("already-done:"))).toBe(true);
+  });
+});
+
 describe("results page", () => {
   it("reads top to bottom: where you stand, do this now, this semester, coming up, then the big picture", () => {
     setup(createSaved({ ...cs, semester: 1, yearTerm: "2F", experience: ["resume", "club"], skills: ["python"] }, "2026-11-15"));
