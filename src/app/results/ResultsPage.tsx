@@ -5,6 +5,7 @@ import { goals, intake } from "../data/dataset.ts";
 import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
 import { mapModel, termWeeks } from "../map/facts.ts";
+import { FeedbackForm } from "../feedback/FeedbackForm.tsx";
 import { DegreeAudit } from "../requirements/DegreeAudit.tsx";
 import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
@@ -327,6 +328,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
           <footer className="max-w-[46em] pt-6 text-small">
             A starting point, not a rulebook: adjust it as you learn what fits. Built in your browser from dataset
             <span className="fact"> {plan.meta.dataVersion}</span> and planning engine <span className="fact">{plan.meta.engineVersion}</span>. Nothing you entered left this device.
+            <FeedbackForm dataVersion={plan.meta.dataVersion} engineVersion={plan.meta.engineVersion} />
           </footer>
         </main>
       </div>

@@ -8,11 +8,12 @@ import tailwindcss from "@tailwindcss/vite";
  * (Dev builds skip it: Vite's dev server injects inline scripts for hot reload.)
  *  - 'wasm-unsafe-eval' lets the PDF library compile its WebAssembly layout engine. It does not allow JavaScript eval.
  *  - connect-src data: lets that engine read its WebAssembly module, which ships inline as a data: URL.
+ * form-action allows only Formspree, for the feedback form (src/app/feedback/), a plain form post with no script.
  * frame-ancestors can't be set from a meta tag; GitHub Pages doesn't allow framing headers either.
  */
 export const CSP = [
   "default-src 'self'", "script-src 'self' 'wasm-unsafe-eval'", "style-src 'self'", "img-src 'self' data:",
-  "font-src 'self'", "connect-src 'self' data:", "object-src 'none'", "base-uri 'none'", "form-action 'none'",
+  "font-src 'self'", "connect-src 'self' data:", "object-src 'none'", "base-uri 'none'", "form-action https://formspree.io",
 ].join("; ");
 
 function cspMeta(): Plugin {
