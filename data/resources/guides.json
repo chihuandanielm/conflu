@@ -1315,10 +1315,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 200,
-        "finalUrl": "https://writingcenter.unc.edu/tips-and-tools/honors-theses/"
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
       "tags": [
         "guide"
