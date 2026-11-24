@@ -1,7 +1,8 @@
 // Colour and contrast rules (design/DESIGN.md §2), read from the tokens in styles.css and the class names in the app.
-// Sage paper, three inks and one text colour. Sentences are ink: ink on sage and ink on sand must reach 7:1 (WCAG AAA).
-// Blue is for headings, links, buttons and tabs (large or interactive): blue on sage and sage on blue reach 4.5:1 (AA),
-// as does ink on a green fill (a done or on-track label). Nothing is ever set under 15px.
+// Field guide palette: bone paper (sage), warm charcoal for sentences (ink) and structure (blue), and three accents with
+// one job each: violet for your picks and links, the ochre fill (sand) and line (ochre) for "look here first", green
+// (verdigris) for done. Sentences reach 7:1 (WCAG AAA) on paper and on the ochre fill; anything interactive reaches 4.5:1.
+// Nothing is ever set under 15px.
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -14,7 +15,7 @@ const lum = (hex: string) => {
 };
 const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
 
-const FIVE = { sage: "#E0E7DA", navy: "#2F3F6E", ink: "#1A1F24", blue: "#456894", green: "#00A37D", sand: "#E6B989" };
+const PALETTE = { sage: "#E8E3D7", ink: "#34302C", blue: "#34302C", violet: "#545684", sand: "#E2C38A", ochre: "#96773D", green: "#356B61", umber: "#2B2420" };
 const AAA = 7, AA = 4.5;
 
 const files = (dir: string): string[] => readdirSync(dir).flatMap((f) => {
@@ -28,10 +29,11 @@ const tags = source.flatMap(({ p, s }) => [...s.matchAll(/<[A-Za-z][\w.]*\s[^<>]
 describe("colour (DESIGN.md §2)", () => {
   it("scans the whole app", () => { expect(tags.length).toBeGreaterThan(100); });
 
-  it("defines exactly the five colours plus the landing's navy, in :root and in the Tailwind theme", () => {
-    for (const [name, hex] of Object.entries(FIVE)) expect(token(name).toUpperCase()).toBe(hex);
+  it("defines exactly the palette, in :root and in the Tailwind theme", () => {
+    for (const [name, hex] of Object.entries(PALETTE)) expect(token(name).toUpperCase()).toBe(hex);
+    for (const [name, hex] of Object.entries(PALETTE)) expect(css).toContain(`--color-${name}: ${hex}`);
     const hexes = new Set([...css.matchAll(/#[0-9a-fA-F]{6}\b/g)].map((m) => m[0].toUpperCase()));
-    expect([...hexes].sort()).toEqual(Object.values(FIVE).sort());
+    expect([...hexes].sort()).toEqual([...new Set(Object.values(PALETTE))].sort());
     expect(css).toMatch(/--color-\*:\s*initial/); // Tailwind's default palette is off
     expect(css).not.toMatch(/rgba?\(|hsla?\(|oklch\(|box-shadow/);
   });
@@ -42,21 +44,30 @@ describe("colour (DESIGN.md §2)", () => {
     expect(ratio(token("ink"), token("sand"))).toBeGreaterThanOrEqual(AAA);
   });
 
-  it("on the landing's navy, sage words reach 7:1 and sand ones 4.5:1", () => {
-    expect(ratio(token("sage"), token("navy"))).toBeGreaterThanOrEqual(AAA);
-    expect(ratio(token("sand"), token("navy"))).toBeGreaterThanOrEqual(AA);
+  it("inside the landing's umber window, paper-coloured words reach 7:1", () => {
+    expect(ratio(token("sage"), token("umber"))).toBeGreaterThanOrEqual(AAA);
   });
 
-  it.each([["blue", "sage"], ["sage", "blue"], ["ink", "green"]])("%s on %s (headings, links, buttons, done labels) is at least 4.5:1", (fg, bg) => {
+  it.each([["blue", "sage"], ["sage", "blue"], ["violet", "sage"], ["sage", "violet"], ["sage", "green"]])("%s on %s (headings, buttons, your picks, links, done labels) is at least 4.5:1", (fg, bg) => {
     expect(ratio(token(fg), token(bg))).toBeGreaterThanOrEqual(AA);
   });
 
-  it("no other pair is dark enough to carry text, so none may", () => {
-    for (const [fg, bg] of [["sand", "sage"], ["green", "sage"], ["sand", "blue"], ["green", "blue"]]) expect(ratio(token(fg), token(bg))).toBeLessThan(AA);
+  it("the ochre line and the done green stand apart from the paper as marks (3:1, non-text)", () => {
+    expect(ratio(token("ochre"), token("sage"))).toBeGreaterThanOrEqual(3);
+    expect(ratio(token("green"), token("sage"))).toBeGreaterThanOrEqual(3);
   });
 
-  it("never sets words in sand or green on sage: green and sand classes only on decorative marks (sand words only on the landing's navy)", () => {
-    const bad = tags.filter(({ p, tag }) => /(?<![\w-])text-(sand|green)\b/.test(tag) && !/aria-hidden/.test(tag) && !(/landing/.test(p) && /text-sand\b/.test(tag)));
+  it("the accents that can't carry words on paper never do", () => {
+    for (const [fg, bg] of [["sand", "sage"], ["ochre", "sage"]]) expect(ratio(token(fg), token(bg))).toBeLessThan(AA);
+  });
+
+  it("never sets words in sand, ochre or green: those classes only on fills and decorative marks", () => {
+    const bad = tags.filter(({ tag }) => /(?<![\w-])text-(sand|ochre|green)\b/.test(tag) && !/aria-hidden/.test(tag));
+    expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
+  });
+
+  it("puts only paper-coloured text on a violet or green fill", () => {
+    const bad = tags.filter(({ tag }) => /(?<![\w-])bg-(violet|green)\b/.test(tag) && !/(?<![\w-])text-sage\b/.test(tag) && !/aria-hidden/.test(tag) && !/\bdot\b/.test(tag));
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 
@@ -66,7 +77,7 @@ describe("colour (DESIGN.md §2)", () => {
   });
 
   it("uses no opacity tints, arbitrary colours, or shadows in class names (fading fully in or out is motion, and allowed)", () => {
-    const bad = tags.filter(({ tag }) => /(?<![\w-])(bg|text|border|fill|stroke)-(sage|ink|blue|green|sand)\/\d+|(?<![\w-])(bg|text|border)-\[#|(?<![\w-])shadow-|(?<![\w-])opacity-(?!0\b|100\b)\d/.test(tag));
+    const bad = tags.filter(({ tag }) => /(?<![\w-])(bg|text|border|fill|stroke)-(sage|ink|blue|violet|green|sand|ochre|umber)\/\d+|(?<![\w-])(bg|text|border)-\[#|(?<![\w-])shadow-|(?<![\w-])opacity-(?!0\b|100\b)\d/.test(tag));
     expect(bad.map((b) => `${b.p}: ${b.tag.slice(0, 120)}`)).toEqual([]);
   });
 

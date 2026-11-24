@@ -17,8 +17,8 @@ function initialView(): View {
   return shared ? { name: "intake", startAt: "review", key: 0, shared } : { name: "intake", key: 0 };
 }
 /**
- * The app: the landing and the questions (IntakeFlow), then the results. Screens change by fading (design/DESIGN.md §8);
- * the landing runs its own navy-to-sage exit (docs/LANDING_REDESIGN.md).
+ * The app: the landing and the questions (IntakeFlow), then the results. Screens change by fading (design/DESIGN.md §8).
+ * The landing's sample plan expands in place on the landing (Landing.tsx) and is held there, in memory only.
  */
 export function App() {
   const [view, setView] = useState<View>(initialView);

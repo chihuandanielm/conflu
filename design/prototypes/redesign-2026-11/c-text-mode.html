@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup C: Text mode</title>
+<style>
+@font-face { font-family: "Barlow SC"; src: url(/fonts/barlow-semi-condensed-700.ttf); font-weight: 700; }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-400.ttf); }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-700.ttf); font-weight: 700; }
+@font-face { font-family: Plex; src: url(/fonts/ibm-plex-mono-400.ttf); }
+/* Everything is type (aino, Are.na, NTS): a monospaced grid, lettered lists, condensed labels, one highlight. Dark
+   warm umber for the landing, bone for the plan. */
+:root { --umber: #1e1c1d; --umber2: #2b2420; --bone: #e8e3d7; --ink: #34302c; --muted: #7f756c; --sand: #E6B989; --violet: #8f91c4; --line: #4a423d; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--bone); color: var(--ink); font: 17px/1.55 Quantico, sans-serif; }
+.mono { font: 15px/1.5 Plex, monospace; }
+.land { background: var(--umber); color: var(--bone); min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+.top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 16px 24px; border-bottom: 1px solid var(--line); }
+.top span { color: #a99e92; } .top b { font: 700 20px "Barlow SC"; letter-spacing: .02em; }
+.mid { display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
+.left { padding: 56px 24px 40px; border-right: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; }
+.idx { color: #a99e92; }
+.idx li { list-style: none; } .idx li::before { content: attr(data-k) ". "; color: var(--sand); }
+h1 { font: 700 clamp(64px, 8.4vw, 132px)/.84 "Barlow SC"; letter-spacing: -.01em; margin-top: 40px; }
+h1 mark { display: inline-block; background: var(--sand); color: var(--umber); padding: .02em .1em .1em; margin-top: .06em; line-height: .9; }
+.lede { max-width: 28em; margin-top: 26px; color: #cfc7ba; }
+.ctas { display: flex; flex-direction: column; gap: 0; margin-top: 30px; width: min(360px, 100%); }
+.cta { display: flex; justify-content: space-between; padding: 14px 0; border-top: 1px solid var(--line); color: var(--bone); text-decoration: none; font: 700 19px Quantico; }
+.cta:last-child { border-bottom: 1px solid var(--line); font-weight: 400; }
+.cta span { color: var(--sand); }
+.right { position: relative; }
+.right canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.foot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 12px 24px; border-top: 1px solid var(--line); color: #a99e92; }
+
+/* ---- Plan ---- */
+.plan { max-width: 1200px; margin: 0 auto; padding: 48px 24px 100px; }
+.ph { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-bottom: 1.5px solid var(--ink); padding-bottom: 18px; }
+.ph h2 { font: 700 58px/.9 "Barlow SC"; }
+.ph dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 16px; align-self: end; color: var(--muted); }
+.ph dt { color: var(--ink); }
+.tabs { display: flex; gap: 28px; padding: 12px 0; border-bottom: 1px solid #c9c0b0; }
+.tabs a { color: var(--muted); text-decoration: none; } .tabs a.on { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.grid { display: grid; grid-template-columns: 1fr 2fr; gap: 0; margin-top: 28px; }
+.col { padding-right: 28px; } .col + .col { border-left: 1px solid #c9c0b0; padding-left: 28px; padding-right: 0; }
+.term { font: 700 40px/1 "Barlow SC"; margin-top: 6px; }
+.hours { margin-top: 14px; font: 15px Plex; letter-spacing: .1em; }
+.now { background: var(--umber); color: var(--bone); padding: 22px 24px; }
+.now .lab { color: var(--sand); }
+.now p.big { font: 700 32px/1.06 "Barlow SC"; margin-top: 10px; }
+.now .go { margin-top: 16px; color: #cfc7ba; }
+.now .go a { color: var(--bone); }
+ol.goals { margin-top: 22px; padding: 0; }
+ol.goals li { list-style: none; display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; padding: 12px 0; border-top: 1px solid #c9c0b0; align-items: baseline; }
+ol.goals li::before { content: attr(data-k) "."; font: 15px Plex; color: var(--muted); }
+ol.goals b { font: 700 21px "Barlow SC"; }
+.tag { font: 15px Plex; } .tag.must { background: var(--ink); color: var(--bone); padding: 0 6px; }
+@media (max-width: 760px) {
+  .top, .foot { grid-template-columns: 1fr 1fr; } .top span:nth-child(n+3), .foot span:nth-child(n+3) { display: none; }
+  .mid { grid-template-columns: 1fr; } .left { border-right: 0; padding: 32px 16px; } .right { height: 300px; }
+  .ph, .grid { grid-template-columns: 1fr; } .ph h2 { font-size: 42px; } .col + .col { border-left: 0; padding-left: 0; margin-top: 24px; } .col { padding-right: 0; }
+  .now p.big { font-size: 26px; } .plan { padding: 32px 16px 80px; }
+}
+</style>
+</head>
+<body>
+<section class="land">
+  <div class="top mono"><b>conflu</b><span>career plans for students</span><span>free, no account</span><span style="text-align:right">about 3 minutes</span></div>
+  <div class="mid">
+    <div class="left">
+      <ol class="idx mono"><li data-k="a">your major and year</li><li data-k="b">the job you want</li><li data-k="c">what to do this semester</li></ol>
+      <div>
+        <h1>Know what to&nbsp;do <mark>this semester.</mark></h1>
+        <p class="lede">A semester-by-semester plan for the job you want, with the offices and programs at your school.</p>
+        <div class="ctas"><a class="cta" href="#">Build my plan <span>-&gt;</span></a><a class="cta" href="#">See a sample plan <span>-&gt;</span></a></div>
+      </div>
+    </div>
+    <div class="right"><canvas id="art"></canvas></div>
+  </div>
+  <div class="foot mono"><span>three streams, one river</span><span>no cookies from this site</span><span>rutgers or any school</span><span style="text-align:right">2026–27 catalogs</span></div>
+</section>
+
+<section class="plan">
+  <div class="ph">
+    <div><p class="mono" style="color:var(--muted)">your plan</p><h2>Land your first role in software engineering</h2></div>
+    <dl class="mono"><dt>major</dt><dd>computer science</dd><dt>year</dt><dd>2, fall</dd><dt>campus</dt><dd>rutgers–new brunswick</dd><dt>time</dt><dd>5 free hours a week</dd></dl>
+  </div>
+  <nav class="tabs mono"><a class="on" href="#">plan</a><a href="#">map (51)</a><a href="#">resources (208)</a><a href="#">courses</a></nav>
+  <div class="grid">
+    <div class="col">
+      <p class="mono" style="color:var(--muted)">this semester</p>
+      <p class="term">Year 2 · Fall</p>
+      <p class="hours" aria-label="uses about 4 of 5 hours">[####·] 4 / 5 h a week</p>
+      <p style="margin-top:14px">4 goals, 2 of them must-dos. Next semester opens in January.</p>
+    </div>
+    <div class="col">
+      <div class="now">
+        <p class="mono lab">do this now · step 1 of 5</p>
+        <p class="big">Pick a problem you or your friends actually have, and keep the first version small.</p>
+        <p class="mono go">go to: <a href="#">CS50 (Harvard, free online)</a>, <a href="#">freeCodeCamp</a></p>
+      </div>
+      <ol class="goals">
+        <li data-k="a"><b>Build and ship a personal project</b><span class="tag must">must-do</span></li>
+        <li data-k="b"><b>Set up GitHub with a profile README</b><span class="tag">2 h</span></li>
+        <li data-k="c"><b>Build a complete LinkedIn profile</b><span class="tag">3 h</span></li>
+        <li data-k="d"><b>File the FAFSA (every year)</b><span class="tag must">must-do</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+<script type="module">
+import { createScene } from "./scene-proto.ts";
+// Low-contrast umber with bone and sand highlights.
+createScene(document.getElementById("art"), { reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, sky: false,
+  tones: ["#2b2420", "#3a312b", "#4f4640", "#6e6458", "#a08a6c", "#c9a77c", "#e8e3d7"] });
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-// The landing's painted confluence (docs/LANDING_REDESIGN.md): an ASCII landscape on a canvas. A brightness field (dusk
+// The landing's painted confluence (docs/LANDING_REDESIGN.md, docs/DESIGN_RESEARCH.md): an ASCII landscape on a canvas,
+// shown in a retro window on the landing. A brightness field (dusk
 // sky, lit peaks, pines, meadow, and three streams that join one river at a vanishing point under a low sun) is drawn
 // as a dense grid of small glyphs. Detail comes from the character chosen for each cell; colour is posterised into a
 // few muted tones with noise-dithered edges. The sky is horizontal hatching, the land a full ASCII field, the meadow a
@@ -8,8 +9,9 @@
 // tone, when it appears) is computed once per size; a frame only decides which cells show, and draws one string per
 // tone per row, so even 40,000 cells cost a few milliseconds and the paint-in runs on every animation frame.
 
-/** Muted tones, dark to light: navy-on-navy, slate, dusty blue, grey-violet, tan, sand, pale sand. */
-export const TONES = ["#2B3A66", "#3B4C80", "#5E6F9E", "#8D8FA8", "#B39C84", "#D2B994", "#E9D9BC"] as const;
+/** Warm painterly tones on the window's umber ground, dark to light: umber, warm grey, slate violet, grey-violet, dusty
+ *  rose, ochre, bone (docs/DESIGN_RESEARCH.md, direction A). */
+export const TONES = ["#4A403B", "#61554D", "#6F71A3", "#9A8FB0", "#C29A96", "#D2B27A", "#EFE9DD"] as const;
 const RAMP = " .,:;i1rsXA253hMHG9B@";
 const SCRAMBLE = "#%&*+=-:;?!/\\|<>{}[]";
 const FS = 6, LH = 7;
@@ -138,6 +140,7 @@ function compute(W: number, H: number, cw: number): Cells {
     if (s.kind === "water") { c.water.push({ i, x, y, L: s.L, p: s.p ?? 0 }); continue; }
     let ch: string;
     if (s.kind === "sky") {
+      if (s.L < 0.6) continue; // the sky is left empty (the umber of the window); only the sun's glow is drawn
       if (y % 2) continue; // hatching: every other row
       const h = hash(x, y);
       ch = s.L < 0.14 ? (h > 0.992 ? "+" : h > 0.5 ? "-" : " ") : s.L < 0.4 ? "-" : s.L < 0.7 ? "=" : "#";

@@ -1,9 +1,6 @@
-/* Confluence design tokens.
-   Three inks on sage paper. Each ink has one job, and nothing borrows another's:
-     blue   the key plate: everything you read, every line, every control
-     sand   the land plate: ground in the river picture, and dotted "shore" rules between parts of a page
-     green  the life plate: the fish, where you are, what you have done. Never a background, never a border.
-   No other colours, no opacity tints, no gradients, no shadows. Tone comes from glyph density and line weight. */
+/* Field guide design tokens (direction A, 2026-11-24; design/DESIGN.md §2). Bone paper and warm charcoal, and three
+   accents with one job each: violet for your picks and links, ochre for "look here first", verdigris for done.
+   No other colours, no opacity tints, no shadows. The app's live copy is src/app/styles.css. */
 
 @font-face { font-family: "Quantico"; font-weight: 400; font-display: swap; src: url("./prototypes/fonts/quantico-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Quantico"; font-weight: 700; font-display: swap; src: url("./prototypes/fonts/quantico-latin-700-normal.woff2") format("woff2"); }
@@ -11,11 +8,14 @@
 @font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-display: swap; src: url("./prototypes/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); }
 
 :root {
-  --sage: #E0E7DA;
-  --ink: #1A1F24;   /* words: every sentence, label and fact (13.1:1 on sage, 9.2:1 on sand) */
-  --blue: #456894;
-  --green: #00A37D;
-  --sand: #E6B989;
+  --sage: #E8E3D7;  /* paper: bone */
+  --ink: #34302C;   /* words: warm charcoal (10.2:1 on bone, 7.7:1 on the ochre fill) */
+  --blue: #34302C;  /* structure: headings, rules, buttons, tabs */
+  --violet: #545684; /* yours, or a way out: picked answers, links, must-do dots */
+  --sand: #E2C38A;  /* look here first: an ochre fill with ink on it */
+  --ochre: #96773D; /* its line: the bar beside a missing answer, the hours meter */
+  --green: #356B61; /* done: verdigris */
+  --umber: #2B2420; /* the landing window's ground */
 
   --font-display: "Barlow Semi Condensed", "Quantico", sans-serif; /* headings (700) and bold labels (600) */
   --font-text: "Quantico", system-ui, sans-serif;        /* everything meant to be read */

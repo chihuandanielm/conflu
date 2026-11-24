@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype: the app in direction A, v2 (colour with a job)</title>
+    <!-- The real app (src/app/main.tsx) with the field-guide theme laid over it. Prototype only: nothing here ships. -->
+    <link rel="stylesheet" href="./field-guide-theme-v2.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/app/main.tsx"></script>
+    <script type="module">
+      // The app's own stylesheet loads after this page's, so re-append the theme to keep it last.
+      const l = document.querySelector('link[href="./field-guide-theme-v2.css"]');
+      new MutationObserver(() => { if (document.head.lastElementChild !== l) document.head.appendChild(l); }).observe(document.head, { childList: true });
+    </script>
+  </body>
+</html>

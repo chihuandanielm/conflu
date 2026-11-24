@@ -20,31 +20,36 @@ That one picture is used in three places, and nowhere else is decorated (2026-11
 
 The animated river that used to run behind every screen (and the camera moves between screens) is gone: the questions and the results sit on plain sage, and screens change by fading.
 
-## 2. Colour: sage paper, three inks, and ink for words
+## 2. Colour: bone paper, warm charcoal, and three accents with one job each
 
-Five colours exist. Nothing else: no white, no tints made with opacity, no gradients, no shadows. (Ink was added on
-2026-11-23 after student simulations found blue sentences hard to read; it is the "and black" the palette allowed.)
+Direction A, "Field guide" (2026-11-24, docs/DESIGN_RESEARCH.md). The page is bone paper and warm charcoal. Colour is
+added only where a student needs it: simulated students walked the site in charcoal alone, and five moments failed (a
+missing answer, a picked answer, where to look first, links in goal rows, done). Each accent has one job and is used
+for nothing else. No white, no tints made with opacity, no shadows. The paper has a faint dot grain (an SVG tile).
+
+The token names are kept from the first palette so class names stay stable.
 
 | Token | Hex | Job | Share of a screen |
 |---|---|---|---|
-| `--sage` | `#E0E7DA` | Paper. Every background. | most of it |
-| `--ink` | `#1A1F24` | Words. Every sentence, label and fact: body text, step text, facts in mono. | the text |
-| `--blue` | `#456894` | What you can act on, and structure: headings, links, buttons, tabs, every rule and border, water, the one solid block per screen. **Blue means "you can act on this".** | about a tenth |
-| `--sand` | `#E6B989` | Ground and attention. Ground in the river picture, the dotted "shore" rule, and the **attention panel**: a sand fill with ink text behind a notice, "where you stand", or a missing answer. | a little |
-| `--green` | `#00A37D` | Life and done. The fish, "you are here", done dots and streams, ticked boxes, and the on-track counter (a green fill with ink text). | almost none |
+| `--sage` | `#E8E3D7` | Paper: bone. Every background. | most of it |
+| `--ink` | `#34302C` | Words: warm charcoal. Every sentence, label and fact. | the text |
+| `--blue` | `#34302C` | Structure, in the same charcoal: headings, rules, borders, buttons, tabs, filters. | lines |
+| `--violet` | `#545684` | **Yours, or a way out.** The answers you picked (radios, checklist picks, "Already done?" picks), links, a must-do dot, the focus ring. | a few marks |
+| `--sand` | `#E2C38A` | **Look here first** (an ochre fill, ink on it). The headline's "this semester." band, the "Do this now" title bar, a missing answer's panel, the sample plan's note, the closing panel on the landing. | a little |
+| `--ochre` | `#96773D` | The line for "look here first": the bar beside a missing answer or a notice, and the hours meter. Never words. | almost none |
+| `--green` | `#356B61` | **Done** (verdigris). Ticks, the drawer's progress bar, done dots, the on-track label (paper text on it). | almost none |
+| `--umber` | `#2B2420` | The dark ground inside the landing's window, behind the ASCII painting. | one window |
 
 Rules that follow from the jobs:
 
-1. **Sentences are ink on sage or ink on sand.** Ink on sage is 13.1:1 and ink on sand 9.2:1, both past the 7:1 of WCAG AAA. Headings, links, buttons and tabs are blue on sage (4.54:1) or sage on blue. Ink on a green fill (5.2:1) is only for a short done or on-track label. Sand and green never carry words on sage (1.42:1 and 2.54:1).
-2. **Green means alive, you, or done.** As a fill it only sits behind a done or on-track label, a progress gauge (the drawer's steps bar), or a mark. As a line, only the 3px bar beside "Done when" in the goal drawer.
-3. **Sand never means "selected".** It is ground, and it asks for attention: the shore rule separates; the sand panel says "read this".
-4. **Selected is solid blue with sage text.** No green edge, no offset block, no glow.
-5. **One solid blue block per screen**, at most: the Start button, the Continue button, the "Do this now" card. A selected state (an answer, the current tab, an active filter) is also solid blue; that is a state, not an action, and does not count.
-6. **Meaning never rests on colour alone.** A must-do has a filled dot and the word "must-do". A done goal has a green dot and the word "done". The eight kinds of goal are told apart by a glyph and a word (section 6), not by eight colours.
-7. Tone comes from **density and weight**: more or darker glyphs in the river, a 3px line for a must-do against 1.5px for the rest.
-8. **Nothing moves when pressed or hovered.** Hover underlines a row's title or fills a button; rows never shift sideways and buttons never drop (on a phone a shifted row looks indented).
+1. **Sentences are ink on paper (10.2:1) or ink on the ochre fill (7.7:1)**, past the 7:1 of WCAG AAA. Paper text on violet (5.4:1) or on green (4.8:1) is for short labels: a picked answer, a done label.
+2. **Violet means it's yours, or it takes you somewhere.** A picked answer is a violet fill with paper text, so it never looks like the Continue button or a tab. Links are violet text. Tabs, filters and the experience tabs are views, not answers, so they stay charcoal.
+3. **Ochre means look here first.** This semester's panel and "Do this now" read as one warm block; a missing answer gets the ochre bar and panel. Ochre never decorates.
+4. **Green means done.** As a fill it only sits behind a tick, a done label or a progress gauge; as a line, only beside "Done when".
+5. **Meaning never rests on colour alone.** A must-do has a filled dot and the word "must-do". A picked answer is also a filled block (`aria-checked`). A missing answer also has words saying what to pick.
+6. **Nothing moves when pressed or hovered.** Hover fills a button or underlines a row's title; rows never shift sideways.
 
-`src/app/contrast.test.ts` reads the five tokens: it fails if ink on sage or ink on sand falls under 7:1, if blue on sage, sage on blue or ink on green falls under 4.5:1, if any other colour appears, if words are set in sand or green, or if a sand fill carries anything but ink.
+`src/app/contrast.test.ts` reads the tokens: it fails if ink on paper or on the ochre fill falls under 7:1, if charcoal or violet on paper, paper on violet or paper on green falls under 4.5:1, if the ochre line or green falls under 3:1 against paper, if any other colour appears, if words are set in sand, ochre or green, if a sand fill carries anything but ink, or if a violet or green fill carries anything but paper-coloured text.
 
 ## 3. Type
 
@@ -118,14 +123,16 @@ The fact line under any goal is always in this order: kind, hours, `must-do` if 
 
 ### 7.1 Landing
 
-The one navy screen (`--navy` `#2F3F6E`). Text is sage (8.1:1) with sand for the accent words and numbers (5.7:1).
+Direction A, "Field guide" (2026-11-24, docs/DESIGN_RESEARCH.md): a catalogue page on bone paper.
 
-- **Nav:** the conflu mark and name only. The primary button appears once on screen at a time: in the hero, and again in the closing panel at the bottom.
-- **Hero:** on a phone, the words sit above the painting and the two together fill the first screen (`100svh` less the nav), so the whole landscape shows without scrolling and nothing overlaps the peaks. From 760px wide the painting fills an 880px section and the words sit on its dark sky. On its dark upper sky: "Know what to do **this semester.**" (sage, the last two words sand), one line under it, and the primary button (sand with ink text). A returning visitor sees "Continue your plan" or "Continue where you left off", with "Start over" as an outline button beside it.
-- **The paint-in (first visit in a browser session):** back to front over about 2.6 s. The sky hatching sweeps down and across (0–0.7 s), the sun blooms outward (0.3–0.9 s), the peaks resolve from the horizon up with each cell flickering through random glyphs for 0.18 s (0.5–1.5 s), the tree line, meadow and pines fill in (1.1–1.8 s), and the river is traced last, from the three streams at the bottom up to the vanishing point (1.5–2.6 s). The headline rises in at 0.8 s. The button works from the first frame. Afterwards only the water shimmers (30 fps). Coming back shows the finished painting. Reduced motion: the finished painting, still.
-- **Then:** How it works (three numbered cells), A real plan (built by the engine for a computer science sophomore, five semesters, must-dos solid), four numbers from the data, a sand closing panel with the button, and the large wordmark to close the page.
-- **The painting's colours** are seven muted tones in `scene.ts` (navy-on-navy to pale sand). They are the one exception to the colour tokens, and they only ever appear in the painting. Its glyphs are 6px: the painting is an image made of characters, not text to read.
-- **Leaving:** every button runs the same exit. The words fade (0.35 s); the page jumps to the top while nothing shows; the navy fades out over 1.1 s to the sage underneath; then the next screen fades in (0.35 s). Coming back from the first question, the navy fades in (0.9 s) and the words follow.
+- **Masthead:** the conflu mark and name on the left, "a career plan, one semester at a time" in mono in the middle (from 900px), "no account needed" in mono on the right, a 1.5px rule under it. No buttons in it.
+- **Hero:** words on the left, the painting on the right (from 900px; on a phone the words come first and the window sits under them). A drafting kicker ("for college students" after a short rule); the headline "Know what to do **now.**" in bold Barlow, the last word on the ochre "look here first" band with charcoal text; "Tell it your major, your year and your career goal. You get a plan for each semester, with proper resources and programs in about 3 minutes."; then stacked square buttons: **Build my plan** (solid charcoal) and **See a sample plan** (outline, "+", which becomes "Hide the sample plan", "-"). A returning visitor sees "Continue your plan" or "Continue where you left off", and "Start over" as a text button.
+- **The painting** sits in a retro window (a striped charcoal-hairline title bar with two small squares, no label), on the umber ground, with two crop corners outside it, a ruler under it, and the caption "A confluence of streams will carry you toward your goal". The sky hatching is gone: the sky is the window's umber, and only the sun's glow is drawn.
+- **The paint-in (first visit in a browser session):** back to front over about 2.6 s; the sun blooms, the peaks resolve with each cell flickering through random glyphs for 0.18 s, the tree line, meadow and pines fill in, and the river is traced last. Afterwards only the water shimmers (30 fps). Reduced motion: the finished painting, still.
+- **Then:** How it works (three cells, "step 1" in mono), A real plan in a "sample_plan.txt" window (built by the engine for a computer science sophomore; must-dos solid), four numbers from the data, an ochre closing panel with the button, and the large wordmark.
+- **The painting's colours** are seven warm tones in `scene.ts` (umber, warm grey, slate violet, grey-violet, dusty rose, ochre, bone). They are the one exception to the colour tokens and only ever appear in the painting. Its glyphs are 6px: an image made of characters, not text to read.
+- **See a sample plan** expands the full, working results page for a made-up student (`src/app/state/sample.ts`) in place, right under the hero, and scrolls to it. The landing's headline stays the page's one h1; the plan's title is an h2 ("sample plan" as its kicker). An ochre note says whose plan it is and that nothing is saved, with "Build my own plan ->", which starts the questions; "Edit answers" opens the review filled with the sample's answers. Everything works (drawers, ticks, done, the hours, every tab), all in memory: no plan, answers, step ticks or course ticks are stored, so it never mixes with a student's own plan.
+- **Leaving:** every button runs the same exit. The words fade (0.35 s), the page jumps to the top while nothing shows, then the next screen fades in.
 
 ### 7.2 Questions
 
@@ -159,11 +166,11 @@ the big picture comes after the work.
 
 | # | Part | Design |
 |---|---|---|
-| 0 | **Header** | Plain sage, no picture. "Your plan" (`--text-h1`, bold), the destination in Barlow 600, the summary line (`--text-small`), then outline buttons in one row: Download PDF, Share link, Edit answers. "Start over" is on the Edit answers screen. |
-| 1 | **Where you stand + Do this now** | A sand status strip: the term in bold, "4 goals · 1 must-do · 0 done" in mono, "Uses about 4 of your 5 free hours a week.", and a "Free hours a week" control that re-plans at once. Under it the one solid blue block: "Do this now" with a rule after it, the step in bold Barlow, "Part of (goal) · step 1 of 5 · must-do", a framed "go to (place) ->" link, and "Open the full goal" as a text button. |
-| 2 | **This semester** | Section head with the goal count. Ruled rows: dot, title in Barlow 600, a priority tag (must-do solid, others outlined) and the time in words, "Next: (first unticked step)", and "Go to:" with the best one or two places, linked. Three shown, "Show all N". Then **Good to know**: quiet notes with a 3px sand bar (never a sand fill, so a tip never looks as urgent as the status strip). Then "Why this order" as a text button. |
+| 0 | **Header** | Paper, no picture. The title is where the student is headed, large ("Land your first role in software engineering"), after a drafting kicker "your plan"; the summary line in lowercase mono; then outline buttons in one row: Download PDF, Share link, Edit answers. "Start over" is on the Edit answers screen. |
+| 1 | **This semester + Do this now** (direction A) | A two-column sheet from 900px. Left: "this semester" in mono, the term in large bold Barlow, "Uses about 4 of your 5 free hours a week. 4 goals · 1 must-do · 0 done.", the **hours meter** (one cell per free hour a week: ochre for hours this term uses, open for hours left, an ochre outline past the budget) and the "Free hours a week" control, which re-plans at once; it stays in view while the right column scrolls. Right: **Do this now** as a retro window with an ochre striped title bar: "step 1 of 5 · part of (goal) · must-do" in mono, the step in bold Barlow, a framed violet "go to (place) ->" link, "Open the full goal". Then "Already done any of these?". On a phone the panel comes first in a compact form (no mono labels, a smaller term), so the hours control and "Do this now" are both on the first screen. |
+| 2 | **This semester** | Section head with the goal count. Ruled rows: dot, title in Barlow 600, a priority tag (must-do solid, others outlined) and the time in words, "Next: (first unticked step)", and "Go to:" with the best one or two places, linked. Three shown, "Show all N". Then **Good to know**: quiet notes with a 3px ochre line (never a fill, so a tip never looks as urgent as "Do this now"). Then "Why this order" as a text button. |
 | 3 | **Your path** (Phase 4, 2026-11-24) | Section head with the milestone count. An outlined box: "Where you're headed" in mono, the outcome in Barlow 600, the milestone map, "See the full map". Then "Semester by semester": one folded band per year ("+"/"-", the year in Barlow 600, "3 semesters · 15 goals" in mono; solid blue while open), each holding its semesters under small headings with the smaller rows. Then two more folded bands: "When you have more time" and "What you have and what you need". Everything after this semester is one tap away, so the Plan tab stays under about 3,000 px on desktop. |
-| 5 | Draft line | One dashed box: "This is a draft map · N extra options to review" and "Review on the Map tab ->". The full banner and "Finalize my map" are on the Map tab, so "Do this now" stays the one solid block. |
+| 5 | Draft line | One dashed box: "This is a draft map · N extra options to review" and "Review on the Map tab ->". The full banner and "Finalize my map" are on the Map tab. |
 | 6 | Checked off, Habits to keep | Checked off: rows with green dots and "Undo". Habits: open dots, the reason in `--text-small`. |
 | 7 | Footer | The footer sentence with dataset and engine versions in mono. |
 

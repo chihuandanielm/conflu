@@ -42,13 +42,14 @@ export function checkedSteps(item: ItemRef, p: StepProgress): number[] {
   return [...Array(Math.round(started * howTo(item).steps.length)).keys()];
 }
 
-export function toggleStep(p: StepProgress, item: ItemRef, i: number): StepProgress {
+/** Ticks or unticks step i. `persist` false (the landing's sample plan) keeps it in memory only. */
+export function toggleStep(p: StepProgress, item: ItemRef, i: number, persist = true): StepProgress {
   const itemKey = keyOf(item);
   const cur = checkedSteps(item, p);
   const next = cur.includes(i) ? cur.filter((x) => x !== i) : [...cur, i].sort((a, b) => a - b);
   const out = { ...p, [itemKey]: next };
   if (!next.length) delete out[itemKey];
-  save(STEPS_KEY, out);
+  if (persist) save(STEPS_KEY, out);
   return out;
 }
 /** The first step not checked yet, with its number, or null when every step is checked. */

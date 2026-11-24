@@ -27,7 +27,7 @@ export function AlreadyDone({ term, dismissed, onDone, onHide }: {
           return (
             <li key={it.goalId}>
               <button type="button" aria-pressed={on} onClick={() => toggle(it.goalId)}
-                className={`min-h-[44px] border-[1.5px] border-blue px-3 py-1.5 text-left text-small transition-colors duration-[140ms] ${on ? "bg-blue text-sage" : "text-blue hover:bg-sage"}`}>
+                className={`min-h-[44px] border-[1.5px] border-blue px-3 py-1.5 text-left text-small transition-colors duration-[140ms] ${on ? "border-violet bg-violet text-sage" : "text-blue hover:bg-sage"}`}>
                 {it.title}
               </button>
             </li>

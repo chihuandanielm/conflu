@@ -37,7 +37,7 @@ export function registerFonts(f: FontFiles) {
 }
 
 // sage, blue, green, sand, plus ink for sentences (design/DESIGN.md §2): headings and links stay blue.
-const C = { ...PALETTE, ink: "#1A1F24" };
+const C = { ...PALETTE, ink: "#34302C" };
 // US Letter is 612 x 792 pt; 40pt side margins (54px in the prototype).
 const PAGE = { w: 612, h: 792, side: 40, top: 33, bottom: 52 };
 const W = PAGE.w - PAGE.side * 2;

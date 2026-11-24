@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup B: Route</title>
+<style>
+@font-face { font-family: "Barlow SC"; src: url(/fonts/barlow-semi-condensed-700.ttf); font-weight: 700; }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-400.ttf); }
+@font-face { font-family: Quantico; src: url(/fonts/quantico-700.ttf); font-weight: 700; }
+@font-face { font-family: Plex; src: url(/fonts/ibm-plex-mono-400.ttf); }
+/* The site's own four colours, kept: sage paper, blue ink, green for done, sand for "now". The route line is the idea
+   (Roadtrip Nation's winding pin line, GFI's career map, Stereolab's dot-on-line). */
+:root { --sage: #E0E7DA; --blue: #456894; --green: #00A37D; --sand: #E6B989; --ink: #1A1F24; --navy: #2F3F6E; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--sage); color: var(--ink); font: 17px/1.55 Quantico, sans-serif; }
+.mono { font: 15px/1.4 Plex, monospace; color: var(--blue); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+/* Landing: navy, the ASCII as a wide band along the bottom (no sky), words above. */
+.land { background: var(--navy); color: var(--sage); position: relative; overflow: hidden; }
+.land nav { display: flex; justify-content: space-between; padding: 20px 0; }
+.land nav b { font: 700 22px "Barlow SC"; }
+.land .mono { color: #b8c3d6; }
+.words { text-align: center; padding: 64px 0 0; position: relative; z-index: 1; }
+h1 { font: 700 clamp(54px, 8vw, 112px)/.88 "Barlow SC"; }
+h1 span { color: var(--sand); }
+.words p.lede { max-width: 34em; margin: 22px auto 0; color: #d6ddea; }
+.ctas { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 30px; }
+.btn { min-width: 240px; text-align: center; padding: 14px 20px; font: 700 18px Quantico; text-decoration: none; border: 1.5px solid var(--sand); color: var(--sand); }
+.btn.solid { background: var(--sand); color: var(--ink); }
+.band { position: relative; height: 360px; margin-top: -10px; }
+.band canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Three stops under the painting: the plan in three words, on the river's line. */
+.stops { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 26px 0 40px; }
+.stops::before { content: ""; position: absolute; left: 16.6%; right: 16.6%; top: 34px; height: 1.5px; background: var(--sand); }
+.stop { text-align: center; position: relative; }
+.stop i { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--navy); border: 1.5px solid var(--sand); margin: 0 auto 12px; }
+.stop:last-child i { background: var(--sand); }
+.stop b { font: 700 22px "Barlow SC"; display: block; }
+
+/* ---- Plan: the route ---- */
+.plan { padding: 56px 0 100px; }
+.plan h2 { font: 700 60px/.95 "Barlow SC"; color: var(--blue); }
+.tabs { display: flex; margin-top: 26px; border-bottom: 1.5px solid var(--blue); }
+.tabs a { padding: 10px 18px; color: var(--blue); text-decoration: none; } .tabs a.on { background: var(--blue); color: var(--sage); }
+.route { position: relative; margin-top: 40px; padding-left: 86px; }
+/* The line: solid where you've been, dashed ahead. */
+.route::before { content: ""; position: absolute; left: 34px; top: 10px; bottom: 0; width: 3px;
+  background: linear-gradient(var(--blue) 0 330px, transparent 330px), repeating-linear-gradient(var(--blue) 0 8px, transparent 8px 16px); }
+.station { position: relative; padding-bottom: 34px; }
+.station > .pin { position: absolute; left: -64px; top: 2px; width: 28px; height: 28px; border-radius: 50%; background: var(--sage); border: 3px solid var(--blue); }
+.station.here > .pin { background: var(--sand); border-color: var(--ink); }
+.station.here h3::after { content: "you are here"; margin-left: 14px; font: 15px Plex; color: var(--ink); background: var(--sand); padding: 1px 8px; vertical-align: middle; }
+.station h3 { font: 700 30px/1 "Barlow SC"; color: var(--blue); }
+.station .meta { margin-top: 6px; }
+.now { margin-top: 18px; background: var(--sand); padding: 24px 26px; max-width: 760px; }
+.now .k { font: 700 18px "Barlow SC"; letter-spacing: .02em; }
+.now p.big { font: 700 30px/1.1 "Barlow SC"; margin-top: 8px; }
+.now .go { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.now .go a { border: 1.5px solid var(--ink); padding: 7px 12px; color: var(--ink); text-decoration: none; }
+.goals { margin-top: 18px; max-width: 760px; }
+.goal { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: baseline; padding: 12px 0; border-top: 1.5px solid var(--blue); }
+.goal i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--blue); } .goal i.must { background: var(--blue); }
+.goal b { font: 700 20px "Barlow SC"; color: var(--blue); }
+.later .goal b { color: var(--ink); font-weight: 700; }
+.chip { font: 15px Plex; border: 1.5px solid var(--blue); padding: 0 6px; color: var(--blue); }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; } .land nav .mono { display: none; } .band { height: 240px; } .stops { grid-template-columns: 1fr; gap: 18px; } .stops::before { display: none; }
+  .plan h2 { font-size: 44px; } .route { padding-left: 52px; } .route::before { left: 14px; } .station > .pin { left: -50px; width: 24px; height: 24px; }
+  .now p.big { font-size: 25px; } .btn { width: 100%; } .ctas { align-items: stretch; }
+}
+</style>
+</head>
+<body>
+<section class="land">
+  <div class="wrap">
+    <nav><b>conflu</b><span class="mono">free · about 3 minutes · no account</span></nav>
+    <div class="words">
+      <h1>Know what to&nbsp;do<br><span>this semester.</span></h1>
+      <p class="lede">A semester-by-semester plan for the job you want, with the offices and programs at your school.</p>
+      <div class="ctas"><a class="btn solid" href="#">Build my plan -&gt;</a><a class="btn" href="#">See a sample plan</a></div>
+    </div>
+  </div>
+  <div class="band"><canvas id="art"></canvas></div>
+  <div class="wrap stops">
+    <div class="stop"><i></i><b>Tell it where you are</b><span class="mono">major, year, campus</span></div>
+    <div class="stop"><i></i><b>Pick where you're headed</b><span class="mono">28 career paths</span></div>
+    <div class="stop"><i></i><b>Get this semester's steps</b><span class="mono">and every semester after</span></div>
+  </div>
+</section>
+
+<section class="wrap plan">
+  <p class="mono">your plan · computer science · rutgers–new brunswick · 5 free hours a week</p>
+  <h2>Land your first role in software engineering</h2>
+  <nav class="tabs"><a class="on" href="#">Plan</a><a href="#">Map 51</a><a href="#">Resources 208</a><a href="#">Courses</a></nav>
+  <div class="route">
+    <div class="station here">
+      <span class="pin"></span>
+      <h3>Year 2 · Fall</h3>
+      <p class="mono meta">4 goals · 2 must-dos · uses about 4 of your 5 hours a week</p>
+      <div class="now">
+        <p class="k">Do this now</p>
+        <p class="big">Pick a problem you or your friends actually have, and keep the first version small.</p>
+        <p class="mono" style="color:var(--ink);margin-top:8px">step 1 of 5 · build and ship a personal project</p>
+        <div class="go"><a href="#">CS50 (Harvard, free online) -&gt;</a><a href="#">freeCodeCamp -&gt;</a></div>
+      </div>
+      <div class="goals">
+        <div class="goal"><i class="must"></i><b>Build and ship a personal project</b><span class="chip">must-do</span></div>
+        <div class="goal"><i></i><b>Set up GitHub with a profile README</b><span class="mono">2 h</span></div>
+        <div class="goal"><i></i><b>Build a complete LinkedIn profile</b><span class="mono">3 h</span></div>
+      </div>
+    </div>
+    <div class="station later">
+      <span class="pin"></span>
+      <h3>Year 2 · Spring</h3>
+      <p class="mono meta">4 goals · opens in January</p>
+    </div>
+    <div class="station later">
+      <span class="pin"></span>
+      <h3>Summer after year 2</h3>
+      <p class="mono meta">3 goals</p>
+    </div>
+  </div>
+</section>
+<script type="module">
+import { createScene } from "./scene-proto.ts";
+createScene(document.getElementById("art"), { reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, sky: false });
+</script>
+</body>
+</html>

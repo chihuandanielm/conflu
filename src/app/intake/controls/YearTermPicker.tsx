@@ -52,7 +52,7 @@ export function YearTermPicker({ a, onPick, invalid, describedBy }: {
   return (
     <div className="flex flex-col gap-4">
       {/* The picked year, kept as a selected (solid blue) row; "Change year" brings the list back. */}
-      <div className="on-blue flex min-h-[54px] items-center gap-3 border-y-[1.5px] border-blue bg-blue px-3 py-1 text-sage">
+      <div className="on-blue flex min-h-[54px] items-center gap-3 border-y-[1.5px] border-violet bg-violet px-3 py-1 text-sage">
         <span className="flex-1">{year.label}</span>
         <button type="button" onClick={() => setEditing(true)} className="btn btn--text">Change year</button>
       </div>
