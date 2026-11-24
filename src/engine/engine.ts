@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Timing, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.13.0";
+export const ENGINE_VERSION = "0.14.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -692,6 +692,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     return { goalId: n.key, title: v?.title ?? n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate, timing, text,
       score, why: explain(n, t, sc.u, timing, v?.why), resources: rankResources(n.goal, t), ...(v ? { late: true } : {}),
       ...(n.goal.cycle ? { cycle: roundStatus(n.goal, t) } : {}),
+      ...(n.strength > 0 && n.strength < 1 ? { started: round(n.strength, 2) } : {}),
       importance: n.gate ? "must" : n.weight >= K.importanceHigh ? "high" : n.weight >= K.importanceMedium ? "medium" : "low" };
   }
 
@@ -707,7 +708,9 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     else if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
     else if (t > n.win.b && t <= gradIdx) why.push("Most students do this earlier, and it still helps now.");
     else if (u > 1.2 && t <= n.win.b) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b], shift).toLowerCase()}.`);
-    if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);
+    // Engine 0.14.0: only goals still ahead (not closed for this student), by the title they have now.
+    const ahead = n.addedAsPrereq.map((k) => nodes.get(k)).filter((d): d is Node => !!d && (d.win.l >= t || d.goal.lateOk));
+    if (ahead.length) why.push(`Needed before: ${ahead.map((d) => titleNow(d.goal, d.win, d.key)).slice(0, 2).join("; ")}.`);
     if (n.eligibility > 1) why.push("Some programs here are specifically for students like you.");
     if (n.strength > 0) why.push("You've already started this.");
     // A goal done after its ideal window explains itself for now, not for early in college (engine 0.8.1).

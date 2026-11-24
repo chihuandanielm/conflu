@@ -386,6 +386,10 @@
         {
           "goal": "e-part-time-job",
           "strength": 1
+        },
+        {
+          "goal": "f-mock-interview",
+          "strength": 0.5
         }
       ]
     },
@@ -410,6 +414,10 @@
         {
           "goal": "e-join-orgs",
           "strength": 1
+        },
+        {
+          "goal": "s-public-speaking",
+          "strength": 0.5
         }
       ]
     },
@@ -530,6 +538,22 @@
         {
           "goal": "ap-internship-early",
           "strength": 1
+        },
+        {
+          "goal": "f-resume-v1",
+          "strength": 1
+        },
+        {
+          "goal": "f-mock-interview",
+          "strength": 0.6
+        },
+        {
+          "goal": "f-handshake-profile",
+          "strength": 0.5
+        },
+        {
+          "goal": "f-elevator-pitch",
+          "strength": 0.5
         }
       ]
     },
@@ -548,6 +572,22 @@
         {
           "goal": "ap-internship-target",
           "strength": 1
+        },
+        {
+          "goal": "f-resume-v1",
+          "strength": 1
+        },
+        {
+          "goal": "f-mock-interview",
+          "strength": 0.6
+        },
+        {
+          "goal": "f-handshake-profile",
+          "strength": 0.5
+        },
+        {
+          "goal": "f-elevator-pitch",
+          "strength": 0.5
         }
       ]
     },
@@ -666,6 +706,18 @@
         {
           "goal": "n-career-fair-first",
           "strength": 1
+        },
+        {
+          "goal": "f-elevator-pitch",
+          "strength": 0.6
+        },
+        {
+          "goal": "f-handshake-profile",
+          "strength": 0.6
+        },
+        {
+          "goal": "f-resume-v1",
+          "strength": 0.5
         }
       ]
     },
@@ -676,6 +728,18 @@
         {
           "goal": "n-info-interviews",
           "strength": 0.6
+        },
+        {
+          "goal": "p-linkedin-setup",
+          "strength": 0.6
+        },
+        {
+          "goal": "p-linkedin-network",
+          "strength": 0.6
+        },
+        {
+          "goal": "f-elevator-pitch",
+          "strength": 0.5
         }
       ]
     },

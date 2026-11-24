@@ -156,8 +156,30 @@ Check: an automated contrast test fails on any text pair under 7:1 (under 4.5:1 
    - **4.3:** the Resources tab opens on "This semester" (13–16 cards; "Whole plan" one tap away), with a "When" row visible on phones too. It was 37–42 cards and 10,500–12,000 px; now 4,500–5,000 px on desktop.
    - **4.4:** the draft notice was already one line, with "Review on the Map tab", since the visual refresh.
 4. **Phases 2.4–2.6 + 6:** filling resource gaps and the non-Rutgers path. Research-heavy, like the requirements work.
-5. **Phase 5:** experience-aware plans.
-6. **Phase 7:** alongside each of the above.
+5. **Phase 5:** experience-aware plans. **Done 2026-11-24** (engine 0.14.0, data 2026.11.24-3).
+   - **5.1:** a goal the student has partly done carries `started` (its share done). The row says "started, about 60% done", and that share of its steps starts checked (the student's own ticks win), so "Do this now" moves past them.
+   - **5.2:** answers now credit what they imply, as partial strengths in `data/intake.json`:
+     - an internship: a resume, interview practice, Handshake, and a pitch;
+     - a job: interview practice;
+     - a career fair: a pitch, Handshake, and a resume;
+     - informational interviews: LinkedIn setup and networking, and a pitch;
+     - leading a group: public speaking.
+     A goal with less than an hour left counts as done. Juniors with decent experience get 6.1 → 3.7 foundation goals (39% fewer). First-years get fewer foundation goals and more advanced ones over the whole plan (12.5 vs 13.3, 26.3 vs 24.8), but not 20% fewer. Their foundation goals are mostly what any first-year needs whatever they've done (a FAFSA every year, an advisor, career research), so the 20% target applies to juniors (`test/experience.test.ts`).
+   - **5.3:** "What you have" says what each answer counts for ("Counts for: Write your first college resume").
+   - **5.4 (not built):** a "roughly how much experience?" shortcut would have to guess which boxes to tick. The "Already done?" card (T4) asks about the plan's actual goals instead, with no guessing.
+6. **Phase 7:** alongside each of the above. **Done 2026-11-24.**
+   - **7.1:** `scripts/simulate.ts` has rules R27–R33, which fail CI:
+     - R27: the job search starts in senior fall unless the term was all must-dos;
+     - R28: an experience comes after its application;
+     - R29: at most 3 goals in the final semester besides must-dos;
+     - R30: nothing starts with too few semesters left;
+     - R31: no application while its round is closed;
+     - R32: started goals are marked, and finished goals never come back;
+     - R33: no timing text that has passed.
+
+     They found two things, both fixed. "Needed before" named a goal whose time had passed for the student, by its old title. R27 at first flagged seniors with 2 h a week, where senior fall is all prep; it now flags only when other goals took the room.
+   - **7.2:** the weekly link check (`scripts/check-links.mjs`) also checks the 34 catalog pages behind the course lists, report only (`--catalogs-only` runs just those). All 34 load. Rutgers' 2026–27 catalogs are readable, so the original "watch for 2025–26" goal no longer applies.
+   - **7.3 (not built):** a feedback link needs an address to send to, and the site collects no contact details. It's waiting on your decision.
 
 ## Decisions for you
 

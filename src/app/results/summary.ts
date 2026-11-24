@@ -46,6 +46,20 @@ export function milestones(plan: Plan, max = 5): Milestone[] {
 const optionLabel = (list: { id: string; label: string }[], id: string) => list.find((o) => o.id === id)?.label;
 
 /** The student's own answers, as strengths. */
+/**
+ * What each answer counts for (Phase 5.3): the goals it completes or mostly completes (strength 0.5 or more), by title,
+ * so "What you have" can say what the plan skipped or shortened because of it.
+ */
+export function havesWithCredit(a: Pick<Answers, "experience" | "skills" | "credentials">): { label: string; covers: string[] }[] {
+  const options = [...intake.experience, ...intake.skills, ...intake.credentials];
+  return [...a.experience, ...a.skills, ...a.credentials].map((id) => {
+    const o = options.find((x) => x.id === id);
+    if (!o) return null;
+    const covers = o.completes.filter((c) => c.strength >= 0.5).map((c) => goals.find((g) => g.id === c.goal)?.title).filter((x): x is string => !!x);
+    return { label: o.label, covers };
+  }).filter((x): x is { label: string; covers: string[] } => !!x);
+}
+
 export function haves(a: Pick<Answers, "experience" | "skills" | "credentials">): string[] {
   return [
     ...a.experience.map((id) => optionLabel(intake.experience, id)),
