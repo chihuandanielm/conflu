@@ -1787,10 +1787,9 @@
       "status": "ended",
       "statusNote": "Ran its final cohort in summer 2026 after its funder (RWJF) ended support. Kept here so the site can suggest alternatives.",
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": null,
-        "note": "Site refused the automated check (UND_ERR_CONNECT_TIMEOUT); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
