@@ -187,10 +187,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": null,
-        "note": "Site refused the automated check (UND_ERR_CONNECT_TIMEOUT); open it by hand."
+        "httpStatus": 200,
+        "finalUrl": "https://www.iopp.org/i4a/pages/index.cfm?_seoSlug=studentameristar"
       },
       "tags": []
     },
@@ -223,10 +223,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": null,
-        "note": "Site refused the automated check (UND_ERR_CONNECT_TIMEOUT); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },

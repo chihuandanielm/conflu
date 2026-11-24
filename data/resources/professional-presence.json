@@ -811,10 +811,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": null,
-        "note": "Site refused the automated check (timed out); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -1122,10 +1121,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 403,
-        "note": "Site refused the automated check (HTTP 403); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
