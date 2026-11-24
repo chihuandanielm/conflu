@@ -170,10 +170,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "broken",
         "checkedOn": "2026-11-24",
-        "httpStatus": 999,
-        "note": "Site refused the automated check (HTTP 999); open it by hand."
+        "httpStatus": 404,
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": []
     },
