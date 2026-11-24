@@ -67,3 +67,19 @@ Each mockup shows the landing and the top of the Plan tab, desktop and phone, wi
   - Also leaves the four-colour palette.
 
 Open a mockup with the dev server running: `npm run dev`, then `/design/prototypes/redesign-2026-11/a-field-guide.html` (or `b-route.html`, `c-text-mode.html`).
+
+## Chosen: A, Field guide (2026-11-24)
+
+The owner picked direction A. `app-field-guide.html` loads the real app with `field-guide-theme.css` laid over it, to show how the intake and results pages change. It's a light touch: the same layout, with new tokens and a few component tweaks. Open it with `npm run dev`, then `/design/prototypes/redesign-2026-11/app-field-guide.html`.
+
+- **Tokens:**
+  - sage becomes bone paper (#e8e3d7) with a faint dot grain;
+  - blue (structure) and ink (sentences) both become warm charcoal (#34302c);
+  - sand becomes window chrome (#dcd6c8);
+  - green (done) becomes verdigris (#4e716d);
+  - slate violet (#545684) is new, for must-do dots and link underlines.
+- **"Do this now"** becomes a retro window with a striped title bar, in place of the solid blue block.
+- **Small mono facts** turn warm grey, and headings are set a little tighter and larger.
+- **Unchanged:** the question sheet's drafting corners, the progress river, the drawer, the tabs and the resource cards. They only take the new colours.
+
+Shipping it means updating design/DESIGN.md's colour rules and the contrast test, then moving these overrides into `src/app/styles.css`, together with the new landing from the mockup.

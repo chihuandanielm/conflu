@@ -1,0 +1,55 @@
+/* Direction A, "Field guide", laid over the real app (prototype only; loaded by app-field-guide.html).
+   The app's five colour tokens are remapped, then a few components get the field-guide treatment:
+     sage  -> bone paper #e8e3d7, with a faint dot grain
+     ink   -> warm charcoal #34302c (sentences)
+     blue  -> warm charcoal too (structure: headings, rules, buttons, tabs)
+     sand  -> window chrome #dcd6c8 (panels behind notices and the semester strip)
+     green -> verdigris #4e716d (done)
+     violet #545684 is new: the one highlight (must-do dots, the hours used, "this semester")
+     ochre  #96773d is new: the hours meter */
+html:root {
+  --sage: #e8e3d7; --color-sage: #e8e3d7;
+  --ink: #34302c; --color-ink: #34302c;
+  --blue: #34302c; --color-blue: #34302c;
+  --sand: #dcd6c8; --color-sand: #dcd6c8;
+  --green: #4e716d; --color-green: #4e716d;
+  --violet: #545684; --ochre: #96773d; --muted: #6f665d; --rule: #b9b0a0;
+}
+body { background-color: var(--sage); background-image: radial-gradient(rgba(52, 48, 44, .07) 1px, transparent 1px); background-size: 4px 4px; }
+.fact { letter-spacing: .03em; }
+.fact:not([class*="text-"]):not([class*="bg-"]) { color: var(--muted); }
+.bg-blue .fact, .text-sage .fact, .text-sage.fact, .bg-blue.fact { color: var(--sage); }
+
+/* Must-dos are the violet dot; done stays verdigris. */
+.dot--must { background: var(--violet); border-color: var(--violet); }
+
+/* Headings: tighter and larger, like the mockup. */
+.text-h1, h1 { letter-spacing: -.005em; line-height: .98; }
+.text-h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1; }
+
+/* "Do this now": a retro window instead of a solid block. */
+section[aria-labelledby="now-h"] { background: var(--sage) !important; color: var(--ink) !important; border: 1.5px solid var(--ink); padding-top: 0 !important; }
+section[aria-labelledby="now-h"] #now-h { margin: 0 calc(-1 * clamp(20px, 4vw, 36px)); height: 28px; padding: 0 10px; display: grid; grid-template-columns: 12px 1fr 12px; align-items: center;
+  border-bottom: 1.5px solid var(--ink); background: repeating-linear-gradient(#dcd6c8 0 2px, #efe9dd 2px 4px); font: 15px var(--font-mono); letter-spacing: .04em; text-transform: lowercase; }
+section[aria-labelledby="now-h"] #now-h::before { content: ""; width: 10px; height: 10px; border: 1.5px solid var(--ink); background: var(--sage); }
+section[aria-labelledby="now-h"] #now-h::after { content: ""; flex: none; width: 10px; height: 10px; border: 1.5px solid var(--ink) !important; background: var(--sage); }
+section[aria-labelledby="now-h"] #now-h { color: var(--ink); justify-items: center; }
+section[aria-labelledby="now-h"] a { border-color: var(--ink) !important; color: var(--ink); }
+section[aria-labelledby="now-h"] a:hover { background: var(--ink); color: var(--sage); }
+.on-blue .btn { border-color: transparent; background: transparent; color: var(--ink); }
+.on-blue .btn:hover { background: var(--ink); color: var(--sage); }
+
+/* Panels (the semester strip, notices): window chrome. */
+.notice { background: #dcd6c8; }
+
+/* Links and underlines: slate violet. */
+a { text-decoration-color: var(--violet); }
+.btn--text { text-decoration-color: var(--violet); text-decoration-thickness: 2px; }
+
+/* The question sheet keeps its drafting corners; add a ruler under the progress row. */
+main.corners { background: transparent; }
+
+/* Links on a dark (selected) block read in paper colour. */
+.bg-blue a, .bg-blue .btn--text { color: var(--sage); text-decoration-color: var(--sage); }
+/* The grain runs under every paper panel, not only the page, so sections don't look patched. */
+.bg-sage:not(.btn):not(button):not(input) { background-image: radial-gradient(rgba(52, 48, 44, .07) 1px, transparent 1px); background-size: 4px 4px; }
