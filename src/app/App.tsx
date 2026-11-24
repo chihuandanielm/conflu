@@ -6,9 +6,10 @@ import { ResultsPage } from "./results/ResultsPage.tsx";
 import { clearSaved, createSaved, isOutdated, loadSaved, persist, refresh, type SavedPlan } from "./state/plan.ts";
 import { remove } from "./state/storage.ts";
 import { parseShareHash } from "./state/share.ts";
+import { SAMPLE_ANSWERS } from "./state/sample.ts";
 import { todayISO } from "./today.ts";
 
-type View = { name: "intake"; startAt?: "review"; key: number; shared?: Answers } | { name: "results" };
+type View = { name: "intake"; startAt?: "review" | "study"; key: number; shared?: Answers } | { name: "results" } | { name: "sample" };
 
 /** A shared link opens the review screen pre-filled. The hash is cleared at once so answers don't linger in the address bar. */
 function initialView(): View {
@@ -17,12 +18,15 @@ function initialView(): View {
   return shared ? { name: "intake", startAt: "review", key: 0, shared } : { name: "intake", key: 0 };
 }
 /**
- * The app: the landing and the questions (IntakeFlow), then the results. Screens change by fading (design/DESIGN.md §8);
- * the landing runs its own navy-to-sage exit (docs/LANDING_REDESIGN.md).
+ * The app: the landing and the questions (IntakeFlow), then the results. Screens change by fading (design/DESIGN.md §8).
+ * The landing's "See a sample plan" opens a results page for a made-up student, held in memory only; "Build my own plan"
+ * on it starts the questions.
  */
 export function App() {
   const [view, setView] = useState<View>(initialView);
   const [saved, setSaved] = useState<SavedPlan | null>(loadSaved);
+  // The sample plan lives only in memory: it never replaces the student's own saved answers or plan.
+  const [sample, setSample] = useState<SavedPlan | null>(null);
   const reduce = useReducedMotion();
 
   const update = useCallback((s: SavedPlan) => { setSaved(s); persist(s); }, []);
@@ -41,7 +45,14 @@ export function App() {
           if (!isOutdated(saved)) update(refresh(saved, todayISO()));
           setView({ name: "results" });
         } : undefined}
-        onStartOver={startOver} />
+        onStartOver={startOver}
+        onSample={() => { setSample(createSaved(SAMPLE_ANSWERS, todayISO())); setView({ name: "sample" }); }} />
+    );
+  } else if (view.name === "sample" && sample) {
+    screen = (
+      <ResultsPage saved={sample} onChange={setSample} sample
+        onEdit={() => setView({ name: "intake", startAt: "review", key: Date.now(), shared: sample.answers })}
+        onStartOver={() => { setSample(null); setView({ name: "intake", startAt: "study", key: Date.now() }); }} />
     );
   } else if (!saved) {
     screen = <p role="status" className="sr-only">Building your plan</p>;

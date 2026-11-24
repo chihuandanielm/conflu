@@ -17,7 +17,7 @@ export function Notices({ warnings, dismissed, onDismiss }: { warnings: string[]
       {shown.map((w) => {
         const warn = noticeTone(w) === "warn";
         return (
-          <div key={w} role={warn ? "alert" : "note"} className="mt-3 max-w-[44em] border-l-[3px] border-sand py-0.5 pl-3.5">
+          <div key={w} role={warn ? "alert" : "note"} className="mt-3 max-w-[44em] border-l-[3px] border-ochre py-0.5 pl-3.5">
             <p>{w}</p>
             <button type="button" onClick={() => onDismiss(w)} aria-label="Dismiss notice" className="btn btn--text -ml-2">Dismiss</button>
           </div>

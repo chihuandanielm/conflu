@@ -6,6 +6,7 @@ import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
 import { mapModel, termWeeks } from "../map/facts.ts";
 import { FeedbackForm } from "../feedback/FeedbackForm.tsx";
+import { SAMPLE_WHO } from "../state/sample.ts";
 import { DegreeAudit } from "../requirements/DegreeAudit.tsx";
 import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
@@ -51,10 +52,13 @@ const ALL_TABS: { id: Tab; label: string }[] = [
  * Rutgers major's course list, or how to read a degree audit) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
-export function ResultsPage({ saved, onChange, onEdit }: {
+export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false }: {
   saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void;
-  /** Unused here: "Start over" moved to the Edit answers screen (design/DESIGN.md §7.4 #0). */
+  /** A real plan: unused here ("Start over" is on the Edit answers screen, design/DESIGN.md §7.4 #0). The sample plan:
+   *  "Build my own plan", which starts the questions. */
   onStartOver?: () => void;
+  /** The landing's sample plan: a banner says whose plan it is and that nothing is saved. */
+  sample?: boolean;
 }) {
   const { plan, answers } = saved;
   const reduce = useReducedMotion();
@@ -163,12 +167,21 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
+      {sample && (
+        <div role="note" aria-label="Sample plan" className="notice mx-auto mt-5 flex max-w-[1000px] flex-wrap items-center gap-x-4 gap-y-2 min-[600px]:mx-5 min-[1040px]:mx-auto">
+          <p className="flex-1 basis-[22em]">This is a sample plan for {SAMPLE_WHO}. Try anything; nothing is saved.</p>
+          <button type="button" className="btn btn--small" onClick={onStartOver}>Build my own plan <span aria-hidden="true" className="font-mono">-&gt;</span></button>
+        </div>
+      )}
       {/* 0. Header: title, destination, summary, actions. */}
-      <header inert={!!open} className="mx-auto max-w-[1040px] px-5 pt-8 pb-7 min-[760px]:pt-12 min-[760px]:pb-9">
-        <div className="max-w-[640px]">
-          <h1 ref={h1} tabIndex={-1} className="text-h1">Your plan</h1>
-          <p className="label mt-2.5 text-[1.3125rem] leading-[1.2]">{outcomeText(answers.trackId)}</p>
-          <p className="mt-2 text-small">{planSummary(answers)}</p>
+      <header inert={!!open} className="mx-auto max-w-[1040px] px-5 pt-8 pb-7 min-[760px]:pt-14 min-[760px]:pb-9">
+        {/* The title is where the student is headed, set large; "your plan" is its small drafting label. */}
+        <div className="max-w-[860px]">
+          <h1 ref={h1} tabIndex={-1}>
+            <span className="kicker font-normal text-ink">your plan</span>{" "}
+            <span className="mt-3 block text-[clamp(2.125rem,1.4rem+3vw,4rem)] leading-[0.95] tracking-[-0.005em]">{outcomeText(answers.trackId)}</span>
+          </h1>
+          <p className="fact mt-3">{planSummary(answers).toLowerCase()}</p>
         </div>
         <div>
           <div className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap min-[380px]:flex-nowrap min-[600px]:flex-wrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
@@ -194,8 +207,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
       </header>
 
       {/* The page under the sticky tabs. */}
-      <div className={`min-h-dvh bg-sage`}>
-        <nav ref={tablist} inert={!!open} aria-label="Plan, map and resources" className="sticky top-0 z-20 bg-sage">
+      <div className="min-h-dvh">
+        <nav ref={tablist} inert={!!open} aria-label="Plan, map and resources" className="paper sticky top-0 z-20">
           <div role="tablist" aria-label="Your plan" onKeyDown={onTabKey} className="mx-auto flex max-w-[1000px] border-b-[1.5px] border-blue min-[600px]:mx-5 min-[1040px]:mx-auto">
             {TABS.map((t) => (
               <button key={t.id} type="button" role="tab" id={tabIds[t.id]} aria-selected={tab === t.id} aria-controls={panelId}
@@ -221,20 +234,29 @@ export function ResultsPage({ saved, onChange, onEdit }: {
                       <Button variant="outline" small onClick={() => replan(refresh(saved, todayISO()), (n) => `Plan refreshed${n ? `; ${n} goals changed` : ""}.`)}>Refresh plan</Button>
                     </div>
                   )}
-                  {/* 1. Where you stand and the one action: the first screen. */}
-                  <div className="pt-8">
-                    <StatusStrip term={core.terms[0]} doneCount={saved.completedGoals.length} weeklyHours={hours}
-                      onHours={(h) => replan(setHours(saved, h, todayISO()), (n) => `Re-planned for ${h} free hours a week${n ? `; ${n} goals moved` : ""}.`)} />
-                    <StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
-                    {/* Right after the one action, so "Do this now" stays on the first screen of a phone. */}
-                    <AlreadyDone key={`${core.terms[0].code}:${saved.completedGoals.length}`} term={core.terms[0]} dismissed={saved.dismissed} onDone={doneMany}
-                      onHide={(k) => onChange({ ...saved, dismissed: [...saved.dismissed, k] })} />
-                  </div>
-                  {/* 2. This semester, with notes and why this order. */}
-                  <div className="pt-10">
-                    <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={hours} edges={plan.edges} />
-                    <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
-                    <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
+                  {/* 1-2. A two-column sheet (design/DESIGN.md §7.4): this semester on the left (the term, the hours meter, the
+                      hours control); on the right "Do this now", "Already done?", then this semester's goals, notes and why
+                      this order. On a phone "Do this now" comes first and this semester's panel follows it. */}
+                  <div className="grid gap-x-12 gap-y-6 pt-8 min-[900px]:grid-cols-[260px_minmax(0,1fr)] min-[900px]:grid-rows-[auto_1fr]">
+                    {/* In document order (and on a phone): this semester's panel, compact, then "Do this now", so both are on
+                        a phone's first screen; then the rest. From 900px the panel takes its own column on the left. */}
+                    <aside aria-label="This semester at a glance" className="min-[900px]:sticky min-[900px]:top-20 min-[900px]:col-start-1 min-[900px]:row-span-2 min-[900px]:row-start-1 min-[900px]:self-start">
+                      <StatusStrip term={core.terms[0]} doneCount={saved.completedGoals.length} weeklyHours={hours}
+                        onHours={(h) => replan(setHours(saved, h, todayISO()), (n) => `Re-planned for ${h} free hours a week${n ? `; ${n} goals moved` : ""}.`)} />
+                    </aside>
+                    <div className="min-w-0 min-[900px]:col-start-2 min-[900px]:row-start-1">
+                      <StartHere term={core.terms[0]} progress={progress} onOpen={openItem} edges={plan.edges} />
+                    </div>
+                    <div className="min-w-0 min-[900px]:col-start-2 min-[900px]:row-start-2">
+                      {/* Right after the one action, so "Do this now" stays on the first screen of a phone. */}
+                      <AlreadyDone key={`${core.terms[0].code}:${saved.completedGoals.length}`} term={core.terms[0]} dismissed={saved.dismissed} onDone={doneMany}
+                        onHide={(k) => onChange({ ...saved, dismissed: [...saved.dismissed, k] })} />
+                      <div className="pt-10">
+                        <NextMoves term={core.terms[0]} onOpen={openItem} progress={progress} weeklyHours={hours} edges={plan.edges} />
+                        <Notices warnings={plan.warnings} dismissed={saved.dismissed} onDismiss={(w) => onChange({ ...saved, dismissed: [...saved.dismissed, w] })} />
+                        <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
+                      </div>
+                    </div>
                   </div>
                   {<>
                   {/* 3. Your path (Phase 4.1): where you're headed, then every later semester folded by year, then what you

@@ -113,3 +113,16 @@ Tabs, filters, headings, must-do tags, the map and the resource cards read fine 
 | Verdigris #3f7f73 | Done | Ticks, the drawer's progress bar, done dots | 3.7:1 (non-text, never words) |
 
 Nothing else gets colour. To view it, run `npm run dev` and open `/design/prototypes/redesign-2026-11/app-field-guide-v2.html`.
+
+## Built (2026-11-24)
+
+Direction A with the v2 colour jobs is now the site. design/DESIGN.md §2 and §7 hold the rules.
+- **Colours:** in `src/app/styles.css`, enforced by `src/app/contrast.test.ts`.
+- **Landing:** the hero from the mockup, with "this semester." on the ochre band (the owner chose ochre over violet, which is kept for picks and links). The ASCII painting sits in its window, warm-toned, with no sky hatching.
+- **See a sample plan:** a made-up student, held in memory only. It never touches a saved plan.
+- **Plan tab:** the mockup's two-column sheet. On the left, this semester with the hours meter; on the right, "Do this now" as a window. On a phone, the panel is compact so it and "Do this now" share the first screen.
+
+Checks run:
+- unit tests, browser tests on laptop and phone (landing and sample plan included);
+- an axe WCAG 2.1 AA scan of the landing, sample plan, resources, and a question with a missing and a picked answer, at 1440 and 390 px (no violations);
+- the two simulated students end to end.

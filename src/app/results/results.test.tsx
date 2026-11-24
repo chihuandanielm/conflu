@@ -57,8 +57,9 @@ describe("started goals (engine 0.14.0)", () => {
 describe("results page", () => {
   it("reads top to bottom: where you stand, do this now, this semester, coming up, then the big picture", () => {
     setup(createSaved({ ...cs, semester: 1, yearTerm: "2F", experience: ["resume", "club"], skills: ["python"] }, "2026-11-15"));
-    expect(screen.getByRole("heading", { level: 1, name: "Your plan" })).toBeInTheDocument();
-    expect(screen.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 5 free hours a week")).toBeInTheDocument();
+    // The title is where the student is headed, with "your plan" as its small label (direction A, docs/DESIGN_RESEARCH.md).
+    expect(screen.getByRole("heading", { level: 1, name: "your plan Land your first role in software engineering" })).toBeInTheDocument();
+    expect(screen.getByText("software engineering · computer science · second year, fall semester · rutgers–new brunswick · 5 free hours a week")).toBeInTheDocument();
     // Phase 4 (docs/IMPROVEMENT_PLAN.md 4.1): three blocks, Now, This semester, and Your path.
     const order = ["Do this now", "This semester", "Your path", "Where you're headed", "Semester by semester", "What you have", "What you need"]
       .map((name) => screen.getByRole("heading", { name }));
@@ -291,7 +292,7 @@ describe("results page", () => {
     expect(standing.textContent).toMatch(/\d+ goals? · \d+ must-dos? · \d+ done/);
     expect(standing.textContent).toMatch(/Uses about \d+ of your 5 free hours a week|Nothing planned/);
     const card = screen.getByRole("heading", { name: "Do this now" }).closest("section")!;
-    const part = within(card).getByText(/^Part of/).textContent!;
+    const part = within(card).getByText((_, el) => el?.tagName === "P" && /part of/.test(el.textContent ?? "")).textContent!;
     const item = term.items.find((i) => part.includes(i.title))!;
     expect(item).toBeDefined();
     expect(within(card).getByText(howTo(item).steps[0])).toBeInTheDocument();

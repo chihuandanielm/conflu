@@ -40,7 +40,7 @@ export function SingleChoice<V extends string | number>({ choices, value, onSele
               onClick={() => onSelect(c.value)}
               className={`flex min-h-[54px] w-full items-center gap-3.5 border-b-[1.5px] border-blue px-3 py-2 text-left
                 transition-[background-color,color,padding] duration-[140ms] ease-confluence
-                ${selected ? "bg-blue text-sage" : "bg-sage text-blue"} ${c.disabled ? "cursor-not-allowed border-dashed" : "hover:underline underline-offset-4"}`}
+                ${selected ? "border-violet bg-violet text-sage" : "bg-sage text-blue"} ${c.disabled ? "cursor-not-allowed border-dashed" : "hover:underline underline-offset-4"}`}
             >
               {numberKeys && i < 9 && (
                 <kbd aria-hidden="true" className="grid h-6 w-6 flex-none place-items-center border-[1.5px] border-current font-mono text-fact">{i + 1}</kbd>

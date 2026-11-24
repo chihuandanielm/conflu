@@ -87,8 +87,10 @@ function resumeStep(): ScreenId {
   return screenOf(missing && saved.step === "review" ? missing : saved.step, a);
 }
 
-export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers }: {
+export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers, onSample }: {
   onBuild: (a: Answers) => void; startAt?: StepId | ScreenId; onContinuePlan?: () => void; onStartOver?: () => void; initialAnswers?: Answers;
+  /** The landing's "See a sample plan". */
+  onSample?: () => void;
 }) {
   const [state, dispatch] = useReducer(reducer, undefined, (): IntakeState => {
     const s = initialIntake();
@@ -154,7 +156,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   let screen: ReactNode;
   if (step === "intro") {
     screen = <Landing hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
-      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
+      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan} onSample={onSample}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} onBack={back}
@@ -243,7 +245,7 @@ function Part({ part, single, first, headingId, missing, message, children }: {
       {!single && !first && <hr className="shore" />}
       {/* A missing required answer: the sand bar beside the question, and a line saying what to pick. */}
       <section aria-labelledby={single ? undefined : headingId}
-        className={`border-l-[3px] ${missing ? "border-sand pl-4" : "border-transparent"} ${single ? "" : "-ml-[3px]"}`}>
+        className={`border-l-[3px] ${missing ? "border-ochre pl-4" : "border-transparent"} ${single ? "" : "-ml-[3px]"}`}>
         {!single && (
           <div className="mb-4">
             <h2 id={headingId} tabIndex={-1} className="text-lead">

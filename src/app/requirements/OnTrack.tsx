@@ -38,7 +38,7 @@ export function OnTrack({ answers }: { answers: Answers }) {
     <section aria-labelledby="ontrack-h">
       <SectionHead id="ontrack-h" title="On track to graduate" count={r.credits?.total ? `${r.credits.total} credits` : r.credits?.major ? `${r.credits.major} in the major` : undefined} />
       {/* The progress first: it is the answer to "am I on track?". */}
-      <p className={`label mt-4 w-fit text-[1.25rem] ${p.due > 0 && p.done === p.due ? "bg-green px-2 text-ink" : p.due > 0 ? "notice" : ""}`} aria-live="polite">
+      <p className={`label mt-4 w-fit text-[1.25rem] ${p.due > 0 && p.done === p.due ? "bg-green px-2 text-sage" : p.due > 0 ? "notice" : ""}`} aria-live="polite">
         {p.due > 0
           ? `${p.done} of ${p.due} requirements from earlier years ticked${p.done === p.due ? ": you're on track." : "."}`
           : "You're in your first year: start with the year 1 courses below."}

@@ -16,19 +16,29 @@
 @import "@fontsource/ibm-plex-mono/latin-400.css";
 @import "@fontsource/ibm-plex-mono/latin-600.css";
 
-/* Confluence tokens (design/tokens.css). Sage paper, three inks and one text colour; each has one job:
-     ink    sentences: body text, labels, facts (13.1:1 on sage, 9.2:1 on sand)
-     blue   what you can act on, and structure: headings, links, buttons, tabs, rules and borders, the one solid block
-     sand   ground and attention: the dotted "shore" rule, and the panel behind a notice or "where you stand" (ink text)
-     green  life and done: the fish, "you are here", done marks, ticks, the on-track counter (ink text on a green fill)
-   No other colours, no opacity tints, no gradients, no shadows. */
+/* Field guide tokens (design/DESIGN.md §2, design/tokens.css). Bone paper, warm charcoal, and three accents that each
+   have one job (docs/DESIGN_RESEARCH.md, "Colour with a job"). The token names are kept from the first palette so class
+   names stay stable; their values and jobs are:
+     sage    paper: bone, the ground of every page
+     ink     sentences: body text, labels, facts (10.2:1 on bone, 7.7:1 on the ochre fill)
+     blue    structure: headings, rules, borders, buttons, tabs; the same warm charcoal as ink
+     violet  yours, or a way out: the answers you picked, links, a must-do dot (5.4:1 on bone, both ways)
+     sand    look here first: this semester's panel, the "Do this now" title bar, a missing answer (an ochre fill, ink on it)
+     ochre   its line: the bar beside a missing answer or a notice, the hours meter (3.3:1, never words)
+     green   done: ticks, progress, done dots and labels (verdigris; bone on it 4.8:1)
+     umber   the dark ground inside the landing's window, behind the ASCII painting
+   No other colours, no opacity tints, no shadows. */
 :root {
-  --sage: #E0E7DA;
-  --navy: #2F3F6E;  /* the landing's ground (sage on navy 8.1:1, sand on navy 5.7:1) */
-  --ink: #1A1F24;
-  --blue: #456894;
-  --green: #00A37D;
-  --sand: #E6B989;
+  --sage: #E8E3D7;
+  --ink: #34302C;
+  --blue: #34302C;
+  --violet: #545684;
+  --sand: #E2C38A;
+  --ochre: #96773D;
+  --green: #356B61;
+  --umber: #2B2420;
+  /* Paper grain: a faint 4px dot pattern (one charcoal dot at 8% in an SVG tile, not a gradient). */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%2334302C' fill-opacity='0.08'/%3E%3C/svg%3E");
 
   --line: 1.5px;   /* every rule and border */
   --heavy: 3px;    /* a must-do, the bar beside a notice */
@@ -36,18 +46,20 @@
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --t-press: 140ms;
   --t-ui: 260ms;     /* a panel, a question, a row */
-  --t-screen: 520ms; /* a whole screen fading while the river moves */
+  --t-screen: 520ms; /* a whole screen fading */
 }
 
 @theme {
-  /* Only these five colours exist: Tailwind's default palette is switched off. */
+  /* Only these colours exist: Tailwind's default palette is switched off. */
   --color-*: initial;
-  --color-sage: #E0E7DA;
-  --color-navy: #2F3F6E;
-  --color-ink: #1A1F24;
-  --color-blue: #456894;
-  --color-green: #00A37D;
-  --color-sand: #E6B989;
+  --color-sage: #E8E3D7;
+  --color-ink: #34302C;
+  --color-blue: #34302C;
+  --color-violet: #545684;
+  --color-sand: #E2C38A;
+  --color-ochre: #96773D;
+  --color-green: #356B61;
+  --color-umber: #2B2420;
   --color-transparent: transparent;
 
   --font-*: initial;
@@ -88,7 +100,8 @@
 html { color-scheme: light; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--sage);
+  background-color: var(--sage);
+  background-image: var(--grain);
   color: var(--ink);
   font-family: var(--font-text);
   font-size: var(--text-body);
@@ -98,11 +111,12 @@ body {
 /* Headings are bold Barlow Semi Condensed; a title in a list (.title) and a short label (.label) are its 600. */
 h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: 0.005em; text-wrap: balance; color: var(--blue); }
 .title, .label { font-family: var(--font-display); font-weight: 600; }
-a { color: var(--blue); }
+/* Links are violet: a way out to a place or a page (docs/DESIGN_RESEARCH.md, "Colour with a job"). */
+a { color: var(--violet); text-decoration-color: var(--violet); }
 /* On a solid blue or green block, headings and links take the block's text colour. */
 .text-sage h1, .text-sage h2, .text-sage h3, .text-sage a, .text-ink h1, .text-ink h2, .text-ink h3, .text-ink a { color: inherit; }
 
-:focus-visible { outline: var(--line) solid var(--blue); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
 [tabindex="-1"]:focus { outline: none; }
 }
 
@@ -128,10 +142,11 @@ a { color: var(--blue); }
   .btn--small { min-height: 42px; padding: 0 16px; }
   .btn[disabled] { border-style: dashed; background: var(--sage); color: var(--blue); font-weight: 400; cursor: not-allowed; }
   /* On a solid blue block the roles swap. */
-  .on-blue .btn { border-color: var(--sage); background: var(--blue); color: var(--sage); }
-  .on-blue .btn:hover { background: var(--sage); color: var(--blue); }
-  .on-blue .btn--text { border-color: transparent; }
-  .on-blue .btn--text:hover { border-color: var(--sage); background: var(--blue); color: var(--sage); }
+  /* On a solid block (a picked answer) a button keeps the block's colour, in paper-coloured text. */
+  .on-blue .btn { border-color: var(--sage); background: transparent; color: var(--sage); }
+  .on-blue .btn:hover { background: var(--sage); color: var(--ink); }
+  .on-blue .btn--text { border-color: transparent; color: var(--sage); text-decoration-color: var(--sage); }
+  .on-blue .btn--text:hover { border-color: var(--sage); background: transparent; color: var(--sage); }
 
   /* Drafting corners: four small marks that frame the question sheet without boxing it in.
      Drawn as single-colour background layers (each "gradient" is one flat colour, used only to place a 1.5px line). */
@@ -144,7 +159,7 @@ a { color: var(--blue); }
 
   /* The mark beside a goal: an open ring, a solid dot for a must-do, a green dot once done. */
   .dot { flex: none; display: inline-block; width: 11px; height: 11px; border: var(--line) solid var(--blue); border-radius: 50%; background: var(--sage); }
-  .dot--must { background: var(--blue); }
+  .dot--must { background: var(--violet); border-color: var(--violet); }
   .dot--done { background: var(--green); border-color: var(--green); }
 
   /* A step to tick: an open square; ticked, it is done, so it turns green with a sage tick. */
@@ -152,10 +167,32 @@ a { color: var(--blue); }
   .tick:checked { background: var(--green); border-color: var(--green); }
   .tick:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--sage); border-bottom: 2px solid var(--sage); transform: translateY(-1px) rotate(-45deg); }
 
-  /* Attention: a sand panel with ink text (9.2:1). Notices, "where you stand", a missing answer. */
-  .notice { background: var(--sand); color: var(--ink); padding: 12px 16px; }
+  /* Look here first: an ochre panel with ink text (7.7:1) and an ochre line. A missing answer, an outdated plan. */
+  .notice { background: var(--sand); color: var(--ink); padding: 12px 16px; border-left: var(--heavy) solid var(--ochre); }
   .notice .btn--text { background: transparent; color: var(--ink); }
   .notice .btn--text:hover { background: var(--sand); color: var(--ink); border-color: var(--ink); }
+}
+
+@layer components {
+  /* A retro window (design/DESIGN.md §7): a 1.5px charcoal frame, a striped title bar with two small squares and a
+     centred label. The bar's stripes are paper and one accent: ochre for "Do this now" (look here first), charcoal
+     hairlines for the landing's painting. The stripes are flat colour bands, not a gradient. */
+  .win { border: var(--line) solid var(--blue); background: var(--sage); }
+  .win-bar { display: grid; grid-template-columns: 12px 1fr 12px; align-items: center; gap: 10px; min-height: 28px; padding: 0 10px;
+    border-bottom: var(--line) solid var(--blue); font: var(--text-fact) / 1.2 var(--font-mono); color: var(--ink); text-transform: lowercase; letter-spacing: 0.03em; }
+  .win-bar::before, .win-bar::after { content: ""; width: 10px; height: 10px; border: var(--line) solid var(--blue); background: var(--sage); }
+  .win-bar > * { justify-self: center; background: var(--sage); padding: 0 10px; margin: 0; font: inherit; letter-spacing: inherit; }
+  .win-bar--now { background: repeating-linear-gradient(var(--sand) 0 2px, var(--sage) 2px 4px); }
+  .win-bar--quiet { background: repeating-linear-gradient(var(--sage) 0 5px, var(--blue) 5px 6px); }
+  /* Paper for a panel that must hide what scrolls under it (the sticky tabs): the page's colour and grain. */
+  .paper, .bg-sage { background-color: var(--sage); background-image: var(--grain); }
+  /* A drafting ruler under the landing's window: short ticks every 24px, tall ones every 120px (flat colour bands). */
+  .ruler { height: 12px; background:
+    repeating-linear-gradient(90deg, var(--blue) 0 1.5px, transparent 1.5px 120px) left bottom / 100% 12px no-repeat,
+    repeating-linear-gradient(90deg, var(--blue) 0 1px, transparent 1px 24px) left bottom / 100% 6px no-repeat; }
+  /* A drafting kicker: a short rule ending in a dot, then small mono words. */
+  .kicker { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: var(--text-fact); }
+  .kicker::before { content: ""; width: 48px; height: var(--line); background: var(--blue); }
 }
 
 /* The landing's headline arrives during the paint-in (docs/LANDING_REDESIGN.md). */

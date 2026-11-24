@@ -36,7 +36,7 @@ export function ChipList({ chips, selected, onToggle, label, more, focusId }: {
               <button type="button" aria-pressed={on} onClick={() => onToggle(c.id)} data-chip={c.id}
                 className={`flex min-h-[54px] w-full items-center gap-3.5 border-b-[1.5px] border-blue px-3 py-2 text-left
                   transition-[background-color,color] duration-[140ms] ease-confluence hover:underline underline-offset-4
-                  ${on ? "bg-blue text-sage" : "bg-sage text-blue"}`}>
+                  ${on ? "border-violet bg-violet text-sage" : "bg-sage text-blue"}`}>
                 <TickBox on={on} />
                 <span className="flex-1">{c.label}</span>
               </button>
