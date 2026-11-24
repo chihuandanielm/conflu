@@ -195,10 +195,11 @@ Check: an automated contrast test fails on any text pair under 7:1 (under 4.5:1 
 
      They found two things, both fixed. "Needed before" named a goal whose time had passed for the student, by its old title. R27 at first flagged seniors with 2 h a week, where senior fall is all prep; it now flags only when other goals took the room.
    - **7.2:** the weekly link check (`scripts/check-links.mjs`) also checks the 34 catalog pages behind the course lists, report only (`--catalogs-only` runs just those). All 34 load. Rutgers' 2026–27 catalogs are readable, so the original "watch for 2025–26" goal no longer applies.
-   - **7.3 (built 2026-11-24):** "Is this plan right for you? Email feedback" at the foot of the results page (`src/app/feedback/`).
-     - It opens a pre-filled email in the student's own mail app, to the support address. The site sends nothing and stores no address.
-     - The message has three prompts, including "Your email, so we can reply (required):", plus the dataset and engine versions. None of the student's answers are in it.
-     - Rate limit: one every 10 minutes and 3 a day, kept in this browser (the site is static, so there is no server to limit at). Past the limit, it says when to try again.
+   - **7.3 (built 2026-11-24):** "Is this plan right for you? Send feedback" at the foot of the results page opens a short form (`src/app/feedback/`), set up like the owner's portfolio site.
+     - A plain HTML form posted to Formspree in a new tab, so the plan stays open. No Formspree script; the CSP's `form-action` allows only formspree.io.
+     - The sender's email is required (the owner's call, recorded in CLAUDE.md), with one-tap endings (@gmail.com, …) and three message openings.
+     - Hidden fields: a subject ("Career Pathway Mapper feedback"), the dataset and engine versions, and a `_gotcha` honeypot. None of the student's plan or answers are sent; the form says what Formspree receives.
+     - Rate limit: Formspree's spam filtering, plus one message every 10 minutes and 3 a day in this browser. Past the limit, it says when to try again.
 
 ## Decisions for you
 
