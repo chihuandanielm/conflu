@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { buildPlan } from "../../engine/engine.ts";
-import { dataset, resources, tracks } from "../data/dataset.ts";
+import { resources, tracks } from "../data/dataset.ts";
 import requirementsFile from "../../../data/requirements.json";
-import { byImportance } from "../results/EditMap.tsx";
+import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
+import { mapModel } from "../map/facts.ts";
 import { outcomeText } from "../results/summary.ts";
 import { todayISO } from "../today.ts";
 import { toTop } from "../ui/scroll.ts";
@@ -22,13 +22,17 @@ let firstMount = true;
 
 const hasPainted = () => { try { return sessionStorage.getItem(PAINTED_KEY) === "1"; } catch { return false; } };
 
-/** The example on the landing: a real plan from the engine, for a computer science sophomore on the software track. */
-function examplePlan() {
-  const plan = buildPlan({ status: "college-student", majorId: "computer-science", year: 2, semester: 1, trackId: "software-engineering",
-    horizon: "graduation", today: todayISO(), weeklyHours: 8, school: "rutgers-nb", summer: "full", location: "nj" }, dataset);
-  return plan.terms.filter((t) => t.items.length).slice(0, 5).map((t) => ({
-    label: t.label, items: byImportance(t.items.filter((i) => !i.option)).slice(0, 3),
-  }));
+/**
+ * The landing's map: the sample student's plan as the confluence (design/DESIGN.md §7.5), each must-do and
+ * high-priority goal a stream joining one river toward the career goal (yearly rounds such as the FAFSA left out, so no
+ * goal repeats). A picture of the whole path, where the sample plan itself opens on this semester's steps.
+ */
+function sampleMap() {
+  const plan = createSaved(SAMPLE_ANSWERS, todayISO()).plan;
+  const shown = new Map<string, string>();
+  for (const t of plan.terms) for (const it of t.items)
+    if (!it.option && !it.goalId.includes("@") && (it.importance === "must" || it.importance === "high") && !shown.has(it.goalId)) shown.set(it.goalId, t.label);
+  return { model: mapModel(plan, outcomeText(SAMPLE_ANSWERS.trackId), new Set(shown.keys())), termOf: (id: string) => shown.get(id) };
 }
 
 /**
@@ -51,7 +55,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
   const [paints] = useState(() => !reduce && !hasPainted());
   const [leaving, setLeaving] = useState(false);
   const leaveTimer = useRef<number[]>([]);
-  const example = useMemo(examplePlan, []);
+  const map = useMemo(sampleMap, []);
   // The sample plan, expanded in place. Built when opened, so it is for today's date; changes stay in memory.
   const [sample, setSample] = useState<SavedPlan | null>(null);
   const sampleRef = useRef<HTMLElement>(null);
@@ -73,7 +77,6 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
     });
     return () => cancelAnimationFrame(raf);
   }, [sample, reduce]);
-  const outcome = outcomeText("software-engineering");
 
   useEffect(() => {
     if (!first) toTop(); // coming back from the questions
@@ -190,28 +193,17 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             </ol>
           </section>
 
-          <section aria-labelledby="real-h" className="border-t-[1.5px] border-blue py-12 min-[760px]:py-[72px]">
-            <h2 id="real-h" className="text-[2.625rem] leading-none min-[760px]:text-[3.5rem]">A real plan</h2>
-            <div className="win mt-9"><div className="win-bar win-bar--quiet"><span>sample_plan.txt</span></div><div className="px-5 pt-2 pb-6 min-[760px]:px-7">
-              <p className="flex flex-wrap justify-between gap-x-4 py-3.5 font-mono text-fact">
-                <span>computer science · year 2 · rutgers–new brunswick</span><span>software engineering</span>
-              </p>
-              <ol>
-                {example.map((t, i) => (
-                  <li key={t.label} className={`grid grid-cols-1 items-baseline gap-2 py-3 min-[760px]:grid-cols-[150px_1fr] min-[760px]:gap-4 ${i === 0 ? "border-t-[3px]" : "border-t-[1.5px]"} border-blue`}>
-                    <p className="label text-[1.125rem] text-blue">{t.label}</p>
-                    <ul className="flex flex-wrap gap-1.5">
-                      {t.items.map((it) => (
-                        <li key={it.goalId} className={`border-[1.5px] border-blue px-2 py-0.5 text-small ${it.importance === "must" || it.gate ? "bg-blue text-sage" : "text-ink"}`}>{it.title}</li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ol>
-              <p className="mt-4 flex items-center gap-3 font-display text-[1.375rem] font-bold">
-                <span aria-hidden="true" className="dot dot--done h-3.5 w-3.5" />{outcome}
-              </p>
-            </div></div>
+          {/* The whole path as a map: the same sample student, drawn as the confluence. Any goal opens the sample plan. */}
+          <section aria-labelledby="map-h" className="border-t-[1.5px] border-blue py-12 min-[760px]:py-[72px]">
+            <h2 id="map-h" className="text-[2.625rem] leading-none min-[760px]:text-[3.5rem]">The whole path, as a map</h2>
+            <p className="mt-4 max-w-[40em]">Each important goal is a stream that joins the river in the semester it starts. This is the sample student's plan; pick any goal to open it.</p>
+            <div className="win mt-9">
+              <div aria-hidden="true" className="win-bar win-bar--quiet"><span className="invisible">.</span></div>
+              <div className="px-4 py-6 min-[760px]:px-8 min-[760px]:py-8">
+                <ConfluenceMap model={map.model} label="A sample plan as a confluence: its important goals joining one river" termOf={map.termOf}
+                  onOpen={() => { if (!sample) toggleSample(); else sampleRef.current && window.scrollTo({ top: sampleRef.current.getBoundingClientRect().top + window.scrollY, behavior: reduce ? "auto" : "smooth" }); }} />
+              </div>
+            </div>
           </section>
 
           <section aria-label="The numbers behind it" className="grid grid-cols-2 border-t-[1.5px] border-blue min-[760px]:grid-cols-4">
