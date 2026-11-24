@@ -2435,8 +2435,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "search-confirmed",
-        "checkedOn": "2026-11-24"
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -2474,7 +2475,9 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-24"
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200,
+        "note": "Confirmed by search; automated check was refused (bot wall)."
       },
       "tags": []
     }
