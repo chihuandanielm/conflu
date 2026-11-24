@@ -68,10 +68,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "broken",
         "checkedOn": "2026-11-24",
-        "httpStatus": 999,
-        "note": "Site refused the automated check (HTTP 999); open it by hand."
+        "httpStatus": 404,
+        "note": "Link failed (HTTP 404); needs a new URL."
       },
       "tags": [],
       "campuses": [
@@ -811,9 +811,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 200
+        "httpStatus": null,
+        "note": "Site refused the automated check (timed out); open it by hand."
       },
       "tags": []
     },
