@@ -1113,5 +1113,16 @@
       "id": "not-sure",
       "label": "Not sure yet"
     }
+  ],
+  "graduation": [
+    {
+      "id": "on-time",
+      "label": "At the end of my fourth year"
+    },
+    {
+      "id": "year-later",
+      "label": "A year later",
+      "note": "A fifth year, a co-op, or a transfer that adds time"
+    }
   ]
 }

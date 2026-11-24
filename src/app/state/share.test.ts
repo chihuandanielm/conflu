@@ -43,6 +43,13 @@ describe("share link", () => {
     expect(parseShareHash(shareHash({ ...phd, gradApps: undefined }))!.gradApps).toBeUndefined();
   });
 
+  it("carries graduating a year later, and old links default to on time (engine 0.13.0)", () => {
+    expect(parseShareHash(shareHash({ ...a, graduation: "year-later" }))!.graduation).toBe("year-later");
+    expect(parseShareHash(shareHash({ ...a, graduation: "on-time" }))!.graduation).toBe("on-time");
+    const old = "#plan=" + btoa(JSON.stringify({ v: 1, m: "computer-science", y: 2, t: "software-engineering" })).replace(/=+$/, "");
+    expect(parseShareHash(old)!.graduation).toBe("on-time");
+  });
+
   it("rejects malformed or unknown values", () => {
     expect(parseShareHash("#plan=not-json")).toBeNull();
     expect(parseShareHash("#other=1")).toBeNull();

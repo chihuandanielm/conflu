@@ -52,6 +52,9 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
   await expect(page.getByRole("alert")).toHaveText("1 question on this page still needs an answer.");
   await expect(page.getByText("Pick full-time or part-time to continue.")).toBeVisible();
   await page.getByRole("radio", { name: /Full-time/ }).click();
+  // Graduation (engine 0.13.0) is already set to the usual four years: continue.
+  await expect(page.getByRole("radio", { name: /At the end of my fourth year/ })).toHaveAttribute("aria-checked", "true");
+  await page.getByRole("button", { name: "Continue" }).click();
 
   await expect(heading(page)).toHaveText("What have you already done?");
   await expect(page.getByRole("button", { name: "None yet, continue" })).toBeVisible();

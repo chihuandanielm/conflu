@@ -54,6 +54,13 @@ The thesis card now reads: "Ask your department about honors thesis requirements
 - **L5, grad-school groundwork after graduation** (statement, letters, program list: 9,566 plans). It went up because research and pre-professional plans now reach the applications at all. The "When do you plan to apply?" question (below) now settles it: this-cycle applicants finish it before applying; gap-year applicants get it as planned.
 - **Job-search practice after graduation.** A mock interview after graduation is fine for someone still searching.
 
+**T4 is done** (engine 0.13.0): see `docs/T4_PLAN.md` for the options weighed and the result.
+
+- Graduating a year later is planned with the right runway, labelled with the real year.
+- An "Already done?" card asks about this semester's catch-ups, on the plan.
+- The final semester holds at most 3 goals besides must-dos.
+- Inferring skills from coursework was rejected: course titles don't say which tools a course teaches.
+
 **T2 is done** (engine 0.12.0, data 2026.11.24-1). Every planned item carries:
 
 - `timing`: early, on time, late, last chance or after graduation;
@@ -334,7 +341,7 @@ Removes rule groups A, E and most of F with no engine change.
 | T1 text | A, E, most of F, the LinkedIn example; about 85% of the 38,051 lines | data only, 1 PR |
 | T2 tiers | B, the rest of F, G, the duplicate after-graduation card | done (engine 0.12.0) |
 | T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | done: lead time (0.10.0), rounds and grad-school timing (0.11.0) |
-| T4 inputs | H: blank-slate seniors, last-semester overload | intake change, research for coursework mappings |
+| T4 inputs | H: blank-slate seniors, last-semester overload | done (engine 0.13.0): plan-aware "Already done?" card, graduation question, final-semester cap; coursework inference rejected (docs/T4_PLAN.md) |
 
 T1 is the fastest win: most of what students see is fixed without touching the engine. T2 and T3 stop the problem from coming back. T4 makes the plan fit the student.
 
