@@ -72,18 +72,21 @@
       "guides": [
         "mit-job-search-tasks"
       ],
-      "late": {
-        "title": "Meet a career advisor and plan the semesters ahead",
-        "steps": [
-          "Book a 30-minute appointment with your campus career center through Handshake.",
-          "Bring your resume and the roles or programs you are aiming for after graduation.",
-          "Ask what to prioritize in the semesters ahead: applications, deadlines, and campus programs.",
-          "Leave with a short plan through graduation and the date of your next check-in."
-        ],
-        "doneWhen": "You have a plan for the semesters ahead, made with an advisor, and a follow-up date on your calendar.",
-        "why": "An advisor can point you to what matters most from here, and to campus programs you might miss."
-      },
-      "minTermsLeft": 2
+      "minTermsLeft": 2,
+      "variants": [
+        {
+          "when": "late",
+          "title": "Meet a career advisor and plan the semesters ahead",
+          "steps": [
+            "Book a 30-minute appointment with your campus career center through Handshake.",
+            "Bring your resume and the roles or programs you are aiming for after graduation.",
+            "Ask what to prioritize in the semesters ahead: applications, deadlines, and campus programs.",
+            "Leave with a short plan through graduation and the date of your next check-in."
+          ],
+          "doneWhen": "You have a plan for the semesters ahead, made with an advisor, and a follow-up date on your calendar.",
+          "why": "An advisor can point you to what matters most from here, and to campus programs you might miss."
+        }
+      ]
     },
     {
       "id": "f-handshake-profile",
@@ -189,17 +192,20 @@
         "mit-sample-resumes",
         "mit-resume-toolkit"
       ],
-      "late": {
-        "title": "Write your resume",
-        "steps": [
-          "Look at two or three sample resumes from students in your field and year.",
-          "List your college classes, projects, jobs, clubs, volunteering, awards, and skills.",
-          "Write each entry as 2–3 bullets that start with an action verb and show a result or a number where you can.",
-          "Fit it on one page with your name, school email, phone, and LinkedIn URL at the top.",
-          "Get it reviewed at your career center or writing center, then save it as a PDF named Firstname-Lastname-Resume."
-        ],
-        "doneWhen": "You have a one-page PDF resume that someone at your career center or writing center has reviewed."
-      }
+      "variants": [
+        {
+          "when": "late",
+          "title": "Write your resume",
+          "steps": [
+            "Look at two or three sample resumes from students in your field and year.",
+            "List your college classes, projects, jobs, clubs, volunteering, awards, and skills.",
+            "Write each entry as 2–3 bullets that start with an action verb and show a result or a number where you can.",
+            "Fit it on one page with your name, school email, phone, and LinkedIn URL at the top.",
+            "Get it reviewed at your career center or writing center, then save it as a PDF named Firstname-Lastname-Resume."
+          ],
+          "doneWhen": "You have a one-page PDF resume that someone at your career center or writing center has reviewed."
+        }
+      ]
     },
     {
       "id": "f-resume-refresh",
@@ -883,7 +889,24 @@
       "doneWhen": "Your contribution graph shows activity 3+ days a week for a full semester.",
       "guides": [
         "github-skills-intro"
-      ]
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2
+        ],
+        "continue": [
+          1,
+          2,
+          3
+        ],
+        "finish": [
+          1,
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "p-open-source-pr",
@@ -1039,7 +1062,22 @@
         "Collect your best 3–5 on one page, like a portfolio site or Muck Rack profile, with a one-line description of each."
       ],
       "doneWhen": "You have 3–5 published pieces collected on one page you can link from your resume.",
-      "guides": []
+      "guides": [],
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          0,
+          1,
+          2
+        ],
+        "finish": [
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "p-kaggle",
@@ -1515,7 +1553,23 @@
         "Do a timed mock interview with a friend once a month, explaining your thinking out loud."
       ],
       "doneWhen": "You've solved 100 problems across all core topics and can explain your solutions out loud.",
-      "guides": []
+      "guides": [],
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          1,
+          2,
+          3
+        ],
+        "finish": [
+          1,
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "s-git",
@@ -2096,7 +2150,21 @@
       ],
       "doneWhen": "You're a regular member of 1–2 organizations and have helped with at least one event or project.",
       "guides": [],
-      "minTermsLeft": 2
+      "minTermsLeft": 2,
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          2,
+          3
+        ],
+        "finish": [
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "e-org-leadership",
@@ -2144,7 +2212,20 @@
       ],
       "doneWhen": "You hold an officer or project-lead role and have a concrete result from it.",
       "guides": [],
-      "minTermsLeft": 2
+      "minTermsLeft": 2,
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          2,
+          3
+        ],
+        "finish": [
+          3
+        ]
+      }
     },
     {
       "id": "e-part-time-job",
@@ -2284,7 +2365,21 @@
       "guides": [
         "illinois-emailing-professors"
       ],
-      "minTermsLeft": 2
+      "minTermsLeft": 2,
+      "phases": {
+        "start": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "continue": [
+          4
+        ],
+        "finish": [
+          4
+        ]
+      }
     },
     {
       "id": "e-summer-research",
@@ -2392,7 +2487,21 @@
       "doneWhen": "You've completed and submitted or defended your thesis or independent project.",
       "guides": [],
       "minTermsLeft": 2,
-      "alternative": "e-research-project"
+      "alternative": "e-research-project",
+      "phases": {
+        "start": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "continue": [
+          4
+        ],
+        "finish": [
+          4
+        ]
+      }
     },
     {
       "id": "e-research-project",
@@ -2494,7 +2603,22 @@
       "guides": [
         "github-skills-intro",
         "github-education-apply"
-      ]
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2
+        ],
+        "continue": [
+          2,
+          3
+        ],
+        "finish": [
+          3,
+          4
+        ]
+      }
     },
     {
       "id": "e-hackathon",
@@ -2908,7 +3032,26 @@
       "doneWhen": "You've logged 40+ hours of shadowing with notes from each session.",
       "guides": [
         "aamc-shadowing"
-      ]
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "continue": [
+          2,
+          3,
+          4
+        ],
+        "finish": [
+          2,
+          3,
+          4
+        ]
+      }
     },
     {
       "id": "e-clinical-hours",
@@ -2963,7 +3106,23 @@
       "doneWhen": "You've logged 150+ patient-care hours with notes on what you learned.",
       "guides": [
         "aamc-shadowing"
-      ]
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "continue": [
+          2,
+          3
+        ],
+        "finish": [
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "e-nursing-externship",
@@ -3545,7 +3704,24 @@
       "doneWhen": "You've had 5 informational interviews and sent a thank-you after each.",
       "guides": [
         "tufts-info-interview"
-      ]
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2
+        ],
+        "continue": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "finish": [
+          3,
+          4
+        ]
+      }
     },
     {
       "id": "n-faculty-relationships",
@@ -3592,7 +3768,21 @@
       "guides": [
         "uci-faculty-connections"
       ],
-      "minTermsLeft": 1
+      "minTermsLeft": 1,
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          2,
+          3
+        ],
+        "finish": [
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "n-mentor",
@@ -4527,9 +4717,12 @@
       ],
       "doneWhen": "You have a written, semester-by-semester plan to meet New Jersey's CPA education requirement.",
       "guides": [],
-      "late": {
-        "why": "It decides whether you need a master’s or extra credits after graduation, and how to pay for them."
-      }
+      "variants": [
+        {
+          "when": "late",
+          "why": "It decides whether you need a master’s or extra credits after graduation, and how to pay for them."
+        }
+      ]
     },
     {
       "id": "a-certificate-minor",
@@ -4768,7 +4961,21 @@
         "aamc-mcat-free",
         "ets-gre-prepare"
       ],
-      "gradStep": "prep"
+      "gradStep": "prep",
+      "phases": {
+        "start": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "continue": [
+          3
+        ],
+        "finish": [
+          3
+        ]
+      }
     },
     {
       "id": "a-letters",
@@ -4921,10 +5128,13 @@
       "guides": [
         "owl-personal-statement"
       ],
-      "late": {
-        "why": "It takes several drafts, so give yourself a few weeks before your first deadline."
-      },
-      "gradStep": "prep"
+      "gradStep": "prep",
+      "variants": [
+        {
+          "when": "late",
+          "why": "It takes several drafts, so give yourself a few weeks before your first deadline."
+        }
+      ]
     },
     {
       "id": "a-nclex-prep",
@@ -4969,7 +5179,21 @@
       ],
       "doneWhen": "You've applied to the board, registered for the NCLEX, and your practice results show you're ready.",
       "guides": [],
-      "majorRule": "only"
+      "majorRule": "only",
+      "phases": {
+        "start": [
+          0,
+          1
+        ],
+        "continue": [
+          1,
+          2
+        ],
+        "finish": [
+          2,
+          3
+        ]
+      }
     },
     {
       "id": "a-residency-plan",
@@ -5404,16 +5628,52 @@
         "drexel-senior-search",
         "mit-finding-jobs"
       ],
-      "late": {
-        "title": "Keep your job search going after graduation",
-        "steps": [
-          "Keep applying every week; many employers hire new graduates all year.",
-          "If responses are slow, get your resume and target list reviewed and adjust one of them.",
-          "Reach out to alumni in the roles you want and ask for a short call.",
-          "Consider contract, temporary, or fellowship roles that build experience while you search.",
-          "Track every application and follow up."
+      "variants": [
+        {
+          "when": "after-grad",
+          "title": "Keep your job search going after graduation",
+          "steps": [
+            "Keep applying every week; many employers hire new graduates all year.",
+            "If responses are slow, get your resume and target list reviewed and adjust one of them.",
+            "Reach out to alumni in the roles you want and ask for a short call.",
+            "Consider contract, temporary, or fellowship roles that build experience while you search.",
+            "Track every application and follow up."
+          ],
+          "why": "Many graduates land their first role in the months after graduation; steady weekly effort is what works.",
+          "phases": {
+            "start": [
+              0,
+              1,
+              2
+            ],
+            "continue": [
+              0,
+              2,
+              3,
+              4
+            ],
+            "finish": [
+              0,
+              4
+            ]
+          }
+        }
+      ],
+      "phases": {
+        "start": [
+          0,
+          1,
+          2
         ],
-        "why": "Many graduates land their first role in the months after graduation; steady weekly effort is what works."
+        "continue": [
+          2,
+          3,
+          4
+        ],
+        "finish": [
+          2,
+          4
+        ]
       }
     },
     {

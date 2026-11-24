@@ -4,11 +4,10 @@
 import type { Dataset, Goal, Plan } from "../src/engine/types.ts";
 
 export interface Hit { rule: string; goal: string; field: string; phrase: string; text: string; term: string; now: string; student: string }
-type LateGoal = Goal & { late?: { title?: string; steps?: string[]; doneWhen?: string; why?: string } };
 
 export function auditPlan(p: Plan, data: Dataset, student: string): Hit[] {
   const T = data.terms, ix = (c: string) => T.indexOf(c);
-  const goals = new Map(data.goals.map((g) => [g.id, g as LateGoal]));
+  const goals = new Map(data.goals.map((g) => [g.id, g]));
   const hits: Hit[] = [];
   // ---- Time words and the terms they point at --------------------------------------------------------------------
   type Ref = { re: RegExp; from: number; to: number; kind: string };
@@ -85,11 +84,11 @@ export function auditPlan(p: Plan, data: Dataset, student: string): Hit[] {
   const now = ix(p.terms[0]?.code ?? "1F"), final = ix("4S");
   for (const t of p.terms) for (const it of t.items) {
     const id = it.goalId.split("@")[0], g = goals.get(id)!, term = ix(t.code);
-    const late = it.late ? g.late : undefined;
     const at = (field: string) => ({ goal: id, field, term, now, final, student });
         scan(it.title, at("title"));
-    (late?.steps ?? g.steps ?? []).forEach((s, k) => scan(s, at(`step ${k + 1}`)));
-    scan(late?.doneWhen ?? g.doneWhen, at("done when"));
+    // What the site shows: the engine's text for this item's timing (engine 0.12.0).
+    it.text.steps.forEach((s, k) => scan(s, at(`step ${k + 1}`)));
+    scan(it.text.doneWhen, at("done when"));
     it.why.forEach((s) => scan(s, at("why")));
     for (const r of it.resources) scan(r.note, at(`resource note (${r.id})`));
     if (g.deadline) scan(g.deadline, at("deadline"));

@@ -18,11 +18,11 @@ test("every goal has 3–6 concrete steps and a done-when line", () => {
   }
 });
 
-test("late wording, where present, is complete and drops early-college phrasing", () => {
-  for (const g of data.goals) if (g.late) {
-    assert.ok(g.late.title ? g.late.title !== g.title : !!g.late.why, `${g.id}: late needs a new title or a late reason`);
-    if (g.late.steps) assert.ok(g.late.steps.length >= 3 && g.late.steps.length <= 6, `${g.id}: late steps`);
-    assert.doesNotMatch([g.late.title, ...(g.late.steps ?? []), g.late.doneWhen ?? ""].join(" "), /4-year|first-year|first college/i, g.id);
+test("timing variants, where present, are complete and drop early-college phrasing", () => {
+  for (const g of data.goals) for (const v of g.variants ?? []) {
+    assert.ok(v.title ? v.title !== g.title : !!v.why || !!v.steps, `${g.id}/${v.when}: needs a new title, reason, or steps`);
+    if (v.steps) assert.ok(v.steps.length >= 3 && v.steps.length <= 6, `${g.id}/${v.when}: steps`);
+    assert.doesNotMatch([v.title, ...(v.steps ?? []), v.doneWhen ?? ""].join(" "), /4-year|first-year|first college/i, `${g.id}/${v.when}`);
   }
 });
 

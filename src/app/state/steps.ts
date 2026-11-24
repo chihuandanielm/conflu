@@ -12,17 +12,19 @@ export type StepProgress = Record<string, number[]>;
 const goalById = new Map(goals.map((g) => [g.id, g]));
 
 export interface HowTo { steps: string[]; doneWhen: string | null; guides: Resource[] }
-/** A plan item's steps. Items scheduled after their ideal window (`late`) use the goal's late wording when it has one. */
-export type ItemRef = string | { goalId: string; late?: boolean };
+/**
+ * A plan item's steps. Engine 0.12.0 items carry `text`, the wording chosen for their timing (late, last chance, after
+ * graduation), and `phaseSteps`, the steps for this term's part of a goal that runs over several terms. Plans saved
+ * before 0.12.0 have neither: their `late` flag picks the goal's late wording, as it did then.
+ */
+export type ItemRef = string | { goalId: string; late?: boolean; text?: { steps: string[]; doneWhen: string | null }; phaseSteps?: number[] };
 const keyOf = (item: ItemRef) => (typeof item === "string" ? item : item.goalId);
 export function howTo(item: ItemRef): HowTo {
   const g = goalById.get(keyOf(item).split("@")[0]);
-  const late = typeof item !== "string" && item.late ? g?.late : undefined;
-  return {
-    steps: late?.steps ?? g?.steps ?? [],
-    doneWhen: late?.doneWhen ?? g?.doneWhen ?? null,
-    guides: (g?.guides ?? []).map((id) => resourceById.get(id)).filter((r): r is Resource => !!r),
-  };
+  const guides = (g?.guides ?? []).map((id) => resourceById.get(id)).filter((r): r is Resource => !!r);
+  if (typeof item !== "string" && item.text) return { steps: item.text.steps, doneWhen: item.text.doneWhen, guides };
+  const late = typeof item !== "string" && item.late ? (g?.variants?.find((v) => v.when === "late") ?? g?.variants?.[0]) : undefined;
+  return { steps: late?.steps ?? g?.steps ?? [], doneWhen: late?.doneWhen ?? g?.doneWhen ?? null, guides };
 }
 
 export function loadSteps(): StepProgress {
@@ -42,6 +44,9 @@ export function nextStep(item: ItemRef, p: StepProgress): { n: number; text: str
   const itemKey = keyOf(item);
   const { steps } = howTo(item);
   const done = (p[itemKey] ?? []).filter((i) => i < steps.length);
-  const i = steps.findIndex((_, k) => !done.includes(k));
+  // This term's part first (engine 0.12.0), then anything still unchecked.
+  const focus = typeof item === "string" ? [] : (item.phaseSteps ?? []).filter((k) => k < steps.length);
+  const inFocus = focus.find((k) => !done.includes(k));
+  const i = inFocus ?? steps.findIndex((_, k) => !done.includes(k));
   return i < 0 ? null : { n: i + 1, text: steps[i], done: done.length, total: steps.length };
 }

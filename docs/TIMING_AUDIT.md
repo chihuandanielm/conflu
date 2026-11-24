@@ -54,6 +54,18 @@ The thesis card now reads: "Ask your department about honors thesis requirements
 - **L5, grad-school groundwork after graduation** (statement, letters, program list: 9,566 plans). It went up because research and pre-professional plans now reach the applications at all. The "When do you plan to apply?" question (below) now settles it: this-cycle applicants finish it before applying; gap-year applicants get it as planned.
 - **Job-search practice after graduation.** A mock interview after graduation is fine for someone still searching.
 
+**T2 is done** (engine 0.12.0, data 2026.11.24-1). Every planned item carries:
+
+- `timing`: early, on time, late, last chance or after graduation;
+- `text`: steps and done-when, chosen from the goal's `variants` (which replace `late`);
+- for a goal planned in more than one term, `phase` and `phaseSteps`.
+
+For 16 goals, the steps are split into a first term, the terms in between, and a last term. A research position starts with finding labs and emailing professors, and its later terms point at "show up reliably and ask your mentor what success looks like".
+
+The site's steps and the PDF read the engine's text. "Do this now" points at this term's part first, and the PDF lists that part under a goal's later terms instead of only "keep going". The job search after graduation is no longer the same card twice: the first term after graduation continues it, and the last one finishes with tracking and follow-up.
+
+Placements are unchanged: none of the 336 stored plans moved. `npm run audit:timing` went from 872 lines to 160, all forward-looking and correct. `test/text.test.ts` covers the above.
+
 **T3, second half, is done** (engine 0.11.0, data 2026.11.23-5).
 
 - **Application rounds.** Six goals carry the months their round is open: FAFSA, target and early internships, research programs, Eagleton, and grad applications.
@@ -260,7 +272,7 @@ Removes rule groups A, E and most of F with no engine change.
   - `audit:timing` runs in `npm test` with zero T1, T2, T4 and T6 allowed, plus an allowlist for the cases above;
   - the validator rejects a stage word or month in steps or reasons unless the goal's window keeps it true, or a variant covers the later terms.
 
-### Phase T2: timing tiers and engine-chosen text (engine 0.12.0)
+### Phase T2: timing tiers and engine-chosen text (engine 0.12.0, done)
 
 **New result variables on `PlanItem`:**
 
@@ -320,7 +332,7 @@ Removes rule groups A, E and most of F with no engine change.
 | Phase | Removes | Size |
 |---|---|---|
 | T1 text | A, E, most of F, the LinkedIn example; about 85% of the 38,051 lines | data only, 1 PR |
-| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.12.0, UI reads `item.text` |
+| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | done (engine 0.12.0) |
 | T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | done: lead time (0.10.0), rounds and grad-school timing (0.11.0) |
 | T4 inputs | H: blank-slate seniors, last-semester overload | intake change, research for coursework mappings |
 
