@@ -18,8 +18,10 @@ describe("IntakeFlow", () => {
   it("starts on the landing, and Build my plan fades it out, then records that the student is in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
     expect(screen.getByRole("heading", { level: 1, name: "Know what to do now." })).toBeInTheDocument();
-    // A real plan from the engine, and the numbers behind the site.
-    expect(screen.getByRole("heading", { name: "A real plan" })).toBeInTheDocument();
+    // The sample plan drawn as a map (the engine's real plan), and the numbers behind the site.
+    expect(screen.getByRole("heading", { name: "The whole path, as a map" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /A sample plan as a confluence/ })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "A real plan" })).toBeNull();
     expect(screen.getByText("checked resources")).toBeInTheDocument();
     // One button at the top (the hero), one at the bottom (the closing panel); none in the nav beside the hero's.
     expect(within(screen.getByRole("navigation")).queryByRole("button")).toBeNull();
