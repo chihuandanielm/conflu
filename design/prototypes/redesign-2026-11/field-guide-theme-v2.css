@@ -1,0 +1,35 @@
+/* Direction A, v2: colour where a student needs it, and nowhere else (docs/DESIGN_RESEARCH.md, "Colour with a job").
+   From the student walkthroughs, three jobs could not be done in charcoal alone. Each gets one colour, used only for it:
+     slate violet #545684  "yours, or a way out": the answers you picked, and links (5.4:1 on bone)
+     ochre        #dcb878  "look here first": this semester and "Do this now", a missing answer (charcoal on it, 7.0:1)
+                  #96773d  its line, for bars beside a missing answer or a notice (3.3:1, non-text)
+     verdigris    #3f7f73  "done": ticks, progress, done dots (3.7:1, non-text; never used for words)
+   Everything else stays charcoal on bone. */
+@import url("./field-guide-theme.css");
+
+html:root { --green: #3f7f73; --color-green: #3f7f73; --ochre-fill: #dcb878; --ochre-line: #96773d; --violet: #545684; }
+
+/* 1. Your answers: a picked option is violet, so it never looks like the Continue button or a tab. */
+[role="radio"][aria-checked="true"], button[data-chip][aria-pressed="true"], .on-blue.bg-blue.border-y-\[1\.5px\] {
+  background: var(--violet) !important; border-color: var(--violet) !important; color: var(--sage) !important; }
+/* The "Already done?" picks on the plan are answers too. */
+section[aria-labelledby="already-done-h"] button[aria-pressed="true"] { background: var(--violet) !important; border-color: var(--violet) !important; color: var(--sage) !important; }
+
+/* 2. A missing answer: the ochre bar beside the question and an ochre panel saying what to pick. */
+section.border-sand { border-color: var(--ochre-line) !important; }
+[role="alert"].notice { background: var(--ochre-fill); border-left: 3px solid var(--ochre-line); }
+
+/* 3. Look here first: this semester's strip and the "Do this now" window form one warm block. */
+[data-testid="standing"].notice { background: var(--ochre-fill); }
+section[aria-labelledby="now-h"] { border-color: var(--ink); }
+section[aria-labelledby="now-h"] #now-h { background: repeating-linear-gradient(var(--ochre-fill) 0 2px, #ead3a6 2px 4px) !important; }
+
+/* 4. Links are violet text, so "Go to: FAFSA, ..." reads as places you can go. */
+a:not(.btn) { color: var(--violet); text-decoration-color: var(--violet); }
+section[aria-labelledby="now-h"] a:not(.btn) { color: var(--violet) !important; border-color: var(--violet) !important; }
+section[aria-labelledby="now-h"] .btn--text { color: var(--violet); }
+section[aria-labelledby="now-h"] a:hover { background: var(--violet); color: var(--sage); }
+.bg-blue:not(section) a, [aria-checked="true"] a, .on-blue:not(section) a, .on-blue:not(section) .btn--text { color: var(--sage) !important; text-decoration-color: var(--sage) !important; }
+
+/* 5. Done is verdigris: ticks, the drawer's progress, done dots (the token above does it). Notices keep a quiet ochre line. */
+.border-sand:not(section) { border-color: var(--ochre-line); }

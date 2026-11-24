@@ -83,3 +83,33 @@ The owner picked direction A. `app-field-guide.html` loads the real app with `fi
 - **Unchanged:** the question sheet's drafting corners, the progress river, the drawer, the tabs and the resource cards. They only take the new colours.
 
 Shipping it means updating design/DESIGN.md's colour rules and the contrast test, then moving these overrides into `src/app/styles.css`, together with the new landing from the mockup.
+
+## Colour with a job (v2, 2026-11-24)
+
+The owner found v1 hard to read with so little colour. Two simulated students went through the v1 prototype end to end with a scripted browser, then through v2:
+- **Maya:** first year, on a phone, Rutgers–Newark.
+- **Sam:** third year, on a laptop, another school.
+
+Each run covers landing, every intake screen (including pressing Continue with nothing picked), review, the Plan tab, a goal drawer with two steps ticked, marking the goal done, then Map, Resources and Courses.
+
+### Where charcoal alone failed
+
+| Moment | What the student needs to see | What v1 showed |
+|---|---|---|
+| Continue with an answer missing | Which question, and what to do | A grey panel and bar nearly the colour of the paper; the screen barely changed |
+| Picking an answer | That it took, and that it's theirs | A charcoal bar, the same as the Continue button, the active tab and a must-do tag |
+| Opening the plan | Where to look first | The semester strip and "Do this now" with the same weight as everything below |
+| "Go to: FAFSA, …" in goal rows | That these are places to go | Charcoal text with a thin underline, lost in dense rows |
+| Ticking steps, marking done | That progress happened | Verdigris so dark it read as charcoal |
+
+Tabs, filters, headings, must-do tags, the map and the resource cards read fine in charcoal. They stay charcoal.
+
+### The rule: one colour per job (`field-guide-theme-v2.css`)
+
+| Colour | Job | Used for | Contrast |
+|---|---|---|---|
+| Slate violet #545684 | Yours, or a way out | Answers you picked (radios, checklist picks, "Already done?" picks) and links | 5.4:1 on bone, both ways |
+| Ochre #dcb878 (line #96773d) | Look here first | This semester's strip and the "Do this now" title bar; a missing answer (bar and panel); the line beside a notice | Charcoal on it 7.0:1; the line 3.3:1 (non-text) |
+| Verdigris #3f7f73 | Done | Ticks, the drawer's progress bar, done dots | 3.7:1 (non-text, never words) |
+
+Nothing else gets colour. To view it, run `npm run dev` and open `/design/prototypes/redesign-2026-11/app-field-guide-v2.html`.
