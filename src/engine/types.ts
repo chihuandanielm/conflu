@@ -56,6 +56,12 @@ export interface Goal {
   /** Engine 0.11.0: part of applying to grad or professional school, timed by `PlanInput.gradApps`: "apply" is the
    *  applications, "prep" is what they need (program list, statement, letters, test prep). */
   gradStep?: "prep" | "apply";
+  /** Engine 0.15.0: what to look for at the student's own school when no listed resource helps (another school, or
+   *  nothing at their campus): "your school's fellowships office". */
+  findOnCampus?: string;
+  /** Engine 0.15.0: the goal is one specific program (the Rutgers packaging certificate): planned only when the student
+   *  can use one of its listed resources, at their campus and in their major. */
+  needsProgram?: boolean;
 }
 
 export interface Phases { start: number[]; continue: number[]; finish: number[] }
@@ -147,6 +153,8 @@ export interface PlanItem {
   late?: boolean;
   /** Engine 0.14.0: share of the goal the student has already done (0–1, from their answers), when they've started it. */
   started?: number;
+  /** Engine 0.15.0: the goal's `findOnCampus`, for a student at another school or with no resource listed. */
+  findOnCampus?: string;
   /** Engine 0.12.0: how the goal's timing stands in this term. */
   timing: Timing;
   /** Engine 0.12.0: what the site shows for this item, chosen for its timing: the steps and the done-when line. */

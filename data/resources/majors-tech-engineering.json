@@ -485,8 +485,7 @@
       "type": "competition",
       "scope": "national",
       "majors": [
-        "mechanical-engineering",
-        "information-technology"
+        "all"
       ],
       "years": [
         1,
@@ -592,7 +591,8 @@
       "majors": [
         "mechanical-engineering",
         "supply-chain",
-        "biomedical-engineering"
+        "biomedical-engineering",
+        "packaging-engineering"
       ],
       "years": [
         3,
@@ -688,9 +688,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 200
+        "httpStatus": null,
+        "note": "Site refused the automated check (UND_ERR_CONNECT_TIMEOUT); open it by hand."
       },
       "tags": []
     },

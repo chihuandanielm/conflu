@@ -163,7 +163,9 @@
       "type": "competition",
       "scope": "national",
       "majors": [
-        "packaging-engineering"
+        "packaging-engineering",
+        "mechanical-engineering",
+        "supply-chain"
       ],
       "years": [
         2,

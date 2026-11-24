@@ -8,8 +8,8 @@ const FILLER = /^use the contact or apply page on the home site\.?$/i;
 
 /**
  * A resource box (design/DESIGN.md §7.4b): where the plan hands the student to the real world. The name in bold
- * Barlow, one fact line (where · kind · cost), what it is, who it is for, and how to reach them on a sand panel (the
- * thing to do). Every word comes from data/resources/*.json or the helpers in src/app/resources/; a line whose field
+ * Barlow, one fact line (where · kind · cost), what it is, then the thing to do on a sand panel (Phase 2.5), who it is
+ * for, and how to reach them. Every word comes from data/resources/*.json or the helpers in src/app/resources/; a line whose field
  * is empty, or that only repeats the Visit site button, is left out.
  * `inDrawer` leaves out "Helps with" and the small print (lines 6 and 9), as the goal drawer may.
  */
@@ -33,14 +33,15 @@ export function ResourceCard({ t, identity, inDrawer = false }: { t: Tailored; i
       <p className="fact">{[whereLabel(r).toLowerCase(), kindLabel(r.type), ...facts.map((f) => String(f).toLowerCase())].join(" · ")}</p>
       {/* 3. What it is, in full. */}
       {r.summary && <p>{r.summary}</p>}
-      {/* 4. Who it is for. */}
+      {/* 4. What to do, right under what it is (Phase 2.5): the one action, on a sand panel. */}
+      {how && <p className="notice text-small">{how.value}</p>}
+      {/* 5. Who it is for. */}
       <p className="text-small">{audience(r)}{needsEligibilityCheck(r, identity) ? " Check eligibility." : ""}</p>
       {/* 6. Helps with: the plan's goals that point to it. */}
       {!inDrawer && t.goals.length > 0 && <p className="text-small">Helps with: {t.goals.join("; ")}</p>}
-      {/* 7. How to reach them. */}
-      {(how || reach.length > 0) && (
+      {/* 7. How to reach them (the action is already above). */}
+      {reach.length > 0 && (
         <div className="flex flex-col gap-1.5 text-small">
-          {how && <p className="notice">{how.value}</p>}
           {reach.length > 0 && (
             <p className="flex flex-wrap gap-x-4">
               {reach.map((c) => (

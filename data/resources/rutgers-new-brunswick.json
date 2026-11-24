@@ -2401,6 +2401,84 @@
         "httpStatus": 200
       },
       "tags": []
+    },
+    {
+      "id": "rutgers-volunteer-engagement",
+      "name": "Office of Student Volunteer Engagement (Rutgers–New Brunswick)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "service"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–New Brunswick's volunteer office: service opportunities with local community partners, listed for students.",
+      "url": "https://volunteer.rutgers.edu/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Browse the listed opportunities and sign up for one you can keep doing all semester."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-formula-racing",
+      "name": "Rutgers Formula Racing",
+      "type": "club",
+      "scope": "rutgers",
+      "campuses": [
+        "nb"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "engineering"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–New Brunswick's Formula SAE team: students design, build, and race a car in the collegiate Formula SAE series.",
+      "url": "https://www.rutgersformularacing.com",
+      "applyUrl": null,
+      "contact": {
+        "how": "Contact the team through its site and ask when new members can join."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": []
     }
   ]
 }

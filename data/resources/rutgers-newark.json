@@ -871,6 +871,84 @@
         "httpStatus": 200
       },
       "tags": []
+    },
+    {
+      "id": "rutgers-newark-oucp",
+      "name": "Office of University-Community Partnerships (Rutgers–Newark)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "service"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark's community partnerships office: ways for students to serve and work with organizations in the city of Newark.",
+      "url": "https://oucp.newark.rutgers.edu/for-students/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read the student page and contact the office about current openings."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": []
+    },
+    {
+      "id": "rutgers-newark-community-engagement",
+      "name": "Community Engagement and Service Learning (Rutgers–Newark)",
+      "type": "campus_office",
+      "scope": "rutgers",
+      "campuses": [
+        "newark"
+      ],
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [
+        "service"
+      ],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Rutgers–Newark Student Life and Leadership's service programs: volunteer days and ongoing service with community partners.",
+      "url": "https://studentaffairs.newark.rutgers.edu/campus-life-events/student-life-leadership/community-engagement-service-learning",
+      "applyUrl": null,
+      "contact": {
+        "how": "Check the page for upcoming service days and sign up for one."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": []
     }
   ]
 }

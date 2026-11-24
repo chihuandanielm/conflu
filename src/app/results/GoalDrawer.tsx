@@ -37,6 +37,13 @@ export function linkStep(step: string, places: Resource[]): ReactNode {
   );
 }
 
+/** Who wrote a goal's how-to guides (Phase 2.6): the part of each name before ":" ("MIT CAPD"), else the site's host. */
+export function guideSources(guides: Pick<Resource, "name" | "url">[]): string[] {
+  const src = (r: Pick<Resource, "name" | "url">) => (r.name.includes(":") ? r.name.split(":")[0].trim() : new URL(r.url).hostname.replace(/^www\./, ""));
+  return [...new Set(guides.map(src))];
+}
+const andList = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
+
 /**
  * The goal drawer (design/DESIGN.md §7.4): a side sheet on the right (480px, a 1.5px blue left edge) on wide screens,
  * a bottom sheet under 600px. No dimming (there is no fifth colour to dim with); the page behind is inert. Inside:
@@ -88,6 +95,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
     .filter((r): r is Resource => !!r).map((r) => [r.id, r])).values()]
     .map((r) => ({ resource: r, group: groupOf(r), forYou: r.identity.some((x) => !LEGAL.has(x) && identity.includes(x)), goalIds: [], goals: [], score: 0 }));
   const places = boxes.map((b) => b.resource);
+  const sources = guideSources(how.guides);
 
   const todo: ReactNode = (
     <>
@@ -114,6 +122,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
               );
             })}
           </ol>
+          {sources.length > 0 && <p className="mt-2 text-small">Based on guides from {andList(sources)}.</p>}
           {allChecked && <p className="mt-2 text-small">Every step is checked. Mark it as done below to update your plan.</p>}
         </section>
       )}
@@ -139,8 +148,10 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
         <h3 id="go-h" className="text-[1.3125rem]">Where to go</h3>
         {boxes.length > 0 && <p className="fact">{boxes.length} {boxes.length === 1 ? "place" : "places"}</p>}
       </div>
+      {/* Engine 0.15.0: where only the student's own school can help, what to look for there. */}
+      {item.findOnCampus && <p className="mt-2"><span className="label">At your school:</span> look for {item.findOnCampus}.</p>}
       {boxes.length === 0 ? (
-        <p className="mt-1.5">No linked programs fit your year and major for this step yet. Your career office can point you to options.</p>
+        !item.findOnCampus && <p className="mt-1.5">No linked programs fit your year and major for this step yet. Your career office can point you to options.</p>
       ) : (
         <ul className="mt-3 flex flex-col gap-3">{boxes.map((t) => <li key={t.resource.id}><ResourceCard inDrawer t={t} identity={identity} /></li>)}</ul>
       )}

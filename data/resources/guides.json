@@ -1214,6 +1214,224 @@
       "contact": {
         "how": "Copy its fall and spring steps into your calendar."
       }
+    },
+    {
+      "id": "psu-student-orgs-guide",
+      "name": "Penn State Smeal: Getting and staying involved in student organizations",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to pick student organizations, stay active in them, and move into a leadership role.",
+      "url": "https://careerconnections.smeal.psu.edu/blog/2024/08/02/getting-and-staying-involved-in-student-organizations/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it, then pick one or two groups to try this semester."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "montana-state-get-involved",
+      "name": "Montana State: Service and leadership",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Why clubs, volunteering, and leadership roles count as experience, and how to describe them to employers.",
+      "url": "https://www.montana.edu/studentsuccess/careers/gain-experience/service-leadership.html",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it, then note one club or service role you could take on."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200,
+        "note": "Confirmed by search; automated check was refused (bot wall)."
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "unc-honors-thesis",
+      "name": "UNC Writing Center: Honors theses",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to plan an honors thesis: choosing a topic and advisor, setting a schedule, and writing it in stages.",
+      "url": "https://writingcenter.unc.edu/handouts/honors-theses/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it before you ask a professor to advise your thesis."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "blocked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 403,
+        "note": "Site refused the automated check (HTTP 403); open it by hand."
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "github-pages-quickstart",
+      "name": "GitHub Docs: Quickstart for GitHub Pages",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "GitHub's step-by-step guide to publishing a free website from a repository.",
+      "url": "https://docs.github.com/en/pages/quickstart",
+      "applyUrl": null,
+      "contact": {
+        "how": "Follow it to publish a one-page site, then add your projects."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "muck-rack-portfolio-guide",
+      "name": "journalism.co.uk: Using Muck Rack as a portfolio",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "How to collect published articles into a free online portfolio on Muck Rack.",
+      "url": "https://www.journalism.co.uk/how-journalists-can-use-muck-rack-as-a-portfolio-platform/",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it, then add your first published pieces."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "link-checked",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 200
+      },
+      "tags": [
+        "guide"
+      ]
+    },
+    {
+      "id": "yale-case-competition-tips",
+      "name": "Yale SOM: Case competition tips",
+      "type": "guide",
+      "scope": "national",
+      "majors": [
+        "all"
+      ],
+      "years": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "identity": [],
+      "interests": [],
+      "pay": "free",
+      "season": null,
+      "typicalDeadline": null,
+      "summary": "Advice on preparing for a case competition: building a team, structuring the analysis, and presenting to judges.",
+      "url": "https://som.yale.edu/blog/case-competition-tips",
+      "applyUrl": null,
+      "contact": {
+        "how": "Read it before your team's first practice case."
+      },
+      "status": "active",
+      "statusNote": null,
+      "verification": {
+        "state": "search-confirmed",
+        "checkedOn": "2026-11-24",
+        "httpStatus": 403,
+        "note": "Confirmed by search; automated check was refused (HTTP 403)."
+      },
+      "tags": [
+        "guide"
+      ]
     }
   ]
 }

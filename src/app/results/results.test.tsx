@@ -368,8 +368,18 @@ describe("results page", () => {
     expect(screen.getByText(/last checked/)).toBeInTheDocument();
   });
 
-  it("has no Courses tab for a school outside Rutgers", () => {
+  it("explains the degree audit on the Courses tab for a school outside Rutgers (Phase 6.2)", async () => {
     setup(createSaved({ ...cs, school: "other" }, "2026-11-15"));
-    expect(screen.getAllByRole("tab").map((t) => t.textContent?.replace(/\d+/g, "").trim())).toEqual(["Plan", "Map", "Resources"]);
+    expect(screen.getAllByRole("tab").map((t) => t.textContent?.replace(/\d+/g, "").trim())).toEqual(["Plan", "Map", "Resources", "Courses"]);
+    fireEvent.click(screen.getByRole("tab", { name: /Courses/ }));
+    await act(async () => {});
+    expect(screen.getByRole("heading", { name: "Check your degree audit" })).toBeTruthy();
+    for (const h of ["Major courses", "General education", "Credits by year"]) expect(screen.getByText(h)).toBeTruthy();
+    expect(screen.queryByText(/On track to graduate/)).toBeNull();
+  });
+
+  it("says up front what changes for a school outside Rutgers (Phase 6.3)", () => {
+    setup(createSaved({ ...cs, school: "other" }, "2026-11-15"));
+    expect(screen.getAllByText(/Your school isn't Rutgers/).length).toBeGreaterThan(0);
   });
 });

@@ -68,10 +68,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "blocked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 404,
-        "note": "Link failed (HTTP 404); needs a new URL."
+        "httpStatus": 999,
+        "note": "Site refused the automated check (HTTP 999); open it by hand."
       },
       "tags": [],
       "campuses": [
@@ -811,10 +811,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": null,
-        "note": "Site refused the automated check (timed out); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
@@ -824,9 +823,7 @@
       "type": "course",
       "scope": "national",
       "majors": [
-        "mechanical-engineering",
-        "biomedical-engineering",
-        "economics"
+        "all"
       ],
       "years": [
         1,
@@ -1122,10 +1119,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-24",
-        "httpStatus": 403,
-        "note": "Site refused the automated check (HTTP 403); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },

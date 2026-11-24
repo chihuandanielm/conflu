@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --experimental-strip-types --test test/engine.test.ts test/check-links.test.ts test/campus.test.ts test/goals.test.ts test/recruiter.test.ts test/draft.test.ts test/timing.test.ts test/leadtime.test.ts test/rounds.test.ts test/text.test.ts test/fit.test.ts test/experience.test.ts",
+    "test": "node --experimental-strip-types --test test/engine.test.ts test/check-links.test.ts test/campus.test.ts test/goals.test.ts test/recruiter.test.ts test/draft.test.ts test/timing.test.ts test/leadtime.test.ts test/rounds.test.ts test/text.test.ts test/fit.test.ts test/experience.test.ts test/coverage.test.ts",
     "samples": "node --experimental-strip-types scripts/sample-plans.ts",
     "check-links": "node scripts/check-links.mjs",
     "dev": "vite",

@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Timing, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.14.0";
+export const ENGINE_VERSION = "0.15.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -270,6 +270,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const boosted = g.id in track.boosts;
     const weight = gates.has(g.id) ? Math.max(K.gateWeight, track.boosts[g.id] ?? g.baseWeight) : (track.boosts[g.id] ?? g.baseWeight);
     if (suppressed.has(g.id) || skippedIds.has(g.id) || g.onlyAsAlternative) continue;
+    // Engine 0.15.0: a specific program (a Rutgers certificate) is planned only for students who can enroll in it.
+    if (g.needsProgram && !usable(g, resources, input).some((r) => r.status !== "ended" && (r.majors.includes("all") || r.majors.includes(input.majorId)))) continue;
     if (g.majors && !g.majors.includes(input.majorId)) {
       // Engine 0.10.0: a goal that needs enrollment in its degree program never crosses into another major's plan.
       if (g.majorRule === "only") { if (boosted || gates.has(g.id)) programOnly.push(g.title); continue; }
@@ -636,6 +638,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   }
   if (programOnly.length) warnings.push(`${track.name} usually includes ${programOnly.map((x) => `"${x}"`).join(" and ")}, which ${programOnly.length > 1 ? "are" : "is"} only open to students in that degree program. An advisor can tell you whether a change of major makes sense.`);
   if (input.enrollment === "part-time") warnings.push("You're part-time, so this plan spaces goals at a full-time pace for your year. If you'll graduate later, plan by credits with an advisor, and check whether internships or scholarships you want require full-time enrollment.");
+  // Engine 0.15.0: what changes for a student at another school, said once, up front.
+  if (input.school === "other") warnings.push("Your school isn't Rutgers, so this plan links national programs and how-to guides instead of campus offices. Where a step needs your own school, it says what to look for there. For courses, the Courses tab explains how to read your degree audit.");
   if (track.recruitingNote && (!track.recruitingNoteUntil || nowIdx <= idx(track.recruitingNoteUntil))) warnings.push(`Recruiting timeline: ${track.recruitingNote}`);
 
   // 9b. Phases (engine 0.12.0): a goal planned in more than one term says which part each term is, and which of its
@@ -689,8 +693,11 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const score: ScoreBreakdown = { weight: round(n.weight), coverage: round(n.coverage), urgency: round(sc.u), eligibility: round(n.eligibility), stability: round(sc.stab), total: round(sc.total) };
     const timing = timingAt(n, t), v = variantFor(n.goal, timing, t, n.win);
     const text = { steps: [...(v?.steps ?? n.goal.steps ?? [])], doneWhen: v?.doneWhen ?? n.goal.doneWhen ?? null };
+    const resources = rankResources(n.goal, t);
     return { goalId: n.key, title: v?.title ?? n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate, timing, text,
-      score, why: explain(n, t, sc.u, timing, v?.why), resources: rankResources(n.goal, t), ...(v ? { late: true } : {}),
+      score, why: explain(n, t, sc.u, timing, v?.why), resources, ...(v ? { late: true } : {}),
+      // Engine 0.15.0: where only the student's own school can help, what to look for there.
+      ...(n.goal.findOnCampus && (input.school === "other" || !resources.length) ? { findOnCampus: n.goal.findOnCampus } : {}),
       ...(n.goal.cycle ? { cycle: roundStatus(n.goal, t) } : {}),
       ...(n.strength > 0 && n.strength < 1 ? { started: round(n.strength, 2) } : {}),
       importance: n.gate ? "must" : n.weight >= K.importanceHigh ? "high" : n.weight >= K.importanceMedium ? "medium" : "low" };

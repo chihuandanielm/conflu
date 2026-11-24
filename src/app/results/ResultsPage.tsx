@@ -5,6 +5,7 @@ import { goals, intake } from "../data/dataset.ts";
 import { toPlanInput } from "../intake/model.ts";
 import { ConfluenceMap } from "../map/ConfluenceMap.tsx";
 import { mapModel, termWeeks } from "../map/facts.ts";
+import { DegreeAudit } from "../requirements/DegreeAudit.tsx";
 import { OnTrack } from "../requirements/OnTrack.tsx";
 import { requirementsFor } from "../requirements/requirements.ts";
 import { ResourcesTab } from "../resources/ResourcesTab.tsx";
@@ -45,8 +46,8 @@ const ALL_TABS: { id: Tab; label: string }[] = [
 ];
 
 /**
- * The results page (design/DESIGN.md §7.4): a plain header on sage, then tabs (Plan, Map, Resources, and Courses for a
- * Rutgers major) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
+ * The results page (design/DESIGN.md §7.4): a plain header on sage, then tabs (Plan, Map, Resources, and Courses: a
+ * Rutgers major's course list, or how to read a degree audit) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
 export function ResultsPage({ saved, onChange, onEdit }: {
@@ -91,7 +92,8 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   const [tab, setTab] = useState<Tab>("plan");
   const tabIds = { plan: useId(), map: useId(), resources: useId(), courses: useId() };
   const hasCourses = !!requirementsFor(answers.majorId, answers.school);
-  const TABS = ALL_TABS.filter((t) => t.id !== "courses" || hasCourses);
+  // Phase 6.2: with no course list (another school), the Courses tab explains the degree audit instead.
+  const TABS = ALL_TABS;
   const panelId = useId();
   /** Back to the top of the panel, once the new one is in (the tabs stay stuck at the top of the window). */
   const toPanelTop = useCallback(() => {
@@ -316,7 +318,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
               {tab === "resources" && <div className="py-10"><ResourcesTab plan={plan} input={input} /></div>}
 
               {/* The courses the major requires, by year, from the official Rutgers catalog (dated and linked). */}
-              {tab === "courses" && hasCourses && <div className="py-10"><OnTrack answers={answers} /></div>}
+              {tab === "courses" && <div className="py-10">{hasCourses ? <OnTrack answers={answers} /> : <DegreeAudit />}</div>}
             </motion.div>
           </AnimatePresence>
 
