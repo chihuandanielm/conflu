@@ -14,7 +14,7 @@ const base: PlanInput = { status: "college-student", majorId: "computer-science"
 const keys = (p: Plan) => p.terms.flatMap((t) => t.items.map((i) => i.goalId));
 const placed = (p: Plan, id: string) => keys(p).some((k) => k === id || k.split("@")[0] === id);
 
-test("engine version is 0.10.0", () => assert.equal(ENGINE_VERSION, "0.10.0"));
+test("engine version is 0.11.0", () => assert.equal(ENGINE_VERSION, "0.11.0"));
 
 test("a crossed-out goal leaves the plan and the queue, and is listed so it can be undone", () => {
   const before = buildPlan(base, data);

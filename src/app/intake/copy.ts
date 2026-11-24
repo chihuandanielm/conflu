@@ -14,6 +14,7 @@ export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
   school: { question: uiIntake.school.question, help: uiIntake.school.help, why: "Each campus has its own career center, research office, and programs, and offers different majors." },
   track: { question: "Where do you want to end up?", help: "Pick the path closest to what you want. Still exploring is a fine answer." },
   horizon: { question: "How soon do you want to get there?" },
+  gradApps: { question: "When do you plan to apply?", why: "Applying this cycle puts your statement, letters, and program list first, in your final year." },
   experience: { question: "What have you already done?", help: "Tap anything that fits and skip the rest. A rough answer is fine; you can change it later." },
   skills: { question: "Which skills are you comfortable with?", help: "Only pick ones you could use on a project today." },
   credentials: { question: "Do you have any of these certifications?", why: "Certifications you already hold come off your plan." },
@@ -32,6 +33,7 @@ export const COPY: Record<Exclude<StepId, "intro" | "review">, StepCopy> = {
 export const SCREEN_COPY: Partial<Record<ScreenId, StepCopy>> = {
   study: { question: "What do you study?", help: "Pick your campus, then your major." },
   year: { question: "Where are you in school?" },
+  horizon: { question: "Your timing" }, // only used when it also asks when a grad-school applicant will apply
   skills: { question: "What can you already do?", help: "Tap anything that fits and skip the rest." },
   time: { question: "How much time do you have?", help: "A rough guess is fine. The plan fits to it." },
   about: { question: "About you (optional)",
@@ -55,6 +57,7 @@ export const MISSING: Partial<Record<StepId, string>> = {
   enrollment: "Pick full-time or part-time to continue.",
   track: "Pick the goal closest to yours to continue.",
   horizon: "Pick a time frame to continue.",
+  gradApps: "Pick when you plan to apply to continue.",
   summer: "Pick what works for your summers to continue.",
   coop: "Answer yes or no to continue.",
 };

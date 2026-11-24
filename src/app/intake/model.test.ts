@@ -4,6 +4,7 @@ import { dataset } from "../data/dataset.ts";
 import { emptyAnswers, firstIncomplete, isSummerBreak, questionSteps, experienceProfile, relevance, screenOf, screensFor, searchExperience, withFollowUps, stepsFor, toPlanInput, tracksForMajor, type Answers } from "./model.ts";
 import { reducer, type IntakeState } from "./IntakeFlow.tsx";
 import { answerText } from "./Review.tsx";
+import { SCREEN_COPY } from "./copy.ts";
 
 const cs: Answers = { ...emptyAnswers(), status: "college-student", majorId: "computer-science", year: 2, semester: 1, yearTerm: "2F", trackId: "software-engineering",
   horizon: "graduation", summer: "full", school: "rutgers-nb", enrollment: "full-time", location: "nj", experience: ["resume"], skills: ["python"] };
@@ -23,6 +24,17 @@ describe("steps", () => {
     // The "where are you right now" question is folded into the intro, so it isn't a question any more.
     expect(questionSteps(cs)).not.toContain("status");
     expect(questionSteps(cs)).toHaveLength(15);
+  });
+  it("asks grad-school applicants when they'll apply, on the time-frame screen, and passes it to the plan (engine 0.11.0)", () => {
+    const phd: Answers = { ...cs, trackId: "research-phd" };
+    expect(screensFor(phd).find((s) => s.id === "horizon")!.parts).toEqual(["horizon", "gradApps"]);
+    expect(questionSteps(cs)).not.toContain("gradApps");
+    expect(firstIncomplete(phd)).toBe("gradApps");
+    expect(toPlanInput({ ...phd, gradApps: "after-gap" }, "2026-11-15").gradApps).toBe("after-gap");
+    // A screen with more than one question needs its own title (the time-frame screen had none before).
+    for (const sc of [...screensFor(phd), ...screensFor({ ...cs, majorId: "mechanical-engineering" })]) if (sc.parts.length > 1) expect(SCREEN_COPY[sc.id], sc.id).toBeDefined();
+    // Switching to a job path drops the answer from the plan.
+    expect(toPlanInput({ ...cs, gradApps: "after-gap" }, "2026-11-15").gradApps).toBeUndefined();
   });
   it("maps every question, and steps saved by older versions, to the screen that asks it", () => {
     expect(screenOf("enrollment", cs)).toBe("year");

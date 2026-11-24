@@ -5,7 +5,7 @@ import type {
   ScoreBreakdown, TermCode, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.10.0";
+export const ENGINE_VERSION = "0.11.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -141,6 +141,24 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   // Engine 0.10.0: fall and spring terms left before graduation, counting term t (summers and after graduation don't count).
   const schoolLeft = (t: number) => T.slice(t, gradIdx + 1).filter((c) => { const s = seasonOf(c); return s === "F" || s === "S"; }).length;
   const tooLateToStart = (g: Goal, t: number) => !!g.minTermsLeft && schoolLeft(t) < g.minTermsLeft;
+  // Engine 0.11.0: application rounds. The months a term covers (the current term from today's month on), and whether a
+  // goal's round is open in any of them.
+  const todayMonth = Number(input.today.slice(5, 7));
+  const monthsOf = (t: number): number[] => {
+    const s = seasonOf(T[t]);
+    const all = s === "U" ? [6, 7, 8] : s === "F" || T[t] === "G1" ? [9, 10, 11, 12] : [1, 2, 3, 4, 5];
+    if (t !== nowIdx || !all.includes(todayMonth)) return all; // before the term starts (or over winter break), all of it
+    return all.filter((m) => all.indexOf(m) >= all.indexOf(todayMonth));
+  };
+  const inRound = (m: number, c: { opens: number; closes: number }) => (c.opens <= c.closes ? m >= c.opens && m <= c.closes : m >= c.opens || m <= c.closes);
+  const roundOpenAt = (g: Goal, t: number) => !g.cycle || monthsOf(t).some((m) => inRound(m, g.cycle!));
+  // Seasons, not months, so the line stays true whenever in the term it's read.
+  const SEASON = ["", "winter", "winter", "spring", "spring", "spring", "summer", "summer", "late summer", "early fall", "fall", "late fall", "early winter"];
+  const roundStatus = (g: Goal, t: number): NonNullable<PlanItem["cycle"]> => {
+    const c = g.cycle!, ms = monthsOf(t);
+    return inRound(ms[0], c) ? { status: "open", label: `Open now, through ${SEASON[c.closes]}.` }
+      : { status: "opens-this-term", label: `Opens in ${SEASON[c.opens]}, through ${SEASON[c.closes]}.` };
+  };
   const weekly = input.weeklyHours ?? data.intake.defaultWeeklyHours;
   const summer = input.summer ?? "full";
   const summerBlock = { full: 1, part: 0.5, none: 0 }[summer];
@@ -201,7 +219,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const runway = (endIdx - nowIdx + 1) / Math.max(1, gradIdx - nowIdx + 1);
   const threshold = K.thresholdBase + K.thresholdSqueeze * (1 - Math.min(1, runway));
 
-  const makeNode = (g: Goal, key: string, win: Node["win"], weight: number): Node => {
+  const makeNode = (g0: Goal, key: string, win: Node["win"], weight: number): Node => {
+    const g = effective(g0);
     const s = strength.get(key) ?? (key === g.id ? 0 : strength.get(g.id) && yearOfIdx(win.a) === yearOfIdx(nowIdx) ? strength.get(g.id)! : 0);
     const remaining = g.integrated ? 0 : g.hours * (1 - s);
     const perTerm = g.hours / Math.max(1, g.spanTerms);
@@ -215,11 +234,27 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const y = key.split("@Y")[1];
     return y ? `${t} (year ${y})` : t; // yearly rounds stay distinct in the queue
   };
-  const winOf = (g: Goal) => {
+  const baseWin = (g: Goal) => {
     const o = track.windowOverrides?.[g.id]; // tracks can retime goals (pre-med applies the summer after junior year)
     if (o) { const [e, ab, l] = o.split(" "); const [a, b] = ab.split("-"); return { e: idx(e), a: idx(a), b: idx(b), l: idx(l) }; }
     return { e: idx(g.window.earliest), a: idx(g.window.ideal[0]), b: idx(g.window.ideal[1]), l: idx(g.window.latest) };
   };
+  // Engine 0.11.0: grad-school timing. "this-cycle": applications happen by the end of the final year, and what they
+  // need finishes by the time they start. "after-gap": applications move to the fall after graduation.
+  const applyGoal = data.goals.find((x) => x.gradStep === "apply");
+  const gradMode = track.outcome === "grad-school" && (input.gradApps === "this-cycle" || input.gradApps === "after-gap") ? input.gradApps : null;
+  const winOf = (g: Goal) => {
+    const w = baseWin(g);
+    if (!gradMode || !g.gradStep) return w;
+    if (gradMode === "after-gap") return g.gradStep === "apply" ? { e: idx("G1"), a: idx("G1"), b: idx("G1"), l: idx("G2") } : w;
+    if (g.gradStep === "apply") return { ...w, l: Math.max(w.b, Math.min(w.l, w.b + 1, gradIdx)) };
+    const apply = applyGoal ? baseWin(applyGoal) : null;
+    if (!apply) return w;
+    const l = Math.max(w.e, Math.min(w.l, apply.a));
+    return { e: w.e, a: Math.min(w.a, l), b: Math.min(w.b, l), l };
+  };
+  // Applying this cycle leaves no room to do the steps late.
+  const effective = (g: Goal): Goal => (gradMode === "this-cycle" && g.gradStep ? { ...g, lateOk: false } : g);
 
   const programOnly: string[] = []; // goals this path expects that need a degree program the student isn't in
   // Engine 0.10.0: groundwork is pointless once what it prepares for is done (a practice career fair after a target
@@ -346,6 +381,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   const urgency = (n: Node, t: number): number => {
     const s = seasonOf(T[t]);
     if (!n.placedAt.length && (tooLateToStart(n.goal, t) || supersededAt(n, t))) return 0; // engine 0.10.0
+    if (!n.placedAt.length && !roundOpenAt(n.goal, t)) return 0; // engine 0.11.0: its application round is closed then
     if (n.goal.minTermsLeft && t > gradIdx) return 0; // and what needs enrollment never runs on past graduation
     if (n.goal.season === "summer" && s !== "U") return 0;
     if (n.mode === "block" && s !== "U" && s !== "G" && n.goal.season === "summer") return 0;
@@ -619,6 +655,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     const late = t > n.win.b && !!n.goal.late; // early-college goal done later: wording for where the student is now
     return { goalId: n.key, title: late && n.goal.late!.title ? n.goal.late!.title : n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate,
       score, why: explain(n, t, sc.u), resources: rankResources(n.goal, t), ...(late ? { late: true } : {}),
+      ...(n.goal.cycle ? { cycle: roundStatus(n.goal, t) } : {}),
       importance: n.gate ? "must" : n.weight >= K.importanceHigh ? "high" : n.weight >= K.importanceMedium ? "medium" : "low" };
   }
 
@@ -630,7 +667,8 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
       const top = COMPS.filter((c) => (n.goal.competencies[c] ?? 0) > 0).sort((x, y) => gap[y]! * (n.goal.competencies[y] ?? 0) - gap[x]! * (n.goal.competencies[x] ?? 0))[0];
       if (top) why.push(`Builds ${COMP_NAMES[top]}, one of your biggest gaps right now.`);
     }
-    if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
+    if (n.goal.cycle) why.push(`Timing: ${roundStatus(n.goal, t).label}`);
+    else if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
     else if (t > n.win.b) why.push("Most students do this earlier, and it still helps now.");
     else if (u > 1.2) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b]).toLowerCase()}.`);
     if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);

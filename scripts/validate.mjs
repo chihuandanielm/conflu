@@ -91,6 +91,7 @@ for (const o of intake.experience) {
 }
 for (const id of grouped) if (!intake.experience.some((o) => o.id === id)) errors.push(`ui/intake › unknown experience option ${id}`);
 // Every goal says what to do: 3–6 steps, a done-when line, and guides any campus can open (test/goals.test.ts checks the same).
+if (goals.filter((g) => g.gradStep === "apply").length > 1) errors.push("goals › only one goal can be gradStep apply");
 for (const g of goals) {
   if (!Array.isArray(g.steps) || g.steps.length < 3 || g.steps.length > 6) errors.push(`goals › ${g.id}: needs 3–6 steps`);
   if (typeof g.doneWhen !== "string" || g.doneWhen.length < 15) errors.push(`goals › ${g.id}: needs a doneWhen line`);
@@ -105,6 +106,9 @@ for (const g of goals) {
     if (!alt || !alt.onlyAsAlternative) errors.push(`goals › ${g.id}: alternative ${g.alternative} must exist and be onlyAsAlternative`);
   }
   if (g.onlyAsAlternative && !goals.some((x) => x.alternative === g.id)) errors.push(`goals › ${g.id}: onlyAsAlternative but no goal names it`);
+  // Application rounds and grad-school timing (engine 0.11.0).
+  if (g.cycle !== undefined) for (const k of ["opens", "closes"]) if (!(Number.isInteger(g.cycle[k]) && g.cycle[k] >= 1 && g.cycle[k] <= 12)) errors.push(`goals › ${g.id}: cycle.${k} must be a month 1–12`);
+  if (g.gradStep !== undefined && !["prep", "apply"].includes(g.gradStep)) errors.push(`goals › ${g.id}: gradStep must be prep or apply`);
   for (const id of g.guides ?? []) {
     const r = resById.get(id);
     if (!r) errors.push(`goals › ${g.id}: unknown guide ${id}`);

@@ -51,8 +51,20 @@ The thesis card now reads: "Ask your department about honors thesis requirements
 
 **Still open:**
 
-- **L5, grad-school groundwork after graduation** (statement, letters, program list: 9,566 plans). It went up because research and pre-professional plans now reach the applications at all. It waits on the "this cycle or after a gap year" question, in the second half of T3, along with structured deadlines (§5 T3).
+- **L5, grad-school groundwork after graduation** (statement, letters, program list: 9,566 plans). It went up because research and pre-professional plans now reach the applications at all. The "When do you plan to apply?" question (below) now settles it: this-cycle applicants finish it before applying; gap-year applicants get it as planned.
 - **Job-search practice after graduation.** A mock interview after graduation is fine for someone still searching.
+
+**T3, second half, is done** (engine 0.11.0, data 2026.11.23-5).
+
+- **Application rounds.** Six goals carry the months their round is open: FAFSA, target and early internships, research programs, Eagleton, and grad applications.
+  - They only start in a term that overlaps the round, judged from today's month for the current term.
+  - Their timing line says "Open now, through spring." or "Opens in late summer, through spring."
+  - When the round has closed for good, they leave "Up next". A sophomore in late April no longer sees early-internship applications for that summer.
+  - In the 336 stored plans, 34 change, all intended. Eagleton leaves junior fall for plans made in mid-November, after its September–October round. Early-internship and research applications leave summers.
+- **Grad-school timing.** Grad-school paths ask "When do you plan to apply?" on the time-frame screen. The answer is in the share link and the review.
+  - **This cycle:** the program list, statement, letters and test prep must finish by the time applications start, and applications happen before graduation.
+  - **After a gap year:** applications move to the fall after graduation, so prep placed after graduation (L5 in §7) is the plan the student chose.
+- `test/rounds.test.ts`, plus intake and share-link tests.
 
 ## 1. What was run
 
@@ -248,7 +260,7 @@ Removes rule groups A, E and most of F with no engine change.
   - `audit:timing` runs in `npm test` with zero T1, T2, T4 and T6 allowed, plus an allowlist for the cases above;
   - the validator rejects a stage word or month in steps or reasons unless the goal's window keeps it true, or a variant covers the later terms.
 
-### Phase T2: timing tiers and engine-chosen text (engine 0.11.0)
+### Phase T2: timing tiers and engine-chosen text (engine 0.12.0)
 
 **New result variables on `PlanItem`:**
 
@@ -270,7 +282,7 @@ Removes rule groups A, E and most of F with no engine change.
 - The UI and the PDF both read `item.text`, so they can't disagree.
 - After graduation, a goal that continues shows one card with `phase: "continue"`, not a copy.
 
-### Phase T3: deadlines and lead time (lead time: engine 0.10.0, done; deadlines: engine 0.12.0)
+### Phase T3: deadlines and lead time (lead time: engine 0.10.0, done; deadlines: engine 0.11.0, done)
 
 **New data variables:**
 
@@ -308,8 +320,8 @@ Removes rule groups A, E and most of F with no engine change.
 | Phase | Removes | Size |
 |---|---|---|
 | T1 text | A, E, most of F, the LinkedIn example; about 85% of the 38,051 lines | data only, 1 PR |
-| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.11.0, UI reads `item.text` |
-| T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | lead time done (0.10.0); deadlines and the grad-school timing question next (0.12.0) |
+| T2 tiers | B, the rest of F, G, the duplicate after-graduation card | engine 0.12.0, UI reads `item.text` |
+| T3 deadlines and lead time | C, D, the finance queue problem, and §7 (L1, L4, L6, L7) | done: lead time (0.10.0), rounds and grad-school timing (0.11.0) |
 | T4 inputs | H: blank-slate seniors, last-semester overload | intake change, research for coursework mappings |
 
 T1 is the fastest win: most of what students see is fixed without touching the engine. T2 and T3 stop the problem from coming back. T4 makes the plan fit the student.
