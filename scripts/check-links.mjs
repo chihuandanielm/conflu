@@ -1,5 +1,8 @@
-// Requests every resource's url (and applyUrl) and records the result in its verification field.
+// Requests every resource's url (and applyUrl) and records the result in its verification field. It also checks the
+// official catalog page behind each major's course list (data/requirements.json; report only, nothing is written), so a
+// catalog that moves or disappears is caught the same week (docs/IMPROVEMENT_PLAN.md 7.2).
 // Run: node scripts/check-links.mjs   (needs Node 22+ and internet access; CI runs it weekly)
+//      node scripts/check-links.mjs --catalogs-only   (just the catalog pages, writes nothing)
 //
 // States it writes:
 //   link-checked  the page loaded (2xx after redirects)
@@ -93,7 +96,22 @@ async function pool(items, n, fn) {
   return out;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+/** The catalog pages behind data/requirements.json, each checked once. Broken ones are listed; nothing is written. */
+async function checkCatalogs() {
+  const req = JSON.parse(readFileSync(join(root, "data/requirements.json"), "utf8")).requirements;
+  const urls = [...new Set(req.flatMap((r) => [r.pageUrl, ...(r.sources ?? [])]).filter(Boolean))];
+  const results = await pool(urls, CONCURRENCY, (u) => check(u));
+  const broken = urls.flatMap((u, k) => (results[k].state === "broken" ? [`requirements › ${u} (${results[k].why})`] : []));
+  const blocked = results.filter((r) => r.state === "blocked").length;
+  console.log(`Catalog pages: ${urls.length - broken.length - blocked} loaded, ${blocked} blocked (check by hand), ${broken.length} broken`);
+  return broken;
+}
+
+if (import.meta.url === `file://${process.argv[1]}` && process.argv.includes("--catalogs-only")) {
+  const broken = await checkCatalogs();
+  if (broken.length) console.log(`\nBroken:\n${broken.join("\n")}`);
+  process.exitCode = broken.length ? 1 : 0;
+} else if (import.meta.url === `file://${process.argv[1]}`) {
   const files = readdirSync(resDir).filter((f) => f.endsWith(".json")).sort();
   const report = { "link-checked": 0, blocked: 0, broken: [], moved: [], applyBroken: [] };
   for (const file of files) {
@@ -111,6 +129,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     });
     writeFileSync(path, JSON.stringify(data, null, 2) + "\n");
   }
+  report.broken.push(...await checkCatalogs());
   console.log(`Loaded: ${report["link-checked"]}  Blocked (check by hand): ${report.blocked}  Broken: ${report.broken.length}`);
   if (report.moved.length) console.log(`\nRedirected (consider updating):\n${report.moved.join("\n")}`);
   if (report.applyBroken.length) console.log(`\nBroken apply links:\n${report.applyBroken.join("\n")}`);

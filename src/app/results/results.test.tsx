@@ -45,6 +45,15 @@ describe("already done? (engine 0.13.0, docs/T4_PLAN.md)", () => {
   });
 });
 
+describe("started goals (engine 0.14.0)", () => {
+  it("say how far along they are, and the next step skips what's done", () => {
+    const { get } = setup(createSaved({ ...cs, year: 1, semester: 1, yearTerm: "1F", experience: ["linkedin"] }, "2026-10-01"));
+    const li = get().plan.terms.flatMap((t) => t.items).find((i) => i.goalId === "p-linkedin-setup")!;
+    expect(li.started).toBeGreaterThan(0);
+    expect(screen.getAllByText(`started, about ${Math.round(li.started! * 100)}% done`).length).toBeGreaterThan(0);
+  });
+});
+
 describe("results page", () => {
   it("reads top to bottom: where you stand, do this now, this semester, coming up, then the big picture", () => {
     setup(createSaved({ ...cs, semester: 1, yearTerm: "2F", experience: ["resume", "club"], skills: ["python"] }, "2026-11-15"));
@@ -59,6 +68,8 @@ describe("results page", () => {
     expect(screen.queryByText("headed for")).toBeNull();
     const have = screen.getByRole("heading", { name: "What you have" }).closest("section")!;
     expect(within(have).getByText("I have a resume")).toBeInTheDocument();
+    // Phase 5.3: each answer says what it counts for in the plan.
+    expect(within(have).getByText(/^Counts for: Write your first college resume/)).toBeInTheDocument();
     // Four tabs under the header (design/DESIGN.md §7.4a); a returning student lands on Plan.
     expect(screen.getAllByRole("tab").map((t) => t.textContent?.replace(/\d+/g, "").trim())).toEqual(["Plan", "Map", "Resources", "Courses"]);
     // The header's actions fit one row: Start over lives on the Edit answers screen.

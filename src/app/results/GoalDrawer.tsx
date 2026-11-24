@@ -7,7 +7,7 @@ import { resourceById } from "../data/resources.ts";
 import { factLine } from "../map/facts.ts";
 import { ResourceCard } from "../resources/ResourceCard.tsx";
 import { groupOf, type Tailored } from "../resources/tailor.ts";
-import { howTo, type StepProgress } from "../state/steps.ts";
+import { checkedSteps, howTo, type StepProgress } from "../state/steps.ts";
 import { Button } from "../ui/Button.tsx";
 import { PriorityTag } from "./GoalRow.tsx";
 import { useMediaQuery } from "./useMediaQuery.ts";
@@ -48,7 +48,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
   item: PlanItem; term: PlanTerm; identity: string[]; onClose: () => void; onDone: (goalId: string) => void;
   /** "Not for me" (engine 0.9.0): cross the goal out and re-plan without it. */
   onSkip?: (goalId: string) => void;
-  progress?: StepProgress; onToggleStep?: (goalId: string, i: number) => void;
+  progress?: StepProgress; onToggleStep?: (item: PlanItem, i: number) => void;
   /** Weeks of work left in the goal's term, for "~N h a week". */
   weeks?: number;
 }) {
@@ -80,7 +80,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
   }, [onClose]);
 
   const how = howTo(item);
-  const checked = progress[item.goalId] ?? [];
+  const checked = checkedSteps(item, progress);
   const doneCount = how.steps.filter((_, i) => checked.includes(i)).length;
   const allChecked = how.steps.length > 0 && doneCount === how.steps.length;
   // Where to go: the goal's resources, then its how-to guides, as the same boxes as the Resources tab.
@@ -107,7 +107,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
               const on = checked.includes(i);
               return (
                 <li key={id} className="grid grid-cols-[22px_1.25rem_1fr] items-start gap-2.5 border-b-[1.5px] border-blue py-2.5">
-                  <input id={id} type="checkbox" className="tick" checked={on} onChange={() => onToggleStep(item.goalId, i)} />
+                  <input id={id} type="checkbox" className="tick" checked={on} onChange={() => onToggleStep(item, i)} />
                   <span aria-hidden="true" className="fact text-blue">{i + 1}</span>
                   <label htmlFor={id} className={`cursor-pointer ${on ? "line-through decoration-green decoration-2" : ""}`}><span className="sr-only">Step {i + 1}: </span>{linkStep(step, places)}</label>
                 </li>

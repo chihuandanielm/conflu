@@ -32,7 +32,9 @@ export function GoalRow({ it, onOpen, next, small = false, done = false, ruled =
       <span className={`title text-blue underline-offset-4 group-hover:underline ${small ? "text-[1.125rem] leading-[1.2]" : "text-[1.3125rem] leading-[1.2]"}`}>{it.title}</span>
       <span aria-hidden="true" className="col-start-3 row-start-1 font-mono text-blue">-&gt;</span>
       <span className="col-start-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-        {done ? <span className="fact">done</span> : <>{!small && <PriorityTag it={it} />}<span className="fact">{small && it.gate ? `must-do · ${fact}` : fact}</span></>}
+        {done ? <span className="fact">done</span> : <>{!small && <PriorityTag it={it} />}<span className="fact">{small && it.gate ? `must-do · ${fact}` : fact}</span>
+          {/* Engine 0.14.0: a goal the student has partly done says so. */}
+          {it.started ? <span className="fact">started, about {Math.round(it.started * 100)}% done</span> : null}</>}
       </span>
       {next && <span className="col-start-2 text-small">{next}</span>}
     </button>

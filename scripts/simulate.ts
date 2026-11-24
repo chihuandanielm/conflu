@@ -9,6 +9,7 @@ import { availableAt, buildPlan, campusOf } from "../src/engine/engine.ts";
 import { guidesFor } from "../src/engine/display.ts";
 import { loadDataset } from "../src/engine/load.ts";
 import type { Goal, Plan, PlanInput, ResourceLite } from "../src/engine/types.ts";
+import { auditPlan } from "./timing-rules.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const data = loadDataset(join(root, "data"));
@@ -133,6 +134,46 @@ function check(input: PlanInput, p: Plan, label: string) {
   }
   // R12: Rutgers-only offices shown to a student at another school.
   if (!campus) for (const t of p.terms) for (const it of t.items) for (const r of it.resources) if (res.get(r.id)!.scope === "rutgers") add("R12 Rutgers office for another school", r.id);
+
+  // R27–R33 (docs/IMPROVEMENT_PLAN.md 7.1): the guards for the timing, lead-time, and experience work.
+  const firstAt = (id: string) => { const ts = p.terms.filter((t) => t.items.some((i) => i.goalId.split("@")[0] === id)).map((t) => T.indexOf(t.code)); return ts.length ? Math.min(...ts) : null; };
+  const doneOrStarted = (id: string) => p.done.includes(id) || (input.experience ?? []).length > 0 && !p.terms.some((t) => t.items.some((i) => i.goalId === id)) && !p.backlog.some((b) => b.goalId === id);
+  // R27: a job-path plan that reaches senior fall starts the job search by then.
+  const js = firstAt("ap-fulltime");
+  // Only when something besides the job search and the steps it needs took senior fall (a 2 h week can be all prep).
+  const fall = p.terms.find((t) => t.code === "4F");
+  const otherHours = fall ? fall.items.filter((i) => !i.gate && !i.essential && !i.option).reduce((h, i) => h + i.hours, 0) : 0;
+  if (track.outcome !== "grad-school" && js !== null && fall && js > T.indexOf("4F") && otherHours >= 4) // 4 h: the smallest slice the job search takes
+    add("R27 job search starts after senior fall", `${T[js]}; senior fall holds ${fall.items.filter((i) => !i.gate && !i.essential).map((i) => i.goalId).join(", ")}`);
+  // R28: an experience that needs an application comes after it (or the application is done).
+  for (const [exp, app] of [["e-internship-target", "ap-internship-target"], ["e-internship-explore", "ap-internship-early"], ["e-summer-research", "ap-research-apps"]] as const) {
+    const e = firstAt(exp), a = firstAt(app);
+    if (e !== null && !doneOrStarted(app) && (a === null || a >= e)) add("R28 experience before its application", `${exp} ${T[e]}, ${app} ${a === null ? "not planned" : T[a]}`);
+  }
+  // R29: the final semester holds at most 3 goals besides must-dos and the steps they need now.
+  const finalTerm = p.terms.find((t) => t.code === "4S");
+  if (finalTerm && finalTerm.items.filter((i) => !i.gate && !i.essential && !i.option).length > 3) add("R29 final semester over 3 goals", finalTerm.items.map((i) => i.goalId).join(", "));
+  // R30: nothing starts with fewer semesters left than it needs, or after graduation when it needs enrollment.
+  const schoolLeft = (t: number) => T.slice(t, T.indexOf("4S") + 1).filter((c) => /[FS]$/.test(c)).length;
+  for (const g of data.goals) if (g.minTermsLeft) { const f = firstAt(g.id); if (f !== null && schoolLeft(f) < g.minTermsLeft) add("R30 starts with too few semesters left", `${g.id} in ${T[f]}`); }
+  // R31: an application goal starts only in a term its round is open (the current term from today's month).
+  const MONTHS: Record<string, number[]> = { F: [9, 10, 11, 12], S: [1, 2, 3, 4, 5], U: [6, 7, 8] };
+  const tm = Number(input.today.slice(5, 7));
+  for (const g of data.goals) if (g.cycle) {
+    const f = firstAt(g.id); if (f === null) continue;
+    const code = T[f], season = code.startsWith("G") ? (code === "G1" ? "F" : "S") : code[1];
+    const months = f === nowIdx && MONTHS[season].includes(tm) ? MONTHS[season].filter((m) => MONTHS[season].indexOf(m) >= MONTHS[season].indexOf(tm)) : MONTHS[season];
+    const open = (m: number) => (g.cycle!.opens <= g.cycle!.closes ? m >= g.cycle!.opens && m <= g.cycle!.closes : m >= g.cycle!.opens || m <= g.cycle!.closes);
+    if (!months.some(open)) add("R31 application planned while its round is closed", `${g.id} in ${code}`);
+  }
+  // R32: a goal the student has started says so, and nothing they've finished comes back.
+  for (const t of p.terms) for (const it of t.items) {
+    const started = it.why.includes("You've already started this.");
+    if (started !== !!it.started) add("R32 started goal not marked", it.goalId);
+    if (!it.goalId.includes("@") && p.done.includes(it.goalId)) add("R32 finished goal planned again", it.goalId);
+  }
+  // R33: no text names a year, stage, or month that has passed, or wrong relative time (docs/TIMING_AUDIT.md T1–T6).
+  for (const h of auditPlan(p, data, label)) if (/^T[1246]/.test(h.rule)) add(`R33 ${h.rule}`, `${h.goal} · ${h.field} · "${h.phrase}" in ${h.term}`);
 }
 
 // Engine 0.9.0: the draft map and crossed-out goals, for the same student (no extra random picks, so cases stay the same).

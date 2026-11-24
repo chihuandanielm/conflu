@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Plan, PlanItem, PlanTerm } from "../../engine/types.ts";
-import { nextStep, type StepProgress } from "../state/steps.ts";
+import { checkedSteps, nextStep, type StepProgress } from "../state/steps.ts";
 import { GoalRow } from "./GoalRow.tsx";
 import { PlaceLinks } from "./Places.tsx";
 import { SectionHead } from "./SectionHead.tsx";
@@ -34,7 +34,7 @@ export function NextMoves({ term, onOpen, progress = {}, weeklyHours, edges = []
       <ol className="mt-4 border-t-[1.5px] border-blue">
         {items.map((it) => {
           const step = nextStep(it, progress);
-          const total = (progress[it.goalId] ?? []).length;
+          const total = checkedSteps(it, progress).length;
           const next = step ? `Next: ${step.text}` : total > 0 ? "Every step is checked. Open it to mark it as done." : it.why[0];
           return (
             <li key={it.goalId} className="border-b-[1.5px] border-blue">

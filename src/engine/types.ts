@@ -145,6 +145,8 @@ export interface PlanItem {
   score: ScoreBreakdown; why: string[]; resources: { id: string; name: string; url: string; note?: string }[];
   /** A timing variant's wording is in use (engine 0.12.0; 0.7.0 set it for `late` wording only). */
   late?: boolean;
+  /** Engine 0.14.0: share of the goal the student has already done (0–1, from their answers), when they've started it. */
+  started?: number;
   /** Engine 0.12.0: how the goal's timing stands in this term. */
   timing: Timing;
   /** Engine 0.12.0: what the site shows for this item, chosen for its timing: the steps and the done-when line. */

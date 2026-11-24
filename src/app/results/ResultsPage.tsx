@@ -58,7 +58,7 @@ export function ResultsPage({ saved, onChange, onEdit }: {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState<{ item: PlanItem; term: PlanTerm } | null>(null);
   const [progress, setProgress] = useState(loadSteps);
-  const onToggleStep = useCallback((goalId: string, i: number) => setProgress((p) => toggleStep(p, goalId, i)), []);
+  const onToggleStep = useCallback((item: PlanItem, i: number) => setProgress((p) => toggleStep(p, item, i)), []);
   const [announcement, setAnnouncement] = useState("");
   const h1 = useRef<HTMLHeadingElement>(null);
   const tablist = useRef<HTMLDivElement>(null);

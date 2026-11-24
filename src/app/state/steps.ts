@@ -17,7 +17,7 @@ export interface HowTo { steps: string[]; doneWhen: string | null; guides: Resou
  * graduation), and `phaseSteps`, the steps for this term's part of a goal that runs over several terms. Plans saved
  * before 0.12.0 have neither: their `late` flag picks the goal's late wording, as it did then.
  */
-export type ItemRef = string | { goalId: string; late?: boolean; text?: { steps: string[]; doneWhen: string | null }; phaseSteps?: number[] };
+export type ItemRef = string | { goalId: string; late?: boolean; text?: { steps: string[]; doneWhen: string | null }; phaseSteps?: number[]; started?: number };
 const keyOf = (item: ItemRef) => (typeof item === "string" ? item : item.goalId);
 export function howTo(item: ItemRef): HowTo {
   const g = goalById.get(keyOf(item).split("@")[0]);
@@ -31,8 +31,20 @@ export function loadSteps(): StepProgress {
   const raw = load<StepProgress>(STEPS_KEY);
   return raw && typeof raw === "object" ? raw : {};
 }
-export function toggleStep(p: StepProgress, itemKey: string, i: number): StepProgress {
-  const cur = p[itemKey] ?? [];
+/**
+ * Checked steps for a plan item. Until the student ticks anything, a goal they've partly done (engine 0.14.0, `started`)
+ * starts with that share of its steps checked, from the beginning; their own ticks always win.
+ */
+export function checkedSteps(item: ItemRef, p: StepProgress): number[] {
+  const key = keyOf(item);
+  if (p[key]) return p[key];
+  const started = typeof item === "string" ? 0 : item.started ?? 0;
+  return [...Array(Math.round(started * howTo(item).steps.length)).keys()];
+}
+
+export function toggleStep(p: StepProgress, item: ItemRef, i: number): StepProgress {
+  const itemKey = keyOf(item);
+  const cur = checkedSteps(item, p);
   const next = cur.includes(i) ? cur.filter((x) => x !== i) : [...cur, i].sort((a, b) => a - b);
   const out = { ...p, [itemKey]: next };
   if (!next.length) delete out[itemKey];
@@ -43,7 +55,7 @@ export function toggleStep(p: StepProgress, itemKey: string, i: number): StepPro
 export function nextStep(item: ItemRef, p: StepProgress): { n: number; text: string; done: number; total: number } | null {
   const itemKey = keyOf(item);
   const { steps } = howTo(item);
-  const done = (p[itemKey] ?? []).filter((i) => i < steps.length);
+  const done = checkedSteps(item, p).filter((i) => i < steps.length);
   // This term's part first (engine 0.12.0), then anything still unchecked.
   const focus = typeof item === "string" ? [] : (item.phaseSteps ?? []).filter((k) => k < steps.length);
   const inFocus = focus.find((k) => !done.includes(k));

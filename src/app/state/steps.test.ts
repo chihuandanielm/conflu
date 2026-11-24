@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { howTo, nextStep } from "./steps.ts";
+import { checkedSteps, howTo, nextStep, toggleStep } from "./steps.ts";
 
 describe("goal steps", () => {
   it("uses a goal's late wording when the plan schedules it after its ideal window", () => {
@@ -23,6 +23,16 @@ describe("goal steps", () => {
     // When this term's steps are all checked, the next unchecked step anywhere is shown.
     expect(nextStep({ goalId: "e-research-assistant", phaseSteps: [4] }, { "e-research-assistant": [4] })!.n).toBe(1);
     expect(nextStep({ goalId: "e-research-assistant", phaseSteps: [0, 1] }, { "e-research-assistant": [0] })!.n).toBe(2);
+  });
+  it("starts a goal the student has partly done with that share of its steps checked (engine 0.14.0)", () => {
+    const li = { goalId: "p-linkedin-setup", started: 0.6 };
+    const n = howTo(li).steps.length, k = Math.round(0.6 * n);
+    expect(checkedSteps(li, {})).toEqual([...Array(k).keys()]);
+    expect(nextStep(li, {})!.n).toBe(k + 1);
+    // The student's own ticks win, and toggling keeps the pre-checked steps.
+    expect(checkedSteps(li, { "p-linkedin-setup": [0] })).toEqual([0]);
+    const after = toggleStep({}, li, n - 1);
+    expect(after["p-linkedin-setup"]).toEqual([...Array(k).keys(), n - 1]);
   });
   it("tracks progress by plan item, including yearly rounds", () => {
     expect(nextStep({ goalId: "f-fafsa@Y2" }, { "f-fafsa@Y2": [0] })!.n).toBe(2);
