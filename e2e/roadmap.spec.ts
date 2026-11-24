@@ -209,16 +209,14 @@ for (const phone of [false, true]) {
     const box = await page.locator("canvas").first().boundingBox();
     expect(box!.width).toBeGreaterThan(200);
 
-    // Further down, the same sample drawn as the confluence map; a goal on it opens the sample plan.
+    // Further down, the same sample drawn as the confluence map: a picture only, with nothing to click.
+    const mapSection = page.locator("section[aria-labelledby=map-h]");
     const map = page.getByRole("img", { name: /A sample plan as a confluence/ });
     await map.scrollIntoViewIfNeeded();
     expect((await map.boundingBox())!.height).toBeGreaterThan(150);
+    await expect(mapSection.getByText("Build and ship a personal project")).toBeVisible();
+    await expect(mapSection.locator("button, a, [tabindex]")).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "A real plan" })).toHaveCount(0);
-    const goal = page.locator("section[aria-labelledby=map-h] button").first();
-    await goal.click();
-    await expect(page.getByRole("region", { name: "Sample plan" })).toBeVisible();
-    await page.getByRole("button", { name: /^Hide the sample plan/ }).click();
-    await expect(page.getByRole("region", { name: "Sample plan" })).toHaveCount(0);
 
     // The sample opens under the hero, on the landing, and scrolls into view.
     await page.getByRole("button", { name: /^See a sample plan/ }).click();
