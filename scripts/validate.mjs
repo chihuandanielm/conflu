@@ -95,7 +95,18 @@ if (goals.filter((g) => g.gradStep === "apply").length > 1) errors.push("goals �
 for (const g of goals) {
   if (!Array.isArray(g.steps) || g.steps.length < 3 || g.steps.length > 6) errors.push(`goals › ${g.id}: needs 3–6 steps`);
   if (typeof g.doneWhen !== "string" || g.doneWhen.length < 15) errors.push(`goals › ${g.id}: needs a doneWhen line`);
-  if (g.late && ((!g.late.title && !g.late.why) || (g.late.steps && (g.late.steps.length < 3 || g.late.steps.length > 6)))) errors.push(`goals › ${g.id}: late needs a title or a why, and 3–6 steps if it has steps`);
+  // Timing variants and phases (engine 0.12.0).
+  if (g.late) errors.push(`goals › ${g.id}: late was replaced by variants [{ when: "late", ... }]`);
+  const whens = (g.variants ?? []).map((v) => v.when);
+  if (new Set(whens).size !== whens.length) errors.push(`goals › ${g.id}: one variant per timing`);
+  for (const v of g.variants ?? []) {
+    if (!["late", "last-chance", "after-grad"].includes(v.when)) errors.push(`goals › ${g.id}: variant when must be late, last-chance, or after-grad`);
+    if ((!v.title && !v.why && !v.steps) || (v.steps && (v.steps.length < 3 || v.steps.length > 6))) errors.push(`goals › ${g.id}: variant ${v.when} needs a title, why, or steps, and 3–6 steps if it has steps`);
+  }
+  for (const [who, ph, steps] of [[g.id, g.phases, g.steps], ...(g.variants ?? []).map((v) => [`${g.id}/${v.when}`, v.phases, v.steps ?? g.steps])]) {
+    if (!ph) continue;
+    for (const k of ["start", "continue", "finish"]) if (!Array.isArray(ph[k]) || !ph[k].length || ph[k].some((i) => !Number.isInteger(i) || i < 0 || i >= steps.length)) errors.push(`goals › ${who}: phases.${k} must list step indexes`);
+  }
   if (g.forNextYear && g.repeat !== "yearly") errors.push(`goals › ${g.id}: forNextYear only applies to yearly goals`);
   // Lead time and purpose (engine 0.10.0).
   if (g.minTermsLeft !== undefined && !(Number.isInteger(g.minTermsLeft) && g.minTermsLeft >= 1 && g.minTermsLeft <= 4)) errors.push(`goals › ${g.id}: minTermsLeft must be 1–4`);

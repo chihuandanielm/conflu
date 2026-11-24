@@ -2,10 +2,10 @@
 // Pure and deterministic: same input + same dataset => same plan.
 import type {
   Competency, CompVector, Dataset, Goal, Plan, PlanInput, PlanItem, PlanTerm, ResourceLite,
-  ScoreBreakdown, TermCode, Track,
+  ScoreBreakdown, TermCode, Timing, Track,
 } from "./types.ts";
 
-export const ENGINE_VERSION = "0.11.0";
+export const ENGINE_VERSION = "0.12.0";
 
 // ---- Tunable constants (documented in ALGORITHM.md §6). Change them in one place. ----
 export const K = {
@@ -230,7 +230,7 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   };
   // A goal already past its ideal window is named with its late wording everywhere (plan, queue), not only when placed.
   const titleNow = (g: Goal, win: Node["win"], key = g.id) => {
-    const t = g.late?.title && nowIdx > win.b ? g.late.title : g.title;
+    const t = (nowIdx > win.b ? variantFor(g, nowIdx > gradIdx ? "after-grad" : "late", nowIdx, win)?.title : undefined) ?? g.title;
     const y = key.split("@Y")[1];
     return y ? `${t} (year ${y})` : t; // yearly rounds stay distinct in the queue
   };
@@ -630,6 +630,20 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   if (input.enrollment === "part-time") warnings.push("You're part-time, so this plan spaces goals at a full-time pace for your year. If you'll graduate later, plan by credits with an advisor, and check whether internships or scholarships you want require full-time enrollment.");
   if (track.recruitingNote && (!track.recruitingNoteUntil || nowIdx <= idx(track.recruitingNoteUntil))) warnings.push(`Recruiting timeline: ${track.recruitingNote}`);
 
+  // 9b. Phases (engine 0.12.0): a goal planned in more than one term says which part each term is, and which of its
+  // steps belong there, so later terms don't start over at step 1.
+  for (const n of nodes.values()) {
+    const ts = [...new Set(n.placedAt)].sort((a, b) => a - b);
+    if (ts.length < 2) continue;
+    for (const t of ts) for (const it of placements.get(t) ?? []) {
+      if (it.goalId !== n.key || it.option) continue;
+      it.phase = t === ts[0] ? "start" : t === ts.at(-1) && n.completeAt === t ? "finish" : "continue";
+      const v = variantFor(n.goal, it.timing, t, n.win);
+      const spec = v?.phases ?? (v?.steps ? undefined : n.goal.phases);
+      if (spec) it.phaseSteps = [...spec[it.phase]];
+    }
+  }
+
   // 10. Assemble ---------------------------------------------------------------
   const terms: PlanTerm[] = [];
   for (let t = nowIdx; t <= endIdx; t++) {
@@ -650,16 +664,30 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
   };
 
   // ---- inner helpers that need closure state ----
+  // Engine 0.12.0: how a goal's timing stands in term t, and the wording for it.
+  function timingAt(n: Node, t: number): Timing {
+    if (t > gradIdx) return "after-grad";
+    const g = n.goal;
+    if ((!g.lateOk && t === n.win.l && n.win.l > n.win.b) || (!!g.minTermsLeft && !tooLateToStart(g, t) && tooLateToStart(g, t + 1) && t >= n.win.a)) return "last-chance";
+    return t > n.win.b ? "late" : t < n.win.a ? "early" : "on-time";
+  }
+  function variantFor(g: Goal, timing: Timing, t: number, win: Node["win"]) {
+    const order: string[] = timing === "after-grad" ? ["after-grad", "late"] : timing === "last-chance" ? (t > win.b ? ["last-chance", "late"] : ["last-chance"]) : timing === "late" ? ["late"] : [];
+    for (const w of order) { const v = g.variants?.find((x) => x.when === w); if (v) return v; }
+    return undefined;
+  }
+
   function item(n: Node, t: number, hours: number, partial: boolean, sc: { u: number; stab: number; total: number }): PlanItem {
     const score: ScoreBreakdown = { weight: round(n.weight), coverage: round(n.coverage), urgency: round(sc.u), eligibility: round(n.eligibility), stability: round(sc.stab), total: round(sc.total) };
-    const late = t > n.win.b && !!n.goal.late; // early-college goal done later: wording for where the student is now
-    return { goalId: n.key, title: late && n.goal.late!.title ? n.goal.late!.title : n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate,
-      score, why: explain(n, t, sc.u), resources: rankResources(n.goal, t), ...(late ? { late: true } : {}),
+    const timing = timingAt(n, t), v = variantFor(n.goal, timing, t, n.win);
+    const text = { steps: [...(v?.steps ?? n.goal.steps ?? [])], doneWhen: v?.doneWhen ?? n.goal.doneWhen ?? null };
+    return { goalId: n.key, title: v?.title ?? n.goal.title, lane: n.goal.category, hours: Math.round(hours), partial, gate: n.gate, timing, text,
+      score, why: explain(n, t, sc.u, timing, v?.why), resources: rankResources(n.goal, t), ...(v ? { late: true } : {}),
       ...(n.goal.cycle ? { cycle: roundStatus(n.goal, t) } : {}),
       importance: n.gate ? "must" : n.weight >= K.importanceHigh ? "high" : n.weight >= K.importanceMedium ? "medium" : "low" };
   }
 
-  function explain(n: Node, t: number, u: number): string[] {
+  function explain(n: Node, t: number, u: number, timing: Timing, variantWhy?: string): string[] {
     const why: string[] = [];
     if (n.gate) why.push(`Must-do for ${track.name}.`);
     else if (n.weight >= 0.85) why.push(`High priority for ${track.name}.`);
@@ -669,13 +697,13 @@ export function buildPlan(input: PlanInput, data: Dataset): Plan {
     }
     if (n.goal.cycle) why.push(`Timing: ${roundStatus(n.goal, t).label}`);
     else if (n.goal.deadline) why.push(`Timing: ${n.goal.deadline}.`);
-    else if (t > n.win.b) why.push("Most students do this earlier, and it still helps now.");
-    else if (u > 1.2) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b]).toLowerCase()}.`);
+    else if (t > n.win.b && t <= gradIdx) why.push("Most students do this earlier, and it still helps now.");
+    else if (u > 1.2 && t <= n.win.b) why.push(`Good to do soon: students usually do this by ${termLabel(T[n.win.b]).toLowerCase()}.`);
     if (n.addedAsPrereq.length) why.push(`Needed before: ${n.addedAsPrereq.map((k) => goals.get(k.split("@")[0])?.title).filter(Boolean).slice(0, 2).join("; ")}.`);
     if (n.eligibility > 1) why.push("Some programs here are specifically for students like you.");
     if (n.strength > 0) why.push("You've already started this.");
     // A goal done after its ideal window explains itself for now, not for early in college (engine 0.8.1).
-    why.push(t > n.win.b && n.goal.late?.why ? n.goal.late.why : n.goal.why);
+    why.push(variantWhy ?? n.goal.why);
     return why;
   }
 

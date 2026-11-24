@@ -10,6 +10,20 @@ describe("goal steps", () => {
     // A goal without late wording keeps its usual steps.
     expect(howTo({ goalId: "p-linkedin-setup", late: true }).steps).toEqual(howTo("p-linkedin-setup").steps);
   });
+  it("uses the engine's text for the item when the plan has it (engine 0.12.0)", () => {
+    const text = { steps: ["One step here.", "Two steps here.", "Three steps here."], doneWhen: "Done when this is done." };
+    expect(howTo({ goalId: "f-ces-advisor", text }).steps).toEqual(text.steps);
+    expect(howTo({ goalId: "f-ces-advisor", text }).doneWhen).toBe(text.doneWhen);
+    // Guides still come from the goal.
+    expect(howTo({ goalId: "f-ces-advisor", text }).guides).toEqual(howTo("f-ces-advisor").guides);
+  });
+  it("points at this term's part of a goal that runs over several terms (engine 0.12.0)", () => {
+    // Later terms of a research position skip the lab search: the next step is "show up reliably".
+    expect(nextStep({ goalId: "e-research-assistant", phaseSteps: [4] }, {})!.n).toBe(5);
+    // When this term's steps are all checked, the next unchecked step anywhere is shown.
+    expect(nextStep({ goalId: "e-research-assistant", phaseSteps: [4] }, { "e-research-assistant": [4] })!.n).toBe(1);
+    expect(nextStep({ goalId: "e-research-assistant", phaseSteps: [0, 1] }, { "e-research-assistant": [0] })!.n).toBe(2);
+  });
   it("tracks progress by plan item, including yearly rounds", () => {
     expect(nextStep({ goalId: "f-fafsa@Y2" }, { "f-fafsa@Y2": [0] })!.n).toBe(2);
     expect(nextStep({ goalId: "f-fafsa@Y3" }, { "f-fafsa@Y2": [0] })!.n).toBe(1);

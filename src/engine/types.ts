@@ -29,8 +29,12 @@ export interface Goal {
   steps?: string[];
   doneWhen?: string;
   guides?: string[];
-  /** Wording for when the goal is scheduled after its ideal window (engine 0.7.0). */
-  late?: { title?: string; steps?: string[]; doneWhen?: string; why?: string };
+  /** Engine 0.12.0: wording for a timing other than on time, replacing 0.7.0's single `late`. "after-grad" falls back to
+   *  "late", and "last-chance" to "late" when the term is also past the ideal window. */
+  variants?: { when: "late" | "last-chance" | "after-grad"; title?: string; steps?: string[]; doneWhen?: string; why?: string; phases?: Phases }[];
+  /** Engine 0.12.0: for a goal planned over several terms, the step indexes that belong to its first term, the ones in
+   *  between, and its last term. */
+  phases?: Phases;
   /** Yearly goal that pays off the following school year (FAFSA, outside scholarships): no round in the final year. */
   forNextYear?: boolean;
   /** Engine 0.10.0: fall and spring terms that must remain before graduation, counting the start term, for the goal to be
@@ -53,6 +57,9 @@ export interface Goal {
    *  applications, "prep" is what they need (program list, statement, letters, test prep). */
   gradStep?: "prep" | "apply";
 }
+
+export interface Phases { start: number[]; continue: number[]; finish: number[] }
+export type Timing = "early" | "on-time" | "late" | "last-chance" | "after-grad";
 
 export interface Track {
   id: string;
@@ -133,8 +140,15 @@ export interface ScoreBreakdown { weight: number; coverage: number; urgency: num
 export interface PlanItem {
   goalId: string; title: string; lane: Goal["category"]; hours: number; partial: boolean; gate: boolean;
   score: ScoreBreakdown; why: string[]; resources: { id: string; name: string; url: string; note?: string }[];
-  /** Scheduled after its ideal window, so the title (and the steps the site shows) use the goal's `late` wording. */
+  /** A timing variant's wording is in use (engine 0.12.0; 0.7.0 set it for `late` wording only). */
   late?: boolean;
+  /** Engine 0.12.0: how the goal's timing stands in this term. */
+  timing: Timing;
+  /** Engine 0.12.0: what the site shows for this item, chosen for its timing: the steps and the done-when line. */
+  text: { steps: string[]; doneWhen: string | null };
+  /** Engine 0.12.0: for a goal planned in more than one term, which part this term is, and the steps that belong to it. */
+  phase?: "start" | "continue" | "finish";
+  phaseSteps?: number[];
   /** A quick, time-critical step placed on top of the goal cap (engine 0.8.0): it unlocks a must-do this term, or it has a deadline now. */
   essential?: boolean;
   /** How much this matters for the career path (engine 0.9.0): must = a must-do or essential step; high = weight >= 0.85;

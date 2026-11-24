@@ -167,6 +167,17 @@ function GoalBlock({ it, again, term }: { it: PlanItem; again: boolean; term: st
       <Dot gate={it.gate} style={{ position: "absolute", left: 0, top: 9.75 }} />
       <Text style={{ fontFamily: "Barlow", fontWeight: 600, fontSize: 11.5, lineHeight: 1.2, color: C.blue }}>{it.title}</Text>
       <Text style={s.fact}>{factLine(it, term)}{again ? " · keep going" : ""}</Text>
+      {/* Engine 0.12.0: a later term of a goal that runs over several terms lists the steps for that part. */}
+      {again && it.phaseSteps && (
+        <View style={{ marginTop: 3.5 }}>
+          {it.phaseSteps.map((i) => how.steps[i]).filter(Boolean).map((st, k) => (
+            <View key={k} style={{ flexDirection: "row", gap: 5, paddingVertical: 1.5 }} wrap={false}>
+              <View style={{ width: 7.5, height: 7.5, marginTop: 2, borderWidth: 1.5, borderColor: C.blue }} />
+              <Text style={[s.small, { flex: 1 }]}>{st}</Text>
+            </View>
+          ))}
+        </View>
+      )}
       {!again && (
         <>
           {it.why.length > 0 && <Text style={[s.small, { marginTop: 2 }]}>{it.why[it.why.length - 1]}</Text>}
