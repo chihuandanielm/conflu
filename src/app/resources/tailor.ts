@@ -28,6 +28,8 @@ export interface Tailored {
   group: GroupId;
   /** Matches one of the student's identity answers (a program "for students like me"). */
   forYou: boolean;
+  /** Plan goals this resource is attached to, by id (Phase 4.3: "This semester" keeps the ones on this term's goals). */
+  goalIds: string[];
   /** Plan goals this resource is attached to, by title. */
   goals: string[];
   score: number;
@@ -44,8 +46,10 @@ export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
   for (const t of plan.terms) for (const it of t.items) planGoalIds.add(it.goalId.split("@")[0]);
   for (const o of plan.ongoing) planGoalIds.add(o.goalId);
   const attached = new Map<string, Set<string>>();
+  const attachedIds = new Map<string, Set<string>>();
   for (const gid of planGoalIds) for (const rid of [...(goalById.get(gid)?.resources ?? []), ...(goalById.get(gid)?.guides ?? [])]) {
     attached.set(rid, (attached.get(rid) ?? new Set()).add(goalById.get(gid)!.title));
+    attachedIds.set(rid, (attachedIds.get(rid) ?? new Set()).add(gid));
   }
 
   const out: Tailored[] = [];
@@ -61,21 +65,23 @@ export function tailoredResources(plan: Plan, input: PlanInput): Tailored[] {
     const score = (r.scope === "rutgers" ? 3 : 0) + (r.scope === "new_jersey" && input.location === "nj" ? 2 : 0)
       + (r.scope === "national" ? 1 : 0) + (r.status === "active" ? 1 : 0)
       + (r.verification.state === "link-checked" || r.verification.state === "search-confirmed" ? 0.5 : 0) + (forYou ? 2 : 0);
-    out.push({ resource: r, group: groupOf(r), forYou, goals: [...(attached.get(r.id) ?? [])].sort(), score });
+    out.push({ resource: r, group: groupOf(r), forYou, goalIds: [...(attachedIds.get(r.id) ?? [])].sort(), goals: [...(attached.get(r.id) ?? [])].sort(), score });
   }
   const statusRank = { active: 0, changed: 1, paused: 2, ended: 3 } as const;
   return out.sort((a, b) => b.score - a.score || statusRank[a.resource.status] - statusRank[b.resource.status]
     || a.resource.name.localeCompare(b.resource.name));
 }
 
-export interface ResourceFilters { group: GroupId | "all"; scope: string | "all"; pay: "all" | "paid" | "free"; forYou: boolean }
+/** `goals`: only resources for these goal ids (Phase 4.3: this semester's goals), or null for the whole plan. */
+export interface ResourceFilters { group: GroupId | "all"; scope: string | "all"; pay: "all" | "paid" | "free"; forYou: boolean; goals?: string[] | null }
 export const noFilters: ResourceFilters = { group: "all", scope: "all", pay: "all", forYou: false };
 
 export function applyFilters(list: Tailored[], f: ResourceFilters): Tailored[] {
   return list.filter((t) => (f.group === "all" || t.group === f.group)
     && (f.scope === "all" || t.resource.scope === f.scope)
     && (f.pay === "all" || (t.resource.pay !== null && PAY[f.pay].includes(t.resource.pay)))
-    && (!f.forYou || t.forYou));
+    && (!f.forYou || t.forYou)
+    && (!f.goals || t.goalIds.some((g) => f.goals!.includes(g))));
 }
 
 export function byGroup(list: Tailored[]): { id: GroupId; label: string; items: Tailored[] }[] {

@@ -86,7 +86,7 @@ export function GoalDrawer({ item, term, identity, onClose, onDone, onSkip, prog
   // Where to go: the goal's resources, then its how-to guides, as the same boxes as the Resources tab.
   const boxes: Tailored[] = [...new Map([...item.resources.map((r) => resourceById.get(r.id)), ...how.guides]
     .filter((r): r is Resource => !!r).map((r) => [r.id, r])).values()]
-    .map((r) => ({ resource: r, group: groupOf(r), forYou: r.identity.some((x) => !LEGAL.has(x) && identity.includes(x)), goals: [], score: 0 }));
+    .map((r) => ({ resource: r, group: groupOf(r), forYou: r.identity.some((x) => !LEGAL.has(x) && identity.includes(x)), goalIds: [], goals: [], score: 0 }));
   const places = boxes.map((b) => b.resource);
 
   const todo: ReactNode = (

@@ -25,7 +25,10 @@ function Toggle({ on, onClick, children, label, disabled }: { on: boolean; onCli
  */
 export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) {
   const all = useMemo(() => tailoredResources(plan, input), [plan, input]);
-  const [f, setF] = useState<ResourceFilters>(noFilters);
+  // Phase 4.3: open on this semester's resources (8–12 for most students), with the whole plan one tap away.
+  const nowGoals = useMemo(() => (plan.terms[0]?.items ?? []).filter((i) => !i.option).map((i) => i.goalId.split("@")[0]), [plan]);
+  const hasNow = all.some((t) => t.goalIds.some((g) => nowGoals.includes(g)));
+  const [f, setF] = useState<ResourceFilters>(() => ({ ...noFilters, goals: hasNow ? nowGoals : null }));
   const [open, setOpen] = useState<Set<string>>(new Set());
   const [showFilters, setShowFilters] = useState(false);
   const filtersId = useId();
@@ -34,6 +37,7 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
   const scopes = [...new Set(all.map((t) => t.resource.scope))];
   const hasIdentity = (input.identity ?? []).length > 0;
   const filtered = f.group !== "all" || f.scope !== "all" || f.pay !== "all" || f.forYou;
+  const thisTerm = !!f.goals;
   const row = (name: string, children: ReactNode) => (
     <div role="group" aria-label={name} className="flex items-start gap-2">
       <span className="fact w-14 flex-none pt-[15px]">{name.toLowerCase()}</span>
@@ -44,9 +48,9 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
   return (
     <section aria-labelledby="res-h" className="flex flex-col gap-6">
       <div>
-        <h2 id="res-h" className="text-h2">All resources for your plan</h2>
+        <h2 id="res-h" className="text-h2">{thisTerm ? "Resources for this semester" : "All resources for your plan"}</h2>
         <p className="mt-2 max-w-[44em]">
-          Programs, organizations, and offices tied to your plan, plus everything for {input.year ? `year ${input.year} ` : ""}students in your major.
+          {thisTerm ? "The programs, offices, and guides for this semester's goals." : `Programs, organizations, and offices tied to your plan, plus everything for ${input.year ? `year ${input.year} ` : ""}students in your major.`}
           {input.school === "other" ? " National and New Jersey options are listed first."
             : ` ${campuses.find((c) => c.school === (input.school ?? "rutgers-nb"))?.name ?? "Rutgers"} options are listed first.`}
         </p>
@@ -57,6 +61,11 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
         className="btn btn--small self-start min-[720px]:hidden">
         {showFilters ? "Hide filters" : `Filter${filtered ? " (on)" : ""}`}
       </button>
+      {/* When: always visible, phone included, because it decides how long the list is. */}
+      {hasNow && row("When", <>
+        <Toggle on={thisTerm} onClick={() => setF({ ...f, goals: nowGoals })}>This semester</Toggle>
+        <Toggle on={!thisTerm} onClick={() => setF({ ...f, goals: null })}>Whole plan</Toggle>
+      </>)}
       <div id={filtersId} className={`flex-col gap-2 min-[720px]:flex ${showFilters ? "flex" : "hidden"}`}>
         {row("Type", <>
           <Toggle on={f.group === "all"} onClick={() => setF({ ...f, group: "all" })}>All types</Toggle>
@@ -75,7 +84,7 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
         </>)}
         {row("You", <>
           <Toggle on={f.forYou} disabled={!hasIdentity} label="For students like me" onClick={() => setF({ ...f, forYou: !f.forYou })}>For students like me</Toggle>
-          {filtered && <button type="button" className="btn btn--text ml-2" onClick={() => setF(noFilters)}>Clear</button>}
+          {filtered && <button type="button" className="btn btn--text ml-2" onClick={() => setF({ ...noFilters, goals: f.goals })}>Clear</button>}
         </>)}
         {!hasIdentity && <p className="text-small">“For students like me” uses the optional questions about you, which you skipped. Edit your answers to use it.</p>}
       </div>
@@ -83,7 +92,7 @@ export function ResourcesTab({ plan, input }: { plan: Plan; input: PlanInput }) 
       <p className="fact" aria-live="polite">Showing {shown.length} of {all.length} resources.</p>
 
       {groups.length === 0 ? (
-        <p className="notice">Nothing matches these filters. Try “Any” pay or “Everywhere”.</p>
+        <p className="notice">Nothing matches these filters. Try “Any” pay, “Everywhere”, or “Whole plan”.</p>
       ) : groups.map((g) => {
         const expanded = open.has(g.id);
         const items = expanded ? g.items : g.items.slice(0, PER_GROUP);
