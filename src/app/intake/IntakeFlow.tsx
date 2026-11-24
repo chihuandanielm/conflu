@@ -87,10 +87,8 @@ function resumeStep(): ScreenId {
   return screenOf(missing && saved.step === "review" ? missing : saved.step, a);
 }
 
-export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers, onSample }: {
+export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers }: {
   onBuild: (a: Answers) => void; startAt?: StepId | ScreenId; onContinuePlan?: () => void; onStartOver?: () => void; initialAnswers?: Answers;
-  /** The landing's "See a sample plan". */
-  onSample?: () => void;
 }) {
   const [state, dispatch] = useReducer(reducer, undefined, (): IntakeState => {
     const s = initialIntake();
@@ -156,7 +154,8 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   let screen: ReactNode;
   if (step === "intro") {
     screen = <Landing hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
-      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan} onSample={onSample}
+      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
+      onEditSample={(a) => { dispatch({ type: "set", patch: a }); dispatch({ type: "go", step: "review" }); }}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} onBack={back}

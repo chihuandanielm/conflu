@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { buildPlan } from "../../engine/engine.ts";
 import { dataset, resources, tracks } from "../data/dataset.ts";
 import requirementsFile from "../../../data/requirements.json";
@@ -7,6 +7,10 @@ import { byImportance } from "../results/EditMap.tsx";
 import { outcomeText } from "../results/summary.ts";
 import { todayISO } from "../today.ts";
 import { toTop } from "../ui/scroll.ts";
+import type { Answers } from "../intake/model.ts";
+import { ResultsPage } from "../results/ResultsPage.tsx";
+import { createSaved, type SavedPlan } from "../state/plan.ts";
+import { SAMPLE_ANSWERS } from "../state/sample.ts";
 import { createScene } from "./scene.ts";
 
 const PAINTED_KEY = "cpm.landing.painted";
@@ -30,14 +34,15 @@ function examplePlan() {
 /**
  * The landing (docs/DESIGN_RESEARCH.md, direction A "Field guide"): a catalogue-style page on bone paper. A masthead with
  * small type in the corners; the headline with "this semester." on the ochre "look here first" band; stacked buttons
- * (build, see a sample plan); and the painted confluence in a retro window with crop marks and a ruler. Then how it
- * works, a real plan, the numbers behind it, and a closing button. Every way out runs the same exit: the words fade,
+ * (build, see a sample plan); and the painted confluence in a window with crop marks and a ruler. "See a sample plan"
+ * expands a full, working plan for a made-up student right under the hero (held in memory only; nothing is saved).
+ * Then how it works, a real plan, the numbers behind it, and a closing button. Every way out runs the same exit: the words fade,
  * the page returns to the top while nothing shows, and the next screen fades in.
  */
-export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinuePlan, onSample }: {
+export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinuePlan, onEditSample }: {
   onStart: () => void; hasProgress: boolean; onResume: () => void; onStartOver: () => void; onContinuePlan?: () => void;
-  /** "See a sample plan": a finished plan for a made-up student, without touching the student's own saved answers. */
-  onSample?: () => void;
+  /** The sample plan's "Edit answers": the review screen, filled in with the sample student's answers. */
+  onEditSample?: (a: Answers) => void;
 }) {
   const reduce = !!useReducedMotion();
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -47,6 +52,27 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
   const [leaving, setLeaving] = useState(false);
   const leaveTimer = useRef<number[]>([]);
   const example = useMemo(examplePlan, []);
+  // The sample plan, expanded in place. Built when opened, so it is for today's date; changes stay in memory.
+  const [sample, setSample] = useState<SavedPlan | null>(null);
+  const sampleRef = useRef<HTMLElement>(null);
+  const scrollToSample = useRef(false);
+  const toggleSample = () => {
+    if (sample) { setSample(null); return; }
+    scrollToSample.current = true;
+    setSample(createSaved(SAMPLE_ANSWERS, todayISO()));
+  };
+  useEffect(() => {
+    if (!sample || !scrollToSample.current || !sampleRef.current) return;
+    scrollToSample.current = false;
+    const el = sampleRef.current;
+    // One frame later, once the plan is laid out: focus its title (for screen readers), then bring it into view. In this
+    // order, because moving the focus cancels a scroll already under way.
+    const raf = requestAnimationFrame(() => {
+      el.querySelector<HTMLElement>("h2[tabindex='-1']")?.focus({ preventScroll: true });
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: reduce ? "auto" : "smooth" });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [sample, reduce]);
   const outcome = outcomeText("software-engineering");
 
   useEffect(() => {
@@ -101,7 +127,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
               conflu
             </span>
             <span className="fact hidden min-[900px]:block">a career plan, one semester at a time</span>
-            <span className="fact justify-self-end">free · no account</span>
+            <span className="fact justify-self-end">no account needed</span>
           </nav>
 
           {/* The hero: words on the left, the painting in its window on the right; on a phone the words come first. */}
@@ -109,12 +135,15 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             <div className={`relative z-[1] ${paints ? "landing-words" : ""}`}>
               <p className="kicker">for college students</p>
               <h1 ref={h1} tabIndex={-1} className="mt-5 text-[clamp(3rem,1.8rem+4.6vw,5.5rem)] leading-[0.9] tracking-[-0.01em] text-ink">
-                Know what to do <span className="mt-[0.06em] inline-block bg-sand px-[0.12em] pb-[0.08em] leading-[0.92] text-ink">this semester.</span>
+                Know what to do <span className="mt-[0.06em] inline-block bg-sand px-[0.12em] pb-[0.08em] leading-[0.92] text-ink">now.</span>
               </h1>
-              <p className="mt-6 max-w-[30em]">Tell it your major, your year and the job you want. You get a plan for each semester, with the offices and programs to use, in about 3 minutes.</p>
+              <p className="mt-6 max-w-[30em]">Tell it your major, your year and your career goal. You get a plan for each semester, with proper resources and programs in about 3 minutes.</p>
               <div className="mt-8 flex flex-col items-stretch gap-2.5 min-[520px]:items-start">
                 {cta(primary.label, primary.go)}
-                {onSample && cta("See a sample plan", onSample, "outline")}
+                <button type="button" onClick={toggleSample} aria-expanded={!!sample} aria-controls="sample-plan"
+                  className="flex min-h-[54px] w-full min-w-[260px] items-center justify-between gap-6 border-[1.5px] border-blue bg-sage px-5 text-[1.125rem] text-ink transition-colors duration-[140ms] hover:bg-blue hover:text-sage min-[520px]:w-auto">
+                  {sample ? "Hide the sample plan" : "See a sample plan"}<span aria-hidden="true" className="font-mono text-fact">{sample ? "-" : "+"}</span>
+                </button>
                 {(onContinuePlan || hasProgress) && (
                   <button type="button" onClick={leave(onStartOver)} className="btn btn--text -ml-2 mt-1 self-start">Start over</button>
                 )}
@@ -125,15 +154,27 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
               <span aria-hidden="true" className="absolute -top-3 -left-3 h-4 w-4 border-t-[1.5px] border-l-[1.5px] border-blue max-[899px]:hidden" />
               <span aria-hidden="true" className="absolute -right-3 bottom-9 h-4 w-4 border-r-[1.5px] border-b-[1.5px] border-blue max-[899px]:hidden" />
               <div className="win">
-                <div className="win-bar win-bar--quiet"><span>confluence.txt</span></div>
+                <div aria-hidden="true" className="win-bar win-bar--quiet"><span className="invisible">.</span></div>
                 <div className="relative h-[300px] bg-umber min-[900px]:h-[430px]">
                   <canvas ref={canvas} aria-hidden="true" className="absolute inset-0 h-full w-full" />
                 </div>
               </div>
               <div aria-hidden="true" className="ruler mt-2.5" />
-              <figcaption className="fact mt-1.5 flex justify-between"><span>three streams, one river</span><span>fig. 1</span></figcaption>
+              <figcaption className="fact mt-1.5">A confluence of streams will carry you toward your goal</figcaption>
             </figure>
           </section>
+
+          {/* The sample plan, expanded in place: the whole results page, working, for a made-up student. */}
+          <AnimatePresence initial={false}>
+            {sample && (
+              <motion.section ref={sampleRef} id="sample-plan" aria-label="Sample plan" key="sample"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35, ease: EASE }}
+                className="-mx-5 scroll-mt-0 border-t-[1.5px] border-blue min-[760px]:-mx-8">
+                <ResultsPage embedded sample saved={sample} onChange={setSample}
+                  onEdit={() => onEditSample?.(sample.answers)} onStartOver={leave(onStart)} />
+              </motion.section>
+            )}
+          </AnimatePresence>
 
           <section aria-labelledby="how-h" className="border-t-[1.5px] border-blue py-12 min-[760px]:py-[72px]">
             <h2 id="how-h" className="text-[2.625rem] leading-none min-[760px]:text-[3.5rem]">How it works</h2>

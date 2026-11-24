@@ -46,10 +46,11 @@ export function loadTicks(): Ticks {
   return t && typeof t === "object" ? t : {};
 }
 export const isTicked = (ticks: Ticks, r: MajorRequirements, id: string) => (ticks[keyOf(r)] ?? []).includes(id);
-export function toggleTick(ticks: Ticks, r: MajorRequirements, id: string): Ticks {
+/** Ticks or unticks a requirement. `persist` false (the landing's sample plan) keeps it in memory only. */
+export function toggleTick(ticks: Ticks, r: MajorRequirements, id: string, persist = true): Ticks {
   const k = keyOf(r), cur = ticks[k] ?? [];
   const next = { ...ticks, [k]: cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id] };
-  save(COURSES_KEY, next);
+  if (persist) save(COURSES_KEY, next);
   return next;
 }
 

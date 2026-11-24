@@ -52,24 +52,29 @@ const ALL_TABS: { id: Tab; label: string }[] = [
  * Rutgers major's course list, or how to read a degree audit) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
-export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false }: {
+export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false, embedded = false }: {
   saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void;
   /** A real plan: unused here ("Start over" is on the Edit answers screen, design/DESIGN.md §7.4 #0). The sample plan:
    *  "Build my own plan", which starts the questions. */
   onStartOver?: () => void;
   /** The landing's sample plan: a banner says whose plan it is and that nothing is saved. */
   sample?: boolean;
+  /** Shown inside another page (the landing's sample plan): the title is an h2, and arriving doesn't jump to the top
+   *  of the page or take the focus; the page that holds it scrolls to it. */
+  embedded?: boolean;
 }) {
   const { plan, answers } = saved;
   const reduce = useReducedMotion();
   const [open, setOpen] = useState<{ item: PlanItem; term: PlanTerm } | null>(null);
-  const [progress, setProgress] = useState(loadSteps);
-  const onToggleStep = useCallback((item: PlanItem, i: number) => setProgress((p) => toggleStep(p, item, i)), []);
+  // The sample plan starts with no ticks and keeps them in memory, so it never mixes with the student's own.
+  const [progress, setProgress] = useState(() => (sample ? {} : loadSteps()));
+  const onToggleStep = useCallback((item: PlanItem, i: number) => setProgress((p) => toggleStep(p, item, i, !sample)), [sample]);
   const [announcement, setAnnouncement] = useState("");
   const h1 = useRef<HTMLHeadingElement>(null);
   const tablist = useRef<HTMLDivElement>(null);
-  // Arriving (the previous screen has faded out): start at the top, then focus the title.
-  useEffect(() => { toTop(); h1.current?.focus({ preventScroll: true }); }, []);
+  // Arriving (the previous screen has faded out): start at the top, then focus the title. Embedded, the holder decides.
+  useEffect(() => { if (!embedded) { toTop(); h1.current?.focus({ preventScroll: true }); } }, [embedded]);
+  const Title = embedded ? "h2" : "h1";
 
   const replan = useCallback((next: SavedPlan, message: (moved: number) => string) => {
     const d = diff(saved.plan, next.plan);
@@ -177,10 +182,10 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
       <header inert={!!open} className="mx-auto max-w-[1040px] px-5 pt-8 pb-7 min-[760px]:pt-14 min-[760px]:pb-9">
         {/* The title is where the student is headed, set large; "your plan" is its small drafting label. */}
         <div className="max-w-[860px]">
-          <h1 ref={h1} tabIndex={-1}>
-            <span className="kicker font-normal text-ink">your plan</span>{" "}
+          <Title ref={h1} tabIndex={-1}>
+            <span className="kicker font-normal text-ink">{sample ? "sample plan" : "your plan"}</span>{" "}
             <span className="mt-3 block text-[clamp(2.125rem,1.4rem+3vw,4rem)] leading-[0.95] tracking-[-0.005em]">{outcomeText(answers.trackId)}</span>
-          </h1>
+          </Title>
           <p className="fact mt-3">{planSummary(answers).toLowerCase()}</p>
         </div>
         <div>
@@ -341,7 +346,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
               {tab === "resources" && <div className="py-10"><ResourcesTab plan={plan} input={input} /></div>}
 
               {/* The courses the major requires, by year, from the official Rutgers catalog (dated and linked). */}
-              {tab === "courses" && <div className="py-10">{hasCourses ? <OnTrack answers={answers} /> : <DegreeAudit />}</div>}
+              {tab === "courses" && <div className="py-10">{hasCourses ? <OnTrack answers={answers} ephemeral={sample} /> : <DegreeAudit />}</div>}
             </motion.div>
           </AnimatePresence>
 

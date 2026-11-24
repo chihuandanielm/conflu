@@ -14,7 +14,7 @@ const heading = (page: Page) => page.getByRole("heading", { level: 1 });
 test("CS sophomore on the software track: intake to plan, mark done, PDF", async ({ page }) => {
   const seen = watch(page);
   await page.goto("./");
-  await expect(heading(page)).toHaveText("Know what to do this semester.");
+  await expect(heading(page)).toHaveText("Know what to do now.");
   // The landing's painted scene is a canvas; the old session river is gone everywhere.
   await expect(page.locator("canvas")).toHaveCount(1);
   await expect(page.locator("canvas[data-river]")).toHaveCount(0);
@@ -195,28 +195,40 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
   expect(seen.offsite).toEqual([]);
 });
 
-// The landing (direction A) and its sample plan, on both a laptop and a phone.
+// The landing (direction A) and its sample plan, expanded in place, on both a laptop and a phone.
 for (const phone of [false, true]) {
   test(`landing and sample plan${phone ? " @phone" : ""}`, async ({ page }) => {
     const w = watch(page);
     await page.goto("./");
-    await expect(heading(page)).toHaveText("Know what to do this semester.");
+    await expect(heading(page)).toHaveText("Know what to do now.");
+    await expect(page.getByText("A confluence of streams will carry you toward your goal")).toBeVisible();
+    await expect(page.getByText("no account needed")).toBeVisible();
+    for (const gone of ["confluence.txt", "fig. 1", "free · no account"]) await expect(page.getByText(gone, { exact: true })).toHaveCount(0);
     // The painting is in its window, and both buttons are on the first screen.
-    await expect(page.getByText("confluence.txt")).toBeVisible();
     for (const name of [/^Build my plan/, /^See a sample plan/]) await expect(page.getByRole("button", { name }).first()).toBeInViewport();
     const box = await page.locator("canvas").first().boundingBox();
     expect(box!.width).toBeGreaterThan(200);
 
+    // The sample opens under the hero, on the landing, and scrolls into view.
     await page.getByRole("button", { name: /^See a sample plan/ }).click();
-    await expect(page.getByRole("note", { name: "Sample plan" })).toContainText("computer science sophomore");
-    await expect(heading(page)).toHaveText(/^your plan Land your first role in software engineering/);
-    // This semester and "Do this now" together: the hours meter and the window, and "Do this now" on the first screen of a phone.
-    await expect(page.getByTestId("standing")).toContainText(/of your 5 free hours a week/);
-    await expect(page.getByRole("heading", { name: "Do this now" })).toBeVisible();
-    if (phone) await expect(page.getByRole("heading", { name: "Do this now" })).toBeInViewport();
+    const sample = page.getByRole("region", { name: "Sample plan" });
+    await expect(sample.getByRole("note", { name: "Sample plan" })).toContainText("computer science sophomore");
+    await expect(heading(page)).toHaveText("Know what to do now.");
+    await expect(sample.getByRole("heading", { level: 2, name: /^sample plan Land your first role in software engineering/ })).toBeInViewport();
+    await expect(sample.getByTestId("standing")).toContainText(/of your 5 free hours a week/);
+    await expect(sample.getByRole("heading", { name: "Do this now" })).toBeVisible();
+    // It works: open a goal, tick a step, close; switch tabs.
+    await sample.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
+    await sample.locator("section[aria-labelledby=next-h] li button").first().click();
+    const drawer = page.getByRole("dialog");
+    await drawer.getByRole("checkbox").first().check();
+    await expect(drawer.getByText(/^1 of \d+ done/)).toBeVisible();
+    await drawer.getByRole("button", { name: "Close details" }).click();
+    await sample.getByRole("tab", { name: /^Resources/ }).click();
+    await expect(sample.getByRole("tab", { name: /^Resources/ })).toHaveAttribute("aria-selected", "true");
     // Nothing from the sample is saved.
-    expect(await page.evaluate(() => localStorage.getItem("cpm.plan.v1"))).toBeNull();
-    await page.getByRole("button", { name: /^Build my own plan/ }).click();
+    expect(await page.evaluate(() => [localStorage.getItem("cpm.plan.v1"), localStorage.getItem("cpm.steps.v1")])).toEqual([null, null]);
+    await sample.getByRole("button", { name: /^Build my own plan/ }).click();
     await expect(heading(page)).toHaveText("What do you study?");
     expect(w.violations).toEqual([]);
     expect(w.offsite).toEqual([]);

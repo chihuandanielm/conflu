@@ -17,7 +17,7 @@ describe("IntakeFlow", () => {
 
   it("starts on the landing, and Build my plan fades it out, then records that the student is in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
-    expect(screen.getByRole("heading", { level: 1, name: "Know what to do this semester." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Know what to do now." })).toBeInTheDocument();
     // A real plan from the engine, and the numbers behind the site.
     expect(screen.getByRole("heading", { name: "A real plan" })).toBeInTheDocument();
     expect(screen.getByText("checked resources")).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("IntakeFlow", () => {
     expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(2);
     fireEvent.click(screen.getAllByRole("button", { name: /^Build my plan/ })[0]); await act(async () => {});
     // The words fade, then the questions fade in.
-    expect(heading()).toBe("Know what to do this semester.");
+    expect(heading()).toBe("Know what to do now.");
     await leaveLanding();
     expect(heading()).toBe("What do you study?");
     expect(saved().status).toBe("college-student");

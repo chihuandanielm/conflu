@@ -21,9 +21,9 @@ const optionText = (o: { code: string; title: string; credits?: string }) =>
  * requirements for their campus (data/requirements.json), with a link to that page. Earlier years are marked "should be
  * done by now". Tick boxes are saved in this browser only. Outside the confluence map; it doesn't change the plan.
  */
-export function OnTrack({ answers }: { answers: Answers }) {
+export function OnTrack({ answers, ephemeral = false }: { answers: Answers; /** The landing's sample plan: ticks stay in memory. */ ephemeral?: boolean }) {
   const r = requirementsFor(answers.majorId, answers.school);
-  const [ticks, setTicks] = useState(loadTicks);
+  const [ticks, setTicks] = useState(() => (ephemeral ? {} : loadTicks()));
   const year = studentYearOf(answers);
   const groups = useMemo(() => {
     if (!r) return [];
@@ -77,7 +77,7 @@ export function OnTrack({ answers }: { answers: Answers }) {
               <ul className="pb-3">
                 {g.items.map((i) => (
                   <Row key={i.id} item={i} id={`${ids}-${i.id}`} checked={isTicked(ticks, r, i.id)}
-                    onToggle={() => setTicks((t) => toggleTick(t, r, i.id))} />
+                    onToggle={() => setTicks((t) => toggleTick(t, r, i.id, !ephemeral))} />
                 ))}
               </ul>
             </details>

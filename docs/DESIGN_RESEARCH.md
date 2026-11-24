@@ -119,10 +119,18 @@ Nothing else gets colour. To view it, run `npm run dev` and open `/design/protot
 Direction A with the v2 colour jobs is now the site. design/DESIGN.md §2 and §7 hold the rules.
 - **Colours:** in `src/app/styles.css`, enforced by `src/app/contrast.test.ts`.
 - **Landing:** the hero from the mockup, with "this semester." on the ochre band (the owner chose ochre over violet, which is kept for picks and links). The ASCII painting sits in its window, warm-toned, with no sky hatching.
-- **See a sample plan:** a made-up student, held in memory only. It never touches a saved plan.
+- **See a sample plan:** a made-up student, expanded in place under the hero and fully working, held in memory only (plan, answers, step and course ticks). It never touches a saved plan.
 - **Plan tab:** the mockup's two-column sheet. On the left, this semester with the hours meter; on the right, "Do this now" as a window. On a phone, the panel is compact so it and "Do this now" share the first screen.
 
 Checks run:
 - unit tests, browser tests on laptop and phone (landing and sample plan included);
 - an axe WCAG 2.1 AA scan of the landing, sample plan, resources, and a question with a missing and a picked answer, at 1440 and 390 px (no violations);
 - the two simulated students end to end.
+
+### Landing text (2026-11-24, from the owner)
+
+- Headline: "Know what to do now." (ochre band on "now.").
+- Description: "Tell it your major, your year and your career goal. You get a plan for each semester, with proper resources and programs in about 3 minutes."
+- Caption: "A confluence of streams will carry you toward your goal".
+- Masthead: "no account needed".
+- Removed: the "confluence.txt" label and "fig. 1".
