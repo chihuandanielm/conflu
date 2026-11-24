@@ -81,7 +81,7 @@ test("CS sophomore on the software track: intake to plan, mark done, PDF", async
 
   await expect(heading(page)).toHaveText("Your plan");
   await expect(page.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 10 free hours a week")).toBeVisible();
-  for (const name of ["Do this now", "This semester", "Coming up", "The big picture", "Where you're headed", "What you have", "What you need"]) {
+  for (const name of ["Do this now", "This semester", "Your path", "Where you're headed", "Semester by semester"]) {
     await expect(page.getByRole("heading", { name })).toBeVisible();
   }
 

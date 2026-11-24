@@ -50,7 +50,8 @@ describe("results page", () => {
     setup(createSaved({ ...cs, semester: 1, yearTerm: "2F", experience: ["resume", "club"], skills: ["python"] }, "2026-11-15"));
     expect(screen.getByRole("heading", { level: 1, name: "Your plan" })).toBeInTheDocument();
     expect(screen.getByText("Software engineering · Computer Science · Second year, fall semester · Rutgers–New Brunswick · 5 free hours a week")).toBeInTheDocument();
-    const order = ["Do this now", "This semester", "Coming up", "The big picture", "Where you're headed", "What you have", "What you need"]
+    // Phase 4 (docs/IMPROVEMENT_PLAN.md 4.1): three blocks, Now, This semester, and Your path.
+    const order = ["Do this now", "This semester", "Your path", "Where you're headed", "Semester by semester", "What you have", "What you need"]
       .map((name) => screen.getByRole("heading", { name }));
     for (let i = 1; i < order.length; i++) expect(order[i - 1].compareDocumentPosition(order[i]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     // The destination is in the header, and again in the big picture.
@@ -66,14 +67,20 @@ describe("results page", () => {
     expect(screen.queryByText(/hours a week would|hours of goals/)).toBeNull();
   });
 
-  it("caps this semester and keeps 'when you have more time' inside Coming up, not at the bottom", () => {
-    setup(createSaved({ ...cs, weeklyHours: 2 }, "2026-11-15"));
+  it("caps this semester and folds the rest of the path: one closed row per year, 'more time' and have/need folded too", () => {
+    const { get } = setup(createSaved({ ...cs, weeklyHours: 2 }, "2026-11-15"));
     const sem = screen.getByRole("heading", { name: "This semester" }).closest("section")!;
     expect(within(sem).getAllByRole("listitem").length).toBeLessThanOrEqual(3);
-    const coming = screen.getByRole("heading", { name: "Coming up" }).closest("section")!;
-    const more = within(coming).getByRole("heading", { name: "When you have more time" }).closest("section")!;
+    const path = screen.getByRole("heading", { name: "Your path" }).closest("section")!;
+    const years = path.querySelectorAll("details[data-year]");
+    const expected = new Set(get().plan.terms.slice(1).map((t) => /year (\d)/i.exec(t.label)?.[1] ?? "G"));
+    expect(years.length).toBe(expected.size);
+    for (const d of years) expect((d as HTMLDetailsElement).open).toBe(false);
+    const more = within(path).getByText(/When you have more time/).closest("details")!;
+    expect(more.open).toBe(false);
     expect(within(more).getByText(/Start any of them whenever you like/)).toBeInTheDocument();
-    expect(within(more).getAllByRole("listitem").length).toBeLessThanOrEqual(3);
+    const haveNeed = within(path).getByRole("heading", { name: "What you have" }).closest("details")!;
+    expect(haveNeed.open).toBe(false);
   });
 
   it("opens a goal, shows every reason, and marks it done", async () => {
@@ -136,9 +143,16 @@ describe("results page", () => {
     fireEvent.click(screen.getByRole("tab", { name: /^Resources/ }));
     await act(async () => {});
     expect(screen.getByRole("tab", { name: /^Resources/ })).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByRole("heading", { name: "All resources for your plan" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Resources for this semester" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "This semester" })).toBeNull();
-    expect(screen.getByText(/^Showing \d+ of \d+ resources\.$/)).toBeInTheDocument();
+    // Phase 4.3: it opens on this semester's resources, with the whole plan one tap away.
+    expect(screen.getByRole("button", { name: "This semester" })).toHaveAttribute("aria-pressed", "true");
+    const now = Number(/^Showing (\d+) of \d+ resources/.exec(screen.getByText(/^Showing \d+ of \d+ resources/).textContent!)![1]);
+    fireEvent.click(screen.getByRole("button", { name: "Whole plan" }));
+    expect(screen.getByRole("heading", { name: "All resources for your plan" })).toBeInTheDocument();
+    const all = Number(/^Showing (\d+) of \d+ resources/.exec(screen.getByText(/^Showing \d+ of \d+ resources/).textContent!)![1]);
+    expect(now).toBeGreaterThan(0);
+    expect(now).toBeLessThan(all);
     expect(screen.getByLabelText("For students like me")).toBeDisabled();
     fireEvent.click(screen.getByRole("tab", { name: "Plan" }));
     await act(async () => {});

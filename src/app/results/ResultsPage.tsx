@@ -234,15 +234,22 @@ export function ResultsPage({ saved, onChange, onEdit }: {
                     <div className="mt-4"><WhyOrder trackId={answers.trackId} /></div>
                   </div>
                   {<>
-                  {/* 3. Coming up. */}
-                  <div className="pt-10"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
-                  {/* 4. The big picture: where you're headed, what you have and need. */}
-                  <section aria-labelledby="big-h" className="pt-10">
-                    <SectionHead id="big-h" title="The big picture" count={`${bigCount} ${bigCount === 1 ? "milestone" : "milestones"}`} />
+                  {/* 3. Your path (Phase 4.1): where you're headed, then every later semester folded by year, then what you
+                      have and need, folded, so the Plan tab stays short. */}
+                  <section aria-labelledby="path-h" className="pt-10">
+                    <SectionHead id="path-h" title="Your path" count={`${bigCount} ${bigCount === 1 ? "milestone" : "milestones"}`} />
                     <div className="mt-5 border-[1.5px] border-blue p-[clamp(16px,3vw,24px)]">
                       <GoalPath plan={core} trackId={answers.trackId} done={saved.completedGoals} onOpen={openItem} onFullMap={() => choose("map")} />
                     </div>
-                    <div className="pt-8"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
+                    <div className="pt-8"><ComingUp plan={core} done={saved.completedGoals} onOpen={openItem} /></div>
+                    <details className="group mt-3">
+                      <summary className="flex min-h-11 cursor-pointer list-none items-baseline gap-3 border-[1.5px] border-blue px-3 py-2 text-blue group-open:bg-blue group-open:text-sage [&::-webkit-details-marker]:hidden">
+                        <span aria-hidden="true" className="w-3.5 font-mono group-open:hidden">+</span>
+                        <span aria-hidden="true" className="hidden w-3.5 font-mono group-open:inline">-</span>
+                        <span className="label flex-1 text-[1.1875rem]">What you have and what you need</span>
+                      </summary>
+                      <div className="pt-5"><HaveNeed plan={core} answers={answers} onOpen={openItem} /></div>
+                    </details>
                   </section>
                   {/* 5. Housekeeping: the draft in one line. */}
                   <div className="pt-10"><DraftLine plan={plan} finalized={finalized} weeklyHours={hours} onEdit={toEdit} /></div>

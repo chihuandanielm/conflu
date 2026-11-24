@@ -150,7 +150,11 @@ Check: an automated contrast test fails on any text pair under 7:1 (under 4.5:1 
 1. **Phase 3 + 2.1–2.3 (one PR):** readability and visible links. This is the biggest felt change, and mostly CSS and layout. **Done 2026-11-23**, with Courses as its own tab (decision 2). Item 3.5's "where you stand" line is a plain count for now; Phase 1 makes it the blunt, first-things-first message (decision 4).
    **Visual refresh, 2026-11-23** (docs/VISUAL_REFRESH.md): Barlow Semi Condensed for bold headings and labels, section rules, the status strip with an hours control, time in words, the big picture after the work, a quieter "Good to know", resource cards without filler, filters folded on phones, and the Courses counter first.
 2. **Phase 1:** timing honesty. Engine work, test-first, engine 0.10.0.
-3. **Phase 4:** a shorter page, built on the new design rules.
+3. **Phase 4:** a shorter page, built on the new design rules. **Done 2026-11-24.**
+   - **4.1:** the Plan tab is three blocks: Now, This semester, and Your path. Your path holds the milestones, the later semesters folded by year, "When you have more time" folded, and "What you have and what you need" folded. Desktop height for students A, B and E: 4,598 / 3,889 / 3,903 px → 3,059 / 2,763 / 2,884 px. On a phone: 5,470 / 5,087 / 4,747 → 3,470 / 3,308 / 3,336.
+   - **4.2:** done earlier, with the Courses tab.
+   - **4.3:** the Resources tab opens on "This semester" (13–16 cards; "Whole plan" one tap away), with a "When" row visible on phones too. It was 37–42 cards and 10,500–12,000 px; now 4,500–5,000 px on desktop.
+   - **4.4:** the draft notice was already one line, with "Review on the Map tab", since the visual refresh.
 4. **Phases 2.4–2.6 + 6:** filling resource gaps and the non-Rutgers path. Research-heavy, like the requirements work.
 5. **Phase 5:** experience-aware plans.
 6. **Phase 7:** alongside each of the above.
