@@ -57,10 +57,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-25",
-        "httpStatus": 200,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": [],
       "id": "aamn",
