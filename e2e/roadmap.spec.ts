@@ -205,7 +205,7 @@ const reachable = (page: Page) => page.evaluate(() => [...document.querySelector
   .filter((el) => !el.closest("[inert]") && el.tabIndex >= 0).map((el) => el.textContent!.trim()));
 
 // The landing (direction A) and its story, "How it works" (docs/STORY_DESIGN.md), on a laptop and on a phone.
-// The laptop plays the story by scrolling; the phone runs with reduced motion, where nothing pins and everything shows finished.
+// On the laptop each step plays once as it comes into view; the phone runs with reduced motion, where everything shows finished.
 for (const phone of [false, true]) {
   test(`landing and how it works${phone ? " @phone" : ""}`, async ({ page }) => {
     const w = watch(page);
@@ -226,31 +226,37 @@ for (const phone of [false, true]) {
     const picked = step(1).locator("[inert] [role=radio][aria-checked=true]");
     const ticks = step(4).locator("input.tick");
 
+    // Nothing is pinned: each step is a short row, and the four together take about 3 screens.
+    const rows = await story.locator("[data-story-step]").evaluateAll((els) => els.map((el) => (el as HTMLElement).offsetHeight / innerHeight));
+    expect(rows.reduce((a, b) => a + b, 0)).toBeLessThan(phone ? 3.6 : 3.2);
+    const map = step(3).locator("[inert]");
     if (!phone) {
-      // Pinned: each step is a tall section whose screen stays put while it plays.
-      const tall = await step(1).evaluate((el) => (el as HTMLElement).offsetHeight / innerHeight);
-      expect(tall).toBeGreaterThan(2.3);
+      // Nothing has played before it's seen.
       await expect(picked).toHaveCount(0);
-      // Step 1 plays: a campus, then 5 hours, picked in violet; the label "your pick" appears in the window's bar.
-      await scrollDown(page, (await topOf(page, '[data-story-step="1"]')) + 1200);
-      await expect(step(1).locator("h3")).toBeInViewport();
-      await expect(picked).toHaveText(["Rutgers–New Brunswick", "5 hours a week outside class"]);
+      await expect(step(1)).not.toHaveAttribute("data-play");
+      // Step 1 plays once its window is in view: a campus, then 5 hours, picked in violet; "your pick" in the window's bar.
+      await scrollDown(page, (await topOf(page, '[data-story-step="1"]')) - 40);
+      await expect(step(1)).toHaveAttribute("data-play", "");
+      await expect(picked).toHaveText(["Rutgers–New Brunswick", "5 hours a week outside class"], { timeout: 4000 });
       await expect.poll(() => picked.last().evaluate((el) => getComputedStyle(el).backgroundColor)).toBe("rgb(84, 86, 132)");
-      // Steps 2 to 4: Do this now, the map down to the goal, and the steps ticked off in verdigris.
-      await scrollDown(page, (await topOf(page, '[data-story-step="4"]')) + 1250);
-      await expect(step(2).locator("[inert]").getByText("Do this now", { exact: true })).toBeAttached();
-      await expect(step(3).locator("[inert]").getByText("Land your first role in software engineering", { exact: true })).toBeAttached();
-      await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeVisible();
-      // Forward only: scrolling back up leaves everything as it played.
-      await page.evaluate(() => scrollTo(0, 0));
+      // Steps 2 to 4, scrolling on: Do this now, the whole map, the steps ticked off in verdigris.
+      for (const n of [2, 3, 4]) await scrollDown(page, (await topOf(page, `[data-story-step="${n}"]`)) - 40);
+      await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeVisible({ timeout: 4000 });
+      await expect(step(2).locator("[inert]").getByText("Do this now", { exact: true })).toBeVisible();
+      // Forward only: back up at the map, it is whole, drawn and in its window; nothing has rewound.
+      await page.evaluate(() => scrollTo(0, document.querySelector('[data-story-step="3"]')!.getBoundingClientRect().top + scrollY - 20));
       await page.waitForTimeout(300);
+      await expect(map.getByText("Land your first role in software engineering", { exact: true })).toBeInViewport();
+      await expect(map.getByText("you are here", { exact: true })).toBeInViewport();
+      expect(await map.evaluate((w) => w.getBoundingClientRect().height >= w.querySelector("svg")!.getBoundingClientRect().height)).toBe(true);
+      expect(await map.locator("svg > path").evaluateAll((ps) => ps.every((p) => getComputedStyle(p).opacity === "1"))).toBe(true);
       await expect(picked).toHaveCount(2);
       await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeAttached();
     } else {
-      // Reduced motion: nothing pinned, every step finished.
-      for (const n of [1, 2, 3, 4]) expect(await step(n).evaluate((el) => (el as HTMLElement).offsetHeight / innerHeight)).toBeLessThan(1.6);
+      // Reduced motion: every step finished from the start.
       await expect(picked).toHaveCount(2);
       for (const t of await ticks.all()) await expect(t).toBeChecked();
+      await expect(map.getByText(/^Land your first role/).first()).toBeVisible();
     }
 
     // Skip to the finished plan: focus lands on the end, and the finished sample plan is there, frozen, then the button.
@@ -291,13 +297,13 @@ test("how it works stays smooth with the processor slowed 4x", async ({ page }) 
     while (scrollY < end - 2) {
       await new Promise((r) => requestAnimationFrame(r));
       const now = performance.now(); d.push(now - last); last = now;
-      scrollTo(0, scrollY + 40);
+      scrollTo(0, scrollY + 12); // about 720 px a second: reading speed, so every scene plays while the page moves
     }
     d.shift();
     return { frames: d.length, missed: d.filter((x) => x > 25).length / d.length, worst: Math.max(...d) };
   });
   console.log(`story frames at 4x: ${r.frames} frames, ${(r.missed * 100).toFixed(1)}% missed, worst ${r.worst.toFixed(1)} ms`);
-  expect(r.frames).toBeGreaterThan(150);
+  expect(r.frames).toBeGreaterThan(200);
   expect(r.missed).toBeLessThan(0.05);
   expect(r.worst).toBeLessThan(50);
 });

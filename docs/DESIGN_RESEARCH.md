@@ -143,3 +143,13 @@ The owner found the landing a bit overwhelming and asked for How it works to bec
 - **The logo:** the owner's new script logo, traced to a vector and recoloured: charcoal script, verdigris dots and ring. The ring is where the spine ends.
 - **Measured:** a steady scroll through the story with the processor slowed 4×, after the page has sat for 3 s, missed under 1% of frames (over 25 ms) with the worst at about 27 ms. The heavy screens (the map, the whole results page) mount in idle time after load; mounted mid-scroll they each cost one 50–110 ms task. The browser test checks this budget.
 - **Checks:** an axe WCAG 2.1 AA scan of the whole landing at 1440 and 390 px found no violations.
+
+### Revision 2: shorter, played on entering, more playful (2026-11-25)
+
+The owner found the pinned story took far too long to scroll, wanted things to animate as you pass with minimal scrolling, and wanted it playful and inviting. The map step also lost its top after scrolling back up. Research and the new rules are in `docs/STORY_DESIGN.md` §3: Nielsen Norman Group's play-once guidance, the GSAP/Bitovi finding that pin + scrub + play-once don't combine, and demo patterns that show the interface doing its work.
+
+- **Shipped:** no pinning; each step plays once on a clock when its window is well in view, then settles; the spine follows the scroll. Small marks spring a little (press, pop, snap); panels slide and open with the site's easing. The map's window is as tall as the map, which draws itself stream by stream (must-do goals only, so it stays short).
+- **Scroll:** the four steps went from about 6.5 screens to 2.8 on a laptop and 3.1 on a phone.
+- **Bug hunt** (a scripted browser): a fast fling down and back up, resizing after playing, 320 px width, the skip link then scrolling up, leaving for the questions and coming back, reduced motion, a slow scroll (nothing plays before its window is in view), and a phone with motion on. One bug found and fixed: a resize after playing re-laid out the map and replayed a piece's delayed fade; each step now settles once its scene has finished.
+- **Measured:** at 4× processor slowdown, a reading-speed scroll through the story missed 0.6% of frames, worst 27 ms. axe: no violations at 1440 and 390 px.
+- **Also:** the closing logo is half the size and centred, and Privacy and data is centred.

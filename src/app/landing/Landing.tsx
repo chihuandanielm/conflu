@@ -130,7 +130,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             {cta(primary.label, primary.go)}
           </section>
 
-          <img src={logoUrl} alt="" aria-hidden="true" width={1902} height={1018} className="mt-12 block h-auto w-full max-w-[980px] min-[760px]:mt-16" />
+          <img src={logoUrl} alt="" aria-hidden="true" width={1902} height={1018} className="mx-auto mt-12 block h-auto w-full max-w-[490px] min-[760px]:mt-16" />
 
           <Privacy />
         </div>

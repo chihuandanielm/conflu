@@ -130,13 +130,13 @@ Direction A, "Field guide" (2026-11-24, docs/DESIGN_RESEARCH.md): a catalogue pa
 - **The painting** sits in a retro window (a striped charcoal-hairline title bar with two small squares, no label), on the umber ground, with two crop corners outside it, a ruler under it, and the caption "A confluence of streams will carry you toward your goal". The sky hatching is gone: the sky is the window's umber, and only the sun's glow is drawn.
 - **The paint-in (first visit in a browser session):** back to front over about 2.6 s; the sun blooms, the peaks resolve with each cell flickering through random glyphs for 0.18 s, the tree line, meadow and pines fill in, and the river is traced last. Afterwards only the water shimmers (30 fps). Reduced motion: the finished painting, still.
 - **The painting's colours** are seven warm tones in `scene.ts` (umber, warm grey, slate violet, grey-violet, dusty rose, ochre, bone). They are the one exception to the colour tokens and only ever appear in the painting. Its glyphs are 6px: an image made of characters, not text to read.
-- **How it works** (docs/STORY_DESIGN.md) is the landing's hook: one sample student (`src/app/state/sample.ts`) from the first question to a finished plan, played by scrolling. A charcoal spine runs down the left and draws itself; a dot fills at each step; it ends in the logo's verdigris ring.
-  - Four steps, each a caption ("step N", a bold title, one sentence) beside a frozen screen in a window: **Tell it where you are** (a campus, then 5 hours, picked in violet), **Get what to do now** (this semester's panel, its hours meter filling, then "Do this now"), **See the whole path** (the map drawing itself down to the career goal), **Do it, one step at a time** (a goal's steps ticked off in verdigris).
-  - Each step teaches one colour's job. When its action is done, drafting corners draw in around it and the window's title bar shows a swatch and a mono label: "your pick", "look here first", "your goal", "done". No tints, no dimming.
-  - Each step pins for about 1.6 screens of scroll on a laptop and 1.3 on a phone, in three beats: the screen arrives, the action happens, the callout marks it. Progress only moves forward: scrolling back up leaves everything as it played.
-  - The end, **Your plan, start to finish**, isn't pinned: the sample's whole results page rises in once, frozen, then the button.
+- **How it works** (docs/STORY_DESIGN.md) is the landing's hook: one sample student (`src/app/state/sample.ts`) from the first question to a finished plan. A charcoal spine runs down the left and grows as you scroll; a dot pops at each step; it ends in the logo's verdigris ring.
+  - Four short steps, each a caption ("step N", a bold title, one sentence) beside a frozen screen in a window: **Tell it where you are** (a campus, then 5 hours, pressed and picked in violet, the sheet sliding to the next question), **Get what to do now** (this semester's panel, its hours meter popping in cell by cell, then "Do this now" opening down from its bar), **See the whole path** (the must-do goals' map drawing itself, stream by stream, down to the career goal; never cropped), **Do it, one step at a time** (a goal's steps ticked off in verdigris, each tick popping and the line striking through).
+  - Nothing is pinned. Each step plays once, on a clock of about 2 s, when its window is well in view, then settles; scrolling back up leaves it finished. The four steps take about 3 screens on a laptop.
+  - Each step teaches one colour's job. When its action is done, drafting corners snap in around it and the window's title bar shows a swatch and a mono label: "your pick", "look here first", "your goal", "done". No tints, no dimming.
+  - The end, **Your plan, start to finish**: the sample's whole results page rises in once, frozen, then the button.
   - Every screen is the app's own component with the sample's real plan, `inert` and `aria-hidden`; each caption has a screen-reader line saying what it shows. "Skip to the finished plan" jumps to the end.
-- **Then:** four numbers from the data, an ochre closing panel with the button, the large logo, and **Privacy and data** (a closed `details`): what the site keeps and where, the outside services (GitHub Pages, Formspree), the security settings. No link out.
+- **Then:** four numbers from the data, an ochre closing panel with the button, the logo (up to 490 px, centred), and **Privacy and data**, centred (a closed `details`): what the site keeps and where, the outside services (GitHub Pages, Formspree), the security settings. No link out.
 - **Leaving:** every button runs the same exit. The words fade (0.35 s), the page jumps to the top while nothing shows, then the next screen fades in.
 
 ### 7.2 Questions
@@ -268,15 +268,15 @@ Type in the PDF: Quantico for everything read, Plex Mono for facts and the banne
 | Landing to questions | 0.35s words, 1.1s navy to sage, 0.35s sheet in | ease in-out | The colour never changes all at once |
 | Questions back to landing | 0.35s sheet out, 0.9s navy in, words at 0.8s | ease in-out | The painting shows finished |
 | Landing water | always, 30 fps | none | Pauses off screen and when the tab is hidden |
-| How it works (7.1) | follows the scroll, forward only | `--ease` for the end's rise (0.7s) | Transform, opacity and clip-path through motion values; no React render per frame |
+| How it works (7.1) | about 2 s per step, once, as it comes into view | `--ease` for panels; a gentle spring (`cubic-bezier(0.34,1.56,0.64,1)`) for small marks | Transform and opacity (the map's strokes trace once); the spine follows the scroll, forward only |
 
 Rules:
 
 - **Screens change by fading**, never by cutting. A colour change between screens (navy to sage) is a slow fade of the navy layer, after the words have gone.
 - **Everything is time-based**, not frame-based, so it runs at the same speed at 60Hz and 144Hz.
 - Interface motion uses only `opacity` and `transform`. The paint-in draws on every animation frame from cells computed once.
-- **The story isn't a picture.** How it works moves the app's own frozen screens and draws lines; the painting stays the only animated picture.
-- **Reduced motion:** the painting is finished and still, every fade is instant, and How it works pins nothing and shows every step finished.
+- **The story isn't a picture.** How it works moves the app's own frozen screens and draws lines; the painting stays the only animated picture. Its small marks (a pick being pressed, a tick, a dot, the corners) may spring with a little overshoot; panels and windows never bounce.
+- **Reduced motion:** the painting is finished and still, every fade is instant, and How it works shows every step finished.
 
 ## 9. Accessibility
 
