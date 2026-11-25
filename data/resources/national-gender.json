@@ -18,7 +18,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200
       },
       "tags": [],
@@ -57,9 +57,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
-        "checkedOn": "2026-11-24",
-        "httpStatus": 200
+        "state": "blocked",
+        "checkedOn": "2026-11-25",
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": [],
       "id": "aamn",
@@ -94,7 +95,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200
       },
       "tags": [],
@@ -137,7 +138,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200
       },
       "tags": [],
@@ -175,7 +176,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200
       },
       "tags": [],
@@ -218,7 +219,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200
       },
       "tags": [],
@@ -253,7 +254,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "note": "Confirmed by search; automated check was refused (bot wall).",
         "httpStatus": 200
       },
@@ -294,7 +295,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-24",
+        "checkedOn": "2026-11-25",
         "httpStatus": 200,
         "finalUrl": "https://lwtsquad.com/lwtsummit-2027/"
       },
