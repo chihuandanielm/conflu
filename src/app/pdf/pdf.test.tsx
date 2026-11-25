@@ -98,5 +98,5 @@ describe("PDF", () => {
     expect(head[0]).toBe("conflu");
     expect(head[1]).toBe("career pathway mapper");
     expect(first).not.toMatch(/[\\/:#*+~]{6,}/); // no runs of river glyphs
-  });
+  }, 60_000); // a full render, like the tests above; on a busy CI runner it can take over the 5 s default
 });
