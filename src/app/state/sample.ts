@@ -1,7 +1,7 @@
 import { emptyAnswers, type Answers } from "../intake/model.ts";
 
 /**
- * "See a sample plan" (the landing): a made-up student, so a visitor can see a finished plan before answering anything.
+ * The landing's "How it works" story: a made-up student, so a visitor can see a finished plan before answering anything.
  * A computer science sophomore at Rutgers–New Brunswick, fall semester, aiming for software engineering, with 5 free
  * hours a week, a resume and a club. The plan is built from these answers on the day it's opened, like any other.
  */

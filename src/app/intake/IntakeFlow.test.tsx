@@ -18,14 +18,13 @@ describe("IntakeFlow", () => {
   it("starts on the landing, and Build my plan fades it out, then records that the student is in college", async () => {
     render(<IntakeFlow onBuild={() => {}} />);
     expect(screen.getByRole("heading", { level: 1, name: "Know what to do now." })).toBeInTheDocument();
-    // The sample plan drawn as a map (the engine's real plan), and the numbers behind the site.
-    expect(screen.getByRole("heading", { name: "The whole path, as a map" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: /A sample plan as a confluence/ })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "A real plan" })).toBeNull();
+    // How it works (the story, tested in landing/story), then the numbers behind the site.
+    expect(screen.getByRole("heading", { level: 2, name: "How it works" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "The whole path, as a map" })).toBeNull();
     expect(screen.getByText("checked resources")).toBeInTheDocument();
-    // One button at the top (the hero), one at the bottom (the closing panel); none in the nav beside the hero's.
+    // The button in the hero, at the end of the story, and in the closing panel; none in the nav.
     expect(within(screen.getByRole("navigation")).queryByRole("button")).toBeNull();
-    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(3);
     fireEvent.click(screen.getAllByRole("button", { name: /^Build my plan/ })[0]); await act(async () => {});
     // The words fade, then the questions fade in.
     expect(heading()).toBe("Know what to do now.");

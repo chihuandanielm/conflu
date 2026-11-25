@@ -125,13 +125,18 @@ The fact line under any goal is always in this order: kind, hours, `must-do` if 
 
 Direction A, "Field guide" (2026-11-24, docs/DESIGN_RESEARCH.md): a catalogue page on bone paper.
 
-- **Masthead:** the conflu mark and name on the left, "a career plan, one semester at a time" in mono in the middle (from 900px), "no account needed" in mono on the right, a 1.5px rule under it. No buttons in it.
-- **Hero:** words on the left, the painting on the right (from 900px; on a phone the words come first and the window sits under them). A drafting kicker ("for college students" after a short rule); the headline "Know what to do **now.**" in bold Barlow, the last word on the ochre "look here first" band with charcoal text; "Tell it your major, your year and your career goal. You get a plan for each semester, with proper resources and programs in about 3 minutes."; then stacked square buttons: **Build my plan** (solid charcoal) and **See a sample plan** (outline, "+", which becomes "Hide the sample plan", "-"). A returning visitor sees "Continue your plan" or "Continue where you left off", and "Start over" as a text button.
+- **Masthead:** the script logo on the left (`src/app/brand/conflu-logo.svg`: "Conflu" in charcoal, its swash ending in a line of dots and a ring in verdigris, the goal), "a career plan, one semester at a time" in mono in the middle (from 900px), "no account needed" in mono on the right, a 1.5px rule under it. No buttons in it.
+- **Hero:** words on the left, the painting on the right (from 900px; on a phone the words come first and the window sits under them). A drafting kicker ("for college students" after a short rule); the headline "Know what to do **now.**" in bold Barlow, the last word on the ochre "look here first" band with charcoal text; "Tell it your major, your year and your career goal. You get a plan for each semester, with proper resources and programs in about 3 minutes."; then the square **Build my plan** button (solid charcoal). A returning visitor sees "Continue your plan" or "Continue where you left off", and "Start over" as a text button.
 - **The painting** sits in a retro window (a striped charcoal-hairline title bar with two small squares, no label), on the umber ground, with two crop corners outside it, a ruler under it, and the caption "A confluence of streams will carry you toward your goal". The sky hatching is gone: the sky is the window's umber, and only the sun's glow is drawn.
 - **The paint-in (first visit in a browser session):** back to front over about 2.6 s; the sun blooms, the peaks resolve with each cell flickering through random glyphs for 0.18 s, the tree line, meadow and pines fill in, and the river is traced last. Afterwards only the water shimmers (30 fps). Reduced motion: the finished painting, still.
-- **Then:** How it works (three cells, "step 1" in mono), "The whole path, as a map": the sample student's plan drawn as the confluence map (its must-do and high-priority goals, yearly rounds left out, each a stream joining the river toward the career goal) in a window; any goal name expands the sample plan, four numbers from the data, an ochre closing panel with the button, and the large wordmark.
 - **The painting's colours** are seven warm tones in `scene.ts` (umber, warm grey, slate violet, grey-violet, dusty rose, ochre, bone). They are the one exception to the colour tokens and only ever appear in the painting. Its glyphs are 6px: an image made of characters, not text to read.
-- **See a sample plan** expands the full, working results page for a made-up student (`src/app/state/sample.ts`) in place, right under the hero, and scrolls to it. The landing's headline stays the page's one h1; the plan's title is an h2 ("sample plan" as its kicker). An ochre note says whose plan it is and that nothing is saved, with "Build my own plan ->", which starts the questions; "Edit answers" opens the review filled with the sample's answers. Everything works (drawers, ticks, done, the hours, every tab), all in memory: no plan, answers, step ticks or course ticks are stored, so it never mixes with a student's own plan.
+- **How it works** (docs/STORY_DESIGN.md) is the landing's hook: one sample student (`src/app/state/sample.ts`) from the first question to a finished plan, played by scrolling. A charcoal spine runs down the left and draws itself; a dot fills at each step; it ends in the logo's verdigris ring.
+  - Four steps, each a caption ("step N", a bold title, one sentence) beside a frozen screen in a window: **Tell it where you are** (a campus, then 5 hours, picked in violet), **Get what to do now** (this semester's panel, its hours meter filling, then "Do this now"), **See the whole path** (the map drawing itself down to the career goal), **Do it, one step at a time** (a goal's steps ticked off in verdigris).
+  - Each step teaches one colour's job. When its action is done, drafting corners draw in around it and the window's title bar shows a swatch and a mono label: "your pick", "look here first", "your goal", "done". No tints, no dimming.
+  - Each step pins for about 1.6 screens of scroll on a laptop and 1.3 on a phone, in three beats: the screen arrives, the action happens, the callout marks it. Progress only moves forward: scrolling back up leaves everything as it played.
+  - The end, **Your plan, start to finish**, isn't pinned: the sample's whole results page rises in once, frozen, then the button.
+  - Every screen is the app's own component with the sample's real plan, `inert` and `aria-hidden`; each caption has a screen-reader line saying what it shows. "Skip to the finished plan" jumps to the end.
+- **Then:** four numbers from the data, an ochre closing panel with the button, the large logo, and **Privacy and data** (a closed `details`): what the site keeps and where, the outside services (GitHub Pages, Formspree), the security settings. No link out.
 - **Leaving:** every button runs the same exit. The words fade (0.35 s), the page jumps to the top while nothing shows, then the next screen fades in.
 
 ### 7.2 Questions
@@ -263,17 +268,20 @@ Type in the PDF: Quantico for everything read, Plex Mono for facts and the banne
 | Landing to questions | 0.35s words, 1.1s navy to sage, 0.35s sheet in | ease in-out | The colour never changes all at once |
 | Questions back to landing | 0.35s sheet out, 0.9s navy in, words at 0.8s | ease in-out | The painting shows finished |
 | Landing water | always, 30 fps | none | Pauses off screen and when the tab is hidden |
+| How it works (7.1) | follows the scroll, forward only | `--ease` for the end's rise (0.7s) | Transform, opacity and clip-path through motion values; no React render per frame |
 
 Rules:
 
 - **Screens change by fading**, never by cutting. A colour change between screens (navy to sage) is a slow fade of the navy layer, after the words have gone.
 - **Everything is time-based**, not frame-based, so it runs at the same speed at 60Hz and 144Hz.
 - Interface motion uses only `opacity` and `transform`. The paint-in draws on every animation frame from cells computed once.
-- **Reduced motion:** the painting is finished and still, every fade is instant.
+- **The story isn't a picture.** How it works moves the app's own frozen screens and draws lines; the painting stays the only animated picture.
+- **Reduced motion:** the painting is finished and still, every fade is instant, and How it works pins nothing and shows every step finished.
 
 ## 9. Accessibility
 
 - The canvas is `aria-hidden`. Everything it shows is decoration; nothing on it is information.
+- How it works' frozen screens are `inert` and `aria-hidden`; their captions carry the meaning, and nothing in them can be focused.
 - Focus is always visible: a 1.5px blue outline, 3px off the element.
 - Headings are focused by script when a screen or question changes, as today.
 - Targets are at least 48px tall (42px for the secondary buttons in the results header).

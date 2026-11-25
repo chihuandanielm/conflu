@@ -52,7 +52,7 @@ const ALL_TABS: { id: Tab; label: string }[] = [
  * Rutgers major's course list, or how to read a degree audit) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
-export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false, embedded = false }: {
+export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false, embedded = false, frozen = false }: {
   saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void;
   /** A real plan: unused here ("Start over" is on the Edit answers screen, design/DESIGN.md §7.4 #0). The sample plan:
    *  "Build my own plan", which starts the questions. */
@@ -62,6 +62,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
   /** Shown inside another page (the landing's sample plan): the title is an h2, and arriving doesn't jump to the top
    *  of the page or take the focus; the page that holds it scrolls to it. */
   embedded?: boolean;
+  /** A picture of the page (the landing's story): the sample note, which invites trying things, is left out. */
+  frozen?: boolean;
 }) {
   const { plan, answers } = saved;
   const reduce = useReducedMotion();
@@ -172,7 +174,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
   return (
     <div className="min-h-dvh">
       <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
-      {sample && (
+      {sample && !frozen && (
         <div role="note" aria-label="Sample plan" className="notice mx-auto mt-5 flex max-w-[1000px] flex-wrap items-center gap-x-4 gap-y-2 min-[600px]:mx-5 min-[1040px]:mx-auto">
           <p className="flex-1 basis-[22em]">This is a sample plan for {SAMPLE_WHO}. Try anything; nothing is saved.</p>
           <button type="button" className="btn btn--small" onClick={onStartOver}>Build my own plan <span aria-hidden="true" className="font-mono">-&gt;</span></button>

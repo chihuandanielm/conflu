@@ -195,53 +195,109 @@ test("phone: a Newark student gets a one-sided map, a bottom-sheet drawer, and N
   expect(seen.offsite).toEqual([]);
 });
 
-// The landing (direction A) and its sample plan, expanded in place, on both a laptop and a phone.
+/** Scrolls the page down to `to` a little each frame, like a steady trackpad, so the story's forward-only progress plays. */
+const scrollDown = (page: Page, to: number) => page.evaluate(async (to) => {
+  while (scrollY < to - 2) { scrollTo(0, Math.min(to, scrollY + 60)); await new Promise((r) => requestAnimationFrame(r)); if (scrollY + innerHeight >= document.body.scrollHeight) break; }
+}, to);
+const topOf = (page: Page, sel: string) => page.evaluate((sel) => document.querySelector(sel)!.getBoundingClientRect().top + scrollY, sel);
+/** Everything a keyboard could reach inside the story, outside the frozen screens. */
+const reachable = (page: Page) => page.evaluate(() => [...document.querySelector("section[aria-labelledby=how-h]")!.querySelectorAll<HTMLElement>("a, button, input, select, textarea, [tabindex]")]
+  .filter((el) => !el.closest("[inert]") && el.tabIndex >= 0).map((el) => el.textContent!.trim()));
+
+// The landing (direction A) and its story, "How it works" (docs/STORY_DESIGN.md), on a laptop and on a phone.
+// The laptop plays the story by scrolling; the phone runs with reduced motion, where nothing pins and everything shows finished.
 for (const phone of [false, true]) {
-  test(`landing and sample plan${phone ? " @phone" : ""}`, async ({ page }) => {
+  test(`landing and how it works${phone ? " @phone" : ""}`, async ({ page }) => {
     const w = watch(page);
     await page.goto("./");
     await expect(heading(page)).toHaveText("Know what to do now.");
     await expect(page.getByText("A confluence of streams will carry you toward your goal")).toBeVisible();
     await expect(page.getByText("no account needed")).toBeVisible();
+    await expect(page.getByRole("img", { name: "conflu" })).toBeVisible();
     for (const gone of ["confluence.txt", "fig. 1", "free · no account"]) await expect(page.getByText(gone, { exact: true })).toHaveCount(0);
-    // The painting is in its window, and both buttons are on the first screen.
-    for (const name of [/^Build my plan/, /^See a sample plan/]) await expect(page.getByRole("button", { name }).first()).toBeInViewport();
-    const box = await page.locator("canvas").first().boundingBox();
-    expect(box!.width).toBeGreaterThan(200);
+    await expect(page.getByRole("button", { name: /sample plan/ })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /^Build my plan/ }).first()).toBeInViewport();
+    expect((await page.locator("canvas").first().boundingBox())!.width).toBeGreaterThan(200);
 
-    // Further down, the same sample drawn as the confluence map; a goal on it opens the sample plan.
-    const map = page.getByRole("img", { name: /A sample plan as a confluence/ });
-    await map.scrollIntoViewIfNeeded();
-    expect((await map.boundingBox())!.height).toBeGreaterThan(150);
-    await expect(page.getByRole("heading", { name: "A real plan" })).toHaveCount(0);
-    const goal = page.locator("section[aria-labelledby=map-h] button").first();
-    await goal.click();
-    await expect(page.getByRole("region", { name: "Sample plan" })).toBeVisible();
-    await page.getByRole("button", { name: /^Hide the sample plan/ }).click();
-    await expect(page.getByRole("region", { name: "Sample plan" })).toHaveCount(0);
+    const story = page.locator("section[aria-labelledby=how-h]");
+    await expect(story.locator("[inert]")).toHaveCount(5);
+    expect(await reachable(page)).toEqual([expect.stringMatching(/^Skip to the finished plan/), expect.stringMatching(/^Build my plan/)]);
+    const step = (n: number) => story.locator(`[data-story-step="${n}"]`);
+    const picked = step(1).locator("[inert] [role=radio][aria-checked=true]");
+    const ticks = step(4).locator("input.tick");
 
-    // The sample opens under the hero, on the landing, and scrolls into view.
-    await page.getByRole("button", { name: /^See a sample plan/ }).click();
-    const sample = page.getByRole("region", { name: "Sample plan" });
-    await expect(sample.getByRole("note", { name: "Sample plan" })).toContainText("computer science sophomore");
-    await expect(heading(page)).toHaveText("Know what to do now.");
-    await expect(sample.getByRole("heading", { level: 2, name: /^sample plan Land your first role in software engineering/ })).toBeInViewport();
-    await expect(sample.getByTestId("standing")).toContainText(/of your 5 free hours a week/);
-    await expect(sample.getByRole("heading", { name: "Do this now" })).toBeVisible();
-    // It works: open a goal, tick a step, close; switch tabs.
-    await sample.getByRole("heading", { name: "This semester" }).scrollIntoViewIfNeeded();
-    await sample.locator("section[aria-labelledby=next-h] li button").first().click();
-    const drawer = page.getByRole("dialog");
-    await drawer.getByRole("checkbox").first().check();
-    await expect(drawer.getByText(/^1 of \d+ done/)).toBeVisible();
-    await drawer.getByRole("button", { name: "Close details" }).click();
-    await sample.getByRole("tab", { name: /^Resources/ }).click();
-    await expect(sample.getByRole("tab", { name: /^Resources/ })).toHaveAttribute("aria-selected", "true");
-    // Nothing from the sample is saved.
+    if (!phone) {
+      // Pinned: each step is a tall section whose screen stays put while it plays.
+      const tall = await step(1).evaluate((el) => (el as HTMLElement).offsetHeight / innerHeight);
+      expect(tall).toBeGreaterThan(2.3);
+      await expect(picked).toHaveCount(0);
+      // Step 1 plays: a campus, then 5 hours, picked in violet; the label "your pick" appears in the window's bar.
+      await scrollDown(page, (await topOf(page, '[data-story-step="1"]')) + 1200);
+      await expect(step(1).locator("h3")).toBeInViewport();
+      await expect(picked).toHaveText(["Rutgers–New Brunswick", "5 hours a week outside class"]);
+      await expect.poll(() => picked.last().evaluate((el) => getComputedStyle(el).backgroundColor)).toBe("rgb(84, 86, 132)");
+      // Steps 2 to 4: Do this now, the map down to the goal, and the steps ticked off in verdigris.
+      await scrollDown(page, (await topOf(page, '[data-story-step="4"]')) + 1250);
+      await expect(step(2).locator("[inert]").getByText("Do this now", { exact: true })).toBeAttached();
+      await expect(step(3).locator("[inert]").getByText("Land your first role in software engineering", { exact: true })).toBeAttached();
+      await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeVisible();
+      // Forward only: scrolling back up leaves everything as it played.
+      await page.evaluate(() => scrollTo(0, 0));
+      await page.waitForTimeout(300);
+      await expect(picked).toHaveCount(2);
+      await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeAttached();
+    } else {
+      // Reduced motion: nothing pinned, every step finished.
+      for (const n of [1, 2, 3, 4]) expect(await step(n).evaluate((el) => (el as HTMLElement).offsetHeight / innerHeight)).toBeLessThan(1.6);
+      await expect(picked).toHaveCount(2);
+      for (const t of await ticks.all()) await expect(t).toBeChecked();
+    }
+
+    // Skip to the finished plan: focus lands on the end, and the finished sample plan is there, frozen, then the button.
+    await page.evaluate(() => scrollTo(0, 0));
+    await story.getByRole("button", { name: /^Skip to the finished plan/ }).click();
+    const end = page.getByRole("heading", { level: 3, name: "Your plan, start to finish" });
+    await expect(end).toBeFocused();
+    await expect(end).toBeInViewport();
+    const finale = page.locator("section[aria-labelledby=story-end]");
+    await expect(finale.locator("[inert]").getByText("Do this now", { exact: true })).toBeVisible();
+    await expect(finale.getByRole("button", { name: /^Build my plan/ })).toBeVisible();
+
+    // Privacy and data at the very end: open it, and it links nowhere off the site.
+    await page.getByText("Privacy and data").click();
+    await expect(page.getByText("No tracking or analytics")).toBeVisible();
+    await expect(page.locator("footer a[href*='github.com']")).toHaveCount(0);
+
     expect(await page.evaluate(() => [localStorage.getItem("cpm.plan.v1"), localStorage.getItem("cpm.steps.v1")])).toEqual([null, null]);
-    await sample.getByRole("button", { name: /^Build my own plan/ }).click();
+    await finale.getByRole("button", { name: /^Build my plan/ }).click();
     await expect(heading(page)).toHaveText("What do you study?");
     expect(w.violations).toEqual([]);
     expect(w.offsite).toEqual([]);
   });
 }
+
+// The story's frame budget (docs/STORY_DESIGN.md §7): a steady scroll through all of it with the processor slowed 4×.
+// A frame "misses" when it takes more than 1.5 display refreshes (25 ms at 60 Hz); timer jitter alone puts perfect frames at 16.6–17 ms.
+test("how it works stays smooth with the processor slowed 4x", async ({ page }) => {
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+  await page.goto("./");
+  await page.waitForTimeout(3000); // a visitor reading the hero; the frozen screens mount in idle time meanwhile
+  const r = await page.evaluate(async () => {
+    const start = document.querySelector("[data-story-step='1']")!.getBoundingClientRect().top + scrollY - innerHeight;
+    const end = document.getElementById("story-end")!.getBoundingClientRect().top + scrollY + 400;
+    scrollTo(0, start); await new Promise((r) => setTimeout(r, 300));
+    const d: number[] = []; let last = performance.now();
+    while (scrollY < end - 2) {
+      await new Promise((r) => requestAnimationFrame(r));
+      const now = performance.now(); d.push(now - last); last = now;
+      scrollTo(0, scrollY + 40);
+    }
+    d.shift();
+    return { frames: d.length, missed: d.filter((x) => x > 25).length / d.length, worst: Math.max(...d) };
+  });
+  console.log(`story frames at 4x: ${r.frames} frames, ${(r.missed * 100).toFixed(1)}% missed, worst ${r.worst.toFixed(1)} ms`);
+  expect(r.frames).toBeGreaterThan(150);
+  expect(r.missed).toBeLessThan(0.05);
+  expect(r.worst).toBeLessThan(50);
+});

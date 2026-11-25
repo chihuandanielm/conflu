@@ -9,14 +9,16 @@ const r1 = (v: number) => Math.round(v * 10) / 10;
 /**
  * The confluence map (design/DESIGN.md §7.5): every goal is a stream that joins the river in its semester and runs to
  * the outcome. All of the layout comes from layoutConfluence(); this only draws what it returns, with the same strokes
- * and sizes as the reference renderer (mapSvg). The drawing is one role="img"; each goal's name is a real button laid
- * over it, in document order, that opens the goal. The layout re-runs when the container's width changes.
+ * and sizes as the reference renderer (mapSvg). The drawing is one role="img"; each goal's name is laid over it, in
+ * document order: a real button that opens the goal, or plain text when there is no `onOpen` (the landing's picture of
+ * the sample plan, which is only to look at). The layout re-runs when the container's width changes.
  */
 export function ConfluenceMap({ model, done, fontSize, label, termOf, onOpen }: {
   model: MapModel; done?: Iterable<string>; fontSize?: number; label: string;
   /** The semester a goal sits in, for the button's accessible name. */
   termOf?: (goalId: string) => string | undefined;
-  onOpen: (goalId: string) => void;
+  /** Opens a goal. Without it the names are plain text: a picture, nothing to click. */
+  onOpen?: (goalId: string) => void;
 }) {
   const box = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -77,13 +79,20 @@ export function ConfluenceMap({ model, done, fontSize, label, termOf, onOpen }: 
           const term = termOf?.(l.id);
           return (
             <li key={l.id} className="contents">
-              <button type="button" onClick={() => onOpen(l.id)}
-                className={`group absolute block cursor-pointer bg-transparent p-0 ${l.align === "right" ? "text-right" : "text-left"}`}
-                style={{ top: l.y, left: l.align === "right" ? l.x - l.w : l.x, width: l.w, fontSize: fs, lineHeight: `${L.lineHeight}px` }}>
-                <span className="line-clamp-2 underline-offset-4 group-hover:underline">{l.title}</span>
-                {term && <span className="sr-only">, {term}</span>}
-                <span className="block font-mono" style={{ fontSize: L.metaSize, lineHeight: `${L.metaSize * 1.5}px` }}>{l.done ? "done" : l.meta}</span>
-              </button>
+              {(() => {
+                const place = { top: l.y, left: l.align === "right" ? l.x - l.w : l.x, width: l.w, fontSize: fs, lineHeight: `${L.lineHeight}px` };
+                const align = l.align === "right" ? "text-right" : "text-left";
+                const body = (
+                  <>
+                    <span className="line-clamp-2 underline-offset-4 group-hover:underline">{l.title}</span>
+                    {term && <span className="sr-only">, {term}</span>}
+                    <span className="block font-mono" style={{ fontSize: L.metaSize, lineHeight: `${L.metaSize * 1.5}px` }}>{l.done ? "done" : l.meta}</span>
+                  </>
+                );
+                return onOpen
+                  ? <button type="button" onClick={() => onOpen(l.id)} className={`group absolute block cursor-pointer bg-transparent p-0 ${align}`} style={place}>{body}</button>
+                  : <span className={`absolute block ${align}`} style={place}>{body}</span>;
+              })()}
             </li>
           );
         })}
