@@ -200,41 +200,48 @@ a { color: var(--violet); text-decoration-color: var(--violet); }
 .landing-words { animation: landing-words-in 700ms var(--ease) 800ms both; }
 
 /* How it works (docs/STORY_DESIGN.md §3): each step's scene plays once, on a clock, when the step's [data-play] is set.
-   Movement is transform and opacity; panels use the site's easing, small marks a gentle spring with a little overshoot.
+   Choreography: the window glides in first, its caption line by line with it, then the screen's pieces follow, each
+   starting before the last has finished, all on one strong ease-out (--glide). Screens crossfade, nothing cuts.
+   Small marks spring a little (--spring). Movement is transform and opacity; the map's strokes trace once.
    Each piece's delay is its --d. Until a step plays, its pieces wait unseen; with reduced motion they show finished. */
-.story { --spring: cubic-bezier(0.34, 1.56, 0.64, 1); }
+.story { --glide: cubic-bezier(0.23, 1, 0.32, 1); --spring: cubic-bezier(0.34, 1.4, 0.64, 1); }
 .story-step:not([data-play]) :is(.sa, .story-cascade [role=radio], .story-meter .grid > span, .story-map svg > *, .story-map li > *) { opacity: 0; }
-.story-step[data-play] .sa-rise { animation: sa-rise 520ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .sa-left { animation: sa-left 560ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .sa-open { transform-origin: top; animation: sa-open 520ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .sa-pop { animation: sa-pop 460ms var(--spring) var(--d, 0ms) both; }
-.story-step[data-play] .sa-snap { animation: sa-snap 420ms var(--spring) var(--d, 0ms) both; }
-.story-step[data-play] .story-cascade [role=radio] { animation: sa-rise 420ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .story-meter .grid > span { animation: sa-pop 420ms var(--spring) var(--d, 0ms) both; }
-/* A pick is pressed: a quick dip, then it settles in violet. */
-.story-press [aria-checked=true] { animation: sa-press 320ms var(--spring); }
-/* The two question sheets: the first slides away left, the next comes in from the right. */
-.story-out { opacity: 0; transform: translateX(-36px); transition: opacity 360ms var(--ease), transform 360ms var(--ease); }
-.story-in { animation: sa-in 460ms var(--ease) both; }
-.story-wait { opacity: 0; }
+.story-step[data-play] .sa-frame { animation: sa-frame 900ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .sa-rise { animation: sa-rise 800ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .sa-left { animation: sa-left 800ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .sa-open { animation: sa-open 900ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .sa-pop { animation: sa-pop 600ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .sa-snap { animation: sa-snap 600ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .story-cascade [role=radio] { animation: sa-rise 700ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .story-meter .grid > span { animation: sa-pop 520ms var(--spring) var(--d, 0ms) both; }
+/* A pick is pressed: a quick dip, and the violet fades in rather than switching on. */
+.story-press [role=radio] { transition: background-color 380ms var(--glide), color 380ms var(--glide), border-color 380ms var(--glide); }
+.story-press [aria-checked=true] { animation: sa-press 420ms var(--spring); }
+/* The question screens crossfade like pages turning: the old one drifts left and fades away while the next comes in. */
+.story-wait { opacity: 0; visibility: hidden; }
+.story-out { opacity: 0; transform: translateX(-24px); transition: opacity 520ms var(--glide), transform 620ms var(--glide); }
+.story-in { animation: sa-in 760ms var(--glide) 120ms both; }
+/* A window whose screen runs on below fades out at the bottom instead of stopping at a hard edge. */
+.story-fade { -webkit-mask-image: linear-gradient(#000 calc(100% - 96px), transparent); mask-image: linear-gradient(#000 calc(100% - 96px), transparent); }
 /* The map draws itself: streams trace (normalised to pathLength 1), dots and names arrive semester by semester. */
 .story-map path[pathLength] { stroke-dasharray: 1; }
-.story-step[data-play] .story-map path[pathLength] { animation: sa-draw 700ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .story-map svg > :is(g, circle, line, text) { animation: sa-fade 380ms var(--ease) var(--d, 0ms) both; }
-.story-step[data-play] .story-map svg > circle { transform-box: fill-box; transform-origin: center; animation: sa-pop 420ms var(--spring) var(--d, 0ms) both; }
-.story-step[data-play] .story-map li > * { animation: sa-fade 420ms var(--ease) var(--d, 0ms) both; }
-/* A step ticked off: the tick pops, the line strikes through. */
-.story-tick:checked { animation: sa-pop 380ms var(--spring); }
-.story-strike { background: linear-gradient(var(--green), var(--green)) no-repeat 0 58% / 0% 2px; transition: background-size 320ms var(--ease); }
+.story-step[data-play] .story-map path[pathLength] { animation: sa-draw 1000ms cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0ms) both; }
+.story-step[data-play] .story-map svg > :is(g, circle, line, text) { animation: sa-fade 600ms var(--glide) var(--d, 0ms) both; }
+.story-step[data-play] .story-map svg > circle { transform-box: fill-box; transform-origin: center; animation: sa-pop 560ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .story-map li > * { animation: sa-rise 700ms var(--glide) var(--d, 0ms) both; }
+/* A step ticked off: the tick pops, the line strikes through, left to right. */
+.story-tick:checked { animation: sa-pop 460ms var(--spring); }
+.story-strike { background: linear-gradient(var(--green), var(--green)) no-repeat 0 58% / 0% 2px; transition: background-size 520ms var(--glide); }
 .story-strike[data-done] { background-size: 100% 2px; }
 .story-step[data-settled] :is(*, *::before, *::after) { animation: none !important; }
-@keyframes sa-rise { from { opacity: 0; transform: translateY(18px); } }
-@keyframes sa-left { from { opacity: 0; transform: translateX(-18px); } }
-@keyframes sa-open { from { opacity: 0; transform: scaleY(0.55); } }
-@keyframes sa-pop { from { opacity: 0; transform: scale(0.4); } }
-@keyframes sa-snap { from { opacity: 0; transform: scale(1.25); } }
-@keyframes sa-press { 40% { transform: scale(0.97); } }
-@keyframes sa-in { from { opacity: 0; transform: translateX(36px); } }
+@keyframes sa-frame { from { opacity: 0; transform: translateY(28px) scale(0.985); } }
+@keyframes sa-rise { from { opacity: 0; transform: translateY(16px); } }
+@keyframes sa-left { from { opacity: 0; transform: translateX(-16px); } }
+@keyframes sa-open { from { opacity: 0; clip-path: inset(-16px -16px 100% -16px); transform: translateY(-6px); } to { opacity: 1; clip-path: inset(-16px); } }
+@keyframes sa-pop { from { opacity: 0; transform: scale(0.6); } }
+@keyframes sa-snap { from { opacity: 0; transform: scale(1.18); } }
+@keyframes sa-press { 35% { transform: scale(0.975); } }
+@keyframes sa-in { from { opacity: 0; transform: translateX(28px); } }
 @keyframes sa-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes sa-fade { from { opacity: 0; } }
 

@@ -75,10 +75,27 @@ The first build pinned each step for 1.6 screens and scrubbed it with the scroll
 
 **Reduced motion:** no movement at all; every scene is shown finished from the start.
 
+### Revision 3: smoother flow, nothing cut off (2026-11-25)
+
+On a phone, step 4's list and the finished plan were cut off at the window's edge, and the owner found the motion not smooth enough: more fades, transitions and frames.
+
+**Research:**
+- Ease-out for anything entering, with a strong curve such as `cubic-bezier(0.23, 1, 0.32, 1)`; never ease-in on UI ([Emil Kowalski](https://emilkowal.ski/ui/great-animations)).
+- Overlapping action and follow-through: parts of a scene move at different times and settle after one another, rather than all at once or one-strictly-after-another ([Toptal](https://www.toptal.com/designers/ui/motion-design-principles), [Material choreography](https://m1.material.io/motion/choreography.html)).
+- Short travel (16–24 px) and light stagger; large distances read as jank ([entrance animations guide](https://camoa.github.io/dev-guides/css/css-craft/entrance-animations)).
+
+**What changed:**
+- **The frame arrives first.** Each window glides in as a whole (fade, 28 px rise, 98.5% to full size, 0.9 s) and its caption comes in line by line with it; then the screen's pieces follow, each starting before the last has finished.
+- **One curve.** Everything entering uses `--glide` (`cubic-bezier(0.23,1,0.32,1)`); small marks keep a softer spring.
+- **Crossfades, not cuts.** Step 1 now has three question screens (campus, career goal, free hours) that crossfade like pages turning: the old one drifts left and fades away while the next comes in. A pick's violet fades in rather than switching on. "Do this now" opens downward with a clip reveal instead of a squash. Struck-through steps draw left to right.
+- **Fade-aways instead of hard edges.** The question window and the finished plan fade out at the bottom (a 96 px mask), so the cut reads as "it carries on", not as a bug.
+- **Nothing cut off.** Steps 2, 3 and 4 are as tall as their screens. The question screens show only their question line, so on a phone the picks stay in the window. On a phone the finished plan takes the full width (out past the spine) and a fixed 640 px height.
+- **The spine glides.** Its growth is smoothed with a spring, so it follows the scroll without stepping on each wheel notch.
+
 ## 4. Layout (revision 2)
 
-- **Laptop (900 px and wider):** the spine in a narrow gutter on the left; the caption (about 4 parts) and the window (about 7 parts) side by side. The window is up to 520 px tall, except the map's, which is as tall as the map.
-- **Phone:** the spine on the left edge; the caption on top, the window under it (up to 480 px; the map's as tall as the map).
+- **Laptop (900 px and wider):** the spine in a narrow gutter on the left; the caption (about 4 parts) and the window (about 7 parts) side by side. The question window is up to 540 px tall and fades out at the bottom; the others are as tall as their screens.
+- **Phone:** the spine on the left edge; the caption on top, the window under it. Only the question window has a fixed height (460 px, fading out at the bottom); the others are as tall as their screens.
 - **Each caption:** "step N", the title in bold Barlow, one plain sentence.
 - **Above the story:** "How it works", the one line, and "Skip to the finished plan".
 

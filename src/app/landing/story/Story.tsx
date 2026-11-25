@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, type CSSProperties, type ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useSpring } from "motion/react";
 import type { Plan, PlanTerm } from "../../../engine/types.ts";
 import { intake, uiIntake } from "../../data/dataset.ts";
 import { COPY } from "../../intake/copy.ts";
+import { tracksForMajor } from "../../intake/model.ts";
 import { QuestionShell } from "../../intake/QuestionShell.tsx";
 import { SingleChoice } from "../../intake/controls/SingleChoice.tsx";
 import { ConfluenceMap } from "../../map/ConfluenceMap.tsx";
@@ -45,7 +46,9 @@ export function Story({ cta }: { cta: ReactNode }) {
   const end = useRef<HTMLElement>(null);
   const steps = useRef<HTMLDivElement>(null);
   // The spine grows as the steps pass the lower part of the screen, and never shrinks back.
-  const grown = useForwardProgress(steps, reduced, ["start 75%", "end 75%"]);
+  const raw = useForwardProgress(steps, reduced, ["start 75%", "end 75%"]);
+  // Smoothed, so the line glides after the scroll instead of stepping with each wheel notch.
+  const grown = useSpring(raw, { stiffness: 140, damping: 28, restDelta: 0.0005 });
   const skip = () => {
     end.current?.scrollIntoView?.({ behavior: reduced ? "auto" : "smooth", block: "start" });
     end.current?.querySelector<HTMLElement>("h3")?.focus({ preventScroll: true });
@@ -66,9 +69,9 @@ export function Story({ cta }: { cta: ReactNode }) {
           <span className="absolute top-0 left-1/2 h-full -translate-x-1/2 border-l-[1.5px] border-dotted border-blue" />
           <motion.span style={{ scaleY: grown }} className="absolute top-0 left-1/2 h-full w-[1.5px] origin-top -translate-x-1/2 bg-blue will-change-transform" />
         </div>
-        <Step n={1} title="Tell it where you are" accent="violet" mark="your pick" reduced={reduced}
+        <Step n={1} title="Tell it where you are" accent="violet" mark="your pick" reduced={reduced} fixed
           text="Your campus, major, year, the career you want, and your free time. About 3 minutes, no account, and it works for other schools too."
-          shows="the question screens, where a campus is picked and then 5 free hours a week, in violet.">
+          shows="the question screens, where a campus, then a career goal, then 5 free hours a week are picked in violet.">
           {(s) => <IntakeScene {...s} />}
         </Step>
         <Step n={2} title="Get what to do now" accent="sand" mark="look here first" reduced={reduced}
@@ -76,7 +79,7 @@ export function Story({ cta }: { cta: ReactNode }) {
           shows="the plan: this semester's panel with its hours meter, and the Do this now window.">
           {(s) => term && <ResultsScene {...s} plan={core} term={term} />}
         </Step>
-        <Step n={3} title="See the whole path" accent="blue" mark="your goal" reduced={reduced} tall
+        <Step n={3} title="See the whole path" accent="blue" mark="your goal" reduced={reduced}
           text="Every goal joins the river in the semester it starts, all the way to your goal."
           shows="the map of the plan's must-do goals drawing itself from now down to the career goal.">
           {(s) => <MapScene {...s} plan={sample.plan} />}
@@ -93,8 +96,11 @@ export function Story({ cta }: { cta: ReactNode }) {
 }
 
 /** One step: spine gutter (its dot) | caption | frozen screen in a window. Plays once when it comes into view. */
-function Step({ n, title, text, shows, accent, mark, reduced, tall = false, children }: {
-  n: number; title: string; text: string; shows: string; accent: Accent; mark: string; reduced: boolean; tall?: boolean; children: (s: Scene) => ReactNode;
+function Step({ n, title, text, shows, accent, mark, reduced, fixed = false, children }: {
+  n: number; title: string; text: string; shows: string; accent: Accent; mark: string; reduced: boolean;
+  /** A fixed-height window whose screen fades out at the bottom (the question screens, which run long). Otherwise the
+   *  window is as tall as its screen, so nothing is ever cut off. */
+  fixed?: boolean; children: (s: Scene) => ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null), win = useRef<HTMLDivElement>(null);
   // It plays when its window is about two thirds in view, so the scene starts where the visitor can see it.
@@ -112,16 +118,17 @@ function Step({ n, title, text, shows, accent, mark, reduced, tall = false, chil
         </span>
       </div>
       <div className="grid min-w-0 flex-1 gap-4 min-[900px]:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] min-[900px]:items-center min-[900px]:gap-12">
+        {/* The caption arrives with its window, line by line. */}
         <div className="min-[900px]:max-w-[22em]">
-          <p className="kicker">step {n}</p>
-          <h3 id={`story-${n}`} className="mt-3 text-[clamp(1.6rem,1.2rem+1.8vw,2.75rem)] leading-[1]">{title}</h3>
-          <p className="mt-3 max-[899px]:text-small">{text}</p>
+          <p className="kicker sa sa-rise" style={d(0)}>step {n}</p>
+          <h3 id={`story-${n}`} className="sa sa-rise mt-3 text-[clamp(1.6rem,1.2rem+1.8vw,2.75rem)] leading-[1]" style={d(70)}>{title}</h3>
+          <p className="sa sa-rise mt-3 max-[899px]:text-small" style={d(140)}>{text}</p>
           <p className="sr-only">Beside it is a picture of {shows}</p>
         </div>
         {/* The frozen screen: real components, nothing to click or tab to, hidden from screen readers (the caption says it). */}
-        <div ref={win} aria-hidden="true" inert className={`win pointer-events-none relative overflow-hidden select-none ${tall ? "" : "h-[440px] min-[900px]:h-[min(520px,72svh)]"}`}>
+        <div ref={win} aria-hidden="true" inert className={`win sa sa-frame pointer-events-none relative overflow-hidden select-none ${fixed ? "h-[460px] min-[900px]:h-[min(540px,72svh)]" : ""}`}>
           <div className="win-bar win-bar--quiet"><Legend accent={accent} label={mark} at={CALLOUT[n - 1]} /></div>
-          <div className={tall ? "relative" : "relative h-[calc(100%-29px)] overflow-hidden"}>{near && children({ play, reduced })}</div>
+          <div className={fixed ? "story-fade relative h-[calc(100%-29px)] overflow-hidden" : "relative"}>{near && children({ play, reduced })}</div>
         </div>
       </div>
     </section>
@@ -129,9 +136,9 @@ function Step({ n, title, text, shows, accent, mark, reduced, tall = false, chil
 }
 
 /** When each step's callout lands (ms after its scene starts): the corners snap in and the bar shows its label. */
-const CALLOUT = [2000, 1650, 1900, 2050];
+const CALLOUT = [3300, 2000, 2200, 2500];
 /** When every scene has finished (the last callout plus its animation). */
-const SETTLE = 2800;
+const SETTLE = 3900;
 const SWATCH: Record<Accent, string> = { violet: "bg-violet", sand: "border-ochre bg-sand", blue: "bg-blue", green: "bg-green" };
 
 /** The callout's label, in the window's title bar: a swatch of the colour the step teaches, and its job. */
@@ -166,29 +173,38 @@ function useStagger(root: React.RefObject<HTMLElement | null>, selector: string,
 }
 
 /**
- * Step 1: the campus options cascade in, one is pressed and turns violet; the sheet slides away and the time question
- * slides in from the right; 5 hours is pressed; the corners snap round the answer.
+ * Step 1: three question screens, one after another, crossfading like turning pages: the campus options cascade in and
+ * one is pressed and turns violet; the career goal; then the free hours. The corners snap round the last answer.
  */
 function IntakeScene({ play, reduced }: Scene) {
-  const beat = useBeats(play, reduced, [700, 1150, 1650]);
+  // pick campus, to goal, pick goal, to hours, pick hours
+  const beat = useBeats(play, reduced, [900, 1350, 1950, 2400, 2950]);
   const root = useRef<HTMLDivElement>(null);
-  useStagger(root, ".story-cascade [role=radio]", 80, 40);
+  useStagger(root, ".story-cascade [role=radio]", 260, 60);
   const schools = uiIntake.school.options.map((o) => ({ value: o.id, label: o.label, note: "note" in o ? (o.note as string) : undefined }));
+  // Just the question lines (no help text), so on a phone the answers being picked stay inside the window.
+  const goals = tracksForMajor(SAMPLE_ANSWERS.majorId).suggested.map((t) => ({ value: t.id, label: t.name }));
   const hours = intake.weeklyHours.map((h) => ({ value: h, label: `${h} hours a week outside class` }));
+  const sheet = (at: number, leaves?: number) => `story-press absolute inset-x-0 top-0 ${leaves !== undefined && beat >= leaves ? "story-out" : beat >= at ? "story-in" : "story-wait"}`;
   return (
-    <div ref={root} className="absolute inset-0 overflow-hidden px-[clamp(10px,3vw,28px)] pt-4">
-      <ProgressBar label="Intake progress" max={8} value={beat >= 2 ? 7 : 1} caption={beat >= 2 ? "Step 7 of 8" : "Step 1 of 8"} />
+    <div ref={root} className="absolute inset-0 px-[clamp(10px,3vw,28px)] pt-4">
+      <ProgressBar label="Intake progress" max={8} value={beat >= 4 ? 7 : beat >= 2 ? 3 : 1} caption={`Step ${beat >= 4 ? 7 : beat >= 2 ? 3 : 1} of 8`} />
       <div className="relative mt-3">
-        <div className={`story-press story-cascade absolute inset-x-0 top-0 ${beat >= 2 ? "story-out" : ""}`}>
-          <QuestionShell copy={COPY.school} headingId="story-q-school" focusHeading={false} keyHint={false} onBack={noop} onContinue={noop}>
+        <div className={`story-cascade ${sheet(0, 2)}`}>
+          <QuestionShell copy={{ question: COPY.school.question }} headingId="story-q-school" focusHeading={false} keyHint={false} onBack={noop} onContinue={noop}>
             <SingleChoice numberKeys={false} labelledBy="story-q-school" choices={schools} value={beat >= 1 ? "rutgers-nb" : undefined} onSelect={noop} />
           </QuestionShell>
         </div>
-        <div className={`story-press absolute inset-x-0 top-0 ${beat >= 2 ? "story-in" : "story-wait"}`}>
-          <QuestionShell copy={{ question: "How much time do you have?", help: "A rough guess is fine. The plan fits to it." }} headingId="story-q-time"
+        <div className={sheet(2, 4)}>
+          <QuestionShell copy={{ question: COPY.track.question }} headingId="story-q-goal" focusHeading={false} keyHint={false} onBack={noop} onContinue={noop}>
+            <SingleChoice numberKeys={false} labelledBy="story-q-goal" choices={goals} value={beat >= 3 ? SAMPLE_ANSWERS.trackId : undefined} onSelect={noop} />
+          </QuestionShell>
+        </div>
+        <div className={sheet(4)}>
+          <QuestionShell copy={{ question: "How much time do you have?" }} headingId="story-q-time"
             focusHeading={false} keyHint={false} onBack={noop} onContinue={noop}>
             <Corners at={CALLOUT[0]}>
-              <SingleChoice numberKeys={false} labelledBy="story-q-time" choices={hours} value={beat >= 3 ? 5 : undefined} onSelect={noop} />
+              <SingleChoice numberKeys={false} labelledBy="story-q-time" choices={hours} value={beat >= 5 ? 5 : undefined} onSelect={noop} />
             </Corners>
           </QuestionShell>
         </div>
@@ -200,18 +216,18 @@ function IntakeScene({ play, reduced }: Scene) {
 /** Step 2: this semester's panel slides in, its hours meter pops in cell by cell, then "Do this now" opens down from its bar. */
 function ResultsScene({ plan, term }: Scene & { plan: Plan; term: PlanTerm }) {
   const root = useRef<HTMLDivElement>(null);
-  useStagger(root, ".story-meter .grid > span", 420, 80);
+  useStagger(root, ".story-meter .grid > span", 650, 70);
   return (
-    <div ref={root} className="absolute inset-x-0 top-0 px-[clamp(10px,3vw,28px)] pt-5">
-      <div className="sa sa-rise max-[699px]:hidden" style={d(0)}>
+    <div ref={root} className="px-[clamp(10px,3vw,28px)] pt-5 pb-6">
+      <div className="sa sa-rise max-[699px]:hidden" style={d(200)}>
         <p className="kicker">sample plan</p>
         <p className="mt-2 font-display text-[clamp(1.5rem,1.1rem+1.6vw,2.5rem)] leading-[0.95] font-bold">{outcomeText(SAMPLE_ANSWERS.trackId)}</p>
       </div>
       <div className="grid gap-x-8 gap-y-4 min-[700px]:mt-5 min-[700px]:grid-cols-[minmax(0,220px)_minmax(0,1fr)]">
-        <div className="story-meter sa sa-left min-w-0" style={d(150)}>
+        <div className="story-meter sa sa-left min-w-0" style={d(380)}>
           <StatusStrip term={term} doneCount={0} weeklyHours={SAMPLE_ANSWERS.weeklyHours} onHours={noop} />
         </div>
-        <div className="sa sa-open min-w-0" style={d(950)}>
+        <div className="sa sa-open min-w-0" style={d(1000)}>
           <Corners at={CALLOUT[1]}><StartHere term={term} progress={{}} onOpen={noop} edges={plan.edges} /></Corners>
         </div>
       </div>
@@ -239,7 +255,7 @@ function MapScene({ plan }: Scene & { plan: Plan }) {
       const svg = box.querySelector("svg");
       if (!svg) return;
       const h = svg.getBoundingClientRect().height || 1, top = svg.getBoundingClientRect().top;
-      const at = (el: Element, extra = 0) => `${Math.round(120 + ((el.getBoundingClientRect().top - top) / h) * 1300 + extra)}ms`;
+      const at = (el: Element, extra = 0) => `${Math.round(300 + ((el.getBoundingClientRect().top - top) / h) * 1300 + extra)}ms`;
       svg.querySelectorAll<SVGElement>(":scope > *").forEach((el) => {
         if (el.tagName === "path") el.setAttribute("pathLength", "1");
         el.style.setProperty("--d", at(el, el.tagName === "circle" ? 260 : 0));
@@ -265,9 +281,9 @@ function NextScene({ play, reduced, plan, term }: Scene & { plan: Plan; term: Pl
   const item = ready.find((i) => i.importance === "must") ?? ready[0];
   const how = howTo(item);
   const n = how.steps.length;
-  const beat = useBeats(play, reduced, how.steps.map((_, i) => 550 + i * (1200 / Math.max(1, n - 1))));
+  const beat = useBeats(play, reduced, how.steps.map((_, i) => 750 + i * (1350 / Math.max(1, n - 1))));
   return (
-    <div className="sa sa-rise absolute inset-x-0 top-0 px-[clamp(12px,3vw,30px)] pt-5" style={d(0)}>
+    <div className="sa sa-rise px-[clamp(12px,3vw,30px)] pt-5 pb-6" style={d(200)}>
       <p className="fact">{term.label.toLowerCase()}</p>
       <p className="mt-1.5 font-display text-[clamp(1.4rem,1.1rem+1vw,1.75rem)] leading-[1.1] font-bold">{item.title}</p>
       <p className="mt-2"><PriorityTag it={item} /></p>
@@ -318,9 +334,11 @@ function Finale({ ref, sample, cta, reduced }: { ref: React.Ref<HTMLElement>; sa
         <p className="sr-only">Below is a picture of the sample student's finished plan, as it appears on the results page.</p>
         <motion.div aria-hidden="true" inert initial={reduced ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="win pointer-events-none mt-8 h-[min(84svh,860px)] overflow-hidden select-none will-change-transform">
+          className="win pointer-events-none mt-8 h-[min(84svh,860px)] overflow-hidden select-none will-change-transform max-[899px]:-ml-[26px] max-[899px]:h-[640px]">
           <div className="win-bar win-bar--quiet"><span className="invisible">.</span></div>
-          {near && <ResultsPage embedded frozen sample saved={sample} onChange={noop} onEdit={noop} />}
+          {/* The plan runs on below; it fades out rather than stopping at a hard edge. On a phone the window takes the
+              full width (out past the spine), so the plan inside is laid out as wide as it is on a real phone. */}
+          <div className="story-fade h-[calc(100%-29px)] overflow-hidden">{near && <ResultsPage embedded frozen sample saved={sample} onChange={noop} onEdit={noop} />}</div>
         </motion.div>
         <div className="mt-8">{cta}</div>
       </div>

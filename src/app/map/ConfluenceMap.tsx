@@ -33,19 +33,21 @@ export function ConfluenceMap({ model, done, fontSize, label, termOf, onOpen }: 
     return () => ro.disconnect();
   }, []);
   const w = width || 720; // before measuring (and in tests without layout), lay out at a common width
-  const fs = fontSize ?? (w >= 700 ? 15 : 14);
-  const L = useMemo(() => layoutConfluence(model, { width: w, fontSize: fs, done }), [model, w, fs, done]);
+  // Names and their small mono lines are never under 15px on screen (design/DESIGN.md §3).
+  const fs = fontSize ?? 15;
+  const L = useMemo(() => layoutConfluence(model, { width: w, fontSize: fs, metaSize: Math.max(15, fs * 0.82), done }), [model, w, fs, done]);
   const P = PALETTE;
 
   return (
     <div ref={box} className="relative w-full" style={{ height: L.height }}>
       <svg viewBox={`0 0 ${r1(L.width)} ${r1(L.height)}`} width={r1(L.width)} height={r1(L.height)} role="img" aria-label={label}
         className="absolute top-0 left-0 block">
-        {/* Each semester begins at a dotted sand shoreline, its name in mono under it. */}
+        {/* Each semester begins at a dotted sand shoreline, its name in mono under it (on one-sided maps, set against the
+            right edge so a long name like "summer after year 3" never runs off a narrow screen). */}
         {L.terms.map((t) => (
           <g key={t.code}>
             <line x1={0} x2={r1(L.width)} y1={r1(t.y + fs * 0.4)} y2={r1(t.y + fs * 0.4)} stroke={P.sand} strokeWidth={1.5} strokeDasharray="1.5 5" strokeLinecap="round" />
-            <text x={r1(L.sides === 2 ? 0 : L.rightEdge - fs * 0.4)} y={r1(t.y + fs * 1.75)} fontFamily={MONO} fontSize={r1(L.metaSize)} fill={P.blue} letterSpacing="0.04em">
+            <text x={r1(L.sides === 2 ? 0 : L.width)} textAnchor={L.sides === 2 ? "start" : "end"} y={r1(t.y + fs * 1.75)} fontFamily={MONO} fontSize={r1(L.metaSize)} fill={P.blue} letterSpacing="0.04em">
               {t.label.toLowerCase()}{t.more ? `  (+${t.more} more in the list)` : ""}
             </text>
           </g>

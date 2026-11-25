@@ -153,3 +153,21 @@ The owner found the pinned story took far too long to scroll, wanted things to a
 - **Bug hunt** (a scripted browser): a fast fling down and back up, resizing after playing, 320 px width, the skip link then scrolling up, leaving for the questions and coming back, reduced motion, a slow scroll (nothing plays before its window is in view), and a phone with motion on. One bug found and fixed: a resize after playing re-laid out the map and replayed a piece's delayed fade; each step now settles once its scene has finished.
 - **Measured:** at 4× processor slowdown, a reading-speed scroll through the story missed 0.6% of frames, worst 27 ms. axe: no violations at 1440 and 390 px.
 - **Also:** the closing logo is half the size and centred, and Privacy and data is centred.
+
+### Revision 3 and a full UI audit (2026-11-25)
+
+The owner sent phone screenshots where step 4 and the finished plan were cut off, and asked for a thorough bug check and smoother motion. Motion research and changes: `docs/STORY_DESIGN.md` §3, revision 3.
+
+**The audit** (a scripted browser, seven widths from 320 to 1440 px): the landing played through, the first question, and for three students (the CS sample, a Newark nursing junior, a first-year at another school) the review, every results tab and a goal's drawer. It reports clipped text, sideways overflow, text under 15 px, tap targets under 24 px and console errors. Found and fixed:
+
+| Finding | Where | Fix |
+|---|---|---|
+| Windows cut off mid-content | landing steps 1, 2, 4 on phones; the finished plan | windows as tall as their screens; fixed-height ones fade out at the bottom |
+| The finished plan cut sideways | landing at 320–360 px | full width on phones; the results' buttons wrap in narrow space; the tab row scrolls when it can't fit |
+| The fish on the progress gauge cut off | every question, narrow phones | the gauge measured 13 px characters but draws 15 px ones |
+| Map names at 14 px and their small lines at 11.5–12.3 px | Map tab and landing, every width | the screen map uses 15 px for both; the small line wraps to two lines when it must (the PDF keeps its print sizes) |
+| Semester names running off the map | one-sided map at 320 px | set against the right edge |
+| Goal titles only 23 px tall to tap | Map tab's edit list | a 43 px touch area, same layout |
+| "Is this plan right for you?" 22 px tall | results, feedback | 44 px |
+
+Each has a test. axe: no violations at 1440 and 390 px. Frames at 4× processor slowdown, reading-speed scroll: 1.7% missed, worst 32 ms (budget: under 5%, nothing over 50 ms).

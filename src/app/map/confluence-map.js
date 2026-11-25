@@ -23,12 +23,14 @@
  * @param {number} [opt.maxHeight]        If given, the fullest terms drop their lowest-priority goals until the map fits this height.
  * @param {number} [opt.maxBundle]        Widest the river may get. Default: 22% of width (two-sided) or 30% (one-sided).
  * @param {number} [opt.charW=0.6]        Average glyph width in em, for estimating line breaks.
+ * @param {number} [opt.metaSize]         Size of the small mono line under each name (default 0.82 of fontSize; the
+ *                                        screen passes 15, its floor). It wraps to two lines when it must.
  * @param {Iterable<string>} [opt.done]   Goal ids already checked off.
  * @param {string} [opt.sourceLabel]      Text at the top of the student's own strand.
  */
 export function layoutConfluence(model, opt = {}) {
   const width = opt.width ?? 720, sides = opt.sides ?? (width >= 560 ? 2 : 1);
-  const fs = opt.fontSize ?? 13, lh = fs * 1.25, metaFs = fs * 0.82, charW = opt.charW ?? 0.6;
+  const fs = opt.fontSize ?? 13, lh = fs * 1.25, metaFs = opt.metaSize ?? fs * 0.82, charW = opt.charW ?? 0.6;
   const done = new Set(opt.done ?? []);
   const base = (id) => id.split("@")[0];
 
@@ -68,7 +70,10 @@ export function layoutConfluence(model, opt = {}) {
     const leftEdge = cx - nL * sp - gap, rightEdge = cx + nR * sp + gap; // where names begin
     const labelW = sides === 2 ? Math.max(60, Math.min(leftEdge, width - rightEdge) - dotR * 2 - 6) : Math.max(60, width - rightEdge - dotR * 2 - 6);
     const cpl = Math.max(8, Math.floor(labelW / (fs * charW)));
-    const headH = fs * 2.3, blockH = lh * 2 + metaFs * 1.5 + fs * 0.7; // a name: up to two lines and a small line under it
+    // A name: up to two lines, then its small line (one, or two when it doesn't fit the width).
+    const metaCpl = Math.max(8, Math.floor(labelW / (metaFs * 0.6)));
+    const metaRows = Math.max(1, ...shown.flatMap((t) => t.items.map((g) => wrap(metaOf(g), metaCpl, 2).length)));
+    const headH = fs * 2.3, blockH = lh * 2 + metaFs * 1.5 * metaRows + fs * 0.7;
     const step = blockH + fs * 0.2; // one row: a name on the right and, on wide layouts, one on the left
 
     const strands = [], dots = [], labels = [], termsOut = [];
@@ -86,7 +91,7 @@ export function layoutConfluence(model, opt = {}) {
         dots.push({ id: g.goalId, x: dx, y: gy, r: dotR, gate: !!g.gate, done: isDone });
         const lines = wrap(g.title, cpl, 2);
         labels.push({ id: g.goalId, title: g.title, lines, meta: metaOf(g), gate: !!g.gate, done: isDone, late: !!g.late,
-          align: left ? "right" : "left", x: left ? dx - dotR - 6 : dx + dotR + 6, y: y, w: labelW, h: lines.length * lh + metaFs * 1.5 });
+          align: left ? "right" : "left", x: left ? dx - dotR - 6 : dx + dotR + 6, y: y, w: labelW, h: lines.length * lh + metaFs * 1.5 * wrap(metaOf(g), metaCpl, 2).length });
         if (sides === 1 || k % 2 === 1 || k === t.items.length - 1) y += step; // the row is full, or it is the term's last
       });
       y += fs * 0.6;

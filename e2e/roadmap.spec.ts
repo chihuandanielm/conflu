@@ -228,8 +228,10 @@ for (const phone of [false, true]) {
 
     // Nothing is pinned: each step is a short row, and the four together take about 3 screens.
     const rows = await story.locator("[data-story-step]").evaluateAll((els) => els.map((el) => (el as HTMLElement).offsetHeight / innerHeight));
-    expect(rows.reduce((a, b) => a + b, 0)).toBeLessThan(phone ? 3.6 : 3.2);
+    expect(rows.reduce((a, b) => a + b, 0)).toBeLessThan(phone ? 4.4 : 3.4);
     const map = step(3).locator("[inert]");
+    // Steps 2 to 4 are never cut off: each window is as tall as its screen (a phone showed step 4 cut mid-list).
+    for (const n of [2, 3, 4]) expect(await step(n).locator("[inert]").evaluate((w) => w.scrollHeight - w.clientHeight)).toBeLessThanOrEqual(1);
     if (!phone) {
       // Nothing has played before it's seen.
       await expect(picked).toHaveCount(0);
@@ -237,7 +239,7 @@ for (const phone of [false, true]) {
       // Step 1 plays once its window is in view: a campus, then 5 hours, picked in violet; "your pick" in the window's bar.
       await scrollDown(page, (await topOf(page, '[data-story-step="1"]')) - 40);
       await expect(step(1)).toHaveAttribute("data-play", "");
-      await expect(picked).toHaveText(["Rutgers–New Brunswick", "5 hours a week outside class"], { timeout: 4000 });
+      await expect(picked).toHaveText(["Rutgers–New Brunswick", "Software engineering", "5 hours a week outside class"], { timeout: 4000 });
       await expect.poll(() => picked.last().evaluate((el) => getComputedStyle(el).backgroundColor)).toBe("rgb(84, 86, 132)");
       // Steps 2 to 4, scrolling on: Do this now, the whole map, the steps ticked off in verdigris.
       for (const n of [2, 3, 4]) await scrollDown(page, (await topOf(page, `[data-story-step="${n}"]`)) - 40);
@@ -250,11 +252,11 @@ for (const phone of [false, true]) {
       await expect(map.getByText("you are here", { exact: true })).toBeInViewport();
       expect(await map.evaluate((w) => w.getBoundingClientRect().height >= w.querySelector("svg")!.getBoundingClientRect().height)).toBe(true);
       expect(await map.locator("svg > path").evaluateAll((ps) => ps.every((p) => getComputedStyle(p).opacity === "1"))).toBe(true);
-      await expect(picked).toHaveCount(2);
+      await expect(picked).toHaveCount(3);
       await expect(step(4).getByText(/^(\d) of \1 done$/)).toBeAttached();
     } else {
       // Reduced motion: every step finished from the start.
-      await expect(picked).toHaveCount(2);
+      await expect(picked).toHaveCount(3);
       for (const t of await ticks.all()) await expect(t).toBeChecked();
       await expect(map.getByText(/^Land your first role/).first()).toBeVisible();
     }

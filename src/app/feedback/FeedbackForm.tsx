@@ -37,7 +37,7 @@ export function FeedbackForm({ dataVersion, engineVersion, now = () => Date.now(
 
   return (
     <details className="group mt-4">
-      <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-11 cursor-pointer list-none flex-wrap items-center gap-x-1 [&::-webkit-details-marker]:hidden">
         Is this plan right for you? <span className="underline underline-offset-4">Send feedback</span>
       </summary>
       <form action={FEEDBACK_ACTION} method="POST" target="_blank" onSubmit={onSubmit} className="mt-4 flex max-w-[36em] flex-col gap-3">

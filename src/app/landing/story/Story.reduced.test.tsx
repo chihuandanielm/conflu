@@ -15,7 +15,7 @@ describe("How it works, with reduced motion", () => {
       expect(step.querySelector(".sticky")).toBeNull();
     }
     const intake = container.querySelector<HTMLElement>('[data-story-step="1"] [inert]')!;
-    expect(within(intake).getAllByRole("radio", { checked: true, hidden: true }).map((r) => r.textContent)).toEqual(["Rutgers–New Brunswick", "5 hours a week outside class"]);
+    expect(within(intake).getAllByRole("radio", { checked: true, hidden: true }).map((r) => r.textContent)).toEqual(["Rutgers–New Brunswick", "Software engineering", "5 hours a week outside class"]);
     const ticks = container.querySelectorAll<HTMLInputElement>('[data-story-step="4"] input.tick');
     expect(ticks.length).toBeGreaterThan(1);
     for (const t of ticks) expect(t.checked).toBe(true);

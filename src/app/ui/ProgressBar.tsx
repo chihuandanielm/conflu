@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 const FISH = "><>";
 const WATER = "~-~~-";
-/** Plex Mono advance at 13px (0.6 em). */
-const CHAR = 13 * 0.6;
+/** Plex Mono advance at the gauge's 15px (0.6 em). It was 13px, which made the line too long and cut the fish off. */
+const CHAR = 15 * 0.6;
 
 /**
  * The fish gauge (design/DESIGN.md §7.2): one mono line, water behind the fish, a green fish at the current position,
