@@ -199,6 +199,46 @@ a { color: var(--violet); text-decoration-color: var(--violet); }
 @keyframes landing-words-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .landing-words { animation: landing-words-in 700ms var(--ease) 800ms both; }
 
+/* How it works (docs/STORY_DESIGN.md §3): each step's scene plays once, on a clock, when the step's [data-play] is set.
+   Movement is transform and opacity; panels use the site's easing, small marks a gentle spring with a little overshoot.
+   Each piece's delay is its --d. Until a step plays, its pieces wait unseen; with reduced motion they show finished. */
+.story { --spring: cubic-bezier(0.34, 1.56, 0.64, 1); }
+.story-step:not([data-play]) :is(.sa, .story-cascade [role=radio], .story-meter .grid > span, .story-map svg > *, .story-map li > *) { opacity: 0; }
+.story-step[data-play] .sa-rise { animation: sa-rise 520ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .sa-left { animation: sa-left 560ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .sa-open { transform-origin: top; animation: sa-open 520ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .sa-pop { animation: sa-pop 460ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .sa-snap { animation: sa-snap 420ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .story-cascade [role=radio] { animation: sa-rise 420ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .story-meter .grid > span { animation: sa-pop 420ms var(--spring) var(--d, 0ms) both; }
+/* A pick is pressed: a quick dip, then it settles in violet. */
+.story-press [aria-checked=true] { animation: sa-press 320ms var(--spring); }
+/* The two question sheets: the first slides away left, the next comes in from the right. */
+.story-out { opacity: 0; transform: translateX(-36px); transition: opacity 360ms var(--ease), transform 360ms var(--ease); }
+.story-in { animation: sa-in 460ms var(--ease) both; }
+.story-wait { opacity: 0; }
+/* The map draws itself: streams trace (normalised to pathLength 1), dots and names arrive semester by semester. */
+.story-map path[pathLength] { stroke-dasharray: 1; }
+.story-step[data-play] .story-map path[pathLength] { animation: sa-draw 700ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .story-map svg > :is(g, circle, line, text) { animation: sa-fade 380ms var(--ease) var(--d, 0ms) both; }
+.story-step[data-play] .story-map svg > circle { transform-box: fill-box; transform-origin: center; animation: sa-pop 420ms var(--spring) var(--d, 0ms) both; }
+.story-step[data-play] .story-map li > * { animation: sa-fade 420ms var(--ease) var(--d, 0ms) both; }
+/* A step ticked off: the tick pops, the line strikes through. */
+.story-tick:checked { animation: sa-pop 380ms var(--spring); }
+.story-strike { background: linear-gradient(var(--green), var(--green)) no-repeat 0 58% / 0% 2px; transition: background-size 320ms var(--ease); }
+.story-strike[data-done] { background-size: 100% 2px; }
+.story-step[data-settled] :is(*, *::before, *::after) { animation: none !important; }
+@keyframes sa-rise { from { opacity: 0; transform: translateY(18px); } }
+@keyframes sa-left { from { opacity: 0; transform: translateX(-18px); } }
+@keyframes sa-open { from { opacity: 0; transform: scaleY(0.55); } }
+@keyframes sa-pop { from { opacity: 0; transform: scale(0.4); } }
+@keyframes sa-snap { from { opacity: 0; transform: scale(1.25); } }
+@keyframes sa-press { 40% { transform: scale(0.97); } }
+@keyframes sa-in { from { opacity: 0; transform: translateX(36px); } }
+@keyframes sa-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes sa-fade { from { opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .story *, .story *::before, .story *::after { animation: none !important; transition: none !important; }
 }

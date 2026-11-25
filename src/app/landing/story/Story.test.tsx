@@ -43,13 +43,30 @@ describe("How it works (the landing's story, docs/STORY_DESIGN.md)", () => {
     for (const n of [1, 2, 3, 4]) expect(container.querySelector(`[data-story-step="${n}"] .sr-only`)!.textContent).toMatch(/^Beside it is a picture of /);
   });
 
-  it("starts unplayed and pinned: each step is a tall section the screen stays pinned in", () => {
+  it("pins nothing: each step is one short row whose scene plays once it is in view, and settles", async () => {
     const { container } = render(<App />);
-    const step = container.querySelector<HTMLElement>('[data-story-step="1"]')!;
-    expect(step.className).toMatch(/h-\[230svh\]/);
-    expect(step.querySelector(".sticky")).not.toBeNull();
-    // Nothing picked yet: the campus question waits for the scroll.
-    expect(within(step.querySelector("[inert]") as HTMLElement).queryAllByRole("radio", { checked: true, hidden: true })).toHaveLength(0);
+    const steps = [...container.querySelectorAll<HTMLElement>("[data-story-step]")];
+    expect(steps).toHaveLength(4);
+    for (const step of steps) {
+      expect(step.className).not.toMatch(/svh|sticky/);
+      expect(step.querySelector(".sticky")).toBeNull();
+    }
+    // In this test browser everything is "in view" at once, so each scene plays on its clock and then settles.
+    expect(steps.every((s) => s.hasAttribute("data-play"))).toBe(true);
+    const step1 = steps[0].querySelector("[inert]") as HTMLElement;
+    await act(async () => { await new Promise((r) => setTimeout(r, 3000)); });
+    expect(within(step1).getAllByRole("radio", { checked: true, hidden: true }).map((r) => r.textContent)).toEqual(["Rutgers–New Brunswick", "5 hours a week outside class"]);
+    expect(steps.every((s) => s.hasAttribute("data-settled"))).toBe(true);
+    expect(steps[3].textContent).toMatch(/(\d) of \1 done/);
+  });
+
+  it("draws the whole map in its window: the map isn't cropped or slid inside a fixed frame", () => {
+    const { container } = render(<App />);
+    const win = container.querySelector<HTMLElement>('[data-story-step="3"] [inert]')!;
+    expect(win.className).not.toMatch(/\bh-\[/);
+    expect(win.querySelector(".story-map svg")).not.toBeNull();
+    // Only the must-do goals, so the step stays short.
+    expect(win.querySelectorAll(".story-map li").length).toBeGreaterThan(1);
   });
 
   it("Skip to the finished plan moves focus to the end of the story", async () => {

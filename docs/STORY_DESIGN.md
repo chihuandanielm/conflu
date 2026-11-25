@@ -45,45 +45,42 @@ The visitor literally follows the line from the first question to the goal. The 
 
 **Callouts instead of spotlights.** The rules allow no tints or dimming, so the thing to look at is framed with **drafting marks** instead: four small corner marks that draw in around it, and a short mono label in the window's title bar ("your pick", "look here first", "your goal", "done"). It's the same drafting language as the hero's crop marks and ruler.
 
-## 3. Motion
+## 3. Motion (revision 2, 2026-11-25)
 
-All motion follows the site's rules:
-- fades, short rises (16–24 px), lines drawing themselves, and the corner marks;
-- no bounce, no spring overshoot, no flashing;
-- one easing curve throughout, the site's `cubic-bezier(0.22, 0.61, 0.36, 1)`;
-- the painting stays the only animated picture. The story is screens arriving and lines drawing, not illustration.
+The first build pinned each step for 1.6 screens and scrubbed it with the scroll: about 6.5 screens to get through. The owner found it took far too long, asked for minimal scrolling with things animating as you pass, and for the animations to feel playful and inviting. The map step also broke: scrolling back up after it left only the bottom of the map in view, because the map had been slid up inside a fixed window to follow the drawing.
+
+**What the research says:**
+- Nielsen Norman Group: scroll-triggered effects should run once, the first time the visitor scrolls down, and stay off the main text ([scroll animations](https://www.nngroup.com/articles/scroll-animations/)).
+- GSAP's default trigger is "play once when it enters, then do nothing", and teams that tried pin + scrub + play-once together found the three don't combine; they chose an unpinned section that plays once ([Bitovi](https://bitovi.com/blog/prepare-for-anything-with-gsap)).
+- Playful product demos animate the real interface doing its job: a choice being made, a result arriving, a line being drawn ("show the work happening", [Advids](https://advids.co/blog/30-captivating-interface-animation-video-examples-for-modern-products)). Lines that draw themselves use `stroke-dasharray`/`stroke-dashoffset` with a measured path length; ticks get a small scale pop ([motion.dev SVG](https://motion.dev/docs/svg-animation)).
+- Grouped entrances stagger 30–80 ms apart; longer feels slow. Springs read as lively for small feedback (a press, a tick); standard easing stays for big panels.
+
+**The rules now:**
 
 | Rule | Why |
 |---|---|
-| **Forward only.** Each step's progress follows scrolling down and never goes back; scrolling up leaves everything as it was. | Asked for: the page flows downward, and nothing that appeared disappears. |
-| **Pinned briefly.** On a laptop each step holds for about 1.6 screens of scroll, on a phone about 1.3. Then the page carries on. | Long enough to see one idea; short enough that a fast scroller is never stuck. |
-| **One focal action per step,** in three beats: the screen arrives (0–25%), the action happens (25–75%), the callout marks it (75–100%). | A visitor scrolling quickly still catches the action; one scrolling slowly sees it unfold. |
-| **The spine leads.** It draws ahead of each step's screen, and its dot fills as that step's action completes. | It ties the steps into one journey and gives the eye somewhere to go next. |
-| **The end isn't pinned.** The finished plan rises in once when it enters view, then stays. | It's the reward. The visitor can look at it as long as they like. |
-| **Compositor-only.** Only `transform`, `opacity` and `clip-path` change, driven by motion values (no React render per frame). The map is revealed by clipping, not redrawn. | Smooth at the display's own refresh rate, 60, 120 Hz or more. |
+| **No pinning.** Each step is a normal row, about one window tall on a laptop (caption beside a window) and a caption over a window on a phone. The four steps take about 3 screens on a laptop instead of 6.5. | Minimal scrolling. |
+| **Play once on entering.** When a step is 40% in view, its scene plays on a clock (about 2 s), not tied to scroll speed. It never replays or rewinds; scrolling up leaves it finished. | A fast scroller still sees it; a slow one isn't made to scroll to advance it. |
+| **The spine follows the scroll.** The one charcoal line down the left grows with scrolling (forward only), so something answers every scroll. Each step's dot pops when its scene plays. | Something moves as you scroll, without making scroll the engine of every step. |
+| **Playful, in the field-guide way.** Small marks get a gentle spring with a little overshoot (a pick being pressed, a tick, a dot, the corner marks snapping in). Panels and windows use the site's easing (`cubic-bezier(0.22,0.61,0.36,1)`), no bounce. | Lively without becoming a cartoon; the screens stay readable. |
+| **The map is never cropped.** Its window is as tall as the map, and the map draws itself: each stream traces from where it joins down to the river, semester by semester, the goal dot pops last. The story shows the must-do goals, so it stays short. | Fixes the scroll-back bug and makes the whole path visible. |
+| **Compositor-friendly.** Transforms and opacity for movement; the only paint work is the map's strokes drawing once and the meter cells. | Smooth at 60, 120 Hz or more. |
 
-## 4. Layout
+**Each step's scene (about 2 s):**
+1. **Tell it where you are:** the campus options cascade in (40 ms apart); one is pressed (a quick dip) and turns violet; the sheet slides away left and the time question slides in from the right, like turning to the next question; 5 hours gets pressed; the corners snap round it; "your pick" appears in the window bar.
+2. **Get what to do now:** this semester's panel slides in; the hours meter's cells pop in one by one, 4 of the 5 filled ochre; the "Do this now" window opens down from its title bar; the corners snap round it; "look here first".
+3. **See the whole path:** the semester lines fade in, the streams trace down semester by semester, the names fade in beside them, the river's mouth and the goal dot pop; "your goal".
+4. **Do it, one step at a time:** the goal's steps tick off one by one (each tick pops, the line strikes through, the count goes up, the bar fills verdigris); "done".
+- **End:** the finished plan rises in once, the spine reaches the ring and the ring pops. Then the button.
 
-**Desktop (900 px and wider):**
-- the spine runs in a narrow gutter on the left;
-- then the caption column (about 4 parts) and the frozen screen in a window frame (about 7 parts);
-- the window is up to 680 px tall, at most 78% of the screen.
+**Reduced motion:** no movement at all; every scene is shown finished from the start.
 
-**Phone:**
-- the spine is a thin line on the left edge;
-- the caption is compact at the top of the pinned screen: "step 1", the title, one line;
-- the window sits under it, at about 60% of the screen height.
+## 4. Layout (revision 2)
 
-**Each caption:**
-- "step N" as a drafting kicker;
-- the title in bold Barlow;
-- one plain sentence;
-- the callout's mono label appears in the screen, not the caption.
-
-**Above the story:**
-- the heading "How it works";
-- one line: "One student, from the first question to a finished plan";
-- a text link, "Skip to the finished plan".
+- **Laptop (900 px and wider):** the spine in a narrow gutter on the left; the caption (about 4 parts) and the window (about 7 parts) side by side. The window is up to 520 px tall, except the map's, which is as tall as the map.
+- **Phone:** the spine on the left edge; the caption on top, the window under it (up to 480 px; the map's as tall as the map).
+- **Each caption:** "step N", the title in bold Barlow, one plain sentence.
+- **Above the story:** "How it works", the one line, and "Skip to the finished plan".
 
 ## 5. Words
 
@@ -100,14 +97,14 @@ Plain, short, no hype (the owner's standing rule).
 
 - **Frozen screens:** marked `aria-hidden` and `inert`. Nothing in them is focusable, and the global number-key shortcuts are off.
 - **Captions:** each has a short screen-reader line saying what the screen shows.
-- **Reduced motion:** no pinning and no movement. Every screen shows finished, with its callout drawn, and the spine is drawn complete.
-- **Skip link:** "Skip to the finished plan" jumps past the pinned steps.
+- **Reduced motion:** no movement. Every screen shows finished, with its callout drawn, and the spine is drawn complete.
+- **Skip link:** "Skip to the finished plan" jumps past the steps.
 - **Headings:** the landing keeps one h1. The story uses h2 for the section and h3 for the steps; the frozen screens' own headings are hidden with them.
 - **Contrast:** everything uses the existing tokens and contrast test. The axe scan runs at desktop and phone width.
 
 ## 7. Performance budget
 
-- **Mounting:** each step's screen mounts only when it comes within one screen of the viewport, and stays mounted after.
+- **Mounting:** each step's screen mounts in idle time after load, or when it comes within one screen of the viewport, and stays mounted after.
 - **Per frame:** no layout reads. Measurements (the map's height) happen once and on resize.
 - **Test:** a scripted scroll through the whole story, at 60 Hz and with the processor slowed 4×, records frame times. The target is fewer than 5% of frames missing a refresh on the 4× run, and no frame over 50 ms while scrolling. A frame misses when it takes over 25 ms (1.5 refreshes at 60 Hz): timer jitter alone puts perfect frames at 16.6–17 ms, so "over 16.7 ms" counted a third of them.
 - **Idle mounting:** the heavy screens also mount in idle time after the page loads, one per idle period, so a visitor reading the hero never pays for them mid-scroll.
@@ -116,8 +113,9 @@ Plain, short, no hype (the owner's standing rule).
 ## 8. Acceptance
 
 - At each step, a visitor sees the right focal action and callout: violet pick, ochre "Do this now", the map reaching the goal, verdigris ticks.
-- Scrolling back up changes nothing that has already played.
-- With reduced motion: no element is pinned, and everything shows finished.
+- Scrolling back up changes nothing that has already played, and the whole map stays in view.
+- The four steps take about 3 screens of scrolling on a laptop.
+- With reduced motion: nothing moves, and everything shows finished.
 - Nothing inside the story can be focused or clicked. The skip link and the buttons can.
 - The finished plan shows at the end, then the button.
 - Browser tests run on laptop and phone, with an axe scan and the frame-time test.

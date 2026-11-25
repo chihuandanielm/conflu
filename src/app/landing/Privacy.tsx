@@ -9,17 +9,17 @@ export function Privacy() {
   const sub = ["Self-hosted fonts", "Strict content security policy", "HTTPS only"];
   return (
     <footer className="mt-12 border-t-[1.5px] border-blue py-8 min-[760px]:mt-16">
-      <details className="group max-w-[46em]">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-3 font-display text-[1.375rem] font-bold [&::-webkit-details-marker]:hidden">
+      <details className="group mx-auto max-w-[46em]">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-center gap-3 font-display text-[1.375rem] font-bold [&::-webkit-details-marker]:hidden">
           <span aria-hidden="true" className="w-3.5 font-mono text-fact group-open:hidden">+</span>
           <span aria-hidden="true" className="hidden w-3.5 font-mono text-fact group-open:inline">-</span>
           Privacy and data
         </summary>
         <div className="mt-4 flex flex-col gap-4">
-          <ul aria-label="Privacy summary" className="flex flex-wrap gap-x-5 gap-y-1.5">
+          <ul aria-label="Privacy summary" className="flex flex-wrap justify-center gap-x-5 gap-y-1.5">
             {claims.map((c) => <li key={c} className="flex items-baseline gap-2"><span aria-hidden="true" className="dot dot--done translate-y-px" />{c}</li>)}
           </ul>
-          <ul aria-label="Security summary" className="fact flex flex-wrap gap-x-5 gap-y-1">
+          <ul aria-label="Security summary" className="fact flex flex-wrap justify-center gap-x-5 gap-y-1">
             {sub.map((c) => <li key={c}>{c}</li>)}
           </ul>
           <p>It doesn't set cookies, there's no analytics or tracking, and there's nothing to sign up for.</p>
