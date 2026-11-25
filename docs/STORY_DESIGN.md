@@ -43,7 +43,7 @@ The visitor literally follows the line from the first question to the goal. The 
 | 4. Do it, one step at a time | A goal's steps tick off one by one, the bar fills | **Verdigris:** done |
 | End | The finished plan rises into view, with the button | All of them together |
 
-**Callouts instead of spotlights.** The rules allow no tints or dimming, so the thing to look at is framed with **drafting marks** instead: four small corner marks that draw in around it, and a short mono label beside it ("your pick", "look here first", "you are here", "done"). It's the same drafting language as the hero's crop marks and ruler.
+**Callouts instead of spotlights.** The rules allow no tints or dimming, so the thing to look at is framed with **drafting marks** instead: four small corner marks that draw in around it, and a short mono label in the window's title bar ("your pick", "look here first", "your goal", "done"). It's the same drafting language as the hero's crop marks and ruler.
 
 ## 3. Motion
 
@@ -109,7 +109,8 @@ Plain, short, no hype (the owner's standing rule).
 
 - **Mounting:** each step's screen mounts only when it comes within one screen of the viewport, and stays mounted after.
 - **Per frame:** no layout reads. Measurements (the map's height) happen once and on resize.
-- **Test:** a scripted scroll through the whole story, at 60 Hz and with the processor slowed 4×, records frame times. The target is fewer than 5% of frames over 16.7 ms on the 4× run, and no long tasks over 50 ms while scrolling.
+- **Test:** a scripted scroll through the whole story, at 60 Hz and with the processor slowed 4×, records frame times. The target is fewer than 5% of frames missing a refresh on the 4× run, and no frame over 50 ms while scrolling. A frame misses when it takes over 25 ms (1.5 refreshes at 60 Hz): timer jitter alone puts perfect frames at 16.6–17 ms, so "over 16.7 ms" counted a third of them.
+- **Idle mounting:** the heavy screens also mount in idle time after the page loads, one per idle period, so a visitor reading the hero never pays for them mid-scroll.
 - **Weight:** no new libraries. It uses `motion`, which the site already ships.
 
 ## 8. Acceptance

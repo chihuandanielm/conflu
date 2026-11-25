@@ -155,7 +155,6 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   if (step === "intro") {
     screen = <Landing hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
       onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
-      onEditSample={(a) => { dispatch({ type: "set", patch: a }); dispatch({ type: "go", step: "review" }); }}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} onBack={back}

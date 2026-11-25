@@ -18,7 +18,7 @@ function initialView(): View {
 }
 /**
  * The app: the landing and the questions (IntakeFlow), then the results. Screens change by fading (design/DESIGN.md §8).
- * The landing's sample plan expands in place on the landing (Landing.tsx) and is held there, in memory only.
+ * The landing's "How it works" story ends on a frozen sample plan (landing/story/Story.tsx), held in memory only.
  */
 export function App() {
   const [view, setView] = useState<View>(initialView);

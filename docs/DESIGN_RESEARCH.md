@@ -134,3 +134,12 @@ Checks run:
 - Caption: "A confluence of streams will carry you toward your goal".
 - Masthead: "no account needed".
 - Removed: the "confluence.txt" label and "fig. 1".
+
+## How it works, as a scroll story (2026-11-25)
+
+The owner found the landing a bit overwhelming and asked for How it works to become an animated walk through the tool (questions, plan, map, next step) that ends on the finished sample plan, replacing the "See a sample plan" button. The scheme, worked out from six kinds of visitor, is in `docs/STORY_DESIGN.md`; design/DESIGN.md §7.1 has what shipped.
+
+- **Taken from the references:** Gianluca Boccia's single self-drawing line (the spine) and Roadtrip Nation's route line through the page; Brilliant's and Mimo's "the product is the picture" (real, frozen screens); teenage engineering's drafting marks (the callouts).
+- **The logo:** the owner's new script logo, traced to a vector and recoloured: charcoal script, verdigris dots and ring. The ring is where the spine ends.
+- **Measured:** a steady scroll through the story with the processor slowed 4×, after the page has sat for 3 s, missed under 1% of frames (over 25 ms) with the worst at about 27 ms. The heavy screens (the map, the whole results page) mount in idle time after load; mounted mid-scroll they each cost one 50–110 ms task. The browser test checks this budget.
+- **Checks:** an axe WCAG 2.1 AA scan of the whole landing at 1440 and 390 px found no violations.
