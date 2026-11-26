@@ -78,7 +78,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
         <div className="mx-auto max-w-[1240px] px-5 min-[760px]:px-8">
           {/* Masthead: small type in the corners, a rule under it. */}
           <nav className="grid grid-cols-[1fr_auto] items-center gap-4 border-b-[1.5px] border-blue py-4 min-[900px]:grid-cols-[1fr_auto_1fr]">
-            <img src={logoUrl} alt="conflu" width={1902} height={1018} className="h-[46px] w-auto min-[760px]:h-[54px]" />
+            <img src={logoUrl} alt="conflu" width={1940} height={1110} className="h-[46px] w-auto min-[760px]:h-[54px]" />
             <span className="fact hidden min-[900px]:block">a career plan, one semester at a time</span>
             <span className="fact justify-self-end">no account needed</span>
           </nav>
@@ -130,7 +130,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
             {cta(primary.label, primary.go)}
           </section>
 
-          <img src={logoUrl} alt="" aria-hidden="true" width={1902} height={1018} className="mx-auto mt-12 block h-auto w-full max-w-[490px] min-[760px]:mt-16" />
+          <img src={logoUrl} alt="" aria-hidden="true" width={1940} height={1110} className="mx-auto mt-12 block h-auto w-full max-w-[490px] min-[760px]:mt-16" />
 
           <Privacy />
         </div>
