@@ -87,8 +87,10 @@ function resumeStep(): ScreenId {
   return screenOf(missing && saved.step === "review" ? missing : saved.step, a);
 }
 
-export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, initialAnswers }: {
+export function IntakeFlow({ onBuild, startAt, onContinuePlan, mapReady, onStartOver, initialAnswers }: {
   onBuild: (a: Answers) => void; startAt?: StepId | ScreenId; onContinuePlan?: () => void; onStartOver?: () => void; initialAnswers?: Answers;
+  /** A saved plan whose map is finalized: the landing offers "See my map". */
+  mapReady?: boolean;
 }) {
   const [state, dispatch] = useReducer(reducer, undefined, (): IntakeState => {
     const s = initialIntake();
@@ -154,7 +156,7 @@ export function IntakeFlow({ onBuild, startAt, onContinuePlan, onStartOver, init
   let screen: ReactNode;
   if (step === "intro") {
     screen = <Landing hasProgress={hasProgress} onStart={() => dispatch({ type: "start" })}
-      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan}
+      onResume={() => dispatch({ type: "go", step: resumeStep() })} onContinuePlan={onContinuePlan} mapReady={mapReady}
       onStartOver={() => { onStartOver?.(); dispatch({ type: "reset" }); dispatch({ type: "start" }); }} />;
   } else if (step === "review") {
     screen = <Review answers={answers} onBack={back}

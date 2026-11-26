@@ -8,7 +8,7 @@ import { remove } from "./state/storage.ts";
 import { parseShareHash } from "./state/share.ts";
 import { todayISO } from "./today.ts";
 
-type View = { name: "intake"; startAt?: "review"; key: number; shared?: Answers } | { name: "results" };
+type View = { name: "intake"; startAt?: "review"; key: number; shared?: Answers } | { name: "results"; tab?: "map" };
 
 /** A shared link opens the review screen pre-filled. The hash is cleared at once so answers don't linger in the address bar. */
 function initialView(): View {
@@ -39,15 +39,17 @@ export function App() {
         onContinuePlan={saved ? () => {
           // Same data: re-run for today's date so the current term stays right. Older data: show it as saved, with a refresh notice.
           if (!isOutdated(saved)) update(refresh(saved, todayISO()));
-          setView({ name: "results" });
+          // A finalized map: "See my map" opens the Map tab. Otherwise the plan opens where it always does.
+          setView({ name: "results", ...(saved.finalized ? { tab: "map" as const } : {}) });
         } : undefined}
+        mapReady={!!saved?.finalized}
         onStartOver={startOver} />
     );
   } else if (!saved) {
     screen = <p role="status" className="sr-only">Building your plan</p>;
   } else {
     screen = (
-      <ResultsPage saved={saved} onChange={update}
+      <ResultsPage saved={saved} onChange={update} initialTab={view.tab}
         onEdit={() => setView({ name: "intake", startAt: "review", key: Date.now() })}
         onStartOver={startOver} />
     );

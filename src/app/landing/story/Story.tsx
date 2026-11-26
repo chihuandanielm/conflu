@@ -38,7 +38,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
  * first", the map, verdigris done), marked by drafting corners and a label in the window's bar. With reduced motion
  * nothing moves and every scene shows finished.
  */
-export function Story({ cta }: { cta: ReactNode }) {
+export function Story() {
   const reduced = !!useReducedMotion();
   const sample = useMemo(() => createSaved(SAMPLE_ANSWERS, todayISO()), []);
   const core = useMemo(() => withoutOptions(sample.plan), [sample]);
@@ -58,7 +58,6 @@ export function Story({ cta }: { cta: ReactNode }) {
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
         <div>
           <h2 id="how-h" className="text-[2.625rem] leading-none min-[760px]:text-[3.5rem]">How it works</h2>
-          <p className="mt-4 max-w-[36em]">One student, from the first question to a finished plan.</p>
         </div>
         <button type="button" onClick={skip} className="btn btn--text -mr-2">Skip to the finished plan <span aria-hidden="true" className="font-mono">-&gt;</span></button>
       </div>
@@ -90,7 +89,7 @@ export function Story({ cta }: { cta: ReactNode }) {
           {(s) => term && <NextScene {...s} plan={core} term={term} />}
         </Step>
       </div>
-      <Finale ref={end} sample={sample} cta={cta} reduced={reduced} />
+      <Finale ref={end} sample={sample} reduced={reduced} />
     </section>
   );
 }
@@ -309,8 +308,9 @@ function NextScene({ play, reduced, plan, term }: Scene & { plan: Plan; term: Pl
   );
 }
 
-/** The end of the story: the spine reaches the ring, and the finished sample plan rises into view once; then the button. */
-function Finale({ ref, sample, cta, reduced }: { ref: React.Ref<HTMLElement>; sample: SavedPlan; cta: ReactNode; reduced: boolean }) {
+/** The end of the story: the spine reaches the ring, and the finished sample plan rises into view once. (The button comes
+ *  just after, in the landing's closing panel.) */
+function Finale({ ref, sample, reduced }: { ref: React.Ref<HTMLElement>; sample: SavedPlan; reduced: boolean }) {
   const local = useRef<HTMLElement>(null);
   const near = useNear(local);
   const setRefs = (el: HTMLElement | null) => { local.current = el; if (typeof ref === "function") ref(el); else if (ref) (ref as React.RefObject<HTMLElement | null>).current = el; };
@@ -340,7 +340,6 @@ function Finale({ ref, sample, cta, reduced }: { ref: React.Ref<HTMLElement>; sa
               full width (out past the spine), so the plan inside is laid out as wide as it is on a real phone. */}
           <div className="story-fade h-[calc(100%-29px)] overflow-hidden">{near && <ResultsPage embedded frozen sample saved={sample} onChange={noop} onEdit={noop} />}</div>
         </motion.div>
-        <div className="mt-8">{cta}</div>
       </div>
     </section>
   );

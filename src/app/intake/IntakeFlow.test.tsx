@@ -22,9 +22,9 @@ describe("IntakeFlow", () => {
     expect(screen.getByRole("heading", { level: 2, name: "How it works" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "The whole path, as a map" })).toBeNull();
     expect(screen.getByText("checked resources")).toBeInTheDocument();
-    // The button in the hero, at the end of the story, and in the closing panel; none in the nav.
+    // The button in the hero and in the closing panel; none in the nav, none at the end of the story.
     expect(within(screen.getByRole("navigation")).queryByRole("button")).toBeNull();
-    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(3);
+    expect(screen.getAllByRole("button", { name: /^Build my plan/ })).toHaveLength(2);
     fireEvent.click(screen.getAllByRole("button", { name: /^Build my plan/ })[0]); await act(async () => {});
     // The words fade, then the questions fade in.
     expect(heading()).toBe("Know what to do now.");
