@@ -30,7 +30,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200,
         "finalUrl": "https://ithelp.rutgers.edu/sp?id=kb_article&sysparm_article=KB0012583"
       },
@@ -71,7 +71,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -111,7 +111,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -151,7 +151,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -189,7 +189,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -226,7 +226,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -264,7 +264,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -300,7 +300,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -337,7 +337,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -373,7 +373,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -410,7 +410,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -447,7 +447,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -483,7 +483,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -519,7 +519,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -555,7 +555,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -593,7 +593,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 403,
         "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
@@ -630,7 +630,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -666,7 +666,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -701,7 +701,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -737,7 +737,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -773,7 +773,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -810,7 +810,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 403,
         "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
@@ -846,7 +846,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -881,7 +881,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -923,7 +923,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": [
@@ -966,7 +966,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 403,
         "note": "Confirmed by search; automated check was refused (HTTP 403)."
       },
@@ -1006,7 +1006,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1040,7 +1040,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1076,7 +1076,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200,
         "note": "Confirmed by search; automated check was refused (bot wall)."
       },

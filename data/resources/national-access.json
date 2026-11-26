@@ -41,7 +41,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -79,7 +79,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -115,7 +115,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -151,7 +151,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -187,7 +187,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -223,7 +223,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -261,7 +261,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -297,7 +297,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -344,7 +344,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -385,7 +385,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -426,7 +426,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -468,7 +468,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -515,7 +515,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -565,7 +565,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -601,7 +601,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -635,7 +635,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -678,7 +678,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -716,7 +716,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -752,7 +752,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -788,7 +788,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -825,7 +825,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200,
         "note": "Site refused the automated check (bot wall); open it by hand."
       },
@@ -860,7 +860,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -899,7 +899,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -934,7 +934,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -974,7 +974,7 @@
       "statusNote": null,
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 403,
         "note": "Site refused the automated check (HTTP 403); open it by hand."
       },
@@ -1012,7 +1012,7 @@
       "statusNote": "The 2026 cycle was postponed pending State Department updates.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1049,7 +1049,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1090,7 +1090,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1129,7 +1129,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1169,7 +1169,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1209,7 +1209,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1245,7 +1245,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1281,7 +1281,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1318,7 +1318,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1359,7 +1359,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1400,7 +1400,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1437,7 +1437,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -1474,7 +1474,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1512,7 +1512,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1550,7 +1550,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1588,7 +1588,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1626,7 +1626,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1664,7 +1664,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1705,7 +1705,7 @@
       "statusNote": null,
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1745,7 +1745,7 @@
       "statusNote": null,
       "verification": {
         "state": "search-confirmed",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "note": "Confirmed by search; automated check was refused (HTTP 403).",
         "httpStatus": 403
       },
@@ -1788,7 +1788,7 @@
       "statusNote": "Ran its final cohort in summer 2026 after its funder (RWJF) ended support. Kept here so the site can suggest alternatives.",
       "verification": {
         "state": "link-checked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": 200
       },
       "tags": []
@@ -1826,7 +1826,7 @@
       "statusNote": "Funded for FY2026 after a proposed elimination, but some campus grants were cut and race-based criteria were removed.",
       "verification": {
         "state": "blocked",
-        "checkedOn": "2026-11-25",
+        "checkedOn": "2026-11-26",
         "httpStatus": null,
         "note": "Site refused the automated check (CERT_HAS_EXPIRED); open it by hand."
       },
