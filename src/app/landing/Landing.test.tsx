@@ -55,3 +55,15 @@ describe("coming back with a plan", () => {
     expect(screen.queryByRole("button", { name: /^(See my map|Continue your plan)/ })).toBeNull();
   });
 });
+
+describe("Privacy and data", () => {
+  it("states the facts plainly: what's saved where, the outside services, and the security settings", () => {
+    render(<App />);
+    const privacy = screen.getByText("Privacy and data").closest("details")!;
+    for (const s of ["on your device", "outside services", "security"]) expect(within(privacy).getByText(s)).toBeInTheDocument();
+    for (const term of ["Your plan", "Also saved", "Deleting it", "Share links", "PDF", "GitHub Pages", "Formspree", "Code", "Links", "Fonts"])
+      expect(within(privacy).getByText(term, { selector: "dt" })).toBeInTheDocument();
+    expect(within(privacy).getByText(/Only used if you send feedback\. Gets your email, your message and your IP address\./)).toBeInTheDocument();
+    expect(privacy.textContent).not.toMatch(/Under the hood|only hears from you|touch your visit/);
+  });
+});

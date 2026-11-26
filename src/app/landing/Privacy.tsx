@@ -22,30 +22,36 @@ export function Privacy() {
           <ul aria-label="Security summary" className="fact flex flex-wrap justify-center gap-x-5 gap-y-1">
             {sub.map((c) => <li key={c}>{c}</li>)}
           </ul>
-          <p>It doesn't set cookies, there's no analytics or tracking, and there's nothing to sign up for.</p>
-          <p>
-            Under the hood it's just files (pages, fonts, and the data the plans are made from) handed to your browser by GitHub Pages. Your plan is
-            worked out in your browser, on your device. So you can come back to it, your answers, your plan, and the steps and courses you tick are kept
-            in this browser's local storage, and nowhere else. The only other things it keeps are a small note that the landing's painting has already
-            played, so it doesn't paint again each time (that one disappears when you close the tab), and, if you send feedback, when you sent it, so
-            the form can stop repeats. Clearing this site's data in your browser removes all of it.
-          </p>
-          <p>
-            A share link carries your answers in the part of the address after the #, which browsers don't send to any server, and it leaves out your
-            answers about identity, gender, and citizenship. The PDF is made in your browser too.
-          </p>
-          <p className="label">A few outside services do touch your visit:</p>
+          <p className="kicker mt-2">on your device</p>
+          <dl className="grid gap-x-5 gap-y-2 min-[600px]:grid-cols-[9em_1fr]">
+            <dt className="label">Your plan</dt>
+            <dd>Built in your browser. Your answers, plan, ticked steps and ticked courses are saved in this browser's local storage. They aren't sent to any server.</dd>
+            <dt className="label">Also saved</dt>
+            <dd>A note that the landing painting has played (deleted when you close the tab). If you send feedback, the time you sent it.</dd>
+            <dt className="label">Deleting it</dt>
+            <dd>Clear this site's data in your browser settings.</dd>
+            <dt className="label">Share links</dt>
+            <dd>Your answers go after the # in the link. Browsers don't send that part to servers. Identity, gender and citizenship answers are left out.</dd>
+            <dt className="label">PDF</dt>
+            <dd>Made in your browser.</dd>
+          </dl>
+          <p className="kicker mt-2">outside services</p>
           <dl className="grid gap-x-5 gap-y-2 min-[600px]:grid-cols-[9em_1fr]">
             <dt className="label">GitHub Pages</dt>
-            <dd>hosts the site, so it sees standard request info, including IP addresses, the way any host does. That stays with GitHub under their privacy statement.</dd>
+            <dd>Hosts the site. Gets standard request data, including your IP address. GitHub's privacy statement applies.</dd>
             <dt className="label">Formspree</dt>
-            <dd>only hears from you if you use the feedback form on your plan. It gets your email and message, plus your IP address for spam filtering.</dd>
+            <dd>Only used if you send feedback. Gets your email, your message and your IP address.</dd>
           </dl>
-          <p>
-            On the security side, the page only runs code from this site and doesn't tell other sites where you came from when you click away. The fonts
-            are hosted here, not by Google.
-          </p>
-          <p>If you spot something off, the feedback form at the bottom of your plan reaches me directly.</p>
+          <p className="kicker mt-2">security</p>
+          <dl className="grid gap-x-5 gap-y-2 min-[600px]:grid-cols-[9em_1fr]">
+            <dt className="label">Code</dt>
+            <dd>Only code from this site runs on the page.</dd>
+            <dt className="label">Links</dt>
+            <dd>Other sites aren't told you came from here.</dd>
+            <dt className="label">Fonts</dt>
+            <dd>Hosted on this site.</dd>
+          </dl>
+          <p>Questions or problems: use the feedback form at the bottom of your plan.</p>
         </div>
       </details>
     </footer>
