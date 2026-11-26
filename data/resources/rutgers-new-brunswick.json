@@ -847,10 +847,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "broken",
         "checkedOn": "2026-11-26",
-        "httpStatus": 200,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 500,
+        "note": "Link failed (HTTP 500); needs a new URL."
       },
       "tags": []
     },
