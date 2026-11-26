@@ -289,10 +289,9 @@
       "status": "paused",
       "statusNote": "The 2026 application cycle was postponed pending State Department updates.",
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-26",
-        "httpStatus": 202,
-        "note": "Site refused the automated check (bot wall); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },
