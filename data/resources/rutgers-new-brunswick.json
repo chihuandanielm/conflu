@@ -847,10 +847,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "broken",
+        "state": "blocked",
         "checkedOn": "2026-11-26",
-        "httpStatus": 500,
-        "note": "Link failed (HTTP 500); needs a new URL."
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     },
@@ -2474,9 +2474,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-26",
-        "httpStatus": 200
+        "httpStatus": 200,
+        "note": "Site refused the automated check (bot wall); open it by hand."
       },
       "tags": []
     }
