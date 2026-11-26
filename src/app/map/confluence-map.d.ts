@@ -4,7 +4,7 @@ export interface MapGoal { goalId: string; title: string; lane?: string; hours?:
 export interface MapTerm { code: string; label: string; items: MapGoal[] }
 export interface MapModel { terms: MapTerm[]; outcome: string }
 export interface MapOptions {
-  width?: number; sides?: 1 | 2; fontSize?: number; maxPerTerm?: number; maxHeight?: number; maxBundle?: number; charW?: number;
+  width?: number; sides?: 1 | 2; fontSize?: number; maxPerTerm?: number; maxHeight?: number; maxBundle?: number; charW?: number; metaSize?: number;
   done?: Iterable<string>; sourceLabel?: string;
 }
 export interface MapStrand { id: string; gate: boolean; done: boolean; x: number; y: number; left: boolean; from: number; d: string }

@@ -96,3 +96,18 @@ describe("confluence map layout", () => {
     expect(factLine({ goalId: "f-fafsa@Y1", lane: "foundation", hours: 2, gate: false, partial: false }, "1F")).toBe("foundation · about 2 hours, once");
   });
 });
+
+describe("on screen: nothing under 15px", () => {
+  it("takes a separate size for the small line under each name, and makes room when it wraps", async () => {
+    const { layoutConfluence } = await import("./confluence-map.js");
+    const model = { outcome: "Land your first role", terms: [{ code: "2F", label: "Year 2 · Fall", items: [
+      { goalId: "a", title: "Build and ship a personal project", category: "experience", hours: 1, recurring: true, importance: "must" },
+      { goalId: "b", title: "Solve 100 problems", category: "skills", hours: 2, recurring: true, importance: "must" },
+    ] }] } as never;
+    const print = layoutConfluence(model, { width: 320, fontSize: 15 });
+    const screenL = layoutConfluence(model, { width: 320, fontSize: 15, metaSize: 15 });
+    expect(print.metaSize).toBeCloseTo(12.3);
+    expect(screenL.metaSize).toBe(15);
+    expect(screenL.height).toBeGreaterThanOrEqual(print.height);
+  });
+});

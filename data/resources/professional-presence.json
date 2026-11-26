@@ -1120,10 +1120,9 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "blocked",
+        "state": "link-checked",
         "checkedOn": "2026-11-25",
-        "httpStatus": 403,
-        "note": "Site refused the automated check (HTTP 403); open it by hand."
+        "httpStatus": 200
       },
       "tags": []
     },

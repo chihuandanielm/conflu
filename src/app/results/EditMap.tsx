@@ -121,7 +121,7 @@ function EditRow({ it, term, onOpen, onDone, onSkip }: { it: PlanItem; term: str
     <li className={`flex flex-wrap items-center gap-x-4 gap-y-2 border-b-[1.5px] border-blue py-3 pr-1 ${must ? "border-l-[3px] pl-3" : "pl-1"}`}>
       <span aria-hidden="true" className={`dot ${must ? "dot--must" : ""}`} />
       <div className="min-w-[12em] flex-1">
-        <button type="button" onClick={onOpen} className="title text-left text-[1.1875rem] leading-[1.2] text-blue underline-offset-4 hover:underline">{it.title}</button>
+        <button type="button" onClick={onOpen} className="title relative text-left text-[1.1875rem] leading-[1.2] text-blue underline-offset-4 after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] hover:underline">{it.title}</button>
         <span className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className={`fact px-1.5 ${must ? "bg-blue text-sage" : "border-[1.5px] border-blue"}`}>{IMPORTANCE[it.importance].label}</span>
           <span className="fact">{it.option ? `${factLine({ ...it, gate: false })} · option` : factLine({ ...it, gate: false }, term)}</span>

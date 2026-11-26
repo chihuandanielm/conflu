@@ -54,11 +54,11 @@ describe("How it works (the landing's story, docs/STORY_DESIGN.md)", () => {
     // In this test browser everything is "in view" at once, so each scene plays on its clock and then settles.
     expect(steps.every((s) => s.hasAttribute("data-play"))).toBe(true);
     const step1 = steps[0].querySelector("[inert]") as HTMLElement;
-    await act(async () => { await new Promise((r) => setTimeout(r, 3000)); });
-    expect(within(step1).getAllByRole("radio", { checked: true, hidden: true }).map((r) => r.textContent)).toEqual(["Rutgers–New Brunswick", "5 hours a week outside class"]);
+    await act(async () => { await new Promise((r) => setTimeout(r, 4200)); });
+    expect(within(step1).getAllByRole("radio", { checked: true, hidden: true }).map((r) => r.textContent)).toEqual(["Rutgers–New Brunswick", "Software engineering", "5 hours a week outside class"]);
     expect(steps.every((s) => s.hasAttribute("data-settled"))).toBe(true);
     expect(steps[3].textContent).toMatch(/(\d) of \1 done/);
-  });
+  }, 10_000);
 
   it("draws the whole map in its window: the map isn't cropped or slid inside a fixed frame", () => {
     const { container } = render(<App />);
@@ -89,5 +89,16 @@ describe("How it works (the landing's story, docs/STORY_DESIGN.md)", () => {
 
   it("is a real student's answers: every required question is answered", () => {
     for (const k of ["status", "majorId", "year", "semester", "trackId", "horizon", "school", "summer"] as const) expect(SAMPLE_ANSWERS[k]).toBeTruthy();
+  });
+});
+
+describe("How it works leaves the keyboard alone", () => {
+  it("doesn't take over number keys (the frozen question screens have their shortcuts off)", () => {
+    render(<App />);
+    for (const key of ["1", "2", "5"]) {
+      const e = new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true });
+      window.dispatchEvent(e);
+      expect(e.defaultPrevented).toBe(false);
+    }
   });
 });

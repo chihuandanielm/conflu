@@ -191,7 +191,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
           <p className="fact mt-3">{planSummary(answers).toLowerCase()}</p>
         </div>
         <div>
-          <div className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap min-[380px]:flex-nowrap min-[600px]:flex-wrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
+          <div className="mt-4 flex w-fit max-w-full flex-wrap gap-2 [&_.btn]:whitespace-nowrap [&_.btn]:px-3 [&_.btn]:text-small min-[600px]:[&_.btn]:px-4 min-[600px]:[&_.btn]:text-body">
             <Button variant="outline" small onClick={() => void downloadPdf()} disabled={pdfState === "working"}
               aria-describedby={pdfState === "error" || pdfState === "stale" ? "pdf-error" : undefined}>
               {pdfState === "working" ? "Preparing PDF" : "Download PDF"}
@@ -216,7 +216,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
       {/* The page under the sticky tabs. */}
       <div className="min-h-dvh">
         <nav ref={tablist} inert={!!open} aria-label="Plan, map and resources" className="paper sticky top-0 z-20">
-          <div role="tablist" aria-label="Your plan" onKeyDown={onTabKey} className="mx-auto flex max-w-[1000px] border-b-[1.5px] border-blue min-[600px]:mx-5 min-[1040px]:mx-auto">
+          <div role="tablist" aria-label="Your plan" onKeyDown={onTabKey} className="mx-auto flex max-w-[1000px] overflow-x-auto border-b-[1.5px] border-blue min-[600px]:mx-5 min-[1040px]:mx-auto">
             {TABS.map((t) => (
               <button key={t.id} type="button" role="tab" id={tabIds[t.id]} aria-selected={tab === t.id} aria-controls={panelId}
                 tabIndex={tab === t.id ? 0 : -1} onClick={() => choose(t.id)}
