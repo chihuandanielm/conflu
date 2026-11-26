@@ -1981,9 +1981,10 @@
       "status": "active",
       "statusNote": null,
       "verification": {
-        "state": "link-checked",
+        "state": "blocked",
         "checkedOn": "2026-11-26",
-        "httpStatus": 200
+        "httpStatus": null,
+        "note": "Site refused the automated check (UND_ERR_CONNECT_TIMEOUT); open it by hand."
       },
       "tags": []
     },
