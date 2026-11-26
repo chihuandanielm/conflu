@@ -52,7 +52,7 @@ const ALL_TABS: { id: Tab; label: string }[] = [
  * Rutgers major's course list, or how to read a degree audit) that stick to the top once the header has scrolled away. The page fades in as a whole (App.tsx). The Plan tab opens on what to do now: the "Do this now" card, this semester and good to
  * know, "Why this order"; then where you're headed, what you have and need, coming up, checked off and habits.
  */
-export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false, embedded = false, frozen = false }: {
+export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = false, embedded = false, frozen = false, initialTab }: {
   saved: SavedPlan; onChange: (s: SavedPlan) => void; onEdit: () => void;
   /** A real plan: unused here ("Start over" is on the Edit answers screen, design/DESIGN.md §7.4 #0). The sample plan:
    *  "Build my own plan", which starts the questions. */
@@ -64,6 +64,8 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
   embedded?: boolean;
   /** A picture of the page (the landing's story): the sample note, which invites trying things, is left out. */
   frozen?: boolean;
+  /** The tab it opens on (the landing's "See my map" opens the Map tab). Default: Plan. */
+  initialTab?: Tab;
 }) {
   const { plan, answers } = saved;
   const reduce = useReducedMotion();
@@ -101,7 +103,7 @@ export function ResultsPage({ saved, onChange, onEdit, onStartOver, sample = fal
   const openGoal = useCallback((goalId: string) => { const hit = findItem(plan, goalId); if (hit) setOpen({ item: hit.it, term: hit.t }); }, [plan]);
 
   // Tabs (design/DESIGN.md §7.4a): a real tablist; arrow keys move between tabs; the choice is not saved.
-  const [tab, setTab] = useState<Tab>("plan");
+  const [tab, setTab] = useState<Tab>(initialTab ?? "plan");
   const tabIds = { plan: useId(), map: useId(), resources: useId(), courses: useId() };
   const hasCourses = !!requirementsFor(answers.majorId, answers.school);
   // Phase 6.2: with no course list (another school), the Courses tab explains the degree audit instead.

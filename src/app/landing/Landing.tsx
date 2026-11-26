@@ -25,8 +25,10 @@ const hasPainted = () => { try { return sessionStorage.getItem(PAINTED_KEY) === 
  * button; the logo large; and the privacy and data note. Every way out runs the same exit: the words fade, the page
  * returns to the top while nothing shows, and the next screen fades in.
  */
-export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinuePlan }: {
+export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinuePlan, mapReady = false }: {
   onStart: () => void; hasProgress: boolean; onResume: () => void; onStartOver: () => void; onContinuePlan?: () => void;
+  /** The student has a saved plan and has finalized its map: the way back in is "See my map" (it opens the Map tab). */
+  mapReady?: boolean;
 }) {
   const reduce = !!useReducedMotion();
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -54,7 +56,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
     leaveTimer.current.push(window.setTimeout(go, (WORDS_OUT_S + HANDOVER_S) * 1000));
   };
 
-  const primary = onContinuePlan ? { label: "Continue your plan", go: onContinuePlan }
+  const primary = onContinuePlan ? { label: mapReady ? "See my map" : "Continue your plan", go: onContinuePlan }
     : hasProgress ? { label: "Continue where you left off", go: onResume } : { label: "Build my plan", go: onStart };
   /** The buttons: square, stacked, full width on a phone, with the arrow at the far end. */
   const cta = (label: string, go: () => void, kind: "solid" | "outline" = "solid") => (
@@ -67,7 +69,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
 
   const stats = [
     [resources.length, "checked resources"], [tracks.filter((t) => t.id !== "exploring").length, "career paths"],
-    [(requirementsFile as { requirements: unknown[] }).requirements.length, "major course lists"], [0, "accounts or trackers"],
+    [(requirementsFile as { requirements: unknown[] }).requirements.length, "major course lists"],
   ] as const;
 
   return (
@@ -77,10 +79,9 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
         inert={leaving}>
         <div className="mx-auto max-w-[1240px] px-5 min-[760px]:px-8">
           {/* Masthead: small type in the corners, a rule under it. */}
-          <nav className="grid grid-cols-[1fr_auto] items-center gap-4 border-b-[1.5px] border-blue py-4 min-[900px]:grid-cols-[1fr_auto_1fr]">
+          <nav className="grid grid-cols-[1fr] items-center gap-4 border-b-[1.5px] border-blue py-4 min-[900px]:grid-cols-[1fr_auto_1fr]">
             <img src={logoUrl} alt="conflu" width={1940} height={1110} className="h-[46px] w-auto min-[760px]:h-[54px]" />
             <span className="fact hidden min-[900px]:block">a career plan, one semester at a time</span>
-            <span className="fact justify-self-end">no account needed</span>
           </nav>
 
           {/* The hero: words on the left, the painting in its window on the right; on a phone the words come first. */}
@@ -114,7 +115,7 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
           </section>
 
           {/* How it works: the story, played by scrolling, ending on the finished sample plan. */}
-          <Story cta={cta(primary.label, primary.go)} />
+          <Story />
 
           <section aria-label="The numbers behind it" className="grid grid-cols-2 border-t-[1.5px] border-blue min-[760px]:grid-cols-4">
             {stats.map(([n, label], i) => (
@@ -123,10 +124,14 @@ export function Landing({ onStart, hasProgress, onResume, onStartOver, onContinu
                 <span className="mt-2 block">{label}</span>
               </p>
             ))}
+            {/* The fourth cell is a fact without a number. */}
+            <p className="border-blue px-5 py-9 max-[759px]:border-b min-[760px]:px-7">
+              <span className="block font-display text-[1.75rem] leading-[1.05] font-bold min-[760px]:text-[2.25rem]">No sign-up or account needed</span>
+            </p>
           </section>
 
           <section className="flex flex-wrap items-center justify-between gap-6 border-[1.5px] border-blue bg-sand px-5 py-10 text-ink min-[760px]:px-14 min-[760px]:py-16">
-            <h2 className="text-[2.75rem] leading-none text-ink min-[760px]:text-[4rem]">Start your plan.</h2>
+            <h2 className="text-[2.75rem] leading-none text-ink min-[760px]:text-[4rem]">Visualize your plan</h2>
             {cta(primary.label, primary.go)}
           </section>
 

@@ -15,7 +15,7 @@ This file has two parts:
 | **Student at another school.** Laptop. | "It says Rutgers. Does it work for me?" | Say early that it works for other schools too. Stay on what's universal: questions, plan, map, steps. |
 | **Screen-reader user, or someone sensitive to motion** (reduced motion on). | "Don't make me sit through an animation to find out what this is." | Every step's meaning is in its words, not the animation. With reduced motion: nothing pins, every screen shows finished, no movement. Frozen screens are hidden from screen readers; the caption says what they show. |
 | **Career-centre advisor or parent.** Desktop, judging whether it's trustworthy. | "Where does the advice come from? Is it selling something?" | Show real names: real programs (CS50, freeCodeCamp), real guides, recruiter-based ordering. Privacy at the bottom. No hype in the words. |
-| **Returning student.** | "I've been here; just let me continue." | The button already says "Continue your plan". The story doesn't block it, and the skip link and hero button come first. |
+| **Returning student.** | "I've been here; just let me continue." | The button says "See my map" (finalized map) or "Continue your plan". The story doesn't block it, and the skip link and hero button come first. |
 
 **What they share:**
 1. The outcome comes first, then the process.
@@ -71,7 +71,7 @@ The first build pinned each step for 1.6 screens and scrubbed it with the scroll
 2. **Get what to do now:** this semester's panel slides in; the hours meter's cells pop in one by one, 4 of the 5 filled ochre; the "Do this now" window opens down from its title bar; the corners snap round it; "look here first".
 3. **See the whole path:** the semester lines fade in, the streams trace down semester by semester, the names fade in beside them, the river's mouth and the goal dot pop; "your goal".
 4. **Do it, one step at a time:** the goal's steps tick off one by one (each tick pops, the line strikes through, the count goes up, the bar fills verdigris); "done".
-- **End:** the finished plan rises in once, the spine reaches the ring and the ring pops. Then the button.
+- **End:** the finished plan rises in once, the spine reaches the ring and the ring pops. The button follows in the landing's closing panel.
 
 **Reduced motion:** no movement at all; every scene is shown finished from the start.
 
@@ -103,12 +103,12 @@ On a phone, step 4's list and the finished plan were cut off at the window's edg
 
 Plain, short, no hype (the owner's standing rule).
 
-- **Intro:** "How it works". "One student, from the first question to a finished plan."
+- **Intro:** "How it works" (the line under it was removed on 2026-11-26, at the owner's request).
 - **Step 1, "Tell it where you are":** "Your campus, major, year, the career you want, and your free time. About 3 minutes, no account, and it works for other schools too."
 - **Step 2, "Get what to do now":** "This semester's goals, sized to your free hours, with one thing to do first and where to go for it."
 - **Step 3, "See the whole path":** "Every goal joins the river in the semester it starts, all the way to your goal."
 - **Step 4, "Do it, one step at a time":** "Every goal breaks into small steps, from real guides. Tick them off as you go."
-- **End, "Your plan, start to finish":** "Every semester to graduation, with the places to go, a map, resources and your major's courses. This one is the sample student's." Then the button.
+- **End, "Your plan, start to finish":** "Every semester to graduation, with the places to go, a map, resources and your major's courses. This one is the sample student's." (No button here: the closing panel, just after, has it.)
 
 ## 6. Accessibility
 
@@ -134,5 +134,5 @@ Plain, short, no hype (the owner's standing rule).
 - The four steps take about 3 screens of scrolling on a laptop.
 - With reduced motion: nothing moves, and everything shows finished.
 - Nothing inside the story can be focused or clicked. The skip link and the buttons can.
-- The finished plan shows at the end, then the button.
+- The finished plan shows at the end; the button follows in the landing's closing panel.
 - Browser tests run on laptop and phone, with an axe scan and the frame-time test.

@@ -212,7 +212,9 @@ for (const phone of [false, true]) {
     await page.goto("./");
     await expect(heading(page)).toHaveText("Know what to do now.");
     await expect(page.getByText("A confluence of streams will carry you toward your goal")).toBeVisible();
-    await expect(page.getByText("no account needed")).toBeVisible();
+    await expect(page.getByText("no account needed")).toHaveCount(0);
+    await expect(page.getByText("No sign-up or account needed")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "Visualize your plan" })).toBeAttached();
     await expect(page.getByRole("img", { name: "conflu" })).toBeVisible();
     for (const gone of ["confluence.txt", "fig. 1", "free · no account"]) await expect(page.getByText(gone, { exact: true })).toHaveCount(0);
     await expect(page.getByRole("button", { name: /sample plan/ })).toHaveCount(0);
@@ -221,7 +223,7 @@ for (const phone of [false, true]) {
 
     const story = page.locator("section[aria-labelledby=how-h]");
     await expect(story.locator("[inert]")).toHaveCount(5);
-    expect(await reachable(page)).toEqual([expect.stringMatching(/^Skip to the finished plan/), expect.stringMatching(/^Build my plan/)]);
+    expect(await reachable(page)).toEqual([expect.stringMatching(/^Skip to the finished plan/)]);
     const step = (n: number) => story.locator(`[data-story-step="${n}"]`);
     const picked = step(1).locator("[inert] [role=radio][aria-checked=true]");
     const ticks = step(4).locator("input.tick");
@@ -261,7 +263,7 @@ for (const phone of [false, true]) {
       await expect(map.getByText(/^Land your first role/).first()).toBeVisible();
     }
 
-    // Skip to the finished plan: focus lands on the end, and the finished sample plan is there, frozen, then the button.
+    // Skip to the finished plan: focus lands on the end, and the finished sample plan is there, frozen, with no button of its own.
     await page.evaluate(() => scrollTo(0, 0));
     await story.getByRole("button", { name: /^Skip to the finished plan/ }).click();
     const end = page.getByRole("heading", { level: 3, name: "Your plan, start to finish" });
@@ -269,7 +271,7 @@ for (const phone of [false, true]) {
     await expect(end).toBeInViewport();
     const finale = page.locator("section[aria-labelledby=story-end]");
     await expect(finale.locator("[inert]").getByText("Do this now", { exact: true })).toBeVisible();
-    await expect(finale.getByRole("button", { name: /^Build my plan/ })).toBeVisible();
+    await expect(finale.getByRole("button")).toHaveCount(0);
 
     // Privacy and data at the very end: open it, and it links nowhere off the site.
     await page.getByText("Privacy and data").click();
@@ -277,7 +279,7 @@ for (const phone of [false, true]) {
     await expect(page.locator("footer a[href*='github.com']")).toHaveCount(0);
 
     expect(await page.evaluate(() => [localStorage.getItem("cpm.plan.v1"), localStorage.getItem("cpm.steps.v1")])).toEqual([null, null]);
-    await finale.getByRole("button", { name: /^Build my plan/ }).click();
+    await page.getByRole("button", { name: /^Build my plan/ }).last().click(); // the closing panel's
     await expect(heading(page)).toHaveText("What do you study?");
     expect(w.violations).toEqual([]);
     expect(w.offsite).toEqual([]);

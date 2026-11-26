@@ -18,12 +18,13 @@ describe("How it works (the landing's story, docs/STORY_DESIGN.md)", () => {
     render(<App />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
     expect(within(story()).getByRole("heading", { level: 2, name: "How it works" })).toBeInTheDocument();
-    expect(within(story()).getByText("One student, from the first question to a finished plan.")).toBeInTheDocument();
+    // No intro line under the heading, and no button at the end: the landing's closing panel, just after, has it.
+    expect(within(story()).queryByText(/One student/)).toBeNull();
     const h3 = within(story()).getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
     expect(h3).toEqual([...STEPS.map(([t]) => t), "Your plan, start to finish"]);
     for (const [, text] of STEPS) expect(within(story()).getByText(text)).toBeInTheDocument();
     expect(within(story()).getByText(/^Every semester to graduation, with the places to go, a map, resources and your major's courses\. This one is the sample student's\.$/)).toBeInTheDocument();
-    expect(within(story()).getByRole("button", { name: /^Build my plan/ })).toBeInTheDocument();
+    expect(within(story()).queryByRole("button", { name: /^Build my plan/ })).toBeNull();
     // The old in-place sample is gone.
     expect(screen.queryByRole("button", { name: /sample plan/ })).toBeNull();
     expect(screen.queryByRole("region", { name: "Sample plan" })).toBeNull();
@@ -37,8 +38,8 @@ describe("How it works (the landing's story, docs/STORY_DESIGN.md)", () => {
     // The real components are inside: the campus question, Do this now, the map, a goal's steps, the whole results page.
     const all = [...frozen].map((el) => el.textContent).join(" ");
     for (const s of ["Rutgers–New Brunswick", "Do this now", "Land your first role in software engineering", "What to do", "Resources"]) expect(all).toContain(s);
-    // Only the skip link and the button can be reached: nothing in a frozen screen is a control for anyone.
-    expect(within(story()).getAllByRole("button").map((b) => b.textContent)).toEqual([expect.stringMatching(/^Skip to the finished plan/), expect.stringMatching(/^Build my plan/)]);
+    // Only the skip link can be reached: nothing in a frozen screen is a control for anyone.
+    expect(within(story()).getAllByRole("button").map((b) => b.textContent)).toEqual([expect.stringMatching(/^Skip to the finished plan/)]);
     expect(within(story()).queryAllByRole("link")).toHaveLength(0);
     for (const n of [1, 2, 3, 4]) expect(container.querySelector(`[data-story-step="${n}"] .sr-only`)!.textContent).toMatch(/^Beside it is a picture of /);
   });
